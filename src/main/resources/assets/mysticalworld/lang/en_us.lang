@@ -1,0 +1,9 @@
+itemGroup.mysticalworld=Mystical World
+
+entity.entity_fox.name=Fox
+entity.entity_frog.name=Frog
+entity.entity_beetle.name=Beetle
+entity.entity_deer.name=Deer
+
+item.carapace.name=Carapace
+item.pelt.name=Pelt
