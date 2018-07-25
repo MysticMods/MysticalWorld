@@ -1,5 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
+import javax.annotation.Nonnull;
+
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -22,9 +24,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class EntityDeer extends EntityAnimal {
+
   public static final DataParameter<Boolean> hasHorns = EntityDataManager.<Boolean>createKey(EntityDeer.class, DataSerializers.BOOLEAN);
 
-  public EntityDeer(World world) {
+  public EntityDeer(@Nonnull World world) {
     super(world);
     setSize(1.0f, 1.0f);
     this.experienceValue = 3;
@@ -71,11 +74,13 @@ public class EntityDeer extends EntityAnimal {
   }
 
   @Override
-  public EntityAgeable createChild(EntityAgeable ageable) {
+  @Nonnull
+  public EntityAgeable createChild(@Nonnull EntityAgeable ageable) {
     return new EntityDeer(ageable.world);
   }
 
   @Override
+  @Nonnull
   public ResourceLocation getLootTable() {
     return new ResourceLocation(MysticalWorld.MODID + ":deer");
   }
@@ -85,14 +90,14 @@ public class EntityDeer extends EntityAnimal {
   }
 
   @Override
-  public void readEntityFromNBT(NBTTagCompound compound) {
+  public void readEntityFromNBT(@Nonnull NBTTagCompound compound) {
     super.readEntityFromNBT(compound);
     getDataManager().set(hasHorns, compound.getBoolean("hasHorns"));
     getDataManager().setDirty(hasHorns);
   }
 
   @Override
-  public void writeEntityToNBT(NBTTagCompound compound) {
+  public void writeEntityToNBT(@Nonnull NBTTagCompound compound) {
     super.writeEntityToNBT(compound);
     compound.setBoolean("hasHorns", getDataManager().get(hasHorns));
   }

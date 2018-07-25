@@ -1,5 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
+import javax.annotation.Nonnull;
+
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -24,7 +26,7 @@ import net.minecraft.world.World;
 public class EntityFrog extends EntityAnimal {
   public float offGround = 0f;
 
-  public EntityFrog(World worldIn) {
+  public EntityFrog(@Nonnull World worldIn) {
     super(worldIn);
     setSize(0.5f, 0.5f);
     this.experienceValue = 2;
@@ -55,16 +57,14 @@ public class EntityFrog extends EntityAnimal {
   }
 
   @Override
-  public void damageEntity(DamageSource source, float amount) {
-    if (source.getDamageType().equalsIgnoreCase(DamageSource.FALL.getDamageType())) {
-      return;
-    } else {
+  public void damageEntity(@Nonnull DamageSource source, float amount) {
+    if (!source.getDamageType().equalsIgnoreCase(DamageSource.FALL.getDamageType())) {
       super.damageEntity(source, amount);
     }
   }
 
   @Override
-  public boolean isBreedingItem(ItemStack stack) {
+  public boolean isBreedingItem(@Nonnull ItemStack stack) {
     return stack.getItem() == Item.getItemFromBlock(Blocks.BROWN_MUSHROOM);
   }
 
@@ -123,11 +123,13 @@ public class EntityFrog extends EntityAnimal {
   }
 
   @Override
-  public EntityAgeable createChild(EntityAgeable ageable) {
+  @Nonnull
+  public EntityAgeable createChild(@Nonnull EntityAgeable ageable) {
     return new EntityFrog(ageable.world);
   }
 
   @Override
+  @Nonnull
   public ResourceLocation getLootTable() {
     return new ResourceLocation(MysticalWorld.MODID + ":frog");
   }

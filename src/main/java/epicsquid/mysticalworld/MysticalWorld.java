@@ -25,7 +25,8 @@ public class MysticalWorld {
 
   public static ModContainer CONTAINER = null;
 
-  @SidedProxy(clientSide = "ClientProxy", serverSide = "CommonProxy") public static CommonProxy proxy;
+  @SidedProxy(clientSide = "epicsquid.mysticalworld.proxy.ClientProxy", serverSide = "epicsquid.mysticalworld.proxy.CommonProxy")
+  public static CommonProxy proxy;
 
   @Instance(MODID) public static MysticalWorld instance;
 

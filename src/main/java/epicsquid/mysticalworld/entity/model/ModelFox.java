@@ -1,5 +1,7 @@
 package epicsquid.mysticalworld.entity.model;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -9,21 +11,22 @@ import net.minecraft.entity.Entity;
  * Created using Tabula 5.1.0
  */
 public class ModelFox extends ModelBase {
-  public ModelRenderer body1;
-  public ModelRenderer frontL;
-  public ModelRenderer frontR;
-  public ModelRenderer body2;
-  public ModelRenderer neck;
-  public ModelRenderer backL;
-  public ModelRenderer backR;
-  public ModelRenderer tail1;
-  public ModelRenderer tail2;
-  public ModelRenderer tail3;
-  public ModelRenderer tail4;
-  public ModelRenderer head;
-  public ModelRenderer snout;
-  public ModelRenderer earR;
-  public ModelRenderer earL;
+
+  private ModelRenderer body1;
+  private ModelRenderer frontL;
+  private ModelRenderer frontR;
+  private ModelRenderer body2;
+  private ModelRenderer neck;
+  private ModelRenderer backL;
+  private ModelRenderer backR;
+  private ModelRenderer tail1;
+  private ModelRenderer tail2;
+  private ModelRenderer tail3;
+  private ModelRenderer tail4;
+  private ModelRenderer head;
+  private ModelRenderer snout;
+  private ModelRenderer earR;
+  private ModelRenderer earL;
 
   public ModelFox() {
     this.textureWidth = 32;
@@ -100,12 +103,12 @@ public class ModelFox extends ModelBase {
     this.tail1.addChild(this.tail2);
   }
 
-  public float getBobble(float deg, float ageInTicks) {
+  private float getBobble(float deg, float ageInTicks) {
     return (float) Math.sin(ageInTicks * 0.03125f * (Math.PI * 2.0f) + Math.toRadians(deg));
   }
 
   @Override
-  public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+  public void render(@Nonnull Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
     float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
     float cos = (float) Math.cos(ageInTicks * 0.0625f * (Math.PI * 2.0f));
     this.earL.rotateAngleZ = 0.5235987755982988F + getBobble(60, ageInTicks) * 0.0981747703F;
@@ -127,7 +130,7 @@ public class ModelFox extends ModelBase {
   /**
    * This is a helper function from Tabula to set the rotation of model parts
    */
-  public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+  private void setRotateAngle(@Nonnull ModelRenderer modelRenderer, float x, float y, float z) {
     modelRenderer.rotateAngleX = x;
     modelRenderer.rotateAngleY = y;
     modelRenderer.rotateAngleZ = z;

@@ -1,5 +1,7 @@
 package epicsquid.mysticalworld.entity.model;
 
+import javax.annotation.Nonnull;
+
 import epicsquid.mysticalworld.entity.EntityDeer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -8,25 +10,26 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 
 public class ModelDeer extends ModelBase {
+
   //fields
-  ModelRenderer head;
-  ModelRenderer ear1;
-  ModelRenderer ear2;
-  ModelRenderer neck;
-  ModelRenderer body;
-  ModelRenderer tail;
-  ModelRenderer legRF;
-  ModelRenderer legLF;
-  ModelRenderer legLB;
-  ModelRenderer legRB;
-  ModelRenderer horn1;
-  ModelRenderer horn2;
-  ModelRenderer horn3;
-  ModelRenderer horn4;
-  ModelRenderer horn5;
-  ModelRenderer horn6;
-  ModelRenderer horn7;
-  ModelRenderer horn8;
+  private ModelRenderer head;
+  private ModelRenderer ear1;
+  private ModelRenderer ear2;
+  private ModelRenderer neck;
+  private ModelRenderer body;
+  private ModelRenderer tail;
+  private ModelRenderer legRF;
+  private ModelRenderer legLF;
+  private ModelRenderer legLB;
+  private ModelRenderer legRB;
+  private ModelRenderer horn1;
+  private ModelRenderer horn2;
+  private ModelRenderer horn3;
+  private ModelRenderer horn4;
+  private ModelRenderer horn5;
+  private ModelRenderer horn6;
+  private ModelRenderer horn7;
+  private ModelRenderer horn8;
 
   public ModelDeer() {
     textureWidth = 64;
@@ -145,7 +148,7 @@ public class ModelDeer extends ModelBase {
     setRotation(horn8, 0F, 0.1745329F, 0.7853982F);
   }
 
-  public void render(Entity entity, float f, float limbSwingAmount, float age, float f3, float f4, float f5) {
+  public void render(@Nonnull Entity entity, float f, float limbSwingAmount, float age, float f3, float f4, float f5) {
     float sin = (float) Math.sin(age * 0.125f * (Math.PI * 2.0f));
     float cos = (float) Math.cos(age * 0.0625f * (Math.PI * 2.0f));
     GlStateManager.pushMatrix();
@@ -182,13 +185,13 @@ public class ModelDeer extends ModelBase {
     GlStateManager.popMatrix();
   }
 
-  private void setRotation(ModelRenderer model, float x, float y, float z) {
+  private void setRotation(@Nonnull ModelRenderer model, float x, float y, float z) {
     model.rotateAngleX = x;
     model.rotateAngleY = y;
     model.rotateAngleZ = z;
   }
 
-  public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {
+  private void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {
     super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
   }
 

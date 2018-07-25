@@ -1,5 +1,7 @@
 package epicsquid.mysticalworld.entity.model;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -9,20 +11,21 @@ import net.minecraft.entity.Entity;
  * Created using Tabula 5.1.0
  */
 public class ModelBeetle extends ModelBase {
-  public ModelRenderer body;
-  public ModelRenderer wingL;
-  public ModelRenderer wingR;
-  public ModelRenderer head;
-  public ModelRenderer legL1;
-  public ModelRenderer legL2;
-  public ModelRenderer legL3;
-  public ModelRenderer legR1;
-  public ModelRenderer legR2;
-  public ModelRenderer legR3;
-  public ModelRenderer antennaR1;
-  public ModelRenderer antennaL1;
-  public ModelRenderer antennaR2;
-  public ModelRenderer antennaR2_1;
+
+  private ModelRenderer body;
+  private ModelRenderer wingL;
+  private ModelRenderer wingR;
+  private ModelRenderer head;
+  private ModelRenderer legL1;
+  private ModelRenderer legL2;
+  private ModelRenderer legL3;
+  private ModelRenderer legR1;
+  private ModelRenderer legR2;
+  private ModelRenderer legR3;
+  private ModelRenderer antennaR1;
+  private ModelRenderer antennaL1;
+  private ModelRenderer antennaR2;
+  private ModelRenderer antennaR2_1;
 
   public ModelBeetle() {
     this.textureWidth = 32;
@@ -98,16 +101,16 @@ public class ModelBeetle extends ModelBase {
     this.antennaL1.addChild(this.antennaR2_1);
   }
 
-  public float getSwing(float deg, float ageInTicks) {
+  private float getSwing(float deg, float ageInTicks) {
     return (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f) + Math.toRadians(deg));
   }
 
-  public float getBobble(float deg, float ageInTicks) {
+  private float getBobble(float deg, float ageInTicks) {
     return (float) Math.sin(ageInTicks * 0.03125f * (Math.PI * 2.0f) + Math.toRadians(deg));
   }
 
   @Override
-  public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+  public void render(@Nonnull Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
     this.head.rotateAngleX = headPitch * 0.017453292F;
     this.head.rotateAngleY = netHeadYaw * 0.017453292F;
     this.antennaR1.rotateAngleX = 0.1308996938995747F + getBobble(30, ageInTicks) * 0.2617993877991494F;
@@ -127,7 +130,7 @@ public class ModelBeetle extends ModelBase {
   /**
    * This is a helper function from Tabula to set the rotation of model parts
    */
-  public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+  private void setRotateAngle(@Nonnull ModelRenderer modelRenderer, float x, float y, float z) {
     modelRenderer.rotateAngleX = x;
     modelRenderer.rotateAngleY = y;
     modelRenderer.rotateAngleZ = z;

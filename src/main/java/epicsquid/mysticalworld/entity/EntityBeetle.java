@@ -1,5 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
+import javax.annotation.Nonnull;
+
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,7 +22,7 @@ import net.minecraft.world.World;
 
 public class EntityBeetle extends EntityAnimal {
 
-  public EntityBeetle(World worldIn) {
+  public EntityBeetle(@Nonnull World worldIn) {
     super(worldIn);
     setSize(0.75f, 0.75f);
     this.experienceValue = 3;
@@ -39,7 +41,7 @@ public class EntityBeetle extends EntityAnimal {
   }
 
   @Override
-  public boolean isBreedingItem(ItemStack stack) {
+  public boolean isBreedingItem(@Nonnull ItemStack stack) {
     return stack.getItem() == Items.MELON;
   }
 
@@ -61,11 +63,12 @@ public class EntityBeetle extends EntityAnimal {
   }
 
   @Override
-  public EntityAgeable createChild(EntityAgeable ageable) {
+  public EntityAgeable createChild(@Nonnull EntityAgeable ageable) {
     return new EntityBeetle(ageable.world);
   }
 
   @Override
+  @Nonnull
   public ResourceLocation getLootTable() {
     return new ResourceLocation(MysticalWorld.MODID + ":beetle");
   }

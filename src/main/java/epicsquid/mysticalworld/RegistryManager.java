@@ -3,11 +3,11 @@ package epicsquid.mysticalworld;
 import java.util.HashSet;
 import java.util.Set;
 
-import elucent.elulib.ELRegistry;
-import elucent.elulib.event.RegisterContentEvent;
-import elucent.elulib.event.RegisterModRecipesEvent;
-import elucent.elulib.item.ItemBase;
-import elucent.elulib.util.Util;
+import epicsquid.mysticallib.LibRegistry;
+import epicsquid.mysticallib.event.RegisterContentEvent;
+import epicsquid.mysticallib.event.RegisterModRecipesEvent;
+import epicsquid.mysticallib.item.ItemBase;
+import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.entity.EntityBeetle;
 import epicsquid.mysticalworld.entity.EntityDeer;
 import epicsquid.mysticalworld.entity.EntityFox;
@@ -38,26 +38,26 @@ public class RegistryManager {
 
   @SubscribeEvent
   public void init(RegisterContentEvent event) {
-    ELRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
+    LibRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
 
     event.addItem(carapace = new ItemBase("carapace").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(pelt = new ItemBase("pelt").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
     //EGG COLORS GO: MAIN THEN SPOTS
-    ELRegistry.registerEntity(EntityFox.class, 0xD46724, 0xF5E0D3);
+    LibRegistry.registerEntity(EntityFox.class, 0xD46724, 0xF5E0D3);
     if (MysticalWorld.proxy instanceof ClientProxy)
-      ELRegistry.registerEntityRenderer(EntityFox.class, new RenderFox.Factory());
-    ELRegistry.registerEntity(EntityFrog.class, 0x285234, 0xDBE697);
+      LibRegistry.registerEntityRenderer(EntityFox.class, new RenderFox.Factory());
+    LibRegistry.registerEntity(EntityFrog.class, 0x285234, 0xDBE697);
     if (MysticalWorld.proxy instanceof ClientProxy)
-      ELRegistry.registerEntityRenderer(EntityFrog.class, new RenderFrog.Factory());
-    ELRegistry.registerEntity(EntityBeetle.class, 0x418594, 0x211D15);
+      LibRegistry.registerEntityRenderer(EntityFrog.class, new RenderFrog.Factory());
+    LibRegistry.registerEntity(EntityBeetle.class, 0x418594, 0x211D15);
     if (MysticalWorld.proxy instanceof ClientProxy)
-      ELRegistry.registerEntityRenderer(EntityBeetle.class, new RenderBeetle.Factory());
+      LibRegistry.registerEntityRenderer(EntityBeetle.class, new RenderBeetle.Factory());
 
     if (!Loader.isModLoaded("roots")) {
-      ELRegistry.registerEntity(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
+      LibRegistry.registerEntity(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
       if (MysticalWorld.proxy instanceof ClientProxy)
-        ELRegistry.registerEntityRenderer(EntityDeer.class, new RenderDeer.Factory());
+        LibRegistry.registerEntityRenderer(EntityDeer.class, new RenderDeer.Factory());
 
       Set<Biome> biomes = new HashSet<>();
       biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
@@ -102,7 +102,7 @@ public class RegistryManager {
 
   @SubscribeEvent
   public void initRecipes(RegisterModRecipesEvent event) {
-    ELRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
+    LibRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
     registerShapeless(event.getRegistry(), "pelt", new ItemStack(Items.LEATHER, 1), new ItemStack(pelt, 1), new ItemStack(pelt, 1));
     registerShapeless(event.getRegistry(), "carapace", new ItemStack(Items.DYE, 1, 4), new ItemStack(carapace, 1));
   }
