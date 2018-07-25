@@ -30,7 +30,7 @@ public class RenderDeer extends RenderLiving<EntityDeer> {
   }
 
   public static class Factory implements IRenderFactory<EntityDeer> {
-    
+
     @Override
     public Render<EntityDeer> createRenderFor(RenderManager manager) {
       return new RenderDeer(manager, ModelHolder.models.get("deer"), 0.35f);
