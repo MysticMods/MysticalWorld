@@ -1,0 +1,12 @@
+{
+    "variants":{
+        "age=0":  { "model": "mysticalworld:pereskia_0" },
+        "age=1":  { "model": "mysticalworld:pereskia_1" },
+        "age=2":  { "model": "mysticalworld:pereskia_2" },
+        "age=3":  { "model": "mysticalworld:pereskia_3" },
+        "age=4":  { "model": "mysticalworld:pereskia_4" },
+        "age=5":  { "model": "mysticalworld:pereskia_5" },
+        "age=6":  { "model": "mysticalworld:pereskia_6" },
+        "age=7":  { "model": "mysticalworld:pereskia_7" }
+    }
+}

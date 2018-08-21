@@ -1,0 +1,7 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "particle": "mysticalworld:blocks/wildroot_3",
+        "crop": "mysticalworld:blocks/wildroot_3"
+    }
+}

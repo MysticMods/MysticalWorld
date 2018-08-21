@@ -1,0 +1,7 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "particle": "mysticalworld:blocks/terra_moss_2",
+        "crop": "mysticalworld:blocks/terra_moss_2"
+    }
+}

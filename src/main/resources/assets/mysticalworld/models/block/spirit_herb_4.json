@@ -1,0 +1,7 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "particle": "mysticalworld:blocks/spirit_herb_4",
+        "crop": "mysticalworld:blocks/spirit_herb_4"
+    }
+}
