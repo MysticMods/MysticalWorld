@@ -1,0 +1,12 @@
+{
+    "variants":{
+        "age=0":  { "model": "mysticalworld:moonglow_0" },
+        "age=1":  { "model": "mysticalworld:moonglow_1" },
+        "age=2":  { "model": "mysticalworld:moonglow_2" },
+        "age=3":  { "model": "mysticalworld:moonglow_3" },
+        "age=4":  { "model": "mysticalworld:moonglow_4" },
+        "age=5":  { "model": "mysticalworld:moonglow_5" },
+        "age=6":  { "model": "mysticalworld:moonglow_6" },
+        "age=7":  { "model": "mysticalworld:moonglow_7" }
+    }
+}

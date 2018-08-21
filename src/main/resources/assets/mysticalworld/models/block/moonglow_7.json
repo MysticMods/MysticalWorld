@@ -1,0 +1,7 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "particle": "mysticalworld:blocks/moonglow_7",
+        "crop": "mysticalworld:blocks/moonglow_7"
+    }
+}

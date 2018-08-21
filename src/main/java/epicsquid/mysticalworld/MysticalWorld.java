@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld;
 
+import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -39,7 +40,7 @@ public class MysticalWorld {
     @Override
     @SideOnly(Side.CLIENT)
     public ItemStack getTabIconItem() {
-      return new ItemStack(RegistryManager.carapace, 1);
+      return new ItemStack(ModItems.carapace, 1);
     }
   };
 
