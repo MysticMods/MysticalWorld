@@ -7,3 +7,9 @@ entity.entity_deer.name=Deer
 
 item.carapace.name=Carapace
 item.pelt.name=Pelt
+
+# Herbs
+item.moonglow_seed.name=Moonglow Seed
+item.moonglow_leaf.name=Moonglow Leaf
+item.aubergine_seed.name=Aubgergine Seed
+item.aubergine.name=Aubgergine

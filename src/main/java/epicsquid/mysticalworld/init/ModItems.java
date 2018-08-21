@@ -12,7 +12,7 @@ import net.minecraft.item.Item;
 public class ModItems {
 
   // All mod items
-  public static Item carapace, pelt, moonglow_seed, moonglow_leaf;
+  public static Item carapace, pelt, moonglow_seed, moonglow_leaf, aubergine, aubergine_seed;
 
   /**
    * Register all items
@@ -22,5 +22,7 @@ public class ModItems {
     event.addItem(pelt = new ItemBase("pelt").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(moonglow_seed = new ItemSeedBase("moonglow_seed", ModBlocks.moonglow, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(moonglow_leaf = new ItemBase("moonglow_leaf").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(aubergine = new ItemBase("aubergine").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
   }
 }
