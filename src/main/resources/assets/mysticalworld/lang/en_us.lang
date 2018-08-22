@@ -20,3 +20,20 @@ item.terra_moss.name=Terra Moss
 item.spirit_herb_seed.name=Spirit Herb Seed
 item.spirit_herb.name=Spirit Herb
 item.wildroot.name=Wildroot
+
+# Ingots
+item.copper_ingot.name=Copper Ingot
+item.tin_ingot.name=Tin Ingot
+item.silver_ingot.name=Silver Ingot
+item.lead_ingot.name=Lead Ingot
+item.nickel_ingot.name=Nickel Ingot
+item.aluminium_ingot.name=Aluminium Ingot
+item.zinc_ingot.name=Zinc Ingot
+item.invar_ingot.name=Invar Ingot
+item.electrum_ingot.name=Electrum Ingot
+item.brass_ingot.name=Brass Ingot
+item.bronze_ingot.name=Bronze Ingot
+
+# Embers Ingots
+item.dawnstone_ingot.name=Dawnstone Ingot
+item.sooty_iron_ingot.name=Sooty Iron Ingot
