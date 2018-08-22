@@ -9,30 +9,17 @@ import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
-import scala.Char;
 
 /**
  * Used to add the various metals and metal components used in Mystical World and sub mods
  */
 public enum Metal {
 
-  copper("Copper"),
-  tin("Tin"),
-  silver("Silver"),
-  lead("Lead"),
-  nickel("Nickel"),
-  aluminum("Aluminum"),
-  zinc("Zinc"),
-  invar("Invar"),
-  electrum("Electrum"),
-  brass("Brass"),
-  bronze("Bronze"),
-  dawnstone("Dawnstone"),
-  sooty_iron("SootyIron")
-
-  ;
+  copper("Copper"), tin("Tin"), silver("Silver"), lead("Lead"), nickel("Nickel"), aluminum("Aluminum"), zinc("Zinc"), invar("Invar"), electrum(
+      "Electrum"), brass("Brass"), bronze("Bronze"), dawnstone("Dawnstone"), sooty_iron("SootyIron");
 
   private @Nullable Item ingot;
+  private @Nullable Item nugget;
   private @Nullable Block block;
   private @Nonnull String oredictNameSuffix;
 
@@ -51,7 +38,7 @@ public enum Metal {
   }
 
   @Nonnull
-  public Item setItem(@Nonnull Item item) {
+  public Item setIngot(@Nonnull Item item) {
     this.ingot = item;
     return this.ingot;
   }
@@ -67,15 +54,28 @@ public enum Metal {
     return this.block;
   }
 
+  @Nullable
+  public Item getNugget() {
+    return nugget;
+  }
+
+  @Nonnull
+  public Item setNugget(@Nonnull Item nugget) {
+    this.nugget = nugget;
+    return this.nugget;
+  }
+
   public static void registerMetals(@Nonnull RegisterContentEvent event) {
     for (Metal metal : values()) {
-      event.addItem(metal.setItem(new ItemBase(metal.name() + "_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+      event.addItem(metal.setIngot(new ItemBase(metal.name() + "_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+      event.addItem(metal.setNugget(new ItemBase(metal.name() + "_nugget").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
     }
   }
 
   public static void registerOreDict() {
     for (Metal metal : values()) {
       OreDictionary.registerOre("ingot" + metal.getOredictNameSuffix(), metal.getIngot());
+      OreDictionary.registerOre("nugget" + metal.getOredictNameSuffix(), metal.getNugget());
     }
   }
 }

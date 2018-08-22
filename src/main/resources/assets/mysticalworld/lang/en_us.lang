@@ -27,13 +27,29 @@ item.tin_ingot.name=Tin Ingot
 item.silver_ingot.name=Silver Ingot
 item.lead_ingot.name=Lead Ingot
 item.nickel_ingot.name=Nickel Ingot
-item.aluminium_ingot.name=Aluminium Ingot
+item.aluminum_ingot.name=Aluminium Ingot
 item.zinc_ingot.name=Zinc Ingot
 item.invar_ingot.name=Invar Ingot
 item.electrum_ingot.name=Electrum Ingot
 item.brass_ingot.name=Brass Ingot
 item.bronze_ingot.name=Bronze Ingot
 
-# Embers Ingots
+# Nuggets
+item.copper_nugget.name=Copper Nugget
+item.tin_nugget.name=Tin Nugget
+item.silver_nugget.name=Silver Nugget
+item.lead_nugget.name=Lead Nugget
+item.nickel_nugget.name=Nickel Nugget
+item.aluminum_nugget.name=Aluminium Nugget
+item.zinc_nugget.name=Zinc Nugget
+item.invar_nugget.name=Invar Nugget
+item.electrum_nugget.name=Electrum Nugget
+item.brass_nugget.name=Brass Nugget
+item.bronze_nugget.name=Bronze Nugget
+
+# Embers Metals
 item.dawnstone_ingot.name=Dawnstone Ingot
 item.sooty_iron_ingot.name=Sooty Iron Ingot
+
+item.dawnstone_nugget.name=Dawnstone Nugget
+item.sooty_iron_nugget.name=Sooty Iron Nugget
