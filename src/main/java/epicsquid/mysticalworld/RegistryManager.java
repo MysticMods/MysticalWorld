@@ -9,6 +9,7 @@ import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModRecipes;
+import epicsquid.mysticalworld.item.metals.Metal;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class RegistryManager {
@@ -20,6 +21,8 @@ public class RegistryManager {
     ModBlocks.registerBlocks(event);
 
     ModItems.registerItems(event);
+
+    Metal.registerMetals(event);
 
     ModEntities.registerMobs();
     ModEntities.registerMobSpawn();

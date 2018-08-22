@@ -8,7 +8,6 @@ import epicsquid.mysticallib.item.ItemSeedBase;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ModItems {
 
@@ -40,40 +39,40 @@ public class ModItems {
     event.addItem(wildroot = new ItemSeedBase("wildroot", ModBlocks.wildroot, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
     // Metals
-    event.addItem(copper_ingot = new ItemBase("copper_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(tin_ingot = new ItemBase("tin_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(silver_ingot = new ItemBase("silver_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(lead_ingot = new ItemBase("lead_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(nickel_ingot = new ItemBase("nickel_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(alu_ingot = new ItemBase("aluminium_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(zinc_ingot = new ItemBase("zinc_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(invar_ingot = new ItemBase("invar_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(electrum_ingot = new ItemBase("electrum_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(brass_ingot = new ItemBase("brass_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(bronze_ingot = new ItemBase("bronze_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-
-    // Embers Alloys
-    event.addItem(dawnstone_ingot = new ItemBase("dawnstone_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(sooty_iron_ingot = new ItemBase("sooty_iron_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(copper_ingot = new ItemBase("copper_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(tin_ingot = new ItemBase("tin_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(silver_ingot = new ItemBase("silver_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(lead_ingot = new ItemBase("lead_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(nickel_ingot = new ItemBase("nickel_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(alu_ingot = new ItemBase("aluminium_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(zinc_ingot = new ItemBase("zinc_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(invar_ingot = new ItemBase("invar_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(electrum_ingot = new ItemBase("electrum_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(brass_ingot = new ItemBase("brass_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(bronze_ingot = new ItemBase("bronze_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//
+//    // Embers Alloys
+//    event.addItem(dawnstone_ingot = new ItemBase("dawnstone_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//    event.addItem(sooty_iron_ingot = new ItemBase("sooty_iron_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
   }
 
   /**
    * Register item oredicts here
    */
   public static void registerOredict() {
-    OreDictionary.registerOre("ingotCopper", copper_ingot);
-    OreDictionary.registerOre("ingotTin", tin_ingot);
-    OreDictionary.registerOre("ingotSilver", silver_ingot);
-    OreDictionary.registerOre("ingotLead", lead_ingot);
-    OreDictionary.registerOre("ingotNickel", nickel_ingot);
-    OreDictionary.registerOre("ingotAluminium", alu_ingot);
-    OreDictionary.registerOre("ingotAluminum", alu_ingot);
-    OreDictionary.registerOre("ingotZinc", zinc_ingot);
-    OreDictionary.registerOre("ingotInvar", invar_ingot);
-    OreDictionary.registerOre("ingotElectrum", electrum_ingot);
-    OreDictionary.registerOre("ingotBrass", brass_ingot);
-    OreDictionary.registerOre("ingotBronze", bronze_ingot);
-    OreDictionary.registerOre("ingotDawnstone", dawnstone_ingot);
-    OreDictionary.registerOre("ingotSootyIron", sooty_iron_ingot);
+//    OreDictionary.registerOre("ingotCopper", copper_ingot);
+//    OreDictionary.registerOre("ingotTin", tin_ingot);
+//    OreDictionary.registerOre("ingotSilver", silver_ingot);
+//    OreDictionary.registerOre("ingotLead", lead_ingot);
+//    OreDictionary.registerOre("ingotNickel", nickel_ingot);
+//    OreDictionary.registerOre("ingotAluminium", alu_ingot);
+//    OreDictionary.registerOre("ingotAluminum", alu_ingot);
+//    OreDictionary.registerOre("ingotZinc", zinc_ingot);
+//    OreDictionary.registerOre("ingotInvar", invar_ingot);
+//    OreDictionary.registerOre("ingotElectrum", electrum_ingot);
+//    OreDictionary.registerOre("ingotBrass", brass_ingot);
+//    OreDictionary.registerOre("ingotBronze", bronze_ingot);
+//    OreDictionary.registerOre("ingotDawnstone", dawnstone_ingot);
+//    OreDictionary.registerOre("ingotSootyIron", sooty_iron_ingot);
   }
 }
