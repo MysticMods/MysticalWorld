@@ -3,10 +3,13 @@ package epicsquid.mysticalworld.item.metals;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import epicsquid.mysticallib.block.BlockBase;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -15,16 +18,22 @@ import net.minecraftforge.oredict.OreDictionary;
  */
 public enum Metal {
 
-  copper("Copper"), tin("Tin"), silver("Silver"), lead("Lead"), nickel("Nickel"), aluminum("Aluminum"), zinc("Zinc"), invar("Invar"), electrum(
-      "Electrum"), brass("Brass"), bronze("Bronze"), dawnstone("Dawnstone"), sooty_iron("SootyIron");
+  copper("Copper", 3.5f), tin("Tin", 4f), silver("Silver", 5f), lead("Lead", 5f), nickel("Nickel", 5f), aluminum("Aluminum", 5f), zinc("Zinc", 5f), invar("Invar",
+      5f), electrum("Electrum", 5f), brass("Brass", 5f), bronze("Bronze", 5f), dawnstone("Dawnstone", 5f), sooty_iron("SootyIron", 5f);
 
   private @Nullable Item ingot;
   private @Nullable Item nugget;
   private @Nullable Block block;
-  private @Nonnull String oredictNameSuffix;
+  private final float hardness;
+  private final @Nonnull String oredictNameSuffix;
 
-  private Metal(@Nonnull String oredictNameSuffix) {
+  private Metal(@Nonnull String oredictNameSuffix, float hardness) {
     this.oredictNameSuffix = oredictNameSuffix;
+    this.hardness = hardness;
+  }
+
+  public float getHardness() {
+    return hardness;
   }
 
   @Nonnull
@@ -69,6 +78,8 @@ public enum Metal {
     for (Metal metal : values()) {
       event.addItem(metal.setIngot(new ItemBase(metal.name() + "_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
       event.addItem(metal.setNugget(new ItemBase(metal.name() + "_nugget").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+      event.addBlock(metal.setBlock(
+          new BlockBase(Material.IRON, SoundType.METAL, metal.getHardness(), metal.name() + "_block").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
     }
   }
 

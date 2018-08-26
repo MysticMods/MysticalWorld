@@ -47,9 +47,25 @@ item.electrum_nugget.name=Electrum Nugget
 item.brass_nugget.name=Brass Nugget
 item.bronze_nugget.name=Bronze Nugget
 
+# Metal Blocks
+tile.copper_block.name=Block of Copper
+tile.tin_block.name=Block of Tin
+tile.silver_block.name=Block of Silver
+tile.lead_block.name=Block of Lead
+tile.nickel_block.name=Block of Nickel
+tile.aluminum_block.name=Block of Aluminium
+tile.zinc_block.name=Block of Zinc
+tile.invar_block.name=Block of Invar
+tile.electrum_block.name=Block of Electrum
+tile.brass_block.name=Block of Brass
+tile.bronze_block.name=Block of Bronze
+
 # Embers Metals
 item.dawnstone_ingot.name=Dawnstone Ingot
 item.sooty_iron_ingot.name=Sooty Iron Ingot
 
 item.dawnstone_nugget.name=Dawnstone Nugget
 item.sooty_iron_nugget.name=Sooty Iron Nugget
+
+tile.dawnstone_block.name=Block of Dawnstone
+tile.sooty_iron_block.name=Block of Sooty Iron
