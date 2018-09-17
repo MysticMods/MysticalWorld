@@ -51,6 +51,7 @@ public enum Metal {
   private @Nullable Item ingot;
   private @Nullable Item nugget;
   private @Nullable Item dust;
+  private @Nullable Item dustTiny;
   private @Nullable Block block;
   private final float hardness;
   private final @Nonnull String oredictNameSuffix;
@@ -85,9 +86,21 @@ public enum Metal {
     return dust;
   }
 
+  @Nonnull
   public Item setDust(@Nonnull Item dust) {
     this.dust = dust;
     return this.dust;
+  }
+
+  @Nullable
+  public Item getDustTiny() {
+    return dustTiny;
+  }
+
+  @Nonnull
+  public Item setDustTiny(@Nonnull Item dustTiny) {
+    this.dustTiny = dustTiny;
+    return this.dustTiny;
   }
 
   @Nullable
@@ -122,6 +135,7 @@ public enum Metal {
       event.addItem(metal.setNugget(new ItemBase(metal.name() + "_nugget").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
       if (metal.hasGrindables()) {
         event.addItem(metal.setDust(new ItemBase(metal.name() + "_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+        event.addItem(metal.setDust(new ItemBase(metal.name() + "_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
       }
       event.addBlock(metal.setBlock(
           new BlockBase(Material.IRON, SoundType.METAL, metal.getHardness(), metal.name() + "_block").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
@@ -134,6 +148,7 @@ public enum Metal {
       OreDictionary.registerOre("nugget" + metal.getOredictNameSuffix(), metal.getNugget());
       if (metal.hasGrindables()) {
         OreDictionary.registerOre("dust" + metal.getOredictNameSuffix(), metal.getDust());
+        OreDictionary.registerOre("dustTiny" + metal.getOredictNameSuffix(), metal.getDustTiny());
       }
     }
   }

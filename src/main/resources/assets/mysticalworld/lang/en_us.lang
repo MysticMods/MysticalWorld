@@ -73,6 +73,19 @@ item.electrum_dust.name=Electrum Dust
 item.brass_dust.name=Brass Dust
 item.bronze_dust.name=Bronze Dust
 
+# Tiny Dusts
+item.copper_dust_tiny.name=Tiny Pile of Copper Dust
+item.tin_dust_tiny.name=Tiny Pile of Tin Dust
+item.silver_dust_tiny.name=Tiny Pile of Silver Dust
+item.lead_dust_tiny.name=Tiny Pile of Lead Dust
+item.nickel_dust_tiny.name=Tiny Pile of Nickel Dust
+item.aluminum_dust_tiny.name=Tiny Pile of Aluminum Dust
+item.zinc_dust_tiny.name=Tiny Pile of Zinc Dust
+item.invar_dust_tiny.name=Tiny Pile of Invar Dust
+item.electrum_dust_tiny.name=Tiny Pile of Electrum Dust
+item.brass_dust_tiny.name=Tiny Pile of Brass Dust
+item.bronze_dust_tiny.name=Tiny Pile of Bronze Dust
+
 # Embers Metals
 item.dawnstone_ingot.name=Dawnstone Ingot
 item.sooty_iron_ingot.name=Sooty Iron Ingot
@@ -82,9 +95,6 @@ item.sooty_iron_nugget.name=Sooty Iron Nugget
 
 tile.dawnstone_block.name=Block of Dawnstone
 tile.sooty_iron_block.name=Block of Sooty Iron
-
-item.dawnstone_dust.name=Dawnstone Dust
-item.sooty_iron_dust.name=Sooty Iron Dust
 
 # Tea
 item.teapot.name=Teapot
