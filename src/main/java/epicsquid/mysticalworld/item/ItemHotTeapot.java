@@ -7,14 +7,12 @@ import javax.annotation.Nullable;
 
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticalworld.init.ModItems;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 
 public class ItemHotTeapot extends ItemBase {
 
