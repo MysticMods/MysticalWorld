@@ -6,6 +6,7 @@ import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticallib.item.ItemSeedBase;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.item.ItemTeapot;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
@@ -13,7 +14,7 @@ public class ModItems {
 
   // All mod items
   public static Item carapace, pelt, moonglow_seed, moonglow_leaf, aubergine, aubergine_seed, pereskia_bulb, pereskia, terra_moss_seed, terra_moss, spirit_herb,
-      spirit_herb_seed, wildroot;
+      spirit_herb_seed, wildroot, fungus_cap, teapot;
 
   /**
    * Register all items
@@ -36,6 +37,8 @@ public class ModItems {
     event.addItem(spirit_herb_seed = new ItemSeedBase("spirit_herb_seed", ModBlocks.spirit_herb, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(spirit_herb = new ItemBase("spirit_herb").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(wildroot = new ItemSeedBase("wildroot", ModBlocks.wildroot, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(fungus_cap = new ItemBase("fungus_cap").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(teapot = new ItemTeapot("teapot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
   }
 
   /**

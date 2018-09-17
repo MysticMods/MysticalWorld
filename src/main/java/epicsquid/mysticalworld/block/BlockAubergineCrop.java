@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.item;
+package epicsquid.mysticalworld.block;
 
 import javax.annotation.Nonnull;
 

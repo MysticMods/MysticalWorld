@@ -69,3 +69,9 @@ item.sooty_iron_nugget.name=Sooty Iron Nugget
 
 tile.dawnstone_block.name=Block of Dawnstone
 tile.sooty_iron_block.name=Block of Sooty Iron
+
+# Tea
+item.teapot.name=Teapot
+mysticalworld.teapot.tooltip.boiling=Boiling!
+mysticalworld.teapot.tooltip.water=Filled
+mysticalworld.teapot.tooltip.empty=Empty

@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.item;
+package epicsquid.mysticalworld.block;
 
 import javax.annotation.Nonnull;
 
@@ -7,9 +7,9 @@ import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.EnumPlantType;
 
-public class BlockPereskiaCrop extends BlockCropBase {
+public class BlockWildrootCrop extends BlockCropBase {
 
-  public BlockPereskiaCrop(@Nonnull String name, @Nonnull EnumPlantType plantType) {
+  public BlockWildrootCrop(@Nonnull String name, @Nonnull EnumPlantType plantType) {
     super(name, plantType);
   }
 
@@ -19,7 +19,7 @@ public class BlockPereskiaCrop extends BlockCropBase {
   @Override
   @Nonnull
   public Item getSeed() {
-    return ModItems.pereskia_bulb;
+    return ModItems.wildroot;
   }
 
   /**
@@ -28,7 +28,7 @@ public class BlockPereskiaCrop extends BlockCropBase {
   @Override
   @Nonnull
   public Item getCrop() {
-    return ModItems.pereskia;
+    return ModItems.wildroot;
   }
 
 }
