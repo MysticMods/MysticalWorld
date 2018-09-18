@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
@@ -135,7 +136,7 @@ public enum Metal {
       event.addItem(metal.setNugget(new ItemBase(metal.name() + "_nugget").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
       if (metal.hasGrindables()) {
         event.addItem(metal.setDust(new ItemBase(metal.name() + "_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
-        event.addItem(metal.setDust(new ItemBase(metal.name() + "_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+        event.addItem(metal.setDustTiny(new ItemBase(metal.name() + "_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
       }
       event.addBlock(metal.setBlock(
           new BlockBase(Material.IRON, SoundType.METAL, metal.getHardness(), metal.name() + "_block").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
@@ -144,11 +145,11 @@ public enum Metal {
 
   public static void registerOreDict() {
     for (Metal metal : values()) {
-      OreDictionary.registerOre("ingot" + metal.getOredictNameSuffix(), metal.getIngot());
-      OreDictionary.registerOre("nugget" + metal.getOredictNameSuffix(), metal.getNugget());
+      OreDictionary.registerOre("ingot" + metal.getOredictNameSuffix(), new ItemStack(metal.getIngot(), 1, OreDictionary.WILDCARD_VALUE));
+      OreDictionary.registerOre("nugget" + metal.getOredictNameSuffix(), new ItemStack(metal.getNugget(), 1, OreDictionary.WILDCARD_VALUE));
       if (metal.hasGrindables()) {
-        OreDictionary.registerOre("dust" + metal.getOredictNameSuffix(), metal.getDust());
-        OreDictionary.registerOre("dustTiny" + metal.getOredictNameSuffix(), metal.getDustTiny());
+        OreDictionary.registerOre("dust" + metal.getOredictNameSuffix(), new ItemStack(metal.getDust(), 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("dustTiny" + metal.getOredictNameSuffix(), new ItemStack(metal.getDustTiny(), 1, OreDictionary.WILDCARD_VALUE));
       }
     }
   }

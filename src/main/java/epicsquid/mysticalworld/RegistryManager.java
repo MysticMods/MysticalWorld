@@ -10,6 +10,10 @@ import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModRecipes;
 import epicsquid.mysticalworld.item.metals.Metal;
+import net.minecraft.item.Item;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class RegistryManager {
@@ -34,5 +38,11 @@ public class RegistryManager {
     LibRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
 
     ModRecipes.initRecipes(event);
+  }
+
+  @SubscribeEvent(priority = EventPriority.LOWEST)
+  public void registerOredict(@Nonnull RegistryEvent.Register<Item> event) {
+    LibRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
+    Metal.registerOreDict();
   }
 }
