@@ -43,6 +43,8 @@ public class RegistryManager {
   @SubscribeEvent(priority = EventPriority.LOWEST)
   public void registerOredict(@Nonnull RegistryEvent.Register<Item> event) {
     LibRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
+    
     Metal.registerOreDict();
+    ModItems.registerOredict();
   }
 }

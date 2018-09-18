@@ -9,11 +9,12 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.item.ItemTeapot;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ModItems {
 
   // All mod items
-  public static Item carapace, pelt, moonglow_seed, moonglow_leaf, aubergine, aubergine_seed, pereskia_bulb, pereskia, terra_moss_seed, terra_moss, spirit_herb,
+  public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, moonglow_seed, moonglow_leaf, aubergine, aubergine_seed, pereskia_bulb, pereskia, terra_moss_seed, terra_moss, spirit_herb,
       spirit_herb_seed, wildroot, fungus_cap, teapot;
 
   /**
@@ -39,11 +40,21 @@ public class ModItems {
     event.addItem(wildroot = new ItemSeedBase("wildroot", ModBlocks.wildroot, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(fungus_cap = new ItemBase("fungus_cap").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(teapot = new ItemTeapot("teapot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+
+    // Vanilla Metal Dusts
+    event.addItem(iron_dust = new ItemBase("iron_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(iron_dust_tiny = new ItemBase("iron_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(gold_dust = new ItemBase("gold_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(gold_dust_tiny = new ItemBase("gold_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
   }
 
   /**
    * Register item oredicts here
    */
   public static void registerOredict() {
+    OreDictionary.registerOre("dustIron", iron_dust);
+    OreDictionary.registerOre("dustTinyIron", iron_dust_tiny);
+    OreDictionary.registerOre("dustGold", gold_dust);
+    OreDictionary.registerOre("dustTinyGold", gold_dust_tiny);
   }
 }
