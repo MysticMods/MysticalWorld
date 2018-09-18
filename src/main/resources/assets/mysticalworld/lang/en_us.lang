@@ -73,6 +73,9 @@ item.electrum_dust.name=Electrum Dust
 item.brass_dust.name=Brass Dust
 item.bronze_dust.name=Bronze Dust
 
+item.iron_dust.name=Iron Dust
+item.gold_dust.name=Gold Dust
+
 # Tiny Dusts
 item.copper_dust_tiny.name=Tiny Pile of Copper Dust
 item.tin_dust_tiny.name=Tiny Pile of Tin Dust
@@ -85,6 +88,9 @@ item.invar_dust_tiny.name=Tiny Pile of Invar Dust
 item.electrum_dust_tiny.name=Tiny Pile of Electrum Dust
 item.brass_dust_tiny.name=Tiny Pile of Brass Dust
 item.bronze_dust_tiny.name=Tiny Pile of Bronze Dust
+
+item.iron_dust_tiny.name=Tiny Pile of Iron Dust
+item.gold_dust_tiny.name=Tiny Pile of Gold Dust
 
 # Embers Metals
 item.dawnstone_ingot.name=Dawnstone Ingot
