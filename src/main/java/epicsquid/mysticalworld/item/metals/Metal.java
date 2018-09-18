@@ -26,14 +26,47 @@ public enum Metal {
   nickel("Nickel", 5f),
   aluminum("Aluminum", 5f),
   zinc("Zinc", 5f),
-  invar("Invar", 5f),
-  electrum("Electrum", 5f),
-  brass("Brass", 5f),
-  bronze("Bronze", 5f),
+  invar("Invar", 5f) {
+
+    @Override
+    protected boolean hasOre() {
+      return false;
+    }
+
+  },
+  electrum("Electrum", 5f) {
+
+    @Override
+    protected boolean hasOre() {
+      return false;
+    }
+
+  },
+  brass("Brass", 5f) {
+
+    @Override
+    protected boolean hasOre() {
+      return false;
+    }
+
+  },
+  bronze("Bronze", 5f) {
+
+    @Override
+    protected boolean hasOre() {
+      return false;
+    }
+
+  },
   dawnstone("Dawnstone", 5f) {
 
     @Override
     protected boolean hasGrindables() {
+      return false;
+    }
+
+    @Override
+    protected boolean hasOre() {
       return false;
     }
 
@@ -42,6 +75,11 @@ public enum Metal {
 
     @Override
     protected boolean hasGrindables() {
+      return false;
+    }
+
+    @Override
+    protected boolean hasOre() {
       return false;
     }
 
@@ -54,6 +92,7 @@ public enum Metal {
   private @Nullable Item dust;
   private @Nullable Item dustTiny;
   private @Nullable Block block;
+  private @Nullable Block ore;
   private final float hardness;
   private final @Nonnull String oredictNameSuffix;
 
@@ -126,9 +165,22 @@ public enum Metal {
     return this.nugget;
   }
 
+  @Nullable
+  public Block getOre() {
+    return ore;
+  }
+
+  @Nonnull
+  public Block setOre(@Nonnull Block ore) {
+    this.ore = ore;
+    return this.ore;
+  }
+
   protected boolean hasGrindables() {
     return true;
   }
+
+  protected boolean hasOre() { return true; }
 
   public static void registerMetals(@Nonnull RegisterContentEvent event) {
     for (Metal metal : values()) {
@@ -140,6 +192,9 @@ public enum Metal {
       }
       event.addBlock(metal.setBlock(
           new BlockBase(Material.IRON, SoundType.METAL, metal.getHardness(), metal.name() + "_block").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+      if (metal.hasOre()) {
+        event.addBlock(metal.setOre(new BlockBase(Material.ROCK, SoundType.STONE, metal.getHardness(), metal.name() + "_ore").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+      }
     }
   }
 
@@ -150,6 +205,10 @@ public enum Metal {
       if (metal.hasGrindables()) {
         OreDictionary.registerOre("dust" + metal.getOredictNameSuffix(), new ItemStack(metal.getDust(), 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("dustTiny" + metal.getOredictNameSuffix(), new ItemStack(metal.getDustTiny(), 1, OreDictionary.WILDCARD_VALUE));
+      }
+      OreDictionary.registerOre("block" + metal.getOredictNameSuffix(), new ItemStack(metal.getBlock(), 1, OreDictionary.WILDCARD_VALUE));
+      if (metal.hasOre()) {
+        OreDictionary.registerOre("ore" + metal.getOredictNameSuffix(), new ItemStack(metal.getOre(), 1, OreDictionary.WILDCARD_VALUE));
       }
     }
   }

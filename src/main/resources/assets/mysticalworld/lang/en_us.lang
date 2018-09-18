@@ -92,6 +92,15 @@ item.bronze_dust_tiny.name=Tiny Pile of Bronze Dust
 item.iron_dust_tiny.name=Tiny Pile of Iron Dust
 item.gold_dust_tiny.name=Tiny Pile of Gold Dust
 
+# Ores
+tile.copper_ore.name=Copper Ore
+tile.tin_ore.name=Tin Ore
+tile.silver_ore.name=Silver Ore
+tile.lead_ore.name=Lead Ore
+tile.nickel_ore.name=Nickel Ore
+tile.aluminum_ore.name=Aluminum Ore
+tile.zinc_ore.name=Zinc Ore
+
 # Embers Metals
 item.dawnstone_ingot.name=Dawnstone Ingot
 item.sooty_iron_ingot.name=Sooty Iron Ingot
