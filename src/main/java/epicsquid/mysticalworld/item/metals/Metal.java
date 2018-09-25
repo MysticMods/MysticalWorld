@@ -200,15 +200,15 @@ public enum Metal {
 
   public static void registerOreDict() {
     for (Metal metal : values()) {
-      OreDictionary.registerOre("ingot" + metal.getOredictNameSuffix(), new ItemStack(metal.getIngot(), 1, OreDictionary.WILDCARD_VALUE));
-      OreDictionary.registerOre("nugget" + metal.getOredictNameSuffix(), new ItemStack(metal.getNugget(), 1, OreDictionary.WILDCARD_VALUE));
+      OreDictionary.registerOre("ingot" + metal.getOredictNameSuffix(), metal.getIngot());
+      OreDictionary.registerOre("nugget" + metal.getOredictNameSuffix(), metal.getNugget());
       if (metal.hasGrindables()) {
-        OreDictionary.registerOre("dust" + metal.getOredictNameSuffix(), new ItemStack(metal.getDust(), 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("dustTiny" + metal.getOredictNameSuffix(), new ItemStack(metal.getDustTiny(), 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("dust" + metal.getOredictNameSuffix(), metal.getDust());
+        OreDictionary.registerOre("dustTiny" + metal.getOredictNameSuffix(), metal.getDustTiny());
       }
-      OreDictionary.registerOre("block" + metal.getOredictNameSuffix(), new ItemStack(metal.getBlock(), 1, OreDictionary.WILDCARD_VALUE));
+      OreDictionary.registerOre("block" + metal.getOredictNameSuffix(), metal.getBlock());
       if (metal.hasOre()) {
-        OreDictionary.registerOre("ore" + metal.getOredictNameSuffix(), new ItemStack(metal.getOre(), 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("ore" + metal.getOredictNameSuffix(), metal.getOre());
       }
     }
   }
