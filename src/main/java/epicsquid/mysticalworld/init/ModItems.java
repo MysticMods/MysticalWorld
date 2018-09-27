@@ -9,6 +9,8 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.item.ItemTeapot;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class ModItems {
@@ -46,6 +48,8 @@ public class ModItems {
     event.addItem(iron_dust_tiny = new ItemBase("iron_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(gold_dust = new ItemBase("gold_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(gold_dust_tiny = new ItemBase("gold_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+
+    registerSeedDrops();
   }
 
   /**
@@ -56,5 +60,14 @@ public class ModItems {
     OreDictionary.registerOre("dustTinyIron", iron_dust_tiny);
     OreDictionary.registerOre("dustGold", gold_dust);
     OreDictionary.registerOre("dustTinyGold", gold_dust_tiny);
+  }
+
+  private static void registerSeedDrops() {
+    MinecraftForge.addGrassSeed(new ItemStack(ModItems.aubergine_seed, 1), 5);
+    MinecraftForge.addGrassSeed(new ItemStack(ModItems.moonglow_seed, 1), 5);
+    MinecraftForge.addGrassSeed(new ItemStack(ModItems.terra_moss_seed, 1), 5);
+    MinecraftForge.addGrassSeed(new ItemStack(ModItems.spirit_herb_seed, 1), 5);
+    MinecraftForge.addGrassSeed(new ItemStack(ModItems.pereskia_bulb, 1), 5);
+    MinecraftForge.addGrassSeed(new ItemStack(ModItems.wildroot, 1), 5);
   }
 }
