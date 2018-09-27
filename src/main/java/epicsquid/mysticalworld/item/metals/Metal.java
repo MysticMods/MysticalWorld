@@ -11,7 +11,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
@@ -29,7 +28,7 @@ public enum Metal {
   invar("Invar", 5f) {
 
     @Override
-    protected boolean hasOre() {
+    public boolean hasOre() {
       return false;
     }
 
@@ -37,7 +36,7 @@ public enum Metal {
   electrum("Electrum", 5f) {
 
     @Override
-    protected boolean hasOre() {
+    public boolean hasOre() {
       return false;
     }
 
@@ -45,7 +44,7 @@ public enum Metal {
   brass("Brass", 5f) {
 
     @Override
-    protected boolean hasOre() {
+    public boolean hasOre() {
       return false;
     }
 
@@ -53,7 +52,7 @@ public enum Metal {
   bronze("Bronze", 5f) {
 
     @Override
-    protected boolean hasOre() {
+    public boolean hasOre() {
       return false;
     }
 
@@ -61,12 +60,12 @@ public enum Metal {
   dawnstone("Dawnstone", 5f) {
 
     @Override
-    protected boolean hasGrindables() {
+    public boolean hasGrindables() {
       return false;
     }
 
     @Override
-    protected boolean hasOre() {
+    public boolean hasOre() {
       return false;
     }
 
@@ -74,12 +73,12 @@ public enum Metal {
   sooty_iron("SootyIron", 5f){
 
     @Override
-    protected boolean hasGrindables() {
+    public boolean hasGrindables() {
       return false;
     }
 
     @Override
-    protected boolean hasOre() {
+    public boolean hasOre() {
       return false;
     }
 
@@ -176,11 +175,11 @@ public enum Metal {
     return this.ore;
   }
 
-  protected boolean hasGrindables() {
+  public boolean hasGrindables() {
     return true;
   }
 
-  protected boolean hasOre() { return true; }
+  public boolean hasOre() { return true; }
 
   public static void registerMetals(@Nonnull RegisterContentEvent event) {
     for (Metal metal : values()) {
