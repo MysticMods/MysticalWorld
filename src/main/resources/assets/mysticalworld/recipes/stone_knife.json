@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  W",
+    " W ",
+    "S  "  ],
+  "key": {
+    "S": [
+      {
+        "item": "minecraft:stick",
+        "data": 0
+      }
+    ],
+    "W": [
+      {
+        "item": "minecraft:cobblestone",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "mysticalworld:stone_knife",
+    "data": 0
+  }
+}
