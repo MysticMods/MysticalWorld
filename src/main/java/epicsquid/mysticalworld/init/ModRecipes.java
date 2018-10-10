@@ -35,7 +35,7 @@ public class ModRecipes {
 
   public static void initRecipes(@Nonnull RegisterModRecipesEvent event) {
     registerShapeless(event.getRegistry(), "pelt", new ItemStack(Items.LEATHER, 1), new ItemStack(pelt, 1), new ItemStack(pelt, 1));
-    registerShapeless(event.getRegistry(), "carapace", new ItemStack(Items.DYE, 1, 4), new ItemStack(carapace, 1));
+//    registerShapeless(event.getRegistry(), "carapace", new ItemStack(Items.DYE, 1, 4), new ItemStack(carapace, 1));
 
     // Iron and Gold Dust Recipes
     registerCompressionRecipe(event.getRegistry(), "dustIron", "dustTinyIron", ModItems.iron_dust, ModItems.iron_dust_tiny);
