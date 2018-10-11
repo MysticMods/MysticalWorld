@@ -15,31 +15,17 @@ public class BlockThatch extends BlockBase {
 
   public BlockThatch(@Nonnull Material mat, @Nonnull SoundType type, float hardness, @Nonnull String name) {
     super(mat, type, hardness, name);
+    setOpacity(true);
+    setLayer(BlockRenderLayer.CUTOUT_MIPPED);
   }
 
   @Override
-  public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face){
+  public int getFlammability(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EnumFacing face){
     return 20;
   }
 
   @Override
-  public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face){
+  public boolean isFlammable(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EnumFacing face){
     return true;
-  }
-
-  @Override
-  public boolean isFullCube(@Nonnull IBlockState state) {
-    return true;
-  }
-
-  @Override
-  public boolean isOpaqueCube(@Nonnull IBlockState state) {
-    return true;
-  }
-
-  @Nonnull
-  @Override
-  public BlockRenderLayer getBlockLayer() {
-    return BlockRenderLayer.CUTOUT_MIPPED; 
   }
 }
