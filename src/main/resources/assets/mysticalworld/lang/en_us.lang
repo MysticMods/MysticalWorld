@@ -117,3 +117,16 @@ item.teapot.name=Teapot
 mysticalworld.teapot.tooltip.boiling=Boiling!
 mysticalworld.teapot.tooltip.water=Filled
 mysticalworld.teapot.tooltip.empty=Empty
+
+# Caminite
+tile.caminite.name=Caminite Block
+tile.caminite_stairs.name=Caminite Stairs
+tile.caminite_slab.name=Caminite Slab
+tile.caminite_double_slab.name=Caminite Double Slab
+tile.caminite_wall.name=Caminite Wall
+
+tile.caminite_bricks.name=Caminite Bricks
+tile.caminite_bricks_stairs.name=Caminite Brick Stairs
+tile.caminite_bricks_slab.name=Caminite Brick Slab
+tile.caminite_bricks_double_slab.name=Caminite Brick Double Slab
+tile.caminite_bricks_wall.name=Caminite Brick Wall
