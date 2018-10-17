@@ -3,9 +3,9 @@
 	"parent": "block/block",
 	"ambientocclusion": false,
 	"textures": {
-		"particle": "roots:blocks/thatch",
-		"face": "roots:blocks/thatch",
-		"border": "roots:blocks/thatch_border"
+		"particle": "mysticalworld:blocks/thatch",
+		"face": "mysticalworld:blocks/thatch",
+		"border": "mysticalworld:blocks/thatch_border"
 	},
 	"elements": [
 		{
