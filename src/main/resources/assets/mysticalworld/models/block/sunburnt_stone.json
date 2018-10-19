@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "mysticalworld:blocks/sunburnt_stone",
+    "all": "mysticalworld:blocks/sunburnt_stone"
+  }
+}

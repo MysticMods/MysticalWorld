@@ -130,3 +130,10 @@ tile.caminite_bricks_stairs.name=Caminite Brick Stairs
 tile.caminite_bricks_slab.name=Caminite Brick Slab
 tile.caminite_bricks_double_slab.name=Caminite Brick Double Slab
 tile.caminite_bricks_wall.name=Caminite Brick Wall
+
+#Sunburnt
+tile.sunburnt_stone.name=Sunburnt Stone Block
+tile.sunburnt_stone_stairs.name=Sunburnt Stone Stairs
+tile.sunburnt_stone_slab.name=Sunburnt Stone Slab
+tile.sunburnt_stone_double_slab.name=Sunburnt Stone Double Slab
+tile.sunburnt_stone_wall.name=Sunburnt Stone Wall
