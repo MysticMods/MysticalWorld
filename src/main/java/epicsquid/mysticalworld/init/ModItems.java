@@ -29,14 +29,15 @@ public class ModItems {
 
     // Mob Drops
     event.addItem(carapace = new ItemBase("carapace").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(pelt = new ItemBase("pelt").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
     if (ConfigManager.modules.mysticalWorldModuleEnabled) {
       // Vanilla Metal Dusts
+      event.addItem(pelt = new ItemBase("pelt").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(iron_dust = new ItemBase("iron_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(iron_dust_tiny = new ItemBase("iron_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(gold_dust = new ItemBase("gold_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(gold_dust_tiny = new ItemBase("gold_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//      event.addItem(teapot = new ItemTeapot("teapot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     }
 
     if (ConfigManager.modules.rootsModuleEnabled) {
@@ -53,7 +54,6 @@ public class ModItems {
       event.addItem(spirit_herb = new ItemBase("spirit_herb").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(wildroot = new ItemSeedBase("wildroot", ModBlocks.wildroot, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(fungus_cap = new ItemBase("fungus_cap").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(teapot = new ItemTeapot("teapot").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
       registerSeedDrops();
 
