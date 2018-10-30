@@ -18,12 +18,13 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = MysticalWorld.MODID, version = MysticalWorld.VERSION, name = MysticalWorld.NAME, dependencies = "required-after:mysticallib@[" + MysticalLib.VERSION + ",)")
+@Mod(modid = MysticalWorld.MODID, version = MysticalWorld.VERSION, name = MysticalWorld.NAME, dependencies = MysticalWorld.DEPENDENCIES)
 public class MysticalWorld {
   public static final String MODID = "mysticalworld";
   public static final String DOMAIN = "mysticalworld";
   public static final String NAME = "Mystical World";
   public static final String VERSION = "@VERSION@";
+  public static final String DEPENDENCIES = "required-before:mysticallib@[" + MysticalLib.VERSION + ",)";
 
   public static ModContainer CONTAINER = null;
 
