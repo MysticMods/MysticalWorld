@@ -21,6 +21,9 @@ public class ConfigManager {
 
     @Config.Comment(("Enable Mystical World Content"))
     public boolean mysticalWorldModuleEnabled = true;
+
+    @Config.Comment(("Enable Solar Content"))
+    public boolean solarModuleEnabled = true;
   }
 
   @Config.Comment(("Mystical world metals and their components."))
