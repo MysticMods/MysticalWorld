@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld;
 
-import epicsquid.mysticallib.MysticalLib;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -24,7 +23,7 @@ public class MysticalWorld {
   public static final String DOMAIN = "mysticalworld";
   public static final String NAME = "Mystical World";
   public static final String VERSION = "@VERSION@";
-  public static final String DEPENDENCIES = "required-before:mysticallib@[" + MysticalLib.VERSION + ",)";
+  public static final String DEPENDENCIES = "required-before:mysticallib";
 
   public static ModContainer CONTAINER = null;
 
