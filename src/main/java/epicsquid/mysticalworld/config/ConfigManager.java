@@ -27,6 +27,24 @@ public class ConfigManager {
     public boolean solarModuleEnabled = true;
   }
 
+  @Config.Comment(("Controls the spawning of mobs in Mystical World and dependent mods."))
+  public static ConfigMysticalWorldMobs mobs = new ConfigMysticalWorldMobs();
+
+  public static class ConfigMysticalWorldMobs {
+
+    @Config.Comment(("Enable the spawning of Deer."))
+    public boolean spawnDeer = true;
+
+    @Config.Comment(("Enable the spawning of Fox."))
+    public boolean spawnFox = true;
+
+    @Config.Comment(("Enable the spawning of Beetle."))
+    public boolean spawnBeetle = true;
+
+    @Config.Comment(("Enable the spawning of Frog."))
+    public boolean spawnFrog = true;
+  }
+
   @Config.Comment(("Mystical world metals and their components."))
   public static ConfigMysticalWorldMetals metals = new ConfigMysticalWorldMetals();
 

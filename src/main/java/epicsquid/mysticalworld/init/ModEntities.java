@@ -6,6 +6,7 @@ import java.util.Set;
 import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.EntityBeetle;
 import epicsquid.mysticalworld.entity.EntityDeer;
 import epicsquid.mysticalworld.entity.EntityFox;
@@ -40,30 +41,39 @@ public class ModEntities {
       LibRegistry.registerEntityRenderer(EntityDeer.class, new RenderDeer.Factory());
   }
 
-  public static void registerMobSpawn(){
+  public static void registerMobSpawn() {
     Set<Biome> biomes = new HashSet<>();
-    biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
-    biomes.addAll(BiomeDictionary.getBiomes(Type.COLD));
-    biomes.addAll(BiomeDictionary.getBiomes(Type.CONIFEROUS));
-    biomes.addAll(BiomeDictionary.getBiomes(Type.PLAINS));
-    EntityRegistry.addSpawn(EntityDeer.class, 12, 4, 6, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
 
-    biomes = new HashSet<>();
-    biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
-    biomes.addAll(BiomeDictionary.getBiomes(Type.COLD));
-    biomes.addAll(BiomeDictionary.getBiomes(Type.CONIFEROUS));
-    EntityRegistry.addSpawn(EntityFox.class, 8, 1, 3, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    if (ConfigManager.modules.rootsModuleEnabled && ConfigManager.mobs.spawnDeer) {
+      biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
+      biomes.addAll(BiomeDictionary.getBiomes(Type.COLD));
+      biomes.addAll(BiomeDictionary.getBiomes(Type.CONIFEROUS));
+      biomes.addAll(BiomeDictionary.getBiomes(Type.PLAINS));
+      EntityRegistry.addSpawn(EntityDeer.class, 12, 4, 6, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    }
 
-    biomes = new HashSet<>();
-    biomes.addAll(BiomeDictionary.getBiomes(Type.SWAMP));
-    biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.JUNGLE));
-    EntityRegistry.addSpawn(EntityFrog.class, 12, 4, 7, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnFox) {
+      biomes = new HashSet<>();
+      biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
+      biomes.addAll(BiomeDictionary.getBiomes(Type.COLD));
+      biomes.addAll(BiomeDictionary.getBiomes(Type.CONIFEROUS));
+      EntityRegistry.addSpawn(EntityFox.class, 8, 1, 3, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    }
 
-    biomes = new HashSet<>();
-    biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
-    biomes.addAll(BiomeDictionary.getBiomes(Type.SWAMP));
-    biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.JUNGLE));
-    biomes.addAll(BiomeDictionary.getBiomes(Type.PLAINS));
-    EntityRegistry.addSpawn(EntityBeetle.class, 10, 2, 5, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnFrog) {
+      biomes = new HashSet<>();
+      biomes.addAll(BiomeDictionary.getBiomes(Type.SWAMP));
+      biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.JUNGLE));
+      EntityRegistry.addSpawn(EntityFrog.class, 12, 4, 7, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    }
+
+    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnBeetle) {
+      biomes = new HashSet<>();
+      biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
+      biomes.addAll(BiomeDictionary.getBiomes(Type.SWAMP));
+      biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.JUNGLE));
+      biomes.addAll(BiomeDictionary.getBiomes(Type.PLAINS));
+      EntityRegistry.addSpawn(EntityBeetle.class, 10, 2, 5, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    }
   }
 }
