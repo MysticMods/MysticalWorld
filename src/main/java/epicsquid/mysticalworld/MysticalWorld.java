@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld;
 
+import epicsquid.mysticallib.MysticalLib;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,7 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = MysticalWorld.MODID, version = MysticalWorld.VERSION, name = MysticalWorld.NAME, dependencies = "required-before:mysticallib")
+@Mod(modid = MysticalWorld.MODID, version = MysticalWorld.VERSION, name = MysticalWorld.NAME, dependencies = "required-after:mysticallib@[" + MysticalLib.VERSION + ",)")
 public class MysticalWorld {
   public static final String MODID = "mysticalworld";
   public static final String DOMAIN = "mysticalworld";
