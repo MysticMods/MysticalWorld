@@ -10,13 +10,20 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockThatch extends BlockBase {
 
   public BlockThatch(@Nonnull Material mat, @Nonnull SoundType type, float hardness, @Nonnull String name) {
     super(mat, type, hardness, name);
     setOpacity(true);
-    setLayer(BlockRenderLayer.CUTOUT_MIPPED);
+  }
+
+  @Override
+  @SideOnly(Side.CLIENT)
+  public BlockBase setLayer(@Nonnull BlockRenderLayer layer) {
+    return super.setLayer(BlockRenderLayer.CUTOUT_MIPPED);
   }
 
   @Override
