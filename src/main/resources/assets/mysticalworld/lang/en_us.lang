@@ -20,7 +20,7 @@ item.terra_moss.name=Terra Moss
 item.spirit_herb_seed.name=Spirit Herb Seed
 item.spirit_herb.name=Spirit Herb
 item.wildroot.name=Wildroot
-item.fungal_cap.name=Fungal Cap
+item.fungus_cap.name=Fungus Cap
 
 # Ingots
 item.copper_ingot.name=Copper Ingot
@@ -137,3 +137,18 @@ tile.sunburnt_stone_stairs.name=Sunburnt Stone Stairs
 tile.sunburnt_stone_slab.name=Sunburnt Stone Slab
 tile.sunburnt_stone_double_slab.name=Sunburnt Stone Double Slab
 tile.sunburnt_stone_wall.name=Sunburnt Stone Wall
+
+#Knifes
+item.wood_knife.name=Wooden Knife
+item.stone_knife.name=Stone Knife
+item.iron_knife.name=Iron Knife
+item.gold_knife.name=Golden Knife
+item.diamond_knife.name=Diamond Knife
+
+#Bark
+item.bark_oak.name=Oak Bark
+item.bark_spruce.name=Spruce Bark
+item.bark_birch.name=Birch Bark
+item.bark_jungle.name=Jungle Bark
+item.bark_acacia.name=Acacia Bark
+item.bark_dark_oak.name=Dark Oak Bark
