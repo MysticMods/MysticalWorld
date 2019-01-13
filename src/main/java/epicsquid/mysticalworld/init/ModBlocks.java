@@ -12,7 +12,6 @@ import epicsquid.mysticalworld.block.BlockAubergineCrop;
 import epicsquid.mysticalworld.block.BlockMoonglowCrop;
 import epicsquid.mysticalworld.block.BlockPereskiaCrop;
 import epicsquid.mysticalworld.block.BlockSpiritHerbCrop;
-import epicsquid.mysticalworld.block.BlockTerraMossCrop;
 import epicsquid.mysticalworld.block.BlockThatch;
 import epicsquid.mysticalworld.block.BlockWildrootCrop;
 import epicsquid.mysticalworld.config.ConfigManager;
@@ -24,7 +23,7 @@ import net.minecraftforge.common.EnumPlantType;
 public class ModBlocks {
 
   // All blocks
-  public static Block moonglow, aubergine, pereskia, terra_moss, wildroot, spirit_herb, thatch, caminite, caminite_stairs, caminite_slab, caminite_wall, caminite_bricks, caminite_bricks_stairs, caminite_bricks_slab, caminite_bricks_wall, sunburnt_stone, sunburnt_stone_stairs, sunburnt_stone_slab, sunburnt_stone_wall;
+  public static Block moonglow, aubergine, pereskia, wildroot, spirit_herb, thatch, caminite, caminite_stairs, caminite_slab, caminite_wall, caminite_bricks, caminite_bricks_stairs, caminite_bricks_slab, caminite_bricks_wall, sunburnt_stone, sunburnt_stone_stairs, sunburnt_stone_slab, sunburnt_stone_wall;
 
   /**
    * Register all blocks
@@ -38,7 +37,6 @@ public class ModBlocks {
       event.addBlock(moonglow = new BlockMoonglowCrop("moonglow_crop", EnumPlantType.Crop));
       event.addBlock(aubergine = new BlockAubergineCrop("aubergine_crop", EnumPlantType.Crop));
       event.addBlock(pereskia = new BlockPereskiaCrop("pereskia_crop", EnumPlantType.Crop));
-      event.addBlock(terra_moss = new BlockTerraMossCrop("terra_moss_crop", EnumPlantType.Crop));
       event.addBlock(wildroot = new BlockWildrootCrop("wildroot_crop", EnumPlantType.Crop));
       event.addBlock(spirit_herb = new BlockSpiritHerbCrop("spirit_herb_crop", EnumPlantType.Crop));
       event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch")).setCreativeTab(MysticalWorld.tab);
