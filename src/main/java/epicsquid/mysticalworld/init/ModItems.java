@@ -8,6 +8,7 @@ import epicsquid.mysticallib.item.ItemSeedBase;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.item.ItemKnife;
+import epicsquid.mysticalworld.item.ItemTerraSpore;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -18,7 +19,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ModItems {
 
   // All mod items
-  public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, moonglow_seed, moonglow_leaf, aubergine, aubergine_seed, pereskia_bulb, pereskia, terra_spore, terra_moss, spirit_herb,
+  public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, moonglow_seed, moonglow_leaf, aubergine, aubergine_seed, pereskia_bulb, pereskia, terra_spores, terra_moss, spirit_herb,
       spirit_herb_seed, wildroot, fungus_cap, teapot, bark_oak, bark_birch, bark_spruce, bark_jungle, bark_dark_oak, bark_acacia, gold_knife, diamond_knife, iron_knife, stone_knife, wood_knife;
 
   /**
@@ -55,7 +56,7 @@ public class ModItems {
 
       registerSeedDrops();
 
-      event.addItem(terra_spore = new ItemBase("terra_spore").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(terra_spores = new ItemTerraSpore("terra_spores").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
       // Barks and Knifes
       event.addItem(bark_oak = new ItemBase("bark_oak").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
@@ -85,7 +86,7 @@ public class ModItems {
   }
 
   private static void registerSeedDrops() {
-    MinecraftForge.addGrassSeed(new ItemStack(ModItems.terra_spore, 1), 5);
+    MinecraftForge.addGrassSeed(new ItemStack(ModItems.terra_spores, 1), 5);
     MinecraftForge.addGrassSeed(new ItemStack(ModItems.wildroot, 1), 5);
   }
 }
