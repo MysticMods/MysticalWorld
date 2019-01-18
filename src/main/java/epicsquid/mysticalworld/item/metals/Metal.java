@@ -199,7 +199,6 @@ public enum Metal {
           event.addItem(metal.setNugget(new ItemBase(metal.name() + "_nugget").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
         }
         if (metal.hasGrindables()) {
-          System.out.println(metal.name());
           if (ConfigManager.metals.enableDusts) {
             event.addItem(metal.setDust(new ItemBase(metal.name() + "_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
           }

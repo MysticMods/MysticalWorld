@@ -45,6 +45,5 @@ public class RegistryManager {
     LibRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
     
     Metal.registerOreDict();
-    ModItems.registerOredict();
   }
 }
