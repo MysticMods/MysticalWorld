@@ -15,6 +15,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
+import sun.security.krb5.Config;
 
 public class ModItems {
 
@@ -78,10 +79,14 @@ public class ModItems {
    */
   public static void registerOredict() {
     if (ConfigManager.modules.mysticalWorldModuleEnabled) {
-      OreDictionary.registerOre("dustIron", iron_dust);
-      OreDictionary.registerOre("dustTinyIron", iron_dust_tiny);
-      OreDictionary.registerOre("dustGold", gold_dust);
-      OreDictionary.registerOre("dustTinyGold", gold_dust_tiny);
+      if(ConfigManager.metals.enableDusts){
+        OreDictionary.registerOre("dustIron", iron_dust);
+        OreDictionary.registerOre("dustGold", gold_dust);
+      }
+      if(ConfigManager.metals.enableTinyDusts){
+        OreDictionary.registerOre("dustTinyIron", iron_dust_tiny);
+        OreDictionary.registerOre("dustTinyGold", gold_dust_tiny);
+      }
     }
   }
 
