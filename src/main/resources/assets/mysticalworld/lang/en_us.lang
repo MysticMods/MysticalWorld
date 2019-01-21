@@ -11,8 +11,8 @@ item.pelt.name=Pelt
 # Herbs
 item.moonglow_seed.name=Moonglow Seed
 item.moonglow_leaf.name=Moonglow Leaf
-item.aubergine_seed.name=Aubgergine Seed
-item.aubergine.name=Aubgergine
+item.aubergine_seed.name=Aubergine Seed
+item.aubergine.name=Aubergine
 item.pereskia_bulb.name=Pereskia Bulb
 item.pereskia.name=Pereskia
 item.terra_spores.name=Terra Spores
@@ -21,6 +21,7 @@ item.spirit_herb_seed.name=Spirit Herb Seed
 item.spirit_herb.name=Spirit Herb
 item.wildroot.name=Wildroot
 item.fungus_cap.name=Fungus Cap
+item.wildewheet.name=Wildewheet
 
 # Ingots
 item.copper_ingot.name=Copper Ingot
