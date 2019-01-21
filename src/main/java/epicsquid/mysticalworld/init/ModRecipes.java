@@ -35,7 +35,10 @@ public class ModRecipes {
 
   public static void initRecipes(@Nonnull RegisterModRecipesEvent event) {
     registerShapeless(event.getRegistry(), "pelt", new ItemStack(Items.LEATHER, 1), new ItemStack(pelt, 1), new ItemStack(pelt, 1));
-//    registerShapeless(event.getRegistry(), "carapace", new ItemStack(Items.DYE, 1, 4), new ItemStack(carapace, 1));
+    registerShapeless(event.getRegistry(), "moonglowLeafToSeed", new ItemStack(ModItems.moonglow_leaf, 1), new ItemStack(ModItems.moonglow_seed, 1));
+    registerShapeless(event.getRegistry(), "pereskiaToSeed", new ItemStack(ModItems.pereskia, 1), new ItemStack(ModItems.pereskia_bulb, 1));
+    registerShapeless(event.getRegistry(), "aubergineToSeed", new ItemStack(ModItems.aubergine, 1), new ItemStack(ModItems.aubergine_seed, 1));
+    registerShapeless(event.getRegistry(), "spiritHerbToSeed", new ItemStack(ModItems.spirit_herb, 1), new ItemStack(ModItems.spirit_herb_seed, 1));
 
     // Iron and Gold Dust Recipes
     registerCompressionRecipe(event.getRegistry(), "dustIron", "dustTinyIron", ModItems.iron_dust, ModItems.iron_dust_tiny);
