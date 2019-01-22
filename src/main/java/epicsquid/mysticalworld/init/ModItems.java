@@ -15,13 +15,12 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
-import sun.security.krb5.Config;
 
 public class ModItems {
 
   // All mod items
   public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, moonglow_seed, moonglow_leaf, aubergine, aubergine_seed, pereskia_bulb, pereskia, terra_spores, terra_moss, spirit_herb, wildewheet,
-      spirit_herb_seed, wildroot, fungus_cap, teapot, bark_oak, bark_birch, bark_spruce, bark_jungle, bark_dark_oak, bark_acacia, gold_knife, diamond_knife, iron_knife, stone_knife, wood_knife;
+      spirit_herb_seed, wildroot, baffle_cap, teapot, bark_oak, bark_birch, bark_spruce, bark_jungle, bark_dark_oak, bark_acacia, gold_knife, diamond_knife, iron_knife, stone_knife, wood_knife;
 
   /**
    * Register all items
@@ -53,7 +52,7 @@ public class ModItems {
       event.addItem(spirit_herb_seed = new ItemSeedBase("spirit_herb_seed", ModBlocks.spirit_herb, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(spirit_herb = new ItemBase("spirit_herb").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(wildroot = new ItemSeedBase("wildroot", ModBlocks.wildroot, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(fungus_cap = new ItemBase("fungus_cap").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(baffle_cap = new ItemBase("baffle_cap").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(wildewheet = new ItemBase("wildewheet").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
       registerSeedDrops();

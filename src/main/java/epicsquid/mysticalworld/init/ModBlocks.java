@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.init;
 import javax.annotation.Nonnull;
 
 import epicsquid.mysticallib.block.BlockBase;
+import epicsquid.mysticallib.block.BlockMushroomBase;
 import epicsquid.mysticallib.block.BlockSlabBase;
 import epicsquid.mysticallib.block.BlockStairsBase;
 import epicsquid.mysticallib.block.BlockWallBase;
@@ -15,6 +16,7 @@ import epicsquid.mysticalworld.block.BlockSpiritHerbCrop;
 import epicsquid.mysticalworld.block.BlockThatch;
 import epicsquid.mysticalworld.block.BlockWildrootCrop;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.world.HugeBaffleCap;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -23,7 +25,8 @@ import net.minecraftforge.common.EnumPlantType;
 public class ModBlocks {
 
   // All blocks
-  public static Block moonglow, aubergine, pereskia, wildroot, spirit_herb, thatch, caminite, caminite_stairs, caminite_slab, caminite_wall, caminite_bricks, caminite_bricks_stairs, caminite_bricks_slab, caminite_bricks_wall, sunburnt_stone, sunburnt_stone_stairs, sunburnt_stone_slab, sunburnt_stone_wall;
+  public static Block moonglow, aubergine, pereskia, wildroot, spirit_herb, thatch, caminite, caminite_stairs, caminite_slab, caminite_wall, caminite_bricks, caminite_bricks_stairs, caminite_bricks_slab, caminite_bricks_wall, sunburnt_stone, sunburnt_stone_stairs, sunburnt_stone_slab, sunburnt_stone_wall,
+      baffle_cap_huge_stem, baffle_cap_huge_top, baffle_cap_mushroom;
 
   /**
    * Register all blocks
@@ -40,6 +43,9 @@ public class ModBlocks {
       event.addBlock(wildroot = new BlockWildrootCrop("wildroot_crop", EnumPlantType.Crop));
       event.addBlock(spirit_herb = new BlockSpiritHerbCrop("spirit_herb_crop", EnumPlantType.Crop));
       event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch")).setCreativeTab(MysticalWorld.tab);
+      event.addBlock(baffle_cap_huge_stem = new BlockBase(Material.CACTUS, SoundType.PLANT, 0.8f, "baffle_cap_huge_stem").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addBlock(baffle_cap_huge_top = new BlockBase(Material.CACTUS, SoundType.PLANT, 0.8f, "baffle_cap_huge_top").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addBlock(baffle_cap_mushroom = new BlockMushroomBase("baffle_cap_mushroom", new HugeBaffleCap().getData()));
     }
 
     if (ConfigManager.modules.embersModuleEnabled) {
