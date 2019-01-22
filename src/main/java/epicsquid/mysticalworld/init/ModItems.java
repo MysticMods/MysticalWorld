@@ -52,7 +52,6 @@ public class ModItems {
       event.addItem(spirit_herb_seed = new ItemSeedBase("spirit_herb_seed", ModBlocks.spirit_herb, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(spirit_herb = new ItemBase("spirit_herb").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(wildroot = new ItemSeedBase("wildroot", ModBlocks.wildroot, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(baffle_cap = new ItemBase("baffle_cap").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(wildewheet = new ItemBase("wildewheet").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
       registerSeedDrops();

@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.init;
 
 import javax.annotation.Nonnull;
 
+import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.block.BlockBase;
 import epicsquid.mysticallib.block.BlockMushroomBase;
 import epicsquid.mysticallib.block.BlockSlabBase;
@@ -20,6 +21,7 @@ import epicsquid.mysticalworld.world.HugeBaffleCap;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.common.EnumPlantType;
 
 public class ModBlocks {
@@ -46,6 +48,7 @@ public class ModBlocks {
       event.addBlock(baffle_cap_huge_stem = new BlockBase(Material.CACTUS, SoundType.PLANT, 0.8f, "baffle_cap_huge_stem").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addBlock(baffle_cap_huge_top = new BlockBase(Material.CACTUS, SoundType.PLANT, 0.8f, "baffle_cap_huge_top").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addBlock(baffle_cap_mushroom = new BlockMushroomBase("baffle_cap_mushroom", new HugeBaffleCap().getData()));
+      ((BlockMushroomBase) baffle_cap_mushroom).setItemBlock(new ItemBlock(baffle_cap_mushroom).setRegistryName(LibRegistry.getActiveModid(), "baffle_cap_mushroom"));
     }
 
     if (ConfigManager.modules.embersModuleEnabled) {

@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "mysticalworld:blocks/baffle_cap_mushroom"
+    }
+}

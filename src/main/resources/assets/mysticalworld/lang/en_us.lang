@@ -20,8 +20,10 @@ item.terra_moss.name=Terra Moss
 item.spirit_herb_seed.name=Spirit Herb Seed
 item.spirit_herb.name=Spirit Herb
 item.wildroot.name=Wildroot
-item.baffle_cap.name=Baffle Cap
 item.wildewheet.name=Wildewheet
+tile.baffle_cap_mushroom.name=Baffle Cap
+tile.baffle_cap_huge_stem.name=Baffle Cap Stem
+tile.baffle_cap_huge_top.name=Baffle Cap Huge
 
 # Ingots
 item.copper_ingot.name=Copper Ingot
