@@ -27,7 +27,7 @@ import net.minecraftforge.common.EnumPlantType;
 public class ModBlocks {
 
   // All blocks
-  public static Block moonglow, aubergine, pereskia, wildroot, spirit_herb, thatch, caminite, caminite_stairs, caminite_slab, caminite_wall, caminite_bricks, caminite_bricks_stairs, caminite_bricks_slab, caminite_bricks_wall, sunburnt_stone, sunburnt_stone_stairs, sunburnt_stone_slab, sunburnt_stone_wall,
+  public static Block moonglow, aubergine, pereskia, wildroot, spirit_herb, thatch, caminite, caminite_stairs, caminite_slab, caminite_wall, caminite_bricks, caminite_bricks_stairs, caminite_bricks_slab, caminite_bricks_wall, solar_infused_stone, solar_infused_stone_stairs, solar_infused_stone_slab, solar_infused_stone_wall,
       baffle_cap_huge_stem, baffle_cap_huge_top, baffle_cap_mushroom;
 
   /**
@@ -86,18 +86,18 @@ public class ModBlocks {
 
     if (ConfigManager.modules.solarModuleEnabled) {
       //Solar
-      event.addBlock(sunburnt_stone = new BlockBase(Material.ROCK, SoundType.STONE, 1.4f, "sunburnt_stone").setCreativeTab(MysticalWorld.tab));
+      event.addBlock(solar_infused_stone = new BlockBase(Material.ROCK, SoundType.STONE, 1.4f, "solar_infused_stone").setCreativeTab(MysticalWorld.tab));
       event.addBlock(
-          sunburnt_stone_stairs = new BlockStairsBase(sunburnt_stone.getDefaultState(), SoundType.STONE, 2.0f, "sunburnt_stone_stairs").setModelCustom(true)
+          solar_infused_stone_stairs = new BlockStairsBase(solar_infused_stone.getDefaultState(), SoundType.STONE, 2.0f, "solar_infused_stone_stairs").setModelCustom(true)
               .setCreativeTab(MysticalWorld.tab));
-      double_slab_temp = new BlockSlabBase(Material.ROCK, SoundType.STONE, 2.0f, "sunburnt_stone_double_slab", sunburnt_stone.getDefaultState(), true, null)
+      double_slab_temp = new BlockSlabBase(Material.ROCK, SoundType.STONE, 2.0f, "solar_infused_stone_double_slab", solar_infused_stone.getDefaultState(), true, null)
           .setModelCustom(true);
-      slab_temp = new BlockSlabBase(Material.ROCK, SoundType.STONE, 2.0f, "sunburnt_stone_slab", sunburnt_stone.getDefaultState(), false, double_slab_temp)
+      slab_temp = new BlockSlabBase(Material.ROCK, SoundType.STONE, 2.0f, "solar_infused_stone_slab", solar_infused_stone.getDefaultState(), false, double_slab_temp)
           .setModelCustom(true);
       double_slab_temp.setSlab(slab_temp);
-      event.addBlock(sunburnt_stone_slab = slab_temp.setCreativeTab(MysticalWorld.tab));
+      event.addBlock(solar_infused_stone_slab = slab_temp.setCreativeTab(MysticalWorld.tab));
       event.addBlock(double_slab_temp);
-      event.addBlock(sunburnt_stone_wall = new BlockWallBase(sunburnt_stone, SoundType.STONE, 2.0f, "sunburnt_stone_wall").setModelCustom(true)
+      event.addBlock(solar_infused_stone_wall = new BlockWallBase(solar_infused_stone, SoundType.STONE, 2.0f, "solar_infused_stone_wall").setModelCustom(true)
           .setCreativeTab(MysticalWorld.tab));
     }
   }
