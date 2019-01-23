@@ -1,7 +1,11 @@
 package epicsquid.mysticalworld.init;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nonnull;
 
+import epicsquid.mysticallib.block.BlockBase;
 import epicsquid.mysticallib.event.RegisterModRecipesEvent;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.item.metals.Metal;
@@ -34,6 +38,8 @@ public class ModRecipes {
   }
 
   public static void initRecipes(@Nonnull RegisterModRecipesEvent event) {
+    initDrops();
+
     registerShapeless(event.getRegistry(), "pelt", new ItemStack(Items.LEATHER, 1), new ItemStack(pelt, 1), new ItemStack(pelt, 1));
     registerShapeless(event.getRegistry(), "moonglowLeafToSeed", new ItemStack(ModItems.moonglow_leaf, 1), new ItemStack(ModItems.moonglow_seed, 1));
     registerShapeless(event.getRegistry(), "pereskiaToSeed", new ItemStack(ModItems.pereskia, 1), new ItemStack(ModItems.pereskia_bulb, 1));
@@ -88,5 +94,11 @@ public class ModRecipes {
         'X', oredictDecompressed);
     // Decompression
     registerShapeless(registry, oredictDecompressed + "Decompression", new ItemStack(itemDecompressed, 9), oredictCompressed);
+  }
+
+  private static void initDrops() {
+    List<ItemStack> baffleCapDrops = new ArrayList<>();
+    baffleCapDrops.add(new ItemStack(Item.getItemFromBlock(ModBlocks.baffle_cap_mushroom)));
+    ((BlockBase)ModBlocks.baffle_cap_huge_top).setDrops(baffleCapDrops);
   }
 }

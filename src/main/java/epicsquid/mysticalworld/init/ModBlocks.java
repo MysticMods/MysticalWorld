@@ -45,9 +45,11 @@ public class ModBlocks {
       event.addBlock(wildroot = new BlockWildrootCrop("wildroot_crop", EnumPlantType.Crop));
       event.addBlock(spirit_herb = new BlockSpiritHerbCrop("spirit_herb_crop", EnumPlantType.Crop));
       event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch")).setCreativeTab(MysticalWorld.tab);
-      event.addBlock(baffle_cap_huge_stem = new BlockBase(Material.CACTUS, SoundType.PLANT, 0.8f, "baffle_cap_huge_stem").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addBlock(baffle_cap_huge_top = new BlockBase(Material.CACTUS, SoundType.PLANT, 0.8f, "baffle_cap_huge_top").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addBlock(baffle_cap_huge_stem = new BlockBase(Material.CACTUS, SoundType.SLIME, 0.8f, "baffle_cap_huge_stem").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addBlock(baffle_cap_huge_top = new BlockBase(Material.CACTUS, SoundType.SLIME, 0.8f, "baffle_cap_huge_top").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addBlock(baffle_cap_mushroom = new BlockMushroomBase("baffle_cap_mushroom", new HugeBaffleCap().getData()));
+
+      // Post registration block setup
       ((BlockMushroomBase) baffle_cap_mushroom).setItemBlock(new ItemBlock(baffle_cap_mushroom).setRegistryName(LibRegistry.getActiveModid(), "baffle_cap_mushroom"));
     }
 

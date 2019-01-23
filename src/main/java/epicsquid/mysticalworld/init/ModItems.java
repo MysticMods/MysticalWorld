@@ -1,7 +1,11 @@
 package epicsquid.mysticalworld.init;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nonnull;
 
+import epicsquid.mysticallib.block.BlockBase;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticallib.item.ItemSeedBase;
@@ -54,7 +58,6 @@ public class ModItems {
       event.addItem(wildroot = new ItemSeedBase("wildroot", ModBlocks.wildroot, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(wildewheet = new ItemBase("wildewheet").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
-      registerSeedDrops();
 
       event.addItem(terra_spores = new ItemTerraSpore("terra_spores").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
@@ -70,6 +73,9 @@ public class ModItems {
       event.addItem(iron_knife = new ItemKnife("iron_knife", ToolMaterial.IRON).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(diamond_knife = new ItemKnife("diamond_knife", ToolMaterial.DIAMOND).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(gold_knife = new ItemKnife("gold_knife", ToolMaterial.GOLD).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+
+      // KEEP AT END
+      registerSeedDrops();
     }
   }
 
