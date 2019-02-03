@@ -15,6 +15,7 @@ import epicsquid.mysticalworld.block.BlockMoonglowCrop;
 import epicsquid.mysticalworld.block.BlockPereskiaCrop;
 import epicsquid.mysticalworld.block.BlockSpiritHerbCrop;
 import epicsquid.mysticalworld.block.BlockThatch;
+import epicsquid.mysticalworld.block.BlockWildewheetCrop;
 import epicsquid.mysticalworld.block.BlockWildrootCrop;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.world.HugeBaffleCap;
@@ -28,7 +29,7 @@ public class ModBlocks {
 
   // All blocks
   public static Block moonglow, aubergine, pereskia, wildroot, spirit_herb, thatch, caminite, caminite_stairs, caminite_slab, caminite_wall, caminite_bricks, caminite_bricks_stairs, caminite_bricks_slab, caminite_bricks_wall, solar_infused_stone, solar_infused_stone_stairs, solar_infused_stone_slab, solar_infused_stone_wall,
-      baffle_cap_huge_stem, baffle_cap_huge_top, baffle_cap_mushroom;
+      baffle_cap_huge_stem, baffle_cap_huge_top, baffle_cap_mushroom, wildewheet;
 
   /**
    * Register all blocks
@@ -48,6 +49,7 @@ public class ModBlocks {
       event.addBlock(baffle_cap_huge_stem = new BlockBase(Material.CACTUS, SoundType.SLIME, 0.8f, "baffle_cap_huge_stem").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addBlock(baffle_cap_huge_top = new BlockBase(Material.CACTUS, SoundType.SLIME, 0.8f, "baffle_cap_huge_top").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addBlock(baffle_cap_mushroom = new BlockMushroomBase("baffle_cap_mushroom", new HugeBaffleCap().getData()));
+      event.addBlock(wildewheet = new BlockWildewheetCrop("wildewheet_crop", EnumPlantType.Crop));
 
       // Post registration block setup
       ((BlockMushroomBase) baffle_cap_mushroom).setItemBlock(new ItemBlock(baffle_cap_mushroom).setRegistryName(LibRegistry.getActiveModid(), "baffle_cap_mushroom"));
