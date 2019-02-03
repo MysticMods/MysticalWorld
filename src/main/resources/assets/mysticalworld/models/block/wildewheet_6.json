@@ -1,0 +1,7 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "particle": "mysticalworld:blocks/wildewheet_6",
+        "crop": "mysticalworld:blocks/wildewheet_6"
+    }
+}
