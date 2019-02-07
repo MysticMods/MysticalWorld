@@ -48,7 +48,6 @@ public class MysticalWorld {
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
     CONTAINER = Loader.instance().activeModContainer();
-    MinecraftForge.EVENT_BUS.register(new EventManager());
     MinecraftForge.EVENT_BUS.register(new RegistryManager());
     proxy.preInit(event);
   }
