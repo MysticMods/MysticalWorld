@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.block.BlockBase;
+import epicsquid.mysticallib.block.BlockCropBase;
 import epicsquid.mysticallib.block.BlockMushroomBase;
 import epicsquid.mysticallib.block.BlockSlabBase;
 import epicsquid.mysticallib.block.BlockStairsBase;
@@ -11,9 +12,13 @@ import epicsquid.mysticallib.block.BlockWallBase;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.block.BlockAubergineCrop;
+import epicsquid.mysticalworld.block.BlockCloudBerryCrop;
+import epicsquid.mysticalworld.block.BlockDewgoniaCrop;
+import epicsquid.mysticalworld.block.BlockInfernalBulbCrop;
 import epicsquid.mysticalworld.block.BlockMoonglowCrop;
 import epicsquid.mysticalworld.block.BlockPereskiaCrop;
 import epicsquid.mysticalworld.block.BlockSpiritHerbCrop;
+import epicsquid.mysticalworld.block.BlockStalicripeCrop;
 import epicsquid.mysticalworld.block.BlockThatch;
 import epicsquid.mysticalworld.block.BlockWildewheetCrop;
 import epicsquid.mysticalworld.block.BlockWildrootCrop;
@@ -28,8 +33,10 @@ import net.minecraftforge.common.EnumPlantType;
 public class ModBlocks {
 
   // All blocks
-  public static Block moonglow, aubergine, pereskia, wildroot, spirit_herb, thatch, caminite, caminite_stairs, caminite_slab, caminite_wall, caminite_bricks, caminite_bricks_stairs, caminite_bricks_slab, caminite_bricks_wall, solar_infused_stone, solar_infused_stone_stairs, solar_infused_stone_slab, solar_infused_stone_wall,
-      baffle_cap_huge_stem, baffle_cap_huge_top, baffle_cap_mushroom, wildewheet;
+  public static Block thatch, caminite, caminite_stairs, caminite_slab, caminite_wall, caminite_bricks, caminite_bricks_stairs, caminite_bricks_slab, caminite_bricks_wall, solar_infused_stone, solar_infused_stone_stairs, solar_infused_stone_slab, solar_infused_stone_wall,
+      baffle_cap_huge_stem, baffle_cap_huge_top, baffle_cap_mushroom;
+
+  public static BlockCropBase moonglow, aubergine, pereskia, wildroot, spirit_herb,wildewheet, cloud_berry, infernal_bulb, dewgonia, stalicripe;
 
   /**
    * Register all blocks
@@ -50,6 +57,11 @@ public class ModBlocks {
       event.addBlock(baffle_cap_huge_top = new BlockBase(Material.CACTUS, SoundType.SLIME, 0.8f, "baffle_cap_huge_top").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addBlock(baffle_cap_mushroom = new BlockMushroomBase("baffle_cap_mushroom", new HugeBaffleCap().getData()));
       event.addBlock(wildewheet = new BlockWildewheetCrop("wildewheet_crop", EnumPlantType.Crop));
+      event.addBlock(cloud_berry = new BlockCloudBerryCrop("cloud_berry_crop", EnumPlantType.Beach));
+      event.addBlock(infernal_bulb = new BlockInfernalBulbCrop("infernal_bulb_crop", EnumPlantType.Cave));
+      // TODO 1.13 make the dewgonia work only underwater
+      event.addBlock(dewgonia = new BlockDewgoniaCrop("dewgonia_crop", EnumPlantType.Beach));
+      event.addBlock(stalicripe = new BlockStalicripeCrop("stalicripe_crop", EnumPlantType.Cave));
 
       // Post registration block setup
       ((BlockMushroomBase) baffle_cap_mushroom).setItemBlock(new ItemBlock(baffle_cap_mushroom).setRegistryName(LibRegistry.getActiveModid(), "baffle_cap_mushroom"));

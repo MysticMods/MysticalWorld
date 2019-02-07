@@ -20,7 +20,8 @@ public class ModItems {
 
   // All mod items
   public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, moonglow_seed, moonglow_leaf, aubergine, aubergine_seed, pereskia_bulb, pereskia, terra_spores, terra_moss, spirit_herb, wildewheet,
-      spirit_herb_seed, wildroot, baffle_cap, teapot, bark_oak, bark_birch, bark_spruce, bark_jungle, bark_dark_oak, bark_acacia, gold_knife, diamond_knife, iron_knife, stone_knife, wood_knife, wildewheet_seed;
+      spirit_herb_seed, wildroot, baffle_cap, teapot, bark_oak, bark_birch, bark_spruce, bark_jungle, bark_dark_oak, bark_acacia, gold_knife, diamond_knife, iron_knife, stone_knife, wood_knife, wildewheet_seed, cloud_berry, infernal_bulb,
+      stalicripe, dewgonia;
 
   /**
    * Register all items
@@ -54,7 +55,10 @@ public class ModItems {
       event.addItem(wildroot = new ItemSeedBase("wildroot", ModBlocks.wildroot, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(wildewheet = new ItemBase("wildewheet").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(wildewheet_seed = new ItemSeedBase("wildewheet_seed", ModBlocks.wildewheet, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-
+      event.addItem(cloud_berry = new ItemSeedBase("cloud_berry", ModBlocks.cloud_berry, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(infernal_bulb = new ItemSeedBase("infernal_bulb", ModBlocks.infernal_bulb, Blocks.MAGMA).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(dewgonia = new ItemSeedBase("dewgonia", ModBlocks.dewgonia, Blocks.SAND).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(stalicripe = new ItemSeedBase("stalicripe", ModBlocks.stalicripe, Blocks.STONE).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
       event.addItem(terra_spores = new ItemTerraSpore("terra_spores").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
