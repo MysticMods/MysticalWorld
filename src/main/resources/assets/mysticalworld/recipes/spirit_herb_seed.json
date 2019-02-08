@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mysticalworld:spirit_herb",
+      "data": 0
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:spirit_herb_seed",
+    "data": 0
+  }
+}

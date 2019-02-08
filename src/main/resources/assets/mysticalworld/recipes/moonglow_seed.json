@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mysticalworld:moonglow_leaf",
+      "data": 0
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:moonglow_seed",
+    "data": 0
+  }
+}
