@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "mysticalworld:blocks/earth_soil_top",
+        "top": "mysticalworld:blocks/earth_soil_top",
+        "side": "mysticalworld:blocks/earth_soil_side"
+    }
+}

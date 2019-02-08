@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "normal": { "model": "mysticalworld:runic_soil_water" },
+        "handlers": { "model": "mysticalworld:runic_soil_water" }
+    }
+}
