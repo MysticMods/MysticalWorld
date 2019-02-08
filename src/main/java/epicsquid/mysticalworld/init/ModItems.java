@@ -7,7 +7,6 @@ import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticallib.item.ItemSeedBase;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
-import epicsquid.mysticalworld.item.ItemKnife;
 import epicsquid.mysticalworld.item.ItemTerraSpore;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
