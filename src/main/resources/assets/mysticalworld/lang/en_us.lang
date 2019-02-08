@@ -146,13 +146,6 @@ tile.solar_infused_stone_slab.name=Solar Infused Stone Slab
 tile.solar_infused_stone_double_slab.name=Solar Infused Stone Double Slab
 tile.solar_infused_stone_wall.name=Solar Infused Stone Wall
 
-#Knifes
-item.wood_knife.name=Wooden Knife
-item.stone_knife.name=Stone Knife
-item.iron_knife.name=Iron Knife
-item.gold_knife.name=Golden Knife
-item.diamond_knife.name=Diamond Knife
-
 #Bark
 item.bark_oak.name=Oak Bark
 item.bark_spruce.name=Spruce Bark
