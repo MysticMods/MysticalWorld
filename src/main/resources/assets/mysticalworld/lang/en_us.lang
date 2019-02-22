@@ -160,3 +160,13 @@ tile.runic_soil_fire.name=Magmatic Soil
 tile.runic_soil_water.name=Aqueous Soil
 tile.runic_soil_earth.name=Terra Soil
 tile.runic_soil_air.name=Aeros Soil
+
+# Rune Stone
+tile.runestone_stairs.name=Runestone Stairs
+tile.runestone_slab.name=Runestone Slab
+tile.runestone_wall.name=Runestone Wall
+tile.runestone_brick_stairs.name=Runestone Brick Stairs
+tile.runestone_brick_slab.name=Runestone Brick Slab
+tile.runestone_brick_wall.name=Runestone Brick Wall
+
+tile.wildwood_log.name=Wildwood Log

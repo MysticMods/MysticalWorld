@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "axis=y":  { "model": "mysticalworld:wildwood_log" },
+    "axis=z":   { "model": "mysticalworld:wildwood_log", "x": 90 },
+    "axis=x":   { "model": "mysticalworld:wildwood_log", "x": 90, "y": 90 },
+    "axis=none": { "model": "mysticalworld:wildwood_log" }
+  }
+}
