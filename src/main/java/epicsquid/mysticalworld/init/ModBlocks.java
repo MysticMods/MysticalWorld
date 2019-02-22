@@ -5,6 +5,7 @@ import javax.annotation.Nonnull;
 import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.block.BlockBase;
 import epicsquid.mysticallib.block.BlockCropBase;
+import epicsquid.mysticallib.block.BlockLogBase;
 import epicsquid.mysticallib.block.BlockMushroomBase;
 import epicsquid.mysticallib.block.BlockSlabBase;
 import epicsquid.mysticallib.block.BlockStairsBase;
@@ -30,7 +31,6 @@ import epicsquid.mysticalworld.world.HugeBaffleCap;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.audio.Sound;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.common.EnumPlantType;
 
@@ -41,6 +41,14 @@ public class ModBlocks {
       baffle_cap_huge_stem, baffle_cap_huge_top, baffle_cap_mushroom, runic_soil_fire, runic_soil_water, runic_soil_air, runic_soil_earth, runic_soil;
 
   public static BlockCropBase moonglow, aubergine, pereskia, wildroot, spirit_herb,wildewheet, cloud_berry, infernal_bulb, dewgonia, stalicripe;
+
+  // Runestones
+  public static Block runestone, runestone_brick, chiseled_runestone, wildroot_log;
+
+
+  // Decoration
+  public static Block runestone_slab, runestone_double_slab, runestone_stairs, runestone_wall;
+  public static Block runestone_brick_slab, runestone_brick_double_slab, runestone_brick_stairs, runestone_brick_wall;
 
   /**
    * Register all blocks
@@ -75,6 +83,17 @@ public class ModBlocks {
 
       // Post registration block setup
       ((BlockMushroomBase) baffle_cap_mushroom).setItemBlock(new ItemBlock(baffle_cap_mushroom).setRegistryName(LibRegistry.getActiveModid(), "baffle_cap_mushroom"));
+
+      //Runestones
+      event.addBlock(runestone = new BlockBase(Material.ROCK, SoundType.METAL, 1.4f, "runestone")).setCreativeTab(MysticalWorld.tab);
+      event.addBlock(runestone_brick = new BlockBase(Material.ROCK, SoundType.METAL, 1.4f, "runestone_brick")).setCreativeTab(MysticalWorld.tab);
+      event.addBlock(chiseled_runestone = new BlockBase(Material.ROCK, SoundType.METAL, 1.4f, "chiseled_runestone")).setCreativeTab(MysticalWorld.tab);
+
+      event.addBlock(wildroot_log = new BlockLogBase("wildroot_log")).setCreativeTab(MysticalWorld.tab);
+
+      //Decoration
+      variants(event, runestone, "runestone", runestone_slab, runestone_double_slab, runestone_stairs, runestone_wall);
+      variants(event, runestone_brick, "runestone_brick", runestone_brick_slab, runestone_brick_double_slab, runestone_brick_stairs, runestone_brick_wall);
     }
 
     if (ConfigManager.modules.embersModuleEnabled) {
@@ -124,5 +143,14 @@ public class ModBlocks {
       event.addBlock(solar_infused_stone_wall = new BlockWallBase(solar_infused_stone, SoundType.STONE, 2.0f, "solar_infused_stone_wall").setModelCustom(true)
           .setCreativeTab(MysticalWorld.tab));
     }
+  }
+
+  private static void variants(RegisterContentEvent event, Block base, String name, Block... refs) {
+    LibRegistry.addSlabPair(Material.ROCK, SoundType.STONE, 1.7f, name, base.getDefaultState(), new Block[] { refs[0], refs[1] }, true,
+        base.getCreativeTabToDisplayOn());
+    event.addBlock(refs[2] = new BlockStairsBase(base.getDefaultState(), SoundType.STONE, 1.7f, name + "_stairs").setModelCustom(true)
+        .setCreativeTab(base.getCreativeTabToDisplayOn()));
+    event.addBlock(
+        refs[3] = new BlockWallBase(base, SoundType.STONE, 1.7f, name + "_wall").setModelCustom(true).setCreativeTab(base.getCreativeTabToDisplayOn()));
   }
 }
