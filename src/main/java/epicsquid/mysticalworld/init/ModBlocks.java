@@ -43,7 +43,7 @@ public class ModBlocks {
   public static BlockCropBase moonglow, aubergine, pereskia, wildroot, spirit_herb,wildewheet, cloud_berry, infernal_bulb, dewgonia, stalicripe;
 
   // Runestones
-  public static Block runestone, runestone_brick, chiseled_runestone, wildwoodLog;
+  public static Block runestone, runestone_brick, chiseled_runestone, wildwoodLog, wildwoodPlanks, wildwoodLeaves;
 
 
   // Decoration
@@ -89,7 +89,9 @@ public class ModBlocks {
       event.addBlock(runestone_brick = new BlockBase(Material.ROCK, SoundType.METAL, 1.4f, "runestone_brick").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
       event.addBlock(chiseled_runestone = new BlockBase(Material.ROCK, SoundType.METAL, 1.4f, "chiseled_runestone").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
 
-      event.addBlock(wildwoodLog = new BlockLogBase("wildwood_log")).setCreativeTab(MysticalWorld.tab);
+      event.addBlock(wildwoodLog = new BlockLogBase("wildwood_log").setCreativeTab(MysticalWorld.tab));
+      event.addBlock(wildwoodPlanks = new BlockBase(Material.WOOD, SoundType.WOOD, 2.0f, "wildwood_planks").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+//      event.addBlock(wildwoodLeaves = new BlockBase(Material.LEAVES, SoundType.PLANT, 0.8f,"wildwood_leaves").setModelCustom(true).setOpacity(false).setCreativeTab(MysticalWorld.tab));
 
       //Decoration
       variants(event, runestone, "runestone", runestone_slab, runestone_double_slab, runestone_stairs, runestone_wall);
