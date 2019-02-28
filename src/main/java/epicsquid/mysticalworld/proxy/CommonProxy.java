@@ -9,11 +9,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
   public void preInit(FMLPreInitializationEvent event) {
-    ModItems.registerOredict();
     GameRegistry.registerWorldGenerator(new OreGenerator(), 1);
   }
 
   public void init(FMLInitializationEvent event) {
+    ModItems.registerOredict();
   }
 
   public void postInit(FMLPostInitializationEvent event) {
