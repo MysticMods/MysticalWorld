@@ -20,10 +20,10 @@ public class BlockThatch extends BlockBase {
     setOpacity(true);
   }
 
+  @Nonnull
   @Override
-  @SideOnly(Side.CLIENT)
-  public BlockBase setLayer(@Nonnull BlockRenderLayer layer) {
-    return super.setLayer(BlockRenderLayer.CUTOUT_MIPPED);
+  public BlockRenderLayer getBlockLayer() {
+    return BlockRenderLayer.CUTOUT_MIPPED;
   }
 
   @Override
