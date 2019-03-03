@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "mysticalworld:blocks/wildwood_log_top",
-    "side": "mysticalworld:blocks/wildwood_log"
-  }
-}

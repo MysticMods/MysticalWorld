@@ -1,6 +1,0 @@
-{
-    "variants":{
-        "inventory":  { "model": "mysticalworld:baffle_cap" },
-        "normal":  { "model": "mysticalworld:baffle_cap_mushroom" }
-    }
-}

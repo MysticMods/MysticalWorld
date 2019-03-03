@@ -1,7 +1,0 @@
-{
-    "parent": "block/crop",
-    "textures": {
-        "particle": "mysticalworld:blocks/dewgonia_1",
-        "crop": "mysticalworld:blocks/dewgonia_1"
-    }
-}

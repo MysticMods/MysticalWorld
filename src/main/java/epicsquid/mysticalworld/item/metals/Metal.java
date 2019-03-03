@@ -19,54 +19,62 @@ import net.minecraftforge.oredict.OreDictionary;
  */
 public enum Metal {
 
-  copper("Copper", 3.5f), tin("Tin", 4f), silver("Silver", 5f), lead("Lead", 5f), nickel("Nickel", 5f), aluminum("Aluminum", 5f), zinc("Zinc", 5f), invar(
-      "Invar", 5f) {
-    @Override
-    public boolean hasOre() {
-      return false;
-    }
-
-  }, electrum("Electrum", 5f) {
-    @Override
-    public boolean hasOre() {
-      return false;
-    }
-
-  }, brass("Brass", 5f) {
-    @Override
-    public boolean hasOre() {
-      return false;
-    }
-
-  }, bronze("Bronze", 5f) {
-    @Override
-    public boolean hasOre() {
-      return false;
-    }
-
-  }, dawnstone("Dawnstone", 5f, true) {
-    @Override
-    public boolean hasGrindables() {
-      return false;
-    }
-
-    @Override
-    public boolean hasOre() {
-      return false;
-    }
-
-  }, sooty_iron("SootyIron", 5f, true) {
-    @Override
-    public boolean hasGrindables() {
-      return false;
-    }
-
-    @Override
-    public boolean hasOre() {
-      return false;
-    }
-
-  },;
+  copper("Copper", 3.5f),
+  silver("Silver", 5f),
+//  tin("Tin", 4f),
+//  lead("Lead", 5f),
+//  nickel("Nickel", 5f),
+//  aluminum("Aluminum", 5f),
+//  zinc("Zinc", 5f),
+//  invar(
+//      "Invar", 5f) {
+//    @Override
+//    public boolean hasOre() {
+//      return false;
+//    }
+//
+//  }, electrum("Electrum", 5f) {
+//    @Override
+//    public boolean hasOre() {
+//      return false;
+//    }
+//
+//  }, brass("Brass", 5f) {
+//    @Override
+//    public boolean hasOre() {
+//      return false;
+//    }
+//
+//  }, bronze("Bronze", 5f) {
+//    @Override
+//    public boolean hasOre() {
+//      return false;
+//    }
+//
+//  }, dawnstone("Dawnstone", 5f, true) {
+//    @Override
+//    public boolean hasGrindables() {
+//      return false;
+//    }
+//
+//    @Override
+//    public boolean hasOre() {
+//      return false;
+//    }
+//
+//  }, sooty_iron("SootyIron", 5f, true) {
+//    @Override
+//    public boolean hasGrindables() {
+//      return false;
+//    }
+//
+//    @Override
+//    public boolean hasOre() {
+//      return false;
+//    }
+//
+//  },
+  ;
 
   private Item ingot;
   private Item nugget;

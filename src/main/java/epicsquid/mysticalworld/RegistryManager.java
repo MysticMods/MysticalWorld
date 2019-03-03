@@ -12,7 +12,6 @@ import epicsquid.mysticalworld.init.ModRecipes;
 import epicsquid.mysticalworld.item.metals.Metal;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 

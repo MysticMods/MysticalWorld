@@ -1,7 +1,0 @@
-{
-    "parent": "block/crop",
-    "textures": {
-        "particle": "mysticalworld:blocks/stalicripe_1",
-        "crop": "mysticalworld:blocks/stalicripe_1"
-    }
-}
