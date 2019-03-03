@@ -33,7 +33,7 @@ public class ModBlocks {
     }
 
     if (ConfigManager.modules.embersModuleEnabled) {
-      
+
     }
 
     if (ConfigManager.modules.solarModuleEnabled) {
