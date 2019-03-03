@@ -17,8 +17,7 @@ import net.minecraft.block.material.Material;
 public class ModBlocks {
 
   // All blocks
-  public static Block caminite, caminite_stairs, caminite_slab, caminite_wall, caminite_bricks, caminite_bricks_stairs, caminite_bricks_slab,
-      caminite_bricks_wall, solar_infused_stone, solar_infused_stone_stairs, solar_infused_stone_slab, solar_infused_stone_wall;
+  public static Block solar_infused_stone, solar_infused_stone_stairs, solar_infused_stone_slab, solar_infused_stone_wall;
 
 
 
@@ -34,34 +33,7 @@ public class ModBlocks {
     }
 
     if (ConfigManager.modules.embersModuleEnabled) {
-      // Embers
-      event.addBlock(caminite = new BlockBase(Material.ROCK, SoundType.STONE, 2.0f, "caminite").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addBlock(caminite_stairs = new BlockStairsBase(caminite.getDefaultState(), SoundType.STONE, 2.0f, "caminite_stairs").setModelCustom(true)
-          .setCreativeTab(MysticalWorld.tab));
-      double_slab_temp = new BlockSlabBase(Material.ROCK, SoundType.STONE, 2.0f, "caminite_double_slab", caminite.getDefaultState(), true, null)
-          .setModelCustom(true);
-      slab_temp = new BlockSlabBase(Material.ROCK, SoundType.STONE, 2.0f, "caminite_slab", caminite.getDefaultState(), false, double_slab_temp)
-          .setModelCustom(true);
-      double_slab_temp.setSlab(slab_temp);
-      event.addBlock(caminite_slab = slab_temp.setCreativeTab(MysticalWorld.tab));
-      event.addBlock(double_slab_temp);
-      event
-          .addBlock(caminite_wall = new BlockWallBase(caminite, SoundType.STONE, 2.0f, "caminite_wall").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-
-      event.addBlock(
-          caminite_bricks = new BlockBase(Material.ROCK, SoundType.STONE, 2.0f, "caminite_bricks").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addBlock(
-          caminite_bricks_stairs = new BlockStairsBase(caminite_bricks.getDefaultState(), SoundType.STONE, 2.0f, "caminite_bricks_stairs").setModelCustom(true)
-              .setCreativeTab(MysticalWorld.tab));
-      double_slab_temp = new BlockSlabBase(Material.ROCK, SoundType.STONE, 2.0f, "caminite_bricks_double_slab", caminite_bricks.getDefaultState(), true, null)
-          .setModelCustom(true);
-      slab_temp = new BlockSlabBase(Material.ROCK, SoundType.STONE, 2.0f, "caminite_bricks_slab", caminite_bricks.getDefaultState(), false, double_slab_temp)
-          .setModelCustom(true);
-      double_slab_temp.setSlab(slab_temp);
-      event.addBlock(caminite_bricks_slab = slab_temp.setCreativeTab(MysticalWorld.tab));
-      event.addBlock(double_slab_temp);
-      event.addBlock(caminite_bricks_wall = new BlockWallBase(caminite_bricks, SoundType.STONE, 2.0f, "caminite_bricks_wall").setModelCustom(true)
-          .setCreativeTab(MysticalWorld.tab));
+      
     }
 
     if (ConfigManager.modules.solarModuleEnabled) {
