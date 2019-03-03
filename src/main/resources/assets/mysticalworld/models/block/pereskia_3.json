@@ -1,7 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "particle": "mysticalworld:blocks/pereskia_3",
-        "cross": "mysticalworld:blocks/pereskia_3"
-    }
-}

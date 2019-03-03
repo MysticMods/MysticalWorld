@@ -1,7 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "particle": "mysticalworld:blocks/infernal_bulb_1",
-        "cross": "mysticalworld:blocks/infernal_bulb_1"
-    }
-}
