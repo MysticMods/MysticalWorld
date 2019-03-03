@@ -92,5 +92,6 @@ public class ModItems {
   private static void registerSeedDrops() {
     MinecraftForge.addGrassSeed(new ItemStack(ModItems.terra_spores, 1), 5);
     MinecraftForge.addGrassSeed(new ItemStack(ModItems.wildroot, 1), 5);
+    MinecraftForge.addGrassSeed(new ItemStack(ModItems.aubergine_seed, 1), 5);
   }
 }
