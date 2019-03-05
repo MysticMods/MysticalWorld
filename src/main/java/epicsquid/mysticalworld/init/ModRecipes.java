@@ -43,7 +43,7 @@ public class ModRecipes {
       if (metal.hasGrindables()) {
         // Tiny Dust <-> Dust
         registerCompressionRecipe(event.getRegistry(), "dust" + metal.getOredictNameSuffix(), "dustTiny" + metal.getOredictNameSuffix(), metal.getDust(), metal.getDustTiny());
-        GameRegistry.addSmelting(metal.getDust(), new ItemStack(metal.getIngot(), 1), 0f);
+        GameRegistry.addSmelting(metal.getDust(), new ItemStack(metal.getIngot(), 1), metal.getExperience());
       }
       // Nugget <-> Ingot
       registerCompressionRecipe(event.getRegistry(), "ingot" + metal.getOredictNameSuffix(), "nugget" +
@@ -53,7 +53,7 @@ public class ModRecipes {
           metal.getOredictNameSuffix(), metal.getBlock(), metal.getIngot());
 
       if (metal.hasOre()) {
-        GameRegistry.addSmelting(metal.getOre(), new ItemStack(metal.getIngot(), 1), 0f);
+        GameRegistry.addSmelting(metal.getOre(), new ItemStack(metal.getIngot(), 1), metal.getExperience());
       }
     }
   }

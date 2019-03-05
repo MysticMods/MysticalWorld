@@ -19,8 +19,8 @@ import net.minecraftforge.oredict.OreDictionary;
  */
 public enum Metal {
 
-  copper("Copper", 3.5f),
-  silver("Silver", 5f),
+  copper("Copper", 3.5f, 0.65f),
+  silver("Silver", 5f, 0.35f),
 //  tin("Tin", 4f),
 //  lead("Lead", 5f),
 //  nickel("Nickel", 5f),
@@ -85,19 +85,25 @@ public enum Metal {
   private final float hardness;
   private final String oredictNameSuffix;
   private final boolean isEmbers;
+  private final float experience;
 
-  Metal(@Nonnull String oredictNameSuffix, float hardness, boolean isEmbers) {
+  Metal(@Nonnull String oredictNameSuffix, float hardness, float experience, boolean isEmbers) {
     this.oredictNameSuffix = oredictNameSuffix;
     this.hardness = hardness;
     this.isEmbers = isEmbers;
+    this.experience = experience;
   }
 
-  Metal(@Nonnull String oredictNameSuffix, float hardness) {
-    this(oredictNameSuffix, hardness, false);
+  Metal(@Nonnull String oredictNameSuffix, float hardness, float experience) {
+    this(oredictNameSuffix, hardness, experience, false);
   }
 
   public float getHardness() {
     return hardness;
+  }
+
+  public float getExperience () {
+    return experience;
   }
 
   @Nonnull
