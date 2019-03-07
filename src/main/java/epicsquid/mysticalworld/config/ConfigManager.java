@@ -45,6 +45,23 @@ public class ConfigManager {
     public boolean spawnFrog = true;
   }
 
+  @Config.Comment(("Controls the spawn rate of Mystical World mobs."))
+  public static ConfigMysticalWorldMobsSpawn spawn = new ConfigMysticalWorldMobsSpawn();
+
+  public static class ConfigMysticalWorldMobsSpawn {
+    @Config.Comment(("Spawn rate of deer"))
+    public int spawnDeerRate = 12;
+
+    @Config.Comment(("Spawn rate of fox"))
+    public int spawnFoxRare = 8;
+
+    @Config.Comment(("Spawn rate of beetle"))
+    public int spawnBeetleRate = 10;
+
+    @Config.Comment(("Spawn rate of frog"))
+    public int spawnFrogRate = 12;
+  }
+
   @Config.Comment(("Mystical world metals and their components."))
   public static ConfigMysticalWorldMetals metals = new ConfigMysticalWorldMetals();
 

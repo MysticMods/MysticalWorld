@@ -49,7 +49,7 @@ public class ModEntities {
       biomes.addAll(BiomeDictionary.getBiomes(Type.COLD));
       biomes.addAll(BiomeDictionary.getBiomes(Type.CONIFEROUS));
       biomes.addAll(BiomeDictionary.getBiomes(Type.PLAINS));
-      EntityRegistry.addSpawn(EntityDeer.class, 12, 4, 6, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(EntityDeer.class, ConfigManager.spawn.spawnDeerRate, 4, 6, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
 
     if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnFox) {
@@ -57,14 +57,14 @@ public class ModEntities {
       biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
       biomes.addAll(BiomeDictionary.getBiomes(Type.COLD));
       biomes.addAll(BiomeDictionary.getBiomes(Type.CONIFEROUS));
-      EntityRegistry.addSpawn(EntityFox.class, 8, 1, 3, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(EntityFox.class, ConfigManager.spawn.spawnFoxRare, 1, 3, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
 
     if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnFrog) {
       biomes = new HashSet<>();
       biomes.addAll(BiomeDictionary.getBiomes(Type.SWAMP));
       biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.JUNGLE));
-      EntityRegistry.addSpawn(EntityFrog.class, 12, 4, 7, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(EntityFrog.class, ConfigManager.spawn.spawnFrogRate, 4, 7, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
 
     if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnBeetle) {
@@ -73,7 +73,7 @@ public class ModEntities {
       biomes.addAll(BiomeDictionary.getBiomes(Type.SWAMP));
       biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.JUNGLE));
       biomes.addAll(BiomeDictionary.getBiomes(Type.PLAINS));
-      EntityRegistry.addSpawn(EntityBeetle.class, 10, 2, 5, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(EntityBeetle.class, ConfigManager.spawn.spawnBeetleRate, 2, 5, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
   }
 }
