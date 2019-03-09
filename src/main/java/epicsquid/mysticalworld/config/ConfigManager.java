@@ -45,21 +45,69 @@ public class ConfigManager {
     public boolean spawnFrog = true;
   }
 
-  @Config.Comment(("Controls the spawn rate of Mystical World mobs."))
-  public static ConfigMysticalWorldMobsSpawn spawn = new ConfigMysticalWorldMobsSpawn();
+  @Config.Comment(("Controls the spawn settings of Deer"))
+  public static ConfigMysticalWorldDeer deer = new ConfigMysticalWorldDeer();
+  @Config.Comment(("Controls the spawn settings of Foxes"))
+  public static ConfigMysticalWorldFox fox = new ConfigMysticalWorldFox();
+  @Config.Comment(("Controls the spawn settings of Beetle"))
+  public static ConfigMysticalWorldBeetle beetle = new ConfigMysticalWorldBeetle();
+  @Config.Comment(("Controls the spawn settings of Frog"))
+  public static ConfigMysticalWorldFrog frog = new ConfigMysticalWorldFrog();
 
-  public static class ConfigMysticalWorldMobsSpawn {
+  public static class ConfigMysticalWorldDeer {
     @Config.Comment(("Spawn rate of deer"))
-    public int spawnDeerRate = 12;
+    public int rate = 12;
 
+    @Config.Comment(("Min number of deer to spawn in a group"))
+    public int min = 4;
+
+    @Config.Comment(("Maximum number of deer to spanw in a group"))
+    public int max = 6;
+
+    @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
+    public String[] biomes = new String[]{"FOREST", "COLD", "CONIFEROUS", "PLAINS"};
+  }
+
+   public static class ConfigMysticalWorldFox {
     @Config.Comment(("Spawn rate of fox"))
-    public int spawnFoxRare = 8;
+    public int rate = 8;
 
+    @Config.Comment(("Min number of fox to spawn in a group"))
+    public int min = 1;
+
+    @Config.Comment(("Maximum number of fox to spanw in a group"))
+    public int max = 3;
+
+    @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
+    public String[] biomes = new String[]{"FOREST", "COLD", "CONIFEROUS"};
+  }
+
+   public static class ConfigMysticalWorldBeetle {
     @Config.Comment(("Spawn rate of beetle"))
-    public int spawnBeetleRate = 10;
+    public int rate = 10;
 
+    @Config.Comment(("Min number of beetles to spawn in a group"))
+    public int min = 2;
+
+    @Config.Comment(("Maximum number of beetles to spawn in a group"))
+    public int max = 5;
+
+    @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
+    public String[] biomes = new String[]{"SWAMP", "JUNGLE", "FOREST", "PLAINS"};
+  }
+
+   public static class ConfigMysticalWorldFrog {
     @Config.Comment(("Spawn rate of frog"))
-    public int spawnFrogRate = 12;
+    public int rate = 12;
+
+    @Config.Comment(("Min number of frogs to spawn in a group"))
+    public int min = 4;
+
+    @Config.Comment(("Maximum number of frogs to spawn in a group"))
+    public int max = 7;
+
+    @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
+    public String[] biomes = new String[]{"SWAMP", "JUNGLE", "BEACH", "RIVER"};
   }
 
   @Config.Comment(("Mystical world metals and their components."))

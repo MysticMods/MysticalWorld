@@ -45,35 +45,41 @@ public class ModEntities {
     Set<Biome> biomes = new HashSet<>();
 
     if (ConfigManager.modules.rootsModuleEnabled && ConfigManager.mobs.spawnDeer) {
-      biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
-      biomes.addAll(BiomeDictionary.getBiomes(Type.COLD));
-      biomes.addAll(BiomeDictionary.getBiomes(Type.CONIFEROUS));
-      biomes.addAll(BiomeDictionary.getBiomes(Type.PLAINS));
-      EntityRegistry.addSpawn(EntityDeer.class, ConfigManager.spawn.spawnDeerRate, 4, 6, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      for (String biomeName : ConfigManager.deer.biomes) {
+        Type type = Type.getType(biomeName);
+        biomes.addAll(BiomeDictionary.getBiomes(type));
+      }
+      EntityRegistry.addSpawn(EntityDeer.class, ConfigManager.deer.rate, ConfigManager.deer.min, ConfigManager.deer.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
+
+    biomes.clear();
 
     if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnFox) {
-      biomes = new HashSet<>();
-      biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
-      biomes.addAll(BiomeDictionary.getBiomes(Type.COLD));
-      biomes.addAll(BiomeDictionary.getBiomes(Type.CONIFEROUS));
-      EntityRegistry.addSpawn(EntityFox.class, ConfigManager.spawn.spawnFoxRare, 1, 3, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      for (String biomeName : ConfigManager.fox.biomes) {
+        Type type = Type.getType(biomeName);
+        biomes.addAll(BiomeDictionary.getBiomes(type));
+      }
+      EntityRegistry.addSpawn(EntityFox.class, ConfigManager.fox.rate, ConfigManager.fox.min, ConfigManager.fox.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
 
-    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnFrog) {
-      biomes = new HashSet<>();
-      biomes.addAll(BiomeDictionary.getBiomes(Type.SWAMP));
-      biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.JUNGLE));
-      EntityRegistry.addSpawn(EntityFrog.class, ConfigManager.spawn.spawnFrogRate, 4, 7, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
-    }
+    biomes.clear();
 
     if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnBeetle) {
-      biomes = new HashSet<>();
-      biomes.addAll(BiomeDictionary.getBiomes(Type.FOREST));
-      biomes.addAll(BiomeDictionary.getBiomes(Type.SWAMP));
-      biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.JUNGLE));
-      biomes.addAll(BiomeDictionary.getBiomes(Type.PLAINS));
-      EntityRegistry.addSpawn(EntityBeetle.class, ConfigManager.spawn.spawnBeetleRate, 2, 5, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      for (String biomeName : ConfigManager.beetle.biomes) {
+        Type type = Type.getType(biomeName);
+        biomes.addAll(BiomeDictionary.getBiomes(type));
+      }
+      EntityRegistry.addSpawn(EntityBeetle.class, ConfigManager.beetle.rate, ConfigManager.beetle.min, ConfigManager.beetle.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    }
+
+    biomes.clear();
+
+    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnFrog) {
+      for (String biomeName : ConfigManager.frog.biomes) {
+        Type type = Type.getType(biomeName);
+        biomes.addAll(BiomeDictionary.getBiomes(type));
+      }
+      EntityRegistry.addSpawn(EntityFrog.class, ConfigManager.frog.rate, ConfigManager.frog.min, ConfigManager.frog.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
   }
 }
