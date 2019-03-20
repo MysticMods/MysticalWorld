@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.item.ItemBase;
+import epicsquid.mysticallib.item.ItemFoodBase;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import net.minecraft.item.Item;
@@ -12,7 +13,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ModItems {
 
   // All mod items
-  public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt;
+  public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, antlers, venison, cooked_venison;
 
   /**
    * Register all items
@@ -29,6 +30,9 @@ public class ModItems {
       event.addItem(iron_dust_tiny = new ItemBase("iron_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(gold_dust = new ItemBase("gold_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(gold_dust_tiny = new ItemBase("gold_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(antlers = new ItemBase("antlers").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(venison = new ItemFoodBase("venison", 3, 1.0f, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(cooked_venison = new ItemFoodBase("cooked_venison", 7, 1.0f, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     }
 
     if (ConfigManager.modules.rootsModuleEnabled) {
