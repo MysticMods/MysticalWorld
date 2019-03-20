@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "minecraft:mutton",
+                    "name": "mysticalworld:venison",
                     "functions": [
                         {
                             "function": "set_count",
