@@ -31,8 +31,8 @@ public class ModItems {
       event.addItem(gold_dust = new ItemBase("gold_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(gold_dust_tiny = new ItemBase("gold_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(antlers = new ItemBase("antlers").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(venison = new ItemFoodBase("venison", 3, 1.0f, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(cooked_venison = new ItemFoodBase("cooked_venison", 7, 1.0f, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(venison = new ItemFoodBase("venison", 3, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(cooked_venison = new ItemFoodBase("cooked_venison", 7, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     }
 
     if (ConfigManager.modules.rootsModuleEnabled) {
