@@ -1,8 +1,10 @@
 package epicsquid.mysticalworld.entity;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowParent;
@@ -17,7 +19,9 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class EntityFox extends EntityAnimal {
@@ -31,6 +35,24 @@ public class EntityFox extends EntityAnimal {
   @Override
   public boolean isBreedingItem(@Nonnull ItemStack stack) {
     return stack.getItem() == Items.CHICKEN;
+  }
+
+  @Nullable
+  @Override
+  protected SoundEvent getAmbientSound() {
+    return ModSounds.Fox.IDLE;
+  }
+
+  @Nullable
+  @Override
+  protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    return ModSounds.Fox.BARK;
+  }
+
+  @Nullable
+  @Override
+  protected SoundEvent getDeathSound() {
+    return ModSounds.Fox.DEATH;
   }
 
   @Override

@@ -5,10 +5,7 @@ import javax.annotation.Nonnull;
 import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.event.RegisterModRecipesEvent;
-import epicsquid.mysticalworld.init.ModBlocks;
-import epicsquid.mysticalworld.init.ModEntities;
-import epicsquid.mysticalworld.init.ModItems;
-import epicsquid.mysticalworld.init.ModRecipes;
+import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.item.metals.Metal;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -24,6 +21,8 @@ public class RegistryManager {
     ModBlocks.registerBlocks(event);
 
     ModItems.registerItems(event);
+
+    ModSounds.initSounds(event);
 
     Metal.registerMetals(event);
 
