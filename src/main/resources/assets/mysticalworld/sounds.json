@@ -6,6 +6,6 @@
   "mob.fox.eat": { "category": "neutral", "sounds":  ["mysticalworld:fox/eat1", "mysticalworld:fox/eat2", "mysticalworld:fox/eat3"]},
   "mob.fox.idle": { "category": "neutral", "sounds":  ["mysticalworld:fox/idle1", "mysticalworld:fox/idle2", "mysticalworld:fox/idle3", "mysticalworld:fox/idle4", "mysticalworld:fox/idle5", "mysticalworld:fox/idle6"]},
   "mob.fox.sleep": { "category": "neutral", "sounds":  ["mysticalworld:fox/sleep1", "mysticalworld:fox/sleep2", "mysticalworld:fox/sleep3", "mysticalworld:fox/sleep4", "mysticalworld:fox/sleep5"]},
-  "mob.fox.sniff": { "category": "neutral", "sounds":  ["mysticalworld:fox/sniff1", "mysticalworld:fox/sniff2", "mysticalworld:fox/sniff3", "mysticalworld:fox/sniff4", "mysticalworld:fox/sniff5"]},
+  "mob.fox.sniff": { "category": "neutral", "sounds":  ["mysticalworld:fox/sniff1", "mysticalworld:fox/sniff2", "mysticalworld:fox/sniff3", "mysticalworld:fox/sniff4"]},
   "mob.fox.spit": { "category": "neutral", "sounds":  ["mysticalworld:fox/spit1", "mysticalworld:fox/spit2", "mysticalworld:fox/spit3"]}
 }
