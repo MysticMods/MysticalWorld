@@ -119,5 +119,5 @@ tile.solar_infused_stone_double_slab.name=Solar Infused Stone Double Slab
 tile.solar_infused_stone_wall.name=Solar Infused Stone Wall
 
 item.venison.name=Venison
-item.venison_cooked.name=Cooked Venison
+item.cooked_venison.name=Cooked Venison
 item.antlers.name=Antlers
