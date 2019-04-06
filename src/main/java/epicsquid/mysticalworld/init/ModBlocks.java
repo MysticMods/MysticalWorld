@@ -9,6 +9,7 @@ import epicsquid.mysticallib.block.BlockStairsBase;
 import epicsquid.mysticallib.block.BlockWallBase;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.blocks.BlockThatch;
 import epicsquid.mysticalworld.config.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -17,7 +18,7 @@ import net.minecraft.block.material.Material;
 public class ModBlocks {
 
   // All blocks
-
+  public static Block thatch;
 
 
 
@@ -25,7 +26,7 @@ public class ModBlocks {
    * Register all blocks
    */
   public static void registerBlocks(@Nonnull RegisterContentEvent event) {
-
+    event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch")).setCreativeTab(MysticalWorld.tab);
 
 
     if (ConfigManager.modules.rootsModuleEnabled) {
