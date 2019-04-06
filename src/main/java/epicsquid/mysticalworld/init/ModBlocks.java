@@ -26,7 +26,7 @@ public class ModBlocks {
    * Register all blocks
    */
   public static void registerBlocks(@Nonnull RegisterContentEvent event) {
-    event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch").setCreativeTab(MysticalWorld.tab));
 
 
     if (ConfigManager.modules.rootsModuleEnabled) {

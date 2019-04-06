@@ -1,5 +1,6 @@
 {
     "variants":{
-        "normal":  { "model": "mysticalworld:thatch" }
+        "normal":  { "model": "mysticalworld:thatch" },
+        "handlers":   { "model": "mysticalworld:thatch" }
     }
 }
