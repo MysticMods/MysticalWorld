@@ -27,12 +27,21 @@ minecraft {
     replace "@VERSION@", project.version
     replaceIn "MysticalWorld.java"
 }
+repositories {
+    maven {
+        name = "JER"
+        url = "https://dl.bintray.com/way2muchnoise/dev"
+    }
+}
 
 dependencies {
     if (!project.hasProperty("dev_env")) {
         compile files('libs/')
     } else {
         compile project(':MysticalLib')
+    }
+    compile("jeresources:JustEnoughResources-${minecraft_version}:${jer_version}") {
+        exclude group: 'mezz.jei'
     }
 }
 

@@ -1,7 +1,9 @@
 package epicsquid.mysticalworld.proxy;
 
 import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.integration.jer.JERIntegration;
 import epicsquid.mysticalworld.world.OreGenerator;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -14,6 +16,9 @@ public class CommonProxy {
 
   public void init(FMLInitializationEvent event) {
     ModItems.registerOredict();
+    if (Loader.isModLoaded("jeresources")) {
+      JERIntegration.init();
+    }
   }
 
   public void postInit(FMLPostInitializationEvent event) {
