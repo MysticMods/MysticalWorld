@@ -61,7 +61,7 @@ public class ConfigManager {
     @Config.Comment(("Min number of deer to spawn in a group"))
     public int min = 4;
 
-    @Config.Comment(("Maximum number of deer to spanw in a group"))
+    @Config.Comment(("Maximum number of deer to spawn in a group"))
     public int max = 6;
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
@@ -75,7 +75,7 @@ public class ConfigManager {
     @Config.Comment(("Min number of fox to spawn in a group"))
     public int min = 1;
 
-    @Config.Comment(("Maximum number of fox to spanw in a group"))
+    @Config.Comment(("Maximum number of fox to spawn in a group"))
     public int max = 3;
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
