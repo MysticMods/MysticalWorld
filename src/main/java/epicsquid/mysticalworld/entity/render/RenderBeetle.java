@@ -23,7 +23,7 @@ public class RenderBeetle extends RenderLiving<EntityBeetle> {
     @Override
     @Nonnull
     public RenderBeetle createRenderFor(@Nonnull RenderManager manager) {
-      return new RenderBeetle(manager, ModelHolder.models.get("beetle"), 0.25f);
+      return new RenderBeetle(manager, ModelHolder.models.get("beetle"), 0.05f);
     }
   }
 
@@ -32,8 +32,11 @@ public class RenderBeetle extends RenderLiving<EntityBeetle> {
       float scaleFactor) {
     GlStateManager.pushMatrix();
     if ((entity).getGrowingAge() < 0) {
-      GlStateManager.scale(0.5, 0.5, 0.5);
-      GlStateManager.translate(0, 1.5, 0);
+      GlStateManager.scale(0.2, 0.2, 0.2);
+      GlStateManager.translate(0, 6, 0);
+    } else {
+      GlStateManager.scale(0.45, 0.45, 0.45);
+      GlStateManager.translate(0, 2.05, 0);
     }
     super.renderModel(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
     GlStateManager.popMatrix();
