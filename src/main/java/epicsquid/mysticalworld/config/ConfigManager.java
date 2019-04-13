@@ -112,7 +112,7 @@ public class ConfigManager {
 
   @Config.Comment(("Weight of the Barrow Structure during generation, 0 to disable"))
   @Config.RangeInt(min=0, max=1000)
-  public static int BarrowWeight = 1;
+  public static int BarrowWeight = 0;
 
   @Config.Comment(("Mystical world metals and their components."))
   public static ConfigMysticalWorldMetals metals = new ConfigMysticalWorldMetals();
