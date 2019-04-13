@@ -32,8 +32,8 @@ public class RenderBeetle extends RenderLiving<EntityBeetle> {
       float scaleFactor) {
     GlStateManager.pushMatrix();
     if ((entity).getGrowingAge() < 0) {
-      GlStateManager.scale(0.2, 0.2, 0.2);
-      GlStateManager.translate(0, 6, 0);
+      GlStateManager.scale(0.3, 0.3, 0.3);
+      GlStateManager.translate(0, 3.5, 0);
     } else {
       GlStateManager.scale(0.45, 0.45, 0.45);
       GlStateManager.translate(0, 2.05, 0);
