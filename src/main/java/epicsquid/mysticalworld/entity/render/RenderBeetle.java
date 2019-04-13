@@ -36,7 +36,7 @@ public class RenderBeetle extends RenderLiving<EntityBeetle> {
       GlStateManager.translate(0, 3.5, 0);
     } else {
       GlStateManager.scale(0.45, 0.45, 0.45);
-      GlStateManager.translate(0, 2.05, 0);
+      GlStateManager.translate(0, 1.85, 0);
     }
     super.renderModel(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
     GlStateManager.popMatrix();
