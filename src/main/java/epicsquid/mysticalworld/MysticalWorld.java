@@ -40,7 +40,7 @@ public class MysticalWorld {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public ItemStack getTabIconItem() {
+    public ItemStack createIcon() {
       return new ItemStack(ModItems.carapace, 1);
     }
   };

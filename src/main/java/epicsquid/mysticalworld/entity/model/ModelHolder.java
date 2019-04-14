@@ -11,6 +11,7 @@ import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SuppressWarnings("deprecation")
 public class ModelHolder implements IResourceManagerReloadListener {
 
   public static Map<String, ModelBase> models = new HashMap<>();
