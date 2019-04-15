@@ -40,7 +40,7 @@ dependencies {
     } else {
         compile project(':MysticalLib')
     }
-    compile("jeresources:JustEnoughResources-${minecraft_version}:${jer_version}") {
+    deobfCompile("jeresources:JustEnoughResources-${minecraft_version}:${jer_version}") {
         exclude group: 'mezz.jei'
     }
 }
