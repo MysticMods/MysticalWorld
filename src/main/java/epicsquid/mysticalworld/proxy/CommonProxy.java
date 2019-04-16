@@ -22,10 +22,10 @@ public class CommonProxy {
       JERIntegration.init();
     }
 
-    int barrowWeight = ConfigManager.BarrowWeight;
+    /*int barrowWeight = ConfigManager.BarrowWeight;
     if (barrowWeight != 0) {
       GameRegistry.registerWorldGenerator(new BarrowGenerator(), barrowWeight);
-    }
+    }*/
   }
 
   public void postInit(FMLPostInitializationEvent event) {
