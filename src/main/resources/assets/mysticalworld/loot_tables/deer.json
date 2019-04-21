@@ -29,6 +29,21 @@
                             }
                         }
                     ]
+                },
+                {
+                    "type": "item",
+                    "name": "mysticalworld:antlers",
+                    "conditions": [
+                        {
+                            "condition": "has_horns"
+                        }
+                    ],
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": 1
+                        }
+                    ]
                 }
             ]
         }
