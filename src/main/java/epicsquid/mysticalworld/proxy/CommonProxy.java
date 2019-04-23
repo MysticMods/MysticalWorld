@@ -32,7 +32,7 @@ public class CommonProxy {
     }
 
     LootConditionManager.registerCondition(new HasHorns.Serializer());
-    int barrowWeight = ConfigManager.BarrowWeight;
+    /*int barrowWeight = ConfigManager.BarrowWeight;
     int hutWeight = ConfigManager.HutWeight;
     if (barrowWeight != 0) {
       GameRegistry.registerWorldGenerator(new NBTStructureGenerator(BARROW,10, () -> {
@@ -67,7 +67,7 @@ public class CommonProxy {
             return EntityZombie.class;
         }
       }), hutWeight);
-    }
+    }*/
   }
 
   public void postInit(FMLPostInitializationEvent event) {
