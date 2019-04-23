@@ -1,8 +1,10 @@
 package epicsquid.mysticalworld.world;
 
-import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
@@ -26,25 +28,41 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Map;
 import java.util.Random;
+import java.util.function.Supplier;
 
-public class BarrowGenerator implements IWorldGenerator {
-  private static ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");
+public class NBTStructureGenerator implements IWorldGenerator {
+  private final ResourceLocation structure;
+  private final int descent;
+  private final Supplier<Class<? extends Entity>> entity;
+  private static ResourceLocation loot = new ResourceLocation("minecraft", "chests/simple_dungeon");
+
+  public static void setLoot(ResourceLocation loot) {
+    NBTStructureGenerator.loot = loot;
+  }
+
+  public NBTStructureGenerator(ResourceLocation structure, int descent, Supplier<Class<? extends Entity>> entity) {
+    this.structure = structure;
+    this.loot = loot;
+    this.descent = descent;
+    this.entity = entity;
+  }
 
   public void generateChest(World world, BlockPos pos) {
     TileEntity te = world.getTileEntity(pos);
     if (te instanceof TileEntityChest) {
-      ((TileEntityChest) te).setLootTable(new ResourceLocation(MysticalWorld.MODID, "barrow_loot"), world.getSeed() * pos.getX() + pos.getY() ^ pos.getZ());
+      ((TileEntityChest) te).setLootTable(loot, world.getSeed() * pos.getX() + pos.getY() ^ pos.getZ());
     }
   }
 
   @Override
   public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+    if (random.nextInt(10) != 0) return;
     if (!(world instanceof WorldServer)) return;
 
     if (world.provider.getDimension() != 0) return;
 
-    int x = chunkX * 16 + random.nextInt(16);
-    int z = chunkZ * 16 + random.nextInt(16);
+    int x = chunkX * 16;
+    int z = chunkZ * 16;
     BlockPos zxPos = new BlockPos(x, 0, z);
 
     BlockPos pos = world.getTopSolidOrLiquidBlock(zxPos);
@@ -53,21 +71,12 @@ public class BarrowGenerator implements IWorldGenerator {
       return;
     }
 
-    /*while (state.getBlock().isReplaceable(world, pos) && !(state.getBlock() instanceof BlockLiquid)) {
-      if (pos.getY() <= 0) {
-        return;
-      }
-
-      pos = pos.down();
-      state = world.getBlockState(pos);
-    }*/
-
     Biome biome = world.getBiome(pos);
     if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.PLAINS)) return;
 
     MinecraftServer minecraftserver = world.getMinecraftServer();
     TemplateManager templatemanager = world.getSaveHandler().getStructureTemplateManager();
-    Template template = templatemanager.getTemplate(minecraftserver, BARROW);
+    Template template = templatemanager.getTemplate(minecraftserver, structure);
 
     BlockPos size = template.getSize();
     int top = pos.getY() + size.getY();
@@ -91,7 +100,7 @@ public class BarrowGenerator implements IWorldGenerator {
     placementsettings.setIgnoreStructureBlock(false);
     placementsettings.setRandom(random);
 
-    pos = Template.transformedBlockPos(placementsettings, pos).down().down();
+    pos = Template.transformedBlockPos(placementsettings, pos).down(descent);
     template.addBlocksToWorldChunk(world, pos, placementsettings);
 
     IBlockState chest = Blocks.CHEST.getDefaultState();
@@ -103,7 +112,10 @@ public class BarrowGenerator implements IWorldGenerator {
         if (world.setBlockState(blockPos, Blocks.MOB_SPAWNER.getDefaultState(), 2)) {
           TileEntityMobSpawner ms = (TileEntityMobSpawner) world.getTileEntity(blockPos);
           if (ms != null) {
-
+            ResourceLocation key = EntityList.getKey(entity.get());
+            if (key == null) key = EntityList.getKey(EntityZombie.class);
+            ms.getSpawnerBaseLogic().setEntityId(key);
+            // TODO
           }
         }
         // Two floor chests
@@ -116,7 +128,7 @@ public class BarrowGenerator implements IWorldGenerator {
           world.setBlockState(blockPos, cobble);
         }
       } else if (s.equals("loot_chest2")) {
-        if (random.nextInt(5) == 0) {
+        if (random.nextInt(4) == 0) {
           if (world.setBlockState(blockPos, chest)) {
             generateChest(world, blockPos);
           }

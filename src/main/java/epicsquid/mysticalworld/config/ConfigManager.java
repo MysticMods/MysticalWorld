@@ -110,9 +110,13 @@ public class ConfigManager {
     public String[] biomes = new String[]{"SWAMP", "JUNGLE", "BEACH", "RIVER"};
   }
 
-  @Config.Comment(("Weight of the Barrow Structure during generation, 0 to disable"))
-  @Config.RangeInt(min=0, max=1000)
-  public static int BarrowWeight = 0;
+  @Config.Comment(("Weight of the Barrow Structure during generation, 0 to disable, higher = lower chance"))
+  @Config.RangeInt(min=0)
+  public static int BarrowWeight = 500;
+
+  @Config.Comment(("Weight of the Hut Structure during generation, 0 to disable, higher = lower chance"))
+  @Config.RangeInt(min=0)
+  public static int HutWeight = 500;
 
   @Config.Comment(("Mystical world metals and their components."))
   public static ConfigMysticalWorldMetals metals = new ConfigMysticalWorldMetals();
@@ -140,13 +144,13 @@ public class ConfigManager {
     @Config.Comment(("Enable Copper"))
     public boolean enableCopper = true;
 
-    @Config.Comment(("Enable Tin"))
-    public boolean enableTin = true;
+    /*@Config.Comment(("Enable Tin"))
+    public boolean enableTin = true;*/
 
     @Config.Comment(("Enable Silver"))
     public boolean enableSilver = true;
 
-    @Config.Comment(("Enable Lead"))
+    /*@Config.Comment(("Enable Lead"))
     public boolean enableLead = true;
 
     @Config.Comment(("Enable Nickel"))
@@ -174,7 +178,7 @@ public class ConfigManager {
     public boolean enableDawnstone = true;
 
     @Config.Comment(("Enable Sooty Iron"))
-    public boolean enableSootyIron = true;
+    public boolean enableSootyIron = true;*/
   }
 
   @Config.Comment(("Controls ore generation for Mystical World Ores."))
@@ -196,7 +200,7 @@ public class ConfigManager {
     @RangeInt(min = 0, max = 255)
     public int copperMinY = 0;
 
-    @Config.Comment(("The amount of tin veins to generate per chunk. Set to 0 to disable."))
+    /*@Config.Comment(("The amount of tin veins to generate per chunk. Set to 0 to disable."))
     public int tinPerChunk = 6;
 
     @Config.Comment(("The maximum size of a tin ore vein."))
@@ -208,7 +212,7 @@ public class ConfigManager {
 
     @Config.Comment(("The lowest a tin of vein can generate."))
     @RangeInt(min = 0, max = 255)
-    public int tinMinY = 0;
+    public int tinMinY = 0;*/
 
     @Config.Comment(("The amount of silver veins to generate per chunk. Set to 0 to disable."))
     public int silverPerChunk = 4;
@@ -224,7 +228,7 @@ public class ConfigManager {
     @RangeInt(min = 0, max = 255)
     public int silverMinY = 0;
 
-    @Config.Comment(("The amount of lead veins to generate per chunk. Set to 0 to disable."))
+    /*@Config.Comment(("The amount of lead veins to generate per chunk. Set to 0 to disable."))
     public int leadPerChunk = 4;
 
     @Config.Comment(("The maximum size of a lead ore vein."))
@@ -278,6 +282,6 @@ public class ConfigManager {
 
     @Config.Comment(("The lowest a zinc of vein can generate."))
     @RangeInt(min = 0, max = 255)
-    public int zincMinY = 0;
+    public int zincMinY = 0;*/
   }
 }
