@@ -20,7 +20,7 @@ public class BlockThatch extends BlockBase {
   @Nonnull
   @Override
   public BlockRenderLayer getRenderLayer() {
-    return BlockRenderLayer.CUTOUT_MIPPED;
+    return BlockRenderLayer.CUTOUT;
   }
 
   @Override
