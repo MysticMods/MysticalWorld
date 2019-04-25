@@ -10,6 +10,7 @@ import epicsquid.mysticalworld.world.NBTStructureGenerator;
 import epicsquid.mysticalworld.world.OreGenerator;
 import net.minecraft.entity.monster.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
