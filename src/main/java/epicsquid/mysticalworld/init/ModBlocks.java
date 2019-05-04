@@ -26,7 +26,7 @@ public class ModBlocks {
    */
   public static void registerBlocks(@Nonnull RegisterContentEvent event) {
     event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch").setCreativeTab(MysticalWorld.tab));
-    event.addBlock(cobblestone_door = new BlockDoorBase(Blocks.COBBLESTONE, SoundType.STONE, 10f, "cobblestone_door").setCreativeTab(MysticalWorld.tab));
+    //event.addBlock(cobblestone_door = new BlockDoorBase(Blocks.COBBLESTONE, SoundType.STONE, 10f, "cobblestone_door").setCreativeTab(MysticalWorld.tab));
 
     if (ConfigManager.modules.rootsModuleEnabled) {
 
