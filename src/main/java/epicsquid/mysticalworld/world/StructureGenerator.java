@@ -17,6 +17,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -26,25 +27,30 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class NBTStructureGenerator implements IWorldGenerator {
+public class StructureGenerator implements IWorldGenerator {
   private final ResourceLocation structure;
   private final int descent;
+  private final double maxDistance;
   private final Supplier<Class<? extends Entity>> entity;
   private static ResourceLocation loot = new ResourceLocation("minecraft", "chests/simple_dungeon");
+  private List<BlockPos> structurePositions = new ArrayList<>();
 
-  public static void setLoot(ResourceLocation loot) {
-    NBTStructureGenerator.loot = loot;
-  }
-
-  public NBTStructureGenerator(ResourceLocation structure, int descent, Supplier<Class<? extends Entity>> entity) {
+  public StructureGenerator(ResourceLocation structure, int descent, Supplier<Class<? extends Entity>> entity, double maxDistance) {
     this.structure = structure;
-    this.loot = loot;
     this.descent = descent;
     this.entity = entity;
+    this.maxDistance = maxDistance;
+  }
+
+  public void clear() {
+    System.out.println("Clearing structure information for huts");
+    this.structurePositions.clear();
   }
 
   public void generateChest(World world, BlockPos pos) {
@@ -54,36 +60,98 @@ public class NBTStructureGenerator implements IWorldGenerator {
     }
   }
 
-  @Override
-  public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-    if (random.nextInt(10) != 0) return;
-    if (!(world instanceof WorldServer)) return;
+  public double distance(BlockPos pos1, BlockPos pos2) {
+    double d1 = (double) (pos1.getX() - pos2.getX());
+    double d2 = (double) (pos1.getZ() - pos2.getZ());
+    double result = d1 * d2;
+    return result < 0 ? Math.abs(result) : result;
+  }
 
-    if (world.provider.getDimension() != 0) return;
+  private BlockPos testPlacement(int[] heightmap, BlockPos size, int x, int z, int deviation) {
+    int max = 0;
+    int min = Integer.MAX_VALUE;
 
-    int x = chunkX * 16;
-    int z = chunkZ * 16;
-    BlockPos zxPos = new BlockPos(x, 0, z);
-
-    BlockPos pos = world.getTopSolidOrLiquidBlock(zxPos);
-    IBlockState state = world.getBlockState(pos);
-    if (pos.getX() == 0 || state.getBlock() instanceof BlockLiquid) {
-      return;
+    for (int i = 0; i < size.getX(); i++) {
+      for (int j = 0; j < size.getZ(); j++) {
+        if (i != 0 && i != (size.getX() - 1) && j != 0 && j != (size.getZ() - 1)) continue;
+        int index = (z + j) << 4 | (x + i);
+        int height = heightmap[index];
+        if (height > max) {
+          max = height;
+        }
+        if (height < min) {
+          min = height;
+        }
+        if (max - min > deviation) {
+          return null;
+        }
+      }
     }
 
-    Biome biome = world.getBiome(pos);
+    return new BlockPos(x, max, z);
+  }
+
+  private BlockPos testPlacement(int[] heightMap, BlockPos size, int chunkSize, int deviation) {
+    int structureX = chunkSize - size.getX() + 1;
+    int structureZ = chunkSize - size.getZ() + 1;
+
+    for (int x = 0; x < structureX; x++) {
+      for (int z = 0; z < structureZ; z++) {
+        BlockPos pos = testPlacement(heightMap, size, x, z, deviation);
+        if (pos != null) return pos;
+      }
+    }
+
+    return null;
+  }
+
+  private boolean testForLiquids(World world, BlockPos start, BlockPos size) {
+    BlockPos stop = start.add(size.getX(), 0, size.getY());
+    for (BlockPos pos : BlockPos.getAllInBoxMutable(start, stop)) {
+      BlockPos pos2 = world.getTopSolidOrLiquidBlock(pos);
+      IBlockState state = world.getBlockState(pos2);
+      if (state.getBlock() instanceof BlockLiquid) return false;
+    }
+
+    return true;
+  }
+
+  @Override
+  public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+
+    if (!(world instanceof WorldServer)) return;
+    if (world.provider.getDimension() != 0) return;
+
+    int cx = chunkX * 16;
+    int cz = chunkZ * 16;
+    BlockPos zxPos = new BlockPos(cx, 0, cz);
+
+    Biome biome = world.getBiome(zxPos);
     if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.PLAINS)) return;
 
     MinecraftServer minecraftserver = world.getMinecraftServer();
     TemplateManager templatemanager = world.getSaveHandler().getStructureTemplateManager();
     Template template = templatemanager.getTemplate(minecraftserver, structure);
 
+    Chunk chunk = world.getChunk(zxPos);
+    int[] heightMap = chunk.getHeightMap();
+
     BlockPos size = template.getSize();
-    int top = pos.getY() + size.getY();
-    if (top >= 256) {
-      int shift = top - 256;
-      pos.add(0, -shift, 0);
+
+    BlockPos pos = testPlacement(heightMap, size, 16, 0);
+
+    if (pos == null) {
+      return;
     }
+
+    pos = pos.add(zxPos.getX(), 0, zxPos.getZ());
+
+    for (BlockPos otherPos : structurePositions) {
+      double distance = distance(pos, otherPos) / 10;
+      if (distance < this.maxDistance) return;
+    }
+
+    if (!testForLiquids(world, pos, size)) return;
 
     PlacementSettings placementsettings = new PlacementSettings();
 
@@ -91,7 +159,7 @@ public class NBTStructureGenerator implements IWorldGenerator {
     StructureBoundingBox structureboundingbox = new StructureBoundingBox(chunkpos.getXStart(), 0, chunkpos.getZStart(), chunkpos.getXEnd(), 256, chunkpos.getZEnd());
     placementsettings.setBoundingBox(structureboundingbox);
 
-    Rotation rotation = Rotation.values()[random.nextInt(Rotation.values().length)];
+    Rotation rotation = (random.nextBoolean()) ? Rotation.NONE : Rotation.CLOCKWISE_180;
     placementsettings.setRotation(rotation);
     placementsettings.setIntegrity(1);
     placementsettings.setIgnoreEntities(false);
@@ -107,6 +175,9 @@ public class NBTStructureGenerator implements IWorldGenerator {
     IBlockState cobble = Blocks.COBBLESTONE.getDefaultState();
 
     Map<BlockPos, String> data = template.getDataBlocks(pos, placementsettings);
+    if (!data.isEmpty()) {
+      structurePositions.add(pos);
+    }
     data.forEach((blockPos, s) -> {
       if (s.equals("spawner")) {
         if (world.setBlockState(blockPos, Blocks.MOB_SPAWNER.getDefaultState(), 2)) {
@@ -128,7 +199,7 @@ public class NBTStructureGenerator implements IWorldGenerator {
           world.setBlockState(blockPos, cobble);
         }
       } else if (s.equals("loot_chest2")) {
-        if (random.nextInt(4) == 0) {
+        if (random.nextBoolean()) {
           if (world.setBlockState(blockPos, chest)) {
             generateChest(world, blockPos);
           }

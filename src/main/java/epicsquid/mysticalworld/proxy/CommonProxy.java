@@ -6,21 +6,21 @@ import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.integration.jer.JERIntegration;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
-import epicsquid.mysticalworld.world.NBTStructureGenerator;
+import epicsquid.mysticalworld.world.StructureGenerator;
 import epicsquid.mysticalworld.world.OreGenerator;
 import net.minecraft.entity.monster.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
   private static ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");
   private static ResourceLocation HUT = new ResourceLocation(MysticalWorld.MODID, "hut");
+
+  private StructureGenerator hutGenerator;
+  private StructureGenerator barrowGenerator;
 
   public void preInit(FMLPreInitializationEvent event) {
     GameRegistry.registerWorldGenerator(new OreGenerator(), 1);
@@ -33,44 +33,33 @@ public class CommonProxy {
     }
 
     LootConditionManager.registerCondition(new HasHorns.Serializer());
-    /*int barrowWeight = ConfigManager.BarrowWeight;
-    int hutWeight = ConfigManager.HutWeight;
-    if (barrowWeight != 0) {
-      GameRegistry.registerWorldGenerator(new NBTStructureGenerator(BARROW,10, () -> {
-        switch (Util.rand.nextInt(15)) {
+    if (ConfigManager.BarrowDistance != -1) {
+      GameRegistry.registerWorldGenerator(barrowGenerator = new StructureGenerator(BARROW,10, () -> {
+        switch (Util.rand.nextInt(6)) {
           case 0:
           case 1:
-          case 2:
-            return EntityHusk.class;
-          case 3:
-          case 4:
-          case 5:
-            return EntityStray.class;
-          case 6:
-          case 7:
-          case 8:
-          case 9:
             return EntitySkeleton.class;
           default:
             return EntityZombie.class;
         }
-      }), barrowWeight);
+      }, ConfigManager.BarrowDistance), 1);
     }
-    if (hutWeight != 0) {
-      GameRegistry.registerWorldGenerator(new NBTStructureGenerator(HUT, 6, () -> {
-        switch (Util.rand.nextInt(10)) {
-          case 0:
-            return EntityWitch.class;
-          case 1:
-          case 2:
-            return EntityHusk.class;
-          default:
-            return EntityZombie.class;
+
+    if (ConfigManager.HutDistance != -1) {
+      GameRegistry.registerWorldGenerator(hutGenerator = new StructureGenerator(HUT, 6, () -> {
+        if (Util.rand.nextInt(4) == 0) {
+          return EntityWitch.class;
         }
-      }), hutWeight);
-    }*/
+        return EntityZombie.class;
+      }, ConfigManager.HutDistance), 1);
+    }
   }
 
   public void postInit(FMLPostInitializationEvent event) {
+  }
+
+  public void serverAboutToStart (FMLServerAboutToStartEvent event) {
+    hutGenerator.clear();
+    barrowGenerator.clear();
   }
 }

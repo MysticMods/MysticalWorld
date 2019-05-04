@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.config;
 
+import com.sun.jna.Structure;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.RangeInt;
@@ -110,13 +111,13 @@ public class ConfigManager {
     public String[] biomes = new String[]{"SWAMP", "JUNGLE", "BEACH", "RIVER"};
   }
 
-  @Config.Comment(("Weight of the Barrow Structure during generation, 0 to disable, higher = lower chance"))
-  @Config.RangeInt(min=0)
-  public static int BarrowWeight = 500;
+  @Config.Comment(("Minimum distance between Barrow structures. Set to -1 to disable."))
+  @Config.RangeDouble(min=0)
+  public static double BarrowDistance = 3500;
 
-  @Config.Comment(("Weight of the Hut Structure during generation, 0 to disable, higher = lower chance"))
-  @Config.RangeInt(min=0)
-  public static int HutWeight = 500;
+  @Config.Comment(("Mininmum distance between Hut structures. Set to -1 to disable."))
+  @Config.RangeDouble(min=0)
+  public static double HutDistance = 3500;
 
   @Config.Comment(("Mystical world metals and their components."))
   public static ConfigMysticalWorldMetals metals = new ConfigMysticalWorldMetals();
