@@ -10,6 +10,15 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class ConfigManager {
 
+  @Config.Comment(("Inject some items from Mystical World into dungeon & other loot chests"))
+  public static boolean InjectLoot = true;
+
+  @Config.Comment(("Minimum number of pulls for injected loot"))
+  public static int InjectMinimum = 1;
+
+  @Config.Comment(("Maximum nubmer of pulls for injected loot"))
+  public static int InjectMaximum = 1;
+
   @Config.Comment(("Mystical world content modules. These modules are applied before any other config options."))
   public static ConfigMysticalWorldModules modules = new ConfigMysticalWorldModules();
 
