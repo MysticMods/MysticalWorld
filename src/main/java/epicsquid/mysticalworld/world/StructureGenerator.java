@@ -153,6 +153,8 @@ public class StructureGenerator implements IWorldGenerator {
 
     if (!testForLiquids(world, pos, size)) return;
 
+    IBlockState stateAt = world.getBlockState(pos);
+
     PlacementSettings placementsettings = new PlacementSettings();
 
     ChunkPos chunkpos = new ChunkPos(pos);
@@ -164,20 +166,17 @@ public class StructureGenerator implements IWorldGenerator {
     placementsettings.setIntegrity(1);
     placementsettings.setIgnoreEntities(false);
     placementsettings.setChunk(chunkpos);
-    placementsettings.setReplacedBlock(null);
     placementsettings.setIgnoreStructureBlock(false);
     placementsettings.setRandom(random);
 
     pos = Template.transformedBlockPos(placementsettings, pos).down(descent);
-    template.addBlocksToWorldChunk(world, pos, placementsettings);
+    template.addBlocksToWorld(world, pos, placementsettings, 16);
 
     IBlockState chest = Blocks.CHEST.getDefaultState();
     IBlockState cobble = Blocks.COBBLESTONE.getDefaultState();
 
     Map<BlockPos, String> data = template.getDataBlocks(pos, placementsettings);
-    if (!data.isEmpty()) {
-      structurePositions.add(pos);
-    }
+    structurePositions.add(pos);
     data.forEach((blockPos, s) -> {
       if (s.equals("spawner")) {
         if (world.setBlockState(blockPos, Blocks.MOB_SPAWNER.getDefaultState(), 2)) {

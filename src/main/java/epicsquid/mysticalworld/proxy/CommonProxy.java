@@ -42,7 +42,7 @@ public class CommonProxy {
           default:
             return EntityZombie.class;
         }
-      }, ConfigManager.BarrowDistance), 1);
+      }, ConfigManager.BarrowDistance), 100);
     }
 
     if (ConfigManager.HutDistance != -1) {
@@ -51,7 +51,7 @@ public class CommonProxy {
           return EntityWitch.class;
         }
         return EntityZombie.class;
-      }, ConfigManager.HutDistance), 1);
+      }, ConfigManager.HutDistance), 200);
     }
   }
 
