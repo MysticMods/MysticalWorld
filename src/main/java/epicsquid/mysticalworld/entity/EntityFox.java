@@ -150,7 +150,9 @@ public class EntityFox extends EntityTameable {
 
     if (compound.hasKey("Sleeping")) {
       this.setSleeping(compound.getBoolean("Sleeping"));
-      this.aiSleep.setSleeping(true);
+      if (this.aiSleep != null) {
+        this.aiSleep.setSleeping(this.isSleeping());
+      }
     }
   }
 
