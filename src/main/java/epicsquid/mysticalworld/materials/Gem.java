@@ -16,7 +16,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public enum Gem implements IGem {
-  amethyst("Amethyst", 3.0f, 0.7f, 2, 3, 7);
+  amethyst("Amethyst", 3.0f, 0.7f, 2, 3, 7, Tools.amethyst, true);
 
   private Item gem;
   private Block block;
@@ -27,14 +27,28 @@ public enum Gem implements IGem {
   private final float experience;
   private final int minXP;
   private final int maxXP;
+  private final Item.ToolMaterial material;
+  private boolean hasTool;
 
-  Gem(@Nonnull String oredictNameSuffix, float hardness, float experience, int level, int minXP, int maxXP) {
+  Gem(@Nonnull String oredictNameSuffix, float hardness, float experience, int level, int minXP, int maxXP, Item.ToolMaterial toolMaterial, boolean hasTool) {
     this.oredictNameSuffix = oredictNameSuffix;
     this.hardness = hardness;
     this.experience = experience;
     this.level = level;
     this.minXP = minXP;
     this.maxXP = maxXP;
+    this.material = toolMaterial;
+    this.hasTool = hasTool;
+  }
+
+  @Override
+  public boolean hasTool() {
+    return hasTool;
+  }
+
+  @Override
+  public Item.ToolMaterial getMaterial() {
+    return material;
   }
 
   @Override

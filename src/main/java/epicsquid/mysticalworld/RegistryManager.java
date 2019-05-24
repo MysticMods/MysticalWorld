@@ -6,6 +6,7 @@ import epicsquid.mysticallib.event.RegisterModRecipesEvent;
 import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.materials.Gem;
 import epicsquid.mysticalworld.materials.Metal;
+import epicsquid.mysticalworld.materials.Tools;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -27,10 +28,10 @@ public class RegistryManager {
 
     Gem.registerGems(event);
     Metal.registerMetals(event);
+    Tools.registerTools(event);
 
     ModEntities.registerMobs();
     ModEntities.registerMobSpawn();
-
   }
 
   @SubscribeEvent

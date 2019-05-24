@@ -19,8 +19,8 @@ import net.minecraftforge.oredict.OreDictionary;
  * Used to add the various metals and metal components used in Mystical World and sub mods
  */
 public enum Metal implements IMetal {
-  copper("Copper", 3.5f, 0.65f, 1, -1, -1),
-  silver("Silver", 5f, 0.35f, 2, -1, -1);
+  copper("Copper", 3.5f, 0.65f, 1, -1, -1, Tools.copper, true),
+  silver("Silver", 5f, 0.35f, 2, -1, -1, Tools.silver, true);
 
 //  tin("Tin", 4f), <-- Probably going
 //  lead("Lead", 5f), <-- May be used with HPL
@@ -41,8 +41,10 @@ public enum Metal implements IMetal {
   private final int level;
   private final int minXP;
   private final int maxXP;
+  private final Item.ToolMaterial material;
+  private boolean hasTool;
 
-  Metal(@Nonnull String oredictNameSuffix, float hardness, float experience, int level, int minXP, int maxXP) {
+  Metal(@Nonnull String oredictNameSuffix, float hardness, float experience, int level, int minXP, int maxXP, Item.ToolMaterial material, boolean hasTool) {
     this.oredictNameSuffix = oredictNameSuffix;
     this.hardness = hardness;
     this.isEmbers = false; // TODO
@@ -50,6 +52,18 @@ public enum Metal implements IMetal {
     this.level = level;
     this.minXP = minXP;
     this.maxXP = maxXP;
+    this.material = material;
+    this.hasTool = hasTool;
+  }
+
+  @Override
+  public boolean hasTool() {
+    return hasTool;
+  }
+
+  @Override
+  public Item.ToolMaterial getMaterial() {
+    return material;
   }
 
   @Override
