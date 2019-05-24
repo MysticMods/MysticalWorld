@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.item.metals;
+package epicsquid.mysticalworld.materials;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -7,6 +7,7 @@ import epicsquid.mysticallib.block.BlockBase;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticallib.block.BlockOreBase;
 import epicsquid.mysticalworld.config.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -17,64 +18,15 @@ import net.minecraftforge.oredict.OreDictionary;
 /**
  * Used to add the various metals and metal components used in Mystical World and sub mods
  */
-public enum Metal {
+public enum Metal implements IMetal {
+  copper("Copper", 3.5f, 0.65f, 1, -1, -1),
+  silver("Silver", 5f, 0.35f, 2, -1, -1);
 
-  copper("Copper", 3.5f, 0.65f),
-  silver("Silver", 5f, 0.35f),
-//  tin("Tin", 4f),
-//  lead("Lead", 5f),
+//  tin("Tin", 4f), <-- Probably going
+//  lead("Lead", 5f), <-- May be used with HPL
 //  nickel("Nickel", 5f),
 //  aluminum("Aluminum", 5f),
-//  zinc("Zinc", 5f),
-//  invar(
-//      "Invar", 5f) {
-//    @Override
-//    public boolean hasOre() {
-//      return false;
-//    }
-//
-//  }, electrum("Electrum", 5f) {
-//    @Override
-//    public boolean hasOre() {
-//      return false;
-//    }
-//
-//  }, brass("Brass", 5f) {
-//    @Override
-//    public boolean hasOre() {
-//      return false;
-//    }
-//
-//  }, bronze("Bronze", 5f) {
-//    @Override
-//    public boolean hasOre() {
-//      return false;
-//    }
-//
-//  }, dawnstone("Dawnstone", 5f, true) {
-//    @Override
-//    public boolean hasGrindables() {
-//      return false;
-//    }
-//
-//    @Override
-//    public boolean hasOre() {
-//      return false;
-//    }
-//
-//  }, sooty_iron("SootyIron", 5f, true) {
-//    @Override
-//    public boolean hasGrindables() {
-//      return false;
-//    }
-//
-//    @Override
-//    public boolean hasOre() {
-//      return false;
-//    }
-//
-//  },
-  ;
+//  zinc("Zinc", 5f)
 
   private Item ingot;
   private Item nugget;
@@ -86,97 +38,116 @@ public enum Metal {
   private final String oredictNameSuffix;
   private final boolean isEmbers;
   private final float experience;
+  private final int level;
+  private final int minXP;
+  private final int maxXP;
 
-  Metal(@Nonnull String oredictNameSuffix, float hardness, float experience, boolean isEmbers) {
+  Metal(@Nonnull String oredictNameSuffix, float hardness, float experience, int level, int minXP, int maxXP) {
     this.oredictNameSuffix = oredictNameSuffix;
     this.hardness = hardness;
-    this.isEmbers = isEmbers;
+    this.isEmbers = false; // TODO
     this.experience = experience;
+    this.level = level;
+    this.minXP = minXP;
+    this.maxXP = maxXP;
   }
 
-  Metal(@Nonnull String oredictNameSuffix, float hardness, float experience) {
-    this(oredictNameSuffix, hardness, experience, false);
-  }
-
+  @Override
   public float getHardness() {
     return hardness;
   }
 
-  public float getExperience () {
+  @Override
+  public float getExperience() {
     return experience;
   }
 
+  @Override
   @Nonnull
   public String getOredictNameSuffix() {
     return oredictNameSuffix;
   }
 
+  @Override
   @Nullable
   public Item getIngot() {
     return ingot;
   }
 
+  @Override
   @Nonnull
   public Item setIngot(@Nonnull Item item) {
     this.ingot = item;
     return this.ingot;
   }
 
+  @Override
   @Nullable
   public Item getDust() {
     return dust;
   }
 
+  @Override
   @Nonnull
   public Item setDust(@Nonnull Item dust) {
     this.dust = dust;
     return this.dust;
   }
 
+  @Override
   @Nullable
   public Item getDustTiny() {
     return dustTiny;
   }
 
+  @Override
   @Nonnull
   public Item setDustTiny(@Nonnull Item dustTiny) {
     this.dustTiny = dustTiny;
     return this.dustTiny;
   }
 
+  @Override
   @Nullable
   public Block getBlock() {
     return block;
   }
 
+  @Override
   @Nonnull
   public Block setBlock(@Nonnull Block block) {
     this.block = block;
+    block.setHarvestLevel("pickaxe", getLevel());
     return this.block;
   }
 
+  @Override
   @Nullable
   public Item getNugget() {
     return nugget;
   }
 
+  @Override
   @Nonnull
   public Item setNugget(@Nonnull Item nugget) {
     this.nugget = nugget;
     return this.nugget;
   }
 
+  @Override
   @Nullable
   public Block getOre() {
     return ore;
   }
 
+  @Override
   @Nonnull
   public Block setOre(@Nonnull Block ore) {
     this.ore = ore;
     return this.ore;
   }
 
+  @Override
   public boolean isEnabled() {
     if (isEmbers) {
       try {
@@ -195,12 +166,29 @@ public enum Metal {
     }
   }
 
+  @Override
   public boolean hasGrindables() {
     return true;
   }
 
+  @Override
   public boolean hasOre() {
     return true;
+  }
+
+  @Override
+  public int getLevel() {
+    return level;
+  }
+
+  @Override
+  public int getMinXP() {
+    return minXP;
+  }
+
+  @Override
+  public int getMaxXP() {
+    return maxXP;
   }
 
   public static void registerMetals(@Nonnull RegisterContentEvent event) {
@@ -225,7 +213,7 @@ public enum Metal {
               .setCreativeTab(MysticalWorld.tab)));
         }
         if (metal.hasOre() && ConfigManager.metals.enableOres) {
-          event.addBlock(metal.setOre(new BlockBase(Material.ROCK, SoundType.STONE, metal.getHardness(), metal.name() + "_ore").setModelCustom(true)
+          event.addBlock(metal.setOre(new BlockOreBase(Material.ROCK, SoundType.STONE, metal.getHardness(), metal.name() + "_ore", null, metal.getLevel(), metal.getMinXP(), metal.getMaxXP()).setModelCustom(true)
               .setCreativeTab(MysticalWorld.tab)));
         }
       }

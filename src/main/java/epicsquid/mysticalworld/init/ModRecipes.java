@@ -1,10 +1,8 @@
 package epicsquid.mysticalworld.init;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.mysticallib.event.RegisterModRecipesEvent;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.item.metals.Metal;
+import epicsquid.mysticalworld.materials.Metal;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -15,6 +13,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.minecraftforge.registries.IForgeRegistry;
+
+import javax.annotation.Nonnull;
 
 import static epicsquid.mysticalworld.init.ModItems.pelt;
 
@@ -64,7 +64,7 @@ public class ModRecipes {
    * Used to register a recipe that has both compression and decompression (e.g. nugget to ingot and back)
    */
   private static void registerCompressionRecipe(@Nonnull IForgeRegistry<IRecipe> registry, @Nonnull String oredictCompressed, @Nonnull String oredictDecompressed,
-      @Nonnull Item itemCompressed, @Nonnull Item itemDecompressed) {
+                                                @Nonnull Item itemCompressed, @Nonnull Item itemDecompressed) {
     // Compression
     registerShaped(registry, oredictCompressed + "Compression", new ItemStack(itemCompressed, 1),
         "XXX",
@@ -76,7 +76,7 @@ public class ModRecipes {
   }
 
   private static void registerCompressionRecipe(@Nonnull IForgeRegistry<IRecipe> registry, @Nonnull String oredictCompressed, @Nonnull String oredictDecompressed,
-      @Nonnull Block blockCompressed, @Nonnull Item itemDecompressed) {
+                                                @Nonnull Block blockCompressed, @Nonnull Item itemDecompressed) {
     // Compression
     registerShaped(registry, oredictCompressed + "Compression", new ItemStack(blockCompressed, 1),
         "XXX",

@@ -128,6 +128,23 @@ public class ConfigManager {
   @Config.RangeDouble(min=0)
   public static double HutDistance = 3500;
 
+  @Config.Comment(("Mystical world gems and their components"))
+  public static ConfigMysticalWorldGems gems = new ConfigMysticalWorldGems();
+
+  public static class ConfigMysticalWorldGems {
+    @Config.Comment(("Enabled Amethyst"))
+    public boolean enableAmethyst = true;
+
+    @Config.Comment(("Enable blocks"))
+    public boolean enableBlocks = true;
+
+    @Config.Comment(("Enable gems"))
+    public boolean enableGems = true;
+
+    @Config.Comment(("Enable ore"))
+    public boolean enableOres = true;
+  }
+
   @Config.Comment(("Mystical world metals and their components."))
   public static ConfigMysticalWorldMetals metals = new ConfigMysticalWorldMetals();
 
@@ -209,6 +226,20 @@ public class ConfigManager {
     @Config.Comment(("The lowest a copper of vein can generate."))
     @RangeInt(min = 0, max = 255)
     public int copperMinY = 0;
+
+    @Config.Comment(("The amount of amethyst veins to generate per chunk. Set to 0 to disable."))
+    public int amethystPerChunk = 2;
+
+    @Config.Comment(("The maximum size of an amethyst ore vein."))
+    public int amethystVeinSize = 5;
+
+    @Config.Comment(("The highest an amethyst ore vein can generate"))
+    @RangeInt(min=0, max=255)
+    public int amethystMaxY = 32;
+
+    @Config.Comment(("The lowest an amethsyt ore vein can generate"))
+    @RangeInt(min=0, max=255)
+    public int amethystMinY = 5;
 
     /*@Config.Comment(("The amount of tin veins to generate per chunk. Set to 0 to disable."))
     public int tinPerChunk = 6;

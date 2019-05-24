@@ -1,16 +1,17 @@
 package epicsquid.mysticalworld;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.event.RegisterModRecipesEvent;
 import epicsquid.mysticalworld.init.*;
-import epicsquid.mysticalworld.item.metals.Metal;
+import epicsquid.mysticalworld.materials.Gem;
+import epicsquid.mysticalworld.materials.Metal;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import javax.annotation.Nonnull;
 
 public class RegistryManager {
 
@@ -24,6 +25,7 @@ public class RegistryManager {
 
     ModSounds.initSounds(event);
 
+    Gem.registerGems(event);
     Metal.registerMetals(event);
 
     ModEntities.registerMobs();
@@ -41,7 +43,8 @@ public class RegistryManager {
   @SubscribeEvent(priority = EventPriority.LOWEST)
   public void registerOredict(@Nonnull RegistryEvent.Register<Item> event) {
     LibRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
-    
+
+    Gem.registerOreDict();
     Metal.registerOreDict();
   }
 }

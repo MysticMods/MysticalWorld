@@ -20,6 +20,7 @@ item.invar_ingot.name=Invar Ingot
 item.electrum_ingot.name=Electrum Ingot
 item.brass_ingot.name=Brass Ingot
 item.bronze_ingot.name=Bronze Ingot
+item.amethyst_gem.name=Amethyst
 
 # Nuggets
 item.copper_nugget.name=Copper Nugget
@@ -46,6 +47,7 @@ tile.invar_block.name=Block of Invar
 tile.electrum_block.name=Block of Electrum
 tile.brass_block.name=Block of Brass
 tile.bronze_block.name=Block of Bronze
+tile.amethyst_block.name=Block of Amethyst
 
 # Dusts
 item.copper_dust.name=Copper Dust
@@ -87,6 +89,7 @@ tile.lead_ore.name=Lead Ore
 tile.nickel_ore.name=Nickel Ore
 tile.aluminum_ore.name=Aluminum Ore
 tile.zinc_ore.name=Zinc Ore
+tile.amethyst_ore.name=Amethyst Ore
 
 # Embers Metals
 item.dawnstone_ingot.name=Dawnstone Ingot
