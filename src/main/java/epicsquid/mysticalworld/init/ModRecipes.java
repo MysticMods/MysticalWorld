@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.init;
 
 import epicsquid.mysticallib.event.RegisterModRecipesEvent;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.materials.Gem;
 import epicsquid.mysticalworld.materials.Metal;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
@@ -55,6 +56,12 @@ public class ModRecipes {
       if (metal.hasOre()) {
         GameRegistry.addSmelting(metal.getOre(), new ItemStack(metal.getIngot(), 1), metal.getExperience());
       }
+    }
+
+    for (Gem gem : Gem.values()) {
+      // Ingot <-> Block
+      registerCompressionRecipe(event.getRegistry(), "block" + gem.getOredictNameSuffix(), "gem" +
+          gem.getOredictNameSuffix(), gem.getBlock(), gem.getGem());
     }
 
     GameRegistry.addSmelting(new ItemStack(ModItems.venison, 1), new ItemStack(ModItems.cooked_venison), 0.1f);
