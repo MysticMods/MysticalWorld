@@ -107,6 +107,9 @@ item.amethyst_shovel.name=Amethyst Shovel
 item.copper_sword.name=Copper Sword
 item.silver_sword.name=Silver Sword
 item.amethyst_sword.name=Amethyst Sword
+item.silver_knife.name=Silver Knife
+item.copper_knife.name=Copper Knife
+item.amethyst_knife.name=Amethyst Knife
 
 # Embers Metals
 item.dawnstone_ingot.name=Dawnstone Ingot

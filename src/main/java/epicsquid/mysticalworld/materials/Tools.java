@@ -1,8 +1,8 @@
 package epicsquid.mysticalworld.materials;
 
-import com.sun.swing.internal.plaf.metal.resources.metal;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.item.*;
+import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.util.EnumHelper;
@@ -10,10 +10,6 @@ import net.minecraftforge.common.util.EnumHelper;
 import javax.annotation.Nonnull;
 
 public class Tools {
-  public static Item.ToolMaterial copper = EnumHelper.addToolMaterial("mysticalworld:copper", 1, 175, 4.0f, 1.0f, 7);
-  public static Item.ToolMaterial silver = EnumHelper.addToolMaterial("mysticalworld:silver", 1, 75, 6.0f, 1.0f, 25);
-  public static Item.ToolMaterial amethyst = EnumHelper.addToolMaterial("mysticalworld:amethyst", 3, 1561, 8.0f, 3.0f, 10);
-
   public static void registerTools(@Nonnull RegisterContentEvent event) {
     for (Metal metal : Metal.values()) {
       if (!metal.hasTool()) continue;

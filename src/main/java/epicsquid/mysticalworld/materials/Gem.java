@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.materials;
 import epicsquid.mysticallib.block.BlockBase;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.item.ItemBase;
+import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticallib.block.BlockOreBase;
 import epicsquid.mysticalworld.config.ConfigManager;
@@ -16,7 +17,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public enum Gem implements IGem {
-  amethyst("Amethyst", 3.0f, 0.7f, 2, 3, 7, Tools.amethyst, true);
+  amethyst("Amethyst", 3.0f, 0.7f, 2, 3, 7, MaterialTypes.material("mysticalworld:amethyst"), true);
 
   private Item gem;
   private Block block;
