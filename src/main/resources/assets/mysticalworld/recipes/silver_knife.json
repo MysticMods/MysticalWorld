@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "  W",
+    " W ",
+    "S  "  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "stickWood"
+      }
+    ],
+    "W": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotSilver"
+      }
+    ]
+  },
+  "result": {
+    "item": "mysticalworld:silver_knife",
+    "data": 0
+  }
+}
