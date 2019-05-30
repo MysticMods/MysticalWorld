@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "roots:items/silver_knife"
+    "layer0": "mysticalworld:items/silver_knife"
   }
 }
