@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.entity;
 import com.google.common.base.Predicate;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModSounds;
+import net.minecraft.client.audio.SoundManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -210,6 +211,7 @@ public class EntityFox extends EntityTameable {
 
     if (flag) {
       this.applyEnchantments(this, entityIn);
+      playSound(ModSounds.Fox.BITE, 1.0f, 1.0f);
     }
 
     return flag;
@@ -338,11 +340,12 @@ public class EntityFox extends EntityTameable {
 
   public static class EntityAISleep extends EntityAIBase {
     private final EntityFox tameable;
-    /** If the EntityTameable is sitting. */
+    /**
+     * If the EntityTameable is sitting.
+     */
     private boolean isSleeping;
 
-    public EntityAISleep (EntityFox entityIn)
-    {
+    public EntityAISleep(EntityFox entityIn) {
       this.tameable = entityIn;
       this.setMutexBits(5);
     }
@@ -350,30 +353,19 @@ public class EntityFox extends EntityTameable {
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
-    public boolean shouldExecute()
-    {
-      if (!this.tameable.isTamed())
-      {
+    public boolean shouldExecute() {
+      if (!this.tameable.isTamed()) {
         return false;
-      }
-      else if (this.tameable.isInWater())
-      {
+      } else if (this.tameable.isInWater()) {
         return false;
-      }
-      else if (!this.tameable.onGround)
-      {
+      } else if (!this.tameable.onGround) {
         return false;
-      }
-      else
-      {
+      } else {
         EntityLivingBase entitylivingbase = this.tameable.getOwner();
 
-        if (entitylivingbase == null)
-        {
+        if (entitylivingbase == null) {
           return true;
-        }
-        else
-        {
+        } else {
           return this.tameable.getDistanceSq(entitylivingbase) < 144.0D && entitylivingbase.getRevengeTarget() != null ? false : this.isSleeping;
         }
       }
@@ -382,8 +374,7 @@ public class EntityFox extends EntityTameable {
     /**
      * Execute a one shot task or start executing a continuous task
      */
-    public void startExecuting()
-    {
+    public void startExecuting() {
       this.tameable.getNavigator().clearPath();
       this.tameable.setSleeping(true);
     }
@@ -391,16 +382,14 @@ public class EntityFox extends EntityTameable {
     /**
      * Reset the task's internal state. Called when this task is interrupted by another one
      */
-    public void resetTask()
-    {
+    public void resetTask() {
       this.tameable.setSleeping(false);
     }
 
     /**
      * Sets the sleeping flag.
      */
-    public void setSleeping(boolean sleeping)
-    {
+    public void setSleeping(boolean sleeping) {
       this.isSleeping = sleeping;
     }
   }
