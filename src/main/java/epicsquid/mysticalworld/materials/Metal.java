@@ -20,7 +20,7 @@ import net.minecraftforge.oredict.OreDictionary;
  * Used to add the various metals and metal components used in Mystical World and sub mods
  */
 public enum Metal implements IMetal {
-  copper("Copper", 3.5f, 0.65f, 1, -1, -1, MaterialTypes.material("mysticalworld:copper"), true),
+  copper("Copper", 3.5f, 0.65f, 2, -1, -1, MaterialTypes.material("mysticalworld:copper"), true),
   silver("Silver", 5f, 0.35f, 2, -1, -1, MaterialTypes.material("mysticalworld:silver"), true);
 
 //  tin("Tin", 4f), <-- Probably going
