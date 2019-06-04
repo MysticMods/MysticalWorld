@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mysticalworld:amethyst_gem"
+    },
+    "title": {
+      "translate": "advancement.mysticalworld.root"
+    },
+    "description": {
+      "translate": "advancement.mysticalworld.root.desc"
+    },
+    "background": "mysticalworld:textures/blocks/thatch.png"
+  },
+  "criteria": {
+    "book": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:amethyst_gem"
+          }
+        ]
+      }
+    }
+  }
+}
