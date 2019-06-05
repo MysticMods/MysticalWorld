@@ -39,13 +39,13 @@ public class StructureGenerator implements IWorldGenerator {
   private final double maxDistance;
   private final Supplier<Class<? extends Entity>> entity;
   private static ResourceLocation loot = new ResourceLocation("minecraft", "chests/simple_dungeon");
-  private List<BlockPos> structurePositions = new ArrayList<>();
+  private List<BlockPos> structurePositions = new ArrayList<>(); // <-- Save this
 
   public StructureGenerator(ResourceLocation structure, int descent, Supplier<Class<? extends Entity>> entity, double maxDistance) {
     this.structure = structure;
     this.descent = descent;
     this.entity = entity;
-    this.maxDistance = maxDistance;
+    this.maxDistance = maxDistance * maxDistance;
   }
 
   public void clear() {
@@ -60,11 +60,10 @@ public class StructureGenerator implements IWorldGenerator {
     }
   }
 
-  public double distance(BlockPos pos1, BlockPos pos2) {
-    double d1 = (double) (pos1.getX() - pos2.getX());
-    double d2 = (double) (pos1.getZ() - pos2.getZ());
-    double result = d1 * d2;
-    return result < 0 ? Math.abs(result) : result;
+  public int distance(BlockPos pos1, BlockPos pos2) {
+    int d1 = pos1.getX() - pos2.getX();
+    int d2 = pos1.getZ() - pos2.getZ();
+    return Math.abs(d1 * d1 + d2 * d2);
   }
 
   private BlockPos testPlacement(int[] heightmap, BlockPos size, int x, int z, int deviation) {
