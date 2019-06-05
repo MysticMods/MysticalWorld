@@ -34,8 +34,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class EntityFox extends EntityTameable {
-  private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(EntityWolf.class, DataSerializers.FLOAT);
-  private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityWolf.class, DataSerializers.BOOLEAN);
+  private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(EntityFox.class, DataSerializers.FLOAT);
+  private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityFox.class, DataSerializers.BOOLEAN);
   private EntityAISleep aiSleep;
 
   public EntityFox(@Nonnull World worldIn) {
@@ -293,7 +293,11 @@ public class EntityFox extends EntityTameable {
   }
 
   public boolean isSleeping() {
-    return (this.dataManager.get(SLEEPING));
+    try {
+      return (this.dataManager.get(SLEEPING));
+    } catch (ClassCastException e) {
+      return false;
+    }
   }
 
   public void setSleeping(boolean sleeping) {
