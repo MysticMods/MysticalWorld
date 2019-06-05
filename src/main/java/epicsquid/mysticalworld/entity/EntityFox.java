@@ -296,6 +296,7 @@ public class EntityFox extends EntityTameable {
     try {
       return (this.dataManager.get(SLEEPING));
     } catch (ClassCastException e) {
+      e.printStackTrace();
       return false;
     }
   }
