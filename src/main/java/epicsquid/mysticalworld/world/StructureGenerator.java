@@ -113,6 +113,7 @@ public class StructureGenerator implements IWorldGenerator {
 
     if (!(world instanceof WorldServer)) return;
     if (world.provider.getDimension() != 0) return;
+    //if (random.nextInt(30) == 0) return;
 
     int cx = chunkX * 16;
     int cz = chunkZ * 16;
@@ -137,7 +138,9 @@ public class StructureGenerator implements IWorldGenerator {
     }
 
     pos = pos.add(zxPos.getX(), 0, zxPos.getZ());
-    if (!DataHelper.testBlockPos(structure, pos, maxDistance, world)) return;
+    if (!DataHelper.testBlockPos(structure, pos, maxDistance, world)) {
+      return;
+    }
 
     if (!testForLiquids(world, pos, size)) return;
 

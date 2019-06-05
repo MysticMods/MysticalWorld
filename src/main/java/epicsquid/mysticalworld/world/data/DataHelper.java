@@ -38,7 +38,10 @@ public class DataHelper {
   public static boolean testBlockPos(ResourceLocation location, BlockPos pos, int maxDistance, World world) {
     List<BlockPos> map = getGeneratorMap(location, world);
     for (BlockPos otherPos : map) {
-      if (distance(pos, otherPos) <= maxDistance) return false;
+      int dist = distance(pos, otherPos);
+      if (dist < maxDistance) {
+        return false;
+      }
     }
 
     return true;
