@@ -121,12 +121,12 @@ public class ConfigManager {
   }
 
   @Config.Comment(("Minimum distance between Barrow structures. Set to -1 to disable."))
-  @Config.RangeDouble(min=0)
-  public static double BarrowDistance = 1000;
+  @Config.RangeInt(min=0)
+  public static int BarrowDistance = 1000;
 
   @Config.Comment(("Mininmum distance between Hut structures. Set to -1 to disable."))
-  @Config.RangeDouble(min=0)
-  public static double HutDistance = 1000;
+  @Config.RangeInt(min=0)
+  public static int HutDistance = 1000;
 
   @Config.Comment(("Mystical world gems and their components"))
   public static ConfigMysticalWorldGems gems = new ConfigMysticalWorldGems();

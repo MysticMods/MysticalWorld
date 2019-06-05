@@ -57,13 +57,4 @@ public class CommonProxy {
 
   public void postInit(FMLPostInitializationEvent event) {
   }
-
-  public void serverAboutToStart (FMLServerAboutToStartEvent event) {
-    if (hutGenerator != null) {
-      hutGenerator.clear();
-    }
-    if (barrowGenerator != null) {
-      barrowGenerator.clear();
-    }
-  }
 }

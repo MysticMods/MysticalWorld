@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.world;
 
+import epicsquid.mysticalworld.world.data.DataHelper;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -36,21 +37,15 @@ import java.util.function.Supplier;
 public class StructureGenerator implements IWorldGenerator {
   private final ResourceLocation structure;
   private final int descent;
-  private final double maxDistance;
+  private final int maxDistance;
   private final Supplier<Class<? extends Entity>> entity;
   private static ResourceLocation loot = new ResourceLocation("minecraft", "chests/simple_dungeon");
-  private List<BlockPos> structurePositions = new ArrayList<>(); // <-- Save this
 
-  public StructureGenerator(ResourceLocation structure, int descent, Supplier<Class<? extends Entity>> entity, double maxDistance) {
+  public StructureGenerator(ResourceLocation structure, int descent, Supplier<Class<? extends Entity>> entity, int maxDistance) {
     this.structure = structure;
     this.descent = descent;
     this.entity = entity;
     this.maxDistance = maxDistance * maxDistance;
-  }
-
-  public void clear() {
-    System.out.println("Clearing structure information for huts");
-    this.structurePositions.clear();
   }
 
   public void generateChest(World world, BlockPos pos) {
@@ -58,12 +53,6 @@ public class StructureGenerator implements IWorldGenerator {
     if (te instanceof TileEntityChest) {
       ((TileEntityChest) te).setLootTable(loot, world.getSeed() * pos.getX() + pos.getY() ^ pos.getZ());
     }
-  }
-
-  public int distance(BlockPos pos1, BlockPos pos2) {
-    int d1 = pos1.getX() - pos2.getX();
-    int d2 = pos1.getZ() - pos2.getZ();
-    return Math.abs(d1 * d1 + d2 * d2);
   }
 
   private BlockPos testPlacement(int[] heightmap, BlockPos size, int x, int z, int deviation) {
@@ -115,6 +104,10 @@ public class StructureGenerator implements IWorldGenerator {
     return true;
   }
 
+  public ResourceLocation getRegistryName() {
+    return structure;
+  }
+
   @Override
   public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 
@@ -144,15 +137,9 @@ public class StructureGenerator implements IWorldGenerator {
     }
 
     pos = pos.add(zxPos.getX(), 0, zxPos.getZ());
-
-    for (BlockPos otherPos : structurePositions) {
-      double distance = distance(pos, otherPos) / 10;
-      if (distance < this.maxDistance) return;
-    }
+    if (!DataHelper.testBlockPos(structure, pos, maxDistance, world)) return;
 
     if (!testForLiquids(world, pos, size)) return;
-
-    IBlockState stateAt = world.getBlockState(pos);
 
     PlacementSettings placementsettings = new PlacementSettings();
 
@@ -175,7 +162,8 @@ public class StructureGenerator implements IWorldGenerator {
     IBlockState cobble = Blocks.COBBLESTONE.getDefaultState();
 
     Map<BlockPos, String> data = template.getDataBlocks(pos, placementsettings);
-    structurePositions.add(pos);
+    DataHelper.putBlockPos(structure, pos, world);
+
     data.forEach((blockPos, s) -> {
       if (s.equals("spawner")) {
         if (world.setBlockState(blockPos, Blocks.MOB_SPAWNER.getDefaultState(), 2)) {
