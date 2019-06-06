@@ -18,7 +18,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ModItems {
 
   // All mod items
-  public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, antlers, venison, cooked_venison;
+  public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, antlers, venison, cooked_venison, ink_bottle;
 
   public static Item amethyst_knife, copper_knife, silver_knife;
 
@@ -46,6 +46,7 @@ public class ModItems {
       event.addItem(antlers = new ItemBase("antlers").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(venison = new ItemFoodBase("venison", 3, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(cooked_venison = new ItemFoodBase("cooked_venison", 7, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(ink_bottle = new ItemBase("ink_bottle").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     }
 
     if (!Loader.isModLoaded("roots") || !Knives.initKnives(event)) {
@@ -60,6 +61,7 @@ public class ModItems {
    */
   public static void registerOredict() {
     if (ConfigManager.modules.mysticalWorldModuleEnabled) {
+      OreDictionary.registerOre("dyeBlack",ink_bottle);
       if(ConfigManager.metals.enableDusts){
         OreDictionary.registerOre("dustIron", iron_dust);
         OreDictionary.registerOre("dustGold", gold_dust);
