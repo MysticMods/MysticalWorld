@@ -63,9 +63,4 @@ public class MysticalWorld {
   public void postInit(FMLPostInitializationEvent event) {
     proxy.postInit(event);
   }
-
-  @EventHandler
-  public void serverAboutToStart (FMLServerAboutToStartEvent event) {
-    proxy.serverAboutToStart(event);
-  }
 }

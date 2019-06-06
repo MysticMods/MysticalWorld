@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.config;
 
-import com.sun.jna.Structure;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.RangeInt;
@@ -78,7 +77,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"FOREST", "COLD", "CONIFEROUS", "PLAINS"};
   }
 
-   public static class ConfigMysticalWorldFox {
+  public static class ConfigMysticalWorldFox {
     @Config.Comment(("Spawn rate of fox"))
     public int rate = 8;
 
@@ -92,7 +91,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"FOREST", "COLD", "CONIFEROUS"};
   }
 
-   public static class ConfigMysticalWorldBeetle {
+  public static class ConfigMysticalWorldBeetle {
     @Config.Comment(("Spawn rate of beetle"))
     public int rate = 10;
 
@@ -106,7 +105,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"SWAMP", "JUNGLE", "FOREST", "PLAINS"};
   }
 
-   public static class ConfigMysticalWorldFrog {
+  public static class ConfigMysticalWorldFrog {
     @Config.Comment(("Spawn rate of frog"))
     public int rate = 12;
 
@@ -121,12 +120,12 @@ public class ConfigManager {
   }
 
   @Config.Comment(("Minimum distance between Barrow structures. Set to -1 to disable."))
-  @Config.RangeDouble(min=0)
-  public static double BarrowDistance = 3500;
+  @Config.RangeInt(min = 0)
+  public static int BarrowDistance = 400;
 
   @Config.Comment(("Mininmum distance between Hut structures. Set to -1 to disable."))
-  @Config.RangeDouble(min=0)
-  public static double HutDistance = 3500;
+  @Config.RangeInt(min = 0)
+  public static int HutDistance = 400;
 
   @Config.Comment(("Mystical world gems and their components"))
   public static ConfigMysticalWorldGems gems = new ConfigMysticalWorldGems();
@@ -234,11 +233,11 @@ public class ConfigManager {
     public int amethystVeinSize = 5;
 
     @Config.Comment(("The highest an amethyst ore vein can generate"))
-    @RangeInt(min=0, max=255)
+    @RangeInt(min = 0, max = 255)
     public int amethystMaxY = 32;
 
     @Config.Comment(("The lowest an amethsyt ore vein can generate"))
-    @RangeInt(min=0, max=255)
+    @RangeInt(min = 0, max = 255)
     public int amethystMinY = 5;
 
     /*@Config.Comment(("The amount of tin veins to generate per chunk. Set to 0 to disable."))
