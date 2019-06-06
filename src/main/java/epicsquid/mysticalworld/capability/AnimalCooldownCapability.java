@@ -4,8 +4,6 @@ public class AnimalCooldownCapability {
     private long cooldown = 0;
 
     public boolean canHarvest() {
-        System.out.println(cooldown);
-        System.out.println(System.currentTimeMillis());
         return cooldown <= System.currentTimeMillis();
     }
 
