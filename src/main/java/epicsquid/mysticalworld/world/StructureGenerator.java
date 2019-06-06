@@ -48,13 +48,6 @@ public class StructureGenerator implements IWorldGenerator {
     this.maxDistance = maxDistance * maxDistance;
   }
 
-  public void generateChest(World world, BlockPos pos) {
-    TileEntity te = world.getTileEntity(pos);
-    if (te instanceof TileEntityChest) {
-      ((TileEntityChest) te).setLootTable(loot, world.getSeed() * pos.getX() + pos.getY() ^ pos.getZ());
-    }
-  }
-
   private BlockPos testPlacement(int[] heightmap, BlockPos size, int x, int z, int deviation) {
     int max = 0;
     int min = Integer.MAX_VALUE;
@@ -113,7 +106,7 @@ public class StructureGenerator implements IWorldGenerator {
 
     if (!(world instanceof WorldServer)) return;
     if (world.provider.getDimension() != 0) return;
-    //if (random.nextInt(30) == 0) return;
+    if (random.nextInt(5) == 0) return;
 
     int cx = chunkX * 16;
     int cz = chunkZ * 16;
@@ -169,36 +162,46 @@ public class StructureGenerator implements IWorldGenerator {
 
     data.forEach((blockPos, s) -> {
       if (s.equals("spawner")) {
-        if (world.setBlockState(blockPos, Blocks.MOB_SPAWNER.getDefaultState(), 2)) {
-          TileEntityMobSpawner ms = (TileEntityMobSpawner) world.getTileEntity(blockPos);
-          if (ms != null) {
-            ResourceLocation key = EntityList.getKey(entity.get());
-            if (key == null) key = EntityList.getKey(EntityZombie.class);
-            ms.getSpawnerBaseLogic().setEntityId(key);
-            // TODO
+        if (world.setBlockState(blockPos, Blocks.MOB_SPAWNER.getDefaultState(), 16)) {
+          TileEntity te = world.getTileEntity(blockPos);
+          int i = 0;
+          while (!(te instanceof TileEntityMobSpawner)) {
+            i++;
+            if (i == 10) {
+              throw new IllegalStateException("[Mystical World] Failed to replace structure block with mob spawner at " + blockPos.getX() + "/" + blockPos.getY() + "/" + blockPos.getZ() + " after 10 attempts. This should not happen.");
+            }
+            world.setBlockState(blockPos, Blocks.MOB_SPAWNER.getDefaultState(), 16);
+            te = world.getTileEntity(blockPos);
+          }
+          if (te instanceof TileEntityMobSpawner) {
+            TileEntityMobSpawner ms = (TileEntityMobSpawner) te;
+            if (ms != null) {
+              ResourceLocation key = EntityList.getKey(entity.get());
+              if (key == null) key = EntityList.getKey(EntityZombie.class);
+              ms.getSpawnerBaseLogic().setEntityId(key);
+            }
           }
         }
         // Two floor chests
-      } else if (s.equals("loot_chest1")) {
-        if (random.nextBoolean()) {
-          if (world.setBlockState(blockPos, chest)) {
-            generateChest(world, blockPos);
-          }
+      } else if (s.equals("loot_chest1") || s.equals("loot_chest2") || s.equals("loot_chest3")) {
+        if (!s.equals("loot_chest3") && random.nextBoolean()) {
+          world.setBlockState(blockPos, cobble, 16);
         } else {
-          world.setBlockState(blockPos, cobble);
-        }
-      } else if (s.equals("loot_chest2")) {
-        if (random.nextBoolean()) {
-          if (world.setBlockState(blockPos, chest)) {
-            generateChest(world, blockPos);
+          if (world.setBlockState(blockPos, chest, 16)) {
+            TileEntity te = world.getTileEntity(blockPos);
+            int i = 0;
+            while (!(te instanceof TileEntityChest)) {
+              i++;
+              if (i == 10) {
+                throw new IllegalStateException("[Mystical World] Failed to replace structure block with a chest at " + blockPos.getX() + "/" + blockPos.getY() + "/" + blockPos.getZ() + " after 10 attempts. This should not happen.");
+              }
+              world.setBlockState(blockPos, chest, 16);
+              te = world.getTileEntity(blockPos);
+            }
+            if (te instanceof TileEntityChest) {
+              ((TileEntityChest) te).setLootTable(loot, world.getSeed() * blockPos.getX() + blockPos.getY() ^ blockPos.getZ());
+            }
           }
-        } else {
-          world.setBlockState(blockPos, cobble);
-        }
-        // Ceiling chest
-      } else if (s.equals("loot_chest3")) {
-        if (world.setBlockState(blockPos, chest)) {
-          generateChest(world, blockPos);
         }
       }
     });
