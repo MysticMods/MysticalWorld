@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "mysticalworld:amethyst_gem"
+      "item": "mysticalworld:antlers"
     },
     "title": {
       "translate": "advancement.mysticalworld.root"
@@ -9,18 +9,13 @@
     "description": {
       "translate": "advancement.mysticalworld.root.desc"
     },
-    "background": "mysticalworld:textures/blocks/thatch.png"
+    "background": "mysticalworld:textures/blocks/thatch.png",
+    "show_toast": false,
+    "announce_to_chat" : false
   },
   "criteria": {
-    "book": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "mysticalworld:amethyst_gem"
-          }
-        ]
-      }
+    "auto": {
+      "trigger": "minecraft:location"
     }
   }
 }
