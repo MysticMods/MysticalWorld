@@ -29,9 +29,9 @@ public class ModItems {
     Item.ToolMaterial copper = EnumHelper.addToolMaterial("mysticalworld:copper", 2, 200, 4.0f, 2.0f, 7);
     Item.ToolMaterial silver = EnumHelper.addToolMaterial("mysticalworld:silver", 2, 175, 6.0f, 2.5f, 18);
     Item.ToolMaterial amethyst = EnumHelper.addToolMaterial("mysticalworld:amethyst", 3, 1561, 8.0f, 3.0f, 12);
-    MaterialTypes.addMaterial("mysticalworld:copper", copper, 2f, -1.5f);
-    MaterialTypes.addMaterial("mysticalworld:silver", silver, 2f, -1.0f);
-    MaterialTypes.addMaterial("mysticalworld:amethyst", amethyst, 3f, -1.0f);
+    MaterialTypes.addMaterial("mysticalworld:copper", copper, 1.5f, -1.5f);
+    MaterialTypes.addMaterial("mysticalworld:silver", silver, 1.5f, -1.0f);
+    MaterialTypes.addMaterial("mysticalworld:amethyst", amethyst, 2f, -1.0f);
 
     // Mob Drops
     event.addItem(carapace = new ItemBase("carapace").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
