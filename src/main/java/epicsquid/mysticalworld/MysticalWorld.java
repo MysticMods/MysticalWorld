@@ -1,10 +1,13 @@
 package epicsquid.mysticalworld;
 
+import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
+import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -47,6 +50,7 @@ public class MysticalWorld {
   public void preInit(FMLPreInitializationEvent event) {
     CONTAINER = Loader.instance().activeModContainer();
     MinecraftForge.EVENT_BUS.register(new RegistryManager());
+    CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
     proxy.preInit(event);
   }
 
