@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld;
 
+import epicsquid.mysticallib.capability.EntityCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.init.ModItems;

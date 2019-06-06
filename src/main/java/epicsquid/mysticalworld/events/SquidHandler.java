@@ -1,7 +1,7 @@
 package epicsquid.mysticalworld.events;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
+import epicsquid.mysticallib.capability.EntityCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.entity.Entity;
@@ -34,7 +34,7 @@ public class SquidHandler {
       ItemStack heldItem = player.getHeldItem(event.getHand());
       if (!heldItem.isEmpty() && heldItem.getItem() instanceof ItemGlassBottle) {
         if (event.getTarget() instanceof EntitySquid) {
-          AnimalCooldownCapability cap = event.getTarget().getCapability(AnimalCooldownCapabilityProvider.ANIMAL_COOLDOWN_CAPABILITY, null);
+          EntityCooldownCapability cap = event.getTarget().getCapability(AnimalCooldownCapabilityProvider.ANIMAL_COOLDOWN_CAPABILITY, null);
           if (cap != null) {
             if (cap.canHarvest()) {
               cap.setCooldown(20 * 15);
