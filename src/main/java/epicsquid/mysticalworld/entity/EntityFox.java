@@ -340,7 +340,7 @@ public class EntityFox extends EntityTameable {
   @Override
   @Nonnull
   public ResourceLocation getLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID + ":fox");
+    return new ResourceLocation(MysticalWorld.MODID, "entity/fox");
   }
 
   public static class EntityAISleep extends EntityAIBase {

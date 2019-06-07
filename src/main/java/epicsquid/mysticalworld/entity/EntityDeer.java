@@ -82,7 +82,7 @@ public class EntityDeer extends EntityAnimal {
   @Override
   @Nonnull
   public ResourceLocation getLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID + ":deer");
+    return new ResourceLocation(MysticalWorld.MODID , "entity/deer");
   }
 
   public float getEyeHeight() {

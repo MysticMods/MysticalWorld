@@ -131,7 +131,7 @@ public class EntityFrog extends EntityAnimal {
   @Override
   @Nonnull
   public ResourceLocation getLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID + ":frog");
+    return new ResourceLocation(MysticalWorld.MODID, "entity/frog");
   }
 
 }
