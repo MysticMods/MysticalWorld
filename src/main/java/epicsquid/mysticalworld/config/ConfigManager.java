@@ -65,13 +65,13 @@ public class ConfigManager {
 
   public static class ConfigMysticalWorldDeer {
     @Config.Comment(("Spawn rate of deer"))
-    public int rate = 12;
+    public int rate = 6;
 
     @Config.Comment(("Min number of deer to spawn in a group"))
-    public int min = 4;
+    public int min = 2;
 
     @Config.Comment(("Maximum number of deer to spawn in a group"))
-    public int max = 6;
+    public int max = 4;
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
     public String[] biomes = new String[]{"FOREST", "COLD", "CONIFEROUS", "PLAINS"};
@@ -79,7 +79,7 @@ public class ConfigManager {
 
   public static class ConfigMysticalWorldFox {
     @Config.Comment(("Spawn rate of fox"))
-    public int rate = 8;
+    public int rate = 4;
 
     @Config.Comment(("Min number of fox to spawn in a group"))
     public int min = 1;
@@ -93,13 +93,13 @@ public class ConfigManager {
 
   public static class ConfigMysticalWorldBeetle {
     @Config.Comment(("Spawn rate of beetle"))
-    public int rate = 10;
+    public int rate = 5;
 
     @Config.Comment(("Min number of beetles to spawn in a group"))
     public int min = 2;
 
     @Config.Comment(("Maximum number of beetles to spawn in a group"))
-    public int max = 5;
+    public int max = 4;
 
     @Config.Comment(("Biome types to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
     public String[] biomes = new String[]{"SWAMP", "JUNGLE", "FOREST", "PLAINS"};
@@ -107,13 +107,13 @@ public class ConfigManager {
 
   public static class ConfigMysticalWorldFrog {
     @Config.Comment(("Spawn rate of frog"))
-    public int rate = 12;
+    public int rate = 6;
 
     @Config.Comment(("Min number of frogs to spawn in a group"))
-    public int min = 4;
+    public int min = 2;
 
     @Config.Comment(("Maximum number of frogs to spawn in a group"))
-    public int max = 7;
+    public int max = 4;
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
     public String[] biomes = new String[]{"SWAMP", "JUNGLE", "BEACH", "RIVER"};
