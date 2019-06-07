@@ -28,8 +28,6 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.function.Supplier;
@@ -103,8 +101,11 @@ public class StructureGenerator implements IWorldGenerator {
 
   @Override
   public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-
     if (!(world instanceof WorldServer)) return;
+
+    // Respect structures being disabled
+    if (!world.getWorldInfo().isMapFeaturesEnabled()) return;
+
     if (world.provider.getDimension() != 0) return;
     if (random.nextInt(5) == 0) return;
 
