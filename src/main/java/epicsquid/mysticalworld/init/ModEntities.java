@@ -7,14 +7,8 @@ import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
-import epicsquid.mysticalworld.entity.EntityBeetle;
-import epicsquid.mysticalworld.entity.EntityDeer;
-import epicsquid.mysticalworld.entity.EntityFox;
-import epicsquid.mysticalworld.entity.EntityFrog;
-import epicsquid.mysticalworld.entity.render.RenderBeetle;
-import epicsquid.mysticalworld.entity.render.RenderDeer;
-import epicsquid.mysticalworld.entity.render.RenderFox;
-import epicsquid.mysticalworld.entity.render.RenderFrog;
+import epicsquid.mysticalworld.entity.*;
+import epicsquid.mysticalworld.entity.render.*;
 import epicsquid.mysticalworld.proxy.ClientProxy;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.Biome;
@@ -35,7 +29,9 @@ public class ModEntities {
     LibRegistry.registerEntity(EntityBeetle.class, 0x418594, 0x211D15);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityBeetle.class, new RenderBeetle.Factory());
-
+    LibRegistry.registerEntity(EntitySprout.class, 64, 1);
+    if (MysticalWorld.proxy instanceof ClientProxy)
+      LibRegistry.registerEntityRenderer(EntitySprout.class, new RenderSprout.Factory());
     LibRegistry.registerEntity(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityDeer.class, new RenderDeer.Factory());
@@ -80,6 +76,16 @@ public class ModEntities {
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
       EntityRegistry.addSpawn(EntityFrog.class, ConfigManager.frog.rate, ConfigManager.frog.min, ConfigManager.frog.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    }
+
+    biomes.clear();
+
+    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnSprout) {
+      for (String biomeName : ConfigManager.sprout.biomes) {
+        Type type = Type.getType(biomeName);
+        biomes.addAll(BiomeDictionary.getBiomes(type));
+      }
+      EntityRegistry.addSpawn(EntitySprout.class, ConfigManager.sprout.rate, ConfigManager.sprout.min, ConfigManager.sprout.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
   }
 }

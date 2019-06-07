@@ -52,6 +52,9 @@ public class ConfigManager {
 
     @Config.Comment(("Enable the spawning of Frog."))
     public boolean spawnFrog = true;
+
+    @Config.Comment(("Enable the spawning of Sprouts"))
+    public boolean spawnSprout = true;
   }
 
   @Config.Comment(("Controls the spawn settings of Deer"))
@@ -62,6 +65,22 @@ public class ConfigManager {
   public static ConfigMysticalWorldBeetle beetle = new ConfigMysticalWorldBeetle();
   @Config.Comment(("Controls the spawn settings of Frog"))
   public static ConfigMysticalWorldFrog frog = new ConfigMysticalWorldFrog();
+  @Config.Comment(("Controls the spawn settings of Sprout"))
+  public static ConfigMysticalWorldSprout sprout = new ConfigMysticalWorldSprout();
+
+  public static class ConfigMysticalWorldSprout {
+    @Config.Comment(("Spawn rate of sprouts"))
+    public int rate = 10;
+
+    @Config.Comment(("Min number of sprouts to spawn in a group"))
+    public int min = 2;
+
+    @Config.Comment(("Maximum number of sprouts to spawn in a group"))
+    public int max = 4;
+
+    @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
+    public String[] biomes = new String[]{"JUNGLE", "LUSH", "MAGICAL", "RIVER", "FOREST", "BEACH"};
+  }
 
   public static class ConfigMysticalWorldDeer {
     @Config.Comment(("Spawn rate of deer"))

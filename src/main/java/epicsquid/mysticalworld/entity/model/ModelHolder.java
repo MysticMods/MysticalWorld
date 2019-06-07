@@ -21,6 +21,7 @@ public class ModelHolder implements IResourceManagerReloadListener {
     models.put("frog", new ModelFrog());
     models.put("beetle", new ModelBeetle());
     models.put("deer", new ModelDeer());
+    models.put("sprout", new ModelSprout());
   }
 
   @SideOnly(Side.CLIENT)

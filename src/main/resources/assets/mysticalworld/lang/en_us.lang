@@ -4,6 +4,7 @@ entity.entity_fox.name=Fox
 entity.entity_frog.name=Frog
 entity.entity_beetle.name=Beetle
 entity.entity_deer.name=Deer
+entity.entity_sprout.name=Sprout
 
 item.carapace.name=Carapace
 item.pelt.name=Pelt
