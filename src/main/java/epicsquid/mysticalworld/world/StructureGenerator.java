@@ -153,6 +153,10 @@ public class StructureGenerator implements IWorldGenerator {
     placementsettings.setRandom(random);
 
     pos = Template.transformedBlockPos(placementsettings, pos).down(descent);
+
+    // Don't place structures if it would result in breaking through bedrock
+    if (pos.getY() <= 0) return;
+
     template.addBlocksToWorld(world, pos, placementsettings, 16);
 
     IBlockState chest = Blocks.CHEST.getDefaultState();
