@@ -40,7 +40,7 @@ public class EntitySprout extends EntityAnimal {
   @Nullable
   @Override
   protected SoundEvent getAmbientSound() {
-    if (rand.nextInt(3) == 0) {
+    if (rand.nextInt(6) == 0) {
       return ModSounds.Sprout.AMBIENT;
     }
 
