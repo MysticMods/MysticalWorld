@@ -10,12 +10,21 @@ import javax.annotation.Nonnull;
 public class ModSounds {
   public static void initSounds (@Nonnull RegisterContentEvent event) {
     Fox.initSounds(event);
+    Sprout.initSounds(event);
   }
 
   public static SoundEvent createSoundEvent (ResourceLocation name) {
     SoundEvent result = new SoundEvent(name);
     result.setRegistryName(name);
     return result;
+  }
+
+  public static class Sprout {
+    public static SoundEvent AMBIENT;
+
+    public static void initSounds (@Nonnull RegisterContentEvent event) {
+      event.addSound(AMBIENT = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.sprout.ambient")));
+    }
   }
 
   public static class Fox {

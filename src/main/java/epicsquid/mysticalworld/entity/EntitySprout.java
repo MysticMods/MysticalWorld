@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.entity;
 
+import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -11,6 +12,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -28,6 +30,12 @@ public class EntitySprout extends EntityAnimal {
   @Override
   public EntityAgeable createChild(EntityAgeable ageable) {
     return null;
+  }
+
+  @Nullable
+  @Override
+  protected SoundEvent getAmbientSound() {
+    return ModSounds.Sprout.AMBIENT;
   }
 
   @Override
