@@ -29,7 +29,7 @@ public class ModEntities {
     LibRegistry.registerEntity(EntityBeetle.class, 0x418594, 0x211D15);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityBeetle.class, new RenderBeetle.Factory());
-    LibRegistry.registerEntity(EntitySprout.class, 64, 1);
+    LibRegistry.registerEntity(EntitySprout.class, 0xe8f442, 0xd11f5a);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntitySprout.class, new RenderSprout.Factory());
     LibRegistry.registerEntity(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
