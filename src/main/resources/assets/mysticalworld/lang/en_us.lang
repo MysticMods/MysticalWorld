@@ -143,10 +143,10 @@ tile.solar_infused_stone_double_slab.name=Solar Infused Stone Double Slab
 tile.solar_infused_stone_wall.name=Solar Infused Stone Wall
 
 #Advancements
-advancement.mysticalworld.root="What a Mystical World!"?
-advancement.mysticalworld.root.desc=Breathe the Mystical World Air!
+advancement.mysticalworld.root=Mystical World
+advancement.mysticalworld.root.desc=Breathe in a brand new, mystical world!
 advancement.mysticalworld.amethyst=Sobriety Test
-advancement.mysticalworld.amethyst.desc=Find a gem more divine than a diamond!
+advancement.mysticalworld.amethyst.desc=Find a gem more divine than diamond!
 
 item.venison.name=Venison
 item.cooked_venison.name=Cooked Venison
