@@ -1,7 +1,5 @@
 package epicsquid.mysticalworld.init;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticallib.item.ItemFoodBase;
@@ -10,10 +8,13 @@ import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.integration.roots.Knives;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
+
+import javax.annotation.Nonnull;
 
 public class ModItems {
 
@@ -46,7 +47,7 @@ public class ModItems {
       event.addItem(antlers = new ItemBase("antlers").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(venison = new ItemFoodBase("venison", 3, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(cooked_venison = new ItemFoodBase("cooked_venison", 7, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(ink_bottle = new ItemBase("ink_bottle").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(ink_bottle = new ItemBase("ink_bottle").setModelCustom(true).setCreativeTab(MysticalWorld.tab).setContainerItem(Items.GLASS_BOTTLE));
     }
 
     if (!Loader.isModLoaded("roots") || !Knives.initKnives(event)) {
