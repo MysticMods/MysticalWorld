@@ -34,13 +34,13 @@ public class EntitySprout extends EntityAnimal {
 
   @Override
   protected float getSoundVolume() {
-    return 0.8f;
+    return 0.3f;
   }
 
   @Nullable
   @Override
   protected SoundEvent getAmbientSound() {
-    if (rand.nextInt(6) == 0) {
+    if (rand.nextInt(14) == 0) {
       return ModSounds.Sprout.AMBIENT;
     }
 
