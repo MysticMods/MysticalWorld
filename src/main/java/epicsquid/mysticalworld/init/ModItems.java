@@ -4,12 +4,16 @@ import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticallib.item.ItemFoodBase;
 import epicsquid.mysticallib.item.ItemKnifeBase;
+import epicsquid.mysticallib.item.ItemSeedBase;
 import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.integration.roots.Knives;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
@@ -22,6 +26,8 @@ public class ModItems {
   public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, antlers, venison, cooked_venison, ink_bottle;
 
   public static Item amethyst_knife, copper_knife, silver_knife;
+
+  public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine;
 
   /**
    * Register all items
@@ -55,6 +61,11 @@ public class ModItems {
       event.addItem(copper_knife = new ItemKnifeBase("copper_knife", MaterialTypes.material("mysticalworld:copper")).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
       event.addItem(silver_knife = new ItemKnifeBase("silver_knife", MaterialTypes.material("mysticalworld:silver")).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     }
+
+    event.addItem(aubergine = new ItemFoodBase("aubergine", 4, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+     event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(cooked_aubergine = new ItemFoodBase("cooked_aubergine", 5, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(stuffed_aubergine = new ItemFoodBase("stuffed_aubergine", 10, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
   }
 
   /**
@@ -72,5 +83,9 @@ public class ModItems {
         OreDictionary.registerOre("dustTinyGold", gold_dust_tiny);
       }
     }
+  }
+
+  public static void registerSeedDrops () {
+    MinecraftForge.addGrassSeed(new ItemStack(aubergine_seed, 1), 5);
   }
 }

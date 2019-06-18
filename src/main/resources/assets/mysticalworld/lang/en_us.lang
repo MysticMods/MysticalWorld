@@ -147,10 +147,16 @@ advancement.mysticalworld.root=Mystical World
 advancement.mysticalworld.root.desc=Breathe in a brand new, mystical world!
 advancement.mysticalworld.amethyst=Sobriety Test
 advancement.mysticalworld.amethyst.desc=Find a gem more divine than diamond!
+advancement.mysticalworld.aubergine=That's No Carrot...
+advancement.mysticalworld.aubergine.desc=Once, purple carrots were all the rage. But this is an aubergine.
 
 item.venison.name=Venison
 item.cooked_venison.name=Cooked Venison
 item.antlers.name=Antlers
 item.ink_bottle.name=Bottle of Ink
+item.aubergine_seed.name=Aubergine Seed
+item.aubergine.name=Aubergine
+item.cooked_aubergine.name=Cooked Aubergine
+item.stuffed_aubergine.name=Stuffed Aubergine
 
 message.squid.cooldown=Give it time to produce more ink!

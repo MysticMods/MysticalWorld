@@ -6,6 +6,7 @@ import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.block.*;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.blocks.BlockAubergineCrop;
 import epicsquid.mysticalworld.blocks.BlockThatch;
 import epicsquid.mysticalworld.config.ConfigManager;
 import net.minecraft.block.Block;
@@ -13,11 +14,13 @@ import net.minecraft.block.BlockStone;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraftforge.common.EnumPlantType;
 
 public class ModBlocks {
 
   // All blocks
   public static Block thatch, cobblestone_door;
+  public static BlockCropBase aubergine;
 
 
 
@@ -39,6 +42,8 @@ public class ModBlocks {
     if (ConfigManager.modules.solarModuleEnabled) {
 
     }
+
+    event.addBlock(aubergine = new BlockAubergineCrop("aubergine_crop", EnumPlantType.Crop));
   }
 
   private static void variants(RegisterContentEvent event, Block base, String name, Block... refs) {
