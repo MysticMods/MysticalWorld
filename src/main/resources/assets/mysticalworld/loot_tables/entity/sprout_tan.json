@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "minecraft:carrot",
+                    "name": "minecraft:potato",
                     "functions": [
                         {
                             "function": "set_count",
