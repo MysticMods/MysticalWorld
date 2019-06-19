@@ -77,16 +77,16 @@ public class EntitySprout extends EntityAnimal {
   public ResourceLocation getLootTable() {
     switch (getDataManager().get(EntitySprout.variant)) {
       case 0: {
-        return new ResourceLocation("roots:entity/sprout_green");
+        return new ResourceLocation("mysticalworld:entity/sprout_green");
       }
       case 1: {
-        return new ResourceLocation("roots:entity/sprout_tan");
+        return new ResourceLocation("mysticalworld:entity/sprout_tan");
       }
       case 2: {
-        return new ResourceLocation("roots:entity/sprout_red");
+        return new ResourceLocation("mysticalworld:entity/sprout_red");
       }
       default: {
-        return new ResourceLocation("roots:entity/sprout_green");
+        return new ResourceLocation("mysticalworld:entity/sprout_green");
       }
     }
   }
