@@ -1,10 +1,7 @@
 package epicsquid.mysticalworld.integration.jer;
 
 import epicsquid.mysticalworld.config.ConfigManager;
-import epicsquid.mysticalworld.entity.EntityBeetle;
-import epicsquid.mysticalworld.entity.EntityDeer;
-import epicsquid.mysticalworld.entity.EntityFox;
-import epicsquid.mysticalworld.entity.EntityFrog;
+import epicsquid.mysticalworld.entity.*;
 import jeresources.api.IJERAPI;
 import jeresources.api.IMobRegistry;
 import jeresources.api.JERPlugin;
@@ -36,6 +33,18 @@ public class JERIntegration {
 
     EntityFrog frog = new EntityFrog(null);
     registry.register(frog, LightLevel.any, getBiomeNames(ConfigManager.frog.biomes), frog.getLootTable());
+
+    EntitySprout sprout_green = new EntitySprout(null);
+    sprout_green.getDataManager().set(EntitySprout.variant, 0);
+    registry.register(sprout_green, LightLevel.any, getBiomeNames(ConfigManager.sprout.biomes), sprout_green.getLootTable());
+
+    EntitySprout sprout_tan = new EntitySprout(null);
+    sprout_tan.getDataManager().set(EntitySprout.variant, 1);
+    registry.register(sprout_tan, LightLevel.any, getBiomeNames(ConfigManager.sprout.biomes), sprout_tan.getLootTable());
+
+    EntitySprout sprout_red = new EntitySprout(null);
+    sprout_red.getDataManager().set(EntitySprout.variant, 2);
+    registry.register(sprout_red, LightLevel.any, getBiomeNames(ConfigManager.sprout.biomes), sprout_red.getLootTable());
   }
 }
 
