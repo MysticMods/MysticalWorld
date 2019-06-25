@@ -17,10 +17,10 @@ public class RenderSprout extends RenderLiving<EntitySprout> {
 	@Override
 	protected ResourceLocation getEntityTexture(EntitySprout entity) {
 		switch(entity.getDataManager().get(EntitySprout.variant)){
-			case 0: {return new ResourceLocation("roots:textures/entity/sprout_green.png");}
-			case 1: {return new ResourceLocation("roots:textures/entity/sprout_tan.png");}
-			case 2: {return new ResourceLocation("roots:textures/entity/sprout_red.png");}
-			default: {return new ResourceLocation("roots:textures/entity/sprout_green.png");}
+			case 0: {return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");}
+			case 1: {return new ResourceLocation("mysticalworld:textures/entity/sprout_tan.png");}
+			case 2: {return new ResourceLocation("mysticalworld:textures/entity/sprout_red.png");}
+			default: {return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");}
 		}
 	}
 
