@@ -70,7 +70,7 @@ public class ConfigManager {
 
   public static class ConfigMysticalWorldSprout {
     @Config.Comment(("Spawn rate of sprouts"))
-    public int rate = 10;
+    public int rate = 2;
 
     @Config.Comment(("Min number of sprouts to spawn in a group"))
     public int min = 2;
