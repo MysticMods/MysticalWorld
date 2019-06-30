@@ -4,10 +4,10 @@
             "item": "mysticalworld:aubergine"
         },
         "title": {
-            "translate": "advancement.roots.aubergine"
+            "translate": "advancement.mysticalworld.aubergine"
         },
         "description": {
-            "translate": "advancement.roots.aubergine.desc"
+            "translate": "advancement.mysticalworld.aubergine.desc"
         }
     },
     "parent": "mysticalworld:root",
