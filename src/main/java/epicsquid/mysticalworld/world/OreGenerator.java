@@ -26,7 +26,7 @@ public class OreGenerator implements IOreGenerator {
       for (Metal metal : Metal.values()) {
         if (metal.hasOre() && metal.isEnabled()) {
           Config conf = getConfig(metal.name());
-          if (conf != null && conf.perChunk > 0) {
+          if (conf != null && conf.perChunk > 0 && metal.getOre() != null) {
               generateOre(metal.getOre().getDefaultState(), world, random, chunkX, chunkZ, conf.minY, conf.maxY, conf.veinSize, conf.perChunk);
           } else if (conf == null) {
             System.out.println("Error: Cannot find the specified metal in configs. Are you sure you added it?");
@@ -38,7 +38,7 @@ public class OreGenerator implements IOreGenerator {
       for (Gem gem : Gem.values()) {
         if (gem.hasOre() && gem.isEnabled()) {
           Config conf = getConfig(gem.name());
-          if (conf != null && conf.perChunk > 0) {
+          if (conf != null && conf.perChunk > 0 && gem.getOre() != null) {
               generateOre(gem.getOre().getDefaultState(), world, random, chunkX, chunkZ, conf.minY, conf.maxY, conf.veinSize, conf.perChunk);
           } else if (conf == null) {
             System.out.println("Error: Cannot find the specified gem in configs. Are you sure you added it?");
