@@ -34,7 +34,7 @@ public class OreGenerator implements IOreGenerator {
         }
       }
     }
-    if (world.provider.getDimension() == 0 && ConfigManager.gems.enableGems) {
+    if (world.provider.getDimension() == 0 && ConfigManager.gems.enableOres) {
       for (Gem gem : Gem.values()) {
         if (gem.hasOre() && gem.isEnabled()) {
           Config conf = getConfig(gem.name());
