@@ -20,6 +20,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkProviderServer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
@@ -115,6 +116,10 @@ public class StructureGenerator implements IWorldGenerator {
 
     Biome biome = world.getBiome(zxPos);
     if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.PLAINS)) return;
+
+    ChunkProviderServer serverProvider = ((WorldServer)world).getChunkProvider();
+    if (serverProvider.isInsideStructure(world, "Village", zxPos)) return;
+    if (serverProvider.isInsideStructure(world, "Mansion", zxPos)) return;
 
     MinecraftServer minecraftserver = world.getMinecraftServer();
     TemplateManager templatemanager = world.getSaveHandler().getStructureTemplateManager();
