@@ -24,6 +24,9 @@ public class OreGenerator implements IOreGenerator {
 
     if (world.provider.getDimension() == 0 && ConfigManager.metals.enableOres) {
       for (Metal metal : Metal.values()) {
+        // This could be done much better
+        if (metal == Metal.copper && !ConfigManager.metals.enableCopper) continue;
+        if (metal == Metal.silver && !ConfigManager.metals.enableSilver) continue;
         if (metal.hasOre() && metal.isEnabled()) {
           Config conf = getConfig(metal.name());
           if (conf != null && conf.perChunk > 0 && metal.getOre() != null) {
@@ -36,6 +39,8 @@ public class OreGenerator implements IOreGenerator {
     }
     if (world.provider.getDimension() == 0 && ConfigManager.gems.enableOres) {
       for (Gem gem : Gem.values()) {
+        // TODO: Do this better
+        if (gem == Gem.amethyst && !ConfigManager.gems.enableAmethyst) continue;
         if (gem.hasOre() && gem.isEnabled()) {
           Config conf = getConfig(gem.name());
           if (conf != null && conf.perChunk > 0 && gem.getOre() != null) {
