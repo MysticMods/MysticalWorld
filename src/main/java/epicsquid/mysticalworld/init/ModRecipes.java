@@ -2,8 +2,10 @@ package epicsquid.mysticalworld.init;
 
 import epicsquid.mysticallib.event.RegisterModRecipesEvent;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.materials.Gem;
 import epicsquid.mysticalworld.materials.Metal;
+import jeresources.config.ConfigHandler;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -37,31 +39,39 @@ public class ModRecipes {
     registerShapeless(event.getRegistry(), "pelt", new ItemStack(Items.LEATHER, 1), new ItemStack(pelt, 1), new ItemStack(pelt, 1));
 
     // Iron and Gold Dust Recipes
-    registerCompressionRecipe(event.getRegistry(), "dustIron", "dustTinyIron", ModItems.iron_dust, ModItems.iron_dust_tiny);
-    registerCompressionRecipe(event.getRegistry(), "dustGold", "dustTinyGold", ModItems.gold_dust, ModItems.gold_dust_tiny);
+    if (ConfigManager.metals.enableDusts && ConfigManager.metals.enableTinyDusts) {
+      registerCompressionRecipe(event.getRegistry(), "dustIron", "dustTinyIron", ModItems.iron_dust, ModItems.iron_dust_tiny);
+      registerCompressionRecipe(event.getRegistry(), "dustGold", "dustTinyGold", ModItems.gold_dust, ModItems.gold_dust_tiny);
+    }
 
     for (Metal metal : Metal.values()) {
       if (metal.hasGrindables()) {
         // Tiny Dust <-> Dust
-        registerCompressionRecipe(event.getRegistry(), "dust" + metal.getOredictNameSuffix(), "dustTiny" + metal.getOredictNameSuffix(), metal.getDust(), metal.getDustTiny());
-        GameRegistry.addSmelting(metal.getDust(), new ItemStack(metal.getIngot(), 1), metal.getExperience());
+        if (ConfigManager.metals.enableDusts && ConfigManager.metals.enableTinyDusts) {
+          registerCompressionRecipe(event.getRegistry(), "dust" + metal.getOredictNameSuffix(), "dustTiny" + metal.getOredictNameSuffix(), metal.getDust(), metal.getDustTiny());
+          GameRegistry.addSmelting(metal.getDust(), new ItemStack(metal.getIngot(), 1), metal.getExperience());
+        }
       }
       // Nugget <-> Ingot
-      registerCompressionRecipe(event.getRegistry(), "ingot" + metal.getOredictNameSuffix(), "nugget" +
-          metal.getOredictNameSuffix(), metal.getIngot(), metal.getNugget());
-      // Ingot <-> Block
-      registerCompressionRecipe(event.getRegistry(), "block" + metal.getOredictNameSuffix(), "ingot" +
-          metal.getOredictNameSuffix(), metal.getBlock(), metal.getIngot());
+      if (ConfigManager.metals.enableIngots && ConfigManager.metals.enableNuggets) {
+        registerCompressionRecipe(event.getRegistry(), "ingot" + metal.getOredictNameSuffix(), "nugget" +
+            metal.getOredictNameSuffix(), metal.getIngot(), metal.getNugget());
+        // Ingot <-> Block
+        registerCompressionRecipe(event.getRegistry(), "block" + metal.getOredictNameSuffix(), "ingot" +
+            metal.getOredictNameSuffix(), metal.getBlock(), metal.getIngot());
+      }
 
-      if (metal.hasOre()) {
+      if (metal.hasOre() && ConfigManager.metals.enableOres) {
         GameRegistry.addSmelting(metal.getOre(), new ItemStack(metal.getIngot(), 1), metal.getExperience());
       }
     }
 
     for (Gem gem : Gem.values()) {
       // Ingot <-> Block
-      registerCompressionRecipe(event.getRegistry(), "block" + gem.getOredictNameSuffix(), "gem" +
-          gem.getOredictNameSuffix(), gem.getBlock(), gem.getGem());
+      if (ConfigManager.gems.enableBlocks && ConfigManager.gems.enableGems) {
+        registerCompressionRecipe(event.getRegistry(), "block" + gem.getOredictNameSuffix(), "gem" +
+            gem.getOredictNameSuffix(), gem.getBlock(), gem.getGem());
+      }
     }
 
     GameRegistry.addSmelting(new ItemStack(ModItems.venison, 1), new ItemStack(ModItems.cooked_venison), 0.1f);
