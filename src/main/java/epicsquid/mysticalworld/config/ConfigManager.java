@@ -226,6 +226,31 @@ public class ConfigManager {
     public boolean enableSootyIron = true;*/
   }
 
+  @Config.Comment("Ore Debugging Options")
+  public static ConfigMysticalWorldOreDebugging oreDebugging = new ConfigMysticalWorldOreDebugging();
+
+  public static class ConfigMysticalWorldOreDebugging {
+    @Config.Comment("Enable debugging at all. Specific ores will need to be enabled individually before any messages will be printed.")
+    @Config.Name("Enable Debugging")
+    public boolean enableDebugging = false;
+
+    @Config.Comment("Enable debugging to the standard log file. Useful if you do not generate or have access to debug.log. WARNING: WILL OVERLY INFLATE YOUR STANDARD LOG FILE. ONLY ENABLE IF NEEDED.")
+    @Config.Name("Enable Info Debugging (ONLY IF NEEDED)")
+    public boolean enableInfoDebugging = false;
+
+    @Config.Comment("Enable the debugging of Amethyst Ore")
+    @Config.Name("Debug Amethyst Ore")
+    public boolean debugAmethyst = false;
+
+    @Config.Comment("Enable the debugging of Copper Ore")
+    @Config.Name("Debug Copper Ore")
+    public boolean debugCopper = false;
+
+    @Config.Comment("Enable the debugging of Silver Ore")
+    @Config.Name("Debug Silver Ore")
+    public boolean debugSilver = false;
+  }
+
   @Config.Comment(("Controls ore generation for Mystical World Ores."))
   public static ConfigMysticalWorldOreGen oreGen = new ConfigMysticalWorldOreGen();
 
