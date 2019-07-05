@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = MysticalWorld.MODID, version = MysticalWorld.VERSION, name = MysticalWorld.NAME, dependencies = MysticalWorld.DEPENDENCIES)
 public class MysticalWorld {
@@ -31,6 +32,8 @@ public class MysticalWorld {
 
   @SidedProxy(clientSide = "epicsquid.mysticalworld.proxy.ClientProxy", serverSide = "epicsquid.mysticalworld.proxy.CommonProxy")
   public static CommonProxy proxy;
+
+  public static Logger logger;
 
   @Instance(MODID) public static MysticalWorld instance;
 
@@ -52,6 +55,7 @@ public class MysticalWorld {
     CONTAINER = Loader.instance().activeModContainer();
     MinecraftForge.EVENT_BUS.register(new RegistryManager());
     CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
+    logger = event.getModLog();
     proxy.preInit(event);
   }
 

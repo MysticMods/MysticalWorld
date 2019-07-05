@@ -1,12 +1,16 @@
 package epicsquid.mysticalworld.world;
 
 import epicsquid.mysticallib.world.IOreGenerator;
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.materials.Gem;
 import epicsquid.mysticalworld.materials.Metal;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -17,6 +21,14 @@ import java.util.Random;
 public class OreGenerator implements IOreGenerator {
 
   public Map<String, Config> configMap = new HashMap<>();
+
+  private void generateOre(String oreName, @Nonnull IBlockState ore, @Nonnull World world, @Nonnull Random random, int x, int z, int minY, int maxY, int size, int numberToGenerate) {
+    for (int i = 0; i < numberToGenerate; i++) {
+      BlockPos pos = new BlockPos(x * 16 + random.nextInt(16), random.nextInt(maxY - minY) + minY, z * 16 + random.nextInt(16));
+      WorldGenMinableDebug generator = new WorldGenMinableDebug(oreName, ore, size);
+      generator.generate(world, random, pos);
+    }
+  }
 
   @Override
   public void generate(@Nonnull Random random, int chunkX, int chunkZ, @Nonnull World world, @Nonnull IChunkGenerator chunkGenerator,
@@ -30,9 +42,7 @@ public class OreGenerator implements IOreGenerator {
         if (metal.hasOre() && metal.isEnabled()) {
           Config conf = getConfig(metal.name());
           if (conf != null && conf.perChunk > 0 && metal.getOre() != null) {
-              generateOre(metal.getOre().getDefaultState(), world, random, chunkX, chunkZ, conf.minY, conf.maxY, conf.veinSize, conf.perChunk);
-          } else if (conf == null) {
-            System.out.println("Error: Cannot find the specified metal in configs. Are you sure you added it?");
+            generateOre(metal.getOredictNameSuffix(), metal.getOre().getDefaultState(), world, random, chunkX, chunkZ, conf.minY, conf.maxY, conf.veinSize, conf.perChunk);
           }
         }
       }
@@ -44,9 +54,7 @@ public class OreGenerator implements IOreGenerator {
         if (gem.hasOre() && gem.isEnabled()) {
           Config conf = getConfig(gem.name());
           if (conf != null && conf.perChunk > 0 && gem.getOre() != null) {
-              generateOre(gem.getOre().getDefaultState(), world, random, chunkX, chunkZ, conf.minY, conf.maxY, conf.veinSize, conf.perChunk);
-          } else if (conf == null) {
-            System.out.println("Error: Cannot find the specified gem in configs. Are you sure you added it?");
+            generateOre(gem.getOredictNameSuffix(), gem.getOre().getDefaultState(), world, random, chunkX, chunkZ, conf.minY, conf.maxY, conf.veinSize, conf.perChunk);
           }
         }
       }
@@ -79,7 +87,7 @@ public class OreGenerator implements IOreGenerator {
       this.minY = minY;
     }
 
-    public static Config fromConfig (String name) {
+    public static Config fromConfig(String name) {
       int perChunk, veinSize, maxY, minY;
       try {
         perChunk = ConfigManager.oreGen.getClass().getField(name + "PerChunk").getInt(ConfigManager.oreGen);
