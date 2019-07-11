@@ -25,13 +25,13 @@ public class JERIntegration {
     BeetleEntity beetle = new BeetleEntity(null);
     registry.register(beetle, LightLevel.any, getBiomeNames(ConfigManager.beetle.biomes), beetle.getLootTable());
 
-    EntityDeer deer = new EntityDeer(null);
+    DeerEntity deer = new DeerEntity(null);
     registry.register(deer, LightLevel.any, getBiomeNames(ConfigManager.deer.biomes), deer.getLootTable());
 
     EntityFox fox = new EntityFox(null);
     registry.register(fox, LightLevel.any, getBiomeNames(ConfigManager.fox.biomes), fox.getLootTable());
 
-    EntityFrog frog = new EntityFrog(null);
+    FrogEntity frog = new FrogEntity(null);
     registry.register(frog, LightLevel.any, getBiomeNames(ConfigManager.frog.biomes), frog.getLootTable());
 
     SproutEntity sprout_green = new SproutEntity(null);

@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import java.util.Random;
 
-import epicsquid.mysticalworld.entity.EntityDeer;
+import epicsquid.mysticalworld.entity.DeerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
@@ -25,9 +25,9 @@ public class HasHorns implements LootCondition
   {
     boolean flag;
     Entity looted = context.getLootedEntity();
-    if (looted instanceof EntityDeer) {
-      EntityDeer deer = (EntityDeer) looted;
-      flag = deer.getDataManager().get(EntityDeer.hasHorns);
+    if (looted instanceof DeerEntity) {
+      DeerEntity deer = (DeerEntity) looted;
+      flag = deer.getDataManager().get(DeerEntity.hasHorns);
     } else {
       flag = false;
     }

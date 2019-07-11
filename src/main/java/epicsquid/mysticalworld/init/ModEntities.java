@@ -23,18 +23,18 @@ public class ModEntities {
     LibRegistry.registerEntity(EntityFox.class, 0xD46724, 0xF5E0D3);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityFox.class, new RenderFox.Factory());
-    LibRegistry.registerEntity(EntityFrog.class, 0x285234, 0xDBE697);
+    LibRegistry.registerEntity(FrogEntity.class, 0x285234, 0xDBE697);
     if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(EntityFrog.class, new RenderFrog.Factory());
+      LibRegistry.registerEntityRenderer(FrogEntity.class, new FrogRender.Factory());
     LibRegistry.registerEntity(BeetleEntity.class, 0x418594, 0x211D15);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(BeetleEntity.class, new BeetleRender.Factory());
     LibRegistry.registerEntity(SproutEntity.class, 0xe8f442, 0xd11f5a);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(SproutEntity.class, new SproutRender.Factory());
-    LibRegistry.registerEntity(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
+    LibRegistry.registerEntity(DeerEntity.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
     if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(EntityDeer.class, new RenderDeer.Factory());
+      LibRegistry.registerEntityRenderer(DeerEntity.class, new DeerRender.Factory());
   }
 
   public static void registerMobSpawn() {
@@ -45,7 +45,7 @@ public class ModEntities {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
-      EntityRegistry.addSpawn(EntityDeer.class, ConfigManager.deer.rate, ConfigManager.deer.min, ConfigManager.deer.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(DeerEntity.class, ConfigManager.deer.rate, ConfigManager.deer.min, ConfigManager.deer.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
 
     biomes.clear();
@@ -75,7 +75,7 @@ public class ModEntities {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
-      EntityRegistry.addSpawn(EntityFrog.class, ConfigManager.frog.rate, ConfigManager.frog.min, ConfigManager.frog.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(FrogEntity.class, ConfigManager.frog.rate, ConfigManager.frog.min, ConfigManager.frog.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
 
     biomes.clear();
