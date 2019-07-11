@@ -1,19 +1,16 @@
 package epicsquid.mysticalworld.entity.model;
 
-import epicsquid.mysticalworld.entity.EntityFox;
+import epicsquid.mysticalworld.entity.FoxEntity;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.LivingEntity;
 
 import javax.annotation.Nonnull;
 
 /**
- * ModelFox - Elucent
+ * FoxModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class ModelFox extends EntityModel {
+public class FoxModel extends EntityModel<FoxEntity> {
 
 	private RendererModel body1;
 	private RendererModel frontL;
@@ -32,7 +29,7 @@ public class ModelFox extends EntityModel {
 	private RendererModel earL;
 	private int state = 0;
 
-	public ModelFox() {
+	public FoxModel() {
 		this.textureWidth = 32;
 		this.textureHeight = 32;
 		this.backL = new RendererModel(this, 0, 16);
@@ -112,13 +109,13 @@ public class ModelFox extends EntityModel {
 	}
 
 	@Override
-	public void render(@Nonnull Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
+	public void render(@Nonnull FoxEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+		this.setRotationAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
 		this.body1.render(scaleFactor);
 	}
 
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+	public void setRotationAngles(FoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
 		float cos = (float) Math.cos(ageInTicks * 0.0625f * (Math.PI * 2.0f));
 		if (state == 0) {
@@ -172,8 +169,8 @@ public class ModelFox extends EntityModel {
 	}
 
 	@Override
-	public void setLivingAnimations(LivingEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
-		EntityFox fox = (EntityFox) entitylivingbaseIn;
+	public void setLivingAnimations(FoxEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
+		FoxEntity fox = (FoxEntity) entitylivingbaseIn;
 
 		this.backL.setRotationPoint(1.0F, 4.0F, 1.5F);
 		this.backR.setRotationPoint(-1.0F, 4.0F, 1.5F);

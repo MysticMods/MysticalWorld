@@ -14,7 +14,7 @@ public class ModelHolder implements IResourceManagerReloadListener {
 	public static Map<String, EntityModel> models = new HashMap<>();
 
 	public static void init() {
-		models.put("fox", new ModelFox());
+		models.put("fox", new FoxModel());
 		models.put("frog", new FrogModel());
 		models.put("beetle", new BeetleModel());
 		models.put("deer", new DeerModel());

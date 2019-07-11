@@ -28,7 +28,7 @@ public class JERIntegration {
     DeerEntity deer = new DeerEntity(null);
     registry.register(deer, LightLevel.any, getBiomeNames(ConfigManager.deer.biomes), deer.getLootTable());
 
-    EntityFox fox = new EntityFox(null);
+    FoxEntity fox = new FoxEntity(null);
     registry.register(fox, LightLevel.any, getBiomeNames(ConfigManager.fox.biomes), fox.getLootTable());
 
     FrogEntity frog = new FrogEntity(null);

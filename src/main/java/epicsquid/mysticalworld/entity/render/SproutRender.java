@@ -16,11 +16,19 @@ public class SproutRender extends LivingRenderer<SproutEntity, SproutModel> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(SproutEntity entity) {
-		switch(entity.getDataManager().get(SproutEntity.variant)){
-			case 0: {return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");}
-			case 1: {return new ResourceLocation("mysticalworld:textures/entity/sprout_tan.png");}
-			case 2: {return new ResourceLocation("mysticalworld:textures/entity/sprout_red.png");}
-			default: {return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");}
+		switch (entity.getDataManager().get(SproutEntity.variant)) {
+			case 0: {
+				return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");
+			}
+			case 1: {
+				return new ResourceLocation("mysticalworld:textures/entity/sprout_tan.png");
+			}
+			case 2: {
+				return new ResourceLocation("mysticalworld:textures/entity/sprout_red.png");
+			}
+			default: {
+				return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");
+			}
 		}
 	}
 

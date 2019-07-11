@@ -7,13 +7,12 @@ import epicsquid.mysticalworld.entity.model.BeetleModel;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
-public class BeetleRender extends LivingRenderer<BeetleEntity> {
+public class BeetleRender extends LivingRenderer<BeetleEntity, BeetleModel> {
 
 	private BeetleRender(@Nonnull EntityRendererManager renderManager, @Nonnull BeetleModel m, float f) {
 		super(renderManager, m, f);
@@ -45,7 +44,7 @@ public class BeetleRender extends LivingRenderer<BeetleEntity> {
 
 	@Override
 	@Nonnull
-	protected ResourceLocation getEntityTexture(@Nonnull Entity entity) {
+	protected ResourceLocation getEntityTexture(@Nonnull BeetleEntity entity) {
 		return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/beetle_blue.png");
 	}
 }

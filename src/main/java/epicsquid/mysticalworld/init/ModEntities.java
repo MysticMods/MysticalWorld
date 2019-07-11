@@ -20,9 +20,9 @@ public class ModEntities {
 
   public static void registerMobs() {
     //EGG COLORS GO: MAIN THEN SPOTS
-    LibRegistry.registerEntity(EntityFox.class, 0xD46724, 0xF5E0D3);
+    LibRegistry.registerEntity(FoxEntity.class, 0xD46724, 0xF5E0D3);
     if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(EntityFox.class, new RenderFox.Factory());
+      LibRegistry.registerEntityRenderer(FoxEntity.class, new FoxRender.Factory());
     LibRegistry.registerEntity(FrogEntity.class, 0x285234, 0xDBE697);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(FrogEntity.class, new FrogRender.Factory());
@@ -55,7 +55,7 @@ public class ModEntities {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
-      EntityRegistry.addSpawn(EntityFox.class, ConfigManager.fox.rate, ConfigManager.fox.min, ConfigManager.fox.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(FoxEntity.class, ConfigManager.fox.rate, ConfigManager.fox.min, ConfigManager.fox.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
 
     biomes.clear();
