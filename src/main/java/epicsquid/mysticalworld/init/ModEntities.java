@@ -26,12 +26,12 @@ public class ModEntities {
     LibRegistry.registerEntity(EntityFrog.class, 0x285234, 0xDBE697);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityFrog.class, new RenderFrog.Factory());
-    LibRegistry.registerEntity(EntityBeetle.class, 0x418594, 0x211D15);
+    LibRegistry.registerEntity(BeetleEntity.class, 0x418594, 0x211D15);
     if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(EntityBeetle.class, new RenderBeetle.Factory());
-    LibRegistry.registerEntity(EntitySprout.class, 0xe8f442, 0xd11f5a);
+      LibRegistry.registerEntityRenderer(BeetleEntity.class, new BeetleRender.Factory());
+    LibRegistry.registerEntity(SproutEntity.class, 0xe8f442, 0xd11f5a);
     if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(EntitySprout.class, new RenderSprout.Factory());
+      LibRegistry.registerEntityRenderer(SproutEntity.class, new SproutRender.Factory());
     LibRegistry.registerEntity(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityDeer.class, new RenderDeer.Factory());
@@ -65,7 +65,7 @@ public class ModEntities {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
-      EntityRegistry.addSpawn(EntityBeetle.class, ConfigManager.beetle.rate, ConfigManager.beetle.min, ConfigManager.beetle.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(BeetleEntity.class, ConfigManager.beetle.rate, ConfigManager.beetle.min, ConfigManager.beetle.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
 
     biomes.clear();
@@ -85,7 +85,7 @@ public class ModEntities {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
-      EntityRegistry.addSpawn(EntitySprout.class, ConfigManager.sprout.rate, ConfigManager.sprout.min, ConfigManager.sprout.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(SproutEntity.class, ConfigManager.sprout.rate, ConfigManager.sprout.min, ConfigManager.sprout.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
     }
   }
 }

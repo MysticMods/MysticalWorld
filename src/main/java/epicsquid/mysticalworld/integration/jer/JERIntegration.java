@@ -22,7 +22,7 @@ public class JERIntegration {
   public static void init() {
     IMobRegistry registry = JERApi.getMobRegistry();
 
-    EntityBeetle beetle = new EntityBeetle(null);
+    BeetleEntity beetle = new BeetleEntity(null);
     registry.register(beetle, LightLevel.any, getBiomeNames(ConfigManager.beetle.biomes), beetle.getLootTable());
 
     EntityDeer deer = new EntityDeer(null);
@@ -34,16 +34,16 @@ public class JERIntegration {
     EntityFrog frog = new EntityFrog(null);
     registry.register(frog, LightLevel.any, getBiomeNames(ConfigManager.frog.biomes), frog.getLootTable());
 
-    EntitySprout sprout_green = new EntitySprout(null);
-    sprout_green.getDataManager().set(EntitySprout.variant, 0);
+    SproutEntity sprout_green = new SproutEntity(null);
+    sprout_green.getDataManager().set(SproutEntity.variant, 0);
     registry.register(sprout_green, LightLevel.any, getBiomeNames(ConfigManager.sprout.biomes), sprout_green.getLootTable());
 
-    EntitySprout sprout_tan = new EntitySprout(null);
-    sprout_tan.getDataManager().set(EntitySprout.variant, 1);
+    SproutEntity sprout_tan = new SproutEntity(null);
+    sprout_tan.getDataManager().set(SproutEntity.variant, 1);
     registry.register(sprout_tan, LightLevel.any, getBiomeNames(ConfigManager.sprout.biomes), sprout_tan.getLootTable());
 
-    EntitySprout sprout_red = new EntitySprout(null);
-    sprout_red.getDataManager().set(EntitySprout.variant, 2);
+    SproutEntity sprout_red = new SproutEntity(null);
+    sprout_red.getDataManager().set(SproutEntity.variant, 2);
     registry.register(sprout_red, LightLevel.any, getBiomeNames(ConfigManager.sprout.biomes), sprout_red.getLootTable());
   }
 }
