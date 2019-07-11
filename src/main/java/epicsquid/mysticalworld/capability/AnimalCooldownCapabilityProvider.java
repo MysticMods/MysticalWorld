@@ -1,49 +1,53 @@
 package epicsquid.mysticalworld.capability;
 
 import epicsquid.mysticallib.MysticalLib;
-import net.minecraft.nbt.NBTTagLong;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.nbt.LongNBT;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<NBTTagLong> {
-    public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalLib.MODID, "animal_cooldown_capability");
+public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<LongNBT> {
+	public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalLib.MODID, "animal_cooldown_capability");
 
-    @CapabilityInject(AnimalCooldownCapability.class)
-    public static final Capability<AnimalCooldownCapability> ANIMAL_COOLDOWN_CAPABILITY = injected();
+	@CapabilityInject(AnimalCooldownCapability.class)
+	public static final Capability<AnimalCooldownCapability> ANIMAL_COOLDOWN_CAPABILITY = injected();
 
-    private final AnimalCooldownCapability instance = ANIMAL_COOLDOWN_CAPABILITY.getDefaultInstance();
+	private final AnimalCooldownCapability instance = ANIMAL_COOLDOWN_CAPABILITY.getDefaultInstance();
 
-    @Override
-    public NBTTagLong serializeNBT() {
-        return (NBTTagLong) ANIMAL_COOLDOWN_CAPABILITY.getStorage().writeNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null);
-    }
+	@Override
+	public LongNBT serializeNBT() {
+		return (LongNBT) ANIMAL_COOLDOWN_CAPABILITY.getStorage().writeNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null);
+	}
 
-    @Override
-    public void deserializeNBT(NBTTagLong nbt) {
-        ANIMAL_COOLDOWN_CAPABILITY.getStorage().readNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null, nbt);
-    }
+	@Override
+	public void deserializeNBT(LongNBT nbt) {
+		ANIMAL_COOLDOWN_CAPABILITY.getStorage().readNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null, nbt);
+	}
 
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        return capability == ANIMAL_COOLDOWN_CAPABILITY;
-    }
+	@Nonnull
+	@Override
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
+		return cap == ANIMAL_COOLDOWN_CAPABILITY ? LazyOptional.of(() -> (T) this.instance) : LazyOptional.empty();
+	}
 
-    @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing) {
-        return capability == ANIMAL_COOLDOWN_CAPABILITY ? ANIMAL_COOLDOWN_CAPABILITY.cast(this.instance) : null;
-    }
+	@Nonnull
+	@Override
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+		return getCapability(cap);
+	}
 
-    //This is here to get rid of all the ugly PLAYER_GROVE might be null
-    private static final Object NULL = null;
+	//This is here to get rid of all the ugly PLAYER_GROVE might be null
+	private static final Object NULL = null;
 
-    @SuppressWarnings("unchecked")
-    private static <T> T injected() {
-        return (T) NULL;
-    }
+	@SuppressWarnings("unchecked")
+	private static <T> T injected() {
+		return (T) NULL;
+	}
 }
