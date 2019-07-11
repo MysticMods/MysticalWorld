@@ -29,8 +29,36 @@ minecraft {
 }
 repositories {
     maven {
+        name = 'Patchouli'
+        url = "https://maven.blamejared.com"
+    }
+    maven {
+        name = "TehNut"
+        url = "http://tehnut.info/maven"
+    }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "http://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "modmaven.k-4u.nl"
+    }
+    maven {
         name = "JER"
         url = "https://dl.bintray.com/way2muchnoise/dev"
+    }
+    maven {
+        url 'https://maven.mcmoddev.com'
+    }
+    maven {
+        name = "Jared"
+        url = "https://maven.blamejared.com"
+    }
+    maven {
+        url "http://maven.tterrag.com"
     }
 }
 
@@ -43,6 +71,7 @@ dependencies {
     deobfCompile("jeresources:JustEnoughResources-${minecraft_version}:${jer_version}") {
         exclude group: 'mezz.jei'
     }
+    deobfCompile "info.tehnut.harvest:Harvest:1.12-1.2.7-20"
 }
 
 processResources {
