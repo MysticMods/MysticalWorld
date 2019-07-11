@@ -1,6 +1,9 @@
 package epicsquid.mysticalworld;
 
+import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.setup.ModSetup;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -8,18 +11,12 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class MysticalWorld {
 	public static final String MODID = "mysticalworld";
 
-//  public static CreativeTabs tab = new CreativeTabs("mysticalworld") {
-//    @Override
-//    public String getTabLabel() {
-//      return "mysticalworld";
-//    }
-//
-//    @Override
-//    @SideOnly(Side.CLIENT)
-//    public ItemStack createIcon() {
-//      return new ItemStack(ModItems.carapace, 1);
-//    }
-//  };
+	public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(ModItems.carapace);
+		}
+	};
 
 	public static ModSetup setup = new ModSetup();
 

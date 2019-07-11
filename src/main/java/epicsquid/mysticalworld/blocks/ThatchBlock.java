@@ -5,9 +5,9 @@ import net.minecraft.util.BlockRenderLayer;
 
 import javax.annotation.Nonnull;
 
-public class BlockThatch extends Block {
+public class ThatchBlock extends Block {
 
-	public BlockThatch(Properties props) {
+	public ThatchBlock(Properties props) {
 		super(props);
 	}
 
@@ -16,5 +16,4 @@ public class BlockThatch extends Block {
 	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
-
 }
