@@ -1,9 +1,12 @@
 package epicsquid.mysticalworld.init;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.items.ModItems;
+import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;

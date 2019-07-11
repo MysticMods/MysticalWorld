@@ -3,7 +3,7 @@ package epicsquid.mysticalworld.events;
 import epicsquid.mysticallib.capability.EntityCooldownCapability;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
-import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.items.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;

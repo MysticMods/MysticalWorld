@@ -1,7 +1,7 @@
 package epicsquid.mysticalworld.events;
 
-import epicsquid.mysticalworld.init.ModBlocks;
-import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.blocks.ModBlocks;
+import epicsquid.mysticalworld.items.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;

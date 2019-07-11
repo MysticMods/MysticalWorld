@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld;
 
-import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.items.ModItems;
 import epicsquid.mysticalworld.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

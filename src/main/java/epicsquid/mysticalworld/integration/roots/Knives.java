@@ -4,7 +4,7 @@
 //import epicsquid.mysticallib.item.ItemKnifeBase;
 //import epicsquid.mysticallib.material.MaterialTypes;
 //import epicsquid.mysticalworld.MysticalWorld;
-//import epicsquid.mysticalworld.init.ModItems;
+//import epicsquid.mysticalworld.items.ModItems;
 //import net.minecraft.item.Item;
 //
 //import javax.annotation.Nonnull;
