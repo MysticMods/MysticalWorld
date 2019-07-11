@@ -9,7 +9,6 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.entity.render.*;
-import epicsquid.mysticalworld.proxy.ClientProxy;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
