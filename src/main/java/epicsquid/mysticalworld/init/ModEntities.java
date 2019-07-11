@@ -17,25 +17,6 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class ModEntities {
 
-  public static void registerMobs() {
-    //EGG COLORS GO: MAIN THEN SPOTS
-    LibRegistry.registerEntity(FoxEntity.class, 0xD46724, 0xF5E0D3);
-    if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(FoxEntity.class, new FoxRender.Factory());
-    LibRegistry.registerEntity(FrogEntity.class, 0x285234, 0xDBE697);
-    if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(FrogEntity.class, new FrogRender.Factory());
-    LibRegistry.registerEntity(BeetleEntity.class, 0x418594, 0x211D15);
-    if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(BeetleEntity.class, new BeetleRender.Factory());
-    LibRegistry.registerEntity(SproutEntity.class, 0xe8f442, 0xd11f5a);
-    if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(SproutEntity.class, new SproutRender.Factory());
-    LibRegistry.registerEntity(DeerEntity.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
-    if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(DeerEntity.class, new DeerRender.Factory());
-  }
-
   public static void registerMobSpawn() {
     Set<Biome> biomes = new HashSet<>();
 

@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.RegistryManager;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -50,10 +51,10 @@ public class DeerEntity extends AnimalEntity {
 		this.rotationYaw = this.rotationYawHead;
 	}
 
-	@Override
-	public void setScaleForAge(boolean child) {
-		this.setScale(child ? 0.5f : 1.0f);
-	}
+//	@Override
+//	public void setScaleForAge(boolean child) {
+//		this.setScale(child ? 0.5f : 1.0f);
+//	}
 
 	@Override
 	public boolean isAIDisabled() {
@@ -70,8 +71,7 @@ public class DeerEntity extends AnimalEntity {
 	@Override
 	@Nonnull
 	public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-		// TODO use entity type from registry to create new deer
-		return new DeerEntity(ageable.world);
+		return RegistryManager.DEER.create(ageable.world);
 	}
 
 	@Override

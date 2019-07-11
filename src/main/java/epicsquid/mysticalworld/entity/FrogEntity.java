@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.RegistryManager;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -100,11 +101,11 @@ public class FrogEntity extends AnimalEntity {
 			return 0f;
 		}
 	}
-
-	@Override
-	public void setScaleForAge(boolean child) {
-		this.setScale(child ? 0.5f : 1.0f);
-	}
+//
+//	@Override
+//	public void setScaleForAge(boolean child) {
+//		this.setScale(child ? 0.5f : 1.0f);
+//	}
 
 	@Override
 	public boolean isAIDisabled() {
@@ -121,8 +122,7 @@ public class FrogEntity extends AnimalEntity {
 	@Override
 	@Nonnull
 	public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-		// TODO create this from the entity type in the registry
-		return new FrogEntity(ageable.world);
+		return RegistryManager.FROG.create(ageable.world);
 	}
 
 	@Override

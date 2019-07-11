@@ -1,7 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
-import com.google.common.base.Predicate;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.RegistryManager;
 import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -78,13 +78,13 @@ public class FoxEntity extends TameableEntity {
 		targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
 		targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
 		targetSelector.addGoal(3, new HurtByTargetGoal(this));
-		targetSelector.addGoal(4, new NonTamedTargetGoal<ChickenEntity>(this, ChickenEntity.class, false, (Predicate<Entity>) p_apply_1_ -> p_apply_1_ instanceof EntityChicken));
+		targetSelector.addGoal(4, new NonTamedTargetGoal<ChickenEntity>(this, ChickenEntity.class, false, e -> e instanceof ChickenEntity));
 	}
 
-	@Override
-	public void setScaleForAge(boolean child) {
-		this.setScale(child ? 0.5f : 1.0f);
-	}
+//	@Override
+//	public void setScaleForAge(boolean child) {
+//		this.setScale(child ? 0.5f : 1.0f);
+//	}
 
 	@Override
 	public boolean isAIDisabled() {
@@ -331,8 +331,7 @@ public class FoxEntity extends TameableEntity {
 	@Override
 	@Nonnull
 	public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-		// TODO change this when registering type is a thing
-		return new FoxEntity(ageable.world);
+		return RegistryManager.SILVER_FOX.create(ageable.world);
 	}
 
 	@Override

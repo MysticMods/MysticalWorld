@@ -12,9 +12,9 @@ import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;
 
-public class DeerRender extends LivingRenderer<DeerEntity, DeerModel> {
+public class DeerRenderer extends LivingRenderer<DeerEntity, DeerModel> {
 
-	private DeerRender(@Nonnull EntityRendererManager renderManager, @Nonnull DeerModel modelBase, float shadowSize) {
+	private DeerRenderer(@Nonnull EntityRendererManager renderManager, @Nonnull DeerModel modelBase, float shadowSize) {
 		super(renderManager, modelBase, shadowSize);
 	}
 
@@ -32,7 +32,7 @@ public class DeerRender extends LivingRenderer<DeerEntity, DeerModel> {
 
 		@Override
 		public EntityRenderer<DeerEntity> createRenderFor(EntityRendererManager manager) {
-			return new DeerRender(manager, ModelHolder.models.get("deer"), 0.35f);
+			return new DeerRenderer(manager, ModelHolder.deerModel, 0.35f);
 		}
 	}
 }

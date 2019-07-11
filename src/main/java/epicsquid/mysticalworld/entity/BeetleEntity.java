@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.RegistryManager;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -40,10 +41,10 @@ public class BeetleEntity extends AnimalEntity {
 		return stack.getItem() == Items.MELON;
 	}
 
-	@Override
-	public void setScaleForAge(boolean child) {
-		this.setScale(child ? 0.5f : 1.0f);
-	}
+//	@Override
+//	public void setScaleForAge(boolean child) {
+//		this.setScale(child ? 0.5f : 1.0f);
+//	}
 
 	@Override
 	public boolean isAIDisabled() {
@@ -60,8 +61,7 @@ public class BeetleEntity extends AnimalEntity {
 
 	@Override
 	public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-		// TODO use the registry to crate a entity from the type
-		return new BeetleEntity(ageable.getType(), ageable.getEntityWorld());
+		return RegistryManager.BEETLE.create(ageable.world);
 	}
 
 	@Override

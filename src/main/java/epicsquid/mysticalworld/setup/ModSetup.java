@@ -22,6 +22,9 @@ public class ModSetup {
 
 		LootConditionManager.registerCondition(new HasHorns.Serializer());
 
+		// Register spawns for mobs
+
+
 		// TODO world gen
 //		if (ConfigManager.BarrowDistance != -1) {
 //			GameRegistry.registerWorldGenerator(barrowGenerator = new StructureGenerator(BARROW,10, () -> {

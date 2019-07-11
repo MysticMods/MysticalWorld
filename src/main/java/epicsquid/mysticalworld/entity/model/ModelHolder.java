@@ -1,29 +1,36 @@
 package epicsquid.mysticalworld.entity.model;
 
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
+import net.minecraftforge.resource.IResourceType;
+import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.function.Predicate;
 
-@SuppressWarnings("deprecation")
-public class ModelHolder implements IResourceManagerReloadListener {
+public class ModelHolder implements ISelectiveResourceReloadListener {
 
-	public static Map<String, EntityModel> models = new HashMap<>();
+	public static FoxModel foxModel;
+	public static FrogModel frogModel;
+	public static BeetleModel beetleModel;
+	public static DeerModel deerModel;
+	public static SproutModel sproutModel;
 
 	public static void init() {
-		models.put("fox", new FoxModel());
-		models.put("frog", new FrogModel());
-		models.put("beetle", new BeetleModel());
-		models.put("deer", new DeerModel());
-		models.put("sprout", new SproutModel());
+		foxModel = new FoxModel();
+		frogModel = new FrogModel();
+		beetleModel = new BeetleModel();
+		deerModel = new DeerModel();
+		sproutModel = new SproutModel();
 	}
 
 	@Override
 	public void onResourceManagerReload(@Nonnull IResourceManager resourceManager) {
-		models.clear();
+	}
+
+	@Override
+	public void onResourceManagerReload(IResourceManager resourceManager, Predicate<IResourceType> resourcePredicate) {
+		// TODO make this work selectively
 		init();
 	}
 }

@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class SproutRender extends LivingRenderer<SproutEntity, SproutModel> {
-	public SproutRender(EntityRendererManager renderManager, SproutModel modelBase, float shadowSize) {
+public class SproutRenderer extends LivingRenderer<SproutEntity, SproutModel> {
+	public SproutRenderer(EntityRendererManager renderManager, SproutModel modelBase, float shadowSize) {
 		super(renderManager, modelBase, shadowSize);
 	}
 
@@ -35,7 +35,7 @@ public class SproutRender extends LivingRenderer<SproutEntity, SproutModel> {
 	public static class Factory implements IRenderFactory<SproutEntity> {
 		@Override
 		public EntityRenderer<SproutEntity> createRenderFor(EntityRendererManager manager) {
-			return new SproutRender(manager, ModelHolder.models.get("sprout"), 0.15f);
+			return new SproutRenderer(manager, ModelHolder.sproutModel, 0.15f);
 		}
 	}
 }

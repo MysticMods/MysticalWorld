@@ -12,18 +12,18 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
-public class BeetleRender extends LivingRenderer<BeetleEntity, BeetleModel> {
+public class BeetleRenderer extends LivingRenderer<BeetleEntity, BeetleModel> {
 
-	private BeetleRender(@Nonnull EntityRendererManager renderManager, @Nonnull BeetleModel m, float f) {
+	private BeetleRenderer(@Nonnull EntityRendererManager renderManager, @Nonnull BeetleModel m, float f) {
 		super(renderManager, m, f);
 	}
 
-	public static class Factory implements IRenderFactory {
+	public static class Factory implements IRenderFactory<BeetleEntity> {
 
 		@Override
 		@Nonnull
-		public BeetleRender createRenderFor(@Nonnull EntityRendererManager manager) {
-			return new BeetleRender(manager, ModelHolder.models.get("beetle"), 0.05f);
+		public BeetleRenderer createRenderFor(@Nonnull EntityRendererManager manager) {
+			return new BeetleRenderer(manager, ModelHolder.beetleModel, 0.05f);
 		}
 	}
 
