@@ -20,6 +20,7 @@ public class RenderSprout extends RenderLiving<EntitySprout> {
 			case 0: {return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");}
 			case 1: {return new ResourceLocation("mysticalworld:textures/entity/sprout_tan.png");}
 			case 2: {return new ResourceLocation("mysticalworld:textures/entity/sprout_red.png");}
+			case 3: {return new ResourceLocation("mysticalworld:textures/entity/sprout_purple.png");}
 			default: {return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");}
 		}
 	}
