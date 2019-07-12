@@ -22,7 +22,7 @@ public class LootHandler {
 //    if (ConfigManager.InjectLoot) {
 //      RandomValueRange range = new RandomValueRange(ConfigManager.InjectMinimum, ConfigManager.InjectMaximum);
 		if (tables.contains(event.getName())) {
-			LootPool pool = LootPool.builder().addEntry(TableLootEntry.func_216171_a(new ResourceLocation(MysticalWorld.MODID, "chests/inject")).weight(1).quality(0)).build();
+			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(MysticalWorld.MODID, "chests/inject")).weight(1).quality(0)).build();
 			event.getTable().addPool(pool);
 		}
 //    }
