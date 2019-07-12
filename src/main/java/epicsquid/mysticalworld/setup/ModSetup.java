@@ -2,7 +2,6 @@ package epicsquid.mysticalworld.setup;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
-import epicsquid.mysticalworld.world.StructureGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -12,8 +11,8 @@ public class ModSetup {
 	private static ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");
 	private static ResourceLocation HUT = new ResourceLocation(MysticalWorld.MODID, "hut");
 
-	private StructureGenerator hutGenerator;
-	private StructureGenerator barrowGenerator;
+//	private StructureGenerator hutGenerator;
+//	private StructureGenerator barrowGenerator;
 
 	public void init(FMLCommonSetupEvent event) {
 //		if (Loader.isModLoaded("jeresources")) {

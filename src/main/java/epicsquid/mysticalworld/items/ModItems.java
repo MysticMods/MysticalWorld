@@ -8,4 +8,6 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ModItems {
 
 	public static final Item INK_BOTTLE = null;
+
+	public static final Item CARAPACE = null;
 }

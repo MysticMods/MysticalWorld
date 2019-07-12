@@ -14,7 +14,7 @@ public class MysticalWorld {
 	public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(ModItems.carapace);
+			return new ItemStack(ModItems.CARAPACE);
 		}
 	};
 
