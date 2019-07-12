@@ -1,9 +1,12 @@
 package epicsquid.mysticalworld.setup;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
+import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class ModSetup {
@@ -18,6 +21,8 @@ public class ModSetup {
 //		if (Loader.isModLoaded("jeresources")) {
 //			JERIntegration.init();
 //		}
+
+		CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
 
 		LootConditionManager.registerCondition(new HasHorns.Serializer());
 
