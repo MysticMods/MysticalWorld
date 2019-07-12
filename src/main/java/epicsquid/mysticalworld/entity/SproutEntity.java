@@ -83,6 +83,9 @@ public class SproutEntity extends AnimalEntity {
 			case 2: {
 				return new ResourceLocation("mysticalworld:entity/sprout_red");
 			}
+			case 3: {
+				return new ResourceLocation("mysticalworld:entity/sprout_purple");
+			}
 			default: {
 				return new ResourceLocation("mysticalworld:entity/sprout_green");
 			}

@@ -26,6 +26,9 @@ public class SproutRenderer extends LivingRenderer<SproutEntity, SproutModel> {
 			case 2: {
 				return new ResourceLocation("mysticalworld:textures/entity/sprout_red.png");
 			}
+			case 3: {
+				return new ResourceLocation("mysticalworld:textures/entity/sprout_purple.png");
+			}
 			default: {
 				return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");
 			}
