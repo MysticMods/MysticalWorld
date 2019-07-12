@@ -2,7 +2,6 @@ package epicsquid.mysticalworld;
 
 import epicsquid.mysticallib.block.BaseCropBlock;
 import epicsquid.mysticallib.item.SeedItem;
-import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.blocks.ModBlocks;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
 import epicsquid.mysticalworld.entity.*;
@@ -27,11 +26,11 @@ public class RegistryManager {
 
 	private static List<Block> blocks = new ArrayList<>();
 
-	public static EntityType<BeetleEntity> BEETLE;
-	public static EntityType<DeerEntity> DEER;
-	public static EntityType<FrogEntity> FROG;
-	public static EntityType<FoxEntity> SILVER_FOX;
-	public static EntityType<SproutEntity> SPROUT;
+	public static EntityType<BeetleEntity> BEETLE = EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).build("beetle");
+	public static EntityType<DeerEntity> DEER = EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).build("deer");
+	public static EntityType<FrogEntity> FROG = EntityType.Builder.create(FrogEntity::new, EntityClassification.AMBIENT).size(0.5f, 0.5f).build("frog");
+	public static EntityType<FoxEntity> SILVER_FOX = EntityType.Builder.create(FoxEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).build("silver_fox");
+	public static EntityType<SproutEntity> SPROUT = EntityType.Builder.create(SproutEntity::new, EntityClassification.CREATURE).size(0.5f, 1.0f).build("sprout");
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -49,7 +48,7 @@ public class RegistryManager {
 		event.getRegistry().register(new SpawnEggItem(DEER, 0xA18458, 0x5E4D33, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "deer_spawn_egg"));
 		event.getRegistry().register(new SpawnEggItem(FROG, 0x418594, 0x211D15, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "frog_spawn_egg"));
 		event.getRegistry().register(new SpawnEggItem(SPROUT, 0xe8F442, 0xD11f5A, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "sprout_spawn_egg"));
-		event.getRegistry().register(new SpawnEggItem(SPROUT, 0xD46724, 0xF5E0D3, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "silver_fox_spawn_egg"));
+		event.getRegistry().register(new SpawnEggItem(SILVER_FOX, 0xD46724, 0xF5E0D3, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "silver_fox_spawn_egg"));
 
 		blocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(block.getRegistryName())));
 	}
@@ -63,10 +62,10 @@ public class RegistryManager {
 
 	@SubscribeEvent
 	public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
-		event.getRegistry().register((BEETLE = EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).build("beetle")).setRegistryName(MysticalWorld.MODID, "beetle"));
-		event.getRegistry().register((DEER = EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).build("deer")).setRegistryName(MysticalWorld.MODID, "deer"));
-		event.getRegistry().register((SILVER_FOX = EntityType.Builder.create(FoxEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).build("silver_fox")).setRegistryName(MysticalWorld.MODID, "silver_fox"));
-		event.getRegistry().register((FROG = EntityType.Builder.create(FrogEntity::new, EntityClassification.AMBIENT).size(0.5f, 0.5f).build("frog")).setRegistryName(MysticalWorld.MODID, "frog"));
-		event.getRegistry().register((SPROUT = EntityType.Builder.create(SproutEntity::new, EntityClassification.CREATURE).size(0.5f, 1.0f).build("sprout")).setRegistryName(MysticalWorld.MODID, "sprout"));
+		event.getRegistry().register(BEETLE.setRegistryName(MysticalWorld.MODID, "beetle"));
+		event.getRegistry().register(DEER.setRegistryName(MysticalWorld.MODID, "deer"));
+		event.getRegistry().register(SILVER_FOX.setRegistryName(MysticalWorld.MODID, "silver_fox"));
+		event.getRegistry().register(FROG.setRegistryName(MysticalWorld.MODID, "frog"));
+		event.getRegistry().register(SPROUT.setRegistryName(MysticalWorld.MODID, "sprout"));
 	}
 }
