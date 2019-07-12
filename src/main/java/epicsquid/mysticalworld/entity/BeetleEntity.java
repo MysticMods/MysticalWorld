@@ -67,7 +67,7 @@ public class BeetleEntity extends AnimalEntity {
 	@Override
 	@Nonnull
 	public ResourceLocation getLootTable() {
-		return new ResourceLocation(MysticalWorld.MODID, "entity/beetle");
+		return new ResourceLocation(MysticalWorld.MODID, "entities/beetle");
 	}
 
 }

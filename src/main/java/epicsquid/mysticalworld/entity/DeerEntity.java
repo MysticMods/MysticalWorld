@@ -77,7 +77,7 @@ public class DeerEntity extends AnimalEntity {
 	@Override
 	@Nonnull
 	public ResourceLocation getLootTable() {
-		return new ResourceLocation(MysticalWorld.MODID, "entity/deer");
+		return new ResourceLocation(MysticalWorld.MODID, "entities/deer");
 	}
 
 	@Override

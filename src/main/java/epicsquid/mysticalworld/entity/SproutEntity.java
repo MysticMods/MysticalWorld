@@ -78,16 +78,16 @@ public class SproutEntity extends AnimalEntity {
 	public ResourceLocation getLootTable() {
 		switch (getDataManager().get(SproutEntity.variant)) {
 			case 1: {
-				return new ResourceLocation("mysticalworld:entity/sprout_tan");
+				return new ResourceLocation("mysticalworld:entities/sprout_tan");
 			}
 			case 2: {
-				return new ResourceLocation("mysticalworld:entity/sprout_red");
+				return new ResourceLocation("mysticalworld:entities/sprout_red");
 			}
 			case 3: {
-				return new ResourceLocation("mysticalworld:entity/sprout_purple");
+				return new ResourceLocation("mysticalworld:entities/sprout_purple");
 			}
 			default: {
-				return new ResourceLocation("mysticalworld:entity/sprout_green");
+				return new ResourceLocation("mysticalworld:entities/sprout_green");
 			}
 		}
 	}
