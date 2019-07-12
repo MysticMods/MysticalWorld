@@ -50,7 +50,7 @@ public class EntitySprout extends EntityAnimal {
   @Override
   protected void entityInit() {
     super.entityInit();
-    this.getDataManager().register(variant, rand.nextInt(3));
+    this.getDataManager().register(variant, rand.nextInt(4));
   }
 
   protected void initEntityAI() {
@@ -84,6 +84,9 @@ public class EntitySprout extends EntityAnimal {
       }
       case 2: {
         return new ResourceLocation("mysticalworld:entity/sprout_red");
+      }
+      case 3: {
+        return new ResourceLocation("mysticalworld:entity/sprout_purple");
       }
       default: {
         return new ResourceLocation("mysticalworld:entity/sprout_green");
