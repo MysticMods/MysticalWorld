@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "forge:copper_ore"
+  },
+  "result": "mysticalworld:copper_ingot",
+  "experience": 1.0,
+  "cookingtime": 100
+}
