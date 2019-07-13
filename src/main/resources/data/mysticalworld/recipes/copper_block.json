@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "tag": "forge:copper_ingot"
+      "tag": "forge:ingots/copper"
     }
   },
   "result": {
-    "tag": "forge:copper_storage_block"
+    "tag": "forge:storage_blocks/copper"
   }
 }

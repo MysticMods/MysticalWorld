@@ -3,11 +3,11 @@
   "group": "copper_ingot",
   "ingredients": [
     {
-      "tag": "forge:copper_storage_block"
+      "tag": "forge:storage_blocks/copper"
     }
   ],
   "result": {
-    "tag": "forge:copper_ingot",
+    "tag": "forge:ingots/copper",
     "count": 9
   }
 }

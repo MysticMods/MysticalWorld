@@ -8,10 +8,10 @@
   ],
   "key": {
     "#": {
-      "tag": "forge:copper_nugget"
+      "tag": "forge:nuggets/copper"
     }
   },
   "result": {
-    "tag": "forge:copper_ingot"
+    "tag": "forge:ingots/copper"
   }
 }

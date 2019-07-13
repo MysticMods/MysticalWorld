@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "forge:copper_ingot"
+      "tag": "forge:ingots/copper"
     }
   ],
   "result": {
-    "tag": "forge:copper_nugget",
+    "tag": "forge:nuggets/copper",
     "count": 9
   }
 }

@@ -10,7 +10,7 @@
       "item": "minecraft:stick"
     },
     "X": {
-      "tag": "forge:copper_ingot"
+      "tag": "forge:ingots/copper"
     }
   },
   "result": {
