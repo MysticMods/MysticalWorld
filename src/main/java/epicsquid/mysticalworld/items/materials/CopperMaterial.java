@@ -1,15 +1,20 @@
 package epicsquid.mysticalworld.items.materials;
 
+import epicsquid.mysticallib.block.OreBlockProperties;
 import epicsquid.mysticallib.material.BaseArmorMaterial;
 import epicsquid.mysticallib.material.BaseItemTier;
 import epicsquid.mysticallib.material.IMaterial;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.items.ModItems;
+import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvents;
+import net.minecraftforge.common.ToolType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,8 +60,23 @@ public class CopperMaterial implements IMaterial {
 	}
 
 	@Override
-	public Item.Properties getProps() {
+	public Item.Properties getItemProps() {
 		return new Item.Properties().group(MysticalWorld.ITEM_GROUP);
+	}
+
+	@Override
+	public Block.Properties getBlockProps() {
+		return Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(1);
+	}
+
+	@Override
+	public OreBlockProperties getBlockOreProps() {
+		return new OreBlockProperties(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(1), 1, 4);
+	}
+
+	@Override
+	public boolean hasOre() {
+		return true;
 	}
 
 	@Override
