@@ -7,7 +7,7 @@
     }
   ],
   "result": {
-    "tag": "forge:ingots/copper",
+    "item": "mysticalworld:copper_ingot",
     "count": 9
   }
 }

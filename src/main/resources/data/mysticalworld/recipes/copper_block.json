@@ -11,6 +11,6 @@
     }
   },
   "result": {
-    "tag": "forge:storage_blocks/copper"
+    "item": "mysticalworld:copper_block"
   }
 }

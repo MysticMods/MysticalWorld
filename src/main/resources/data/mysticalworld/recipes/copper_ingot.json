@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "mysticalworld:ores/copper_ore"
+    "tag": "forge:ores/copper"
   },
   "result": "mysticalworld:copper_ingot",
   "experience": 1.0,
