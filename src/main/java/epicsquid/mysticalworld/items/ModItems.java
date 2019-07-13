@@ -10,4 +10,6 @@ public class ModItems {
 	public static final Item INK_BOTTLE = null;
 
 	public static final Item CARAPACE = null;
+
+	public static final Item COPPER_INGOT = null;
 }

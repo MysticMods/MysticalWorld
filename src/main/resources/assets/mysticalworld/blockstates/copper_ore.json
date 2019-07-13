@@ -1,5 +1,5 @@
 {
-    "variants":{
-        "custom":  { "model": "mysticalworld:copper_ore" }
+    "variants": {
+        "": { "model": "mysticalworld:block/copper_ore" }
     }
 }

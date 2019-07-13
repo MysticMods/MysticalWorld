@@ -3,6 +3,8 @@ package epicsquid.mysticalworld.setup;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
+import epicsquid.mysticalworld.items.materials.CopperMaterial;
+import epicsquid.mysticalworld.items.materials.ModMaterials;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
@@ -16,6 +18,11 @@ public class ModSetup {
 
 //	private StructureGenerator hutGenerator;
 //	private StructureGenerator barrowGenerator;
+
+
+	public ModSetup() {
+		ModMaterials.addMaterial(new CopperMaterial());
+	}
 
 	public void init(FMLCommonSetupEvent event) {
 //		if (Loader.isModLoaded("jeresources")) {

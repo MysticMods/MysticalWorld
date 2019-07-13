@@ -1,16 +1,20 @@
 package epicsquid.mysticalworld;
 
+import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.block.BaseCropBlock;
+import epicsquid.mysticallib.item.KnifeItem;
 import epicsquid.mysticallib.item.SeedItem;
 import epicsquid.mysticalworld.blocks.ModBlocks;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
 import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.items.ModFoods;
+import epicsquid.mysticalworld.items.materials.ModMaterials;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.PlantType;
@@ -35,6 +39,7 @@ public class RegistryManager {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register(new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "carapace"));
+		event.getRegistry().register(new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "pelt"));
 		event.getRegistry().register(new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "antlers"));
 		event.getRegistry().register(new DyeItem(DyeColor.BLACK, new Item.Properties().group(MysticalWorld.ITEM_GROUP).containerItem(Items.GLASS_BOTTLE)).setRegistryName(MysticalWorld.MODID, "ink_bottle"));
 		event.getRegistry().register(new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.VENISION)).setRegistryName(MysticalWorld.MODID, "venison"));
@@ -50,6 +55,8 @@ public class RegistryManager {
 		event.getRegistry().register(new SpawnEggItem(SPROUT, 0xe8F442, 0xD11f5A, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "sprout_spawn_egg"));
 		event.getRegistry().register(new SpawnEggItem(SILVER_FOX, 0xD46724, 0xF5E0D3, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "silver_fox_spawn_egg"));
 
+		ModMaterials.getMaterials().forEach(mat -> LibRegistry.registerMetalSetItems(mat, event.getRegistry(), MysticalWorld.MODID));
+
 		blocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(block.getRegistryName())));
 	}
 
@@ -57,6 +64,9 @@ public class RegistryManager {
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		event.getRegistry().register(new BaseCropBlock(Block.Properties.create(Material.PLANTS), PlantType.Crop).setRegistryName(new ResourceLocation(MysticalWorld.MODID, "aubergine_crop")));
 		blocks.add(new ThatchBlock(Block.Properties.create(Material.WOOD).sound(SoundType.PLANT)).setRegistryName(new ResourceLocation(MysticalWorld.MODID, "thatch")));
+
+		ModMaterials.getMaterials().forEach(mat -> blocks.addAll(LibRegistry.registerMetalSetBlocks(mat, event.getRegistry(), MysticalWorld.MODID)));
+
 		blocks.forEach(block -> event.getRegistry().register(block));
 	}
 
