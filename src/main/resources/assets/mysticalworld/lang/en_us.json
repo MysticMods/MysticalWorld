@@ -14,26 +14,6 @@
   "block.mysticalworld.amethyst_block": "Block of Amethyst",
   "block.mysticalworld.amethyst_ore": "Amethyst Ore",
 
-  "_comment": "Tools",
-  "item.mysticalworld.copper_axe": "Copper Axe",
-  "item.mysticalworld.silver_axe": "Silver Axe",
-  "item.mysticalworld.amethyst_axe": "Amethyst Axe",
-  "item.mysticalworld.copper_hoe": "Copper Hoe",
-  "item.mysticalworld.silver_hoe": "Silver Hoe",
-  "item.mysticalworld.amethyst_hoe": "Amethyst Hoe",
-  "item.mysticalworld.copper_pickaxe": "Copper Pickaxe",
-  "item.mysticalworld.silver_pickaxe": "Silver Pickaxe",
-  "item.mysticalworld.amethyst_pickaxe": "Amethyst Pickaxe",
-  "item.mysticalworld.copper_shovel": "Copper Shovel",
-  "item.mysticalworld.silver_shovel": "Silver Shovel",
-  "item.mysticalworld.amethyst_shovel": "Amethyst Shovel",
-  "item.mysticalworld.copper_sword": "Copper Sword",
-  "item.mysticalworld.silver_sword": "Silver Sword",
-  "item.mysticalworld.amethyst_sword": "Amethyst Sword",
-  "item.mysticalworld.silver_knife": "Silver Knife",
-  "item.mysticalworld.copper_knife": "Copper Knife",
-  "item.mysticalworld.amethyst_knife": "Amethyst Knife",
-
   "_comment": "Advancements",
   "advancement.mysticalworld.root": "Mystical World",
   "advancement.mysticalworld.root.desc": "Breathe in a brand new, mystical world!",
@@ -56,7 +36,23 @@
   "item.mysticalworld.deer_spawn_egg": "Deer Spawn Egg",
   "item.mysticalworld.silver_fox_spawn_egg": "Silver Fox Spawn Egg",
 
-  "message.squid.cooldown": "Give it time to produce more ink!",
+  "block.mysticalworld.thatch": "Thatch",
 
-  "block.mysticalworld.thatch": "Thatch"
+  "item.mysticalworld.copper_ingot": "Copper Ingot",
+  "item.mysticalworld.copper_nugget": "Copper Nugget",
+  "item.mysticalworld.copper_pickaxe": "Copper Pickaxe",
+  "item.mysticalworld.copper_axe": "Copper Axe",
+  "item.mysticalworld.copper_sword": "Copper Sword",
+  "item.mysticalworld.copper_hoe": "Copper Hoe",
+  "item.mysticalworld.copper_shovel": "Copper Shovel",
+  "item.mysticalworld.copper_knife": "Copper Knife",
+  "item.mysticalworld.copper_spear": "Copper Spear",
+  "item.mysticalworld.copper_helmet": "Copper Helmet",
+  "item.mysticalworld.copper_chestplate": "Copper Chestplate",
+  "item.mysticalworld.copper_leggings": "Copper Leggings",
+  "item.mysticalworld.copper_boots": "Copper Boots",
+  "block.mysticalworld.copper_block": "Block of Copper",
+  "block.mysticalworld.copper_ore": "Copper Ore",
+
+  "message.squid.cooldown": "Give it time to produce more ink!"
 }
