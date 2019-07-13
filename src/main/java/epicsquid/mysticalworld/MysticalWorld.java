@@ -18,6 +18,13 @@ public class MysticalWorld {
 		}
 	};
 
+	public static final ItemGroup METAL_ITEM_GROUP = new ItemGroup("mysticalworld.metals") {
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(ModItems.SILVER_INGOT);
+		}
+	};
+
 	public static ModSetup setup = new ModSetup();
 
 	public MysticalWorld() {

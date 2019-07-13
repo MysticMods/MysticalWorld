@@ -61,7 +61,7 @@ public class SilverMaterial implements IMaterial {
 
 	@Override
 	public Item.Properties getItemProps() {
-		return new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(175);
+		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP).maxDamage(175);
 	}
 
 	@Override

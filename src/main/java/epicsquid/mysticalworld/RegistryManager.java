@@ -29,6 +29,7 @@ import java.util.List;
 public class RegistryManager {
 
 	private static List<Block> blocks = new ArrayList<>();
+	private static List<Block> metalBlocks = new ArrayList<>();
 
 	public static EntityType<BeetleEntity> BEETLE = EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).build("beetle");
 	public static EntityType<DeerEntity> DEER = EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).build("deer");
@@ -58,16 +59,17 @@ public class RegistryManager {
 		ModMaterials.getMaterials().forEach(mat -> LibRegistry.registerMetalSetItems(mat, event.getRegistry(), MysticalWorld.MODID));
 
 		blocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(block.getRegistryName())));
+		metalBlocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP)).setRegistryName(block.getRegistryName())));
 	}
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		event.getRegistry().register(new BaseCropBlock(Block.Properties.create(Material.PLANTS), PlantType.Crop).setRegistryName(new ResourceLocation(MysticalWorld.MODID, "aubergine_crop")));
 		blocks.add(new ThatchBlock(Block.Properties.create(Material.WOOD).sound(SoundType.PLANT)).setRegistryName(new ResourceLocation(MysticalWorld.MODID, "thatch")));
-
-		ModMaterials.getMaterials().forEach(mat -> blocks.addAll(LibRegistry.registerMetalSetBlocks(mat, event.getRegistry(), MysticalWorld.MODID)));
-
 		blocks.forEach(block -> event.getRegistry().register(block));
+
+		// These register themselves just fine
+		ModMaterials.getMaterials().forEach(mat -> metalBlocks.addAll(LibRegistry.registerMetalSetBlocks(mat, event.getRegistry(), MysticalWorld.MODID)));
 	}
 
 	@SubscribeEvent
