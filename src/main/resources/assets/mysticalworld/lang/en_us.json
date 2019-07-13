@@ -54,5 +54,21 @@
   "block.mysticalworld.copper_block": "Block of Copper",
   "block.mysticalworld.copper_ore": "Copper Ore",
 
+  "item.mysticalworld.silver_ingot": "Silver Ingot",
+  "item.mysticalworld.silver_nugget": "Silver Nugget",
+  "item.mysticalworld.silver_pickaxe": "Silver Pickaxe",
+  "item.mysticalworld.silver_axe": "Silver Axe",
+  "item.mysticalworld.silver_sword": "Silver Sword",
+  "item.mysticalworld.silver_hoe": "Silver Hoe",
+  "item.mysticalworld.silver_shovel": "Silver Shovel",
+  "item.mysticalworld.silver_knife": "Silver Knife",
+  "item.mysticalworld.silver_spear": "Silver Spear",
+  "item.mysticalworld.silver_helmet": "Silver Helmet",
+  "item.mysticalworld.silver_chestplate": "Silver Chestplate",
+  "item.mysticalworld.silver_leggings": "Silver Leggings",
+  "item.mysticalworld.silver_boots": "Silver Boots",
+  "block.mysticalworld.silver_block": "Block of Silver",
+  "block.mysticalworld.silver_ore": "Silver Ore",
+
   "message.squid.cooldown": "Give it time to produce more ink!"
 }
