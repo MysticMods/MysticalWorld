@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": [
+    {
+      "item": "mysticalworld:tin_pickaxe"
+    },
+    {
+      "item": "mysticalworld:tin_shovel"
+    },
+    {
+      "item": "mysticalworld:tin_axe"
+    },
+    {
+      "item": "mysticalworld:tin_hoe"
+    },
+    {
+      "item": "mysticalworld:tin_sword"
+    },
+    {
+      "item": "mysticalworld:tin_helmet"
+    },
+    {
+      "item": "mysticalworld:tin_chestplate"
+    },
+    {
+      "item": "mysticalworld:tin_leggings"
+    },
+    {
+      "item": "mysticalworld:tin_boots"
+    }
+  ],
+  "result": "mysticalworld:tin_nugget",
+  "experience": 0.1,
+  "cookingtime": 200
+}

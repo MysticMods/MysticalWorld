@@ -14,4 +14,8 @@ public class ModItems {
 	public static final Item COPPER_INGOT = null;
 
 	public static final Item SILVER_INGOT = null;
+
+	public static final Item LEAD_INGOT = null;
+
+	public static final Item TIN_INGOT = null;
 }

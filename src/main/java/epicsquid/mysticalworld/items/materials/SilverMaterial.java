@@ -51,17 +51,17 @@ public class SilverMaterial implements IMaterial {
 
 	@Override
 	public IItemTier getTier() {
-		return new BaseItemTier(175, 6.0f, 2.5f, 2, enchantability, () -> Ingredient.fromItems(ModItems.COPPER_INGOT));
+		return new BaseItemTier(175, 6.0f, 2.5f, 2, enchantability, () -> Ingredient.fromItems(ModItems.SILVER_INGOT));
 	}
 
 	@Override
 	public IArmorMaterial getArmor() {
-		return new BaseArmorMaterial(getName(), 15, new int[]{1, 3, 5, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0f, () -> Ingredient.fromItems(ModItems.SILVER_INGOT));
+		return new BaseArmorMaterial(getName(), 7, new int[]{1, 3, 5, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0f, () -> Ingredient.fromItems(ModItems.SILVER_INGOT));
 	}
 
 	@Override
 	public Item.Properties getItemProps() {
-		return new Item.Properties().group(MysticalWorld.ITEM_GROUP);
+		return new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(175);
 	}
 
 	@Override

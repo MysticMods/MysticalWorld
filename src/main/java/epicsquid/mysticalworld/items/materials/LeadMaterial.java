@@ -19,7 +19,7 @@ import net.minecraftforge.common.ToolType;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CopperMaterial implements IMaterial {
+public class LeadMaterial implements IMaterial {
 
 	private static final String SWORD = "SWORD";
 	private static final String KNIFE = "KNIFE";
@@ -29,39 +29,39 @@ public class CopperMaterial implements IMaterial {
 	private static final String HOE = "HOE";
 	private static final String SPEAR = "SPEAR";
 
-	private int enchantability = 7;
+	private int enchantability = 5;
 
 	private Map<String, Float> damage = new HashMap<>();
 	private Map<String, Float> speed = new HashMap<>();
 
-	public CopperMaterial() {
-		damage.put(SWORD, 3.0f);
+	public LeadMaterial() {
+		damage.put(SWORD, 2.5f);
 		damage.put(SHOVEL, 1.5f);
 		damage.put(PICKAXE, 1.0f);
-		damage.put(AXE, 6.0f);
-		damage.put(KNIFE, 2.5f);
+		damage.put(AXE, 7.0f);
+		damage.put(KNIFE, 1.5f);
 
 		speed.put(SWORD, -2.4f);
 		speed.put(SHOVEL, -3.0f);
 		speed.put(PICKAXE, -2.8f);
 		speed.put(AXE, -3.1f);
-		speed.put(KNIFE, -1.5f);
-		speed.put(HOE, -1.0f);
+		speed.put(KNIFE, -2.0f);
+		speed.put(HOE, -3.0f);
 	}
 
 	@Override
 	public IItemTier getTier() {
-		return new BaseItemTier(200, 4.0f, 2.0f, 2, enchantability, () -> Ingredient.fromItems(ModItems.COPPER_INGOT));
+		return new BaseItemTier(650, 4.0f, 2.5f, 2, enchantability, () -> Ingredient.fromItems(ModItems.LEAD_INGOT));
 	}
 
 	@Override
 	public IArmorMaterial getArmor() {
-		return new BaseArmorMaterial(getName(), 15, new int[]{2, 5, 6, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f, () -> Ingredient.fromItems(ModItems.COPPER_INGOT));
+		return new BaseArmorMaterial(getName(), 22, new int[]{2, 5, 6, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0f, () -> Ingredient.fromItems(ModItems.LEAD_INGOT));
 	}
 
 	@Override
 	public Item.Properties getItemProps() {
-		return new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(200);
+		return new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(650);
 	}
 
 	@Override
@@ -91,6 +91,6 @@ public class CopperMaterial implements IMaterial {
 
 	@Override
 	public String getName() {
-		return "copper";
+		return "lead";
 	}
 }

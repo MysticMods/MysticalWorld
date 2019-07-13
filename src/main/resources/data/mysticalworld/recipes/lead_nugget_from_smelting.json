@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": [
+    {
+      "item": "mysticalworld:lead_pickaxe"
+    },
+    {
+      "item": "mysticalworld:lead_shovel"
+    },
+    {
+      "item": "mysticalworld:lead_axe"
+    },
+    {
+      "item": "mysticalworld:lead_hoe"
+    },
+    {
+      "item": "mysticalworld:lead_sword"
+    },
+    {
+      "item": "mysticalworld:lead_helmet"
+    },
+    {
+      "item": "mysticalworld:lead_chestplate"
+    },
+    {
+      "item": "mysticalworld:lead_leggings"
+    },
+    {
+      "item": "mysticalworld:lead_boots"
+    }
+  ],
+  "result": "mysticalworld:lead_nugget",
+  "experience": 0.1,
+  "cookingtime": 200
+}

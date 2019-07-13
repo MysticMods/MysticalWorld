@@ -3,9 +3,7 @@ package epicsquid.mysticalworld.setup;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
-import epicsquid.mysticalworld.items.materials.CopperMaterial;
-import epicsquid.mysticalworld.items.materials.ModMaterials;
-import epicsquid.mysticalworld.items.materials.SilverMaterial;
+import epicsquid.mysticalworld.items.materials.*;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
@@ -24,6 +22,8 @@ public class ModSetup {
 	public ModSetup() {
 		ModMaterials.addMaterial(new CopperMaterial());
 		ModMaterials.addMaterial(new SilverMaterial());
+		ModMaterials.addMaterial(new LeadMaterial());
+		ModMaterials.addMaterial(new TinMaterial());
 	}
 
 	public void init(FMLCommonSetupEvent event) {

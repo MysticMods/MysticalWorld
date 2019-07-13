@@ -19,7 +19,7 @@ import net.minecraftforge.common.ToolType;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CopperMaterial implements IMaterial {
+public class TinMaterial implements IMaterial {
 
 	private static final String SWORD = "SWORD";
 	private static final String KNIFE = "KNIFE";
@@ -34,8 +34,8 @@ public class CopperMaterial implements IMaterial {
 	private Map<String, Float> damage = new HashMap<>();
 	private Map<String, Float> speed = new HashMap<>();
 
-	public CopperMaterial() {
-		damage.put(SWORD, 3.0f);
+	public TinMaterial() {
+		damage.put(SWORD, 3.5f);
 		damage.put(SHOVEL, 1.5f);
 		damage.put(PICKAXE, 1.0f);
 		damage.put(AXE, 6.0f);
@@ -44,24 +44,24 @@ public class CopperMaterial implements IMaterial {
 		speed.put(SWORD, -2.4f);
 		speed.put(SHOVEL, -3.0f);
 		speed.put(PICKAXE, -2.8f);
-		speed.put(AXE, -3.1f);
-		speed.put(KNIFE, -1.5f);
+		speed.put(AXE, -2.7f);
+		speed.put(KNIFE, -1.2f);
 		speed.put(HOE, -1.0f);
 	}
 
 	@Override
 	public IItemTier getTier() {
-		return new BaseItemTier(200, 4.0f, 2.0f, 2, enchantability, () -> Ingredient.fromItems(ModItems.COPPER_INGOT));
+		return new BaseItemTier(165, 6.5f, 2.0f, 2, enchantability, () -> Ingredient.fromItems(ModItems.TIN_INGOT));
 	}
 
 	@Override
 	public IArmorMaterial getArmor() {
-		return new BaseArmorMaterial(getName(), 15, new int[]{2, 5, 6, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f, () -> Ingredient.fromItems(ModItems.COPPER_INGOT));
+		return new BaseArmorMaterial(getName(), 10, new int[]{1, 4, 5, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f, () -> Ingredient.fromItems(ModItems.TIN_INGOT));
 	}
 
 	@Override
 	public Item.Properties getItemProps() {
-		return new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(200);
+		return new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(165);
 	}
 
 	@Override
@@ -91,6 +91,6 @@ public class CopperMaterial implements IMaterial {
 
 	@Override
 	public String getName() {
-		return "copper";
+		return "tin";
 	}
 }
