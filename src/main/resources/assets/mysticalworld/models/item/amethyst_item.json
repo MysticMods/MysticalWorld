@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "mysticalworld:items/amethyst_sword"
+        "layer0": "mysticalworld:items/amethyst_item"
     }
 }

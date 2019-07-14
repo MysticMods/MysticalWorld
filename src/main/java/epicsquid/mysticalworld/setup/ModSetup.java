@@ -24,6 +24,7 @@ public class ModSetup {
 		ModMaterials.addMaterial(new SilverMaterial());
 		ModMaterials.addMaterial(new LeadMaterial());
 		ModMaterials.addMaterial(new TinMaterial());
+		ModMaterials.addMaterial(new AmethystMaterial());
 	}
 
 	public void init(FMLCommonSetupEvent event) {

@@ -1,5 +1,5 @@
 {
-    "variants":{
-        "custom":  { "model": "mysticalworld:amethyst_ore" }
+    "variants": {
+        "": { "model": "mysticalworld:block/amethyst_ore" }
     }
 }

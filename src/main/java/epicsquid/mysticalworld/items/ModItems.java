@@ -18,4 +18,6 @@ public class ModItems {
 	public static final Item LEAD_INGOT = null;
 
 	public static final Item TIN_INGOT = null;
+
+	public static final Item AMETHYST = null;
 }

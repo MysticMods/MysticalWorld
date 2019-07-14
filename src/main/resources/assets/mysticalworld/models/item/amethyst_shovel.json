@@ -1,6 +1,6 @@
 {
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "mysticalworld:items/amethyst_shovel"
-  }
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "mysticalworld:items/amethyst_shovel"
+    }
 }

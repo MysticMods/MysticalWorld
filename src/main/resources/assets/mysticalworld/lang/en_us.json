@@ -11,10 +11,6 @@
   "item.mysticalworld.carapace": "Carapace",
   "item.mysticalworld.pelt": "Pelt",
 
-  "item.mysticalworld.amethyst_gem": "Amethyst",
-  "block.mysticalworld.amethyst_block": "Block of Amethyst",
-  "block.mysticalworld.amethyst_ore": "Amethyst Ore",
-
   "_comment": "Advancements",
   "advancement.mysticalworld.root": "Mystical World",
   "advancement.mysticalworld.root.desc": "Breathe in a brand new, mystical world!",
@@ -102,6 +98,21 @@
   "item.mysticalworld.tin_boots": "Tin Boots",
   "block.mysticalworld.tin_block": "Block of Tin",
   "block.mysticalworld.tin_ore": "Tin Ore",
+
+  "item.mysticalworld.amethyst": "Amethyst",
+  "item.mysticalworld.amethyst_pickaxe": "Amethyst Pickaxe",
+  "item.mysticalworld.amethyst_axe": "Amethyst Axe",
+  "item.mysticalworld.amethyst_sword": "Amethyst Sword",
+  "item.mysticalworld.amethyst_hoe": "Amethyst Hoe",
+  "item.mysticalworld.amethyst_shovel": "Amethyst Shovel",
+  "item.mysticalworld.amethyst_knife": "Amethyst Knife",
+  "item.mysticalworld.amethyst_spear": "Amethyst Spear",
+  "item.mysticalworld.amethyst_helmet": "Amethyst Helmet",
+  "item.mysticalworld.amethyst_chestplate": "Amethyst Chestplate",
+  "item.mysticalworld.amethyst_leggings": "Amethyst Leggings",
+  "item.mysticalworld.amethyst_boots": "Amethyst Boots",
+  "block.mysticalworld.amethyst_block": "Block of Amethyst",
+  "block.mysticalworld.amethyst_ore": "Amethyst Ore",
 
   "message.squid.cooldown": "Give it time to produce more ink!"
 }
