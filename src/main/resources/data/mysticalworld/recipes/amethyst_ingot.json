@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:ores/amethyst"
-  },
-  "result": "mysticalworld:amethyst_ingot",
-  "experience": 1.0,
-  "cookingtime": 200
-}

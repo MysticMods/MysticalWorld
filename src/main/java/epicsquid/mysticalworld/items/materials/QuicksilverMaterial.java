@@ -19,7 +19,7 @@ import net.minecraftforge.common.ToolType;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO buff this 
+// TODO buff this
 public class QuicksilverMaterial implements IMaterial {
 
 	private static final String SWORD = "SWORD";
