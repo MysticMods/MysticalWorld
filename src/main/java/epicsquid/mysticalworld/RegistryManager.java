@@ -4,11 +4,13 @@ import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.block.BaseCropBlock;
 import epicsquid.mysticallib.item.KnifeItem;
 import epicsquid.mysticallib.item.SeedItem;
+import epicsquid.mysticallib.material.IMaterial;
 import epicsquid.mysticalworld.blocks.ModBlocks;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
 import epicsquid.mysticalworld.entity.*;
-import epicsquid.mysticalworld.items.ModFoods;
+import epicsquid.mysticalworld.items.*;
 import epicsquid.mysticalworld.items.materials.ModMaterials;
+import epicsquid.mysticalworld.items.materials.QuicksilverMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -27,6 +29,14 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryManager {
+
+	private static final String SWORD = "SWORD";
+	private static final String KNIFE = "KNIFE";
+	private static final String PICKAXE = "PICKAXE";
+	private static final String AXE = "AXE";
+	private static final String SHOVEL = "SHOVEL";
+	private static final String HOE = "HOE";
+	private static final String SPEAR = "SPEAR";
 
 	private static List<Block> blocks = new ArrayList<>();
 	private static List<Block> metalBlocks = new ArrayList<>();
@@ -56,6 +66,20 @@ public class RegistryManager {
 		event.getRegistry().register(new SpawnEggItem(SPROUT, 0xe8F442, 0xD11f5A, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "sprout_spawn_egg"));
 		event.getRegistry().register(new SpawnEggItem(SILVER_FOX, 0xD46724, 0xF5E0D3, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "silver_fox_spawn_egg"));
 
+		IMaterial quickMat = new QuicksilverMaterial();
+		event.getRegistry().register(new Item(quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_ingot"));
+		event.getRegistry().register(new Item(quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_nugget"));
+		event.getRegistry().register(new QuicksilverSwordItem(quickMat.getTier(), (int) quickMat.getAttackDamage(SWORD), quickMat.getAttackSpeed(SWORD), quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_sword"));
+		event.getRegistry().register(new QuicksilverPickaxeItem(quickMat.getTier(), (int) quickMat.getAttackDamage(PICKAXE), quickMat.getAttackSpeed(PICKAXE), quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_pickaxe"));
+		event.getRegistry().register(new QuicksilverAxeItem(quickMat.getTier(), quickMat.getAttackDamage(AXE), quickMat.getAttackSpeed(AXE), quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_axe"));
+		event.getRegistry().register(new QuicksilverShovelItem(quickMat.getTier(), quickMat.getAttackDamage(SHOVEL), quickMat.getAttackSpeed(SHOVEL), quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_shovel"));
+		event.getRegistry().register(new QuicksilverKnifeItem(quickMat.getTier(), quickMat.getAttackDamage(KNIFE), quickMat.getAttackSpeed(KNIFE), quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_knife"));
+		event.getRegistry().register(new QuicksilverHoeItem(quickMat.getTier(), quickMat.getAttackSpeed(HOE), quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_hoe"));
+		event.getRegistry().register(new QuicksilverArmorItem(quickMat.getArmor(), EquipmentSlotType.HEAD, quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_helmet"));
+		event.getRegistry().register(new QuicksilverArmorItem(quickMat.getArmor(), EquipmentSlotType.CHEST, quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_chestplate"));
+		event.getRegistry().register(new QuicksilverArmorItem(quickMat.getArmor(), EquipmentSlotType.LEGS, quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_leggings"));
+		event.getRegistry().register(new QuicksilverArmorItem(quickMat.getArmor(), EquipmentSlotType.FEET, quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_boots"));
+
 		ModMaterials.getMaterials().forEach(mat -> LibRegistry.registerMetalSetItems(mat, event.getRegistry(), MysticalWorld.MODID));
 
 		blocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(block.getRegistryName())));
@@ -69,6 +93,8 @@ public class RegistryManager {
 		blocks.forEach(block -> event.getRegistry().register(block));
 
 		// These register themselves just fine
+		// TODO clean this up
+		blocks.addAll(LibRegistry.registerMetalSetBlocks(new QuicksilverMaterial(), event.getRegistry(), MysticalWorld.MODID));
 		ModMaterials.getMaterials().forEach(mat -> metalBlocks.addAll(LibRegistry.registerMetalSetBlocks(mat, event.getRegistry(), MysticalWorld.MODID)));
 	}
 
