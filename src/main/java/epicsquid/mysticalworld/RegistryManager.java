@@ -94,7 +94,7 @@ public class RegistryManager {
 
 		// These register themselves just fine
 		// TODO clean this up
-		blocks.addAll(LibRegistry.registerMetalSetBlocks(new QuicksilverMaterial(), event.getRegistry(), MysticalWorld.MODID));
+		metalBlocks.addAll(LibRegistry.registerMetalSetBlocks(new QuicksilverMaterial(), event.getRegistry(), MysticalWorld.MODID));
 		ModMaterials.getMaterials().forEach(mat -> metalBlocks.addAll(LibRegistry.registerMetalSetBlocks(mat, event.getRegistry(), MysticalWorld.MODID)));
 	}
 
