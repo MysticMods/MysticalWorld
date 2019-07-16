@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.entity.model;
 
 import net.minecraft.resources.IResourceManager;
-import net.minecraft.resources.IResourceManagerReloadListener;
 import net.minecraftforge.resource.IResourceType;
 import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 
