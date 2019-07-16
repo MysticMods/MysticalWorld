@@ -3,7 +3,7 @@ package epicsquid.mysticalworld.items.materials;
 import epicsquid.mysticallib.block.OreBlockProperties;
 import epicsquid.mysticallib.material.BaseArmorMaterial;
 import epicsquid.mysticallib.material.BaseItemTier;
-import epicsquid.mysticallib.material.IMaterial;
+import epicsquid.mysticallib.material.IMetalMaterial;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.items.ModItems;
 import net.minecraft.block.Block;
@@ -19,7 +19,7 @@ import net.minecraftforge.common.ToolType;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TinMaterial implements IMaterial {
+public class TinMaterial implements IMetalMaterial {
 
 	private static final String SWORD = "SWORD";
 	private static final String KNIFE = "KNIFE";
@@ -72,11 +72,6 @@ public class TinMaterial implements IMaterial {
 	@Override
 	public OreBlockProperties getBlockOreProps() {
 		return new OreBlockProperties(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(1), 1, 4);
-	}
-
-	@Override
-	public boolean hasOre() {
-		return true;
 	}
 
 	@Override

@@ -1,10 +1,9 @@
 package epicsquid.mysticalworld;
 
-import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.block.BaseCropBlock;
-import epicsquid.mysticallib.item.KnifeItem;
 import epicsquid.mysticallib.item.SeedItem;
 import epicsquid.mysticallib.material.IMaterial;
+import epicsquid.mysticallib.material.MaterialGenerator;
 import epicsquid.mysticalworld.blocks.ModBlocks;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
 import epicsquid.mysticalworld.entity.*;
@@ -80,7 +79,7 @@ public class RegistryManager {
 		event.getRegistry().register(new QuicksilverArmorItem(quickMat.getArmor(), EquipmentSlotType.LEGS, quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_leggings"));
 		event.getRegistry().register(new QuicksilverArmorItem(quickMat.getArmor(), EquipmentSlotType.FEET, quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_boots"));
 
-		ModMaterials.getMaterials().forEach(mat -> LibRegistry.registerMetalSetItems(mat, event.getRegistry(), MysticalWorld.MODID));
+		ModMaterials.getMaterials().forEach(mat -> MaterialGenerator.getInstance().generateItems(mat, event.getRegistry(), MysticalWorld.MODID));
 
 		blocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(block.getRegistryName())));
 		metalBlocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP)).setRegistryName(block.getRegistryName())));
@@ -94,8 +93,8 @@ public class RegistryManager {
 
 		// These register themselves just fine
 		// TODO clean this up
-		metalBlocks.addAll(LibRegistry.registerMetalSetBlocks(new QuicksilverMaterial(), event.getRegistry(), MysticalWorld.MODID));
-		ModMaterials.getMaterials().forEach(mat -> metalBlocks.addAll(LibRegistry.registerMetalSetBlocks(mat, event.getRegistry(), MysticalWorld.MODID)));
+		metalBlocks.addAll(MaterialGenerator.getInstance().generateBlocks(new QuicksilverMaterial(), event.getRegistry(), MysticalWorld.MODID));
+		ModMaterials.getMaterials().forEach(mat -> metalBlocks.addAll(MaterialGenerator.getInstance().generateBlocks(mat, event.getRegistry(), MysticalWorld.MODID)));
 	}
 
 	@SubscribeEvent
