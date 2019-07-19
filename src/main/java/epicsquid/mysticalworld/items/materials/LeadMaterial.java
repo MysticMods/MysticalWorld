@@ -51,7 +51,7 @@ public class LeadMaterial implements IMetalMaterial {
 
 	@Override
 	public IItemTier getTier() {
-		return new BaseItemTier(650, 4.0f, 2.5f, 2, enchantability, () -> Ingredient.fromItems(ModItems.LEAD_INGOT));
+		return new BaseItemTier(getDurability(), 4.0f, 2.5f, 2, enchantability, () -> Ingredient.fromItems(ModItems.LEAD_INGOT));
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class LeadMaterial implements IMetalMaterial {
 
 	@Override
 	public Item.Properties getItemProps() {
-		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP).maxDamage(650);
+		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP);
 	}
 
 	@Override
@@ -87,5 +87,10 @@ public class LeadMaterial implements IMetalMaterial {
 	@Override
 	public String getName() {
 		return "lead";
+	}
+
+	@Override
+	public int getDurability() {
+		return 650;
 	}
 }

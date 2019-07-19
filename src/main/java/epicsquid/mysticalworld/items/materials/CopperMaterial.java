@@ -51,7 +51,7 @@ public class CopperMaterial implements IMetalMaterial {
 
 	@Override
 	public IItemTier getTier() {
-		return new BaseItemTier(200, 4.0f, 2.0f, 2, enchantability, () -> Ingredient.fromItems(ModItems.COPPER_INGOT));
+		return new BaseItemTier(getDurability(), 4.0f, 2.0f, 2, enchantability, () -> Ingredient.fromItems(ModItems.COPPER_INGOT));
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class CopperMaterial implements IMetalMaterial {
 
 	@Override
 	public Item.Properties getItemProps() {
-		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP).maxDamage(200);
+		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP);
 	}
 
 	@Override
@@ -87,5 +87,10 @@ public class CopperMaterial implements IMetalMaterial {
 	@Override
 	public String getName() {
 		return "copper";
+	}
+
+	@Override
+	public int getDurability() {
+		return 200;
 	}
 }

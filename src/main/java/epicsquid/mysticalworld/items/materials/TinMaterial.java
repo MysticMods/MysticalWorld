@@ -51,7 +51,7 @@ public class TinMaterial implements IMetalMaterial {
 
 	@Override
 	public IItemTier getTier() {
-		return new BaseItemTier(165, 6.5f, 2.0f, 2, enchantability, () -> Ingredient.fromItems(ModItems.TIN_INGOT));
+		return new BaseItemTier(getDurability(), 6.5f, 2.0f, 2, enchantability, () -> Ingredient.fromItems(ModItems.TIN_INGOT));
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class TinMaterial implements IMetalMaterial {
 
 	@Override
 	public Item.Properties getItemProps() {
-		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP).maxDamage(165);
+		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP);
 	}
 
 	@Override
@@ -87,5 +87,10 @@ public class TinMaterial implements IMetalMaterial {
 	@Override
 	public String getName() {
 		return "tin";
+	}
+
+	@Override
+	public int getDurability() {
+		return 165;
 	}
 }

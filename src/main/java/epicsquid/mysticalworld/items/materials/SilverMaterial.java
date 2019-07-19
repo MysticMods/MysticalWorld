@@ -51,7 +51,7 @@ public class SilverMaterial implements IMetalMaterial {
 
 	@Override
 	public IItemTier getTier() {
-		return new BaseItemTier(175, 6.0f, 2.5f, 2, enchantability, () -> Ingredient.fromItems(ModItems.SILVER_INGOT));
+		return new BaseItemTier(getDurability(), 6.0f, 2.5f, 2, enchantability, () -> Ingredient.fromItems(ModItems.SILVER_INGOT));
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class SilverMaterial implements IMetalMaterial {
 
 	@Override
 	public Item.Properties getItemProps() {
-		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP).maxDamage(175);
+		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP);
 	}
 
 	@Override
@@ -87,5 +87,10 @@ public class SilverMaterial implements IMetalMaterial {
 	@Override
 	public String getName() {
 		return "silver";
+	}
+
+	@Override
+	public int getDurability() {
+		return 175;
 	}
 }

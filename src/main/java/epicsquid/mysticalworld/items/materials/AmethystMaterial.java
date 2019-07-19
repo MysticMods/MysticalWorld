@@ -51,7 +51,7 @@ public class AmethystMaterial implements IGemMaterial {
 
 	@Override
 	public IItemTier getTier() {
-		return new BaseItemTier(960, 8.0f, 3.0f, 3, enchantability, () -> Ingredient.fromItems(ModItems.AMETHYST));
+		return new BaseItemTier(getDurability(), 8.0f, 3.0f, 3, enchantability, () -> Ingredient.fromItems(ModItems.AMETHYST));
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class AmethystMaterial implements IGemMaterial {
 
 	@Override
 	public Item.Properties getItemProps() {
-		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP).maxDamage(960);
+		return new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP);
 	}
 
 	@Override
@@ -87,5 +87,10 @@ public class AmethystMaterial implements IGemMaterial {
 	@Override
 	public String getName() {
 		return "amethyst";
+	}
+
+	@Override
+	public int getDurability() {
+		return 960;
 	}
 }
