@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mysticalworld:amethyst_ore"
+          "name": "mysticalworld:amethyst"
         }
       ],
       "conditions": [
