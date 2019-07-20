@@ -10,4 +10,11 @@ public class ModBlocks {
   public static final Block THATCH = null;
 
   public static final Block AUBERGINE_CROP = null;
+
+  public static final Block COPPER_ORE = null;
+  public static final Block SILVER_ORE = null;
+  public static final Block TIN_ORE = null;
+  public static final Block LEAD_ORE = null;
+  public static final Block QUICKSILVER_ORE = null;
+  public static final Block AMETHYST_ORE = null;
 }

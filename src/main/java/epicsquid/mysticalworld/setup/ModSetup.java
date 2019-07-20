@@ -1,10 +1,12 @@
 package epicsquid.mysticalworld.setup;
 
+import epicsquid.mysticallib.world.OreGenerator;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.items.materials.*;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
+import epicsquid.mysticalworld.world.OreGen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -35,6 +37,9 @@ public class ModSetup {
 		CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
 
 		LootConditionManager.registerCondition(new HasHorns.Serializer());
+
+		OreGen.registerOre();
+		OreGen.generators.forEach(OreGenerator::init);
 
 		// Register spawns for mobs
 
