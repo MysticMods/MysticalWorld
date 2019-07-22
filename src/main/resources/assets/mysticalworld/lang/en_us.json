@@ -130,5 +130,11 @@
   "block.mysticalworld.amethyst_block": "Block of Amethyst",
   "block.mysticalworld.amethyst_ore": "Amethyst Ore",
 
+  "item.mysticalworld.iron_knife": "Iron Knife",
+  "item.mysticalworld.wood_knife": "Wooden Knife",
+  "item.mysticalworld.stone_knife": "Stone Knife",
+  "item.mysticalworld.gold_knife": "Golden Knife",
+  "item.mysticalworld.diamond_knife": "Diamond Knife",
+
   "message.squid.cooldown": "Give it time to produce more ink!"
 }

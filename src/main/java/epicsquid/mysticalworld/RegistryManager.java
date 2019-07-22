@@ -8,8 +8,13 @@ import epicsquid.mysticalworld.blocks.ModBlocks;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
 import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.items.*;
+import epicsquid.mysticalworld.items.materials.DiamondMaterial;
+import epicsquid.mysticalworld.items.materials.GoldMaterial;
+import epicsquid.mysticalworld.items.materials.IronMaterial;
 import epicsquid.mysticalworld.items.materials.ModMaterials;
 import epicsquid.mysticalworld.items.materials.QuicksilverMaterial;
+import epicsquid.mysticalworld.items.materials.StoneMaterial;
+import epicsquid.mysticalworld.items.materials.WoodMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -80,6 +85,13 @@ public class RegistryManager {
 		event.getRegistry().register(new QuicksilverArmorItem(quickMat.getArmor(), EquipmentSlotType.FEET, quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_boots"));
 
 		ModMaterials.getMaterials().forEach(mat -> MaterialGenerator.getInstance().generateItems(mat, event.getRegistry(), MysticalWorld.MODID));
+
+		// Vanilla Knives and Spears
+		MaterialGenerator.getInstance().generateItems(new WoodMaterial(), event.getRegistry(), MysticalWorld.MODID);
+		MaterialGenerator.getInstance().generateItems(new StoneMaterial(), event.getRegistry(), MysticalWorld.MODID);
+		MaterialGenerator.getInstance().generateItems(new IronMaterial(), event.getRegistry(), MysticalWorld.MODID);
+		MaterialGenerator.getInstance().generateItems(new GoldMaterial(), event.getRegistry(), MysticalWorld.MODID);
+		MaterialGenerator.getInstance().generateItems(new DiamondMaterial(), event.getRegistry(), MysticalWorld.MODID);
 
 		blocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(block.getRegistryName())));
 		metalBlocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP)).setRegistryName(block.getRegistryName())));
