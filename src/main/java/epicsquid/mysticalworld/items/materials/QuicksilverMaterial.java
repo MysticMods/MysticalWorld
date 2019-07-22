@@ -92,6 +92,6 @@ public class QuicksilverMaterial implements IMetalMaterial {
 
 	@Override
 	public int getDurability() {
-		return 175;
+		return 75;
 	}
 }
