@@ -50,6 +50,7 @@
   "item.mysticalworld.copper_boots": "Copper Boots",
   "block.mysticalworld.copper_block": "Block of Copper",
   "block.mysticalworld.copper_ore": "Copper Ore",
+  "item.mysticalworld.copper_dust": "Copper Dust",
 
   "item.mysticalworld.silver_ingot": "Silver Ingot",
   "item.mysticalworld.silver_nugget": "Silver Nugget",
@@ -66,6 +67,8 @@
   "item.mysticalworld.silver_boots": "Silver Boots",
   "block.mysticalworld.silver_block": "Block of Silver",
   "block.mysticalworld.silver_ore": "Silver Ore",
+  "item.mysticalworld.silver_dust": "Silver Dust",
+
 
   "item.mysticalworld.lead_ingot": "Lead Ingot",
   "item.mysticalworld.lead_nugget": "Lead Nugget",
@@ -82,6 +85,8 @@
   "item.mysticalworld.lead_boots": "Lead Boots",
   "block.mysticalworld.lead_block": "Block of Lead",
   "block.mysticalworld.lead_ore": "Lead Ore",
+  "item.mysticalworld.lead_dust": "Lead Dust",
+
 
   "item.mysticalworld.tin_ingot": "Tin Ingot",
   "item.mysticalworld.tin_nugget": "Tin Nugget",
@@ -98,6 +103,8 @@
   "item.mysticalworld.tin_boots": "Tin Boots",
   "block.mysticalworld.tin_block": "Block of Tin",
   "block.mysticalworld.tin_ore": "Tin Ore",
+  "item.mysticalworld.tin_dust": "Tin Dust",
+
 
   "item.mysticalworld.quicksilver_ingot": "Quicksilver Ingot",
   "item.mysticalworld.quicksilver_nugget": "Quicksilver Nugget",
@@ -114,6 +121,8 @@
   "item.mysticalworld.quicksilver_boots": "Quicksilver Boots",
   "block.mysticalworld.quicksilver_block": "Block of Quicksilver",
   "block.mysticalworld.quicksilver_ore": "Quicksilver Ore",
+  "item.mysticalworld.quicksilver_dust": "Quicksilver Dust",
+
 
   "item.mysticalworld.amethyst": "Amethyst",
   "item.mysticalworld.amethyst_pickaxe": "Amethyst Pickaxe",
@@ -135,6 +144,9 @@
   "item.mysticalworld.stone_knife": "Stone Knife",
   "item.mysticalworld.gold_knife": "Golden Knife",
   "item.mysticalworld.diamond_knife": "Diamond Knife",
+
+  "item.mysticalworld.gold_dust": "Gold Dust",
+  "item.mysticalworld.iron_dust": "Iron Dust",
 
   "message.squid.cooldown": "Give it time to produce more ink!"
 }

@@ -82,6 +82,7 @@ public class GoldMaterial implements IMaterial {
 	public List<String> getWhitelist() {
 		List<String> whitelist = new ArrayList<>();
 		whitelist.add("knife");
+		whitelist.add("dust");
 		//		whitelist.add("spear");
 		return whitelist;
 	}
