@@ -73,6 +73,7 @@ public class RegistryManager {
 		IMaterial quickMat = new QuicksilverMaterial();
 		event.getRegistry().register(new Item(quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_ingot"));
 		event.getRegistry().register(new Item(quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_nugget"));
+		event.getRegistry().register(new Item(quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_dust"));
 		event.getRegistry().register(new QuicksilverSwordItem(quickMat.getTier(), (int) quickMat.getAttackDamage(SWORD), quickMat.getAttackSpeed(SWORD), quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_sword"));
 		event.getRegistry().register(new QuicksilverPickaxeItem(quickMat.getTier(), (int) quickMat.getAttackDamage(PICKAXE), quickMat.getAttackSpeed(PICKAXE), quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_pickaxe"));
 		event.getRegistry().register(new QuicksilverAxeItem(quickMat.getTier(), quickMat.getAttackDamage(AXE), quickMat.getAttackSpeed(AXE), quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_axe"));
