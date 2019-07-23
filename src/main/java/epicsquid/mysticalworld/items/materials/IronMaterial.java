@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.items.materials;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,10 +81,6 @@ public class IronMaterial implements IMaterial {
 
 	@Override
 	public List<String> getWhitelist() {
-		List<String> whitelist = new ArrayList<>();
-		whitelist.add("knife");
-		whitelist.add("dust");
-		//		whitelist.add("spear");
-		return whitelist;
+		return Arrays.asList("knife", "dust", "spear");
 	}
 }

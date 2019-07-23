@@ -1,16 +1,14 @@
 package epicsquid.mysticalworld.items.materials;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import epicsquid.mysticallib.block.OreBlockProperties;
-import epicsquid.mysticallib.material.BaseArmorMaterial;
 import epicsquid.mysticallib.material.BaseItemTier;
 import epicsquid.mysticallib.material.IMaterial;
-import epicsquid.mysticallib.material.IMetalMaterial;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.items.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
@@ -19,7 +17,6 @@ import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.SoundEvents;
 import net.minecraftforge.common.ToolType;
 
 public class CactusMaterial implements IMaterial {
@@ -72,7 +69,7 @@ public class CactusMaterial implements IMaterial {
 
 	@Override
 	public OreBlockProperties getBlockOreProps() {
-		return new OreBlockProperties(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(1), 1, 4);
+		return null;
 	}
 
 	@Override
@@ -97,7 +94,7 @@ public class CactusMaterial implements IMaterial {
 
 	@Override
 	public List<String> getWhitelist() {
-		return null;
+		return Arrays.asList("ingot", "", "nugget", "dust");
 	}
 
 	@Override
