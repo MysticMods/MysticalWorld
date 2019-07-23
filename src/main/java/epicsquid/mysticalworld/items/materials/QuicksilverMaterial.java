@@ -72,7 +72,7 @@ public class QuicksilverMaterial implements IMetalMaterial {
 
 	@Override
 	public OreBlockProperties getBlockOreProps() {
-		return new OreBlockProperties(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(1), 1, 4);
+		return new OreBlockProperties(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(1), 0, 0);
 	}
 
 	@Override
