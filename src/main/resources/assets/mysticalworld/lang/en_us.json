@@ -145,6 +145,20 @@
   "item.mysticalworld.gold_knife": "Golden Knife",
   "item.mysticalworld.diamond_knife": "Diamond Knife",
 
+  "item.mysticalworld.iron_spear": "Iron Spear",
+  "item.mysticalworld.wood_spear": "Wooden Spear",
+  "item.mysticalworld.stone_spear": "Stone Spear",
+  "item.mysticalworld.gold_spear": "Golden Spear",
+  "item.mysticalworld.diamond_spear": "Diamond Spear",
+
+  "item.mysticalworld.cactus_pickaxe": "Cactus Pickaxe",
+  "item.mysticalworld.cactus_axe": "Cactus Axe",
+  "item.mysticalworld.cactus_sword": "Cactus Sword",
+  "item.mysticalworld.cactus_hoe": "Cactus Hoe",
+  "item.mysticalworld.cactus_shovel": "Cactus Shovel",
+  "item.mysticalworld.cactus_knife": "Cactus Knife",
+  "item.mysticalworld.cactus_spear": "Cactus Spear",
+
   "item.mysticalworld.gold_dust": "Gold Dust",
   "item.mysticalworld.iron_dust": "Iron Dust",
 

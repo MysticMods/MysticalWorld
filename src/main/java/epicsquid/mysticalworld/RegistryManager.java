@@ -87,13 +87,6 @@ public class RegistryManager {
 
 		ModMaterials.getMaterials().forEach(mat -> MaterialGenerator.getInstance().generateItems(mat, event.getRegistry(), MysticalWorld.MODID));
 
-		// Vanilla Knives and Spears
-		MaterialGenerator.getInstance().generateItems(new WoodMaterial(), event.getRegistry(), MysticalWorld.MODID);
-		MaterialGenerator.getInstance().generateItems(new StoneMaterial(), event.getRegistry(), MysticalWorld.MODID);
-		MaterialGenerator.getInstance().generateItems(new IronMaterial(), event.getRegistry(), MysticalWorld.MODID);
-		MaterialGenerator.getInstance().generateItems(new GoldMaterial(), event.getRegistry(), MysticalWorld.MODID);
-		MaterialGenerator.getInstance().generateItems(new DiamondMaterial(), event.getRegistry(), MysticalWorld.MODID);
-
 		blocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(block.getRegistryName())));
 		metalBlocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP)).setRegistryName(block.getRegistryName())));
 	}

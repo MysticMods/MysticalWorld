@@ -89,16 +89,11 @@ public class CactusMaterial implements IMaterial {
 
 	@Override
 	public int getDurability() {
-		return 101;
+		return 76;
 	}
 
 	@Override
 	public List<String> getWhitelist() {
-		return Arrays.asList("ingot", "", "nugget", "dust");
-	}
-
-	@Override
-	public boolean isBlacklist() {
-		return true;
+		return Arrays.asList("sword", "knife", "hoe", "pickaxe", "axe", "shovel", "spear");
 	}
 }
