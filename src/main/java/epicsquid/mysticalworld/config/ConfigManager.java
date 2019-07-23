@@ -12,6 +12,9 @@ public class ConfigManager {
   @Config.Comment(("Inject some items from Mystical World into dungeon & other loot chests"))
   public static boolean InjectLoot = true;
 
+  @Config.Comment(("Enable squid drops"))
+  public static boolean InjectSquid = true;
+
   @Config.Comment(("Minimum number of pulls for injected loot"))
   public static int InjectMinimum = 1;
 

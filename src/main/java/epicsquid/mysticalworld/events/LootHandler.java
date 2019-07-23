@@ -7,6 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -28,5 +30,19 @@ public class LootHandler {
         event.getTable().addPool(pool);
       }
     }
+    if (ConfigManager.InjectSquid) {
+      if (event.getName() == LootTableList.ENTITIES_SQUID) {
+        RandomValueRange range = new RandomValueRange(0, 2);
+        LootPool pool = new LootPool(new LootEntry[]{
+            new LootEntryTable(new ResourceLocation(MysticalWorld.MODID, "entity/squid_inject"), 40, 0, new LootCondition[0], "MysticalWorld")
+        }, new LootCondition[]{}, range, range, "MysticalWorld");
+        event.getTable().addPool(pool);
+      }
+    }
+  }
+
+  @SubscribeEvent
+  public static void onLootDrop (LivingDropsEvent event) {
+
   }
 }
