@@ -8,6 +8,9 @@ entity.entity_sprout.name=Sprout
 
 item.carapace.name=Carapace
 item.pelt.name=Pelt
+item.raw_squid.name=Raw Squid
+item.cooked_squid.name=Calamari
+item.epic_squid.name=Epic Squid
 
 # Ingots
 item.copper_ingot.name=Copper Ingot

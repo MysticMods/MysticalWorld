@@ -23,5 +23,15 @@
     "item": "mysticalworld:copper_pickaxe",
     "data": 0,
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "mysticalworld:config",
+      "config": "copper"
+    },
+    {
+      "type": "mysticalworld:config",
+      "config": "copper_pickaxe"
+    }
+  ]
 }

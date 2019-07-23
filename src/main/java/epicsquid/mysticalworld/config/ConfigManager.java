@@ -226,6 +226,113 @@ public class ConfigManager {
     public boolean enableSootyIron = true;*/
   }
 
+  @Config.Comment("Tool/Weapon Enablind")
+  public static ConfigMysticalWorldToolEnable toolEnable = new ConfigMysticalWorldToolEnable();
+
+  public static class ConfigMysticalWorldToolEnable {
+    @Config.Comment("Set to false to disable silver tool recipes entirely")
+    @Config.Name("Enable silver tools")
+    public boolean enableSilver = true;
+
+    @Config.Comment("Set to false to disable copper tool recipes entirely")
+    @Config.Name("Enable copper tools")
+    public boolean enableCopper = true;
+
+    @Config.Comment("Set to false to disable amethyst tool recipes entirely")
+    @Config.Name("Enable amethyst tools")
+    public boolean enableAmethyst = true;
+
+    @Config.Comment("Settings for individual Amethyst tool recipes")
+    @Config.Name("Amethyst Tool recipes")
+    public AmethystTools amethystTools = new AmethystTools();
+
+    @Config.Comment("Settings for individual Copper tool recipes")
+    @Config.Name("Copper Tool recipes")
+    public CopperTools copperTools = new CopperTools();
+
+    @Config.Comment("Settings for individual Silver tool recipes")
+    @Config.Name("Silver Tool recipes")
+    public SilverTools silverTools = new SilverTools();
+
+    public static class AmethystTools {
+      @Config.Comment("Set to false to disable the amethyst axe recipe")
+      @Config.Name("Enable amethyst axe")
+      public boolean amethystAxe = true;
+
+      @Config.Comment("Set to false to disable the amethyst hoe recipe")
+      @Config.Name("Enable amethyst hoe")
+      public boolean amethystHoe = true;
+
+      @Config.Comment("Set to false to disable the amethyst knife recipe")
+      @Config.Name("Enable amethyst knife")
+      public boolean amethystKnife = true;
+
+      @Config.Comment("Set to false to disable the amethyst pickaxe recipe")
+      @Config.Name("Enable amethyst pickaxe")
+      public boolean amethystPickaxe = true;
+
+      @Config.Comment("Set to false to disable the amethyst shovel recipe")
+      @Config.Name("Enable amethyst shovel")
+      public boolean amethystShovel = true;
+
+      @Config.Comment("Set to false to disable the amethyst sword recipe")
+      @Config.Name("Enable amethyst sword")
+      public boolean amethystSword = true;
+    }
+
+    public static class CopperTools {
+      @Config.Comment("Set to false to disable the copper axe recipe")
+      @Config.Name("Enable copper axe")
+      public boolean copperAxe = true;
+
+      @Config.Comment("Set to false to disable the copper hoe recipe")
+      @Config.Name("Enable copper hoe")
+      public boolean copperHoe = true;
+
+      @Config.Comment("Set to false to disable the copper knife recipe")
+      @Config.Name("Enable copper knife")
+      public boolean copperKnife = true;
+
+      @Config.Comment("Set to false to disable the copper pickaxe recipe")
+      @Config.Name("Enable copper pickaxe")
+      public boolean copperPickaxe = true;
+
+      @Config.Comment("Set to false to disable the copper shovel recipe")
+      @Config.Name("Enable copper shovel")
+      public boolean copperShovel = true;
+
+      @Config.Comment("Set to false to disable the copper sword recipe")
+      @Config.Name("Enable copper sword")
+      public boolean copperSword = true;
+    }
+
+    public static class SilverTools {
+      @Config.Comment("Set to false to disable the silver axe recipe")
+      @Config.Name("Enable silver axe")
+      public boolean silverAxe = true;
+
+      @Config.Comment("Set to false to disable the silver hoe recipe")
+      @Config.Name("Enable silver hoe")
+      public boolean silverHoe = true;
+
+      @Config.Comment("Set to false to disable the silver knife recipe")
+      @Config.Name("Enable silver knife")
+      public boolean silverKnife = true;
+
+      @Config.Comment("Set to false to disable the silver pickaxe recipe")
+      @Config.Name("Enable silver pickaxe")
+      public boolean silverPickaxe = true;
+
+      @Config.Comment("Set to false to disable the silver shovel recipe")
+      @Config.Name("Enable silver shovel")
+      public boolean silverShovel = true;
+
+      @Config.Comment("Set to false to disable the silver sword recipe")
+      @Config.Name("Enable silver sword")
+      public boolean silverSword = true;
+    }
+  }
+
   @Config.Comment("Ore Debugging Options")
   public static ConfigMysticalWorldOreDebugging oreDebugging = new ConfigMysticalWorldOreDebugging();
 

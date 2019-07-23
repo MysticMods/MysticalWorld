@@ -21,5 +21,15 @@
   "result": {
     "item": "mysticalworld:amethyst_knife",
     "data": 0
-  }
+  },
+  "conditions": [
+    {
+      "type": "mysticalworld:config",
+      "config": "amethyst"
+    },
+    {
+      "type": "mysticalworld:config",
+      "config": "amethyst_knife"
+    }
+  ]
 }

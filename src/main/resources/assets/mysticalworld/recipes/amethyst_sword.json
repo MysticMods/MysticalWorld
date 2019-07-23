@@ -23,5 +23,15 @@
     "item": "mysticalworld:amethyst_sword",
     "data": 0,
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "mysticalworld:config",
+      "config": "amethyst"
+    },
+    {
+      "type": "mysticalworld:config",
+      "config": "amethyst_sword"
+    }
+  ]
 }

@@ -23,5 +23,15 @@
     "item": "mysticalworld:silver_shovel",
     "data": 0,
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "mysticalworld:config",
+      "config": "silver"
+    },
+    {
+      "type": "mysticalworld:config",
+      "config": "silver_shovel"
+    }
+  ]
 }

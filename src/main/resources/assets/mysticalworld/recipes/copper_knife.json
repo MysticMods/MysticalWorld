@@ -21,5 +21,15 @@
   "result": {
     "item": "mysticalworld:copper_knife",
     "data": 0
-  }
+  },
+  "conditions": [
+    {
+      "type": "mysticalworld:config",
+      "config": "copper"
+    },
+    {
+      "type": "mysticalworld:config",
+      "config": "copper_knife"
+    }
+  ]
 }

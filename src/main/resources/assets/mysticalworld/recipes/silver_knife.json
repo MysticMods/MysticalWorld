@@ -21,5 +21,15 @@
   "result": {
     "item": "mysticalworld:silver_knife",
     "data": 0
-  }
+  },
+  "conditions": [
+    {
+      "type": "mysticalworld:config",
+      "config": "silver"
+    },
+    {
+      "type": "mysticalworld:config",
+      "config": "silver_knife"
+    }
+  ]
 }
