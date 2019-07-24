@@ -1,11 +1,13 @@
 package epicsquid.mysticalworld;
 
+import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.items.ModItems;
 import epicsquid.mysticalworld.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 @Mod("mysticalworld")
 public class MysticalWorld {
@@ -29,5 +31,7 @@ public class MysticalWorld {
 
 	public MysticalWorld() {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(setup::init);
+
+		ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
 	}
 }

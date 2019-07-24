@@ -19,10 +19,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -110,5 +113,8 @@ public class RegistryManager {
 		event.getRegistry().register(SILVER_FOX.setRegistryName(MysticalWorld.MODID, "silver_fox"));
 		event.getRegistry().register(FROG.setRegistryName(MysticalWorld.MODID, "frog"));
 		event.getRegistry().register(SPROUT.setRegistryName(MysticalWorld.MODID, "sprout"));
+
+		// Register spawns
+
 	}
 }

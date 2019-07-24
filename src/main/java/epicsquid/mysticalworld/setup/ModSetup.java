@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.setup;
 
-import epicsquid.mysticallib.world.OreGenerator;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
@@ -44,11 +43,7 @@ public class ModSetup {
 
 		LootConditionManager.registerCondition(new HasHorns.Serializer());
 
-		OreGen.registerOre();
-		OreGen.generators.forEach(OreGenerator::init);
-
-		// Register spawns for mobs
-
+		OreGen.registerOreGeneration();
 
 		// TODO world gen
 //		if (ConfigManager.BarrowDistance != -1) {
