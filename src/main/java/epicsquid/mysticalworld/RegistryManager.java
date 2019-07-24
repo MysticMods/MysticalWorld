@@ -8,24 +8,16 @@ import epicsquid.mysticalworld.blocks.ModBlocks;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
 import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.items.*;
-import epicsquid.mysticalworld.items.materials.DiamondMaterial;
-import epicsquid.mysticalworld.items.materials.GoldMaterial;
-import epicsquid.mysticalworld.items.materials.IronMaterial;
 import epicsquid.mysticalworld.items.materials.ModMaterials;
 import epicsquid.mysticalworld.items.materials.QuicksilverMaterial;
-import epicsquid.mysticalworld.items.materials.StoneMaterial;
-import epicsquid.mysticalworld.items.materials.WoodMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -118,6 +110,6 @@ public class RegistryManager {
 		event.getRegistry().register(SPROUT.setRegistryName(MysticalWorld.MODID, "sprout"));
 
 		// Register spawns
-
+		ModEntities.registerMobSpawns();
 	}
 }
