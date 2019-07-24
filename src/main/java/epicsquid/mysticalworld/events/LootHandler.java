@@ -16,6 +16,7 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public class LootHandler {
 	private static Set<ResourceLocation> tables = Sets.newHashSet(LootTables.CHESTS_SIMPLE_DUNGEON, LootTables.CHESTS_ABANDONED_MINESHAFT, LootTables.CHESTS_DESERT_PYRAMID, LootTables.CHESTS_JUNGLE_TEMPLE, LootTables.CHESTS_WOODLAND_MANSION);
+	private static ResourceLocation grass_table = new ResourceLocation("minecraft", "blocks/grass");
 
 	@SubscribeEvent
 	public static void onLootLoad(LootTableLoadEvent event) {
@@ -26,5 +27,10 @@ public class LootHandler {
 			event.getTable().addPool(pool);
 		}
 //    }
+
+		// Inject grass drops - should prevent having to override the entire grass drop table
+		if (event.getName().equals(grass_table)) {
+			event.getTable().addPool(LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(MysticalWorld.MODID, "blocks/grass"))).build());
+		}
 	}
 }
