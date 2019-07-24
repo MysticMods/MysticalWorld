@@ -6,7 +6,10 @@ import java.util.Set;
 import epicsquid.mysticalworld.RegistryManager;
 import epicsquid.mysticalworld.config.ConfigManager;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeDictionary;
 
 public class ModEntities {
@@ -69,5 +72,16 @@ public class ModEntities {
 		}
 
 		biomes.clear();
+
+		EntitySpawnPlacementRegistry.register(RegistryManager.DEER, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+				AnimalEntity::func_223316_b);
+		EntitySpawnPlacementRegistry.register(RegistryManager.FROG, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+				AnimalEntity::func_223316_b);
+		EntitySpawnPlacementRegistry.register(RegistryManager.SPROUT, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+				AnimalEntity::func_223316_b);
+		EntitySpawnPlacementRegistry.register(RegistryManager.SILVER_FOX, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+				AnimalEntity::func_223316_b);
+		EntitySpawnPlacementRegistry.register(RegistryManager.BEETLE, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+				AnimalEntity::func_223316_b);
 	}
 }
