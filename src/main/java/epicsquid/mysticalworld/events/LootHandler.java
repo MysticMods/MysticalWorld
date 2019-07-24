@@ -33,9 +33,10 @@ public class LootHandler {
     if (ConfigManager.InjectSquid) {
       if (event.getName() == LootTableList.ENTITIES_SQUID) {
         RandomValueRange range = new RandomValueRange(0, 2);
+        RandomValueRange range2 = new RandomValueRange(0);
         LootPool pool = new LootPool(new LootEntry[]{
-            new LootEntryTable(new ResourceLocation(MysticalWorld.MODID, "entity/squid_inject"), 40, 0, new LootCondition[0], "MysticalWorld")
-        }, new LootCondition[]{}, range, range, "MysticalWorld");
+            new LootEntryTable(new ResourceLocation(MysticalWorld.MODID, "entity/squid_inject"), 100, 0, new LootCondition[0], "MysticalWorld")
+        }, new LootCondition[]{}, range, range2, "MysticalWorld");
         event.getTable().addPool(pool);
       }
     }
