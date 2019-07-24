@@ -1,21 +1,15 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "CDC",
+    "CAC",
     "AEA",
-    "CDC"
+    "CAC"
     ],
   "key": {
     "A": [
       {
         "type": "mysticalworld:multi_ore",
         "ores": ["gemAmethyst", "gemDiamond"]
-      }
-    ],
-    "D": [
-      {
-        "type": "forge:ore_dict",
-        "ore": "gemDiamond"
       }
     ],
     "E": [

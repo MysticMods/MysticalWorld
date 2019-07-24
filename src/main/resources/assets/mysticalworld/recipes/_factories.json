@@ -1,8 +1,8 @@
 {
   "conditions": {
-    "config": "epicsquid.mysticalworld.recipes.ConfigurableRecipesFactory"
+    "config": "epicsquid.mysticalworld.recipe.ConfigurableRecipesFactory"
   },
   "ingredients": {
-    "multi_ore": "epicsquid.mysticalworld.recipes.MultiOreIngredient$Factory"
+    "multi_ore": "epicsquid.mysticallib.recipe.factories.MultiOreIngredient$Factory"
   }
 }

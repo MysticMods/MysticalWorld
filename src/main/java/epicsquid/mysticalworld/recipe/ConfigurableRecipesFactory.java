@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.recipes;
+package epicsquid.mysticalworld.recipe;
 
 import com.google.gson.JsonObject;
 import epicsquid.mysticalworld.config.ConfigManager;
