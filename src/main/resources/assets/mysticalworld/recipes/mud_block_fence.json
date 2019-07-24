@@ -1,0 +1,19 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "DDD",
+    "DDD"
+    ],
+  "key": {
+    "D": [
+      {
+        "item": "mysticalworld:mud_block_slab"
+      }
+    ]
+  },
+  "result": {
+    "item": "mysticalworld:mud_block_fence",
+    "data": 0,
+    "count": 3
+  }
+}

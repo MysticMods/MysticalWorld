@@ -138,6 +138,25 @@ tile.caminite_bricks_slab.name=Caminite Brick Slab
 tile.caminite_bricks_double_slab.name=Caminite Brick Double Slab
 tile.caminite_bricks_wall.name=Caminite Brick Wall
 
+# Mud Brick
+tile.wet_mud_brick.name=Wet Mud Brick
+tile.wet_mud_block.name=Wet Mud Block
+tile.mud_brick.name=Mud Brick
+tile.mud_block.name=Mud Block
+tile.mud_block_stairs.name=Mud Block Stairs
+tile.mud_block_slab.name=Mud Block Slab
+tile.mud_block_wall.name=Mud Block Wall
+tile.mud_block_button.name=Mud Block Button
+tile.mud_block_pressure_plate.name=Mud Block Pressure Plate
+tile.mud_block_fence.name=Mud Block Fence
+tile.mud_brick_stairs.name=Mud Brick Stairs
+tile.mud_brick_slab.name=Mud Brick Slab
+tile.mud_brick_wall.name=Mud Brick Wall
+tile.mud_brick_button.name=Mud Brick Button
+tile.mud_brick_pressure_plate.name=Mud Brick Pressure Plate
+tile.mud_brick_fence.name=Mud Brick Fence
+
+
 #Solar Infused
 tile.solar_infused_stone.name=Solar Infused Stone
 tile.solar_infused_stone_stairs.name=Solar Infused Stone Stairs

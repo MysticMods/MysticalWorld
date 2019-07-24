@@ -77,6 +77,8 @@ public class ModRecipes {
     GameRegistry.addSmelting(new ItemStack(ModItems.venison, 1), new ItemStack(ModItems.cooked_venison), 0.1f);
     GameRegistry.addSmelting(ModItems.aubergine, new ItemStack(ModItems.cooked_aubergine), 0.125f);
     GameRegistry.addSmelting(ModItems.raw_squid, new ItemStack(ModItems.cooked_squid, 2), 0.125f);
+    GameRegistry.addSmelting(ModBlocks.wet_mud_block, new ItemStack(ModBlocks.mud_block), 0.125f);
+    GameRegistry.addSmelting(ModBlocks.wet_mud_brick, new ItemStack(ModBlocks.mud_brick), 0.125f);
   }
 
   /**
