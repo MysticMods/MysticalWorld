@@ -18,6 +18,8 @@
   "advancement.mysticalworld.amethyst.desc": "Find a gem more divine than diamond!",
   "advancement.mysticalworld.aubergine": "That's No Carrot...",
   "advancement.mysticalworld.aubergine.desc": "Once, purple carrots were all the rage. But this is an aubergine.",
+  "advancement.mysticalworld.epic_squid": "Epic Squid!",
+  "advancement.mysticalworld.epic_squid.desc": "Partake in some of the delicious, purple-y goodness of Epic Squid.",
 
   "item.mysticalworld.venison": "Venison",
   "item.mysticalworld.cooked_venison": "Cooked Venison",
@@ -161,6 +163,10 @@
 
   "item.mysticalworld.gold_dust": "Gold Dust",
   "item.mysticalworld.iron_dust": "Iron Dust",
+
+  "item.mysticalworld.raw_squid": "Raw Squid",
+  "item.mysticalworld.cooked_squid": "Calamari",
+  "item.mysticalworld.epic_squid": "Epic Squid",
 
   "message.squid.cooldown": "Give it time to produce more ink!"
 }

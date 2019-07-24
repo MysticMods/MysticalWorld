@@ -1,0 +1,7 @@
+{
+  "replace": "false",
+  "value": [
+    "#forge:gems/amethyst",
+    "#forge:gems/diamond"
+  ]
+}

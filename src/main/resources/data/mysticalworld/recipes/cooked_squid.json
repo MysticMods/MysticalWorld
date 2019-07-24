@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "mysticalworld:raw_squid"
+  },
+  "result": "mysticalworld:cooked_squid",
+  "experience": 0.3,
+  "cookingtime": 200
+}
