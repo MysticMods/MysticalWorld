@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "mysticalworld:amethyst_gem"
+      "item": "mysticalworld:amethyst"
     },
     "title": {
       "translate": "advancement.mysticalworld.amethyst"
@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:amethyst_gem"
+            "item": "mysticalworld:amethyst"
           }
         ]
       }

@@ -68,7 +68,7 @@ public class RegistryManager {
 		event.getRegistry().register(new SeedItem(new Item.Properties().group(MysticalWorld.ITEM_GROUP), ModBlocks.AUBERGINE_CROP, PlantType.Crop).setRegistryName(MysticalWorld.MODID, "aubergine_seed"));
 		event.getRegistry().register(new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.RAW_SQUID)).setRegistryName(MysticalWorld.MODID, "raw_squid"));
 		event.getRegistry().register(new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.COOKED_SQUID)).setRegistryName(MysticalWorld.MODID, "cooked_squid"));
-		event.getRegistry().register(new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.EPIC_SQUID).rarity(Rarity.EPIC)).setRegistryName(MysticalWorld.MODID, "epic_squid"));
+		event.getRegistry().register(new EffectItem(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.EPIC_SQUID).rarity(Rarity.EPIC)).setRegistryName(MysticalWorld.MODID, "epic_squid"));
 
 		event.getRegistry().register(new SpawnEggItem(BEETLE, 0x418594, 0x211D15, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "beetle_spawn_egg"));
 		event.getRegistry().register(new SpawnEggItem(DEER, 0xA18458, 0x5E4D33, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "deer_spawn_egg"));

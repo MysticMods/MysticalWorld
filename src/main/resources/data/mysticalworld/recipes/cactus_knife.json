@@ -9,7 +9,7 @@
       "item": "minecraft:stick"
     },
     "X": {
-      "tag": "forge:ingots/cactus"
+      "item": "minecraft:cactus"
     }
   },
   "result": {

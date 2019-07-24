@@ -6,21 +6,15 @@
     "CAC"
   ],
   "key": {
-    "A": [
-      {
-        "tag": "mysticalworld:gem"
-      }
-    ],
-    "E": [
-      {
-        "tag": "forge:gems/emerald"
-      }
-    ],
-    "C": [
-      {
-        "item": "mysticalworld:cooked_squid"
-      }
-    ]
+    "A": {
+      "tag": "mysticalworld:gem"
+    },
+    "E": {
+      "tag": "forge:gems/emerald"
+    },
+    "C": {
+      "item": "mysticalworld:cooked_squid"
+    }
   },
   "result": {
     "item": "mysticalworld:epic_squid"
