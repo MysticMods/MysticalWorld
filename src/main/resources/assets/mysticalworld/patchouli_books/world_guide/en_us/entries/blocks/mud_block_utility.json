@@ -13,6 +13,7 @@
       "type": "crafting",
       "recipe": "mysticalworld:mud_block_pressure_plate",
       "recipe2": "mysticalworld:mud_brick_pressure_plate",
+      "link_recipe": true,
       "title": "Pressure plates"
     },
     {
@@ -25,6 +26,7 @@
       "type": "crafting",
       "recipe": "mysticalworld:mud_block_button",
       "recipe2": "mysticalworld:mud_brick_button",
+      "link_recipe": true,
       "title": "Pressure plates"
     }
   ]
