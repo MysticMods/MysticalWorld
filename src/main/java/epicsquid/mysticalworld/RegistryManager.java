@@ -1,27 +1,38 @@
 package epicsquid.mysticalworld;
 
+import epicsquid.mysticallib.MysticalLib;
 import epicsquid.mysticallib.block.BaseCropBlock;
 import epicsquid.mysticallib.item.SeedItem;
 import epicsquid.mysticallib.material.IMaterial;
 import epicsquid.mysticallib.material.MaterialGenerator;
 import epicsquid.mysticalworld.blocks.ModBlocks;
+import epicsquid.mysticalworld.blocks.PaintedChestBlock;
+import epicsquid.mysticalworld.blocks.PaintedChestItemStackRenderer;
+import epicsquid.mysticalworld.blocks.PaintedChestTileEntity;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
 import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.items.*;
 import epicsquid.mysticalworld.items.materials.ModMaterials;
 import epicsquid.mysticalworld.items.materials.QuicksilverMaterial;
 import net.minecraft.block.Block;
+import net.minecraft.block.ChestBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.container.ChestContainer;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
+import net.minecraft.tileentity.ChestTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.PlantType;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +50,7 @@ public class RegistryManager {
 
 	private static List<Block> blocks = new ArrayList<>();
 	private static List<Block> metalBlocks = new ArrayList<>();
+	private static List<Block> chestBlocks = new ArrayList<>();
 
 	public static EntityType<BeetleEntity> BEETLE = EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).build("beetle");
 	public static EntityType<DeerEntity> DEER = EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).build("deer");
@@ -87,13 +99,17 @@ public class RegistryManager {
 
 		blocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(block.getRegistryName())));
 		metalBlocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP)).setRegistryName(block.getRegistryName())));
+		chestBlocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.ITEM_GROUP).setTEISR(() -> PaintedChestItemStackRenderer::new)).setRegistryName(block.getRegistryName())));
 	}
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+		IForgeRegistry<Block> registry = event.getRegistry();
 		event.getRegistry().register(new BaseCropBlock(Block.Properties.create(Material.PLANTS), PlantType.Crop).setRegistryName(new ResourceLocation(MysticalWorld.MODID, "aubergine_crop")));
 		blocks.add(new ThatchBlock(Block.Properties.create(Material.WOOD).sound(SoundType.PLANT)).setRegistryName(new ResourceLocation(MysticalWorld.MODID, "thatch")));
-		blocks.forEach(block -> event.getRegistry().register(block));
+		chestBlocks.add(new PaintedChestBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F).sound(SoundType.WOOD)).setRegistryName(MysticalWorld.MODID, "red_painted_chest"));
+		blocks.forEach(registry::register);
+		chestBlocks.forEach(registry::register);
 
 		// These register themselves just fine
 		// TODO clean this up
@@ -111,5 +127,15 @@ public class RegistryManager {
 
 		// Register spawns
 		ModEntities.registerMobSpawns();
+	}
+
+	@SubscribeEvent
+	public static void onTileEntityRegistry(RegistryEvent.Register<TileEntityType<?>> event) {
+		event.getRegistry().register(TileEntityType.Builder.create(PaintedChestTileEntity::new, ModBlocks.RED_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "red_painted_chest"));
+	}
+
+	@SubscribeEvent
+	public static void onContainerRegistry(RegistryEvent.Register<ContainerType<?>> event) {
+		event.getRegistry().register(IForgeContainerType.create(((windowId, inv, data) -> ChestContainer.createGeneric9X3(windowId, MysticalLib.proxy.getClientPlayer().inventory, inv))).setRegistryName(MysticalWorld.MODID, "red_painted_chest"));
 	}
 }
