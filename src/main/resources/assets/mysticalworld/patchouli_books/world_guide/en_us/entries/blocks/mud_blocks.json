@@ -1,0 +1,27 @@
+{
+  "name": "Wet Mud",
+  "icon": "mysticalworld:wet_mud_block",
+  "category": "blocks",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:wet_mud_block",
+      "link_recipe": true,
+      "text": "When placed in the world, wet mud blocks & bricks will slow any player walking on them, but slowly dry over time. To speed up the process, you can use a furnace."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:wet_mud_block",
+      "recipe2": "mysticalworld:wet_mud_brick",
+      "title": "Wet Mud Blocks",
+      "text": "Wet bricks are also craftable."
+    },
+    {
+      "type": "smelting",
+      "recipe": "mysticalworld:wet_mud_block",
+      "recipe2": "mysticalworld:wet_mud_brick",
+      "title": "Quicker Crafting",
+      "text": "Rather than waiting for the mud to dry, you can smelt mud blocks & bricks in a furnace to make the process quicker."
+    }
+  ]
+}

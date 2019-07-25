@@ -71,7 +71,7 @@ public class ConfigManager {
   @Config.Comment(("Controls the spawn settings of Sprout"))
   public static ConfigMysticalWorldSprout sprout = new ConfigMysticalWorldSprout();
 
-  public static class ConfigMysticalWorldSprout {
+  public static class ConfigMysticalWorldSprout  {
     @Config.Comment(("Spawn rate of sprouts"))
     public int rate = 2;
 
@@ -85,7 +85,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"JUNGLE", "LUSH", "MAGICAL", "RIVER", "FOREST", "BEACH"};
   }
 
-  public static class ConfigMysticalWorldDeer {
+  public static class ConfigMysticalWorldDeer  {
     @Config.Comment(("Spawn rate of deer"))
     public int rate = 6;
 
@@ -99,7 +99,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"FOREST", "COLD", "CONIFEROUS", "PLAINS"};
   }
 
-  public static class ConfigMysticalWorldFox {
+  public static class ConfigMysticalWorldFox  {
     @Config.Comment(("Spawn rate of fox"))
     public int rate = 4;
 
@@ -113,7 +113,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"FOREST", "COLD", "CONIFEROUS"};
   }
 
-  public static class ConfigMysticalWorldBeetle {
+  public static class ConfigMysticalWorldBeetle  {
     @Config.Comment(("Spawn rate of beetle"))
     public int rate = 5;
 
@@ -127,7 +127,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"SWAMP", "JUNGLE", "FOREST", "PLAINS"};
   }
 
-  public static class ConfigMysticalWorldFrog {
+  public static class ConfigMysticalWorldFrog  {
     @Config.Comment(("Spawn rate of frog"))
     public int rate = 6;
 

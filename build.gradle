@@ -72,6 +72,7 @@ dependencies {
         exclude group: 'mezz.jei'
     }
     deobfCompile "info.tehnut.harvest:Harvest:1.12-1.2.7-20"
+    compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}"
 }
 
 processResources {
