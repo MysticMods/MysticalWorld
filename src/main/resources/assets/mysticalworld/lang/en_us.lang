@@ -156,6 +156,16 @@ tile.mud_brick_button.name=Mud Brick Button
 tile.mud_brick_pressure_plate.name=Mud Brick Pressure Plate
 tile.mud_brick_fence.name=Mud Brick Fence
 
+# Charred
+tile.charred_planks.name=Charred Planks
+tile.charred_log.name=Charred Log
+tile.charred_stairs.name=Charred Stairs
+tile.charred_slab.name=Charred Slab
+tile.charred_wall.name=Charred Wall
+tile.charred_button.name=Charred Button
+tile.charred_pressure_plate.name=Charred Pressure Plate
+tile.charred_fence.name=Charred Fence
+
 
 #Solar Infused
 tile.solar_infused_stone.name=Solar Infused Stone

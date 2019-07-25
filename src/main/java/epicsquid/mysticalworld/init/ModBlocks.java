@@ -16,6 +16,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 
 public class ModBlocks {
@@ -23,9 +26,10 @@ public class ModBlocks {
   // All blocks
   public static Block thatch, cobblestone_door;
   public static BlockCropBase aubergine;
-  public static Block mud_block, wet_mud_block, mud_brick, wet_mud_brick;
+  public static Block mud_block, wet_mud_block, mud_brick, wet_mud_brick, charred_log, charred_planks;
   public static Block mud_brick_stair, mud_brick_slab, mud_brick_double_slab, mud_brick_wall, mud_brick_fence, mud_brick_button, mud_brick_pressure_plate, mud_brick_door, mud_brick_trapdoor;
   public static Block mud_block_stair, mud_block_slab, mud_block_double_slab, mud_block_wall, mud_block_fence, mud_block_button, mud_block_pressure_plate, mud_block_door, mud_block_trapdoor;
+  public static Block charred_stair, charred_slab, charred_double_slab, charred_wall, charred_fence, charred_button, charred_pressure_plate;
 
   /**
    * Register all blocks
@@ -47,6 +51,48 @@ public class ModBlocks {
     }
 
     event.addBlock(aubergine = new BlockAubergineCrop("aubergine_crop", EnumPlantType.Crop));
+
+
+    event.addBlock(charred_log = new BlockLogBase("charred_log") {
+      @Override
+      public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return 0;
+      }
+
+      @Override
+      public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return 0;
+      }
+
+      @Override
+      public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return false;
+      }
+    }.setCreativeTab(MysticalWorld.tab));
+    event.addBlock(charred_planks = new BlockBase(Material.WOOD, SoundType.WOOD, 2.0f, "charred_planks") {
+      @Override
+      public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return 0;
+      }
+
+      @Override
+      public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return 0;
+      }
+
+      @Override
+      public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return false;
+      }
+    }.setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    Variants charred = variants(event, charred_planks, "charred", SoundType.WOOD, Material.WOOD);
+    charred_slab = charred.slab;
+    charred_stair = charred.stairs;
+    charred_button = charred.button;
+    charred_double_slab = charred.double_slab;
+    charred_wall = charred.wall;
+    charred_pressure_plate = charred.pressure_plate;
+    event.addBlock(charred_fence = new BlockFenceBase(charred_planks, SoundType.WOOD, 2.0f, "charred_fence").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
     event.addBlock(mud_block = new BlockBase(Material.ROCK, SoundType.STONE, 1.4f, "mud_block").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
     event.addBlock(mud_brick = new BlockBase(Material.ROCK, SoundType.STONE, 1.4f, "mud_brick").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);

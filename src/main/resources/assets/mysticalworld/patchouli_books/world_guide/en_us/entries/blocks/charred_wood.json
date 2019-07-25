@@ -1,0 +1,33 @@
+{
+  "name": "Charred Wood",
+  "icon": "mysticalworld:charred_log",
+  "category": "blocks",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:charred_log",
+      "text": "Found in the world where wood has been burned or trees have perhaps been struck by lightning, these logs server a purely decorative purpose and cannot be used as fuel."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:charred_planks",
+      "text": "Logs can be converted into planks in the standard fashion."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:charred_stairs",
+      "recipe2": "mysticalworld:charred_slab",
+      "text": "Planks can be converted into a variety of decorative blocks."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:charred_wall",
+      "recipe2": "mysticalworld:charred_fence"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:charred_button",
+      "recipe2": "mysticalworld:charred_pressure_plate"
+    }
+  ]
+}
