@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:dyes/red"
+    },
+    {
+      "tag": "forge:chests"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:red_painted_chest"
+  }
+}

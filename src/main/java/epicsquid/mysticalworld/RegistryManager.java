@@ -11,6 +11,7 @@ import epicsquid.mysticalworld.blocks.PaintedChestItemStackRenderer;
 import epicsquid.mysticalworld.blocks.PaintedChestTileEntity;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
 import epicsquid.mysticalworld.entity.*;
+import epicsquid.mysticalworld.init.ModTileEntities;
 import epicsquid.mysticalworld.items.*;
 import epicsquid.mysticalworld.items.materials.ModMaterials;
 import epicsquid.mysticalworld.items.materials.QuicksilverMaterial;
@@ -107,7 +108,9 @@ public class RegistryManager {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		event.getRegistry().register(new BaseCropBlock(Block.Properties.create(Material.PLANTS), PlantType.Crop).setRegistryName(new ResourceLocation(MysticalWorld.MODID, "aubergine_crop")));
 		blocks.add(new ThatchBlock(Block.Properties.create(Material.WOOD).sound(SoundType.PLANT)).setRegistryName(new ResourceLocation(MysticalWorld.MODID, "thatch")));
-		chestBlocks.add(new PaintedChestBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F).sound(SoundType.WOOD)).setRegistryName(MysticalWorld.MODID, "red_painted_chest"));
+		for (DyeColor dye : DyeColor.values()) {
+			chestBlocks.add(new PaintedChestBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F).sound(SoundType.WOOD), dye).setRegistryName(MysticalWorld.MODID, dye.getName() + "_painted_chest"));
+		}
 		blocks.forEach(registry::register);
 		chestBlocks.forEach(registry::register);
 
@@ -131,7 +134,22 @@ public class RegistryManager {
 
 	@SubscribeEvent
 	public static void onTileEntityRegistry(RegistryEvent.Register<TileEntityType<?>> event) {
-		event.getRegistry().register(TileEntityType.Builder.create(PaintedChestTileEntity::new, ModBlocks.RED_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "red_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.WHITE_PAINTED_CHEST, DyeColor.WHITE), ModBlocks.WHITE_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "white_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.ORANGE_PAINTED_CHEST, DyeColor.ORANGE), ModBlocks.ORANGE_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "orange_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.MAGENTA_PAINTED_CHEST, DyeColor.MAGENTA), ModBlocks.MAGENTA_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "magenta_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.LIGHT_BLUE_PAINTED_CHEST, DyeColor.LIGHT_BLUE), ModBlocks.LIGHT_BLUE_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "light_blue_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.YELLOW_PAINTED_CHEST, DyeColor.YELLOW), ModBlocks.YELLOW_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "yellow_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.LIME_PAINTED_CHEST, DyeColor.LIME), ModBlocks.LIME_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "lime_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.PINK_PAINTED_CHEST, DyeColor.PINK), ModBlocks.PINK_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "pink_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.GRAY_PAINTED_CHEST, DyeColor.GRAY), ModBlocks.GRAY_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "gray_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.LIGHT_GRAY_PAINTED_CHEST, DyeColor.LIGHT_GRAY), ModBlocks.LIGHT_GRAY_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "light_gray_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.CYAN_PAINTED_CHEST, DyeColor.CYAN), ModBlocks.CYAN_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "cyan_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.PURPLE_PAINTED_CHEST, DyeColor.PURPLE), ModBlocks.PURPLE_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "purple_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.BLUE_PAINTED_CHEST, DyeColor.BLUE), ModBlocks.BLUE_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "blue_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.BROWN_PAINTED_CHEST, DyeColor.BROWN), ModBlocks.BROWN_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "brown_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.GREEN_PAINTED_CHEST, DyeColor.GREEN), ModBlocks.GREEN_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "green_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.RED_PAINTED_CHEST, DyeColor.RED), ModBlocks.RED_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "red_painted_chest"));
+		event.getRegistry().register(TileEntityType.Builder.create(() -> new PaintedChestTileEntity(ModTileEntities.BLACK_PAINTED_CHEST, DyeColor.BLACK), ModBlocks.BLACK_PAINTED_CHEST).build(null).setRegistryName(MysticalWorld.MODID, "black_painted_chest"));
 	}
 
 	@SubscribeEvent

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:dyes/purple"
+    },
+    {
+      "tag": "forge:chests"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:purple_painted_chest"
+  }
+}

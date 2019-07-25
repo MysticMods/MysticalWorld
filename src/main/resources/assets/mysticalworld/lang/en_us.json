@@ -168,5 +168,22 @@
   "item.mysticalworld.cooked_squid": "Calamari",
   "item.mysticalworld.epic_squid": "Epic Squid",
 
+  "block.mysticalworld.white_painted_chest": "White Painted Chest",
+  "block.mysticalworld.orange_painted_chest": "Orange Painted Chest",
+  "block.mysticalworld.magenta_painted_chest": "Magenta Painted Chest",
+  "block.mysticalworld.light_blue_painted_chest": "Light Blue Painted Chest",
+  "block.mysticalworld.yellow_painted_chest": "Yellow Painted Chest",
+  "block.mysticalworld.lime_painted_chest": "Lime Painted Chest",
+  "block.mysticalworld.pink_painted_chest": "Pink Painted Chest",
+  "block.mysticalworld.gray_painted_chest": "Gray Painted Chest",
+  "block.mysticalworld.light_gray_painted_chest": "Light Gray Painted Chest",
+  "block.mysticalworld.cyan_painted_chest": "Cyan Painted Chest",
+  "block.mysticalworld.purple_painted_chest": "Purple Painted Chest",
+  "block.mysticalworld.blue_painted_chest": "Blue Painted Chest",
+  "block.mysticalworld.brown_painted_chest": "Brown Painted Chest",
+  "block.mysticalworld.green_painted_chest": "Green Painted Chest",
+  "block.mysticalworld.red_painted_chest": "Red Painted Chest",
+  "block.mysticalworld.black_painted_chest": "Black Painted Chest",
+
   "message.squid.cooldown": "Give it time to produce more ink!"
 }
