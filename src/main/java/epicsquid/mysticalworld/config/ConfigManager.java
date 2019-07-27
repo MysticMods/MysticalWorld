@@ -1,13 +1,24 @@
 package epicsquid.mysticalworld.config;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.world.WorldGeneratorTrees;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.RangeInt;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = MysticalWorld.MODID)
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class ConfigManager {
+  @SubscribeEvent
+  public static void syncConfig(ConfigChangedEvent.OnConfigChangedEvent event)
+  {
+    if (event.getModID().equals(MysticalWorld.MODID)) {
+      net.minecraftforge.common.config.ConfigManager.sync(MysticalWorld.MODID, Config.Type.INSTANCE);
+      WorldGeneratorTrees.invalidTypes.clear();
+    }
+  }
 
   @Config.Comment(("Inject some items from Mystical World into dungeon & other loot chests"))
   public static boolean InjectLoot = true;
@@ -142,12 +153,33 @@ public class ConfigManager {
   }
 
   @Config.Comment(("Minimum distance between Barrow structures. Set to -1 to disable."))
-  @Config.RangeInt(min = 0)
+  @Config.RangeInt(min = -1)
   public static int BarrowDistance = 400;
 
   @Config.Comment(("Mininmum distance between Hut structures. Set to -1 to disable."))
-  @Config.RangeInt(min = 0)
+  @Config.RangeInt(min = -1)
   public static int HutDistance = 400;
+
+  @Config.Comment(("Spawn options for burn trees"))
+  @Config.Name("Burnt Trees")
+  public static ConfigMysticalWorldBurntTrees burntTrees = new ConfigMysticalWorldBurntTrees();
+
+  public static class ConfigMysticalWorldBurntTrees {
+    @Config.Comment("Chance (1 in X) of burnt trees spawning; set to -1 to disable")
+    @Config.Name("Spawn chance")
+    @Config.RangeInt(min = -1)
+    public int chance = 200;
+
+    @Config.Comment("Attempts to spawn a tree per chunk")
+    @Config.Name("Spawn attempts")
+    @Config.RangeInt(min=1)
+    public int attempts = 80;
+
+    @Config.Comment("Excluded biomes types. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|")
+    @Config.Name("Excluded biome types")
+    public String[] excludedBiomes = new String[]{"VOID", "END", "WATER", "BEACH", "MESA", "MUSHROOM", "NETHER", "OCEAN", "RIVER"};
+  }
+
 
   @Config.Comment(("Mystical world gems and their components"))
   public static ConfigMysticalWorldGems gems = new ConfigMysticalWorldGems();
