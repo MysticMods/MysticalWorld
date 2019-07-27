@@ -4,6 +4,7 @@ import epicsquid.mysticalworld.world.tree.WorldGenBurntTree;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -22,8 +23,8 @@ public class WorldGeneratorTrees implements IWorldGenerator {
   @Override
   public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
     // TODO: Move into config
-    // TODO: Don't generate in superflat
-    // TODO: Does this work?
+
+    if (world.getWorldType() == WorldType.FLAT) return;
 
     int xPos = chunkX * 16 + 8;
     int zPos = chunkZ * 16 + 8;
