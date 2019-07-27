@@ -8,5 +8,5 @@
   "mob.fox.sleep": { "category": "neutral", "sounds":  ["mysticalworld:fox/sleep1", "mysticalworld:fox/sleep2", "mysticalworld:fox/sleep3", "mysticalworld:fox/sleep4", "mysticalworld:fox/sleep5"]},
   "mob.fox.sniff": { "category": "neutral", "sounds":  ["mysticalworld:fox/sniff1", "mysticalworld:fox/sniff2", "mysticalworld:fox/sniff3", "mysticalworld:fox/sniff4"]},
   "mob.fox.spit": { "category": "neutral", "sounds":  ["mysticalworld:fox/spit1", "mysticalworld:fox/spit2", "mysticalworld:fox/spit3"]},
-  "mob.sprout.ambient": { "category": "neutral", "sounds": ["mysticalworld:sprout/sprout1", "mysticalworld:sprout/sprout2", "mysticalworld:sprout/sprout3"]}
+  "mob.sprout.ambient": { "category": "neutral", "sounds": ["mysticalworld:sprout/sprout1", "mysticalworld:sprout/sprout2", "mysticalworld:sprout/sprout3", "mysticalworld:sprout/sprout4", "mysticalworld:sprout/sprout5"]}
 }
