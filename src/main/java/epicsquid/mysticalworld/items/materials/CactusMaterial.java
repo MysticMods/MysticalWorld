@@ -49,7 +49,7 @@ public class CactusMaterial implements IMaterial {
 
 	@Override
 	public IItemTier getTier() {
-		return new BaseItemTier(getDurability(), 5.0f, 3.0f, 1, 5, () -> Ingredient.fromItems(Blocks.CACTUS));
+		return new BaseItemTier(getDurability(), 4.0f, 1.5f, 1, 3, () -> Ingredient.fromItems(Blocks.CACTUS));
 	}
 
 	@Override
