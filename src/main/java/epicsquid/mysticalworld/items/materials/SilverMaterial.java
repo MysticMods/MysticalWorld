@@ -56,7 +56,7 @@ public class SilverMaterial implements IMetalMaterial {
 
 	@Override
 	public IArmorMaterial getArmor() {
-		return new BaseArmorMaterial(getName(), 7, new int[]{1, 3, 5, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0f, () -> Ingredient.fromItems(ModItems.SILVER_INGOT));
+		return new BaseArmorMaterial(MysticalWorld.MODID + ":" + getName(), 7, new int[]{1, 3, 5, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0f, () -> Ingredient.fromItems(ModItems.SILVER_INGOT));
 	}
 
 	@Override

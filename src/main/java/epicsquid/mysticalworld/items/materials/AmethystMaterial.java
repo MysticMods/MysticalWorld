@@ -56,7 +56,7 @@ public class AmethystMaterial implements IGemMaterial {
 
 	@Override
 	public IArmorMaterial getArmor() {
-		return new BaseArmorMaterial(getName(), 33, new int[]{3, 6, 8, 3}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0f, () -> Ingredient.fromItems(ModItems.AMETHYST));
+		return new BaseArmorMaterial(MysticalWorld.MODID + ":" + getName(), 33, new int[]{3, 6, 8, 3}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0f, () -> Ingredient.fromItems(ModItems.AMETHYST));
 	}
 
 	@Override

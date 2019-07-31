@@ -56,7 +56,7 @@ public class CopperMaterial implements IMetalMaterial {
 
 	@Override
 	public IArmorMaterial getArmor() {
-		return new BaseArmorMaterial(getName(), 15, new int[]{2, 5, 6, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f, () -> Ingredient.fromItems(ModItems.COPPER_INGOT));
+		return new BaseArmorMaterial(MysticalWorld.MODID + ":" + getName(), 15, new int[]{2, 5, 6, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f, () -> Ingredient.fromItems(ModItems.COPPER_INGOT));
 	}
 
 	@Override

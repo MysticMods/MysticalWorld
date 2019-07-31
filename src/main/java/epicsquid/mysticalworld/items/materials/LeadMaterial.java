@@ -56,7 +56,7 @@ public class LeadMaterial implements IMetalMaterial {
 
 	@Override
 	public IArmorMaterial getArmor() {
-		return new BaseArmorMaterial(getName(), 22, new int[]{2, 5, 6, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0f, () -> Ingredient.fromItems(ModItems.LEAD_INGOT));
+		return new BaseArmorMaterial(MysticalWorld.MODID + ":" + getName(), 22, new int[]{2, 5, 6, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0f, () -> Ingredient.fromItems(ModItems.LEAD_INGOT));
 	}
 
 	@Override

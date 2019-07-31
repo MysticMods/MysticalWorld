@@ -56,7 +56,7 @@ public class TinMaterial implements IMetalMaterial {
 
 	@Override
 	public IArmorMaterial getArmor() {
-		return new BaseArmorMaterial(getName(), 10, new int[]{1, 4, 5, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f, () -> Ingredient.fromItems(ModItems.TIN_INGOT));
+		return new BaseArmorMaterial(MysticalWorld.MODID + ":" + getName(), 10, new int[]{1, 4, 5, 2}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f, () -> Ingredient.fromItems(ModItems.TIN_INGOT));
 	}
 
 	@Override
