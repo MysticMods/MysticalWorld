@@ -45,6 +45,9 @@ public class JERIntegration {
     EntitySprout sprout_red = new EntitySprout(null);
     sprout_red.getDataManager().set(EntitySprout.variant, 2);
     registry.register(sprout_red, LightLevel.any, getBiomeNames(ConfigManager.sprout.biomes), sprout_red.getLootTable());
+
+    EntityEndermini endermini = new EntityEndermini(null);
+    registry.register(endermini, LightLevel.any, getBiomeNames(ConfigManager.endermini.biomes), endermini.getLootTable());
   }
 }
 

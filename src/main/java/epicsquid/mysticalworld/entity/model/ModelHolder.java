@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelEnderman;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,6 +23,7 @@ public class ModelHolder implements IResourceManagerReloadListener {
     models.put("beetle", new ModelBeetle());
     models.put("deer", new ModelDeer());
     models.put("sprout", new ModelSprout());
+    models.put("endermini", new ModelEnderman(0f));
   }
 
   @SideOnly(Side.CLIENT)

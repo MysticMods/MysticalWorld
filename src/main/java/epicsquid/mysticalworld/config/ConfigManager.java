@@ -8,6 +8,8 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.util.Arrays;
+
 @Config(modid = MysticalWorld.MODID)
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class ConfigManager {
@@ -67,8 +69,11 @@ public class ConfigManager {
     @Config.Comment(("Enable the spawning of Frog."))
     public boolean spawnFrog = true;
 
-    @Config.Comment(("Enable the spawning of Sprouts"))
+    @Config.Comment(("Enable the spawning of Sprouts."))
     public boolean spawnSprout = true;
+
+    @Config.Comment(("Enable the spawning of Endermini."))
+    public boolean spawnEndermini = true;
   }
 
   @Config.Comment(("Controls the spawn settings of Deer"))
@@ -81,6 +86,8 @@ public class ConfigManager {
   public static ConfigMysticalWorldFrog frog = new ConfigMysticalWorldFrog();
   @Config.Comment(("Controls the spawn settings of Sprout"))
   public static ConfigMysticalWorldSprout sprout = new ConfigMysticalWorldSprout();
+  @Config.Comment(("Contorls the spawn settings of Endermini"))
+  public static ConfigMysticalWorldEndermini endermini = new ConfigMysticalWorldEndermini();
 
   public static class ConfigMysticalWorldSprout  {
     @Config.Comment(("Spawn rate of sprouts"))
@@ -94,6 +101,20 @@ public class ConfigManager {
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
     public String[] biomes = new String[]{"JUNGLE", "LUSH", "MAGICAL", "RIVER", "FOREST", "BEACH"};
+  }
+
+  public static class ConfigMysticalWorldEndermini  {
+    @Config.Comment(("Spawn rate of enderminis"))
+    public int rate = 12;
+
+    @Config.Comment(("Min number of enderminis to spawn in a group"))
+    public int min = 1;
+
+    @Config.Comment(("Maximum number of enderminis to spawn in a group"))
+    public int max = 1;
+
+    @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
+    public String[] biomes = new String[]{"SAVANNA", "CONIFEROUS", "JUNGLE", "SPOOKY", "DEAD", "LUSH", "NETHER", "END", "MUSHROOM", "MAGICAL", "RARE", /*"OCEAN",*/ "RIVER", "WATER", "MESA", "FOREST", "PLAINS", "MOUNTAIN", "HILLS", "SWAMP", "SANDY", "SNOWY", "WASTELAND", "BEACH", "VOID"};
   }
 
   public static class ConfigMysticalWorldDeer  {
