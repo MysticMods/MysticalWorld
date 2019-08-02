@@ -98,7 +98,12 @@ public class ModEntities {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
-      EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.rate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      if (ConfigManager.endermini.rate != -1) {
+        EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.rate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      }
+      if (ConfigManager.endermini.endRate != -1) {
+        EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.endRate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, BiomeDictionary.getBiomes(Type.END).toArray(new Biome[0]));
+      }
     }
   }
 }

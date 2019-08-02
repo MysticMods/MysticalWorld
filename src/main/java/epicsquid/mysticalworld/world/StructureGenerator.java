@@ -120,6 +120,7 @@ public class StructureGenerator implements IWorldGenerator {
     ChunkProviderServer serverProvider = ((WorldServer)world).getChunkProvider();
     if (serverProvider.isInsideStructure(world, "Village", zxPos)) return;
     if (serverProvider.isInsideStructure(world, "Mansion", zxPos)) return;
+    if (serverProvider.isInsideStructure(world, "Stronghold", zxPos)) return;
 
     MinecraftServer minecraftserver = world.getMinecraftServer();
     TemplateManager templatemanager = world.getSaveHandler().getStructureTemplateManager();

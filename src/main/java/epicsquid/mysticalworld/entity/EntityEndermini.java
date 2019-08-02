@@ -5,13 +5,17 @@ import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.entity.ai.EntityAIStalk;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -33,12 +37,15 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.Set;
+import java.util.UUID;
 
 // Base heavily on vanilla Enderman
 public class EntityEndermini extends EntityCreature {
   private static final Set<Block> CARRIABLE_BLOCKS = Sets.newIdentityHashSet();
   private static final DataParameter<Optional<IBlockState>> CARRIED_BLOCK = EntityDataManager.createKey(EntityEnderman.class, DataSerializers.OPTIONAL_BLOCK_STATE);
   private static final DataParameter<Boolean> SCREAMING = EntityDataManager.createKey(EntityEnderman.class, DataSerializers.BOOLEAN);
+  private static final UUID ATTACKING_SPEED_BOOST_ID = UUID.fromString("fd0f50d3-4312-4707-a2f0-4434df861de2");
+  private static final AttributeModifier ATTACKING_SPEED_BOOST = (new AttributeModifier(ATTACKING_SPEED_BOOST_ID, "Attacking speed boost", 0.15000000596046448D, 0)).setSaved(false);
   private int lastCreepySound;
   private int targetChangeTime;
 
@@ -53,14 +60,15 @@ public class EntityEndermini extends EntityCreature {
   @Override
   protected void initEntityAI() {
     this.tasks.addTask(0, new EntityAISwimming(this));
-    this.tasks.addTask(1, new EntityAIPanic(this, 2.5D));
+    this.tasks.addTask(1, new EntityAIPanic(this, 1.5D));
+    this.tasks.addTask(2, new EntityAIStalk(this, 2.0D, false));
     this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 1.0D, 0.0F));
-    this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+    this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 32.0F));
     this.tasks.addTask(8, new EntityAILookIdle(this));
     this.tasks.addTask(10, new EntityEndermini.AIPlaceBlock(this));
     this.tasks.addTask(11, new EntityEndermini.AITakeBlock(this));
     this.targetTasks.addTask(1, new EntityEndermini.AIFindPlayer(this));
-    //this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+    this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
   }
 
   @Override
@@ -68,9 +76,28 @@ public class EntityEndermini extends EntityCreature {
     super.applyEntityAttributes();
     this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
     this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-    this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
+    this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
     this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.5D);
     this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
+  }
+
+  @Override
+  public void setAttackTarget(@Nullable EntityLivingBase entitylivingbaseIn) {
+    super.setAttackTarget(entitylivingbaseIn);
+    IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
+
+    if (entitylivingbaseIn == null) {
+      this.targetChangeTime = 0;
+      this.dataManager.set(SCREAMING, false);
+      iattributeinstance.removeModifier(ATTACKING_SPEED_BOOST);
+    } else {
+      this.targetChangeTime = this.ticksExisted;
+      this.dataManager.set(SCREAMING, true);
+
+      if (!iattributeinstance.hasModifier(ATTACKING_SPEED_BOOST)) {
+        iattributeinstance.applyModifier(ATTACKING_SPEED_BOOST);
+      }
+    }
   }
 
   @Override
@@ -152,10 +179,8 @@ public class EntityEndermini extends EntityCreature {
       this.attackEntityFrom(DamageSource.DROWN, 1.0F);
     }
 
-    if (this.world.isDaytime() && this.ticksExisted >= this.targetChangeTime + 600) {
-      float f = this.getBrightness();
-
-      if (f > 0.5F && this.world.canSeeSky(new BlockPos(this)) && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F) {
+    if (this.ticksExisted >= this.targetChangeTime + 600) {
+      if (this.world.canSeeSky(new BlockPos(this)) && this.rand.nextFloat() * 30.0F < 1.2F) {
         this.setAttackTarget(null);
         this.teleportRandomly();
       }
@@ -174,7 +199,6 @@ public class EntityEndermini extends EntityCreature {
   protected boolean teleportToEntity(Entity p_70816_1_) {
     Vec3d vec3d = new Vec3d(this.posX - p_70816_1_.posX, this.getEntityBoundingBox().minY + (double) (this.height / 2.0F) - p_70816_1_.posY + (double) p_70816_1_.getEyeHeight(), this.posZ - p_70816_1_.posZ);
     vec3d = vec3d.normalize();
-    double d0 = 16.0D;
     double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3d.x * 16.0D;
     double d2 = this.posY + (double) (this.rand.nextInt(16) - 8) - vec3d.y * 16.0D;
     double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3d.z * 16.0D;

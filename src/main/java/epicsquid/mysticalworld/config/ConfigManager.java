@@ -104,8 +104,11 @@ public class ConfigManager {
   }
 
   public static class ConfigMysticalWorldEndermini  {
-    @Config.Comment(("Spawn rate of enderminis"))
-    public int rate = 12;
+    @Config.Comment(("Spawn rate of enderminis in the overworld (set to -1 to disable overworld spawning)"))
+    public int rate = -1;
+
+    @Config.Comment(("Spawn rate of enderminis in the End (set to -1 to disable end spawning)"))
+    public int endRate = 1500;
 
     @Config.Comment(("Min number of enderminis to spawn in a group"))
     public int min = 1;
@@ -114,7 +117,7 @@ public class ConfigManager {
     public int max = 1;
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
-    public String[] biomes = new String[]{"SAVANNA", "CONIFEROUS", "JUNGLE", "SPOOKY", "DEAD", "LUSH", "NETHER", "END", "MUSHROOM", "MAGICAL", "RARE", /*"OCEAN",*/ "RIVER", "WATER", "MESA", "FOREST", "PLAINS", "MOUNTAIN", "HILLS", "SWAMP", "SANDY", "SNOWY", "WASTELAND", "BEACH", "VOID"};
+    public String[] biomes = new String[]{"SAVANNA", "CONIFEROUS", "JUNGLE", "SPOOKY", "DEAD", "LUSH", "NETHER", "MAGICAL", "RARE", "RIVER", "WATER", "MESA", "FOREST", "PLAINS", "MOUNTAIN", "HILLS", "SWAMP", "SANDY", "SNOWY", "WASTELAND"};
   }
 
   public static class ConfigMysticalWorldDeer  {
