@@ -79,6 +79,7 @@ public class ModRecipes {
     GameRegistry.addSmelting(ModItems.raw_squid, new ItemStack(ModItems.cooked_squid, 2), 0.125f);
     GameRegistry.addSmelting(ModBlocks.wet_mud_block, new ItemStack(ModBlocks.mud_block), 0.125f);
     GameRegistry.addSmelting(ModBlocks.wet_mud_brick, new ItemStack(ModBlocks.mud_brick), 0.125f);
+    GameRegistry.addSmelting(ModBlocks.charred_log, new ItemStack(Items.COAL, 1, 1), 0.15f);
   }
 
   /**
