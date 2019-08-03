@@ -374,7 +374,7 @@ public class EntityFox extends EntityTameable {
         if (entitylivingbase == null) {
           return true;
         } else {
-          return this.tameable.getDistanceSq(entitylivingbase) < 144.0D && entitylivingbase.getRevengeTarget() != null ? false : this.isSleeping;
+          return (!(this.tameable.getDistanceSq(entitylivingbase) < 144.0D) || entitylivingbase.getRevengeTarget() == null) && this.isSleeping;
         }
       }
     }
