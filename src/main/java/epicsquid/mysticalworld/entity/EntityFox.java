@@ -44,7 +44,7 @@ public class EntityFox extends EntityTameable {
 
   @Override
   public boolean isBreedingItem(@Nonnull ItemStack stack) {
-    return stack.getItem() == Items.CHICKEN;
+    return stack.getItem() == Items.APPLE;
   }
 
   @Nullable
@@ -67,7 +67,7 @@ public class EntityFox extends EntityTameable {
     this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
     this.tasks.addTask(2, this.aiSit);
     this.tasks.addTask(2, this.aiSleep);
-    this.tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.CHICKEN, false));
+    this.tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.APPLE, false));
     this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
     this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.0D, true));
     this.tasks.addTask(6, new EntityAIFollowOwner(this, 1.0D, 10.0F, 2.0F));
