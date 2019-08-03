@@ -11,10 +11,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.passive.AbstractHorse;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
@@ -83,6 +80,7 @@ public class EntityFox extends EntityTameable {
     this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
     this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
     this.targetTasks.addTask(4, new EntityAITargetNonTamed<>(this, EntityChicken.class, false, (Predicate<Entity>) p_apply_1_ -> p_apply_1_ instanceof EntityChicken));
+    this.targetTasks.addTask(4, new EntityAITargetNonTamed<>(this, EntityRabbit.class, false, (Predicate<Entity>) p_apply_1_ -> p_apply_1_ instanceof EntityRabbit));
   }
 
   @Override
@@ -334,7 +332,12 @@ public class EntityFox extends EntityTameable {
   @Override
   @Nonnull
   public EntityAgeable createChild(@Nonnull EntityAgeable ageable) {
-    return new EntityFox(ageable.world);
+    EntityFox bebe = new EntityFox(ageable.world);
+    if (this.isTamed()) {
+      bebe.setTamed(true);
+      bebe.setOwnerId(this.getOwnerId());
+    }
+    return bebe;
   }
 
   @Override
