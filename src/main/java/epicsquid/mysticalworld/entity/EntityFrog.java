@@ -17,6 +17,8 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -25,11 +27,13 @@ import net.minecraft.world.World;
 
 public class EntityFrog extends EntityAnimal {
   public float offGround = 0f;
+  public int timeUntilNextSlime;
 
   public EntityFrog(@Nonnull World worldIn) {
     super(worldIn);
     setSize(0.5f, 0.5f);
     this.experienceValue = 2;
+    this.timeUntilNextSlime = this.rand.nextInt(6000) + 6000;
   }
 
   public static class EntityAIFrogJump extends EntityAIBase {
@@ -90,6 +94,18 @@ public class EntityFrog extends EntityAnimal {
       offGround += 0.25f;
     } else {
       offGround = 0;
+    }
+  }
+
+  @Override
+  public void onLivingUpdate() {
+    super.onLivingUpdate();
+
+    if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextSlime <= 0)
+    {
+        this.playSound(SoundEvents.BLOCK_SLIME_PLACE, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+        this.dropItem(Items.SLIME_BALL, 1);
+        this.timeUntilNextSlime = this.rand.nextInt(6000) + 6000;
     }
   }
 
