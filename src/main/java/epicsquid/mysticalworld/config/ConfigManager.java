@@ -72,6 +72,7 @@ public class ConfigManager {
     @Config.Comment(("Enable the spawning of Sprouts."))
     public boolean spawnSprout = true;
 
+    @Config.Ignore
     @Config.Comment(("Enable the spawning of Endermini."))
     public boolean spawnEndermini = true;
   }
@@ -86,6 +87,7 @@ public class ConfigManager {
   public static ConfigMysticalWorldFrog frog = new ConfigMysticalWorldFrog();
   @Config.Comment(("Controls the spawn settings of Sprout"))
   public static ConfigMysticalWorldSprout sprout = new ConfigMysticalWorldSprout();
+  @Config.Ignore
   @Config.Comment(("Contorls the spawn settings of Endermini"))
   public static ConfigMysticalWorldEndermini endermini = new ConfigMysticalWorldEndermini();
 

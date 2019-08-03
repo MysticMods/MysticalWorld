@@ -35,9 +35,9 @@ public class ModEntities {
     LibRegistry.registerEntity(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityDeer.class, new RenderDeer.Factory());
-    LibRegistry.registerEntity(EntityEndermini.class, Util.intColor(161, 30, 120), Util.intColor(101, 12, 190));
+    /*LibRegistry.registerEntity(EntityEndermini.class, Util.intColor(161, 30, 120), Util.intColor(101, 12, 190));
     if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(EntityEndermini.class, new RenderEndermini.Factory());
+      LibRegistry.registerEntityRenderer(EntityEndermini.class, new RenderEndermini.Factory());*/
   }
 
   public static void registerMobSpawn() {
@@ -93,7 +93,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnEndermini) {
+    /*if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnEndermini) {
       for (String biomeName : ConfigManager.endermini.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -104,6 +104,6 @@ public class ModEntities {
       if (ConfigManager.endermini.endRate != -1) {
         EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.endRate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, BiomeDictionary.getBiomes(Type.END).toArray(new Biome[0]));
       }
-    }
+    }*/
   }
 }
