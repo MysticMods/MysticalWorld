@@ -33,6 +33,10 @@
       "link_recipe": true,
       "recipe": "mysticalworld:charred_button",
       "recipe2": "mysticalworld:charred_pressure_plate"
+    },
+    {
+      "type": "smelting",
+      "recipe": "mysticalworld:charred_log"
     }
   ]
 }

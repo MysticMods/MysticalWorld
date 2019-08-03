@@ -11,7 +11,7 @@
     {
       "type": "image",
       "title": "A charred tree",
-      "text": "The charred wood can be used for decoration.",
+      "text": "$(l:blocks/charred_wood)Charred wood blocks$() can be used for decoration.",
       "images": ["mysticalworld:textures/tree.png"]
     }
   ]
