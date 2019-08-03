@@ -99,6 +99,7 @@ public class ModItems {
     event.addItem(stuffed_aubergine = new ItemFoodBase("stuffed_aubergine", 10, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
     registerSeedDrops();
+    registerOredict();
   }
 
   /**
@@ -116,6 +117,11 @@ public class ModItems {
         OreDictionary.registerOre("dustTinyGold", gold_dust_tiny);
       }
     }
+    OreDictionary.registerOre("logWood", ModBlocks.charred_log);
+    OreDictionary.registerOre("plankWood", ModBlocks.charred_planks);
+    OreDictionary.registerOre("slabWood", ModBlocks.charred_slab);
+    OreDictionary.registerOre("stairWood", ModBlocks.charred_stair);
+    OreDictionary.registerOre("fenceWood", ModBlocks.charred_fence);
   }
 
   public static void registerSeedDrops() {
