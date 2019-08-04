@@ -9,6 +9,7 @@ import jeresources.api.conditionals.LightLevel;
 import net.minecraftforge.common.BiomeDictionary;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Collections;
 import java.util.stream.Stream;
 
 public class JERIntegration {
@@ -47,7 +48,7 @@ public class JERIntegration {
     registry.register(sprout_red, LightLevel.any, getBiomeNames(ConfigManager.sprout.biomes), sprout_red.getLootTable());
 
     EntityEndermini endermini = new EntityEndermini(null);
-    registry.register(endermini, LightLevel.any, getBiomeNames(ConfigManager.endermini.biomes), endermini.getLootTable());
+    registry.register(endermini, LightLevel.any, Collections.singletonList("The End").toArray(new String[0]), endermini.getLootTable());
   }
 }
 

@@ -37,6 +37,9 @@ public class AnimalSpawnInfo implements IComponentProcessor {
       case "fox":
         this.animal = ConfigManager.fox;
         break;
+      case "endermini":
+        this.animal = ConfigManager.endermini;
+        break;
       default:
         this.animal = null;
         break;
@@ -84,6 +87,8 @@ public class AnimalSpawnInfo implements IComponentProcessor {
     if (s.startsWith("biomes")) {
       if (animalName.equals("squid")) {
         return "Default biomes.";
+      } else if (animalName.equals("endermini")) {
+        return "The End";
       } else {
         StringJoiner joiner = new StringJoiner(", ");
         for (String biomeName : getString("biomes")) {

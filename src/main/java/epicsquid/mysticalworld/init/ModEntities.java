@@ -1,8 +1,5 @@
 package epicsquid.mysticalworld.init;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
@@ -15,6 +12,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class ModEntities {
 
@@ -94,16 +94,7 @@ public class ModEntities {
     biomes.clear();
 
     if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnEndermini) {
-      for (String biomeName : ConfigManager.endermini.biomes) {
-        Type type = Type.getType(biomeName);
-        biomes.addAll(BiomeDictionary.getBiomes(type));
-      }
-      if (ConfigManager.endermini.rate != -1) {
-        EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.rate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
-      }
-      if (ConfigManager.endermini.endRate != -1) {
-        EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.endRate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, BiomeDictionary.getBiomes(Type.END).toArray(new Biome[0]));
-      }
+      EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.rate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, BiomeDictionary.getBiomes(Type.END).toArray(new Biome[0]));
     }
   }
 }
