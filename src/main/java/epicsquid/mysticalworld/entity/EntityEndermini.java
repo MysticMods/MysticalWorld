@@ -6,6 +6,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.ai.EntityAIStalk;
+import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +20,6 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,8 +44,6 @@ public class EntityEndermini extends EntityCreature {
   private static final Set<Block> CARRIABLE_BLOCKS = Sets.newIdentityHashSet();
   private static final DataParameter<Optional<IBlockState>> CARRIED_BLOCK = EntityDataManager.createKey(EntityEnderman.class, DataSerializers.OPTIONAL_BLOCK_STATE);
   private static final DataParameter<Boolean> SCREAMING = EntityDataManager.createKey(EntityEnderman.class, DataSerializers.BOOLEAN);
-  private static final UUID ATTACKING_SPEED_BOOST_ID = UUID.fromString("fd0f50d3-4312-4707-a2f0-4434df861de2");
-  private static final AttributeModifier ATTACKING_SPEED_BOOST = (new AttributeModifier(ATTACKING_SPEED_BOOST_ID, "Attacking speed boost", 0.15000000596046448D, 0)).setSaved(false);
   private int lastCreepySound;
   private int targetChangeTime;
 
@@ -84,19 +82,12 @@ public class EntityEndermini extends EntityCreature {
   @Override
   public void setAttackTarget(@Nullable EntityLivingBase entitylivingbaseIn) {
     super.setAttackTarget(entitylivingbaseIn);
-    IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
-
     if (entitylivingbaseIn == null) {
       this.targetChangeTime = 0;
       this.dataManager.set(SCREAMING, false);
-      iattributeinstance.removeModifier(ATTACKING_SPEED_BOOST);
     } else {
       this.targetChangeTime = this.ticksExisted;
       this.dataManager.set(SCREAMING, true);
-
-      if (!iattributeinstance.hasModifier(ATTACKING_SPEED_BOOST)) {
-        iattributeinstance.applyModifier(ATTACKING_SPEED_BOOST);
-      }
     }
   }
 
@@ -112,7 +103,7 @@ public class EntityEndermini extends EntityCreature {
       this.lastCreepySound = this.ticksExisted;
 
       if (!this.isSilent()) {
-        this.world.playSound(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ, SoundEvents.ENTITY_ENDERMEN_STARE, this.getSoundCategory(), 2.5F, 1.0F, false);
+        this.world.playSound(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ, ModSounds.Endermini.STARE, this.getSoundCategory(), 2.5F, 1.0F, false);
       }
     }
   }
@@ -158,7 +149,7 @@ public class EntityEndermini extends EntityCreature {
 
   @Override
   public float getEyeHeight() {
-    return 1.5F;
+    return 1F;
   }
 
   @Override
@@ -214,8 +205,8 @@ public class EntityEndermini extends EntityCreature {
     boolean flag = this.attemptTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ());
 
     if (flag) {
-      this.world.playSound(null, this.prevPosX, this.prevPosY, this.prevPosZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, this.getSoundCategory(), 1.0F, 1.0F);
-      this.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
+      this.world.playSound(null, this.prevPosX, this.prevPosY, this.prevPosZ, ModSounds.Endermini.PORTAL, this.getSoundCategory(), 1.0F, 1.0F);
+      this.playSound(ModSounds.Endermini.PORTAL, 1.0F, 1.0F);
     }
 
     return flag;
@@ -223,17 +214,17 @@ public class EntityEndermini extends EntityCreature {
 
   @Override
   protected SoundEvent getAmbientSound() {
-    return this.isScreaming() ? SoundEvents.ENTITY_ENDERMEN_SCREAM : SoundEvents.ENTITY_ENDERMEN_AMBIENT;
+    return this.isScreaming() ? ModSounds.Endermini.SCREAM : ModSounds.Endermini.IDLE;
   }
 
   @Override
   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-    return SoundEvents.ENTITY_ENDERMEN_HURT;
+    return ModSounds.Endermini.HIT;
   }
 
   @Override
   protected SoundEvent getDeathSound() {
-    return SoundEvents.ENTITY_ENDERMEN_DEATH;
+    return ModSounds.Endermini.DEATH;
   }
 
   @Override
@@ -251,7 +242,7 @@ public class EntityEndermini extends EntityCreature {
   @Override
   @Nullable
   public ResourceLocation getLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "endermini");
+    return new ResourceLocation(MysticalWorld.MODID, "entity/endermini");
   }
 
   /**

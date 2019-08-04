@@ -5,12 +5,14 @@ entity.entity_frog.name=Frog
 entity.entity_beetle.name=Beetle
 entity.entity_deer.name=Deer
 entity.entity_sprout.name=Sprout
+entity.entity_endermini.name=Endermini
 
 item.carapace.name=Carapace
 item.pelt.name=Pelt
 item.raw_squid.name=Raw Squid
 item.cooked_squid.name=Calamari
 item.epic_squid.name=Epic Squid
+item.unripe_pearl.name=Unripe Pearl
 
 # Ingots
 item.copper_ingot.name=Copper Ingot

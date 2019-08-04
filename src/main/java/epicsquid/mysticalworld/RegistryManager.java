@@ -47,5 +47,6 @@ public class RegistryManager {
 
     Gem.registerOreDict();
     Metal.registerOreDict();
+    ModItems.registerOredict();
   }
 }

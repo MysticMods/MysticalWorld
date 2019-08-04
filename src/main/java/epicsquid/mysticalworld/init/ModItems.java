@@ -9,6 +9,7 @@ import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.integration.roots.Knives;
+import epicsquid.mysticalworld.item.ItemUnripePearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -32,7 +33,7 @@ public class ModItems {
 
   public static Item amethyst_knife, copper_knife, silver_knife;
 
-  public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, raw_squid, cooked_squid, epic_squid;
+  public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, raw_squid, cooked_squid, epic_squid, unripe_pearl;
 
   /**
    * Register all items
@@ -85,6 +86,7 @@ public class ModItems {
         }
       }.setModelCustom(true).setAlwaysEdible().setCreativeTab(MysticalWorld.tab));
       event.addItem(ink_bottle = new ItemBase("ink_bottle").setModelCustom(true).setCreativeTab(MysticalWorld.tab).setContainerItem(Items.GLASS_BOTTLE));
+      event.addItem(unripe_pearl = new ItemUnripePearl("unripe_pearl").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     }
 
     if (!Loader.isModLoaded("roots") || !Knives.initKnives(event)) {
@@ -99,7 +101,6 @@ public class ModItems {
     event.addItem(stuffed_aubergine = new ItemFoodBase("stuffed_aubergine", 10, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
     registerSeedDrops();
-    registerOredict();
   }
 
   /**

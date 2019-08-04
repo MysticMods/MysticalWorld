@@ -11,6 +11,7 @@ public class ModSounds {
   public static void initSounds (@Nonnull RegisterContentEvent event) {
     Fox.initSounds(event);
     Sprout.initSounds(event);
+    Endermini.initSounds(event);
   }
 
   public static SoundEvent createSoundEvent (ResourceLocation name) {
@@ -30,7 +31,7 @@ public class ModSounds {
   public static class Fox {
     public static SoundEvent AGGRO, BARK, BITE, DEATH, EAT, IDLE, SLEEP, SNIFF, SPIT;
 
-    public static void initSounds (@Nonnull RegisterContentEvent event) {
+    public static void initSounds(@Nonnull RegisterContentEvent event) {
       event.addSound(AGGRO = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.fox.aggro"))); /**/
       event.addSound(BARK = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.fox.bark")));
       event.addSound(BITE = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.fox.bite")));
@@ -40,17 +41,19 @@ public class ModSounds {
       event.addSound(SLEEP = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.fox.sleep"))); /**/
       event.addSound(SNIFF = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.fox.sniff"))); /**/
       event.addSound(SPIT = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.fox.spit"))); /**/
+    }
+  }
 
-      /*     public static final SoundEvent ENTITY_FOX_AGGRO = register("entity.fox.aggro"); = AGGRO
-    public static final SoundEvent ENTITY_FOX_AMBIENT = register("entity.fox.ambient");
-    public static final SoundEvent ENTITY_FOX_BITE = register("entity.fox.bite"); = BITE
-    public static final SoundEvent ENTITY_FOX_DEATH = register("entity.fox.death"); = DEATH
-    public static final SoundEvent ENTITY_FOX_EAT = register("entity.fox.eat"); = EAT
-    public static final SoundEvent ENTITY_FOX_HURT = register("entity.fox.hurt");
-    public static final SoundEvent ENTITY_FOX_SCREECH = register("entity.fox.screech");
-    public static final SoundEvent ENTITY_FOX_SLEEP = register("entity.fox.sleep"); = SLEEP
-    public static final SoundEvent ENTITY_FOX_SNIFF = register("entity.fox.sniff"); = SNIFF
-    public static final SoundEvent ENTITY_FOX_SPIT = register("entity.fox.spit") = SPIT */
+  public static class Endermini {
+    public static SoundEvent DEATH, HIT, IDLE, PORTAL, SCREAM, STARE;
+
+    public static void initSounds (@Nonnull RegisterContentEvent event) {
+      event.addSound(DEATH = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.death")));
+      event.addSound(HIT = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.hit")));
+      event.addSound(IDLE = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.idle")));
+      event.addSound(PORTAL = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.portal")));
+      event.addSound(SCREAM = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.scream")));
+      event.addSound(STARE = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.stare")));
     }
   }
 }

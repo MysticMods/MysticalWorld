@@ -8,5 +8,11 @@
   "mob.fox.sleep": { "category": "neutral", "sounds":  ["mysticalworld:fox/sleep1", "mysticalworld:fox/sleep2", "mysticalworld:fox/sleep3", "mysticalworld:fox/sleep4", "mysticalworld:fox/sleep5"]},
   "mob.fox.sniff": { "category": "neutral", "sounds":  ["mysticalworld:fox/sniff1", "mysticalworld:fox/sniff2", "mysticalworld:fox/sniff3", "mysticalworld:fox/sniff4"]},
   "mob.fox.spit": { "category": "neutral", "sounds":  ["mysticalworld:fox/spit1", "mysticalworld:fox/spit2", "mysticalworld:fox/spit3"]},
-  "mob.sprout.ambient": { "category": "neutral", "sounds": ["mysticalworld:sprout/sprout1", "mysticalworld:sprout/sprout2", "mysticalworld:sprout/sprout3", "mysticalworld:sprout/sprout4", "mysticalworld:sprout/sprout5"]}
+  "mob.sprout.ambient": { "category": "neutral", "sounds": ["mysticalworld:sprout/sprout1", "mysticalworld:sprout/sprout2", "mysticalworld:sprout/sprout3", "mysticalworld:sprout/sprout4", "mysticalworld:sprout/sprout5"]},
+  "mob.endermini.death": { "category":  "neutral", "sounds":  ["mysticalworld:endermini/death"]},
+  "mob.endermini.hit": { "category":  "neutral", "sounds":  ["mysticalworld:endermini/hit1", "mysticalworld:endermini/hit2", "mysticalworld:endermini/hit3", "mysticalworld:endermini/hit4" ]},
+  "mob.endermini.idle": { "category":  "neutral", "sounds":  ["mysticalworld:endermini/idle1", "mysticalworld:endermini/idle2", "mysticalworld:endermini/idle3", "mysticalworld:endermini/idle4", "mysticalworld:endermini/idle5" ]}  ,
+  "mob.endermini.portal": { "category":  "neutral", "sounds":  ["mysticalworld:endermini/portal1", "mysticalworld:endermini/portal2"]},
+  "mob.endermini.scream": { "category":  "neutral", "sounds":  ["mysticalworld:endermini/scream1", "mysticalworld:endermini/scream2", "mysticalworld:endermini/scream3", "mysticalworld:endermini/scream4"]},
+  "mob.endermini.stare": {"category":  "neutral", "sounds":  ["mysticalworld:endermini/stare"]}
 }

@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.blocks;
+package epicsquid.mysticalworld.block;
 
 import epicsquid.mysticallib.block.BlockCropBase;
 import epicsquid.mysticalworld.init.ModItems;

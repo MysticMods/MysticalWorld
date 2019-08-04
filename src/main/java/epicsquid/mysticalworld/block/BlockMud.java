@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.blocks;
+package epicsquid.mysticalworld.block;
 
 import epicsquid.mysticallib.block.BlockBase;
 import net.minecraft.block.Block;
