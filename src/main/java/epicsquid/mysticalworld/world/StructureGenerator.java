@@ -1,6 +1,8 @@
 package epicsquid.mysticalworld.world;
 
 import epicsquid.mysticalworld.world.data.DataHelper;
+import net.minecraft.block.BlockDirt;
+import net.minecraft.block.BlockGrass;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -85,12 +87,13 @@ public class StructureGenerator implements IWorldGenerator {
     return null;
   }
 
-  private boolean testForLiquids(World world, BlockPos start, BlockPos size) {
+  private boolean testForLiquidsAndGrass(World world, BlockPos start, BlockPos size) {
     BlockPos stop = start.add(size.getX(), 0, size.getY());
     for (BlockPos pos : BlockPos.getAllInBoxMutable(start, stop)) {
       BlockPos pos2 = world.getTopSolidOrLiquidBlock(pos);
       IBlockState state = world.getBlockState(pos2);
       if (state.getBlock() instanceof BlockLiquid) return false;
+      if (!(state.getBlock() instanceof BlockGrass) || !(state.getBlock() instanceof BlockDirt)) return false;
     }
 
     return true;
@@ -142,7 +145,7 @@ public class StructureGenerator implements IWorldGenerator {
       return;
     }
 
-    if (!testForLiquids(world, pos, size)) return;
+    if (!testForLiquidsAndGrass(world, pos, size)) return;
 
     PlacementSettings placementsettings = new PlacementSettings();
 
