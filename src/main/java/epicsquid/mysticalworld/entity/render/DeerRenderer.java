@@ -6,13 +6,14 @@ import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;
 
-public class DeerRenderer extends LivingRenderer<DeerEntity, DeerModel> {
+public class DeerRenderer extends MobRenderer<DeerEntity, DeerModel> {
 
 	private DeerRenderer(@Nonnull EntityRendererManager renderManager, @Nonnull DeerModel modelBase, float shadowSize) {
 		super(renderManager, modelBase, shadowSize);
@@ -21,7 +22,7 @@ public class DeerRenderer extends LivingRenderer<DeerEntity, DeerModel> {
 	@Override
 	@Nonnull
 	protected ResourceLocation getEntityTexture(@Nonnull DeerEntity entity) {
-		if (entity.getEntityId() % 2 == 0) {
+		if (entity.getEntityId() % 20 == 0) {
 			GL11.glGetInteger(GL11.GL_BLEND);
 			return new ResourceLocation("mysticalworld:textures/entity/rudolph.png");
 		}

@@ -7,12 +7,13 @@ import epicsquid.mysticalworld.entity.model.FoxModel;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
-public class FoxRenderer extends LivingRenderer<FoxEntity, FoxModel> {
+public class FoxRenderer extends MobRenderer<FoxEntity, FoxModel> {
 
 	private FoxRenderer(@Nonnull EntityRendererManager renderManager, @Nonnull FoxModel m, float f) {
 		super(renderManager, m, f);
