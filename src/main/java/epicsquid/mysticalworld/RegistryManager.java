@@ -53,11 +53,11 @@ public class RegistryManager {
 	private static List<Block> metalBlocks = new ArrayList<>();
 	private static List<Block> chestBlocks = new ArrayList<>();
 
-	public static EntityType<BeetleEntity> BEETLE = EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).build("beetle");
-	public static EntityType<DeerEntity> DEER = EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).build("deer");
-	public static EntityType<FrogEntity> FROG = EntityType.Builder.create(FrogEntity::new, EntityClassification.AMBIENT).size(0.5f, 0.5f).build("frog");
-	public static EntityType<FoxEntity> SILVER_FOX = EntityType.Builder.create(FoxEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).build("silver_fox");
-	public static EntityType<SproutEntity> SPROUT = EntityType.Builder.create(SproutEntity::new, EntityClassification.CREATURE).size(0.5f, 1.0f).build("sprout");
+	public static EntityType<BeetleEntity> BEETLE = EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(new ResourceLocation(MysticalWorld.MODID, "beetle").toString());
+	public static EntityType<DeerEntity> DEER = EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build("deer");
+	public static EntityType<FrogEntity> FROG = EntityType.Builder.create(FrogEntity::new, EntityClassification.AMBIENT).size(0.5f, 0.5f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build("frog");
+	public static EntityType<FoxEntity> SILVER_FOX = EntityType.Builder.create(FoxEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build("silver_fox");
+	public static EntityType<SproutEntity> SPROUT = EntityType.Builder.create(SproutEntity::new, EntityClassification.CREATURE).size(0.5f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build("sprout");
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
