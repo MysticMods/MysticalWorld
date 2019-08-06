@@ -153,7 +153,7 @@ public enum Gem implements IGem {
           event.addItem(gem.setGem(new ItemBase(gem.name() + "_gem").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
         }
         if (ConfigManager.gems.enableBlocks) {
-          event.addBlock(gem.setBlock(new BlockBase(Material.IRON, SoundType.METAL, gem.getHardness(), gem.name() + "_block").setModelCustom(true)
+          event.addBlock(gem.setBlock(new BlockBase(Material.IRON, SoundType.METAL, gem.getHardness(), gem.name() + "_block").setModelCustom(true).setIsBeacon(true)
               .setCreativeTab(MysticalWorld.tab)));
         }
         if (gem.hasOre() && ConfigManager.gems.enableOres) {

@@ -224,7 +224,7 @@ public enum Metal implements IMetal {
           }
         }
         if (ConfigManager.metals.enableBlocks) {
-          event.addBlock(metal.setBlock(new BlockBase(Material.IRON, SoundType.METAL, metal.getHardness(), metal.name() + "_block").setModelCustom(true)
+          event.addBlock(metal.setBlock(new BlockBase(Material.IRON, SoundType.METAL, metal.getHardness(), metal.name() + "_block").setModelCustom(true).setIsBeacon(true)
               .setCreativeTab(MysticalWorld.tab)));
         }
         if (metal.hasOre() && ConfigManager.metals.enableOres) {
