@@ -27,6 +27,7 @@ import net.minecraft.world.World;
 
 public class EntityFrog extends EntityAnimal {
   public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/frog");
+  public static final int SLIME_TIME = 18000;
   public float offGround = 0f;
   public int timeUntilNextSlime;
 
@@ -34,7 +35,7 @@ public class EntityFrog extends EntityAnimal {
     super(worldIn);
     setSize(0.5f, 0.5f);
     this.experienceValue = 2;
-    this.timeUntilNextSlime = this.rand.nextInt(6000) + 6000;
+    this.timeUntilNextSlime = this.rand.nextInt(SLIME_TIME) + SLIME_TIME;
   }
 
   public static class EntityAIFrogJump extends EntityAIBase {
@@ -106,7 +107,7 @@ public class EntityFrog extends EntityAnimal {
     {
         this.playSound(SoundEvents.BLOCK_SLIME_PLACE, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
         this.dropItem(Items.SLIME_BALL, 1);
-        this.timeUntilNextSlime = this.rand.nextInt(6000) + 6000;
+        this.timeUntilNextSlime = this.rand.nextInt(SLIME_TIME) + SLIME_TIME;
     }
   }
 
