@@ -166,7 +166,7 @@ public class ConfigManager {
     @Config.Comment(("Maximum number of frogs to spawn in a group"))
     public int max = 4;
 
-    @Config.Comment(("How often slime balls are dropped"))
+    @Config.Comment(("How often slime balls are dropped; set to -1 to disable slime ball dropping"))
     public int slimeTime = 18000;
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))

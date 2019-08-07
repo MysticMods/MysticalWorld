@@ -42,6 +42,10 @@ public class EntityFrog extends EntityAnimal {
     return ConfigManager.frog.slimeTime;
   }
 
+  public static boolean shouldDropSlime () {
+    return getSlimeTime() != -1;
+  }
+
   public static class EntityAIFrogJump extends EntityAIBase {
     EntityFrog frog;
 
@@ -107,7 +111,7 @@ public class EntityFrog extends EntityAnimal {
   public void onLivingUpdate() {
     super.onLivingUpdate();
 
-    if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextSlime <= 0)
+    if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextSlime <= 0 && shouldDropSlime())
     {
         this.playSound(SoundEvents.BLOCK_SLIME_PLACE, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
         this.dropItem(Items.SLIME_BALL, 1);
