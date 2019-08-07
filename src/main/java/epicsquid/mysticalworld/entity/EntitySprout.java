@@ -18,6 +18,11 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class EntitySprout extends EntityAnimal {
+  public final static ResourceLocation LOOT_TABLE_GREEN = new ResourceLocation("mysticalworld:entity/sprout_green");
+  public static final ResourceLocation LOOT_TABLE_TAN = new ResourceLocation("mysticalworld:entity/sprout_tan");
+  public static final ResourceLocation LOOT_TABLE_RED = new ResourceLocation("mysticalworld:entity/sprout_red");
+  public static final ResourceLocation LOOT_TABLE_PURPLE = new ResourceLocation("mysticalworld:entity/sprout_purple");
+
   public static final DataParameter<Integer> variant = EntityDataManager.<Integer>createKey(EntitySprout.class, DataSerializers.VARINT);
 
   public EntitySprout(World world) {
@@ -77,19 +82,19 @@ public class EntitySprout extends EntityAnimal {
   public ResourceLocation getLootTable() {
     switch (getDataManager().get(EntitySprout.variant)) {
       case 0: {
-        return new ResourceLocation("mysticalworld:entity/sprout_green");
+        return LOOT_TABLE_GREEN;
       }
       case 1: {
-        return new ResourceLocation("mysticalworld:entity/sprout_tan");
+        return LOOT_TABLE_TAN;
       }
       case 2: {
-        return new ResourceLocation("mysticalworld:entity/sprout_red");
+        return LOOT_TABLE_RED;
       }
       case 3: {
-        return new ResourceLocation("mysticalworld:entity/sprout_purple");
+        return LOOT_TABLE_PURPLE;
       }
       default: {
-        return new ResourceLocation("mysticalworld:entity/sprout_green");
+        return LOOT_TABLE_GREEN;
       }
     }
   }

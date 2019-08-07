@@ -31,6 +31,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class EntityFox extends EntityTameable {
+  public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/fox");
   private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(EntityFox.class, DataSerializers.FLOAT);
   private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityFox.class, DataSerializers.BOOLEAN);
   private EntityAISleep aiSleep;
@@ -343,7 +344,7 @@ public class EntityFox extends EntityTameable {
   @Override
   @Nonnull
   public ResourceLocation getLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "entity/fox");
+    return LOOT_TABLE;
   }
 
   public static class EntityAISleep extends EntityAIBase {

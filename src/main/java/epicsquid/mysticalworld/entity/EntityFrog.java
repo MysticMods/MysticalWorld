@@ -26,6 +26,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class EntityFrog extends EntityAnimal {
+  public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/frog");
   public float offGround = 0f;
   public int timeUntilNextSlime;
 
@@ -147,7 +148,7 @@ public class EntityFrog extends EntityAnimal {
   @Override
   @Nonnull
   public ResourceLocation getLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "entity/frog");
+    return LOOT_TABLE;
   }
 
 }

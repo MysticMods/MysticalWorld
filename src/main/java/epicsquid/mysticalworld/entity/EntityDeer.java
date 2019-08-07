@@ -24,6 +24,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class EntityDeer extends EntityAnimal {
+  public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/deer");
 
   public static final DataParameter<Boolean> hasHorns = EntityDataManager.<Boolean>createKey(EntityDeer.class, DataSerializers.BOOLEAN);
 
@@ -82,7 +83,7 @@ public class EntityDeer extends EntityAnimal {
   @Override
   @Nonnull
   public ResourceLocation getLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID , "entity/deer");
+    return LOOT_TABLE;
   }
 
   public float getEyeHeight() {

@@ -41,6 +41,7 @@ import java.util.UUID;
 
 // Base heavily on vanilla Enderman
 public class EntityEndermini extends EntityCreature {
+  public static final ResourceLocation LOOT_TABLE =  new ResourceLocation(MysticalWorld.MODID, "entity/endermini");
   private static final Set<Block> CARRIABLE_BLOCKS = Sets.newIdentityHashSet();
   private static final DataParameter<Optional<IBlockState>> CARRIED_BLOCK = EntityDataManager.createKey(EntityEnderman.class, DataSerializers.OPTIONAL_BLOCK_STATE);
   private static final DataParameter<Boolean> SCREAMING = EntityDataManager.createKey(EntityEnderman.class, DataSerializers.BOOLEAN);
@@ -242,7 +243,7 @@ public class EntityEndermini extends EntityCreature {
   @Override
   @Nullable
   public ResourceLocation getLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "entity/endermini");
+    return LOOT_TABLE;
   }
 
   /**
@@ -354,12 +355,7 @@ public class EntityEndermini extends EntityCreature {
     @Override
     public boolean shouldExecute() {
       double d0 = this.getTargetDistance();
-      this.player = this.endermini.world.getNearestAttackablePlayer(this.endermini.posX, this.endermini.posY, this.endermini.posZ, d0, d0, (Function) null, new Predicate<EntityPlayer>() {
-        @Override
-        public boolean apply(@Nullable EntityPlayer p_apply_1_) {
-          return p_apply_1_ != null && AIFindPlayer.this.endermini.shouldFollowPlayer(p_apply_1_);
-        }
-      });
+      this.player = this.endermini.world.getNearestAttackablePlayer(this.endermini.posX, this.endermini.posY, this.endermini.posZ, d0, d0, null, p_apply_1_ -> p_apply_1_ != null && AIFindPlayer.this.endermini.shouldFollowPlayer(p_apply_1_));
       return this.player != null;
     }
 

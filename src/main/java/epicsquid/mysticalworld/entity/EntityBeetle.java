@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class EntityBeetle extends EntityAnimal {
+  public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID,  "entity/beetle");
 
   public EntityBeetle(@Nonnull World worldIn) {
     super(worldIn);
@@ -70,7 +71,7 @@ public class EntityBeetle extends EntityAnimal {
   @Override
   @Nonnull
   public ResourceLocation getLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID,  "entity/beetle");
+    return LOOT_TABLE;
   }
 
 }

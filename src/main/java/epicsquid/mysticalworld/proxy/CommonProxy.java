@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.proxy;
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.integration.jer.JERIntegration;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
@@ -26,6 +27,7 @@ public class CommonProxy {
 
   public void preInit(FMLPreInitializationEvent event) {
     GameRegistry.registerWorldGenerator(new OreGenerator(), 1);
+    ModEntities.registerLootTables();
   }
 
   public void init(FMLInitializationEvent event) {
