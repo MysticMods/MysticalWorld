@@ -29,8 +29,7 @@ public class BeetleRenderer extends MobRenderer<BeetleEntity, BeetleModel> {
 	}
 
 	@Override
-	public void renderModel(@Nonnull BeetleEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch,
-													float scaleFactor) {
+	public void renderModel(@Nonnull BeetleEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch,float scaleFactor) {
 		GlStateManager.pushMatrix();
 		if ((entity).getGrowingAge() < 0) {
 			GlStateManager.scaled(0.3, 0.3, 0.3);

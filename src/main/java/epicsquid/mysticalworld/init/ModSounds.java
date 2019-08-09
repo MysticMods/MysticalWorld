@@ -1,12 +1,12 @@
 package epicsquid.mysticalworld.init;
 
+import javax.annotation.Nonnull;
+
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import javax.annotation.Nonnull;
 
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModSounds {
@@ -45,16 +45,17 @@ public class ModSounds {
 			event.getRegistry().register(SPIT = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.fox.spit")));
 		}
 	}
-  public static class Endermini {
-    public static SoundEvent DEATH, HIT, IDLE, PORTAL, SCREAM, STARE;
 
-    public static void initSounds (@Nonnull RegisterContentEvent event) {
-      event.addSound(DEATH = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.death")));
-      event.addSound(HIT = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.hit")));
-      event.addSound(IDLE = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.idle")));
-      event.addSound(PORTAL = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.portal")));
-      event.addSound(SCREAM = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.scream")));
-      event.addSound(STARE = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.stare")));
-  }
-    }
+	public static class Endermini {
+		public static SoundEvent DEATH, HIT, IDLE, PORTAL, SCREAM, STARE;
+
+		public static void initSounds(@Nonnull RegistryEvent.Register<SoundEvent> event) {
+			event.getRegistry().register(DEATH = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.death")));
+			event.getRegistry().register(HIT = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.hit")));
+			event.getRegistry().register(IDLE = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.idle")));
+			event.getRegistry().register(PORTAL = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.portal")));
+			event.getRegistry().register(SCREAM = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.scream")));
+			event.getRegistry().register(STARE = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.stare")));
+		}
+	}
 }

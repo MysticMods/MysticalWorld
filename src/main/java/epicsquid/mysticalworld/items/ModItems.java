@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.items;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.item.Item;
+import net.minecraft.util.IItemProvider;
 import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(MysticalWorld.MODID)
@@ -20,4 +21,10 @@ public class ModItems {
 	public static final Item TIN_INGOT = null;
 
 	public static final Item AMETHYST = null;
+	public static final Item ANTLERS = null;
+	public static final Item VENISON = null;
+	public static final Item PELT = null;
+	public static final Item AUBERGINE = null;
+	public static final Item RAW_SQUID = null;
+	public static final Item UNRIPE_PEARL = null;
 }
