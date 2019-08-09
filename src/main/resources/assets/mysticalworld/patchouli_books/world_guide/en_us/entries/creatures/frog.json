@@ -1,0 +1,22 @@
+{
+  "name": "Frog",
+  "icon": "minecraft:slime_ball",
+  "category": "creatures",
+  "pages": [
+    {
+      "type": "animal_spawn_info",
+      "animal": "frog",
+      "breed": "Breed: with brown mushrooms.",
+      "tame": "Taming: Not tameable.",
+      "blurb": ""
+    },
+    {
+      "type": "entity",
+      "name": "Frog",
+      "entity": "mysticalworld:entity_frog",
+      "scale": 1.5,
+      "offset": -0.3,
+      "text": "These frogs regularly drop slime balls while hopping around!"
+    }
+  ]
+}

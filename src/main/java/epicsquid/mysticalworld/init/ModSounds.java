@@ -13,6 +13,7 @@ public class ModSounds {
 	public static void registerSounds(@Nonnull RegistryEvent.Register<SoundEvent> event) {
 		Fox.initSounds(event);
 		Sprout.initSounds(event);
+		Endermini.initSounds(event);
 	}
 
 	public static SoundEvent createSoundEvent(ResourceLocation name) {
@@ -44,4 +45,16 @@ public class ModSounds {
 			event.getRegistry().register(SPIT = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.fox.spit")));
 		}
 	}
+  public static class Endermini {
+    public static SoundEvent DEATH, HIT, IDLE, PORTAL, SCREAM, STARE;
+
+    public static void initSounds (@Nonnull RegisterContentEvent event) {
+      event.addSound(DEATH = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.death")));
+      event.addSound(HIT = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.hit")));
+      event.addSound(IDLE = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.idle")));
+      event.addSound(PORTAL = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.portal")));
+      event.addSound(SCREAM = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.scream")));
+      event.addSound(STARE = createSoundEvent(new ResourceLocation(MysticalWorld.MODID, "mob.endermini.stare")));
+  }
+    }
 }
