@@ -16,7 +16,9 @@
     "book": {
       "trigger": "minecraft:consume_item",
       "conditions": {
-        "item": "mysticalworld:epic_squid"
+        "item": {
+          "item": "mysticalworld:epic_squid"
+        }
       }
     }
   }
