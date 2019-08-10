@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import epicsquid.mysticallib.block.OreBlockProperties;
 import epicsquid.mysticallib.material.IMaterial;
+import epicsquid.mysticallib.material.IMaterialFactory;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.block.Block;
 import net.minecraft.item.ArmorMaterial;
@@ -70,7 +72,7 @@ public class WoodMaterial implements IMaterial {
 	}
 
 	@Override
-	public List<String> getWhitelist() {
-		return Arrays.asList("knife", "spear");
+	public Predicate<IMaterialFactory<?>> matches() {
+		return mat -> mat.getName().equals("knife") || mat.getName().equals("spear");
 	}
 }

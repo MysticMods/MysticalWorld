@@ -5,9 +5,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import epicsquid.mysticallib.block.OreBlockProperties;
 import epicsquid.mysticallib.material.IMaterial;
+import epicsquid.mysticallib.material.IMaterialFactory;
 import epicsquid.mysticallib.material.IMetalMaterial;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.block.Block;
@@ -80,7 +82,7 @@ public class IronMaterial implements IMaterial {
 	}
 
 	@Override
-	public List<String> getWhitelist() {
-		return Arrays.asList("knife", "dust", "spear");
+	public Predicate<IMaterialFactory<?>> matches() {
+		return mat -> mat.getName().equals("knife") || mat.getName().equals("spear") || mat.getName().equals("dust");
 	}
 }

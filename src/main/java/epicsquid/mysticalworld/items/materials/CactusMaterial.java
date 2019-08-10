@@ -4,10 +4,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import epicsquid.mysticallib.block.OreBlockProperties;
 import epicsquid.mysticallib.material.BaseItemTier;
 import epicsquid.mysticallib.material.IMaterial;
+import epicsquid.mysticallib.material.IMaterialFactory;
+import epicsquid.mysticallib.material.factory.FactoryPredicates;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -93,7 +96,7 @@ public class CactusMaterial implements IMaterial {
 	}
 
 	@Override
-	public List<String> getWhitelist() {
-		return Arrays.asList("sword", "knife", "hoe", "pickaxe", "axe", "shovel", "spear");
+	public Predicate<IMaterialFactory<?>> matches() {
+		return FactoryPredicates.TOOLS;
 	}
 }
