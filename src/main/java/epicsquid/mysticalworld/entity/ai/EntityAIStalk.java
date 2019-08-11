@@ -118,6 +118,8 @@ public class EntityAIStalk extends EntityAIBase {
    */
   public void updateTask() {
     EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
+    if (entitylivingbase == null) return;
+
     this.attacker.getLookHelper().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
     double d0 = this.attacker.getDistanceSq(entitylivingbase.posX, entitylivingbase.getEntityBoundingBox().minY, entitylivingbase.posZ);
     --this.delayCounter;
