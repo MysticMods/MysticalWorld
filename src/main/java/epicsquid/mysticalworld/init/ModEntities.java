@@ -43,10 +43,13 @@ public class ModEntities {
     LibRegistry.registerEntity(EntityEndermini.class, Util.intColor(161, 30, 120), Util.intColor(101, 12, 190));
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityEndermini.class, new RenderEndermini.Factory());
+    LibRegistry.registerEntity(EntityOwl.class, 0x8c654a, 0xdec9ba);
+    if (MysticalWorld.proxy instanceof ClientProxy)
+      LibRegistry.registerEntityRenderer(EntityOwl.class, new RenderOwl.Factory());
   }
 
   public static void registerLootTables () {
-    Stream.of(EntityFox.LOOT_TABLE, EntityFrog.LOOT_TABLE, EntityBeetle.LOOT_TABLE, EntitySprout.LOOT_TABLE_GREEN, EntitySprout.LOOT_TABLE_PURPLE, EntitySprout.LOOT_TABLE_RED, EntitySprout.LOOT_TABLE_TAN, EntityEndermini.LOOT_TABLE, EntityDeer.LOOT_TABLE).forEach(LootTableList::register);
+    Stream.of(EntityFox.LOOT_TABLE, EntityFrog.LOOT_TABLE, EntityBeetle.LOOT_TABLE, EntitySprout.LOOT_TABLE_GREEN, EntitySprout.LOOT_TABLE_PURPLE, EntitySprout.LOOT_TABLE_RED, EntitySprout.LOOT_TABLE_TAN, EntityEndermini.LOOT_TABLE, EntityDeer.LOOT_TABLE, EntityOwl.LOOT_TABLE).forEach(LootTableList::register);
   }
 
   public static void registerMobSpawn() {
@@ -105,5 +108,17 @@ public class ModEntities {
     if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnEndermini) {
       EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.rate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, BiomeDictionary.getBiomes(Type.END).toArray(new Biome[0]));
     }
+
+    biomes.clear();
+
+    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnOwl) {
+      for (String biomeName : ConfigManager.owl.biomes) {
+        Type type = Type.getType(biomeName);
+        biomes.addAll(BiomeDictionary.getBiomes(type));
+      }
+      EntityRegistry.addSpawn(EntityOwl.class, ConfigManager.owl.rate, ConfigManager.owl.min, ConfigManager.owl.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    }
+
+    biomes.clear();
   }
 }

@@ -74,6 +74,9 @@ public class ConfigManager {
 
     @Config.Comment(("Enable the spawning of Endermini."))
     public boolean spawnEndermini = true;
+
+    @Config.Comment(("Enable the spawning of Owls."))
+    public boolean spawnOwl = true;
   }
 
   @Config.Comment(("Controls the spawn settings of Deer"))
@@ -86,8 +89,10 @@ public class ConfigManager {
   public static ConfigMysticalWorldFrog frog = new ConfigMysticalWorldFrog();
   @Config.Comment(("Controls the spawn settings of Sprout"))
   public static ConfigMysticalWorldSprout sprout = new ConfigMysticalWorldSprout();
-  @Config.Comment(("Contorls the spawn settings of Endermini"))
+  @Config.Comment(("Controls the spawn settings of Endermini"))
   public static ConfigMysticalWorldEndermini endermini = new ConfigMysticalWorldEndermini();
+  @Config.Comment(("Conntrols the spawn settings of owls"))
+  public static ConfigMysticalWorldOwl owl = new ConfigMysticalWorldOwl();
 
   public static class ConfigMysticalWorldSprout  {
     @Config.Comment(("Spawn rate of sprouts"))
@@ -171,6 +176,20 @@ public class ConfigManager {
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
     public String[] biomes = new String[]{"SWAMP", "JUNGLE", "BEACH", "RIVER"};
+  }
+
+  public static class ConfigMysticalWorldOwl {
+    @Config.Comment(("Spawn rate of owls"))
+    public int rate = 9;
+
+    @Config.Comment(("Min number of owls to spawn in a group"))
+    public int min = 1;
+
+    @Config.Comment(("Maximum number of frogs to spawn in a group"))
+    public int max = 3;
+
+    @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
+    public String[] biomes = new String[]{"CONIFEROUS", "SPOOKY", "MAGICAL", "FOREST", "MOUNTAIN", "SNOWY"};
   }
 
   @Config.Comment(("Minimum distance between Barrow structures. Set to -1 to disable."))
