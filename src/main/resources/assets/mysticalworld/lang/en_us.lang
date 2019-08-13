@@ -6,6 +6,7 @@ entity.entity_beetle.name=Beetle
 entity.entity_deer.name=Deer
 entity.entity_sprout.name=Sprout
 entity.entity_endermini.name=Endermini
+entity.entity_owl.name=Owl
 
 item.carapace.name=Carapace
 item.pelt.name=Pelt

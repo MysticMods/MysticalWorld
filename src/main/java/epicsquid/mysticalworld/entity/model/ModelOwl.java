@@ -1,9 +1,15 @@
 package epicsquid.mysticalworld.entity.model;
 
+import epicsquid.mysticalworld.entity.EntityOwl;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
+import net.minecraft.client.model.ModelParrot;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModelOwl extends ModelBase {
   private final ModelRenderer body;
@@ -17,6 +23,7 @@ public class ModelOwl extends ModelBase {
   private final ModelRenderer head;
   private final ModelRenderer tuftR;
   private final ModelRenderer tuftL;
+  private State state = State.STANDING;
 
   public ModelOwl() {
     textureWidth = 64;
@@ -92,9 +99,60 @@ public class ModelOwl extends ModelBase {
     body.render(f5);
   }
 
+  @Override
+  public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+    this.head.rotateAngleX = headPitch * 0.017453292F;
+    this.head.rotateAngleY = netHeadYaw * 0.017453292F;
+    this.head.rotateAngleZ = 0.0F;
+
+    if (this.state == State.FLYING) {
+      setRotationAngle(this.body, 0.45f, 0, 0);
+      setRotationAngle(this.footR, 0.25f, 0, 0);
+      setRotationAngle(this.footL, 0.25f, 0, 0);
+      setRotationAngle(this.tail, 0.15f, 0, 0);
+      setRotationAngle(this.head, -0.3f, 0, 0);
+      float wingR_rotation = -(0.65f * (float) Math.sin(ageInTicks) - 2.5f * 0.65f);
+      float wingL_rotation = 0.65f * (float) Math.sin(ageInTicks) - 2.5f * 0.65f;
+      setRotationAngle(this.wingR1, 0.45f, 0, wingR_rotation);
+      setRotationAngle(this.wingL1, 0.45f, 0, wingL_rotation);
+      setRotationAngle(this.wingR2, 0.45f, 0, 0.05f * wingR_rotation);
+      setRotationAngle(this.wingL2, 0.45f, 0, 0.05f * wingL_rotation);
+    } else {
+      setRotationAngle(this.body, 0, 0, 0);
+      setRotationAngle(this.footR, 0, 0, 0);
+      setRotationAngle(this.footL, 0, 0, 0);
+      setRotationAngle(tail, 0.5236F, 0.0F, 0.0F);
+      setRotationAngle(this.head, 0, 0, 0);
+      setRotationAngle(wingR1, 0, 0, 0);
+      setRotationAngle(wingR2, 0.1745F, 0.0349F, -0.1745F);
+      setRotationAngle(wingL1, 0, 0, 0);
+      setRotationAngle(wingL2, 0.1745F, -0.0349F, 0.1745F);
+    }
+  }
+
+  @Override
+  public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
+    if (entitylivingbaseIn instanceof EntityOwl) {
+      EntityOwl owl = (EntityOwl) entitylivingbaseIn;
+
+      if (owl.isFlying()) {
+        this.state = State.FLYING;
+      } else {
+        this.state = State.STANDING;
+      }
+    }
+  }
+
   public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
     modelRenderer.rotateAngleX = x;
     modelRenderer.rotateAngleY = y;
     modelRenderer.rotateAngleZ = z;
+  }
+
+  @SideOnly(Side.CLIENT)
+  public enum State {
+    FLYING,
+    STANDING,
+    SITTING
   }
 }
