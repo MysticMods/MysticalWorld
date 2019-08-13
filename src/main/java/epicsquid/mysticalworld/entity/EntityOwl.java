@@ -54,14 +54,11 @@ public class EntityOwl extends EntityShoulderRiding implements EntityFlying {
 
   @Override
   protected void initEntityAI() {
-    this.aiSit = new EntityAISit(this);
     this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
     this.tasks.addTask(0, new EntityAISwimming(this));
     this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
     this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-    this.tasks.addTask(2, this.aiSit);
     this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1D));
-    //this.tasks.addTask(3, new EntityAIFollow(this, 1.0D, 3.0F, 7.0F));
   }
 
   @Override
@@ -119,41 +116,6 @@ public class EntityOwl extends EntityShoulderRiding implements EntityFlying {
     this.flap += this.flapping * 2.0F;
   }
 
-  @Override
-  public boolean processInteract(EntityPlayer player, EnumHand hand) {
-    ItemStack itemstack = player.getHeldItem(hand);
-
-    if (!this.isTamed() && itemstack.getItem() == Items.RABBIT) {
-      if (!player.capabilities.isCreativeMode) {
-        itemstack.shrink(1);
-      }
-
-      if (!this.isSilent()) {
-        // TODO: Change the sound
-        this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_PARROT_EAT, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-      }
-
-      if (!this.world.isRemote) {
-        if (this.rand.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-          this.setTamedBy(player);
-          this.playTameEffect(true);
-          this.world.setEntityState(this, (byte) 7);
-        } else {
-          this.playTameEffect(false);
-          this.world.setEntityState(this, (byte) 6);
-        }
-      }
-
-      return true;
-    } else {
-      if (!this.world.isRemote && !this.isFlying() && this.isTamed() && this.isOwner(player)) {
-        this.aiSit.setSitting(!this.isSitting());
-      }
-
-      return super.processInteract(player, hand);
-    }
-  }
-
   /**
    * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
    * the animal type)
@@ -187,12 +149,7 @@ public class EntityOwl extends EntityShoulderRiding implements EntityFlying {
   @Override
   @Nullable
   public EntityAgeable createChild(EntityAgeable ageable) {
-    EntityOwl bebe = new EntityOwl(ageable.world);
-    if (this.isTamed()) {
-      bebe.setTamed(true);
-      bebe.setOwnerId(this.getOwnerId());
-    }
-    return bebe;
+    return new EntityOwl(ageable.world);
   }
 
   @Override
@@ -272,10 +229,6 @@ public class EntityOwl extends EntityShoulderRiding implements EntityFlying {
     if (this.isEntityInvulnerable(source)) {
       return false;
     } else {
-      if (this.aiSit != null) {
-        this.aiSit.setSitting(false);
-      }
-
       return super.attackEntityFrom(source, amount);
     }
   }

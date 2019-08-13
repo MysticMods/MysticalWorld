@@ -3,13 +3,15 @@ package epicsquid.mysticalworld.entity.model;
 import epicsquid.mysticalworld.entity.EntityOwl;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
-import net.minecraft.client.model.ModelParrot;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class ModelOwl extends ModelBase {
   private final ModelRenderer body;
@@ -105,7 +107,12 @@ public class ModelOwl extends ModelBase {
     this.head.rotateAngleY = netHeadYaw * 0.017453292F;
     this.head.rotateAngleZ = 0.0F;
 
-    if (this.state == State.FLYING) {
+    boolean hootfire = false;
+    if (entityIn.hasCustomName() && entityIn.getCustomNameTag().equals("Hootfire")) {
+      hootfire = true;
+    }
+
+    if (this.state == State.FLYING && !hootfire) {
       setRotationAngle(this.body, 0.45f, 0, 0);
       setRotationAngle(this.footR, 0.25f, 0, 0);
       setRotationAngle(this.footL, 0.25f, 0, 0);
