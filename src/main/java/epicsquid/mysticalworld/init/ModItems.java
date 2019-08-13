@@ -123,6 +123,42 @@ public class ModItems {
     OreDictionary.registerOre("slabWood", ModBlocks.charred_slab);
     OreDictionary.registerOre("stairWood", ModBlocks.charred_stair);
     OreDictionary.registerOre("fenceWood", ModBlocks.charred_fence);
+
+    // Harvestcraft & VFP compat
+
+    OreDictionary.registerOre("cropAubergine", ModItems.aubergine);
+    OreDictionary.registerOre("cropEggplant", ModItems.aubergine);
+    OreDictionary.registerOre("foodCalamaricooked", ModItems.cooked_squid);
+    OreDictionary.registerOre("foodCalamariraw", ModItems.raw_squid);
+    OreDictionary.registerOre("foodEggplant", ModItems.aubergine);
+    OreDictionary.registerOre("foodGoodMeat", ModItems.raw_squid);
+    OreDictionary.registerOre("foodGoodMeat", ModItems.venison);
+    OreDictionary.registerOre("foodGoodMeatCooked", ModItems.cooked_squid);
+    OreDictionary.registerOre("foodGoodMeatCooked", ModItems.cooked_venison);
+    OreDictionary.registerOre("foodGrilledeggplant", ModItems.cooked_aubergine);
+    OreDictionary.registerOre("foodNativeGameMeatCooked", ModItems.cooked_venison);
+    OreDictionary.registerOre("foodProteinCooked", ModItems.cooked_squid);
+    OreDictionary.registerOre("foodProteinCooked", ModItems.cooked_venison);
+    OreDictionary.registerOre("foodRedMeat", ModItems.venison);
+    OreDictionary.registerOre("foodRedMeatCooked", ModItems.cooked_venison);
+    OreDictionary.registerOre("foodVenisoncooked", ModItems.cooked_venison);
+    OreDictionary.registerOre("foodVenisonraw", ModItems.venison);
+    OreDictionary.registerOre("ingredientChowderFill", ModItems.cooked_squid);
+    OreDictionary.registerOre("ingredientKebabAdventure", ModItems.raw_squid);
+    OreDictionary.registerOre("ingredientKebabAdventure", ModItems.venison);
+    OreDictionary.registerOre("ingredientKebabMain", ModItems.aubergine);
+    OreDictionary.registerOre("ingredientKebabSeafood", ModItems.cooked_squid);
+    OreDictionary.registerOre("ingredientVegNugget", ModItems.aubergine);
+    OreDictionary.registerOre("listAllfishcooked", ModItems.cooked_squid);
+    OreDictionary.registerOre("listAllfishfresh", ModItems.raw_squid);
+    OreDictionary.registerOre("listAllfishraw", ModItems.raw_squid);
+    OreDictionary.registerOre("listAllmeatcooked", ModItems.cooked_venison);
+    OreDictionary.registerOre("listAllmeatraw", ModItems.venison);
+    OreDictionary.registerOre("listAllseed", ModItems.aubergine_seed);
+    OreDictionary.registerOre("listAllveggie", ModItems.aubergine);
+    OreDictionary.registerOre("listAllvenisoncooked", ModItems.cooked_venison);
+    OreDictionary.registerOre("listAllvenisonraw", ModItems.venison);
+
   }
 
   public static void registerSeedDrops() {
