@@ -86,6 +86,7 @@ public class EntityBeetle extends EntityShoulderRiding {
             PlayerShoulderCapability cap = player.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY, null);
             if (cap != null) {
               if (!cap.isShouldered()) {
+                this.setSneaking(false);
                 cap.shoulder(this);
                 player.swingArm(EnumHand.MAIN_HAND);
                 MessagePlayerShoulderUpdate message = new MessagePlayerShoulderUpdate(player, cap);
