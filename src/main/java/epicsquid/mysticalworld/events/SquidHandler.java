@@ -4,7 +4,6 @@ import epicsquid.mysticallib.capability.EntityCooldownCapability;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -15,21 +14,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
+@Mod.EventBusSubscriber(modid= MysticalWorld.MODID)
 public class SquidHandler {
-
-  @SubscribeEvent
-  public static void attackCapability(AttachCapabilitiesEvent<Entity> event) {
-    if (event.getObject() instanceof EntitySquid) {
-      event.addCapability(AnimalCooldownCapabilityProvider.IDENTIFIER, new AnimalCooldownCapabilityProvider());
-    }
-  }
-
   @SubscribeEvent
   public static void onSquidMilked(PlayerInteractEvent.EntityInteract event) {
     EntityPlayer player = (EntityPlayer) event.getEntity();

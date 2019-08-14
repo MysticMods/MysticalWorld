@@ -7,6 +7,7 @@ import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.materials.Gem;
 import epicsquid.mysticalworld.materials.Metal;
 import epicsquid.mysticalworld.materials.Tools;
+import epicsquid.mysticalworld.network.PacketHandler;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -32,6 +33,8 @@ public class RegistryManager {
 
     ModEntities.registerMobs();
     ModEntities.registerMobSpawn();
+
+    PacketHandler.registerMessages();
   }
 
   @SubscribeEvent

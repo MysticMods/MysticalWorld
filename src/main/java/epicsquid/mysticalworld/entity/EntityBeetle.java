@@ -3,7 +3,10 @@ package epicsquid.mysticalworld.entity;
 import javax.annotation.Nonnull;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
+import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.entity.ai.EntityAIHopOnOwnersShoulder;
+import ibxm.Player;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -75,10 +78,20 @@ public class EntityBeetle extends EntityShoulderRiding {
 
     if (this.isTamed()) {
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
-        this.aiSit.setSitting(!this.isSitting());
-        this.isJumping = false;
-        this.navigator.clearPath();
-        this.setAttackTarget(null);
+        if (itemstack.isEmpty() && player.isSneaking()) {
+          // Try some shoulder surfing!
+          PlayerShoulderCapability cap = player.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY, null);
+          if (cap != null) {
+            if (!cap.isShouldered()) {
+
+            }
+          }
+        } else {
+          this.aiSit.setSitting(!this.isSitting());
+          this.isJumping = false;
+          this.navigator.clearPath();
+          this.setAttackTarget(null);
+        }
       }
     } else if (itemstack.getItem() == Items.MELON_SEEDS) {
       if (!player.capabilities.isCreativeMode) {
