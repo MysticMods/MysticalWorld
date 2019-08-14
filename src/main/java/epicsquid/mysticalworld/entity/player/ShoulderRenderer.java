@@ -20,6 +20,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
+// Code below was used with permission by Tschipp, modified from the carry renderer in Animania
+// https://github.com/capnkirok/animaniamod/blob/1.12/src/main/java/com/animania/common/events/CarryRenderer.java
+
 @SideOnly(Side.CLIENT)
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
