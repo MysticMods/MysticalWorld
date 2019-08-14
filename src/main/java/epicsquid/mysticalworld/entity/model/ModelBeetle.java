@@ -2,9 +2,11 @@ package epicsquid.mysticalworld.entity.model;
 
 import javax.annotation.Nonnull;
 
+import epicsquid.mysticalworld.entity.EntityBeetle;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemFood;
 
 /**
  * ModelBeetle - Elucent
@@ -117,13 +119,39 @@ public class ModelBeetle extends ModelBase {
     this.antennaL1.rotateAngleX = 0.1308996938995747F + getBobble(100, ageInTicks) * 0.2617993877991494F;
     this.wingL.rotateAngleY = 0.17453292519943295F + 0.0872664626F * getBobble(45, ageInTicks);
     this.wingR.rotateAngleY = -0.17453292519943295F - 0.0872664626F * getBobble(160, ageInTicks);
-    this.legL1.rotateAngleZ = limbSwingAmount * getSwing(0, ageInTicks) - 0.2617993877991494F;
-    this.legL2.rotateAngleZ = limbSwingAmount * getSwing(120, ageInTicks) - 0.2617993877991494F;
-    this.legL3.rotateAngleZ = limbSwingAmount * getSwing(240, ageInTicks) - 0.2617993877991494F;
-    this.legR1.rotateAngleZ = limbSwingAmount * getSwing(180, ageInTicks) + 0.2617993877991494F;
-    this.legR2.rotateAngleZ = limbSwingAmount * getSwing(300, ageInTicks) + 0.2617993877991494F;
-    this.legR3.rotateAngleZ = limbSwingAmount * getSwing(60, ageInTicks) + 0.2617993877991494F;
 
+    EntityBeetle beetle = (EntityBeetle) entity;
+    if (beetle.isSitting()) {
+      this.body.setRotationPoint(0.0F, 20.0F, -4.0F);
+      //this.legR1.setRotationPoint(-1.5F, 1.0F, 1.0F);
+      this.setRotateAngle(legR1, -0.4619008920774175F, -0.12228424816241118F, 1.2226123587776043F);
+      //this.legR2.setRotationPoint(-2.0F, 1.0F, 3.5F);
+      this.setRotateAngle(legR2, 0.0F, 0.0F, 1.1609087739532686F);
+      //this.legR3.setRotationPoint(-1.5F, 1.0F, 6.0F);
+      this.setRotateAngle(legR3, 0.2617993950843811F, 0.0F, 1.1727415173224531F);
+      //this.legL1.setRotationPoint(1.5F, 1.0F, 1.0F);
+      this.setRotateAngle(legL1, -0.5508348907409892F, 0.12228424816241122F, -1.213797560945557F);
+      //this.legL2.setRotationPoint(2.0F, 1.0F, 3.5F);
+      this.setRotateAngle(legL2, 0.0F, 0.0F, -1.1873531674494129F);
+      //this.legL3.setRotationPoint(1.5F, 1.0F, 6.0F);
+      this.setRotateAngle(legL3, 0.2617993950843811F, 0.0F, -1.231427156609652F);
+    } else {
+      this.body.setRotationPoint(0.0F, 16.0F, -4.0F);
+      // Fix potential sitting first
+      this.setRotateAngle(legR1, -0.2617993877991494F, 0.0F, 0.2617993877991494F);
+      this.setRotateAngle(legR2, 0.0F, 0.0F, 0.2617993877991494F);
+      this.setRotateAngle(legR3, 0.2617993877991494F, 0.0F, 0.2617993877991494F);
+      this.setRotateAngle(legL1, -0.2617993877991494F, 0.0F, -0.2617993877991494F);
+      this.setRotateAngle(legL2, 0.0F, 0.0F, -0.2617993877991494F);
+      this.setRotateAngle(legL3, 0.2617993877991494F, 0.0F, -0.2617993877991494F);
+      // Then handle Stuff
+      this.legL1.rotateAngleZ = limbSwingAmount * getSwing(0, ageInTicks) - 0.2617993877991494F;
+      this.legL2.rotateAngleZ = limbSwingAmount * getSwing(120, ageInTicks) - 0.2617993877991494F;
+      this.legL3.rotateAngleZ = limbSwingAmount * getSwing(240, ageInTicks) - 0.2617993877991494F;
+      this.legR1.rotateAngleZ = limbSwingAmount * getSwing(180, ageInTicks) + 0.2617993877991494F;
+      this.legR2.rotateAngleZ = limbSwingAmount * getSwing(300, ageInTicks) + 0.2617993877991494F;
+      this.legR3.rotateAngleZ = limbSwingAmount * getSwing(60, ageInTicks) + 0.2617993877991494F;
+    }
     this.body.render(scaleFactor);
   }
 
