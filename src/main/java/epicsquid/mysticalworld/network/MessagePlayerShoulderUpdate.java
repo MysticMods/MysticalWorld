@@ -37,8 +37,8 @@ public class MessagePlayerShoulderUpdate implements IMessage {
 
   @Override
   public void toBytes(ByteBuf buf) {
-    buf.writeLong(id.getLeastSignificantBits());
     buf.writeLong(id.getMostSignificantBits());
+    buf.writeLong(id.getLeastSignificantBits());
     ByteBufUtils.writeTag(buf, tag);
   }
 
