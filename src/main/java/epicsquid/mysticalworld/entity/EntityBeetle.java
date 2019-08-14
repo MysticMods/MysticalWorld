@@ -2,10 +2,12 @@ package epicsquid.mysticalworld.entity;
 
 import javax.annotation.Nonnull;
 
+import epicsquid.mysticallib.network.PacketHandler;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.entity.ai.EntityAIHopOnOwnersShoulder;
+import epicsquid.mysticalworld.network.MessagePlayerShoulderUpdate;
 import ibxm.Player;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -79,11 +81,18 @@ public class EntityBeetle extends EntityShoulderRiding {
     if (this.isTamed()) {
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
         if (itemstack.isEmpty() && player.isSneaking()) {
-          // Try some shoulder surfing!
-          PlayerShoulderCapability cap = player.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY, null);
-          if (cap != null) {
-            if (!cap.isShouldered()) {
-
+          if (!world.isRemote) {
+            // Try some shoulder surfing!
+            PlayerShoulderCapability cap = player.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY, null);
+            if (cap != null) {
+              if (!cap.isShouldered()) {
+                cap.shoulder(this);
+                player.swingArm(EnumHand.MAIN_HAND);
+                MessagePlayerShoulderUpdate message = new MessagePlayerShoulderUpdate(player, cap);
+                PacketHandler.sendToAllTracking(message, this);
+                this.setDead();
+                return true;
+              }
             }
           }
         } else {

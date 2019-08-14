@@ -1,68 +1,52 @@
 package epicsquid.mysticalworld.capability;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 
 public class PlayerShoulderCapability {
   private NBTTagCompound animalSerialized = new NBTTagCompound();
   private boolean shouldered = false;
-  private Class<? extends Entity> clazz = null;
-  boolean dirty = false;
+  private ResourceLocation registryName = null;
 
   public PlayerShoulderCapability() {
   }
 
-  public boolean isDirty() {
-    return dirty;
-  }
-
-  public void markDirty() {
-    this.dirty = true;
-  }
-
-  public void clean () {
-    this.dirty = false;
-  }
-
-  public NBTTagCompound getAnimalSerialized () {
+  public NBTTagCompound getAnimalSerialized() {
     return animalSerialized;
   }
 
-  public boolean isShouldered () {
+  public boolean isShouldered() {
     return shouldered;
   }
 
-  public Class<? extends Entity> getClazz () {
-    return clazz;
+  public ResourceLocation getRegistryName () {
+    return registryName;
   }
 
-  public void drop () {
+  public void drop() {
     this.animalSerialized = new NBTTagCompound();
     this.shouldered = false;
-    this.clazz = null;
+    this.registryName = null;
   }
 
-  public void shoulder (Entity entity) {
+  public void shoulder(Entity entity) {
     this.animalSerialized = entity.writeToNBT(new NBTTagCompound());
     this.shouldered = true;
-    this.clazz = entity.getClass();
+    this.registryName = EntityList.getKey(entity);
   }
 
-  public NBTTagCompound writeNBT () {
+  public NBTTagCompound writeNBT() {
     NBTTagCompound result = new NBTTagCompound();
     result.setTag("animalSerialized", animalSerialized);
     result.setBoolean("shouldered", shouldered);
-    String clazz = "null";
-    if (this.clazz != null) {
-      clazz = this.clazz.toString();
-    }
-    result.setString("class", clazz);
+    result.setString("registryName", registryName == null ? "" : registryName.toString());
     return result;
   }
 
-  @SuppressWarnings("unchecked")
-  public void readNBT (NBTBase incoming) {
+  public void readNBT(NBTBase incoming) {
     if (incoming instanceof NBTTagCompound) {
       NBTTagCompound tag = (NBTTagCompound) incoming;
       if (tag.hasKey("animalSerialized")) {
@@ -71,17 +55,8 @@ public class PlayerShoulderCapability {
       if (tag.hasKey("shouldered")) {
         this.shouldered = tag.getBoolean("shouldered");
       }
-      if (tag.hasKey("class")) {
-        String className = tag.getString("class");
-        if (className.equals("null")) {
-          this.clazz = null;
-        } else {
-          try {
-            this.clazz = (Class<? extends Entity>) Class.forName(className);
-          } catch (ClassNotFoundException e) {
-            this.clazz = null;
-          }
-        }
+      if (tag.hasKey("registryName")) {
+        this.registryName = tag.getString("registryName").isEmpty() ? null : new ResourceLocation(tag.getString("registryName"));
       }
     }
   }

@@ -3,6 +3,8 @@ package epicsquid.mysticalworld;
 import epicsquid.mysticallib.capability.EntityCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
+import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
+import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityStorage;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -55,6 +57,7 @@ public class MysticalWorld {
     CONTAINER = Loader.instance().activeModContainer();
     MinecraftForge.EVENT_BUS.register(new RegistryManager());
     CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
+    CapabilityManager.INSTANCE.register(PlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
     logger = event.getModLog();
     proxy.preInit(event);
   }
