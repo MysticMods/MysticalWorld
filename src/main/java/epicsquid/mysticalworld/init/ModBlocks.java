@@ -93,8 +93,8 @@ public class ModBlocks {
 
     event.addBlock(mud_block = new BlockBase(Material.ROCK, SoundType.STONE, 1.4f, "mud_block").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
     event.addBlock(mud_brick = new BlockBase(Material.ROCK, SoundType.STONE, 1.4f, "mud_brick").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
-    event.addBlock(wet_mud_block = new BlockMud(Material.GROUND, SoundType.SLIME, 1.4f, "wet_mud_block").setDryEquivalent(mud_block).setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
-    event.addBlock(wet_mud_brick = new BlockMud(Material.GROUND, SoundType.SLIME, 1.4f, "wet_mud_brick").setDryEquivalent(mud_brick).setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
+    event.addBlock(wet_mud_block = new BlockMud(Material.GROUND, SoundType.SLIME, 1.4f, "wet_mud_block").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
+    event.addBlock(wet_mud_brick = new BlockMud(Material.GROUND, SoundType.SLIME, 1.4f, "wet_mud_brick").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
     Variants mud = variants(event, mud_block, "mud_block", SoundType.STONE, Material.ROCK);
     mud_block_slab = mud.slab;
     mud_block_double_slab = mud.double_slab;
