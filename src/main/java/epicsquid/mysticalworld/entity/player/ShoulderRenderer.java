@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 @SuppressWarnings("unused")
-@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, value=Side.CLIENT)
 public class ShoulderRenderer {
   @SideOnly(Side.CLIENT)
   private static double[] playerPosition(EntityPlayer player, float ticks) {
