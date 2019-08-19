@@ -23,7 +23,7 @@ public class ShoulderHandler {
     EntityPlayer player = event.getEntityPlayer();
     World world = event.getWorld();
 
-    if (!world.isRemote && event.getHand() == EnumHand.MAIN_HAND) {
+    if (!world.isRemote && event.getHand() == EnumHand.MAIN_HAND && player.isSneaking()) {
       PlayerShoulderCapability cap = player.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY, null);
       if (cap != null) {
         if (cap.isShouldered()) {
