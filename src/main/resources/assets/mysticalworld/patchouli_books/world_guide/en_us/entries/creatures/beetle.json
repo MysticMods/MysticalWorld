@@ -7,8 +7,8 @@
       "type": "animal_spawn_info",
       "animal": "beetle",
       "breed": "Breed: with melons.",
-      "tame": "Taming: Not tameable.",
-      "blurb": ""
+      "tame": "Taming: with melon seeds.",
+      "blurb": "Sneak-right-clicking with an empty hand will allow you to place the beetle on your shoulder!"
     },
     {
       "type": "entity",
@@ -16,7 +16,7 @@
       "entity": "mysticalworld:entity_beetle",
       "scale": 1.5,
       "offset": -0.3,
-      "text": "These cute creatures might one day find a home on your shoulder!"
+      "text": "Sneak-right-click again with an empty hand to put them down."
     }
   ]
 }
