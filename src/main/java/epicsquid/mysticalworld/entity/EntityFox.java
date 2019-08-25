@@ -235,11 +235,12 @@ public class EntityFox extends EntityTameable {
       if (!itemstack.isEmpty()) {
         if (itemstack.getItem() == Items.APPLE || itemstack.getItem() == Items.GOLDEN_APPLE) {
           if (this.dataManager.get(DATA_HEALTH_ID) < 20.0F) {
+            this.heal((float) ((ItemFood) itemstack.getItem()).getHealAmount(itemstack));
+
             if (!player.capabilities.isCreativeMode) {
               itemstack.shrink(1);
             }
 
-            this.heal((float) ((ItemFood) itemstack.getItem()).getHealAmount(itemstack));
             return true;
           }
         }
