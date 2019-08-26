@@ -15,6 +15,7 @@ public class BlockThatch extends BlockBase {
   public BlockThatch(@Nonnull Material mat, @Nonnull SoundType type, float hardness, @Nonnull String name) {
     super(mat, type, hardness, name);
     setOpacity(true);
+    useNeighborBrightness = true;
   }
 
   @Nonnull

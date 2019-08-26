@@ -15,9 +15,19 @@ public class ConfigurableRecipesFactory implements IConditionFactory {
     String key = JsonUtils.getString(json, "config");
 
     switch (key) {
+      // Recipe types for compression
+      case "dust": return () -> ConfigManager.metals.enableDusts;
+      case "tinyDust": return () -> ConfigManager.metals.enableTinyDusts;
+      case "ingot": return () -> ConfigManager.metals.enableIngots;
+      case "nugget": return () -> ConfigManager.metals.enableNuggets;
+      case "block": return () -> ConfigManager.metals.enableBlocks;
+
+      // Metal types
       case "copper": return () -> ConfigManager.toolEnable.enableCopper;
       case "amethyst": return () -> ConfigManager.toolEnable.enableAmethyst;
       case "silver": return () -> ConfigManager.toolEnable.enableSilver;
+
+      // Tools
       case "copper_axe": return () -> ConfigManager.toolEnable.copperTools.copperAxe;
       case "copper_hoe": return () -> ConfigManager.toolEnable.copperTools.copperHoe;
       case "copper_knife": return () -> ConfigManager.toolEnable.copperTools.copperKnife;
