@@ -5,6 +5,7 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.integration.endercore.EndercoreHarvest;
 import epicsquid.mysticalworld.integration.jer.JERIntegration;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.world.StructureGenerator;
@@ -35,7 +36,9 @@ public class CommonProxy {
     if (Loader.isModLoaded("jeresources")) {
       JERIntegration.init();
     }
-
+    if (Loader.isModLoaded("endercore")) {
+      EndercoreHarvest.init();
+    }
     LootConditionManager.registerCondition(new HasHorns.Serializer());
     if (ConfigManager.BarrowDistance != -1) {
       GameRegistry.registerWorldGenerator(barrowGenerator = new StructureGenerator(BARROW,10, () -> {
