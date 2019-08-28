@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld;
 
-import epicsquid.mysticallib.capability.EntityCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
@@ -17,7 +16,10 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +30,7 @@ public class MysticalWorld {
   public static final String DOMAIN = "mysticalworld";
   public static final String NAME = "Mystical World";
   public static final String VERSION = "@VERSION@";
-  public static final String DEPENDENCIES = "required-before:mysticallib@1.3.3;before:harvest;before:chisel;before:endercore";
+  public static final String DEPENDENCIES = "required-before:mysticallib@[1.3.4,);before:harvest;before:chisel;before:endercore";
 
   public static ModContainer CONTAINER = null;
 
@@ -37,7 +39,8 @@ public class MysticalWorld {
 
   public static Logger logger;
 
-  @Instance(MODID) public static MysticalWorld instance;
+  @Instance(MODID)
+  public static MysticalWorld instance;
 
   public static CreativeTabs tab = new CreativeTabs("mysticalworld") {
     @Override
