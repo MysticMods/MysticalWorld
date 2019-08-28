@@ -6,6 +6,7 @@ import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.integration.endercore.EndercoreHarvest;
+import epicsquid.mysticalworld.integration.harvest.HarvestIntegration;
 import epicsquid.mysticalworld.integration.jer.JERIntegration;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.world.StructureGenerator;
@@ -65,5 +66,11 @@ public class CommonProxy {
   }
 
   public void postInit(FMLPostInitializationEvent event) {
+  }
+
+  public void loadComplete(FMLLoadCompleteEvent event) {
+    if (Loader.isModLoaded("harvest")) {
+      HarvestIntegration.init();
+    }
   }
 }

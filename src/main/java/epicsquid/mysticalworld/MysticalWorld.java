@@ -75,4 +75,9 @@ public class MysticalWorld {
   public void postInit(FMLPostInitializationEvent event) {
     proxy.postInit(event);
   }
+
+  @EventHandler
+  public void loadComplete(FMLLoadCompleteEvent event) {
+    proxy.loadComplete(event);
+  }
 }
