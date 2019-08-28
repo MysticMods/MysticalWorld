@@ -119,18 +119,15 @@ public class ModBlocks {
     Block wall;
     Block button;
     Block pressure_plate;
-    LibRegistry.addSlabPair(material, sound, 1.7f, name, base.getDefaultState(), slabs, true,
-        base.getCreativeTab());
-    event.addBlock(stairs = new BlockStairsBase(base.getDefaultState(), sound, 1.7f, name + "_stairs").setModelCustom(true)
-        .setCreativeTab(base.getCreativeTab()));
-    event.addBlock(
-        wall = new BlockWallBase(base, sound, 1.7f, name + "_wall").setModelCustom(true).setCreativeTab(base.getCreativeTab()));
+    LibRegistry.addSlabPair(material, sound, 1.7f, name, base.getDefaultState(), slabs, true, MysticalWorld.tab);
+    event.addBlock(stairs = new BlockStairsBase(base.getDefaultState(), sound, 1.7f, name + "_stairs").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
+    event.addBlock(wall = new BlockWallBase(base, sound, 1.7f, name + "_wall").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
     if (material.equals(Material.ROCK)) {
-      event.addBlock(button = new BlockButtonStoneBase(base, sound, 1.7f, name + "_button").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.MOBS, sound, 1.7f, name + "_pressure_plate").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addBlock(button = new BlockButtonStoneBase(base, sound, 1.7f, name + "_button").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
+      event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.MOBS, sound, 1.7f, name + "_pressure_plate").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
     } else {
-      event.addBlock(button = new BlockButtonWoodBase(base, sound, 1.7f, name + "_button").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.ALL, sound, 1.7f, name + "_pressure_plate").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addBlock(button = new BlockButtonWoodBase(base, sound, 1.7f, name + "_button").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
+      event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.ALL, sound, 1.7f, name + "_pressure_plate").setModelCustom(true)).setCreativeTab(MysticalWorld.tab);
     }
     return new Variants(slabs, stairs, wall, button, pressure_plate);
   }
