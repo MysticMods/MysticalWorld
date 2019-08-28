@@ -107,17 +107,7 @@ public class ModItems {
    * Register item oredicts here
    */
   public static void registerOredict() {
-    if (ConfigManager.modules.mysticalWorldModuleEnabled) {
-      OreDictionary.registerOre("dyeBlack", ink_bottle);
-      if (ConfigManager.metals.enableDusts) {
-        OreDictionary.registerOre("dustIron", iron_dust);
-        OreDictionary.registerOre("dustGold", gold_dust);
-      }
-      if (ConfigManager.metals.enableTinyDusts) {
-        OreDictionary.registerOre("dustTinyIron", iron_dust_tiny);
-        OreDictionary.registerOre("dustTinyGold", gold_dust_tiny);
-      }
-    }
+    OreDictionary.registerOre("dyeBlack", ink_bottle);
     OreDictionary.registerOre("logWood", ModBlocks.charred_log);
     OreDictionary.registerOre("plankWood", ModBlocks.charred_planks);
     OreDictionary.registerOre("slabWood", ModBlocks.charred_slab);

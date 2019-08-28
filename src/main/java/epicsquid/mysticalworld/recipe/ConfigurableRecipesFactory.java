@@ -16,11 +16,18 @@ public class ConfigurableRecipesFactory implements IConditionFactory {
 
     switch (key) {
       // Recipe types for compression
-      case "dust": return () -> ConfigManager.metals.enableDusts;
-      case "tinyDust": return () -> ConfigManager.metals.enableTinyDusts;
-      case "ingot": return () -> ConfigManager.metals.enableIngots;
-      case "nugget": return () -> ConfigManager.metals.enableNuggets;
-      case "block": return () -> ConfigManager.metals.enableBlocks;
+      case "copper_tiny_dust": return () -> ConfigManager.copper.enableCopper && ConfigManager.copper.enableDusts && ConfigManager.copper.enableTinyDusts;
+      case "copper_ingot": return () ->  ConfigManager.copper.enableCopper && ConfigManager.copper.enableNuggets && ConfigManager.copper.enableIngots;
+      case "copper_block": return () ->  ConfigManager.copper.enableCopper && ConfigManager.copper.enableIngots && ConfigManager.copper.enableBlocks;
+
+      case "silver_tiny_dust": return () ->  ConfigManager.silver.enableSilver && ConfigManager.silver.enableDusts && ConfigManager.silver.enableTinyDusts;
+      case "silver_ingot": return () ->  ConfigManager.silver.enableSilver && ConfigManager.silver.enableNuggets && ConfigManager.silver.enableIngots;
+      case "silver_block": return () ->  ConfigManager.silver.enableSilver && ConfigManager.silver.enableIngots && ConfigManager.silver.enableBlocks;
+
+      case "amethyst_gem": return () -> ConfigManager.amethyst.enableAmethyst && ConfigManager.amethyst.enableGems && ConfigManager.amethyst.enableBlocks;
+
+      case "iron_tiny_dust": return () -> ConfigManager.iron.enableDusts && ConfigManager.iron.enableTinyDusts;
+      case "gold_tiny_dust": return () -> ConfigManager.gold.enableDusts && ConfigManager.gold.enableTinyDusts;
 
       // Metal types
       case "copper": return () -> ConfigManager.toolEnable.enableCopper;

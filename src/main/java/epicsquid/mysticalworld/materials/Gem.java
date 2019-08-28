@@ -121,7 +121,7 @@ public enum Gem implements IGem {
   public boolean isEnabled() {
     // TODO: Configure it
     if (this == amethyst) {
-      return ConfigManager.gems.enableAmethyst;
+      return ConfigManager.amethyst.enableAmethyst;
     }
 
     return false;
@@ -148,17 +148,16 @@ public enum Gem implements IGem {
 
   public static void registerGems(@Nonnull RegisterContentEvent event) {
     for (Gem gem : values()) {
-      if (gem.isEnabled()) {
-        if (ConfigManager.gems.enableGems) {
+      if (gem.isEnabled() && gem == Gem.amethyst) {
+        if (ConfigManager.amethyst.enableGems) {
           event.addItem(gem.setGem(new ItemBase(gem.name() + "_gem").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
         }
-        if (ConfigManager.gems.enableBlocks) {
+        if (ConfigManager.amethyst.enableBlocks) {
           event.addBlock(gem.setBlock(new BlockBase(Material.IRON, SoundType.METAL, gem.getHardness(), gem.name() + "_block").setModelCustom(true).setIsBeacon(true)
               .setCreativeTab(MysticalWorld.tab)));
         }
-        if (gem.hasOre() && ConfigManager.gems.enableOres) {
-          event.addBlock(gem.setOre(new BlockOreBase(Material.ROCK, SoundType.STONE, gem.getHardness(), gem.name() + "_ore", gem.getGem(), gem.getLevel(), gem.getMinXP(), gem.getMaxXP()).setModelCustom(true)
-              .setCreativeTab(MysticalWorld.tab)));
+        if (gem.hasOre() && ConfigManager.amethyst.enableOres) {
+          event.addBlock(gem.setOre(new BlockOreBase(Material.ROCK, SoundType.STONE, gem.getHardness(), gem.name() + "_ore", gem.getGem(), gem.getLevel(), gem.getMinXP(), gem.getMaxXP()).setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
         }
       }
     }
@@ -166,14 +165,14 @@ public enum Gem implements IGem {
 
   public static void registerOreDict() {
     for (Gem gem : values()) {
-      if (gem.isEnabled()) {
-        if (ConfigManager.gems.enableGems) {
+      if (gem.isEnabled() && gem == Gem.amethyst) {
+        if (ConfigManager.amethyst.enableGems) {
           OreDictionary.registerOre("gem" + gem.getOredictNameSuffix(), gem.getGem());
         }
-        if (ConfigManager.gems.enableBlocks) {
+        if (ConfigManager.amethyst.enableBlocks) {
           OreDictionary.registerOre("block" + gem.getOredictNameSuffix(), gem.getBlock());
         }
-        if (gem.hasOre() && ConfigManager.gems.enableOres) {
+        if (gem.hasOre() && ConfigManager.amethyst.enableOres) {
           OreDictionary.registerOre("ore" + gem.getOredictNameSuffix(), gem.getOre());
         }
       }

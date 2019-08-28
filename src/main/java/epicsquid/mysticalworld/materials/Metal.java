@@ -10,6 +10,8 @@ import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticallib.block.BlockOreBase;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.init.ModBlocks;
+import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -164,20 +166,12 @@ public enum Metal implements IMetal {
 
   @Override
   public boolean isEnabled() {
-    if (isEmbers) {
-      try {
-        return ConfigManager.modules.embersModuleEnabled && ConfigManager.metals.getClass().getField("enable" + getOredictNameSuffix()).getBoolean(ConfigManager.metals);
-      } catch (Exception e) {
-        System.out.println("Error: Cannot find the specified metal in configs. Are you sure you added it?");
-        return ConfigManager.modules.embersModuleEnabled;
-      }
+    if (this == Metal.copper) {
+      return ConfigManager.copper.enableCopper;
+    } else if (this == Metal.silver) {
+      return ConfigManager.silver.enableSilver;
     } else {
-      try {
-        return ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.metals.getClass().getField("enable" + getOredictNameSuffix()).getBoolean(ConfigManager.metals);
-      } catch (Exception e) {
-        System.out.println("Error: Cannot find the specified metal in configs. Are you sure you added it?");
-        return ConfigManager.modules.mysticalWorldModuleEnabled;
-      }
+      return false;
     }
   }
 
@@ -208,28 +202,47 @@ public enum Metal implements IMetal {
 
   public static void registerMetals(@Nonnull RegisterContentEvent event) {
     for (Metal metal : values()) {
-      if (metal.isEnabled()) {
-        if (ConfigManager.metals.enableIngots) {
+      if (metal.isEnabled() && metal == Metal.copper) {
+        if (ConfigManager.copper.enableIngots) {
           event.addItem(metal.setIngot(new ItemBase(metal.name() + "_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
         }
-        if (ConfigManager.metals.enableNuggets) {
+        if (ConfigManager.copper.enableNuggets) {
           event.addItem(metal.setNugget(new ItemBase(metal.name() + "_nugget").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
         }
         if (metal.hasGrindables()) {
-          if (ConfigManager.metals.enableDusts) {
+          if (ConfigManager.copper.enableDusts) {
             event.addItem(metal.setDust(new ItemBase(metal.name() + "_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
           }
-          if (ConfigManager.metals.enableTinyDusts) {
+          if (ConfigManager.copper.enableTinyDusts) {
             event.addItem(metal.setDustTiny(new ItemBase(metal.name() + "_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
           }
         }
-        if (ConfigManager.metals.enableBlocks) {
-          event.addBlock(metal.setBlock(new BlockBase(Material.IRON, SoundType.METAL, metal.getHardness(), metal.name() + "_block").setModelCustom(true).setIsBeacon(true)
-              .setCreativeTab(MysticalWorld.tab)));
+        if (ConfigManager.copper.enableBlocks) {
+          event.addBlock(metal.setBlock(new BlockBase(Material.IRON, SoundType.METAL, metal.getHardness(), metal.name() + "_block").setModelCustom(true).setIsBeacon(true).setCreativeTab(MysticalWorld.tab)));
         }
-        if (metal.hasOre() && ConfigManager.metals.enableOres) {
-          event.addBlock(metal.setOre(new BlockOreBase(Material.ROCK, SoundType.STONE, metal.getHardness(), metal.name() + "_ore", null, metal.getLevel(), metal.getMinXP(), metal.getMaxXP()).setModelCustom(true)
-              .setCreativeTab(MysticalWorld.tab)));
+        if (metal.hasOre() && ConfigManager.copper.enableOres) {
+          event.addBlock(metal.setOre(new BlockOreBase(Material.ROCK, SoundType.STONE, metal.getHardness(), metal.name() + "_ore", null, metal.getLevel(), metal.getMinXP(), metal.getMaxXP()).setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+        }
+      } else if (metal.isEnabled() && metal == Metal.silver) {
+        if (ConfigManager.silver.enableIngots) {
+          event.addItem(metal.setIngot(new ItemBase(metal.name() + "_ingot").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+        }
+        if (ConfigManager.silver.enableNuggets) {
+          event.addItem(metal.setNugget(new ItemBase(metal.name() + "_nugget").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+        }
+        if (metal.hasGrindables()) {
+          if (ConfigManager.silver.enableDusts) {
+            event.addItem(metal.setDust(new ItemBase(metal.name() + "_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+          }
+          if (ConfigManager.silver.enableTinyDusts) {
+            event.addItem(metal.setDustTiny(new ItemBase(metal.name() + "_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+          }
+        }
+        if (ConfigManager.silver.enableBlocks) {
+          event.addBlock(metal.setBlock(new BlockBase(Material.IRON, SoundType.METAL, metal.getHardness(), metal.name() + "_block").setModelCustom(true).setIsBeacon(true).setCreativeTab(MysticalWorld.tab)));
+        }
+        if (metal.hasOre() && ConfigManager.silver.enableOres) {
+          event.addBlock(metal.setOre(new BlockOreBase(Material.ROCK, SoundType.STONE, metal.getHardness(), metal.name() + "_ore", null, metal.getLevel(), metal.getMinXP(), metal.getMaxXP()).setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
         }
       }
     }
@@ -237,28 +250,62 @@ public enum Metal implements IMetal {
 
   public static void registerOreDict() {
     for (Metal metal : values()) {
-      if (metal.isEnabled()) {
-        if (ConfigManager.metals.enableIngots) {
+      if (metal.isEnabled() && metal == Metal.copper) {
+        if (ConfigManager.copper.enableIngots) {
           OreDictionary.registerOre("ingot" + metal.getOredictNameSuffix(), metal.getIngot());
         }
-        if (ConfigManager.metals.enableNuggets) {
+        if (ConfigManager.copper.enableNuggets) {
           OreDictionary.registerOre("nugget" + metal.getOredictNameSuffix(), metal.getNugget());
         }
         if (metal.hasGrindables()) {
-          if (ConfigManager.metals.enableDusts) {
+          if (ConfigManager.copper.enableDusts) {
             OreDictionary.registerOre("dust" + metal.getOredictNameSuffix(), metal.getDust());
           }
-          if (ConfigManager.metals.enableTinyDusts) {
+          if (ConfigManager.copper.enableTinyDusts) {
             OreDictionary.registerOre("dustTiny" + metal.getOredictNameSuffix(), metal.getDustTiny());
           }
         }
-        if (ConfigManager.metals.enableBlocks) {
+        if (ConfigManager.copper.enableBlocks) {
           OreDictionary.registerOre("block" + metal.getOredictNameSuffix(), metal.getBlock());
         }
-        if (metal.hasOre() && ConfigManager.metals.enableOres) {
+        if (metal.hasOre() && ConfigManager.copper.enableOres) {
+          OreDictionary.registerOre("ore" + metal.getOredictNameSuffix(), metal.getOre());
+        }
+      } else if (metal.isEnabled() && metal == Metal.silver) {
+        if (ConfigManager.silver.enableIngots) {
+          OreDictionary.registerOre("ingot" + metal.getOredictNameSuffix(), metal.getIngot());
+        }
+        if (ConfigManager.silver.enableNuggets) {
+          OreDictionary.registerOre("nugget" + metal.getOredictNameSuffix(), metal.getNugget());
+        }
+        if (metal.hasGrindables()) {
+          if (ConfigManager.silver.enableDusts) {
+            OreDictionary.registerOre("dust" + metal.getOredictNameSuffix(), metal.getDust());
+          }
+          if (ConfigManager.silver.enableTinyDusts) {
+            OreDictionary.registerOre("dustTiny" + metal.getOredictNameSuffix(), metal.getDustTiny());
+          }
+        }
+        if (ConfigManager.silver.enableBlocks) {
+          OreDictionary.registerOre("block" + metal.getOredictNameSuffix(), metal.getBlock());
+        }
+        if (metal.hasOre() && ConfigManager.silver.enableOres) {
           OreDictionary.registerOre("ore" + metal.getOredictNameSuffix(), metal.getOre());
         }
       }
+    }
+
+    if (ConfigManager.gold.enableDusts) {
+      OreDictionary.registerOre("dustGold", ModItems.gold_dust);
+    }
+    if (ConfigManager.gold.enableTinyDusts) {
+      OreDictionary.registerOre("dustTinyGold", ModItems.gold_dust_tiny);
+    }
+    if (ConfigManager.iron.enableDusts) {
+      OreDictionary.registerOre("dustIron", ModItems.iron_dust);
+    }
+    if (ConfigManager.iron.enableTinyDusts) {
+      OreDictionary.registerOre("dustTinyIron", ModItems.iron_dust_tiny);
     }
   }
 }

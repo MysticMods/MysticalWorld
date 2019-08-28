@@ -220,6 +220,33 @@ public class ConfigManager {
     public String[] excludedBiomes = new String[]{"VOID", "END", "WATER", "BEACH", "MESA", "MUSHROOM", "NETHER", "OCEAN", "RIVER"};
   }
 
+  @Config.Comment(("Mystical world gold dusts"))
+  public static ConfigMysticalWorldGold gold = new ConfigMysticalWorldGold();
+
+  public static class ConfigMysticalWorldGold {
+    @Config.Comment(("Enable Gold"))
+    public boolean enableGold = true;
+
+    @Config.Comment(("Enable Tiny Dusts for Gold"))
+    public boolean enableTinyDusts = true;
+
+    @Config.Comment(("Enable Dusts for Gold"))
+    public boolean enableDusts = true;
+  }
+
+  @Config.Comment(("Mystical world iron dusts"))
+  public static ConfigMysticalWorldIron iron = new ConfigMysticalWorldIron();
+
+  public static class ConfigMysticalWorldIron {
+    @Config.Comment(("Enable Iron"))
+    public boolean enableIron = true;
+
+    @Config.Comment(("Enable Tiny Dusts for Iron"))
+    public boolean enableTinyDusts = true;
+
+    @Config.Comment(("Enable Dusts for Iron"))
+    public boolean enableDusts = true;
+  }
 
   @Config.Comment(("Mystical world gems and their components"))
   public static ConfigMysticalWorldAmethyst amethyst = new ConfigMysticalWorldAmethyst();
