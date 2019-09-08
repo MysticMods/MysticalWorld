@@ -10,6 +10,7 @@ import epicsquid.mysticalworld.entity.ai.EntityAIHopOnOwnersShoulder;
 import epicsquid.mysticalworld.network.MessagePlayerShoulderUpdate;
 import ibxm.Player;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -126,6 +127,11 @@ public class EntityBeetle extends EntityShoulderRiding {
     }
 
     return super.processInteract(player, hand);
+  }
+
+  @Override
+  public EnumCreatureAttribute getCreatureAttribute() {
+    return EnumCreatureAttribute.ARTHROPOD;
   }
 
   @Override
