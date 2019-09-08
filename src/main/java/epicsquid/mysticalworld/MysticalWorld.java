@@ -30,7 +30,7 @@ public class MysticalWorld {
   public static final String DOMAIN = "mysticalworld";
   public static final String NAME = "Mystical World";
   public static final String VERSION = "@VERSION@";
-  public static final String DEPENDENCIES = "required-before:mysticallib@[1.3.4,);before:harvest;before:chisel;before:endercore";
+  public static final String DEPENDENCIES = "after:maindependencies";
 
   public static ModContainer CONTAINER = null;
 
