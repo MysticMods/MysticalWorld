@@ -3,6 +3,11 @@
     "config": "epicsquid.mysticalworld.recipe.ConfigurableRecipesFactory"
   },
   "ingredients": {
-    "multi_ore": "epicsquid.mysticallib.recipe.factories.MultiOreIngredient$Factory"
+    "multi_ore": "epicsquid.mysticallib.recipe.factories.MultiOreIngredient$Factory",
+    "flint_and_steel": "epicsquid.mysticalworld.recipe.IngredientFlintAndSteel$Factory"
+  },
+  "recipes": {
+    "charred_wood": "epicsquid.mysticalworld.recipe.CharredWoodRecipe$Factory",
+    "shaped_charred_wood": "epicsquid.mysticalworld.recipe.ShapedCharredWoodRecipe$Factory"
   }
 }
