@@ -30,6 +30,7 @@ public class MysticalWorld {
   public static final String DOMAIN = "mysticalworld";
   public static final String NAME = "Mystical World";
   public static final String VERSION = "@VERSION@";
+  // Change the dependencies in gradle.properties!
   public static final String DEPENDENCIES = "after:maindependencies";
 
   public static ModContainer CONTAINER = null;
