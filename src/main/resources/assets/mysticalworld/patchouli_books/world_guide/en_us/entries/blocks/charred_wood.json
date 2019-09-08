@@ -7,7 +7,12 @@
       "type": "spotlight",
       "link_recipe": true,
       "item": "mysticalworld:charred_log",
-      "text": "Found in the world where wood has been burned or trees have perhaps been struck by lightning, these logs serve a mainly decorative purpose."
+      "text": "Found in the world where wood has been burned or trees have perhaps been struck by lightning, these logs serve a mainly decorative purpose.$(br2)They can be additionally charred using a flint and steel, which is damaged (not consumed) in the process. You can also use a fire charge, which is consumed."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:charred_wood_eight",
+      "recipe2": "mysticalworld:charred_wood"
     },
     {
       "type": "crafting",

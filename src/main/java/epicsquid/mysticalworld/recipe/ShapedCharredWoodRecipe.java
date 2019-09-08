@@ -40,7 +40,7 @@ public class ShapedCharredWoodRecipe extends ShapedOreRecipe {
     for (int i = 0; i < result.size(); i++) {
       ItemStack inSlot = inv.getStackInSlot(i);
 
-      if (IngredientFlintAndSteel.instance.apply(inSlot)) {
+      if (IngredientFlintAndSteel.getInstance().apply(inSlot)) {
         inSlot = inSlot.copy();
         
         if (inSlot.attemptDamageItem(1, Util.rand, null)) {

@@ -9,13 +9,32 @@ import net.minecraftforge.common.crafting.JsonContext;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class IngredientFlintAndSteel extends Ingredient {
-  public static IngredientFlintAndSteel instance = new IngredientFlintAndSteel();
+  private static IngredientFlintAndSteel instance = null;
 
-  public IngredientFlintAndSteel() {
-    super(0);
+  public static IngredientFlintAndSteel getInstance() {
+    if (instance == null) {
+      int max = Items.FLINT_AND_STEEL.getMaxDamage();
+
+      List<ItemStack> matchingStacks = new ArrayList<>();
+      for (int i = 0; i <= max; i++) {
+        ItemStack stack = new ItemStack(Items.FLINT_AND_STEEL, 1);
+        stack.setItemDamage(i);
+        matchingStacks.add(stack);
+      }
+
+      instance = new IngredientFlintAndSteel(matchingStacks.toArray(new ItemStack[0]));
+    }
+
+    return instance;
+  }
+
+  public IngredientFlintAndSteel(ItemStack ... stacks) {
+    super(stacks);
   }
 
   @Override
@@ -27,7 +46,7 @@ public class IngredientFlintAndSteel extends Ingredient {
     @Nonnull
     @Override
     public Ingredient parse(JsonContext context, JsonObject json) {
-      return instance;
+      return getInstance();
     }
   }
 }
