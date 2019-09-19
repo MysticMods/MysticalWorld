@@ -40,6 +40,7 @@ public class EntityDeer extends EntityAnimal {
     this.getDataManager().register(hasHorns, rand.nextBoolean());
   }
 
+  @Override
   protected void initEntityAI() {
     this.tasks.addTask(0, new EntityAISwimming(this));
     this.tasks.addTask(1, new EntityAIPanic(this, 1.5D));
@@ -86,6 +87,7 @@ public class EntityDeer extends EntityAnimal {
     return LOOT_TABLE;
   }
 
+  @Override
   public float getEyeHeight() {
     return this.isChild() ? this.height : 1.3F;
   }

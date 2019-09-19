@@ -27,6 +27,7 @@ public class WorldGenMinableDebug extends WorldGenerator {
     this.oreName = oreName;
   }
 
+  @Override
   public boolean generate(World worldIn, Random rand, BlockPos position) {
     int generatedCount = 0;
     float f = rand.nextFloat() * (float) Math.PI;
@@ -101,6 +102,7 @@ public class WorldGenMinableDebug extends WorldGenerator {
     private StonePredicate() {
     }
 
+    @Override
     public boolean apply(IBlockState p_apply_1_) {
       if (p_apply_1_ != null && p_apply_1_.getBlock() == Blocks.STONE) {
         BlockStone.EnumType blockstone$enumtype = (BlockStone.EnumType) p_apply_1_.getValue(BlockStone.VARIANT);

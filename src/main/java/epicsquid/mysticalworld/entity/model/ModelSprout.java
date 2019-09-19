@@ -50,6 +50,7 @@ public class ModelSprout extends ModelBase {
     setRotation(leafBottom, 1.963495F, 0.5235988F, 0F);
   }
 
+  @Override
   public void render(Entity entity, float f, float f1, float age, float f3, float f4, float f5) {
     GlStateManager.pushMatrix();
     float speed = (float) Math.min(0.25f, ((new Vec3d(entity.motionX, 0, entity.motionZ)).length() * 4.0f));

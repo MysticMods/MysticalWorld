@@ -255,10 +255,12 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
     }
   }
 
+  @Override
   public void setDecorationDefaults() {
     this.leafDistanceLimit = 5;
   }
 
+  @Override
   public boolean generate(World worldIn, Random rand, BlockPos position) {
     this.world = worldIn;
     this.basePos = position;

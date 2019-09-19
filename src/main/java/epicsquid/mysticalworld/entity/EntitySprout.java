@@ -58,6 +58,7 @@ public class EntitySprout extends EntityAnimal {
     this.getDataManager().register(variant, rand.nextInt(4));
   }
 
+  @Override
   protected void initEntityAI() {
     this.tasks.addTask(0, new EntityAISwimming(this));
     this.tasks.addTask(1, new EntityAIPanic(this, 1.5D));
@@ -99,6 +100,7 @@ public class EntitySprout extends EntityAnimal {
     }
   }
 
+  @Override
   public float getEyeHeight() {
     return this.isChild() ? this.height : 1.3F;
   }

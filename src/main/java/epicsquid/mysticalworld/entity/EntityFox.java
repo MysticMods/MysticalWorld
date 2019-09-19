@@ -326,6 +326,7 @@ public class EntityFox extends EntityTameable {
     }
   }
 
+  @Override
   public boolean canBeLeashedTo(EntityPlayer player) {
     return !this.isAngry() && super.canBeLeashedTo(player);
   }
@@ -363,6 +364,7 @@ public class EntityFox extends EntityTameable {
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
+    @Override
     public boolean shouldExecute() {
       if (!this.tameable.isTamed()) {
         return false;
@@ -384,6 +386,7 @@ public class EntityFox extends EntityTameable {
     /**
      * Execute a one shot task or start executing a continuous task
      */
+    @Override
     public void startExecuting() {
       this.tameable.getNavigator().clearPath();
       this.tameable.setSleeping(true);
@@ -392,6 +395,7 @@ public class EntityFox extends EntityTameable {
     /**
      * Reset the task's internal state. Called when this task is interrupted by another one
      */
+    @Override
     public void resetTask() {
       this.tameable.setSleeping(false);
     }

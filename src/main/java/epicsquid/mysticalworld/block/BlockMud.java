@@ -23,6 +23,7 @@ public class BlockMud extends BlockBase {
     super(mat, type, hardness, name);
   }
 
+  @Override
   public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
     entityIn.motionX *= 0.4D;
     entityIn.motionZ *= 0.4D;

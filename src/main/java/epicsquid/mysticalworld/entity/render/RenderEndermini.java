@@ -33,6 +33,7 @@ public class RenderEndermini extends RenderLiving<EntityEndermini> {
     this.addLayer(new LayerHeldBlockMini(this));
   }
 
+  @Override
   public ModelEnderman getMainModel() {
     return (ModelEnderman) super.getMainModel();
   }
@@ -40,6 +41,7 @@ public class RenderEndermini extends RenderLiving<EntityEndermini> {
   /**
    * Renders the desired {@code T} type Entity.
    */
+  @Override
   public void doRender(EntityEndermini entity, double x, double y, double z, float entityYaw, float partialTicks) {
     IBlockState iblockstate = entity.getHeldBlockState();
     ModelEnderman modelenderman = this.getMainModel();
@@ -57,6 +59,7 @@ public class RenderEndermini extends RenderLiving<EntityEndermini> {
   /**
    * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
    */
+  @Override
   protected ResourceLocation getEntityTexture(EntityEndermini entity) {
     return ENDERMINI_TEXTURES;
   }
@@ -79,6 +82,7 @@ public class RenderEndermini extends RenderLiving<EntityEndermini> {
       this.endermanRenderer = endermanRendererIn;
     }
 
+    @Override
     public void doRenderLayer(EntityEndermini entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
       this.endermanRenderer.bindTexture(RES_ENDERMAN_EYES);
       GlStateManager.pushMatrix();
@@ -105,6 +109,7 @@ public class RenderEndermini extends RenderLiving<EntityEndermini> {
       GlStateManager.popMatrix();
     }
 
+    @Override
     public boolean shouldCombineTextures() {
       return false;
     }
@@ -118,6 +123,7 @@ public class RenderEndermini extends RenderLiving<EntityEndermini> {
       this.endermanRenderer = endermanRendererIn;
     }
 
+    @Override
     public void doRenderLayer(EntityEndermini entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
       IBlockState iblockstate = entitylivingbaseIn.getHeldBlockState();
 
@@ -147,6 +153,7 @@ public class RenderEndermini extends RenderLiving<EntityEndermini> {
       }
     }
 
+    @Override
     public boolean shouldCombineTextures() {
       return false;
     }
