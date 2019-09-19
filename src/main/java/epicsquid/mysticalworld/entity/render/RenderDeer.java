@@ -22,7 +22,7 @@ public class RenderDeer extends RenderLiving<EntityDeer> {
   @Override
   @Nonnull
   protected ResourceLocation getEntityTexture(@Nonnull EntityDeer entity) {
-    if (entity.getEntityId() % 1 == 0) {
+    if (entity.getEntityId() % 2 == 0) {
       GL11.glGetInteger(GL11.GL_BLEND);
       return new ResourceLocation("mysticalworld:textures/entity/rudolph.png");
     }
