@@ -8,16 +8,13 @@ import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.entity.render.*;
 import epicsquid.mysticalworld.proxy.ClientProxy;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -46,6 +43,9 @@ public class ModEntities {
     LibRegistry.registerEntity(EntityOwl.class, 0x8c654a, 0xdec9ba);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityOwl.class, new RenderOwl.Factory());
+    LibRegistry.registerEntity(EntityLavaCat.class, 0xde3535, 0xe89613);
+    if (MysticalWorld.proxy instanceof ClientProxy)
+      LibRegistry.registerEntityRenderer(EntityLavaCat.class, new RenderLavaCat.Factory());
   }
 
   public static void registerLootTables () {
