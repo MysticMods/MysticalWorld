@@ -2,8 +2,10 @@ package epicsquid.mysticalworld.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,12 +21,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 public class EntityLavaCat extends EntityOcelot {
-  private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.createKey(EntityOcelot.class, DataSerializers.BOOLEAN);
+  private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.createKey(EntityLavaCat.class, DataSerializers.BOOLEAN);
 
   private EntityAITempt aiTempt;
 
@@ -92,19 +96,6 @@ public class EntityLavaCat extends EntityOcelot {
 
   @Override
   public void fall(float distance, float damageMultiplier) {
-  }
-
-  @Override
-  public void writeEntityToNBT(NBTTagCompound compound) {
-    super.writeEntityToNBT(compound);
-  }
-
-  /**
-   * (abstract) Protected helper method to read subclass entity data from NBT.
-   */
-  @Override
-  public void readEntityFromNBT(NBTTagCompound compound) {
-    super.readEntityFromNBT(compound);
   }
 
   @Override
@@ -218,6 +209,8 @@ public class EntityLavaCat extends EntityOcelot {
     return entityocelot;
   }
 
+  // TODO: Override get name
+
   /**
    * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
    * the animal type)
@@ -258,11 +251,11 @@ public class EntityLavaCat extends EntityOcelot {
   public void setTameSkin(int skinId) {
   }
 
-  public boolean getIsLava () {
+  public boolean getIsLava() {
     return this.dataManager.get(IS_LAVA);
   }
 
-  public void setIsLava (boolean val) {
+  public void setIsLava(boolean val) {
     this.dataManager.set(IS_LAVA, val);
     this.dataManager.setDirty(IS_LAVA);
   }
@@ -302,6 +295,51 @@ public class EntityLavaCat extends EntityOcelot {
     } else if (!getIsLava() && isInLava()) {
       setIsLava(true);
     }
+  }
+
+  @Override
+  public void readEntityFromNBT(NBTTagCompound compound) {
+    super.readEntityFromNBT(compound);
+    setIsLava(compound.getBoolean("IsLava"));
+  }
+
+  @Override
+  public void writeEntityToNBT(NBTTagCompound compound) {
+    super.writeEntityToNBT(compound);
+    compound.setBoolean("IsLava", getIsLava());
+  }
+
+  @Override
+  @SuppressWarnings("deprecation")
+  public String getName() {
+    if (this.hasCustomName()) {
+      return this.getCustomNameTag();
+    } else {
+      return this.getIsLava() ? I18n.translateToLocal("entity.entity_lava_cat.name") : I18n.translateToLocal("entity.entity_obsidian_cat.name");
+    }
+  }
+
+  @Nullable
+  @Override
+  public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+    this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextGaussian() * 0.05D, 1));
+
+    if (this.rand.nextFloat() < 0.05F) {
+      this.setLeftHanded(true);
+    } else {
+      this.setLeftHanded(false);
+    }
+
+    if (this.getTameSkin() == 0 && this.world.rand.nextInt(7) == 0) {
+      for (int i = 0; i < 2; ++i) {
+        EntityLavaCat entitylavacat = new EntityLavaCat(this.world);
+        entitylavacat.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+        entitylavacat.setGrowingAge(-24000);
+        this.world.spawnEntity(entitylavacat);
+      }
+    }
+
+    return livingdata;
   }
 }
 

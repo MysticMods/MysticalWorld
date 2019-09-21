@@ -46,6 +46,9 @@ public class ModEntities {
     LibRegistry.registerEntity(EntityLavaCat.class, 0xde3535, 0xe89613);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityLavaCat.class, new RenderLavaCat.Factory());
+    LibRegistry.registerEntity(EntitySilkworm.class, 0xd1cecd, 0x635e5b );
+    if (MysticalWorld.proxy instanceof ClientProxy)
+      LibRegistry.registerEntityRenderer(EntitySilkworm.class, new RenderSilkworm.Factory());
   }
 
   public static void registerLootTables () {

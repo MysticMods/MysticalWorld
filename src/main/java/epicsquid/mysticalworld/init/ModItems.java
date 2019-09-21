@@ -35,6 +35,8 @@ public class ModItems {
 
   public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, raw_squid, cooked_squid, epic_squid, unripe_pearl;
 
+  public static Item silk_cocoon, silk_thread, spindle;
+
   /**
    * Register all items
    */
@@ -49,45 +51,42 @@ public class ModItems {
     // Mob Drops
     event.addItem(carapace = new ItemBase("carapace").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
-    if (ConfigManager.modules.mysticalWorldModuleEnabled) {
-      // Vanilla Metal Dusts
-      event.addItem(pelt = new ItemBase("pelt").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(iron_dust = new ItemBase("iron_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(iron_dust_tiny = new ItemBase("iron_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(gold_dust = new ItemBase("gold_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(gold_dust_tiny = new ItemBase("gold_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(antlers = new ItemBase("antlers").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(venison = new ItemFoodBase("venison", 3, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(raw_squid = new ItemFoodBase("raw_squid", 1, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(cooked_venison = new ItemFoodBase("cooked_venison", 7, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(cooked_squid = new ItemFoodBase("cooked_squid", 3, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(epic_squid = new ItemFoodBase("epic_squid", 20, false) {
-        @Override
-        public boolean hasEffect(ItemStack stack) {
-          return true;
-        }
+    event.addItem(pelt = new ItemBase("pelt").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(iron_dust = new ItemBase("iron_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(iron_dust_tiny = new ItemBase("iron_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(gold_dust = new ItemBase("gold_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(gold_dust_tiny = new ItemBase("gold_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(antlers = new ItemBase("antlers").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(venison = new ItemFoodBase("venison", 3, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(raw_squid = new ItemFoodBase("raw_squid", 1, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(cooked_venison = new ItemFoodBase("cooked_venison", 7, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(cooked_squid = new ItemFoodBase("cooked_squid", 3, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(epic_squid = new ItemFoodBase("epic_squid", 20, false) {
+      @Override
+      public boolean hasEffect(ItemStack stack) {
+        return true;
+      }
 
-        @Override
-        public EnumRarity getRarity(ItemStack stack) {
-          return EnumRarity.EPIC;
-        }
+      @Override
+      public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.EPIC;
+      }
 
-        @Override
-        protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
-          if (!worldIn.isRemote) {
-            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 600, 1));
-            player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 3000));
-            player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 1200));
-            player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 1200, 1));
-            player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 1200, 0));
-            player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 1200, 0));
-            player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 1200, 3));
-          }
+      @Override
+      protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
+        if (!worldIn.isRemote) {
+          player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 600, 1));
+          player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 3000));
+          player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 1200));
+          player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 1200, 1));
+          player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 1200, 0));
+          player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 1200, 0));
+          player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 1200, 3));
         }
-      }.setModelCustom(true).setAlwaysEdible().setCreativeTab(MysticalWorld.tab));
-      event.addItem(ink_bottle = new ItemBase("ink_bottle").setModelCustom(true).setCreativeTab(MysticalWorld.tab).setContainerItem(Items.GLASS_BOTTLE));
-      event.addItem(unripe_pearl = new ItemUnripePearl("unripe_pearl").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    }
+      }
+    }.setModelCustom(true).setAlwaysEdible().setCreativeTab(MysticalWorld.tab));
+    event.addItem(ink_bottle = new ItemBase("ink_bottle").setModelCustom(true).setCreativeTab(MysticalWorld.tab).setContainerItem(Items.GLASS_BOTTLE));
+    event.addItem(unripe_pearl = new ItemUnripePearl("unripe_pearl").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
 
     if (!Loader.isModLoaded("roots") || !Knives.initKnives(event)) {
       event.addItem(amethyst_knife = new ItemKnifeBase("amethyst_knife", MaterialTypes.material("mysticalworld:amethyst")).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
@@ -99,6 +98,10 @@ public class ModItems {
     event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(cooked_aubergine = new ItemFoodBase("cooked_aubergine", 5, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(stuffed_aubergine = new ItemFoodBase("stuffed_aubergine", 10, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+
+    event.addItem(silk_cocoon = new ItemBase("silk_cocoon").setCreativeTab(MysticalWorld.tab));
+    event.addItem(silk_thread = new ItemBase("silk_thread").setCreativeTab(MysticalWorld.tab));
+    event.addItem(spindle = new ItemBase("spindle").setCreativeTab(MysticalWorld.tab));
 
     registerSeedDrops();
   }
@@ -148,6 +151,8 @@ public class ModItems {
     OreDictionary.registerOre("listAllveggie", ModItems.aubergine);
     OreDictionary.registerOre("listAllvenisoncooked", ModItems.cooked_venison);
     OreDictionary.registerOre("listAllvenisonraw", ModItems.venison);
+
+    OreDictionary.registerOre("string", ModItems.silk_thread);
 
   }
 

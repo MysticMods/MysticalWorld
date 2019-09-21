@@ -7,6 +7,9 @@ entity.entity_deer.name=Deer
 entity.entity_sprout.name=Sprout
 entity.entity_endermini.name=Endermini
 entity.entity_owl.name=Owl
+entity.entity_silkworm.name=Silkworm
+entity.entity_lava_cat.name=Lava Cat
+entity.entity_obsidian_cat.name=Obsidian Cat
 
 item.carapace.name=Carapace
 item.pelt.name=Pelt
@@ -14,6 +17,9 @@ item.raw_squid.name=Raw Squid
 item.cooked_squid.name=Calamari
 item.epic_squid.name=Epic Squid
 item.unripe_pearl.name=Unripe Pearl
+item.silk_thread.name=Silk Thread
+item.silk_cocoon.name=Silk Cocoon
+item.spindle.name=Spindle
 
 # Ingots
 item.copper_ingot.name=Copper Ingot

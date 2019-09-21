@@ -33,12 +33,11 @@ public class RenderLavaCat extends RenderLiving<EntityLavaCat> {
     return OBSIDIAN_KITTY;
   }
 
+  @Override
   protected void preRenderCallback(EntityLavaCat entitylivingbaseIn, float partialTickTime) {
     super.preRenderCallback(entitylivingbaseIn, partialTickTime);
 
-    if (entitylivingbaseIn.isTamed()) {
-      GlStateManager.scale(0.8F, 0.8F, 0.8F);
-    }
+    GlStateManager.scale(1.2F, 1.2F, 1.2F);
   }
 
   public static class Factory implements IRenderFactory {
