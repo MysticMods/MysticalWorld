@@ -41,9 +41,4 @@ public class LootHandler {
       }
     }
   }
-
-  @SubscribeEvent
-  public static void onLootDrop (LivingDropsEvent event) {
-
-  }
 }

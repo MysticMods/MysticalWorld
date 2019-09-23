@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.proxy;
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.events.LeafHandler;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.integration.endercore.EndercoreHarvest;
@@ -72,5 +73,6 @@ public class CommonProxy {
     if (Loader.isModLoaded("harvest")) {
       HarvestIntegration.init();
     }
+    LeafHandler.getLeafBlocks();
   }
 }

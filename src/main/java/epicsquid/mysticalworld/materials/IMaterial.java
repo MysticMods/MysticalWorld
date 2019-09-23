@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.materials;
 
+import epicsquid.mysticallib.event.RegisterContentEvent;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
@@ -38,9 +39,37 @@ public interface IMaterial {
 
   boolean hasOre();
 
+  @Nullable
+  Item getItem();
+
+  @Nonnull
+  Item setItem(@Nonnull Item item);
+
+  @Nullable
+  Item getDust();
+
+  @Nonnull
+  Item setDust(@Nonnull Item dust);
+
+  @Nullable
+  Item getDustTiny();
+
+  @Nonnull
+  Item setDustTiny(@Nonnull Item dustTiny);
+
+  @Nullable
+  Item getNugget();
+
+  @Nonnull
+  Item setNugget(@Nonnull Item nugget);
+
   int getLevel();
 
   int getMinXP();
 
   int getMaxXP();
+
+  void initMaterial (@Nonnull RegisterContentEvent event);
+
+  void initOreDictionary ();
 }

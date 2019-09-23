@@ -20,6 +20,7 @@ item.unripe_pearl.name=Unripe Pearl
 item.silk_thread.name=Silk Thread
 item.silk_cocoon.name=Silk Cocoon
 item.spindle.name=Spindle
+item.silkworm_egg.name=Silkworm Egg
 
 # Ingots
 item.copper_ingot.name=Copper Ingot

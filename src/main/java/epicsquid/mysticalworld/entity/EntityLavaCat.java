@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.entity;
 
+import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -28,6 +29,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class EntityLavaCat extends EntityOcelot {
+  public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID,  "entity/lava_cat");
+
   private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.createKey(EntityLavaCat.class, DataSerializers.BOOLEAN);
 
   private EntityAITempt aiTempt;
@@ -162,8 +165,7 @@ public class EntityLavaCat extends EntityOcelot {
   @Override
   @Nullable
   protected ResourceLocation getLootTable() {
-    // TODO: This
-    return null;
+    return LOOT_TABLE;
   }
 
   @Override

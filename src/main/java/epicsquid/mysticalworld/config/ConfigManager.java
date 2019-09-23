@@ -91,8 +91,10 @@ public class ConfigManager {
   public static ConfigMysticalWorldSprout sprout = new ConfigMysticalWorldSprout();
   @Config.Comment(("Controls the spawn settings of Endermini"))
   public static ConfigMysticalWorldEndermini endermini = new ConfigMysticalWorldEndermini();
-  @Config.Comment(("Conntrols the spawn settings of owls"))
+  @Config.Comment(("Controls the spawn settings of owls"))
   public static ConfigMysticalWorldOwl owl = new ConfigMysticalWorldOwl();
+  @Config.Comment(("Controls the spawn settings of silkworms"))
+  public static ConfigMysticalWorldSilkworm silkworm = new ConfigMysticalWorldSilkworm();
 
   public static class ConfigMysticalWorldSprout  {
     @Config.Comment(("Spawn rate of sprouts"))
@@ -190,6 +192,32 @@ public class ConfigManager {
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
     public String[] biomes = new String[]{"CONIFEROUS", "SPOOKY", "MAGICAL", "FOREST", "MOUNTAIN", "SNOWY"};
+  }
+
+  public static class ConfigMysticalWorldSilkworm {
+    @Config.Comment(("Set to false to disable silkworms entirely"))
+    public boolean enabled = true;
+
+    @Config.Comment(("Set to false to disable silkworm eggs from dropping from grass"))
+    public boolean grassDrops = true;
+
+    @Config.Comment(("Set to false to disable silkworm eggs from dropping when leaves are broken"))
+    public boolean leafDrops = true;
+
+    @Config.Comment(("Set to false to disable silkworms from spawning when leaves are broken"))
+    public boolean leafSpawns = true;
+
+    @Config.Comment(("Specify a chance (1 in X) for silkworm eggs to drop when leaves are broken"))
+    public int leafDropChance = 30;
+
+    @Config.Comment(("Specify a chance (1 in X) for silkworms to spawn when leaves are broken"))
+    public int leafSpawnChance = 150;
+
+    @Config.Comment(("Specify a chance (1 in X) for silkworm eggs used to successfully spawn a silkworm"))
+    public int successChance = 3;
+
+    @Config.Comment(("Specify a chance (1 in X) per chunk for a silkworm to grow"))
+    public int growthChance = 90;
   }
 
   @Config.Comment(("Minimum distance between Barrow structures. Set to -1 to disable."))

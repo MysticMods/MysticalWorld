@@ -4,8 +4,7 @@ import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.event.RegisterModRecipesEvent;
 import epicsquid.mysticalworld.init.*;
-import epicsquid.mysticalworld.materials.Gem;
-import epicsquid.mysticalworld.materials.Metal;
+import epicsquid.mysticalworld.materials.Materials;
 import epicsquid.mysticalworld.materials.Tools;
 import epicsquid.mysticalworld.network.PacketHandler;
 import net.minecraft.item.Item;
@@ -27,8 +26,7 @@ public class RegistryManager {
 
     ModSounds.initSounds(event);
 
-    Gem.registerGems(event);
-    Metal.registerMetals(event);
+    Materials.initMaterials(event);
     Tools.registerTools(event);
 
     ModEntities.registerMobs();
@@ -48,8 +46,7 @@ public class RegistryManager {
   public void registerOredict(@Nonnull RegistryEvent.Register<Item> event) {
     LibRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
 
-    Gem.registerOreDict();
-    Metal.registerOreDict();
     ModItems.registerOredict();
+    Materials.registerOreDictionary();
   }
 }

@@ -34,7 +34,7 @@ public class RenderSilkworm extends RenderLiving<EntitySilkworm> {
     if (entitylivingbaseIn.isChild()) {
       scale = -0.2f;
     }
-    GlStateManager.scale(0.4F + scale, 0.6F + scale, 0.8F + scale);
+    GlStateManager.scale(0.4F + scale, 0.6F + scale, 1F + scale);
   }
 
   public static class Factory implements IRenderFactory {

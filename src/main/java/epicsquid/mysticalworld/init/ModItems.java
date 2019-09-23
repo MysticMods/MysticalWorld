@@ -9,6 +9,7 @@ import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.integration.roots.Knives;
+import epicsquid.mysticalworld.item.ItemSilkwormEgg;
 import epicsquid.mysticalworld.item.ItemUnripePearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -35,7 +36,7 @@ public class ModItems {
 
   public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, raw_squid, cooked_squid, epic_squid, unripe_pearl;
 
-  public static Item silk_cocoon, silk_thread, spindle;
+  public static Item silk_cocoon, silk_thread, spindle, silkworm_egg;
 
   /**
    * Register all items
@@ -101,7 +102,8 @@ public class ModItems {
 
     event.addItem(silk_cocoon = new ItemBase("silk_cocoon").setCreativeTab(MysticalWorld.tab));
     event.addItem(silk_thread = new ItemBase("silk_thread").setCreativeTab(MysticalWorld.tab));
-    event.addItem(spindle = new ItemBase("spindle").setCreativeTab(MysticalWorld.tab));
+    event.addItem(spindle = new ItemBase("spindle").setCreativeTab(MysticalWorld.tab).setMaxDamage(64));
+    event.addItem(silkworm_egg = new ItemSilkwormEgg("silkworm_egg").setCreativeTab(MysticalWorld.tab));
 
     registerSeedDrops();
   }
@@ -156,7 +158,10 @@ public class ModItems {
 
   }
 
-  public static void registerSeedDrops() {
+  private static void registerSeedDrops() {
     MinecraftForge.addGrassSeed(new ItemStack(aubergine_seed, 1), 5);
+    if (ConfigManager.silkworm.enabled && ConfigManager.silkworm.grassDrops) {
+      MinecraftForge.addGrassSeed(new ItemStack(silkworm_egg, 1), 1);
+    }
   }
 }
