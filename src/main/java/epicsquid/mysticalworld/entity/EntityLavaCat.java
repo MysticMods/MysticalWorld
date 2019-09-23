@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -17,10 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.DifficultyInstance;
@@ -29,7 +27,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class EntityLavaCat extends EntityOcelot {
-  public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID,  "entity/lava_cat");
+  public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/lava_cat");
 
   private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.createKey(EntityLavaCat.class, DataSerializers.BOOLEAN);
 
@@ -51,8 +49,11 @@ public class EntityLavaCat extends EntityOcelot {
     this.tasks.addTask(7, new EntityAILeapAtTarget(this, 0.3F));
     this.tasks.addTask(8, new EntityAIOcelotAttack(this));
     this.tasks.addTask(9, new EntityAIMate(this, 0.8D));
-    this.tasks.addTask(10, new EntityAIWanderAvoidWater(this, 0.8D, 1.0000001E-5F));
+    this.tasks.addTask(10, new EntityAIWander(this, 0.8D, 1));
     this.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+    this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
+    this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
+    this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
   }
 
   @Override
@@ -82,9 +83,6 @@ public class EntityLavaCat extends EntityOcelot {
     }
   }
 
-  /**
-   * Determines if an entity can be despawned, used on idle far away entities
-   */
   @Override
   protected boolean canDespawn() {
     return !this.isTamed() && this.ticksExisted > 2400;
@@ -93,8 +91,9 @@ public class EntityLavaCat extends EntityOcelot {
   @Override
   protected void applyEntityAttributes() {
     super.applyEntityAttributes();
-    this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-    this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
+    this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+    this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4);
+    this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
   }
 
   @Override
@@ -125,9 +124,6 @@ public class EntityLavaCat extends EntityOcelot {
     return SoundEvents.ENTITY_CAT_DEATH;
   }
 
-  /**
-   * Returns the volume for the sounds this mob makes.
-   */
   @Override
   protected float getSoundVolume() {
     return 0.4F;
@@ -142,9 +138,6 @@ public class EntityLavaCat extends EntityOcelot {
   public void setFire(int seconds) {
   }
 
-  /**
-   * Called when the entity is attacked.
-   */
   @Override
   public boolean attackEntityFrom(DamageSource source, float amount) {
     if (this.isEntityInvulnerable(source)) {
@@ -155,6 +148,16 @@ public class EntityLavaCat extends EntityOcelot {
       }
 
       if (source.isFireDamage()) {
+        return false;
+      }
+
+      // Obsidian cats take half damage from non-magic damage
+      if (!getIsLava() && (source == null || !source.isMagicDamage())) {
+        amount /= 2;
+      }
+
+      // They don't take damage from their owners unless sneaking
+      if (source != null && source.getTrueSource() == getOwner() && !source.getTrueSource().isSneaking()) {
         return false;
       }
 
@@ -201,30 +204,22 @@ public class EntityLavaCat extends EntityOcelot {
 
   @Override
   public EntityLavaCat createChild(EntityAgeable ageable) {
-    EntityLavaCat entityocelot = new EntityLavaCat(this.world);
+    EntityLavaCat lavacat = new EntityLavaCat(this.world);
 
     if (this.isTamed()) {
-      entityocelot.setOwnerId(this.getOwnerId());
-      entityocelot.setTamed(true);
+      lavacat.setOwnerId(this.getOwnerId());
+      lavacat.setTamed(true);
+      lavacat.setIsLava(getIsLava());
     }
 
-    return entityocelot;
+    return lavacat;
   }
 
-  // TODO: Override get name
-
-  /**
-   * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
-   * the animal type)
-   */
   @Override
   public boolean isBreedingItem(ItemStack stack) {
     return stack.getItem() == Items.BLAZE_ROD;
   }
 
-  /**
-   * Returns true if the mob is currently able to mate with the specified mob.
-   */
   @Override
   public boolean canMateWith(EntityAnimal otherAnimal) {
     if (otherAnimal == this) {
@@ -234,12 +229,12 @@ public class EntityLavaCat extends EntityOcelot {
     } else if (!(otherAnimal instanceof EntityLavaCat)) {
       return false;
     } else {
-      EntityLavaCat entityocelot = (EntityLavaCat) otherAnimal;
+      EntityLavaCat lavacat = (EntityLavaCat) otherAnimal;
 
-      if (!entityocelot.isTamed()) {
+      if (!lavacat.isTamed()) {
         return false;
       } else {
-        return this.isInLove() && entityocelot.isInLove();
+        return this.isInLove() && lavacat.isInLove();
       }
     }
   }
@@ -271,10 +266,9 @@ public class EntityLavaCat extends EntityOcelot {
   public boolean isNotColliding() {
     if (this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox())) {
       BlockPos blockpos = new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ);
+      IBlockState iblockstate = this.world.getBlockState(blockpos.down());
 
-      if (blockpos.getY() < this.world.getSeaLevel()) {
-        return false;
-      }
+      return iblockstate.isSideSolid(this.world, blockpos, EnumFacing.UP);
     }
 
     return false;
@@ -288,8 +282,8 @@ public class EntityLavaCat extends EntityOcelot {
   public void onLivingUpdate() {
     super.onLivingUpdate();
 
-    if (world.isRainingAt(getPosition()) && world.canSeeSky(getPosition())) {
-
+    if (getIsLava() && world.isRainingAt(getPosition()) && world.canSeeSky(getPosition()) && rand.nextInt(30) == 0) {
+      world.playSound(null, posX, posY, posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.NEUTRAL, 0.2f, 1.3f);
     }
 
     if (getIsLava() && inWater) {

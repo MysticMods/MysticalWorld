@@ -129,7 +129,7 @@ public class ModEntities {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
-      EntityRegistry.addSpawn(EntityLavaCat.class, ConfigManager.lavaCat.rate, ConfigManager.lavaCat.min, ConfigManager.lavaCat.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(EntityLavaCat.class, ConfigManager.lavaCat.rate, ConfigManager.lavaCat.min, ConfigManager.lavaCat.max, EnumCreatureType.MONSTER, biomes.toArray(new Biome[0]));
     }
 
     biomes.clear();
