@@ -77,6 +77,9 @@ public class ConfigManager {
 
     @Config.Comment(("Enable the spawning of Owls."))
     public boolean spawnOwl = true;
+
+    @Config.Comment(("Enable the spawning of Lava Cats"))
+    public boolean spawnLavaCat = true;
   }
 
   @Config.Comment(("Controls the spawn settings of Deer"))
@@ -95,6 +98,22 @@ public class ConfigManager {
   public static ConfigMysticalWorldOwl owl = new ConfigMysticalWorldOwl();
   @Config.Comment(("Controls the spawn settings of silkworms"))
   public static ConfigMysticalWorldSilkworm silkworm = new ConfigMysticalWorldSilkworm();
+  @Config.Comment(("Controls the spawn settings of lava cats"))
+  public static ConfigMysticalWorldLavaCat lavaCat = new ConfigMysticalWorldLavaCat();
+
+  public static class ConfigMysticalWorldLavaCat  {
+    @Config.Comment(("Spawn rate of lava cats"))
+    public int rate = 2;
+
+    @Config.Comment(("Min number of sprouts to spawn in a group"))
+    public int min = 1;
+
+    @Config.Comment(("Maximum number of sprouts to spawn in a group"))
+    public int max = 1;
+
+    @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
+    public String[] biomes = new String[]{"NETHER"};
+  }
 
   public static class ConfigMysticalWorldSprout  {
     @Config.Comment(("Spawn rate of sprouts"))

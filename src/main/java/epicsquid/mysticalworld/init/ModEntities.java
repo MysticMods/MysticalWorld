@@ -123,5 +123,15 @@ public class ModEntities {
     }
 
     biomes.clear();
+
+    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnLavaCat) {
+      for (String biomeName : ConfigManager.lavaCat.biomes) {
+        Type type = Type.getType(biomeName);
+        biomes.addAll(BiomeDictionary.getBiomes(type));
+      }
+      EntityRegistry.addSpawn(EntityLavaCat.class, ConfigManager.lavaCat.rate, ConfigManager.lavaCat.min, ConfigManager.lavaCat.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    }
+
+    biomes.clear();
   }
 }
