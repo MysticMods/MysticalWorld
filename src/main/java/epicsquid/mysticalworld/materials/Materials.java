@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.materials;
 
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.material.MaterialTypes;
+import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -25,6 +26,9 @@ public class Materials {
   public static void initMaterials(@Nonnull RegisterContentEvent event) {
     createMaterials();
     getMaterials().forEach(o -> o.initMaterial(event));
+    copper.getMaterial().setRepairItem(new ItemStack(copper.getItem()));
+    silver.getMaterial().setRepairItem(new ItemStack(silver.getItem()));
+    amethyst.getMaterial().setRepairItem(new ItemStack(amethyst.getItem()));
   }
 
   public static void registerOreDictionary() {

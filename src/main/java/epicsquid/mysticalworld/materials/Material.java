@@ -19,14 +19,6 @@ import net.minecraftforge.oredict.OreDictionary;
  * Used to add the various metals and metal components used in Mystical World and sub mods
  */
 public abstract class Material implements IMaterial {
-
-
-//  tin("Tin", 4f), <-- Probably going
-//  lead("Lead", 5f), <-- May be used with HPL
-//  nickel("Nickel", 5f),
-//  aluminum("Aluminum", 5f),
-//  zinc("Zinc", 5f)
-
   private Item ingot;
   private Item nugget;
   private Item dust;
