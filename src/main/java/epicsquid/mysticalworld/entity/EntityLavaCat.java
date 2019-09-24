@@ -157,7 +157,7 @@ public class EntityLavaCat extends EntityOcelot {
       }
 
       // They don't take damage from their owners unless sneaking
-      if (source != null && source.getTrueSource() == getOwner() && !source.getTrueSource().isSneaking()) {
+      if (isTamed() && source != null && source.getTrueSource() == getOwner() && source.getTrueSource() != null && !source.getTrueSource().isSneaking()) {
         return false;
       }
 
