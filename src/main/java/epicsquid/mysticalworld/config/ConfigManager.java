@@ -235,8 +235,8 @@ public class ConfigManager {
     @Config.Comment(("Specify a chance (1 in X) for silkworm eggs used to successfully spawn a silkworm"))
     public int successChance = 3;
 
-    @Config.Comment(("Specify a chance (1 in X) per chunk for a silkworm to grow"))
-    public int growthChance = 90;
+    @Config.Comment(("Specify a chance (1 in X) per chunk for a silkworm to grow (default 40, around 3-4 minutes per)"))
+    public int growthChance = 40;
   }
 
   @Config.Comment(("Minimum distance between Barrow structures. Set to -1 to disable."))

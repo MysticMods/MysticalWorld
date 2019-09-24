@@ -28,9 +28,11 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -44,6 +46,7 @@ public class EntitySilkworm extends EntityAnimal {
 
   private EntityItem leafTarget;
   private int lastTickPlayed = 0;
+  private int lastTickPooped = 0;
 
   public EntitySilkworm(World worldIn) {
     super(worldIn);
@@ -102,7 +105,7 @@ public class EntitySilkworm extends EntityAnimal {
 
   public void eatLeaves () {
     incLeaves();
-    for (int i = 0; i < 3 + rand.nextInt(6); i++) {
+    for (int i = 0; i < 1 + rand.nextInt(3); i++) {
       grow();
     }
     this.heal(1f);
@@ -266,6 +269,8 @@ public class EntitySilkworm extends EntityAnimal {
       this.dropItem(ModItems.silk_cocoon, quantity);
       this.resetLeaves();
       world.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_CHICKEN_EGG, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() - 0.5f);
+      int diff = ticksExisted - lastTickPooped;
+      //world.getMinecraftServer().getPlayerList().sendMessage(new TextComponentString("Pooped cocoon at " + ticksExisted + " and last poop was " + (diff / 20) + " seconds ago"));
     } else {
       incSize();
     }

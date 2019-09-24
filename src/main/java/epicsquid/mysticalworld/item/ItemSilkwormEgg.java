@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.item;
 
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.EntitySilkworm;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.entity.EntityList;
@@ -92,7 +93,7 @@ public class ItemSilkwormEgg extends ItemBase {
   }
 
   private boolean spawnCreature(World worldIn, double x, double y, double z) {
-    if (worldIn.rand.nextInt(3) == 0) {
+    if (worldIn.rand.nextInt(ConfigManager.silkworm.successChance) == 0) {
       doSpawnCreature(worldIn, x, y, z);
       return true;
     }
@@ -107,7 +108,7 @@ public class ItemSilkwormEgg extends ItemBase {
     entity.rotationYawHead = entity.rotationYaw;
     entity.renderYawOffset = entity.rotationYaw;
     entity.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entity)), null);
-    entity.setGrowingAge(-12000);
+    entity.setGrowingAge(0);
     worldIn.spawnEntity(entity);
     entity.playLivingSound();
   }
