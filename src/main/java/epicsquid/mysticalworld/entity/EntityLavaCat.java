@@ -131,7 +131,15 @@ public class EntityLavaCat extends EntityOcelot {
 
   @Override
   public boolean attackEntityAsMob(Entity entityIn) {
-    return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0F);
+    EntityDamageSource damage = new EntityDamageSource("mob", this);
+    damage.setDifficultyScaled();
+    float amount = 2.0f;
+    if (getIsLava()) {
+      damage.setFireDamage().setDamageBypassesArmor();
+    } else {
+      amount = 6.0f;
+    }
+    return entityIn.attackEntityFrom(damage, amount);
   }
 
   @Override
@@ -157,7 +165,7 @@ public class EntityLavaCat extends EntityOcelot {
       }
 
       // They don't take damage from their owners unless sneaking
-      if (isTamed() && source != null && source.getTrueSource() == getOwner() && source.getTrueSource() != null && !source.getTrueSource().isSneaking()) {
+      if (isTamed() && source != null && source.getTrueSource() != null && source.getTrueSource() == getOwner() && !source.getTrueSource().isSneaking()) {
         return false;
       }
 
