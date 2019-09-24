@@ -70,7 +70,7 @@ dependencies {
     } else {
         compile project(':MysticalLib')
     }
-    compileOnly("jeresources:JustEnoughResources-${minecraft_version}:${jer_version}") {
+    deobfCompile("jeresources:JustEnoughResources-${minecraft_version}:${jer_version}") {
         exclude group: 'mezz.jei'
     }
     deobfCompile "info.tehnut.harvest:Harvest:1.12-1.2.7-20"

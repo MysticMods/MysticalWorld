@@ -1,8 +1,6 @@
 package epicsquid.mysticalworld.entity;
 
-import com.google.common.base.Function;
 import com.google.common.base.Optional;
-import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.ai.EntityAIStalk;
@@ -15,10 +13,6 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -38,14 +32,12 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.Set;
-import java.util.UUID;
 
-// Base heavily on vanilla Enderman
 public class EntityEndermini extends EntityCreature {
-  public static final ResourceLocation LOOT_TABLE =  new ResourceLocation(MysticalWorld.MODID, "entity/endermini");
+  public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/endermini");
   private static final Set<Block> CARRIABLE_BLOCKS = Sets.newIdentityHashSet();
-  private static final DataParameter<Optional<IBlockState>> CARRIED_BLOCK = EntityDataManager.createKey(EntityEnderman.class, DataSerializers.OPTIONAL_BLOCK_STATE);
-  private static final DataParameter<Boolean> SCREAMING = EntityDataManager.createKey(EntityEnderman.class, DataSerializers.BOOLEAN);
+  private static final DataParameter<Optional<IBlockState>> CARRIED_BLOCK = EntityDataManager.createKey(EntityEndermini.class, DataSerializers.OPTIONAL_BLOCK_STATE);
+  private static final DataParameter<Boolean> SCREAMING = EntityDataManager.createKey(EntityEndermini.class, DataSerializers.BOOLEAN);
   private int lastCreepySound;
   private int targetChangeTime;
 
