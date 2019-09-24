@@ -3,7 +3,6 @@ package epicsquid.mysticalworld.world;
 import com.google.common.base.Predicate;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
-import epicsquid.mysticalworld.materials.Gem;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -105,7 +104,7 @@ public class WorldGenMinableDebug extends WorldGenerator {
     @Override
     public boolean apply(IBlockState p_apply_1_) {
       if (p_apply_1_ != null && p_apply_1_.getBlock() == Blocks.STONE) {
-        BlockStone.EnumType blockstone$enumtype = (BlockStone.EnumType) p_apply_1_.getValue(BlockStone.VARIANT);
+        BlockStone.EnumType blockstone$enumtype = p_apply_1_.getValue(BlockStone.VARIANT);
         return blockstone$enumtype.isNatural();
       } else {
         return false;
