@@ -1,0 +1,8 @@
+{
+    "variants":{
+        "age=0":  { "model": "mysticalworld:poisoned_potatoes_stage_0" },
+        "age=1":  { "model": "mysticalworld:poisoned_potatoes_stage_1" },
+        "age=2":  { "model": "mysticalworld:poisoned_potatoes_stage_2" },
+        "age=3":  { "model": "mysticalworld:poisoned_potatoes_stage_3" }
+    }
+}

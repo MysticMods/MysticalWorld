@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "mysticalworld:blocks/poisoned_potatoes_stage_1"
+    }
+}
