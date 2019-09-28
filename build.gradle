@@ -13,11 +13,10 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-//version = "${minecraft_version}-${mod_version}"
+version = "${minecraft_version}-${mod_version}"
 //if (System.getenv('BUILD_NUMBER') != null) {
 //    version = "${minecraft_version}-${mod_version}-" + System.getenv('BUILD_NUMBER')
 //}
-version = "${version}"
 group = 'epicsquid.mysticalworld' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'mysticalworld'
 
