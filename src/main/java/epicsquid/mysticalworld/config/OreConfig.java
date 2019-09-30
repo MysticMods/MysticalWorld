@@ -28,6 +28,10 @@ public class OreConfig {
 		this.ore = ore;
 	}
 
+	public String getName () {
+		return name;
+	}
+
 	public int getChance() {
 		return configChance.get();
 	}

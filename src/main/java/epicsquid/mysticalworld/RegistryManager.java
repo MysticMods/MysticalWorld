@@ -45,6 +45,16 @@ public class RegistryManager {
 	private static List<Block> metalBlocks = new ArrayList<>();
 	//private static List<Block> chestBlocks = new ArrayList<>();
 
+	private static IMaterial quicksilver = null;
+
+	public static IMaterial getQuicksilver () {
+		if (quicksilver == null) {
+			quicksilver = new QuicksilverMaterial();
+		}
+
+		return quicksilver;
+	}
+
 	public static EntityType<BeetleEntity> BEETLE = EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(new ResourceLocation(MysticalWorld.MODID, "beetle").toString());
 	public static EntityType<DeerEntity> DEER = EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build("deer");
 	public static EntityType<FrogEntity> FROG = EntityType.Builder.create(FrogEntity::new, EntityClassification.AMBIENT).size(0.5f, 0.5f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build("frog");
@@ -74,7 +84,7 @@ public class RegistryManager {
 		event.getRegistry().register(ModItems.SPAWN_SPROUT = new SpawnEggItem(SPROUT, 0xe8F442, 0xD11f5A, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "sprout_spawn_egg"));
 		event.getRegistry().register(ModItems.SPAWN_SILVER_FOX = new SpawnEggItem(SILVER_FOX, 0xD46724, 0xF5E0D3, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "silver_fox_spawn_egg"));
 
-		IMaterial quickMat = new QuicksilverMaterial();
+		IMaterial quickMat = getQuicksilver();
 		event.getRegistry().register(new Item(quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_ingot"));
 		event.getRegistry().register(new Item(quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_nugget"));
 		event.getRegistry().register(new Item(quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_dust"));
@@ -90,6 +100,7 @@ public class RegistryManager {
 		event.getRegistry().register(new QuicksilverArmorItem(quickMat.getArmor(), EquipmentSlotType.FEET, quickMat.getItemProps()).setRegistryName(MysticalWorld.MODID, quickMat.getName() + "_boots"));
 
 		ModMaterials.getMaterials().forEach(mat -> MaterialGenerator.getInstance().generateItems(mat, event.getRegistry(), MysticalWorld.MODID));
+		ModMaterials.addMaterial(getQuicksilver());
 
 		blocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(Objects.requireNonNull(block.getRegistryName()))));
 		metalBlocks.forEach(block -> event.getRegistry().register(new BlockItem(block, new Item.Properties().group(MysticalWorld.METAL_ITEM_GROUP)).setRegistryName(Objects.requireNonNull(block.getRegistryName()))));
@@ -109,7 +120,7 @@ public class RegistryManager {
 
 		// These register themselves just fine
 		// TODO clean this up
-		metalBlocks.addAll(MaterialGenerator.getInstance().generateBlocks(new QuicksilverMaterial(), event.getRegistry(), MysticalWorld.MODID));
+		metalBlocks.addAll(MaterialGenerator.getInstance().generateBlocks(getQuicksilver(), event.getRegistry(), MysticalWorld.MODID));
 		ModMaterials.getMaterials().forEach(mat -> metalBlocks.addAll(MaterialGenerator.getInstance().generateBlocks(mat, event.getRegistry(), MysticalWorld.MODID)));
 	}
 
