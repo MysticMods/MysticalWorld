@@ -22,6 +22,9 @@ public class ConfigManager {
     }
   }
 
+  @Config.Comment(("Grant the Patchouli-based Guide Book when first joining the server"))
+  public static boolean GiveBook = true;
+
   @Config.Comment(("Inject some items from Mystical World into dungeon & other loot chests"))
   public static boolean InjectLoot = true;
 
