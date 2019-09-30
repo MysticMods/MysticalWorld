@@ -14,9 +14,9 @@ public class PaintedChestTileEntity extends ChestTileEntity {
 		this.color = color;
 	}
 
-	public PaintedChestTileEntity(DyeColor color) {
+	/*public PaintedChestTileEntity(DyeColor color) {
 		this(ModTileEntities.RED_PAINTED_CHEST, color);
-	}
+	}*/
 
 	public DyeColor getColor() {
 		return color;

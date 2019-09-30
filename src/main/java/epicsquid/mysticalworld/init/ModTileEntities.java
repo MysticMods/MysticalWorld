@@ -8,7 +8,7 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(MysticalWorld.MODID)
 public class ModTileEntities {
 
-	public static final TileEntityType<PaintedChestTileEntity> WHITE_PAINTED_CHEST = null;
+	/*public static final TileEntityType<PaintedChestTileEntity> WHITE_PAINTED_CHEST = null;
 	public static final TileEntityType<PaintedChestTileEntity> ORANGE_PAINTED_CHEST = null;
 	public static final TileEntityType<PaintedChestTileEntity> MAGENTA_PAINTED_CHEST = null;
 	public static final TileEntityType<PaintedChestTileEntity> LIGHT_BLUE_PAINTED_CHEST = null;
@@ -23,5 +23,5 @@ public class ModTileEntities {
 	public static final TileEntityType<PaintedChestTileEntity> BROWN_PAINTED_CHEST = null;
 	public static final TileEntityType<PaintedChestTileEntity> GREEN_PAINTED_CHEST = null;
 	public static final TileEntityType<PaintedChestTileEntity> RED_PAINTED_CHEST = null;
-	public static final TileEntityType<PaintedChestTileEntity> BLACK_PAINTED_CHEST = null;
+	public static final TileEntityType<PaintedChestTileEntity> BLACK_PAINTED_CHEST = null;*/
 }

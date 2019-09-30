@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntityType;
 
 public class PaintedChestItemStackRenderer extends ItemStackTileEntityRenderer {
 
-	@Override
+	/*@Override
 	public void renderByItem(ItemStack itemStackIn) {
 		if (Block.getBlockFromItem(itemStackIn.getItem()) instanceof PaintedChestBlock) {
 			PaintedChestBlock block = (PaintedChestBlock) Block.getBlockFromItem(itemStackIn.getItem());
@@ -18,5 +18,5 @@ public class PaintedChestItemStackRenderer extends ItemStackTileEntityRenderer {
 		} else {
 			super.renderByItem(itemStackIn);
 		}
-	}
+	}*/
 }

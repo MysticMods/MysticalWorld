@@ -1,22 +1,18 @@
 package epicsquid.mysticalworld.blocks;
 
-import epicsquid.mysticalworld.init.ModTileEntities;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.item.DyeColor;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.world.IBlockReader;
 
 public class PaintedChestBlock extends ChestBlock {
 
 	private DyeColor color;
 
-	public PaintedChestBlock(Properties properties, DyeColor color) {
+	public PaintedChestBlock (Properties properties, DyeColor color) {
 		super(properties);
 		this.color = color;
 	}
 
-	public DyeColor getColor() {
+	/*public DyeColor getColor() {
 		return color;
 	}
 
@@ -62,5 +58,5 @@ public class PaintedChestBlock extends ChestBlock {
 		default:
 			return ModTileEntities.RED_PAINTED_CHEST;
 		}
-	}
+	}*/
 }

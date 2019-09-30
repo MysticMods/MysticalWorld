@@ -9,6 +9,7 @@ import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 
 import epicsquid.mysticalworld.blocks.ModBlocks;
+import epicsquid.mysticalworld.items.materials.ModMaterials;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ConfigManager {
@@ -35,12 +36,12 @@ public class ConfigManager {
 	}
 
 	private static void registerOreGeneration() {
-		ORE_CONFIG.add(new OreConfig("Copper", 6, 32, 76, 12, () -> ModBlocks.COPPER_ORE));
-		ORE_CONFIG.add(new OreConfig("Tin", 6, 24, 64, 8, () -> ModBlocks.TIN_ORE));
-		ORE_CONFIG.add(new OreConfig("Silver", 4, 0,  24, 8, () -> ModBlocks.SILVER_ORE));
-		ORE_CONFIG.add(new OreConfig("Lead", 4, 8,  32, 8, () -> ModBlocks.LEAD_ORE));
-		ORE_CONFIG.add(new OreConfig("Quicksilver", 3, 0,  16, 4, () -> ModBlocks.QUICKSILVER_ORE));
-		ORE_CONFIG.add(new OreConfig("Amethyst", 2, 0,  24, 4, () -> ModBlocks.AMETHYST_ORE));
+		ORE_CONFIG.add(new OreConfig("Copper", 6, 32, 76, 12, () -> ModMaterials.getOre("copper")));
+		ORE_CONFIG.add(new OreConfig("Tin", 6, 24, 64, 8, () -> ModMaterials.getOre("tin")));
+		ORE_CONFIG.add(new OreConfig("Silver", 4, 0,  24, 8, () -> ModMaterials.getOre("silver")));
+		ORE_CONFIG.add(new OreConfig("Lead", 4, 8,  32, 8, () -> ModMaterials.getOre("lead")));
+		ORE_CONFIG.add(new OreConfig("Quicksilver", 3, 0,  16, 4, () -> ModMaterials.getOre("quicksilver")));
+		ORE_CONFIG.add(new OreConfig("Amethyst", 2, 0,  24, 4, () -> ModMaterials.getOre("amethyst")));
 
 		ORE_CONFIG.forEach(ore -> ore.apply(COMMON_BUILDER));
 	}

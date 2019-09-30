@@ -16,6 +16,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.common.ToolType;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +48,19 @@ public class CopperMaterial implements IMetalMaterial {
 		speed.put(AXE, -3.1f);
 		speed.put(KNIFE, -1.5f);
 		speed.put(HOE, -1.0f);
+	}
+
+	private Block oreBlock = null;
+
+	@Override
+	public void setOre (Block ore) {
+		oreBlock = ore;
+	}
+
+	@Override
+	@Nullable
+	public Block getOre () {
+		return oreBlock;
 	}
 
 	@Override

@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class PaintedChestTileEntityRenderer extends ChestTileEntityRenderer<PaintedChestTileEntity> {
 
-	private static final ResourceLocation TEXTURE_WHITE_DOUBLE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/chest/painted/white_double.png");
+	/*private static final ResourceLocation TEXTURE_WHITE_DOUBLE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/chest/painted/white_double.png");
 	private static final ResourceLocation TEXTURE_WHITE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/chest/painted/white.png");
 	private static final ResourceLocation TEXTURE_ORANGE_DOUBLE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/chest/painted/orange_double.png");
 	private static final ResourceLocation TEXTURE_ORANGE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/chest/painted/orange.png");
@@ -193,5 +193,5 @@ public class PaintedChestTileEntityRenderer extends ChestTileEntityRenderer<Pain
 		f = 1.0F - f;
 		f = 1.0F - f * f * f;
 		p_199346_3_.getLid().rotateAngleX = -(f * ((float) Math.PI / 2F));
-	}
+	}*/
 }

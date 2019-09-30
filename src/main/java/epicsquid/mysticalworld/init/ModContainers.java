@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(MysticalWorld.MODID)
 public class ModContainers {
 
-	public static final ContainerType<ChestContainer> WHITE_PAINTED_CHEST = null;
+	/*public static final ContainerType<ChestContainer> WHITE_PAINTED_CHEST = null;
 	public static final ContainerType<ChestContainer> ORANGE_PAINTED_CHEST = null;
 	public static final ContainerType<ChestContainer> MAGENTA_PAINTED_CHEST = null;
 	public static final ContainerType<ChestContainer> LIGHT_BLUE_PAINTED_CHEST = null;
@@ -24,5 +24,5 @@ public class ModContainers {
 	public static final ContainerType<ChestContainer> BROWN_PAINTED_CHEST = null;
 	public static final ContainerType<ChestContainer> GREEN_PAINTED_CHEST = null;
 	public static final ContainerType<ChestContainer> RED_PAINTED_CHEST = null;
-	public static final ContainerType<ChestContainer> BLACK_PAINTED_CHEST = null;
+	public static final ContainerType<ChestContainer> BLACK_PAINTED_CHEST = null;*/
 }

@@ -22,6 +22,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.ToolType;
 
+import javax.annotation.Nullable;
+
 public class CactusMaterial implements IMaterial {
 
 	private static final String SWORD = "SWORD";

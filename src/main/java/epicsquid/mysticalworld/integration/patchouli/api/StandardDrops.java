@@ -16,7 +16,7 @@ public class StandardDrops {
     DROPS.put("frog", Arrays.asList(new ItemStack(Items.SLIME_BALL)));
     DROPS.put("sprout", Arrays.asList(new ItemStack(Items.MELON), new ItemStack(ModItems.AUBERGINE), new ItemStack(Items.BEETROOT), new ItemStack(Items.POTATO)));
     DROPS.put("squid", Arrays.asList(new ItemStack(ModItems.RAW_SQUID), new ItemStack(ModItems.INK_BOTTLE)));
-    DROPS.put("endermini", Arrays.asList(new ItemStack(ModItems.UNRIPE_PEARL)));
+    //DROPS.put("endermini", Arrays.asList(new ItemStack(ModItems.UNRIPE_PEARL)));
   }
 
   public static List<ItemStack> getDrops (String name) {
