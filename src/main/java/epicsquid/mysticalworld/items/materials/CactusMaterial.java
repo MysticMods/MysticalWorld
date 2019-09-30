@@ -38,11 +38,11 @@ public class CactusMaterial implements IMaterial {
 	private Map<String, Float> speed = new HashMap<>();
 
 	public CactusMaterial() {
-		damage.put(SWORD, 3.0f);
-		damage.put(SHOVEL, 1.5f);
+		damage.put(SWORD, 1.5f);
+		damage.put(SHOVEL, 0.5f);
 		damage.put(PICKAXE, 1.0f);
-		damage.put(AXE, 6.0f);
-		damage.put(KNIFE, 2.5f);
+		damage.put(AXE, 3.0f);
+		damage.put(KNIFE, 2.0f);
 
 		speed.put(SWORD, -2.4f);
 		speed.put(SHOVEL, -3.0f);
