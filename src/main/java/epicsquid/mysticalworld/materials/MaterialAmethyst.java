@@ -40,8 +40,8 @@ public class MaterialAmethyst extends Material {
   @Override
   public void initMaterial(@Nonnull RegisterContentEvent event) {
     event.addItem(setItem(new ItemBase(name() + "_gem").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
-    event.addBlock(setBlock(new BlockBase(net.minecraft.block.material.Material.IRON, SoundType.METAL, getHardness(), name() + "_block").setModelCustom(true).setIsBeacon(true).setCreativeTab(MysticalWorld.tab)));
-    event.addBlock(setOre(new BlockOreBase(net.minecraft.block.material.Material.ROCK, SoundType.STONE, getHardness(), name() + "_ore", getItem(), getLevel(), getMinXP(), getMaxXP()).setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+    event.addBlock(setBlock(new BlockBase(net.minecraft.block.material.Material.IRON, SoundType.METAL, getHardness(), name() + "_block").setIsBeacon(true).setCreativeTab(MysticalWorld.tab)));
+    event.addBlock(setOre(new BlockOreBase(net.minecraft.block.material.Material.ROCK, SoundType.STONE, getHardness(), name() + "_ore", getItem(), getLevel(), getMinXP(), getMaxXP()).setCreativeTab(MysticalWorld.tab)));
   }
 
   @Override

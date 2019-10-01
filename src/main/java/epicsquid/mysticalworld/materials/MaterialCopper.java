@@ -39,8 +39,8 @@ public class MaterialCopper extends Material {
     event.addItem(setNugget(new ItemBase(name() + "_nugget").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
     event.addItem(setDust(new ItemBase(name() + "_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
     event.addItem(setDustTiny(new ItemBase(name() + "_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
-    event.addBlock(setBlock(new BlockBase(net.minecraft.block.material.Material.IRON, SoundType.METAL, getHardness(), name() + "_block").setModelCustom(true).setIsBeacon(true).setCreativeTab(MysticalWorld.tab)));
-    event.addBlock(setOre(new BlockOreBase(net.minecraft.block.material.Material.ROCK, SoundType.STONE, getHardness(), name() + "_ore", null, getLevel(), getMinXP(), getMaxXP()).setModelCustom(true).setCreativeTab(MysticalWorld.tab)));
+    event.addBlock(setBlock(new BlockBase(net.minecraft.block.material.Material.IRON, SoundType.METAL, getHardness(), name() + "_block").setIsBeacon(true).setCreativeTab(MysticalWorld.tab)));
+    event.addBlock(setOre(new BlockOreBase(net.minecraft.block.material.Material.ROCK, SoundType.STONE, getHardness(), name() + "_ore", null, getLevel(), getMinXP(), getMaxXP()).setCreativeTab(MysticalWorld.tab)));
   }
 
   @Override

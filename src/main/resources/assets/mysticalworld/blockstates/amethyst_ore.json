@@ -1,5 +1,21 @@
 {
-    "variants":{
-        "custom":  { "model": "mysticalworld:amethyst_ore" }
-    }
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": {
+      "all": "mysticalworld:blocks/amethyst_ore"
+    },
+    "uvlock": true
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "handlers": [
+      {}
+    ]
+  }
 }

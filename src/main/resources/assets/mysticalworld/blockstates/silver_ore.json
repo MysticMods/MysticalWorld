@@ -1,5 +1,21 @@
 {
-    "variants":{
-        "custom":  { "model": "mysticalworld:silver_ore" }
-    }
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": {
+      "all": "mysticalworld:blocks/silver_ore"
+    },
+    "uvlock": true
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "handlers": [
+      {}
+    ]
+  }
 }

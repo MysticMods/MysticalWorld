@@ -1,0 +1,155 @@
+{
+  "directory": "src\\main\\resources\\assets\\mysticalworld\\blockstates",
+  "texture_base": "mysticalworld:blocks/",
+  "models": [
+    {
+      "type": "block",
+      "base": "charred_planks",
+      "texture": "charred_planks"
+    },
+    {
+      "type": "button",
+      "base": "charred",
+      "texture": "charred_planks"
+    },
+    {
+      "type": "double_slab",
+      "base": "charred",
+      "texture": "charred_planks"
+    },
+    {
+      "type": "pressure_plate",
+      "base": "charred",
+      "texture": "charred_planks"
+    },
+    {
+      "type": "slab",
+      "base": "charred",
+      "texture": "charred_planks"
+    },
+    {
+      "type": "stairs",
+      "base": "charred",
+      "texture": "charred_planks"
+    },
+    {
+      "type": "wall",
+      "base": "charred",
+      "texture": "charred_planks"
+    },
+    {
+      "type": "fence",
+      "base": "charred",
+      "texture": "charred_planks"
+    },
+    {
+      "type": "fence_gate",
+      "base": "charred",
+      "texture": "charred_planks"
+    },
+    {
+      "type": "block",
+      "base": "mud_block"
+    },
+    {
+      "type": "block",
+      "base": "mud_brick"
+    },
+    {
+      "type": "block",
+      "base": "wet_mud_block"
+    },
+    {
+      "type": "block",
+      "base": "wet_mud_brick"
+    },
+    {
+      "type": "button",
+      "base": "mud_brick"
+    },
+    {
+      "type": "double_slab",
+      "base": "mud_brick"
+    },
+    {
+      "type": "pressure_plate",
+      "base": "mud_brick"
+    },
+    {
+      "type": "slab",
+      "base": "mud_brick"
+    },
+    {
+      "type": "stairs",
+      "base": "mud_brick"
+    },
+    {
+      "type": "wall",
+      "base": "mud_brick"
+    },
+    {
+      "type": "fence",
+      "base": "mud_brick"
+    },
+    {
+      "type": "fence_gate",
+      "base": "mud_brick"
+    },
+    {
+      "type": "button",
+      "base": "mud_block"
+    },
+    {
+      "type": "double_slab",
+      "base": "mud_block"
+    },
+    {
+      "type": "pressure_plate",
+      "base": "mud_block"
+    },
+    {
+      "type": "slab",
+      "base": "mud_block"
+    },
+    {
+      "type": "stairs",
+      "base": "mud_block"
+    },
+    {
+      "type": "wall",
+      "base": "mud_block"
+    },
+    {
+      "type": "fence",
+      "base": "mud_block"
+    },
+    {
+      "type": "fence_gate",
+      "base": "mud_block"
+    },
+    {
+      "type": "block",
+      "base": "amethyst_block"
+    },
+    {
+      "type": "block",
+      "base": "amethyst_ore"
+    },
+    {
+      "type": "block",
+      "base": "copper_block"
+    },
+    {
+      "type": "block",
+      "base": "copper_ore"
+    },
+    {
+      "type": "block",
+      "base": "silver_block"
+    },
+    {
+      "type": "block",
+      "base": "silver_ore"
+    }
+  ]
+}
