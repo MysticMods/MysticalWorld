@@ -1,7 +1,7 @@
 package epicsquid.mysticalworld.capability;
 
 import epicsquid.mysticallib.MysticalLib;
-import net.minecraft.nbt.NBTTagLong;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -11,7 +11,7 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
 import javax.annotation.Nonnull;
 
-public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<NBTTagLong> {
+public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<NBTTagCompound> {
     public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalLib.MODID, "animal_cooldown_capability");
 
     @CapabilityInject(AnimalCooldownCapability.class)
@@ -20,12 +20,12 @@ public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, IC
     private final AnimalCooldownCapability instance = ANIMAL_COOLDOWN_CAPABILITY.getDefaultInstance();
 
     @Override
-    public NBTTagLong serializeNBT() {
-        return (NBTTagLong) ANIMAL_COOLDOWN_CAPABILITY.getStorage().writeNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null);
+    public NBTTagCompound serializeNBT() {
+        return (NBTTagCompound) ANIMAL_COOLDOWN_CAPABILITY.getStorage().writeNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null);
     }
 
     @Override
-    public void deserializeNBT(NBTTagLong nbt) {
+    public void deserializeNBT(NBTTagCompound nbt) {
         ANIMAL_COOLDOWN_CAPABILITY.getStorage().readNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null, nbt);
     }
 
