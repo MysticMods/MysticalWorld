@@ -25,7 +25,7 @@ public class OreGenerator implements IOreGenerator {
 
   @Override
   public void generate(@Nonnull Random random, int chunkX, int chunkZ, @Nonnull World world, @Nonnull IChunkGenerator chunkGenerator, @Nonnull IChunkProvider chunkProvider) {
-    if (world.provider.getDimension() == 0) {
+    if (ConfigManager.oreGen.getSpawnDimensions().contains(world.provider.getDimension())) {
       if (ConfigManager.copper.enableCopper && ConfigManager.copper.enableOres) {
         generateOre(Materials.copper.getOredictNameSuffix(), Objects.requireNonNull(Materials.copper.getOre()).getDefaultState(), world, random, chunkX, chunkZ, ConfigManager.oreGen.copperMinY, ConfigManager.oreGen.copperMaxY, ConfigManager.oreGen.copperVeinSize, ConfigManager.oreGen.copperPerChunk);
       }

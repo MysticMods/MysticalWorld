@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.config;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.world.WorldGeneratorTrees;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.RangeInt;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -482,6 +483,24 @@ public class ConfigManager {
   public static ConfigMysticalWorldOreGen oreGen = new ConfigMysticalWorldOreGen();
 
   public static class ConfigMysticalWorldOreGen {
+    @Config.Comment(("List of dimensions to spawn ore in (default 0)"))
+    public String[] dimensions = new String[]{
+        "0"
+    };
+
+    @Config.Ignore
+    private IntOpenHashSet spawnDimensions = null;
+
+    public IntOpenHashSet getSpawnDimensions () {
+      if (spawnDimensions == null) {
+        spawnDimensions = new IntOpenHashSet();
+        for (String dim : dimensions) {
+          spawnDimensions.add(Integer.parseInt(dim));
+        }
+      }
+
+      return spawnDimensions;
+    }
 
     @Config.Comment(("The amount of copper veins to generate per chunk. Set to 0 to disable."))
     public int copperPerChunk = 6;
