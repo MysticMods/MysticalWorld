@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.SoundCategory;
@@ -22,6 +23,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
@@ -35,37 +37,22 @@ public class LeafHandler {
   }
 
   @Nullable
-  @SuppressWarnings("deprecation")
   public static Set<Block> getLeafBlocks() {
     if (LEAF_BLOCKS == null) {
-      MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-      if (server == null) {
-        return null;
-      }
-
-      World world = server.getWorld(0);
-
       LEAF_BLOCKS = new HashSet<>();
       LEAF_ITEMS = new HashSet<>();
 
-      outer:
-      for (Block block : ForgeRegistries.BLOCKS) {
-        ItemStack item;
-        try {
-          item = block.getItem(world, BlockPos.ORIGIN, block.getDefaultState());
-        } catch (NullPointerException ignored) {
+      List<ItemStack> leaves = OreDictionary.getOres("treeLeaves");
+
+      for (ItemStack leaf : leaves) {
+        Item item = leaf.getItem();
+        if (!(item instanceof ItemBlock)) {
           continue;
         }
-        if (!item.isEmpty()) {
-          int[] ids = OreDictionary.getOreIDs(item);
-          for (int id : ids) {
-            if (OreDictionary.getOreName(id).equals("treeLeaves")) {
-              LEAF_BLOCKS.add(block);
-              LEAF_ITEMS.add(Item.getItemFromBlock(block));
-              continue outer;
-            }
-          }
-        }
+
+        Block block = ((ItemBlock)leaf.getItem()).getBlock();
+        LEAF_BLOCKS.add(block);
+        LEAF_ITEMS.add(Item.getItemFromBlock(block));
       }
     }
 

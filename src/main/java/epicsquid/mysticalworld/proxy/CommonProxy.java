@@ -77,4 +77,7 @@ public class CommonProxy {
     }
     LeafHandler.getLeafBlocks();
   }
+
+  public void serverStarted (FMLServerStartedEvent event) {
+  }
 }
