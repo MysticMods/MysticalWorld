@@ -8,6 +8,7 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,11 +26,14 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public class EntityLavaCat extends EntityOcelot {
   public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/lava_cat");
 
   private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.createKey(EntityLavaCat.class, DataSerializers.BOOLEAN);
+  private static final UUID OBSIDIAN_SPEED_DEBUFF_ID = UUID.fromString("f58f95e9-fb51-4604-a66d-89433c9dd8a5");
+  private static final AttributeModifier OBSIDIAN_SPEED_DEBUFF = (new AttributeModifier(OBSIDIAN_SPEED_DEBUFF_ID, "Speed debuff for being obsidian", -0.1D, 0)).setSaved(false);
 
   private EntityAITempt aiTempt;
 
@@ -133,7 +137,7 @@ public class EntityLavaCat extends EntityOcelot {
   public boolean attackEntityAsMob(Entity entityIn) {
     EntityDamageSource damage = new EntityDamageSource("mob", this);
     damage.setDifficultyScaled();
-    float amount = 2.0f;
+    float amount = 3.0f;
     if (getIsLava()) {
       damage.setFireDamage().setDamageBypassesArmor();
     } else {
@@ -263,6 +267,12 @@ public class EntityLavaCat extends EntityOcelot {
   public void setIsLava(boolean val) {
     this.dataManager.set(IS_LAVA, val);
     this.dataManager.setDirty(IS_LAVA);
+    IAttributeInstance attr = getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
+    if (val) {
+      attr.removeModifier(OBSIDIAN_SPEED_DEBUFF);
+    } else {
+      attr.applyModifier(OBSIDIAN_SPEED_DEBUFF);
+    }
   }
 
   @Override

@@ -46,7 +46,6 @@ public class EntitySilkworm extends EntityAnimal {
 
   private EntityItem leafTarget;
   private int lastTickPlayed = 0;
-  private int lastTickPooped = 0;
 
   public EntitySilkworm(World worldIn) {
     super(worldIn);
@@ -83,6 +82,7 @@ public class EntitySilkworm extends EntityAnimal {
     super.entityInit();
     this.dataManager.register(SIZE, 0);
     this.dataManager.register(LEAVES_CONSUMED, 0);
+
   }
 
   public int getLeavesConsumed() {
