@@ -1,0 +1,33 @@
+{
+  "name": "Silkworm",
+  "icon": "mysticalworld:silk_cocoon",
+  "category": "creatures",
+  "flag": "roots:silkworm",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:silkworm_egg",
+      "text": "These will slowly grow over time and produce $(l:items/silk_cocoon)cocoons$().$(br2)They do not spawn in any specific biome, nor can they be bread, but you can hatch them from eggs. See over for egg drop locations."
+    },
+    {
+      "type": "entity",
+      "name": "Silkworm",
+      "entity": "mysticalworld:entity_silkworm",
+      "scale": 1.5,
+      "offset": -0.3,
+      "text": "You can drop leaves near them to speed the process up and potentially produce more!"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:tallgrass:1",
+      "flag": "roots:silkworm_grass",
+      "text": "Silkworms do not spawn naturally, nor can they be bred, but can be hatched from eggs (with a chance of success).$(br2)Eggs can be found by breaking tall grass in a similar manner to seeds."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:leaves",
+      "flag": "roots:silkworm_leaves",
+      "text": "In addition, silkworm eggs can also be found by breaking leaves, in a similar manner as one would to find saplings."
+    }
+  ]
+}

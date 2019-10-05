@@ -9,6 +9,7 @@ import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.integration.endercore.EndercoreHarvest;
 import epicsquid.mysticalworld.integration.harvest.HarvestIntegration;
 import epicsquid.mysticalworld.integration.jer.JERIntegration;
+import epicsquid.mysticalworld.integration.patchouli.api.ConfigKeys;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.world.StructureGenerator;
 import epicsquid.mysticalworld.world.OreGenerator;
@@ -64,6 +65,7 @@ public class CommonProxy {
     }
 
     GameRegistry.registerWorldGenerator(treeGenerator = new WorldGeneratorTrees(), 400);
+    ConfigKeys.init();
   }
 
   public void postInit(FMLPostInitializationEvent event) {

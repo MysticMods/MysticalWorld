@@ -58,7 +58,7 @@ public class ModEntities {
   public static void registerMobSpawn() {
     Set<Biome> biomes = new HashSet<>();
 
-    if (ConfigManager.modules.rootsModuleEnabled && ConfigManager.mobs.spawnDeer) {
+    if (ConfigManager.mobs.spawnDeer) {
       for (String biomeName : ConfigManager.deer.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -68,7 +68,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnFox) {
+    if (ConfigManager.mobs.spawnFox) {
       for (String biomeName : ConfigManager.fox.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -78,7 +78,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnBeetle) {
+    if (ConfigManager.mobs.spawnBeetle) {
       for (String biomeName : ConfigManager.beetle.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -88,7 +88,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnFrog) {
+    if (ConfigManager.mobs.spawnFrog) {
       for (String biomeName : ConfigManager.frog.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -98,7 +98,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnSprout) {
+    if (ConfigManager.mobs.spawnSprout) {
       for (String biomeName : ConfigManager.sprout.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -108,13 +108,13 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnEndermini) {
+    if (ConfigManager.mobs.spawnEndermini) {
       EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.rate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, BiomeDictionary.getBiomes(Type.END).toArray(new Biome[0]));
     }
 
     biomes.clear();
 
-    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnOwl) {
+    if (ConfigManager.mobs.spawnOwl) {
       for (String biomeName : ConfigManager.owl.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -124,7 +124,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.modules.mysticalWorldModuleEnabled && ConfigManager.mobs.spawnLavaCat) {
+    if (ConfigManager.mobs.spawnLavaCat) {
       for (String biomeName : ConfigManager.lavaCat.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));

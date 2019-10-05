@@ -2,6 +2,7 @@
   "name": "Amethyst",
   "icon": "mysticalworld:amethyst_ore",
   "category": "ores",
+  "flag": "roots:amethyst",
   "pages": [
     {
       "type": "spotlight",

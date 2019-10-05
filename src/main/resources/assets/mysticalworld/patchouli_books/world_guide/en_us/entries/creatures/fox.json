@@ -2,6 +2,7 @@
   "name": "Fox",
   "icon": "mysticalworld:pelt",
   "category": "creatures",
+  "flag": "roots:fox",
   "pages": [
     {
       "type": "animal_spawn_info",
@@ -16,7 +17,7 @@
       "entity": "mysticalworld:entity_fox",
       "scale": 0.8,
       "offset": 0,
-      "text": "While vicious chicken killers, they become more docile when tamed!"
+      "text": "While vicious chicken & rabbit killers, they become docile when tamed!"
     }
   ]
 }

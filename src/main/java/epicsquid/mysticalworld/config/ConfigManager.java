@@ -37,24 +37,6 @@ public class ConfigManager {
   @Config.Comment(("Maximum nubmer of pulls for injected loot"))
   public static int InjectMaximum = 1;
 
-  @Config.Comment(("Mystical world content modules. These modules are applied before any other config options."))
-  public static ConfigMysticalWorldModules modules = new ConfigMysticalWorldModules();
-
-  public static class ConfigMysticalWorldModules {
-
-    @Config.Comment(("Enable Roots Content"))
-    public boolean rootsModuleEnabled = true;
-
-    @Config.Comment(("Enable Embers Content"))
-    public boolean embersModuleEnabled = true;
-
-    @Config.Comment(("Enable Mystical World Content"))
-    public boolean mysticalWorldModuleEnabled = true;
-
-    @Config.Comment(("Enable Solar Content"))
-    public boolean solarModuleEnabled = true;
-  }
-
   @Config.Comment(("Controls the spawning of mobs in Mystical World and dependent mods."))
   public static ConfigMysticalWorldMobs mobs = new ConfigMysticalWorldMobs();
 
@@ -73,6 +55,7 @@ public class ConfigManager {
     public boolean spawnFrog = true;
 
     @Config.Comment(("Enable the spawning of Sprouts."))
+    @Config.Ignore
     public boolean spawnSprout = true;
 
     @Config.Comment(("Enable the spawning of Endermini."))
@@ -226,14 +209,16 @@ public class ConfigManager {
     @Config.Comment(("Set to false to disable silkworm eggs from dropping when leaves are broken"))
     public boolean leafDrops = true;
 
-    @Config.Comment(("Set to false to disable silkworms from spawning when leaves are broken"))
-    public boolean leafSpawns = true;
+    /*@Config.Comment(("Set to false to disable silkworms from spawning when leaves are broken"))
+    @Config.Ignore
+    public boolean leafSpawns = true;*/
 
     @Config.Comment(("Specify a chance (1 in X) for silkworm eggs to drop when leaves are broken"))
     public int leafDropChance = 30;
 
-    @Config.Comment(("Specify a chance (1 in X) for silkworms to spawn when leaves are broken"))
-    public int leafSpawnChance = 150;
+    /*@Config.Comment(("Specify a chance (1 in X) for silkworms to spawn when leaves are broken"))
+    @Config.Ignore
+    public int leafSpawnChance = 150;*/
 
     @Config.Comment(("Specify a chance (1 in X) for silkworm eggs used to successfully spawn a silkworm"))
     public int successChance = 3;
@@ -274,9 +259,6 @@ public class ConfigManager {
   public static ConfigMysticalWorldGold gold = new ConfigMysticalWorldGold();
 
   public static class ConfigMysticalWorldGold {
-    @Config.Comment(("Enable Gold"))
-    public boolean enableGold = true;
-
     @Config.Comment(("Enable Tiny Dusts for Gold"))
     public boolean enableTinyDusts = true;
 
@@ -288,9 +270,6 @@ public class ConfigManager {
   public static ConfigMysticalWorldIron iron = new ConfigMysticalWorldIron();
 
   public static class ConfigMysticalWorldIron {
-    @Config.Comment(("Enable Iron"))
-    public boolean enableIron = true;
-
     @Config.Comment(("Enable Tiny Dusts for Iron"))
     public boolean enableTinyDusts = true;
 

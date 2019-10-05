@@ -2,6 +2,7 @@
   "name": "Endermini",
   "icon": "mysticalworld:unripe_pearl",
   "category": "creatures",
+  "flag": "roots:endermini",
   "pages": [
     {
       "type": "animal_spawn_info",

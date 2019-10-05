@@ -2,6 +2,7 @@
   "name": "Deer",
   "icon": "mysticalworld:venison",
   "category": "creatures",
+  "flag": "roots:deer",
   "pages": [
     {
       "type": "animal_spawn_info",

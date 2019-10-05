@@ -80,11 +80,11 @@ public class LeafHandler {
         if (event.getWorld().rand.nextInt(ConfigManager.silkworm.leafDropChance) == 0) {
           event.getDrops().add(new ItemStack(ModItems.silkworm_egg));
         }
-        if (event.getWorld().rand.nextInt(ConfigManager.silkworm.leafSpawnChance) == 0) {
+        /*if (event.getWorld().rand.nextInt(ConfigManager.silkworm.leafSpawnChance) == 0) {
           BlockPos pos = event.getPos();
           ItemSilkwormEgg.doSpawnCreature(event.getWorld(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
           event.getWorld().playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.ENTITY_CHICKEN_EGG, SoundCategory.NEUTRAL, 1f, 1.4f + (event.getWorld().rand.nextFloat() - 0.5f));
-        }
+        }*/
       }
     }
   }

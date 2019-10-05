@@ -2,6 +2,7 @@
   "name": "Silver",
   "icon": "mysticalworld:silver_ore",
   "category": "ores",
+  "flags": "roots:silver",
   "pages": [
     {
       "type": "spotlight",
