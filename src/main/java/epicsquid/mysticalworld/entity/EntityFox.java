@@ -90,11 +90,6 @@ public class EntityFox extends EntityTameable {
   }
 
   @Override
-  public boolean isAIDisabled() {
-    return false;
-  }
-
-  @Override
   protected void applyEntityAttributes() {
     super.applyEntityAttributes();
     if (this.isTamed()) {

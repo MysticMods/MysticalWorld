@@ -68,11 +68,6 @@ public class EntitySprout extends EntityAnimal {
   }
 
   @Override
-  public boolean isAIDisabled() {
-    return false;
-  }
-
-  @Override
   protected void applyEntityAttributes() {
     super.applyEntityAttributes();
     this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);

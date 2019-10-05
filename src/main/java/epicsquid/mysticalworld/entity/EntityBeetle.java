@@ -59,11 +59,6 @@ public class EntityBeetle extends EntityShoulderRiding {
   }
 
   @Override
-  public boolean isAIDisabled() {
-    return false;
-  }
-
-  @Override
   protected void applyEntityAttributes() {
     super.applyEntityAttributes();
     this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
