@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.materials;
 
-import com.sun.swing.internal.plaf.metal.resources.metal;
 import epicsquid.mysticallib.block.BlockBase;
 import epicsquid.mysticallib.block.BlockOreBase;
 import epicsquid.mysticallib.event.RegisterContentEvent;
