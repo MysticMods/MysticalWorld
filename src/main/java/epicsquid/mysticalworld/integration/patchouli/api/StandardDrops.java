@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.integration.patchouli.api;
 
 import epicsquid.mysticalworld.init.ModItems;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -18,6 +19,8 @@ public class StandardDrops {
     DROPS.put("squid", Arrays.asList(new ItemStack(ModItems.raw_squid), new ItemStack(ModItems.ink_bottle)));
     DROPS.put("endermini", Arrays.asList(new ItemStack(ModItems.unripe_pearl)));
     DROPS.put("owl", Arrays.asList(new ItemStack(Items.FEATHER)));
+    DROPS.put("lava_cat", Arrays.asList(new ItemStack(Blocks.OBSIDIAN), new ItemStack(Blocks.COBBLESTONE)));
+    DROPS.put("silkworm", Arrays.asList(new ItemStack(ModItems.silkworm_egg)));
   }
 
   public static List<ItemStack> getDrops (String name) {

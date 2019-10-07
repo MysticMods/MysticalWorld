@@ -194,7 +194,7 @@ public class EntitySilkworm extends EntityAnimal {
 
   @Override
   @Nullable
-  protected ResourceLocation getLootTable() {
+  public ResourceLocation getLootTable() {
     return LOOT_TABLE;
   }
 

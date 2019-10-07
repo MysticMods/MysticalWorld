@@ -1,11 +1,15 @@
 package epicsquid.mysticalworld.integration.jer;
 
+import epicsquid.mysticallib.item.ItemSeedBase;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.*;
 import jeresources.api.IJERAPI;
 import jeresources.api.IMobRegistry;
+import jeresources.api.IPlantRegistry;
 import jeresources.api.JERPlugin;
 import jeresources.api.conditionals.LightLevel;
+import jeresources.api.drop.PlantDrop;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.BiomeDictionary;
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,6 +26,7 @@ public class JERIntegration {
 
   public static void init() {
     IMobRegistry registry = JERApi.getMobRegistry();
+    IPlantRegistry plantRegistry = JERApi.getPlantRegistry();
 
     EntityBeetle beetle = new EntityBeetle(null);
     registry.register(beetle, LightLevel.any, getBiomeNames(ConfigManager.beetle.biomes), beetle.getLootTable());
@@ -48,7 +53,17 @@ public class JERIntegration {
     registry.register(sprout_red, LightLevel.any, getBiomeNames(ConfigManager.sprout.biomes), sprout_red.getLootTable());
 
     EntityEndermini endermini = new EntityEndermini(null);
-    registry.register(endermini, LightLevel.any, Collections.singletonList("The End").toArray(new String[0]), endermini.getLootTable());
+    registry.register(endermini, LightLevel.any, new String[]{"The End"}, endermini.getLootTable());
+
+    EntityLavaCat lavacat = new EntityLavaCat(null);
+    registry.register(lavacat, LightLevel.any, new String[]{"The Nether"}, lavacat.getLootTable());
+
+    EntitySilkworm silkworm = new EntitySilkworm(null);
+    registry.register(silkworm, LightLevel.any, new String[]{"(No biome)"}, silkworm.getLootTable());
+
+    plantRegistry.register((ItemSeedBase) epicsquid.mysticalworld.init.ModItems.aubergine_seed,
+        new PlantDrop(new ItemStack(epicsquid.mysticalworld.init.ModItems.aubergine), 1, 1),
+        new PlantDrop(new ItemStack(epicsquid.mysticalworld.init.ModItems.aubergine_seed), 1, 4));
   }
 }
 

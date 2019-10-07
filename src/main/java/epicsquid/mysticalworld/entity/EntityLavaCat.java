@@ -13,12 +13,17 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionType;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
@@ -159,12 +164,24 @@ public class EntityLavaCat extends EntityOcelot {
         this.aiSit.setSitting(false);
       }
 
-      if (source.isFireDamage()) {
+      if (source != null && source.isFireDamage()) {
         return false;
       }
 
+      if (source == DamageSource.WITHER || source == DamageSource.ANVIL) {
+        // You can't really damage stone (liquid or otherwise)
+        return false;
+      }
+
+      boolean lava = getIsLava();
+
       // Obsidian cats take half damage from non-magic damage
-      if (!getIsLava() && (source == null || !source.isMagicDamage())) {
+      if (!lava && (source == null || !source.isMagicDamage())) {
+        amount /= 2;
+      }
+
+      // Lava cats take half damage from magic
+      if (lava && (source != null && source.isMagicDamage())) {
         amount /= 2;
       }
 
@@ -178,8 +195,18 @@ public class EntityLavaCat extends EntityOcelot {
   }
 
   @Override
+  public void addPotionEffect(PotionEffect potioneffectIn) {
+    Potion type = potioneffectIn.getPotion();
+    if (type == MobEffects.POISON || type == MobEffects.WITHER) {
+      return;
+    }
+
+    super.addPotionEffect(potioneffectIn);
+  }
+
+  @Override
   @Nullable
-  protected ResourceLocation getLootTable() {
+  public ResourceLocation getLootTable() {
     return LOOT_TABLE;
   }
 

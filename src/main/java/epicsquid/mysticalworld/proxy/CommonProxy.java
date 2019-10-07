@@ -11,11 +11,14 @@ import epicsquid.mysticalworld.integration.harvest.HarvestIntegration;
 import epicsquid.mysticalworld.integration.jer.JERIntegration;
 import epicsquid.mysticalworld.integration.patchouli.api.ConfigKeys;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
+import epicsquid.mysticalworld.loot.conditions.IsLava;
+import epicsquid.mysticalworld.loot.conditions.IsObsidian;
 import epicsquid.mysticalworld.world.StructureGenerator;
 import epicsquid.mysticalworld.world.OreGenerator;
 import epicsquid.mysticalworld.world.WorldGeneratorTrees;
 import net.minecraft.entity.monster.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
@@ -43,6 +46,8 @@ public class CommonProxy {
       EndercoreHarvest.init();
     }
     LootConditionManager.registerCondition(new HasHorns.Serializer());
+    LootConditionManager.registerCondition(new IsLava.Serializer());
+    LootConditionManager.registerCondition(new IsObsidian.Serializer());
     if (ConfigManager.BarrowDistance != -1) {
       GameRegistry.registerWorldGenerator(barrowGenerator = new StructureGenerator(BARROW,10, () -> {
         switch (Util.rand.nextInt(6)) {
