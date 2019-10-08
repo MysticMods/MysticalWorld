@@ -12,7 +12,7 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import javax.annotation.Nonnull;
 
 public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<NBTTagCompound> {
-    public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalLib.MODID, "animal_cooldown_capability");
+    public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalLib.MODID, "new_animal_cooldown_capability");
 
     @CapabilityInject(AnimalCooldownCapability.class)
     public static final Capability<AnimalCooldownCapability> ANIMAL_COOLDOWN_CAPABILITY = injected();
