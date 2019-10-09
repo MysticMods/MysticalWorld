@@ -8,6 +8,7 @@ import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.block.BlockAubergineCrop;
 import epicsquid.mysticalworld.block.BlockMud;
+import epicsquid.mysticalworld.block.BlockPoisonedPotatoCrop;
 import epicsquid.mysticalworld.block.BlockThatch;
 import epicsquid.mysticalworld.config.ConfigManager;
 import net.minecraft.block.Block;
@@ -22,7 +23,7 @@ public class ModBlocks {
 
   // All blocks
   public static Block thatch, cobblestone_door;
-  public static BlockCropBase aubergine;
+  public static BlockCropBase aubergine, poisoned_potato;
   public static Block mud_block, wet_mud_block, mud_brick, wet_mud_brick, charred_log, charred_planks;
   public static Block mud_brick_stair, mud_brick_slab, mud_brick_double_slab, mud_brick_wall, mud_brick_fence, mud_brick_button, mud_brick_pressure_plate, mud_brick_door, mud_brick_trapdoor, mud_brick_fence_gate;
   public static Block mud_block_stair, mud_block_slab, mud_block_double_slab, mud_block_wall, mud_block_fence, mud_block_button, mud_block_pressure_plate, mud_block_door, mud_block_trapdoor, mud_block_fence_gate;
@@ -33,9 +34,9 @@ public class ModBlocks {
    */
   public static void registerBlocks(@Nonnull RegisterContentEvent event) {
     event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch").setCreativeTab(MysticalWorld.tab));
-    //event.addBlock(cobblestone_door = new BlockDoorBase(Blocks.COBBLESTONE, SoundType.STONE, 10f, "cobblestone_door").setCreativeTab(MysticalWorld.tab));
 
     event.addBlock(aubergine = new BlockAubergineCrop("aubergine_crop", EnumPlantType.Crop));
+    event.addBlock(poisoned_potato = new BlockPoisonedPotatoCrop("poisoned_potato_crop", EnumPlantType.Crop));
     event.addBlock(charred_log = new BlockLogBase("charred_log") {
       @Override
       public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {

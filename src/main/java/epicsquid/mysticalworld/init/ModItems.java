@@ -15,17 +15,19 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.EnumRarity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 public class ModItems {
 
@@ -37,6 +39,8 @@ public class ModItems {
   public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, raw_squid, cooked_squid, epic_squid, unripe_pearl;
 
   public static Item silk_cocoon, silk_thread, spindle, silkworm_egg;
+
+  public static Item poisoned_potato;
 
   /**
    * Register all items
@@ -99,6 +103,18 @@ public class ModItems {
     event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(cooked_aubergine = new ItemFoodBase("cooked_aubergine", 5, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
     event.addItem(stuffed_aubergine = new ItemFoodBase("stuffed_aubergine", 10, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(poisoned_potato = new ItemSeedFood(2, 0.3f, ModBlocks.poisoned_potato, Blocks.FARMLAND).setPotionEffect(new PotionEffect(MobEffects.POISON, 100, 0), 0.6F).setTranslationKey("potatoPoisonous").setRegistryName(new ResourceLocation("minecraft", "poisonous_potato")));
+
+    Field f = ObfuscationReflectionHelper.findField(Items.class, "field_151170_bI");
+    f.setAccessible(true);
+    Field modifiers = ObfuscationReflectionHelper.findField(Field.class, "modifiers");
+    modifiers.setAccessible(true);
+    try {
+      modifiers.setInt(f, f.getModifiers() & ~Modifier.FINAL);
+      f.set(Items.class, poisoned_potato);
+    } catch (IllegalAccessException e) {
+      MysticalWorld.logger.error("Failed to override poisonous potato", e);
+    }
 
     event.addItem(silk_cocoon = new ItemBase("silk_cocoon").setCreativeTab(MysticalWorld.tab));
     event.addItem(silk_thread = new ItemBase("silk_thread").setCreativeTab(MysticalWorld.tab));

@@ -3,12 +3,14 @@ package epicsquid.mysticalworld.integration.jer;
 import epicsquid.mysticallib.item.ItemSeedBase;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.*;
+import epicsquid.mysticalworld.init.ModItems;
 import jeresources.api.IJERAPI;
 import jeresources.api.IMobRegistry;
 import jeresources.api.IPlantRegistry;
 import jeresources.api.JERPlugin;
 import jeresources.api.conditionals.LightLevel;
 import jeresources.api.drop.PlantDrop;
+import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.BiomeDictionary;
 import org.apache.commons.lang3.StringUtils;
@@ -61,9 +63,13 @@ public class JERIntegration {
     EntitySilkworm silkworm = new EntitySilkworm(null);
     registry.register(silkworm, LightLevel.any, new String[]{"(No biome)"}, silkworm.getLootTable());
 
-    plantRegistry.register((ItemSeedBase) epicsquid.mysticalworld.init.ModItems.aubergine_seed,
-        new PlantDrop(new ItemStack(epicsquid.mysticalworld.init.ModItems.aubergine), 1, 1),
-        new PlantDrop(new ItemStack(epicsquid.mysticalworld.init.ModItems.aubergine_seed), 1, 4));
+    plantRegistry.register((ItemSeedBase) ModItems.aubergine_seed,
+        new PlantDrop(new ItemStack(ModItems.aubergine), 1, 1),
+        new PlantDrop(new ItemStack(ModItems.aubergine_seed), 1, 4));
+
+    plantRegistry.register((ItemSeedFood) ModItems.poisoned_potato,
+        new PlantDrop(new ItemStack(ModItems.poisoned_potato), 1, 1),
+        new PlantDrop(new ItemStack(ModItems.poisoned_potato), 1, 1));
   }
 }
 

@@ -1,12 +1,58 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "model": "crop"
+    },
     "variants":{
-        "age=0":  { "model": "mysticalworld:aubergine_0" },
-        "age=1":  { "model": "mysticalworld:aubergine_1" },
-        "age=2":  { "model": "mysticalworld:aubergine_2" },
-        "age=3":  { "model": "mysticalworld:aubergine_3" },
-        "age=4":  { "model": "mysticalworld:aubergine_4" },
-        "age=5":  { "model": "mysticalworld:aubergine_5" },
-        "age=6":  { "model": "mysticalworld:aubergine_6" },
-        "age=7":  { "model": "mysticalworld:aubergine_7" }
+        "age": {
+            "0": {
+                "textures": {
+                    "particle": "mysticalworld:blocks/aubergine_0",
+                    "crop": "mysticalworld:blocks/aubergine_0"
+                }
+            },
+            "1": {
+                "textures": {
+                    "particle": "mysticalworld:blocks/aubergine_1",
+                    "crop": "mysticalworld:blocks/aubergine_1"
+                }
+            },
+            "2": {
+                "textures": {
+                    "particle": "mysticalworld:blocks/aubergine_2",
+                    "crop": "mysticalworld:blocks/aubergine_2"
+                }
+            },
+            "3": {
+                "textures": {
+                    "particle": "mysticalworld:blocks/aubergine_3",
+                    "crop": "mysticalworld:blocks/aubergine_3"
+                }
+            },
+            "4": {
+                "textures": {
+                    "particle": "mysticalworld:blocks/aubergine_4",
+                    "crop": "mysticalworld:blocks/aubergine_4"
+                }
+            },
+            "5": {
+                "textures": {
+                    "particle": "mysticalworld:blocks/aubergine_5",
+                    "crop": "mysticalworld:blocks/aubergine_5"
+                }
+            },
+            "6": {
+                "textures": {
+                    "particle": "mysticalworld:blocks/aubergine_6",
+                    "crop": "mysticalworld:blocks/aubergine_6"
+                }
+            },
+            "7": {
+                "textures": {
+                    "particle": "mysticalworld:blocks/aubergine_7",
+                    "crop": "mysticalworld:blocks/aubergine_7"
+                }
+            }
+        }
     }
 }
