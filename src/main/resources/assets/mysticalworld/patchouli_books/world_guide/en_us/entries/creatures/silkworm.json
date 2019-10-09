@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "mysticalworld:silkworm_egg",
-      "text": "These will slowly grow over time and produce $(l:items/silk_cocoon)cocoons$().$(br2)They do not spawn in any specific biome, nor can they be bread, but you can hatch them from eggs. See over for egg drop locations."
+      "text": "These will slowly grow over time and produce $(l:items/silk_cocoon)cocoons$().$(br2)They do not spawn in any specific biome, nor can they be bred, but you can hatch them from eggs. See over for egg drop locations."
     },
     {
       "type": "entity",
