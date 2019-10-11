@@ -13,8 +13,8 @@
                             "function": "minecraft:furnace_smelt",
                             "conditions": [
                                 {
-                                    "properties": {
-                                        "minecraft:on_fire": true
+                                    "flags": {
+                                        "is_on_fire": true
                                     },
                                     "entity": "this",
                                     "condition": "minecraft:entity_properties"

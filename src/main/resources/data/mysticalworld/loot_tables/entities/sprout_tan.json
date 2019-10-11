@@ -9,6 +9,18 @@
                     "name": "minecraft:potato",
                     "functions": [
                         {
+                            "function": "minecraft:furnace_smelt",
+                            "conditions": [
+                                {
+                                    "flags": {
+                                        "is_on_fire": true
+                                    },
+                                    "entity": "this",
+                                    "condition": "minecraft:entity_properties"
+                                }
+                            ]
+                        },                                                
+                        {
                             "function": "set_count",
                             "count": {
                                 "min": 0,
