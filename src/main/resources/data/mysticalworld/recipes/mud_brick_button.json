@@ -1,5 +1,5 @@
 {
-  "type": "forge:ore_shapeless",
+  "type": "minecraft:crafting_shapelessless",
   "ingredients": [
       {
         "item": "mysticalworld:mud_brick"
