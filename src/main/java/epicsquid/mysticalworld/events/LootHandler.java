@@ -40,7 +40,7 @@ public class LootHandler {
 
 		// Inject grass drops - should prevent having to override the entire grass drop table
 		if (event.getName().equals(grass_table)) {
-			event.getTable().addPool(LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(MysticalWorld.MODID, "blocks/grass"))).build());
+			event.getTable().addPool(LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(MysticalWorld.MODID, "blocks/grass_inject"))).build());
 		}
 	}
 
