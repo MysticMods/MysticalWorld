@@ -72,7 +72,7 @@ public class RegistryManager {
 		event.getRegistry().register(ModItems.AUBERGINE = new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.AUBERGINE)).setRegistryName(MysticalWorld.MODID, "aubergine"));
 		event.getRegistry().register(ModItems.COOKED_AUBERGINE = new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.COOKED_AUBERGINE)).setRegistryName(MysticalWorld.MODID, "cooked_aubergine"));
 		event.getRegistry().register(ModItems.STUFFED_AUBERGINE = new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.STUFFED_AUBERGINE)).setRegistryName(MysticalWorld.MODID, "stuffed_aubergine"));
-		event.getRegistry().register(ModItems.AUBERGINE_SEEDS = new BlockNamedItem(ModBlocks.AUBERGINE_CROP, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "aubergine_seed"));
+		event.getRegistry().register(ModItems.AUBERGINE_SEEDS = new BlockNamedItem(ModBlocks.AUBERGINE_CROP, new Item.Properties().group(MysticalWorld.ITEM_GROUP)).setRegistryName(MysticalWorld.MODID, "aubergine_seeds"));
 		event.getRegistry().register(ModItems.RAW_SQUID = new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.RAW_SQUID)).setRegistryName(MysticalWorld.MODID, "raw_squid"));
 		event.getRegistry().register(ModItems.COOKED_SQUID = new Item(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.COOKED_SQUID)).setRegistryName(MysticalWorld.MODID, "cooked_squid"));
 		event.getRegistry().register(ModItems.EPIC_SQUID = new EffectItem(new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.EPIC_SQUID).rarity(Rarity.EPIC)).setRegistryName(MysticalWorld.MODID, "epic_squid"));
