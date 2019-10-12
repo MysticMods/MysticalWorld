@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "amethyst_gem",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/amethyst"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:amethyst_gem",
+    "count": 9
+  }
+}
