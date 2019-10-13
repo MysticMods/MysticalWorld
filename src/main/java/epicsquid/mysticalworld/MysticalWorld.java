@@ -8,9 +8,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod("mysticalworld")
 public class MysticalWorld {
+	public static final Logger LOG = LogManager.getLogger();
 	public static final String MODID = "mysticalworld";
 
 	public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
