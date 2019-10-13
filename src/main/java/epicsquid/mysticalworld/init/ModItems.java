@@ -38,7 +38,7 @@ public class ModItems {
 
   public static Item amethyst_knife, copper_knife, silver_knife;
 
-  public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, raw_squid, cooked_squid, epic_squid, unripe_pearl;
+  public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, cooked_apple, raw_squid, cooked_squid, epic_squid, unripe_pearl;
 
   public static Item silk_cocoon, silk_thread, spindle, silkworm_egg;
 
@@ -103,10 +103,11 @@ public class ModItems {
       event.addItem(silver_knife = new ItemKnifeBase("silver_knife", MaterialTypes.material("mysticalworld:silver")).setCreativeTab(MysticalWorld.tab));
     }
 
+    event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.FARMLAND).setCreativeTab(MysticalWorld.tab));
     event.addItem(aubergine = new ItemFoodBase("aubergine", 4, false).setCreativeTab(MysticalWorld.tab));
-    event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.DIRT).setCreativeTab(MysticalWorld.tab));
     event.addItem(cooked_aubergine = new ItemFoodBase("cooked_aubergine", 5, false).setCreativeTab(MysticalWorld.tab));
     event.addItem(stuffed_aubergine = new ItemFoodBase("stuffed_aubergine", 10, false).setCreativeTab(MysticalWorld.tab));
+    event.addItem(cooked_apple = new ItemFoodBase("cooked_apple", 4, 0.3f, false).setCreativeTab(MysticalWorld.tab));
     event.addItem(poisoned_potato = new ItemSeedFood(2, 0.3f, ModBlocks.poisoned_potato, Blocks.FARMLAND).setPotionEffect(new PotionEffect(MobEffects.POISON, 100, 0), 0.6F).setTranslationKey("potatoPoisonous").setRegistryName(new ResourceLocation("minecraft", "poisonous_potato")));
 
     if (!MirrorHelper.setStaticFinalValue(Items.class, "field_151170_bI", poisoned_potato)) {
