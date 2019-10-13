@@ -204,3 +204,17 @@ item.cooked_aubergine.name=Cooked Aubergine
 item.stuffed_aubergine.name=Stuffed Aubergine
 
 message.squid.cooldown=Give it time to produce more ink!
+
+item.charm.plain.name=Invalid Charm
+item.charm.iron.emerald.name=Iron & Emerald Charm
+item.charm.iron.diamond.name=Iron & Diamond Charm
+item.charm.iron.amethyst.name=Iron & Amethyst Charm
+item.charm.silver.emerald.name=Silver & Emerald Charm
+item.charm.silver.diamond.name=Silver & Diamond Charm
+item.charm.silver.amethyst.name=Silver & Amethyst Charm
+item.charm.copper.emerald.name=Copper & Emerald Charm
+item.charm.copper.diamond.name=Copper & Diamond Charm
+item.charm.copper.amethyst.name=Copper & Amethyst Charm
+item.charm.gold.emerald.name=Gold & Emerald Charm
+item.charm.gold.diamond.name=Gold & Diamond Charm
+item.charm.gold.amethyst.name=Gold & Amethyst Charm

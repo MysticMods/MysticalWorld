@@ -1,0 +1,238 @@
+{
+  "directory": "src\\main\\resources\\assets\\mysticalworld\\models\\item",
+  "texture_base": "mysticalworld:items/",
+  "models": [
+    {
+      "type": "tool",
+      "base": "amethyst_axe"
+    },
+    {
+      "type": "tool",
+      "base": "amethyst_hoe"
+    },
+    {
+      "type": "tool",
+      "base": "amethyst_knife"
+    },
+    {
+      "type": "tool",
+      "base": "amethyst_pickaxe"
+    },
+    {
+      "type": "tool",
+      "base": "amethyst_shovel"
+    },
+    {
+      "type": "tool",
+      "base": "amethyst_sword"
+    },
+    {
+      "type": "tool",
+      "base": "copper_axe"
+    },
+    {
+      "type": "tool",
+      "base": "copper_hoe"
+    },
+    {
+      "type": "tool",
+      "base": "copper_knife"
+    },
+    {
+      "type": "tool",
+      "base": "copper_pickaxe"
+    },
+    {
+      "type": "tool",
+      "base": "copper_shovel"
+    },
+    {
+      "type": "tool",
+      "base": "copper_sword"
+    },
+    {
+      "type": "item",
+      "base": "ink_bottle"
+    },
+    {
+      "type": "item",
+      "base": "silk_thread"
+    },
+    {
+      "type": "item",
+      "base": "silkworm_egg"
+    },
+    {
+      "type": "tool",
+      "base": "silver_axe"
+    },
+    {
+      "type": "tool",
+      "base": "silver_hoe"
+    },
+    {
+      "type": "tool",
+      "base": "silver_knife"
+    },
+    {
+      "type": "tool",
+      "base": "silver_pickaxe"
+    },
+    {
+      "type": "tool",
+      "base": "silver_shovel"
+    },
+    {
+      "type": "tool",
+      "base": "silver_sword"
+    },
+    {
+      "type": "item",
+      "base": "spindle"
+    },
+    {
+        "type": "item",
+        "base": "iron_emerald_charm"
+    },
+    {
+        "type": "item",
+        "base": "iron_diamond_charm"
+    },
+    {
+        "type": "item",
+        "base": "iron_amethyst_charm"
+    },
+    {
+        "type": "item",
+        "base": "silver_emerald_charm"
+    },
+    {
+        "type": "item",
+        "base": "silver_diamond_charm"
+    },
+    {
+        "type": "item",
+        "base": "silver_amethyst_charm"
+    },
+    {
+        "type": "item",
+        "base": "copper_emerald_charm"
+    },
+    {
+        "type": "item",
+        "base": "copper_diamond_charm"
+    },
+    {
+        "type": "item",
+        "base": "copper_amethyst_charm"
+    },
+    {
+        "type": "item",
+        "base": "gold_emerald_charm"
+    },
+    {
+        "type": "item",
+        "base": "gold_diamond_charm"
+    },
+    {
+        "type": "item",
+        "base": "gold_amethyst_charm"
+    },
+    {
+        "type": "item",
+        "base": "earthworm"
+    },
+    {
+        "type": "item",
+        "base": "gold_dust"
+    },
+    {
+        "type": "item",
+        "base": "gold_dust_tiny"
+    },
+    {
+        "type": "item",
+        "base": "iron_dust"
+    },
+    {
+        "type": "item",
+        "base": "iron_dust_tiny"
+    },
+    {
+        "type": "item",
+        "base": "copper_dust"
+    },
+    {
+        "type": "item",
+        "base": "copper_dust_tiny"
+    },
+    {
+        "type": "item",
+        "base": "silver_dust"
+    },
+    {
+        "type": "item",
+        "base": "silver_dust_tiny"
+    },
+    {
+        "type": "item",
+        "base": "unripe_pearl"
+    },
+    {
+        "type": "item",
+        "base": "venison"
+    },
+    {
+        "type": "item",
+        "base": "pelt"
+    },
+    {
+        "type": "item",
+        "base": "raw_squid"
+    },
+    {
+        "type": "item",
+        "base": "aubergine"
+    },
+    {
+        "type": "item",
+        "base": "compost"
+    },
+    {
+        "type": "item",
+        "base": "aubergine_seed"
+    },
+    {
+        "type": "item",
+        "base": "carapace"
+    },
+    {
+        "type": "item",
+        "base": "antlers"
+    },
+    {
+        "type": "item",
+        "base": "cooked_aubergine"
+    },
+    {
+        "type": "item",
+        "base": "cooked_squid"
+    },
+    {
+        "type": "item",
+        "base": "cooked_venison"
+    },
+    {
+        "type": "item",
+        "base": "stuffed_aubergine"
+    },
+    {
+        "type": "item",
+        "base": "epic_squid"
+    },
+    {
+        "type": "item",
+        "base": "guidebook"
+    }
+  ]
+}

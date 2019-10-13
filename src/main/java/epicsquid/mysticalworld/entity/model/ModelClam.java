@@ -1,14 +1,14 @@
-package mysticalworld;
+package epicsquid.mysticalworld.entity.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 /**
- * clam - Undefined
+ * clam - By Nerevar
  * Created using Tabula 7.0.1
  */
-public class clam extends ModelBase {
+public class ModelClam extends ModelBase {
     public ModelRenderer Bottom;
     public ModelRenderer shape1;
     public ModelRenderer shape2;
@@ -31,7 +31,7 @@ public class clam extends ModelBase {
     public ModelRenderer shape2_3;
     public ModelRenderer shape1_3;
 
-    public clam() {
+    public ModelClam() {
         this.textureWidth = 64;
         this.textureHeight = 32;
         this.Top = new ModelRenderer(this, 25, 15);

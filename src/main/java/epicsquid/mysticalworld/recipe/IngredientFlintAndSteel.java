@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "deprecation"})
 public class IngredientFlintAndSteel extends Ingredient {
   private static IngredientFlintAndSteel instance = null;
 

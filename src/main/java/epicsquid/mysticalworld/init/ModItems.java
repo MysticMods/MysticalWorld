@@ -6,9 +6,11 @@ import epicsquid.mysticallib.item.ItemFoodBase;
 import epicsquid.mysticallib.item.ItemKnifeBase;
 import epicsquid.mysticallib.item.ItemSeedBase;
 import epicsquid.mysticallib.material.MaterialTypes;
+import epicsquid.mysticallib.util.MirrorHelper;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.integration.roots.Knives;
+import epicsquid.mysticalworld.item.ItemCharm;
 import epicsquid.mysticalworld.item.ItemSilkwormEgg;
 import epicsquid.mysticalworld.item.ItemUnripePearl;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,6 +44,8 @@ public class ModItems {
 
   public static Item poisoned_potato;
 
+  public static Item charm;
+
   /**
    * Register all items
    */
@@ -54,18 +58,18 @@ public class ModItems {
     MaterialTypes.addMaterial("mysticalworld:amethyst", amethyst, 3f, -1.0f);
 
     // Mob Drops
-    event.addItem(carapace = new ItemBase("carapace").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(carapace = new ItemBase("carapace").setCreativeTab(MysticalWorld.tab));
 
-    event.addItem(pelt = new ItemBase("pelt").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(iron_dust = new ItemBase("iron_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(iron_dust_tiny = new ItemBase("iron_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(gold_dust = new ItemBase("gold_dust").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(gold_dust_tiny = new ItemBase("gold_dust_tiny").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(antlers = new ItemBase("antlers").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(venison = new ItemFoodBase("venison", 3, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(raw_squid = new ItemFoodBase("raw_squid", 1, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(cooked_venison = new ItemFoodBase("cooked_venison", 7, true).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(cooked_squid = new ItemFoodBase("cooked_squid", 3, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(pelt = new ItemBase("pelt").setCreativeTab(MysticalWorld.tab));
+    event.addItem(iron_dust = new ItemBase("iron_dust").setCreativeTab(MysticalWorld.tab));
+    event.addItem(iron_dust_tiny = new ItemBase("iron_dust_tiny").setCreativeTab(MysticalWorld.tab));
+    event.addItem(gold_dust = new ItemBase("gold_dust").setCreativeTab(MysticalWorld.tab));
+    event.addItem(gold_dust_tiny = new ItemBase("gold_dust_tiny").setCreativeTab(MysticalWorld.tab));
+    event.addItem(antlers = new ItemBase("antlers").setCreativeTab(MysticalWorld.tab));
+    event.addItem(venison = new ItemFoodBase("venison", 3, true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(raw_squid = new ItemFoodBase("raw_squid", 1, false).setCreativeTab(MysticalWorld.tab));
+    event.addItem(cooked_venison = new ItemFoodBase("cooked_venison", 7, true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(cooked_squid = new ItemFoodBase("cooked_squid", 3, false).setCreativeTab(MysticalWorld.tab));
     event.addItem(epic_squid = new ItemFoodBase("epic_squid", 20, false) {
       @Override
       public boolean hasEffect(ItemStack stack) {
@@ -89,37 +93,32 @@ public class ModItems {
           player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 1200, 3));
         }
       }
-    }.setModelCustom(true).setAlwaysEdible().setCreativeTab(MysticalWorld.tab));
-    event.addItem(ink_bottle = new ItemBase("ink_bottle").setModelCustom(true).setCreativeTab(MysticalWorld.tab).setContainerItem(Items.GLASS_BOTTLE));
-    event.addItem(unripe_pearl = new ItemUnripePearl("unripe_pearl").setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    }.setAlwaysEdible().setCreativeTab(MysticalWorld.tab));
+    event.addItem(ink_bottle = new ItemBase("ink_bottle").setCreativeTab(MysticalWorld.tab).setContainerItem(Items.GLASS_BOTTLE));
+    event.addItem(unripe_pearl = new ItemUnripePearl("unripe_pearl").setCreativeTab(MysticalWorld.tab));
 
     if (!Loader.isModLoaded("roots") || !Knives.initKnives(event)) {
-      event.addItem(amethyst_knife = new ItemKnifeBase("amethyst_knife", MaterialTypes.material("mysticalworld:amethyst")).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(copper_knife = new ItemKnifeBase("copper_knife", MaterialTypes.material("mysticalworld:copper")).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-      event.addItem(silver_knife = new ItemKnifeBase("silver_knife", MaterialTypes.material("mysticalworld:silver")).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+      event.addItem(amethyst_knife = new ItemKnifeBase("amethyst_knife", MaterialTypes.material("mysticalworld:amethyst")).setCreativeTab(MysticalWorld.tab));
+      event.addItem(copper_knife = new ItemKnifeBase("copper_knife", MaterialTypes.material("mysticalworld:copper")).setCreativeTab(MysticalWorld.tab));
+      event.addItem(silver_knife = new ItemKnifeBase("silver_knife", MaterialTypes.material("mysticalworld:silver")).setCreativeTab(MysticalWorld.tab));
     }
 
-    event.addItem(aubergine = new ItemFoodBase("aubergine", 4, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.DIRT).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(cooked_aubergine = new ItemFoodBase("cooked_aubergine", 5, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
-    event.addItem(stuffed_aubergine = new ItemFoodBase("stuffed_aubergine", 10, false).setModelCustom(true).setCreativeTab(MysticalWorld.tab));
+    event.addItem(aubergine = new ItemFoodBase("aubergine", 4, false).setCreativeTab(MysticalWorld.tab));
+    event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.DIRT).setCreativeTab(MysticalWorld.tab));
+    event.addItem(cooked_aubergine = new ItemFoodBase("cooked_aubergine", 5, false).setCreativeTab(MysticalWorld.tab));
+    event.addItem(stuffed_aubergine = new ItemFoodBase("stuffed_aubergine", 10, false).setCreativeTab(MysticalWorld.tab));
     event.addItem(poisoned_potato = new ItemSeedFood(2, 0.3f, ModBlocks.poisoned_potato, Blocks.FARMLAND).setPotionEffect(new PotionEffect(MobEffects.POISON, 100, 0), 0.6F).setTranslationKey("potatoPoisonous").setRegistryName(new ResourceLocation("minecraft", "poisonous_potato")));
 
-    Field f = ObfuscationReflectionHelper.findField(Items.class, "field_151170_bI");
-    f.setAccessible(true);
-    Field modifiers = ObfuscationReflectionHelper.findField(Field.class, "modifiers");
-    modifiers.setAccessible(true);
-    try {
-      modifiers.setInt(f, f.getModifiers() & ~Modifier.FINAL);
-      f.set(Items.class, poisoned_potato);
-    } catch (IllegalAccessException e) {
-      MysticalWorld.logger.error("Failed to override poisonous potato", e);
+    if (!MirrorHelper.setStaticFinalValue(Items.class, "field_151170_bI", poisoned_potato)) {
+      MysticalWorld.logger.error("Failed to override poisonous potato");
     }
 
     event.addItem(silk_cocoon = new ItemBase("silk_cocoon").setCreativeTab(MysticalWorld.tab));
     event.addItem(silk_thread = new ItemBase("silk_thread").setCreativeTab(MysticalWorld.tab));
     event.addItem(spindle = new ItemBase("spindle").setCreativeTab(MysticalWorld.tab).setMaxDamage(64));
     event.addItem(silkworm_egg = new ItemSilkwormEgg("silkworm_egg").setCreativeTab(MysticalWorld.tab));
+
+    event.addItem(charm = new ItemCharm("charm").setCreativeTab(MysticalWorld.tab).setMaxStackSize(1));
 
     registerSeedDrops();
   }

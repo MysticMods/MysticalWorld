@@ -10,19 +10,26 @@ import epicsquid.mysticalworld.integration.endercore.EndercoreHarvest;
 import epicsquid.mysticalworld.integration.harvest.HarvestIntegration;
 import epicsquid.mysticalworld.integration.jer.JERIntegration;
 import epicsquid.mysticalworld.integration.patchouli.api.ConfigKeys;
+import epicsquid.mysticalworld.item.ItemCharm;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.loot.conditions.IsLava;
 import epicsquid.mysticalworld.loot.conditions.IsObsidian;
-import epicsquid.mysticalworld.world.StructureGenerator;
 import epicsquid.mysticalworld.world.OreGenerator;
+import epicsquid.mysticalworld.world.StructureGenerator;
 import epicsquid.mysticalworld.world.WorldGeneratorTrees;
-import net.minecraft.entity.monster.*;
+import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntityWitch;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.init.Enchantments;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.lang.reflect.Field;
+import java.util.Arrays;
 
 public class CommonProxy {
   private static ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");
@@ -49,7 +56,7 @@ public class CommonProxy {
     LootConditionManager.registerCondition(new IsLava.Serializer());
     LootConditionManager.registerCondition(new IsObsidian.Serializer());
     if (ConfigManager.BarrowDistance != -1) {
-      GameRegistry.registerWorldGenerator(barrowGenerator = new StructureGenerator(BARROW,10, () -> {
+      GameRegistry.registerWorldGenerator(barrowGenerator = new StructureGenerator(BARROW, 10, () -> {
         switch (Util.rand.nextInt(6)) {
           case 0:
           case 1:
@@ -74,6 +81,36 @@ public class CommonProxy {
   }
 
   public void postInit(FMLPostInitializationEvent event) {
+    ItemCharm.ALLOWED_ENCHANTS.addAll(Arrays.asList(Enchantments.PROTECTION,
+        Enchantments.FIRE_PROTECTION,
+        Enchantments.FEATHER_FALLING,
+        Enchantments.BLAST_PROTECTION,
+        Enchantments.PROJECTILE_PROTECTION,
+        Enchantments.RESPIRATION,
+        Enchantments.AQUA_AFFINITY,
+        Enchantments.THORNS,
+        Enchantments.DEPTH_STRIDER,
+        Enchantments.FROST_WALKER,
+        Enchantments.BINDING_CURSE,
+        Enchantments.SHARPNESS,
+        Enchantments.SMITE,
+        Enchantments.BANE_OF_ARTHROPODS,
+        Enchantments.KNOCKBACK,
+        Enchantments.FIRE_ASPECT,
+        Enchantments.LOOTING,
+        Enchantments.SWEEPING,
+        Enchantments.EFFICIENCY,
+        Enchantments.SILK_TOUCH,
+        Enchantments.UNBREAKING,
+        Enchantments.FORTUNE,
+        Enchantments.POWER,
+        Enchantments.PUNCH,
+        Enchantments.FLAME,
+        Enchantments.INFINITY,
+        Enchantments.LUCK_OF_THE_SEA,
+        Enchantments.LURE,
+        Enchantments.MENDING,
+        Enchantments.VANISHING_CURSE));
   }
 
   public void loadComplete(FMLLoadCompleteEvent event) {
@@ -83,6 +120,6 @@ public class CommonProxy {
     LeafHandler.getLeafBlocks();
   }
 
-  public void serverStarted (FMLServerStartedEvent event) {
+  public void serverStarted(FMLServerStartedEvent event) {
   }
 }
