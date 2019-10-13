@@ -13,8 +13,7 @@
     ],
     "D": [
       {
-        "type": "forge:ore_dict",
-        "ore": "dirt"
+        "item": "minecraft:dirt"
       }
     ]
   },
