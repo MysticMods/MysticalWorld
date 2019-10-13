@@ -12,7 +12,7 @@
     {
       "type": "spotlight",
       "link_recipe": true,
-      "item": "mysticalworld:amethyst_gem",
+      "item": "mysticalworld:amethyst",
       "title": "Amethyst Gems",
       "text": "Amethyst tools and weapons have the same mining level as diamond tools and a similar durability."
     },
