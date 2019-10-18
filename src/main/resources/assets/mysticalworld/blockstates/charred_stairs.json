@@ -1,5 +1,7 @@
 {
-    "variants":{
-        "custom":  { "model": "mysticalworld:charred_stairs" }
+  "variants": {
+    "custom": {
+      "model": "mysticalworld:charred_stairs"
     }
+  }
 }

@@ -8,11 +8,11 @@ import java.util.Random;
 
 public interface IQuicksilverItem {
 
-	int CHANCE_BOUND = 100;
+  int CHANCE_BOUND = 100;
 
-	default void drip(ItemStack stack, LivingEntity entity, Random rand, EquipmentSlotType type) {
-		if (rand.nextInt(CHANCE_BOUND) == 1) {
-			stack.damageItem(1, entity, livingEntity -> livingEntity.sendBreakAnimation(type));
-		}
-	}
+  default void drip(ItemStack stack, LivingEntity entity, Random rand, EquipmentSlotType type) {
+    if (rand.nextInt(CHANCE_BOUND) == 1) {
+      stack.damageItem(1, entity, livingEntity -> livingEntity.sendBreakAnimation(type));
+    }
+  }
 }

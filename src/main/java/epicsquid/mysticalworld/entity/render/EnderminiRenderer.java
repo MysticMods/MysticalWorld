@@ -1,10 +1,7 @@
 package epicsquid.mysticalworld.entity.render;
 
-import java.util.Random;
-
 import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.GlStateManager;
-
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.EnderminiEntity;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
@@ -21,40 +18,42 @@ import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
+import java.util.Random;
+
 public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EndermanModel<EnderminiEntity>> {
-	private static final ResourceLocation ENDERMINI_TEXTURES = new ResourceLocation(MysticalWorld.MODID, "textures/entity/endermini.png");
-	private final Random rnd = new Random();
+  private static final ResourceLocation ENDERMINI_TEXTURES = new ResourceLocation(MysticalWorld.MODID, "textures/entity/endermini.png");
+  private final Random rnd = new Random();
 
-	public EnderminiRenderer(EntityRendererManager renderManagerIn, EndermanModel model, float size) {
-		super(renderManagerIn, model, size);
-		this.addLayer(new EndermanEyesLayer<>(this));
-		this.addLayer(new HeldBlockLayer(this));
-	}
-
-	@Override
-	public void doRender(EnderminiEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
-		BlockState blockstate = entity.getHeldBlockState();
-		EndermanModel<EnderminiEntity> endermanmodel = this.getEntityModel();
-		endermanmodel.isCarrying = blockstate != null;
-		endermanmodel.isAttacking = entity.isScreaming();
-		if (entity.isScreaming()) {
-			double d0 = 0.02D;
-			x += this.rnd.nextGaussian() * 0.02D;
-			z += this.rnd.nextGaussian() * 0.02D;
-		}
-
-		super.doRender(entity, x, y, z, entityYaw, partialTicks);
-	}
+  public EnderminiRenderer(EntityRendererManager renderManagerIn, EndermanModel model, float size) {
+    super(renderManagerIn, model, size);
+    this.addLayer(new EndermanEyesLayer<>(this));
+    this.addLayer(new HeldBlockLayer(this));
+  }
 
   @Override
-	protected ResourceLocation getEntityTexture(EnderminiEntity entity) {
-		return ENDERMINI_TEXTURES;
-	}
+  public void doRender(EnderminiEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+    BlockState blockstate = entity.getHeldBlockState();
+    EndermanModel<EnderminiEntity> endermanmodel = this.getEntityModel();
+    endermanmodel.isCarrying = blockstate != null;
+    endermanmodel.isAttacking = entity.isScreaming();
+    if (entity.isScreaming()) {
+      double d0 = 0.02D;
+      x += this.rnd.nextGaussian() * 0.02D;
+      z += this.rnd.nextGaussian() * 0.02D;
+    }
 
-	@Override
-	public EndermanModel<EnderminiEntity> getEntityModel() {
-		return ModelHolder.enderminiModel;
-	}
+    super.doRender(entity, x, y, z, entityYaw, partialTicks);
+  }
+
+  @Override
+  protected ResourceLocation getEntityTexture(EnderminiEntity entity) {
+    return ENDERMINI_TEXTURES;
+  }
+
+  @Override
+  public EndermanModel<EnderminiEntity> getEntityModel() {
+    return ModelHolder.enderminiModel;
+  }
 
   public static class HeldBlockLayer extends LayerRenderer<EnderminiEntity, EndermanModel<EnderminiEntity>> {
     public HeldBlockLayer(IEntityRenderer<EnderminiEntity, EndermanModel<EnderminiEntity>> p_i50949_1_) {
@@ -75,7 +74,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EndermanMode
         int i = entityIn.getBrightnessForRender();
         int j = i % 65536;
         int k = i / 65536;
-        GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
+        GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float) j, (float) k);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
         Minecraft.getInstance().getBlockRendererDispatcher().renderBlockBrightness(blockstate, 1.0F);
@@ -89,11 +88,11 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EndermanMode
     }
   }
 
-	public static class Factory implements IRenderFactory<EnderminiEntity> {
+  public static class Factory implements IRenderFactory<EnderminiEntity> {
 
-		@Override
-		public EntityRenderer<? super EnderminiEntity> createRenderFor(EntityRendererManager manager) {
-			return new EnderminiRenderer(manager, ModelHolder.enderminiModel, 0.35f);
-		}
-	}
+    @Override
+    public EntityRenderer<? super EnderminiEntity> createRenderFor(EntityRendererManager manager) {
+      return new EnderminiRenderer(manager, ModelHolder.enderminiModel, 0.35f);
+    }
+  }
 }

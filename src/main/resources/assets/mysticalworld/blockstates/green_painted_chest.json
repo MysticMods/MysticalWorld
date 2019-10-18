@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "mysticalworld:block/green_painted_chest" }
+  "variants": {
+    "": {
+      "model": "mysticalworld:block/green_painted_chest"
     }
+  }
 }

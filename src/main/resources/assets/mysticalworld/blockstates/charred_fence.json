@@ -1,5 +1,7 @@
 {
-    "variants":{
-        "custom":  { "model": "mysticalworld:charred_fence" }
+  "variants": {
+    "custom": {
+      "model": "mysticalworld:charred_fence"
     }
+  }
 }

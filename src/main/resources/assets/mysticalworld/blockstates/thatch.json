@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "mysticalworld:block/thatch" }
+  "variants": {
+    "": {
+      "model": "mysticalworld:block/thatch"
     }
+  }
 }

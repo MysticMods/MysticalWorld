@@ -20,48 +20,48 @@ import java.util.Random;
 
 public class QuicksilverShovelItem extends ShovelItem implements IQuicksilverItem {
 
-	private int counter;
-	private Random random = new Random();
+  private int counter;
+  private Random random = new Random();
 
-	public QuicksilverShovelItem(IItemTier tier, float attackDamage, float attackSpeed, Properties props) {
-		super(tier, attackDamage, attackSpeed, props);
-	}
+  public QuicksilverShovelItem(IItemTier tier, float attackDamage, float attackSpeed, Properties props) {
+    super(tier, attackDamage, attackSpeed, props);
+  }
 
-	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
-		counter = counter >= 20 ? 1 : counter + 1;
-		if (counter % 20 == 0 && entity instanceof LivingEntity) {
-			drip(stack, (LivingEntity) entity, random, EquipmentSlotType.MAINHAND);
-		}
-	}
+  @Override
+  public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+    counter = counter >= 20 ? 1 : counter + 1;
+    if (counter % 20 == 0 && entity instanceof LivingEntity) {
+      drip(stack, (LivingEntity) entity, random, EquipmentSlotType.MAINHAND);
+    }
+  }
 
-	@Override
-	public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-		return true;
-	}
+  @Override
+  public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    return true;
+  }
 
-	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
-		return true;
-	}
+  @Override
+  public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
+    return true;
+  }
 
-	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
-		World world = context.getWorld();
-		BlockPos blockpos = context.getPos();
-		if (context.getFace() != Direction.DOWN && world.getBlockState(blockpos.up()).isAir(world, blockpos.up())) {
-			BlockState blockstate = field_195955_e.get(world.getBlockState(blockpos).getBlock());
-			if (blockstate != null) {
-				PlayerEntity playerentity = context.getPlayer();
-				world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				if (!world.isRemote) {
-					world.setBlockState(blockpos, blockstate, 11);
-				}
+  @Override
+  public ActionResultType onItemUse(ItemUseContext context) {
+    World world = context.getWorld();
+    BlockPos blockpos = context.getPos();
+    if (context.getFace() != Direction.DOWN && world.getBlockState(blockpos.up()).isAir(world, blockpos.up())) {
+      BlockState blockstate = field_195955_e.get(world.getBlockState(blockpos).getBlock());
+      if (blockstate != null) {
+        PlayerEntity playerentity = context.getPlayer();
+        world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        if (!world.isRemote) {
+          world.setBlockState(blockpos, blockstate, 11);
+        }
 
-				return ActionResultType.SUCCESS;
-			}
-		}
+        return ActionResultType.SUCCESS;
+      }
+    }
 
-		return ActionResultType.PASS;
-	}
+    return ActionResultType.PASS;
+  }
 }

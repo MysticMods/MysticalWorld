@@ -13,39 +13,39 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class ModSetup {
 
-	private static ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");
-	private static ResourceLocation HUT = new ResourceLocation(MysticalWorld.MODID, "hut");
+  private static ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");
+  private static ResourceLocation HUT = new ResourceLocation(MysticalWorld.MODID, "hut");
 
 //	private StructureGenerator hutGenerator;
 //	private StructureGenerator barrowGenerator;
 
 
-	public ModSetup() {
-		ModMaterials.addMaterial(new CopperMaterial());
-		ModMaterials.addMaterial(new SilverMaterial());
-		ModMaterials.addMaterial(new LeadMaterial());
-		ModMaterials.addMaterial(new TinMaterial());
-		ModMaterials.addMaterial(new AmethystMaterial());
-		ModMaterials.addMaterial(new CactusMaterial());
-		ModMaterials.addMaterial(new DiamondMaterial());
-		ModMaterials.addMaterial(new GoldMaterial());
-		ModMaterials.addMaterial(new IronMaterial());
-		ModMaterials.addMaterial(new WoodMaterial());
-		ModMaterials.addMaterial(new StoneMaterial());
-	}
+  public ModSetup() {
+    ModMaterials.addMaterial(new CopperMaterial());
+    ModMaterials.addMaterial(new SilverMaterial());
+    ModMaterials.addMaterial(new LeadMaterial());
+    ModMaterials.addMaterial(new TinMaterial());
+    ModMaterials.addMaterial(new AmethystMaterial());
+    ModMaterials.addMaterial(new CactusMaterial());
+    ModMaterials.addMaterial(new DiamondMaterial());
+    ModMaterials.addMaterial(new GoldMaterial());
+    ModMaterials.addMaterial(new IronMaterial());
+    ModMaterials.addMaterial(new WoodMaterial());
+    ModMaterials.addMaterial(new StoneMaterial());
+  }
 
-	public void init(FMLCommonSetupEvent event) {
+  public void init(FMLCommonSetupEvent event) {
 //		if (Loader.isModLoaded("jeresources")) {
 //			JERIntegration.init();
 //		}
 
-		CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
+    CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
 
-		LootConditionManager.registerCondition(new HasHorns.Serializer());
+    LootConditionManager.registerCondition(new HasHorns.Serializer());
 
-		OreGen.registerOreGeneration();
+    OreGen.registerOreGeneration();
 
-		// TODO world gen
+    // TODO world gen
 //		if (ConfigManager.BarrowDistance != -1) {
 //			GameRegistry.registerWorldGenerator(barrowGenerator = new StructureGenerator(BARROW,10, () -> {
 //				switch (Util.rand.nextInt(6)) {
@@ -66,5 +66,5 @@ public class ModSetup {
 //				return EntityZombie.class;
 //			}, ConfigManager.HutDistance), 400);
 //		}
-	}
+  }
 }

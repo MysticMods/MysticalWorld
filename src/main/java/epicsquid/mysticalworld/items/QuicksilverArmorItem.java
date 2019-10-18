@@ -13,18 +13,18 @@ import java.util.Random;
 // TODO find a way to block damaging the item
 public class QuicksilverArmorItem extends ArmorItem implements IQuicksilverItem {
 
-	private int counter;
-	private Random random = new Random();
+  private int counter;
+  private Random random = new Random();
 
-	public QuicksilverArmorItem(IArmorMaterial material, EquipmentSlotType slot, Properties props) {
-		super(material, slot, props);
-	}
+  public QuicksilverArmorItem(IArmorMaterial material, EquipmentSlotType slot, Properties props) {
+    super(material, slot, props);
+  }
 
-	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
-		counter = counter >= 20 ? 1 : counter + 1;
-		if (counter % 20 == 0 && entity instanceof LivingEntity) {
-			drip(stack, (LivingEntity) entity, random, getEquipmentSlot());
-		}
-	}
+  @Override
+  public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+    counter = counter >= 20 ? 1 : counter + 1;
+    if (counter % 20 == 0 && entity instanceof LivingEntity) {
+      drip(stack, (LivingEntity) entity, random, getEquipmentSlot());
+    }
+  }
 }

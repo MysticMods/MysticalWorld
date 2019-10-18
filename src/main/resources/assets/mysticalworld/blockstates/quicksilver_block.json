@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "mysticalworld:block/quicksilver_block" }
+  "variants": {
+    "": {
+      "model": "mysticalworld:block/quicksilver_block"
     }
+  }
 }

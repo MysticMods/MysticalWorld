@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "mysticalworld:block/amethyst_block" }
+  "variants": {
+    "": {
+      "model": "mysticalworld:block/amethyst_block"
     }
+  }
 }

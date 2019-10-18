@@ -1,6 +1,6 @@
 {
-    "parent": "block/pressure_plate_up",
-    "textures": {
-        "texture": "mysticalworld:blocks/mud_block"
-    }
+  "parent": "block/pressure_plate_up",
+  "textures": {
+    "texture": "mysticalworld:blocks/mud_block"
+  }
 }

@@ -1,7 +1,7 @@
 {
-    "variants": {
-        "custom": {
-            "model": "mysticalworld:mud_block_pressure_plate"
-        }
+  "variants": {
+    "custom": {
+      "model": "mysticalworld:mud_block_pressure_plate"
     }
+  }
 }

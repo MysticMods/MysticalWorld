@@ -19,81 +19,81 @@ import javax.annotation.Nonnull;
 
 public class DeerEntity extends AnimalEntity {
 
-	public static final DataParameter<Boolean> hasHorns = EntityDataManager.<Boolean>createKey(DeerEntity.class, DataSerializers.BOOLEAN);
+  public static final DataParameter<Boolean> hasHorns = EntityDataManager.<Boolean>createKey(DeerEntity.class, DataSerializers.BOOLEAN);
 
-	public DeerEntity(EntityType<? extends DeerEntity> type, World world) {
-		super(type, world);
+  public DeerEntity(EntityType<? extends DeerEntity> type, World world) {
+    super(type, world);
 //    setSize(1.0f, 1.0f);
-		this.experienceValue = 3;
-	}
+    this.experienceValue = 3;
+  }
 
-	@Override
-	protected void registerData() {
-		super.registerData();
-		getDataManager().register(hasHorns, rand.nextBoolean());
-	}
+  @Override
+  protected void registerData() {
+    super.registerData();
+    getDataManager().register(hasHorns, rand.nextBoolean());
+  }
 
-	@Override
-	protected void registerGoals() {
-		goalSelector.addGoal(0, new SwimGoal(this));
-		goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
-		goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-		goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.WHEAT), false));
-		goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
-		goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
-		goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		goalSelector.addGoal(7, new LookRandomlyGoal(this));
-	}
+  @Override
+  protected void registerGoals() {
+    goalSelector.addGoal(0, new SwimGoal(this));
+    goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
+    goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+    goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.WHEAT), false));
+    goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
+    goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
+    goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+    goalSelector.addGoal(7, new LookRandomlyGoal(this));
+  }
 
-	@Override
-	public void tick() {
-		super.tick();
-		this.rotationYaw = this.rotationYawHead;
-	}
+  @Override
+  public void tick() {
+    super.tick();
+    this.rotationYaw = this.rotationYawHead;
+  }
 
 //	@Override
 //	public void setScaleForAge(boolean child) {
 //		this.setScale(child ? 0.5f : 1.0f);
 //	}
 
-	@Override
-	public boolean isAIDisabled() {
-		return false;
-	}
+  @Override
+  public boolean isAIDisabled() {
+    return false;
+  }
 
-	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
-		getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
-	}
+  @Override
+  protected void registerAttributes() {
+    super.registerAttributes();
+    getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
+    getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
+  }
 
-	@Override
-	@Nonnull
-	public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-		return RegistryManager.DEER.create(ageable.world);
-	}
+  @Override
+  @Nonnull
+  public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
+    return RegistryManager.DEER.create(ageable.world);
+  }
 
-	@Override
-	@Nonnull
-	public ResourceLocation getLootTable() {
-		return new ResourceLocation(MysticalWorld.MODID, "entities/deer");
-	}
+  @Override
+  @Nonnull
+  public ResourceLocation getLootTable() {
+    return new ResourceLocation(MysticalWorld.MODID, "entities/deer");
+  }
 
-	@Override
-	public float getStandingEyeHeight(Pose pose, EntitySize size) {
-		return this.isChild() ? this.getHeight() : 1.3F;
-	}
+  @Override
+  public float getStandingEyeHeight(Pose pose, EntitySize size) {
+    return this.isChild() ? this.getHeight() : 1.3F;
+  }
 
-	@Override
-	public void readAdditional(@Nonnull CompoundNBT compound) {
-		super.readAdditional(compound);
-		getDataManager().set(hasHorns, compound.getBoolean("hasHorns"));
-	}
+  @Override
+  public void readAdditional(@Nonnull CompoundNBT compound) {
+    super.readAdditional(compound);
+    getDataManager().set(hasHorns, compound.getBoolean("hasHorns"));
+  }
 
-	@Override
-	public void writeAdditional(@Nonnull CompoundNBT compound) {
-		super.writeAdditional(compound);
-		compound.putBoolean("hasHorns", getDataManager().get(hasHorns));
-	}
+  @Override
+  public void writeAdditional(@Nonnull CompoundNBT compound) {
+    super.writeAdditional(compound);
+    compound.putBoolean("hasHorns", getDataManager().get(hasHorns));
+  }
 }

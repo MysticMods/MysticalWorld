@@ -11,7 +11,7 @@
     },
     "background": "mysticalworld:textures/blocks/thatch.png",
     "show_toast": false,
-    "announce_to_chat" : false
+    "announce_to_chat": false
   },
   "criteria": {
     "auto": {

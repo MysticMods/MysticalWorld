@@ -1,6 +1,6 @@
 {
-    "parent": "block/button",
-    "textures": {
-        "texture": "mysticalworld:blocks/mud_block"
-    }
+  "parent": "block/button",
+  "textures": {
+    "texture": "mysticalworld:blocks/mud_block"
+  }
 }

@@ -1,16 +1,13 @@
 {
   "itemGroup.mysticalworld": "Mystical World",
   "itemGroup.mysticalworld.metals": "Mystical World Metals",
-
   "entity.mysticalworld.silver_fox": "Silver Fox",
   "entity.mysticalworld.frog": "Frog",
   "entity.mysticalworld.beetle": "Beetle",
   "entity.mysticalworld.deer": "Deer",
   "entity.mysticalworld.sprout": "Sprout",
-
   "item.mysticalworld.carapace": "Carapace",
   "item.mysticalworld.pelt": "Pelt",
-
   "_comment": "Advancements",
   "advancement.mysticalworld.root": "Mystical World",
   "advancement.mysticalworld.root.desc": "Breathe in a brand new, mystical world!",
@@ -20,7 +17,6 @@
   "advancement.mysticalworld.aubergine.desc": "Once, purple carrots were all the rage. But this is an aubergine.",
   "advancement.mysticalworld.epic_squid": "Epic Squid!",
   "advancement.mysticalworld.epic_squid.desc": "Partake in some of the delicious, purple-y goodness of Epic Squid.",
-
   "item.mysticalworld.venison": "Venison",
   "item.mysticalworld.cooked_venison": "Cooked Venison",
   "item.mysticalworld.antlers": "Antlers",
@@ -34,9 +30,7 @@
   "item.mysticalworld.frog_spawn_egg": "Frog Spawn Egg",
   "item.mysticalworld.deer_spawn_egg": "Deer Spawn Egg",
   "item.mysticalworld.silver_fox_spawn_egg": "Silver Fox Spawn Egg",
-
   "block.mysticalworld.thatch": "Thatch",
-
   "item.mysticalworld.copper_ingot": "Copper Ingot",
   "item.mysticalworld.copper_nugget": "Copper Nugget",
   "item.mysticalworld.copper_pickaxe": "Copper Pickaxe",
@@ -53,7 +47,6 @@
   "block.mysticalworld.copper_block": "Block of Copper",
   "block.mysticalworld.copper_ore": "Copper Ore",
   "item.mysticalworld.copper_dust": "Copper Dust",
-
   "item.mysticalworld.silver_ingot": "Silver Ingot",
   "item.mysticalworld.silver_nugget": "Silver Nugget",
   "item.mysticalworld.silver_pickaxe": "Silver Pickaxe",
@@ -70,8 +63,6 @@
   "block.mysticalworld.silver_block": "Block of Silver",
   "block.mysticalworld.silver_ore": "Silver Ore",
   "item.mysticalworld.silver_dust": "Silver Dust",
-
-
   "item.mysticalworld.lead_ingot": "Lead Ingot",
   "item.mysticalworld.lead_nugget": "Lead Nugget",
   "item.mysticalworld.lead_pickaxe": "Lead Pickaxe",
@@ -88,8 +79,6 @@
   "block.mysticalworld.lead_block": "Block of Lead",
   "block.mysticalworld.lead_ore": "Lead Ore",
   "item.mysticalworld.lead_dust": "Lead Dust",
-
-
   "item.mysticalworld.tin_ingot": "Tin Ingot",
   "item.mysticalworld.tin_nugget": "Tin Nugget",
   "item.mysticalworld.tin_pickaxe": "Tin Pickaxe",
@@ -106,8 +95,6 @@
   "block.mysticalworld.tin_block": "Block of Tin",
   "block.mysticalworld.tin_ore": "Tin Ore",
   "item.mysticalworld.tin_dust": "Tin Dust",
-
-
   "item.mysticalworld.quicksilver_ingot": "Quicksilver Ingot",
   "item.mysticalworld.quicksilver_nugget": "Quicksilver Nugget",
   "item.mysticalworld.quicksilver_pickaxe": "Quicksilver Pickaxe",
@@ -124,8 +111,6 @@
   "block.mysticalworld.quicksilver_block": "Block of Quicksilver",
   "block.mysticalworld.quicksilver_ore": "Quicksilver Ore",
   "item.mysticalworld.quicksilver_dust": "Quicksilver Dust",
-
-
   "item.mysticalworld.amethyst": "Amethyst",
   "item.mysticalworld.amethyst_pickaxe": "Amethyst Pickaxe",
   "item.mysticalworld.amethyst_axe": "Amethyst Axe",
@@ -140,19 +125,16 @@
   "item.mysticalworld.amethyst_boots": "Amethyst Boots",
   "block.mysticalworld.amethyst_block": "Block of Amethyst",
   "block.mysticalworld.amethyst_ore": "Amethyst Ore",
-
   "item.mysticalworld.iron_knife": "Iron Knife",
   "item.mysticalworld.wood_knife": "Wooden Knife",
   "item.mysticalworld.stone_knife": "Stone Knife",
   "item.mysticalworld.gold_knife": "Golden Knife",
   "item.mysticalworld.diamond_knife": "Diamond Knife",
-
   "item.mysticalworld.iron_spear": "Iron Spear",
   "item.mysticalworld.wood_spear": "Wooden Spear",
   "item.mysticalworld.stone_spear": "Stone Spear",
   "item.mysticalworld.gold_spear": "Golden Spear",
   "item.mysticalworld.diamond_spear": "Diamond Spear",
-
   "item.mysticalworld.cactus_pickaxe": "Cactus Pickaxe",
   "item.mysticalworld.cactus_axe": "Cactus Axe",
   "item.mysticalworld.cactus_sword": "Cactus Sword",
@@ -160,14 +142,11 @@
   "item.mysticalworld.cactus_shovel": "Cactus Shovel",
   "item.mysticalworld.cactus_knife": "Cactus Knife",
   "item.mysticalworld.cactus_spear": "Cactus Spear",
-
   "item.mysticalworld.gold_dust": "Gold Dust",
   "item.mysticalworld.iron_dust": "Iron Dust",
-
   "item.mysticalworld.raw_squid": "Raw Squid",
   "item.mysticalworld.cooked_squid": "Calamari",
   "item.mysticalworld.epic_squid": "Epic Squid",
-
   "block.mysticalworld.white_painted_chest": "White Painted Chest",
   "block.mysticalworld.orange_painted_chest": "Orange Painted Chest",
   "block.mysticalworld.magenta_painted_chest": "Magenta Painted Chest",
@@ -184,8 +163,6 @@
   "block.mysticalworld.green_painted_chest": "Green Painted Chest",
   "block.mysticalworld.red_painted_chest": "Red Painted Chest",
   "block.mysticalworld.black_painted_chest": "Black Painted Chest",
-
   "item.mysticalworld.unripe_ender_pearl": "Unripe Enderpearl",
-
   "message.squid.cooldown": "Give it time to produce more ink!"
 }

@@ -1,5 +1,7 @@
 {
-  "variants":{
-      "custom":  { "model": "mysticalworld:charred_planks" }
+  "variants": {
+    "custom": {
+      "model": "mysticalworld:charred_planks"
+    }
   }
 }

@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "mysticalworld:block/purple_painted_chest" }
+  "variants": {
+    "": {
+      "model": "mysticalworld:block/purple_painted_chest"
     }
+  }
 }

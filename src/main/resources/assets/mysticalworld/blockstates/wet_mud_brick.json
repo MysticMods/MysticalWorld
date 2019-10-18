@@ -1,5 +1,7 @@
 {
-    "variants":{
-        "custom":  { "model": "mysticalworld:wet_mud_brick" }
+  "variants": {
+    "custom": {
+      "model": "mysticalworld:wet_mud_brick"
     }
+  }
 }

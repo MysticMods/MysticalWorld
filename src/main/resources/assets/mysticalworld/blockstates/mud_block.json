@@ -1,5 +1,7 @@
 {
-    "variants":{
-        "custom" :{  "model": "mysticalworld:mud_block" }
+  "variants": {
+    "custom": {
+      "model": "mysticalworld:mud_block"
     }
+  }
 }

@@ -1,19 +1,6 @@
 package epicsquid.mysticalworld.blocks;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-
-import epicsquid.mysticalworld.MysticalWorld;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ChestBlock;
 import net.minecraft.client.renderer.tileentity.ChestTileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.model.ChestModel;
-import net.minecraft.client.renderer.tileentity.model.LargeChestModel;
-import net.minecraft.item.DyeColor;
-import net.minecraft.state.properties.ChestType;
-import net.minecraft.tileentity.IChestLid;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 
 public class PaintedChestTileEntityRenderer extends ChestTileEntityRenderer<PaintedChestTileEntity> {
 

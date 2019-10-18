@@ -1,5 +1,7 @@
 {
-  "variants":{
-    "normal" :{  "model": "mysticalworld:charred_rune" }
+  "variants": {
+    "normal": {
+      "model": "mysticalworld:charred_rune"
+    }
   }
 }

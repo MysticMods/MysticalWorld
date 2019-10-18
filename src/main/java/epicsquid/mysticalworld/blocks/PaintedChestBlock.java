@@ -5,12 +5,12 @@ import net.minecraft.item.DyeColor;
 
 public class PaintedChestBlock extends ChestBlock {
 
-	private DyeColor color;
+  private DyeColor color;
 
-	public PaintedChestBlock (Properties properties, DyeColor color) {
-		super(properties);
-		this.color = color;
-	}
+  public PaintedChestBlock(Properties properties, DyeColor color) {
+    super(properties);
+    this.color = color;
+  }
 
 	/*public DyeColor getColor() {
 		return color;

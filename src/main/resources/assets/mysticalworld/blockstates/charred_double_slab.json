@@ -1,5 +1,7 @@
 {
-    "variants":{
-        "custom":  { "model": "mysticalworld:charred_double_slab" }
+  "variants": {
+    "custom": {
+      "model": "mysticalworld:charred_double_slab"
     }
+  }
 }

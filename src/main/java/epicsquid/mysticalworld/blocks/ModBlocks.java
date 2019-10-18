@@ -2,9 +2,6 @@ package epicsquid.mysticalworld.blocks;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.block.Block;
-import net.minecraft.inventory.container.ChestContainer;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(MysticalWorld.MODID)

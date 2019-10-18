@@ -14,28 +14,28 @@ import java.util.Random;
 
 public class QuicksilverPickaxeItem extends PickaxeItem implements IQuicksilverItem {
 
-	private int counter;
-	private Random random = new Random();
+  private int counter;
+  private Random random = new Random();
 
-	public QuicksilverPickaxeItem(IItemTier tier, int attackDamage, float attackSpeed, Properties props) {
-		super(tier, attackDamage, attackSpeed, props);
-	}
+  public QuicksilverPickaxeItem(IItemTier tier, int attackDamage, float attackSpeed, Properties props) {
+    super(tier, attackDamage, attackSpeed, props);
+  }
 
-	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
-		counter = counter >= 20 ? 1 : counter + 1;
-		if (counter % 20 == 0 && entity instanceof LivingEntity) {
-			drip(stack, (LivingEntity) entity, random, EquipmentSlotType.MAINHAND);
-		}
-	}
+  @Override
+  public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+    counter = counter >= 20 ? 1 : counter + 1;
+    if (counter % 20 == 0 && entity instanceof LivingEntity) {
+      drip(stack, (LivingEntity) entity, random, EquipmentSlotType.MAINHAND);
+    }
+  }
 
-	@Override
-	public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-		return true;
-	}
+  @Override
+  public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    return true;
+  }
 
-	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
-		return true;
-	}
+  @Override
+  public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
+    return true;
+  }
 }

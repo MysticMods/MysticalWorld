@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "mysticalworld:block/copper_block" }
+  "variants": {
+    "": {
+      "model": "mysticalworld:block/copper_block"
     }
+  }
 }

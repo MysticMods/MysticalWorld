@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "mysticalworld:block/lead_block" }
+  "variants": {
+    "": {
+      "model": "mysticalworld:block/lead_block"
     }
+  }
 }

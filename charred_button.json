@@ -1,10 +1,10 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-      {
-        "item": "mysticalworld:charred_planks"
-      }
-    ],
+    {
+      "item": "mysticalworld:charred_planks"
+    }
+  ],
   "result": {
     "item": "mysticalworld:charred_button",
     "data": 0

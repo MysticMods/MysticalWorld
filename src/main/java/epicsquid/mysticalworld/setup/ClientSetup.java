@@ -15,18 +15,18 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
 
-	@SubscribeEvent
-	public static void init (FMLClientSetupEvent event) {
-		((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new ModelHolder());
-		ModelHolder.init();
+  @SubscribeEvent
+  public static void init(FMLClientSetupEvent event) {
+    ((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new ModelHolder());
+    ModelHolder.init();
 
-		RenderingRegistry.registerEntityRenderingHandler(BeetleEntity.class, new BeetleRenderer.Factory());
-		RenderingRegistry.registerEntityRenderingHandler(FoxEntity.class, new FoxRenderer.Factory());
-		RenderingRegistry.registerEntityRenderingHandler(FrogEntity.class, new FrogRenderer.Factory());
-		RenderingRegistry.registerEntityRenderingHandler(SproutEntity.class, new SproutRenderer.Factory());
-		RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(BeetleEntity.class, new BeetleRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(FoxEntity.class, new FoxRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(FrogEntity.class, new FrogRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(SproutEntity.class, new SproutRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.Factory());
 
-		//ScreenManager.registerFactory(ModContainers.RED_PAINTED_CHEST, ChestScreen::new);
-		//ClientRegistry.bindTileEntitySpecialRenderer(PaintedChestTileEntity.class, new PaintedChestTileEntityRenderer());
-	}
+    //ScreenManager.registerFactory(ModContainers.RED_PAINTED_CHEST, ChestScreen::new);
+    //ClientRegistry.bindTileEntitySpecialRenderer(PaintedChestTileEntity.class, new PaintedChestTileEntityRenderer());
+  }
 }

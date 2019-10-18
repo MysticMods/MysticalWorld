@@ -9,10 +9,10 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 @SuppressWarnings("unused")
 public class ModVillagers {
-	@SubscribeEvent
-	public static void onProfessionRegister(RegistryEvent.Register<VillagerProfession> event) {
-		// leatherworker
-		// TODO update this for 1.14.3
+  @SubscribeEvent
+  public static void onProfessionRegister(RegistryEvent.Register<VillagerProfession> event) {
+    // leatherworker
+    // TODO update this for 1.14.3
 //    VillagerProfession butcherProf = event.getRegistry().getValue(new ResourceLocation("minecraft:butcher"));
 //    assert butcherProf != null;
 //    VillagerCareer butcher = butcherProf.getCareer(0);
@@ -22,6 +22,6 @@ public class ModVillagers {
 //    leatherworker.addTrade(1, new EntityVillager.EmeraldForItems(ModItems.pelt, new EntityVillager.PriceInfo(9, 12)),
 //        new EntityVillager.EmeraldForItems(ModItems.carapace, new EntityVillager.PriceInfo(4, 9)),
 //        new EntityVillager.EmeraldForItems(ModItems.antlers, new EntityVillager.PriceInfo(1, 1)));
-	}
+  }
 }
 

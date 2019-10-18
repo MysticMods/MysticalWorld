@@ -9,6 +9,7 @@ import java.util.*;
 /* TODO: This class is bad and it should feel bad */
 public class StandardDrops {
   public static Map<String, List<ItemStack>> DROPS = new HashMap<>();
+
   static {
     DROPS.put("beetle", Arrays.asList(new ItemStack(ModItems.CARAPACE), new ItemStack(Items.SLIME_BALL)));
     DROPS.put("deer", Arrays.asList(new ItemStack(ModItems.VENISON), new ItemStack(Items.LEATHER), new ItemStack(ModItems.ANTLERS)));
@@ -19,7 +20,7 @@ public class StandardDrops {
     //DROPS.put("endermini", Arrays.asList(new ItemStack(ModItems.UNRIPE_PEARL)));
   }
 
-  public static List<ItemStack> getDrops (String name) {
+  public static List<ItemStack> getDrops(String name) {
     return DROPS.getOrDefault(name, new ArrayList<>());
   }
 }

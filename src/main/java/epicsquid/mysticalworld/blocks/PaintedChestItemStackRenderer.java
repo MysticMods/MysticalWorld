@@ -1,12 +1,6 @@
 package epicsquid.mysticalworld.blocks;
 
-import epicsquid.mysticalworld.init.ModTileEntities;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityType;
 
 public class PaintedChestItemStackRenderer extends ItemStackTileEntityRenderer {
 

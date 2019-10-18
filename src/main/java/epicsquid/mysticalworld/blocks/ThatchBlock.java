@@ -7,13 +7,13 @@ import javax.annotation.Nonnull;
 
 public class ThatchBlock extends Block {
 
-	public ThatchBlock(Properties props) {
-		super(props);
-	}
+  public ThatchBlock(Properties props) {
+    super(props);
+  }
 
-	@Nonnull
-	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT;
-	}
+  @Nonnull
+  @Override
+  public BlockRenderLayer getRenderLayer() {
+    return BlockRenderLayer.CUTOUT;
+  }
 }

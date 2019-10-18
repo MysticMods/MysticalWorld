@@ -13,38 +13,38 @@ import net.minecraft.world.World;
 
 public class UnripePearlItem extends Item {
 
-	public UnripePearlItem(Properties props) {
-		super(props);
-	}
+  public UnripePearlItem(Properties props) {
+    super(props);
+  }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-		ItemStack itemstack = player.getHeldItem(hand);
+  @Override
+  public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+    ItemStack itemstack = player.getHeldItem(hand);
 
-		if (!world.isRemote) {
-			int counter = 0;
-			boolean flag;
-			while (true) {
-				double d0 = player.posX + (Util.rand.nextDouble() - 0.5D) * 64.0D;
-				double d1 = player.posY + (double) (Util.rand.nextInt(64) - 32);
-				double d2 = player.posZ + (Util.rand.nextDouble() - 0.5D) * 64.0D;
-				flag = player.attemptTeleport(d0, d1, d2, false);
-				counter++;
-				if (flag || counter == 15) {
-					break;
-				}
-			}
-			if (flag) {
-				player.world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, player.getSoundCategory(), 1.0F, 1.0F);
-				player.playSound(ModSounds.Endermini.PORTAL, 1.0F, 1.0F);
-				player.getCooldownTracker().setCooldown(this, 20);
-				if (!player.isCreative()) {
-					itemstack.shrink(1);
-				}
-			}
-		}
+    if (!world.isRemote) {
+      int counter = 0;
+      boolean flag;
+      while (true) {
+        double d0 = player.posX + (Util.rand.nextDouble() - 0.5D) * 64.0D;
+        double d1 = player.posY + (double) (Util.rand.nextInt(64) - 32);
+        double d2 = player.posZ + (Util.rand.nextDouble() - 0.5D) * 64.0D;
+        flag = player.attemptTeleport(d0, d1, d2, false);
+        counter++;
+        if (flag || counter == 15) {
+          break;
+        }
+      }
+      if (flag) {
+        player.world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, player.getSoundCategory(), 1.0F, 1.0F);
+        player.playSound(ModSounds.Endermini.PORTAL, 1.0F, 1.0F);
+        player.getCooldownTracker().setCooldown(this, 20);
+        if (!player.isCreative()) {
+          itemstack.shrink(1);
+        }
+      }
+    }
 
-		//    player.addStat(Stat.getObjectUseStats(this));
-		return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
-	}
+    //    player.addStat(Stat.getObjectUseStats(this));
+    return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+  }
 }

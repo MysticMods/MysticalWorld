@@ -12,37 +12,37 @@ import net.minecraft.world.storage.loot.LootParameters;
 import net.minecraft.world.storage.loot.conditions.ILootCondition;
 
 public class HasHorns implements ILootCondition {
-	private final boolean inverse;
+  private final boolean inverse;
 
-	public HasHorns(boolean inverseIn) {
-		this.inverse = inverseIn;
-	}
+  public HasHorns(boolean inverseIn) {
+    this.inverse = inverseIn;
+  }
 
-	@Override
-	public boolean test(LootContext lootContext) {
-		boolean flag;
-		Entity looted = lootContext.get(LootParameters.THIS_ENTITY);
-		if (looted instanceof DeerEntity) {
-			DeerEntity deer = (DeerEntity) looted;
-			flag = deer.getDataManager().get(DeerEntity.hasHorns);
-		} else {
-			flag = false;
-		}
-		return flag == !this.inverse;
-	}
+  @Override
+  public boolean test(LootContext lootContext) {
+    boolean flag;
+    Entity looted = lootContext.get(LootParameters.THIS_ENTITY);
+    if (looted instanceof DeerEntity) {
+      DeerEntity deer = (DeerEntity) looted;
+      flag = deer.getDataManager().get(DeerEntity.hasHorns);
+    } else {
+      flag = false;
+    }
+    return flag == !this.inverse;
+  }
 
-	public static class Serializer extends ILootCondition.AbstractSerializer<HasHorns> {
-		public Serializer() {
-			super(new ResourceLocation("has_horns"), HasHorns.class);
-		}
+  public static class Serializer extends ILootCondition.AbstractSerializer<HasHorns> {
+    public Serializer() {
+      super(new ResourceLocation("has_horns"), HasHorns.class);
+    }
 
-		public void serialize(JsonObject json, HasHorns value, JsonSerializationContext context) {
-			json.addProperty("inverse", value.inverse);
-		}
+    public void serialize(JsonObject json, HasHorns value, JsonSerializationContext context) {
+      json.addProperty("inverse", value.inverse);
+    }
 
-		public HasHorns deserialize(JsonObject json, JsonDeserializationContext context) {
-			return new HasHorns(JSONUtils.getBoolean(json, "inverse", false));
-		}
-	}
+    public HasHorns deserialize(JsonObject json, JsonDeserializationContext context) {
+      return new HasHorns(JSONUtils.getBoolean(json, "inverse", false));
+    }
+  }
 }
 

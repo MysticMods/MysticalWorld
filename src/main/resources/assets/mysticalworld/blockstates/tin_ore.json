@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "mysticalworld:block/tin_ore" }
+  "variants": {
+    "": {
+      "model": "mysticalworld:block/tin_ore"
     }
+  }
 }

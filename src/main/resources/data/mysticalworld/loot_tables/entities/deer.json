@@ -1,73 +1,72 @@
 {
-    "pools": [
+  "pools": [
+    {
+      "name": "pool1",
+      "entries": [
         {
-            "name": "pool1",
-            "entries": [
+          "entryName": "mysticalworld:venison",
+          "weight": 1,
+          "quality": 0,
+          "type": "item",
+          "functions": [
+            {
+              "function": "minecraft:furnace_smelt",
+              "conditions": [
                 {
-                    "entryName": "mysticalworld:venison",
-                    "weight": 1,
-                    "quality": 0,
-                    "type": "item",
-                    "functions": [
-                        {
-                            "function": "minecraft:furnace_smelt",
-                            "conditions": [
-                                {
-                                    "flags": {
-                                        "is_on_fire": true
-                                    },
-                                    "entity": "this",
-                                    "condition": "minecraft:entity_properties"
-                                }
-                            ]
-                        },
-                        {
-                            "count": {
-                                "min": 0.0,
-                                "max": 2.0
-                            },
-                            "function": "minecraft:looting_enchant"
-                        }
-                    ],
-                    "name": "mysticalworld:venison"
+                  "flags": {
+                    "is_on_fire": true
+                  },
+                  "entity": "this",
+                  "condition": "minecraft:entity_properties"
                 }
-            ],
-            "rolls": 1.0
+              ]
+            },
+            {
+              "count": {
+                "min": 0.0,
+                "max": 2.0
+              },
+              "function": "minecraft:looting_enchant"
+            }
+          ],
+          "name": "mysticalworld:venison"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:leather",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
         },
         {
-			"name": "main",
-            "rolls": 1,
-            "entries": [
-
-                {
-                    "type": "item",
-                    "name": "minecraft:leather",
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 0,
-                                "max": 1
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "mysticalworld:antlers",
-                    "conditions": [
-                        {
-                            "condition": "has_horns"
-                        }
-                    ],
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": 1
-                        }
-                    ]
-                }
-            ]
+          "type": "item",
+          "name": "mysticalworld:antlers",
+          "conditions": [
+            {
+              "condition": "has_horns"
+            }
+          ],
+          "functions": [
+            {
+              "function": "set_count",
+              "count": 1
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }

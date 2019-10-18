@@ -1,5 +1,7 @@
 {
-    "variants":{
-        "custom":  { "model": "mysticalworld:mud_brick_double_slab" }
+  "variants": {
+    "custom": {
+      "model": "mysticalworld:mud_brick_double_slab"
     }
+  }
 }
