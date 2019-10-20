@@ -18,9 +18,9 @@ public class AnimalCooldownCapabilityStorage implements Capability.IStorage<Anim
   @Override
   public void readNBT(Capability<AnimalCooldownCapability> capability, AnimalCooldownCapability instance, Direction side, INBT nbt) {
     if (nbt.getId() == Constants.NBT.TAG_LONG) {
-      instance.setCooldown(((LongNBT) nbt).getLong());
+      instance.setActualCooldown(((LongNBT) nbt).getLong());
     } else {
-      instance.setCooldown(0);
+      instance.setActualCooldown(0);
     }
   }
 }

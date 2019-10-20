@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.RegistryManager;
+import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -331,7 +332,7 @@ public class FoxEntity extends TameableEntity {
   @Override
   @Nonnull
   public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-    return RegistryManager.SILVER_FOX.create(ageable.world);
+    return ModEntities.SILVER_FOX.get().create(ageable.world);
   }
 
   @Override

@@ -5,7 +5,7 @@ import epicsquid.mysticallib.material.BaseArmorMaterial;
 import epicsquid.mysticallib.material.BaseItemTier;
 import epicsquid.mysticallib.material.IGemMaterial;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.items.ModItems;
+import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.RegistryManager;
+import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -71,7 +72,7 @@ public class DeerEntity extends AnimalEntity {
   @Override
   @Nonnull
   public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-    return RegistryManager.DEER.create(ageable.world);
+    return ModEntities.DEER.get().create(ageable.world);
   }
 
   @Override

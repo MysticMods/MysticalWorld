@@ -1,10 +1,12 @@
 package epicsquid.mysticalworld;
 
 import epicsquid.mysticalworld.config.ConfigManager;
-import epicsquid.mysticalworld.items.ModItems;
+import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.init.ModRegistries;
 import epicsquid.mysticalworld.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -33,7 +35,12 @@ public class MysticalWorld {
   public static ModSetup setup = new ModSetup();
 
   public MysticalWorld() {
-    FMLJavaModLoadingContext.get().getModEventBus().addListener(setup::init);
+    IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+    modBus.addListener(setup::init);
+    ModRegistries.BLOCKS.register(modBus);
+    ModRegistries.ITEMS.register(modBus);
+    ModRegistries.ENTITIES.register(modBus);
 
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
   }

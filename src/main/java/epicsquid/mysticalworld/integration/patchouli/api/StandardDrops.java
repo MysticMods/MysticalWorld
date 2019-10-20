@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld.integration.patchouli.api;
 
-import epicsquid.mysticalworld.items.ModItems;
+import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 

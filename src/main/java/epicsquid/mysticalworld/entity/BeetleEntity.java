@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.RegistryManager;
+import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -61,7 +62,7 @@ public class BeetleEntity extends AnimalEntity {
 
   @Override
   public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-    return RegistryManager.BEETLE.create(ageable.world);
+    return ModEntities.BEETLE.get().create(ageable.world);
   }
 
   @Override

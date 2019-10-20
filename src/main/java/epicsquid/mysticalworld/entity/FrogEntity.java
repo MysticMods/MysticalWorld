@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.RegistryManager;
+import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -122,7 +123,7 @@ public class FrogEntity extends AnimalEntity {
   @Override
   @Nonnull
   public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-    return RegistryManager.FROG.create(ageable.world);
+    return ModEntities.FROG.get().create(ageable.world);
   }
 
   @Override

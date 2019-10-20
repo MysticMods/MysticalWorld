@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld.blocks;
 
-import epicsquid.mysticalworld.items.ModItems;
+import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.util.IItemProvider;
 
