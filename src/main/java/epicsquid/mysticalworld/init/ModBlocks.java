@@ -31,4 +31,6 @@ public class ModBlocks {
   public static RegistryObject<XPOreBlock> QUICKSILVER_ORE = ModRegistries.registerBlock(ModMaterials.QUICKSILVER.oreName(), ModRegistries.ore(XPOreBlock::new, ModMaterials.QUICKSILVER), ModRegistries.SMG);
   public static RegistryObject<XPOreBlock> SILVER_ORE = ModRegistries.registerBlock(ModMaterials.SILVER.oreName(), ModRegistries.ore(XPOreBlock::new, ModMaterials.SILVER), ModRegistries.SMG);
   public static RegistryObject<XPOreBlock> TIN_ORE = ModRegistries.registerBlock(ModMaterials.TIN.oreName(), ModRegistries.ore(XPOreBlock::new, ModMaterials.TIN), ModRegistries.SMG);
+
+  public static void init () {};
 }

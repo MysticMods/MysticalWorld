@@ -1,7 +1,5 @@
 package epicsquid.mysticalworld.init;
 
-import epicsquid.mysticallib.block.BaseOreBlock;
-import epicsquid.mysticallib.block.OreBlockProperties;
 import epicsquid.mysticallib.item.KnifeItem;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.blocks.XPOreBlock;

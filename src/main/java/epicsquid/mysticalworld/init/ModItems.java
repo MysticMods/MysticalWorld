@@ -12,7 +12,7 @@ public class ModItems {
   public static RegistryObject<Item> CARAPACE = ModRegistries.registerItem("carapace", ModRegistries.item(Item::new, ModRegistries.SIG));
   public static RegistryObject<Item> PELT = ModRegistries.registerItem("pelt", ModRegistries.item(Item::new, ModRegistries.SIG));
   public static RegistryObject<Item> ANTLERS = ModRegistries.registerItem("antlers", ModRegistries.item(Item::new, ModRegistries.SIG));
-  public static RegistryObject<DyeItem> INK_BOTTLE = ModRegistries.registerItem("ink_Bottle", ModRegistries.dyeItem(DyeColor.BLACK, ModRegistries.SIG));
+  public static RegistryObject<DyeItem> INK_BOTTLE = ModRegistries.registerItem("ink_bottle", ModRegistries.dyeItem(DyeColor.BLACK, ModRegistries.SIG));
 
   public static RegistryObject<Item> VENISON = ModRegistries.registerItem("venison", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.VENISON)));
   public static RegistryObject<Item> COOKED_VENISON = ModRegistries.registerItem("cooked_venison", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_VENISON)));
@@ -141,4 +141,6 @@ public class ModItems {
   public static RegistryObject<ArmorItem> TIN_CHESTPLATE = ModRegistries.registerItem(ModMaterials.TIN.getName() + "_chestplate", ModRegistries.armor(ArmorItem::new, ModMaterials.TIN, EquipmentSlotType.CHEST, ModRegistries.SMG));
   public static RegistryObject<ArmorItem> TIN_LEGGINGS = ModRegistries.registerItem(ModMaterials.TIN.getName() + "_leggings", ModRegistries.armor(ArmorItem::new, ModMaterials.TIN, EquipmentSlotType.LEGS, ModRegistries.SMG));
   public static RegistryObject<ArmorItem> TIN_BOOTS = ModRegistries.registerItem(ModMaterials.TIN.getName() + "_boots", ModRegistries.armor(ArmorItem::new, ModMaterials.TIN, EquipmentSlotType.FEET, ModRegistries.SMG));
+
+  public static void init () {};
 }

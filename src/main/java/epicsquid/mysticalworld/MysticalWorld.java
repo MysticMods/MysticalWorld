@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld;
 
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModRegistries;
@@ -39,6 +40,8 @@ public class MysticalWorld {
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     modBus.addListener(setup::init);
+    ModItems.init();
+    ModBlocks.init();
     ModRegistries.BLOCKS.register(modBus);
     ModRegistries.ITEMS.register(modBus);
     ModRegistries.ENTITIES.register(modBus);
