@@ -1,4 +1,10 @@
-package epicsquid.mysticalworld.integration.patchouli.api;
+import epicsquid.mysticalworld.init.ModItems;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+
+import java.util.*;
+
+/*package epicsquid.mysticalworld.integration.patchouli.api;
 
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.item.ItemStack;
@@ -6,7 +12,7 @@ import net.minecraft.item.Items;
 
 import java.util.*;
 
-/* TODO: This class is bad and it should feel bad */
+TODO: This class is bad and it should feel bad
 public class StandardDrops {
   public static Map<String, List<ItemStack>> DROPS = new HashMap<>();
 
@@ -23,4 +29,4 @@ public class StandardDrops {
   public static List<ItemStack> getDrops(String name) {
     return DROPS.getOrDefault(name, new ArrayList<>());
   }
-}
+}*/

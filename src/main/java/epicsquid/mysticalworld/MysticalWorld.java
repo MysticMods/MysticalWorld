@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld;
 
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModRegistries;
 import epicsquid.mysticalworld.setup.ModSetup;
@@ -21,14 +22,14 @@ public class MysticalWorld {
   public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
     @Override
     public ItemStack createIcon() {
-      return new ItemStack(ModItems.CARAPACE);
+      return new ItemStack(ModItems.CARAPACE.get());
     }
   };
 
   public static final ItemGroup METAL_ITEM_GROUP = new ItemGroup("mysticalworld.metals") {
     @Override
     public ItemStack createIcon() {
-      return new ItemStack(ModItems.SILVER_INGOT);
+      return new ItemStack(ModItems.SILVER_INGOT.get());
     }
   };
 
@@ -41,6 +42,7 @@ public class MysticalWorld {
     ModRegistries.BLOCKS.register(modBus);
     ModRegistries.ITEMS.register(modBus);
     ModRegistries.ENTITIES.register(modBus);
+    //modBus.addListener(ModEntities::registerEntities);
 
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
   }

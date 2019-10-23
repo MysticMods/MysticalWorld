@@ -1,7 +1,11 @@
 package epicsquid.mysticalworld.config;
 
+import epicsquid.mysticallib.block.BaseOreBlock;
+import epicsquid.mysticalworld.blocks.XPOreBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.OreBlock;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
 
@@ -12,14 +16,14 @@ public class OreConfig {
   private int minY;
   private int maxY;
   private int size;
-  private Supplier<Block> ore;
+  private Supplier<RegistryObject<XPOreBlock>> ore;
 
   private ForgeConfigSpec.IntValue configChance;
   private ForgeConfigSpec.IntValue configMinY;
   private ForgeConfigSpec.IntValue configMaxY;
   private ForgeConfigSpec.IntValue configSize;
 
-  public OreConfig(String name, int chance, int minY, int maxY, int size, Supplier<Block> ore) {
+  public OreConfig(String name, int chance, int minY, int maxY, int size, Supplier<RegistryObject<XPOreBlock>> ore) {
     this.name = name;
     this.chance = chance;
     this.minY = minY;
@@ -49,7 +53,7 @@ public class OreConfig {
   }
 
   public Block getOre() {
-    return ore.get();
+    return ore.get().get();
   }
 
   public boolean shouldRegister() {

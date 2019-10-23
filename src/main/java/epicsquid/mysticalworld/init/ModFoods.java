@@ -1,11 +1,11 @@
-package epicsquid.mysticalworld.items;
+package epicsquid.mysticalworld.init;
 
 import net.minecraft.item.Food;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
+@SuppressWarnings("WeakerAccess")
 public class ModFoods {
-
   public static final Food VENISON = (new Food.Builder().hunger(3).meat().saturation(0.3f)).build();
   public static final Food COOKED_VENISON = (new Food.Builder().hunger(7).meat().saturation(0.8f)).build();
   public static final Food AUBERGINE = (new Food.Builder().hunger(4).saturation(0.3f)).build();
