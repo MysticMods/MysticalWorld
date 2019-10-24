@@ -9,7 +9,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 @SuppressWarnings("unused")
 public class ModItems {
-  public static RegistryObject<Item> CARAPACE = ModRegistries.registerItem("carapace", ModRegistries.item(Item::new, ModRegistries.SIG));
+  public static RegistryObject<DyeItem> CARAPACE = ModRegistries.registerItem("carapace", ModRegistries.dyeItem(DyeColor.BLUE, ModRegistries.SIG));
   public static RegistryObject<Item> PELT = ModRegistries.registerItem("pelt", ModRegistries.item(Item::new, ModRegistries.SIG));
   public static RegistryObject<Item> ANTLERS = ModRegistries.registerItem("antlers", ModRegistries.item(Item::new, ModRegistries.SIG));
   public static RegistryObject<DyeItem> INK_BOTTLE = ModRegistries.registerItem("ink_bottle", ModRegistries.dyeItem(DyeColor.BLACK, ModRegistries.SIG));
@@ -17,7 +17,7 @@ public class ModItems {
   public static RegistryObject<Item> VENISON = ModRegistries.registerItem("venison", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.VENISON)));
   public static RegistryObject<Item> COOKED_VENISON = ModRegistries.registerItem("cooked_venison", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_VENISON)));
 
-  public static RegistryObject<BlockNamedItem> AUBERGINE_SEEDS = ModRegistries.registerItem("aubergine_seeds", ModRegistries.blockNamedItem(ModBlocks.AUBERGINE_CROP, ModRegistries.SIG));
+  public static RegistryObject<BlockNamedItem> AUBERGINE_SEEDS = ModRegistries.registerItem("aubergine_seeds", ModRegistries.blockNamedItem(() -> ModBlocks.AUBERGINE_CROP, ModRegistries.SIG));
 
   public static RegistryObject<Item> AUBERGINE = ModRegistries.registerItem("aubergine", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.AUBERGINE)));
   public static RegistryObject<Item> COOKED_AUBERGINE = ModRegistries.registerItem("cooked_aubergine", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_AUBERGINE)));

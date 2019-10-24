@@ -56,8 +56,8 @@ public class ModRegistries {
     return () -> new BlockItem(block.get(), properties.get());
   }
 
-  public static <T extends Block> Supplier<BlockNamedItem> blockNamedItem(RegistryObject<T> block, Supplier<Item.Properties> properties) {
-    return () -> new BlockNamedItem(block.get(), properties.get());
+  public static <T extends Block> Supplier<BlockNamedItem> blockNamedItem(Supplier<RegistryObject<T>> block, Supplier<Item.Properties> properties) {
+    return () -> new BlockNamedItem(block.get().get(), properties.get());
   }
 
   public static Supplier<XPOreBlock> ore (OreBuilder<XPOreBlock> creator, MaterialType material) {
