@@ -32,5 +32,5 @@ public class ModBlocks {
   public static RegistryObject<Block> SILVER_BLOCK = ModRegistries.registerBlock(ModMaterials.SILVER.blockName(), ModRegistries.block(Block::new, ModMaterials.SILVER.getBlockProps()), ModRegistries.SMG);
   public static RegistryObject<Block> TIN_BLOCK = ModRegistries.registerBlock(ModMaterials.TIN.blockName(), ModRegistries.block(Block::new, ModMaterials.TIN.getBlockProps()), ModRegistries.SMG);
 
-  public static void init () {};
+  public static void init () {}
 }

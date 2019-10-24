@@ -138,8 +138,5 @@ public class ModItems {
   public static RegistryObject<ArmorItem> TIN_LEGGINGS = ModRegistries.registerItem(ModMaterials.TIN.getName() + "_leggings", ModRegistries.armor(ArmorItem::new, ModMaterials.TIN, EquipmentSlotType.LEGS, ModRegistries.SMG));
   public static RegistryObject<ArmorItem> TIN_BOOTS = ModRegistries.registerItem(ModMaterials.TIN.getName() + "_boots", ModRegistries.armor(ArmorItem::new, ModMaterials.TIN, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static void init() {
-  }
-
-  ;
+  public static void init() {}
 }
