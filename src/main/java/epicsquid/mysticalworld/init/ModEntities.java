@@ -40,7 +40,8 @@ public class ModEntities {
   public static RegistryObject<SpawnEggItem> SPAWN_SPROUT = ModRegistries.registerItem(SPROUT_ID + "_spawn_egg", ModRegistries.spawnEgg(SPROUT, 0xe8f442, 0xd11f5a, ModRegistries.SIG));
   public static RegistryObject<SpawnEggItem> SPAWN_SILVER_FOX = ModRegistries.registerItem(SILVER_FOX_ID + "_spawn_egg", ModRegistries.spawnEgg(SILVER_FOX, 0xd46724, 0xf5e0d3, ModRegistries.SIG));
 
-  @SubscribeEvent(priority=EventPriority.LOWEST)
+  public static void init () {}
+
   public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
     Set<Biome> biomes = new HashSet<>();
 

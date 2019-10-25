@@ -6,9 +6,11 @@ import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModRegistries;
 import epicsquid.mysticalworld.setup.ModSetup;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.ClimberPathNavigator;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -45,10 +47,10 @@ public class MysticalWorld {
     modBus.addListener(setup::init);
     ModItems.init();
     ModBlocks.init();
+    ModEntities.init();
     ModRegistries.BLOCKS.register(modBus);
     ModRegistries.ITEMS.register(modBus);
     ModRegistries.ENTITIES.register(modBus);
-    modBus.register(ModEntities.class);
 
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
   }
