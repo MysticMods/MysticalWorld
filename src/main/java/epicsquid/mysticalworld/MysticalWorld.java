@@ -8,8 +8,11 @@ import epicsquid.mysticalworld.init.ModRegistries;
 import epicsquid.mysticalworld.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.pathfinding.ClimberPathNavigator;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
@@ -45,7 +48,7 @@ public class MysticalWorld {
     ModRegistries.BLOCKS.register(modBus);
     ModRegistries.ITEMS.register(modBus);
     ModRegistries.ENTITIES.register(modBus);
-    //modBus.addListener(ModEntities::registerEntities);
+    modBus.register(ModEntities.class);
 
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
   }
