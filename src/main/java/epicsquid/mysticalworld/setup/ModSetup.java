@@ -19,6 +19,6 @@ public class ModSetup {
 
     LootConditionManager.registerCondition(new HasHorns.Serializer());
 
-    //OreGen.registerOreGeneration();
+    OreGen.registerOreGeneration();
   }
 }
