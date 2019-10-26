@@ -5,6 +5,7 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.items.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.RegistryObject;
 
 @SuppressWarnings("unused")
@@ -139,4 +140,8 @@ public class ModItems {
   public static RegistryObject<ArmorItem> TIN_BOOTS = ModRegistries.registerItem(ModMaterials.TIN.getName() + "_boots", ModRegistries.armor(ArmorItem::new, ModMaterials.TIN, EquipmentSlotType.FEET, ModRegistries.SMG));
 
   public static void init() {}
+
+  public static void registerItems (RegistryEvent.Register<Item> event) {
+    ModCompost.init();
+  }
 }

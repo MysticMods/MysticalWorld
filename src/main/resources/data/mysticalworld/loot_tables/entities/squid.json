@@ -1,12 +1,11 @@
 {
+  "type": "minecraft:entity",
   "pools": [
     {
-      "name": "main",
       "rolls": 1,
       "entries": [
         {
-          "type": "item",
-          "name": "minecraft:potato",
+          "type": "minecraft:item",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -37,9 +36,12 @@
                 "max": 1.0
               }
             }
-          ]
+          ],
+          "name": "mysticalworld:raw_squid"
         }
       ]
     }
   ]
 }
+
+

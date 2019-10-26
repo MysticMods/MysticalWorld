@@ -76,10 +76,6 @@ public class ModRegistries {
     return () -> builder.get().build(name);
   }
 
-  public static Supplier<SpawnEggItem> spawnEgg(RegistryObject<? extends EntityType> entity, int color1, int color2, Supplier<Item.Properties> properties) {
-    return () -> new SpawnEggItem(entity.get(), color1, color2, properties.get());
-  }
-
   public static <T extends Item> Supplier<T> tool (ToolBuilder<T> builder, Type Q, MaterialType material, Supplier<Item.Properties> properties) {
     return () -> builder.apply(material, material.getDamage(Q), material.getSpeed(Q), properties.get());
   }

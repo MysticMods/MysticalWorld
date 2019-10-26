@@ -29,7 +29,7 @@ public class LootHandler {
     }
 
     if (event.getName().equals(squid_table)) {
-      event.getTable().addPool(LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(MysticalWorld.MODID, "entities/squid_inject"))).name("mystical_world_squid_injection").build());
+      event.getTable().addPool(LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(MysticalWorld.MODID, "entities/squid"))).name("mystical_world_squid_injection").build());
     }
 
     // Inject grass drops - should prevent having to override the entire grass drop table

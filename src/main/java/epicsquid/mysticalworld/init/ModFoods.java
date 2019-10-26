@@ -22,5 +22,5 @@ public class ModFoods {
       .effect(new EffectInstance(Effects.FIRE_RESISTANCE, 1200, 0), 1.0f)
       .effect(new EffectInstance(Effects.ABSORPTION, 1200, 3), 1.0f)
       .effect(new EffectInstance(Effects.WATER_BREATHING, 1200), 1.0f)
-      .build();
+      .setAlwaysEdible().build();
 }

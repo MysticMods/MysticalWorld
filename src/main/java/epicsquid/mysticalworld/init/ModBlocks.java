@@ -14,7 +14,7 @@ import net.minecraftforge.registries.ObjectHolder;
 @SuppressWarnings("unused")
 public class ModBlocks {
   public static RegistryObject<ThatchBlock> THATCH = ModRegistries.registerBlock("thatch", ModRegistries.block(ThatchBlock::new, () -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT)), ModRegistries.SIG);
-  public static RegistryObject<AubergineCropBlock> AUBERGINE_CROP = ModRegistries.registerBlock("aubergine_crop", ModRegistries.block(AubergineCropBlock::new, () -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP)), ModRegistries.SIG);
+  public static RegistryObject<AubergineCropBlock> AUBERGINE_CROP = ModRegistries.registerBlockWithoutItem("aubergine_crop", ModRegistries.block(AubergineCropBlock::new, () -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP)));
 
   // Ore Blocks
   public static RegistryObject<XPOreBlock> AMETHYST_ORE = ModRegistries.registerBlock(ModMaterials.AMETHYST.oreName(), ModRegistries.ore(XPOreBlock::new, ModMaterials.AMETHYST), ModRegistries.SMG);

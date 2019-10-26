@@ -28,17 +28,23 @@ public class ModEntities {
   private static final String SILVER_FOX_ID = "silver_fox";
   private static final String SPROUT_ID = "sprout";
 
-  public static RegistryObject<EntityType<BeetleEntity>> BEETLE = ModRegistries.registerEntity(BEETLE_ID, ModRegistries.entity(BEETLE_ID, () -> EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3)));
-  public static RegistryObject<EntityType<DeerEntity>> DEER = ModRegistries.registerEntity(DEER_ID, ModRegistries.entity(DEER_ID, () -> EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3)));
-  public static RegistryObject<EntityType<FrogEntity>> FROG = ModRegistries.registerEntity(FROG_ID, ModRegistries.entity(FROG_ID, () -> EntityType.Builder.create(FrogEntity::new, EntityClassification.AMBIENT).size(0.5f, 0.5f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3)));
-  public static RegistryObject<EntityType<FoxEntity>> SILVER_FOX = ModRegistries.registerEntity(SILVER_FOX_ID, ModRegistries.entity(SILVER_FOX_ID, () -> EntityType.Builder.create(FoxEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3)));
-  public static RegistryObject<EntityType<SproutEntity>> SPROUT = ModRegistries.registerEntity(SPROUT_ID, ModRegistries.entity(SPROUT_ID, () -> EntityType.Builder.create(SproutEntity::new, EntityClassification.CREATURE).size(0.5f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3)));
+  private static EntityType<BeetleEntity> BEETLE_TYPE = EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(BEETLE_ID);
+  private static EntityType<DeerEntity> DEER_TYPE = EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(DEER_ID);
+  private static EntityType<FrogEntity> FROG_TYPE = EntityType.Builder.create(FrogEntity::new, EntityClassification.AMBIENT).size(0.5f, 0.5f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(FROG_ID);
+  private static EntityType<FoxEntity> SILVER_FOX_TYPE = EntityType.Builder.create(FoxEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(SILVER_FOX_ID);
+  private static EntityType<SproutEntity> SPROUT_TYPE = EntityType.Builder.create(SproutEntity::new, EntityClassification.CREATURE).size(0.5f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(SPROUT_ID);
 
-  public static RegistryObject<SpawnEggItem> SPAWN_BEETLE = ModRegistries.registerItem(BEETLE_ID + "_spawn_egg", ModRegistries.spawnEgg(BEETLE, 0x418594, 0x211D15, ModRegistries.SIG));
-  public static RegistryObject<SpawnEggItem> SPAWN_DEER = ModRegistries.registerItem(DEER_ID + "_spawn_egg", ModRegistries.spawnEgg(DEER, 0xa18458, 0x5e4d33, ModRegistries.SIG));
-  public static RegistryObject<SpawnEggItem> SPAWN_FROG = ModRegistries.registerItem(FROG_ID + "_spawn_egg", ModRegistries.spawnEgg(FROG, 0x285234, 0xdbe697, ModRegistries.SIG));
-  public static RegistryObject<SpawnEggItem> SPAWN_SPROUT = ModRegistries.registerItem(SPROUT_ID + "_spawn_egg", ModRegistries.spawnEgg(SPROUT, 0xe8f442, 0xd11f5a, ModRegistries.SIG));
-  public static RegistryObject<SpawnEggItem> SPAWN_SILVER_FOX = ModRegistries.registerItem(SILVER_FOX_ID + "_spawn_egg", ModRegistries.spawnEgg(SILVER_FOX, 0xd46724, 0xf5e0d3, ModRegistries.SIG));
+  public static RegistryObject<EntityType<BeetleEntity>> BEETLE = ModRegistries.registerEntity(BEETLE_ID, () -> BEETLE_TYPE);
+  public static RegistryObject<EntityType<DeerEntity>> DEER = ModRegistries.registerEntity(DEER_ID, () -> DEER_TYPE);
+  public static RegistryObject<EntityType<FrogEntity>> FROG = ModRegistries.registerEntity(FROG_ID, () -> FROG_TYPE);
+  public static RegistryObject<EntityType<FoxEntity>> SILVER_FOX = ModRegistries.registerEntity(SILVER_FOX_ID, () -> SILVER_FOX_TYPE);
+  public static RegistryObject<EntityType<SproutEntity>> SPROUT = ModRegistries.registerEntity(SPROUT_ID, () -> SPROUT_TYPE);
+
+  public static RegistryObject<SpawnEggItem> SPAWN_BEETLE = ModRegistries.registerItem(BEETLE_ID + "_spawn_egg", () -> new SpawnEggItem(BEETLE_TYPE, 0x418594, 0x211D15, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_DEER = ModRegistries.registerItem(DEER_ID + "_spawn_egg", () -> new SpawnEggItem(DEER_TYPE, 0xa18458, 0x5e4d33, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_FROG = ModRegistries.registerItem(FROG_ID + "_spawn_egg", () -> new SpawnEggItem(FROG_TYPE, 0x285234, 0xDBE697, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_SPROUT = ModRegistries.registerItem(SPROUT_ID + "_spawn_egg", () -> new SpawnEggItem(SPROUT_TYPE, 0xe8f442, 0xd11f5a, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_SILVER_FOX = ModRegistries.registerItem(SILVER_FOX_ID + "_spawn_egg", () -> new SpawnEggItem(SILVER_FOX_TYPE, 0x9e9088, 0xF5E0D3, ModRegistries.SIG.get()));
 
   public static void init () {}
 
