@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.materials;
 
+import epicsquid.mysticalworld.MysticalWorld;
 import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -10,6 +11,8 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nonnull;
@@ -157,7 +160,13 @@ public class MaterialType implements IItemTier, IArmorMaterial {
     return this;
   }
 
+  @Override
+  @OnlyIn(Dist.CLIENT)
   public String getName() {
+    return MysticalWorld.MODID + ":" + getInternalName();
+  }
+
+  public String getInternalName() {
     return name;
   }
 
