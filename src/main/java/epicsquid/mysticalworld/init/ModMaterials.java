@@ -23,11 +23,11 @@ public class ModMaterials {
   public static final String GOLD_NAME = "gold";
   public static final String DIAMOND_NAME = "diamond";
 
-  public static MaterialType AMETHYST = new MaterialType(AMETHYST_NAME).itemMaterial(960, 8.0f, 3.0f, 3, 14).item(() -> ModItems.AMETHYST_GEM).block(() -> ModBlocks.AMETHYST_BLOCK).ore(() -> ModBlocks.AMETHYST_ORE).armorMaterial(33, new int[]{3, 6, 8, 3}, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0f).setMinXP(1).setMaxXP(4).putDamageSpeed(
+  public static MaterialType AMETHYST = new MaterialType(AMETHYST_NAME).itemMaterial(960, 8.0f, 3.0f, 2, 14).item(() -> ModItems.AMETHYST_GEM).block(() -> ModBlocks.AMETHYST_BLOCK).ore(() -> ModBlocks.AMETHYST_ORE).armorMaterial(33, new int[]{3, 6, 8, 3}, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0f).setMinXP(1).setMaxXP(4).putDamageSpeed(
       Type.AXE, 6.0f, -3.1f,
       Type.KNIFE, 2.5f, -1.5f);
 
-  public static MaterialType COPPER = new MaterialType(COPPER_NAME).itemMaterial(200, 4.0f, 2.0f, 2, 7).item(() -> ModItems.COPPER_INGOT).nugget(() -> ModItems.COPPER_NUGGET).dust(() -> ModItems.COPPER_DUST).block(() -> ModBlocks.COPPER_BLOCK).ore(() -> ModBlocks.COPPER_ORE).armorMaterial(15, new int[]{2, 5, 6, 2}, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f).putDamageSpeed(
+  public static MaterialType COPPER = new MaterialType(COPPER_NAME).itemMaterial(200, 4.0f, 2.0f, 1, 7).item(() -> ModItems.COPPER_INGOT).nugget(() -> ModItems.COPPER_NUGGET).dust(() -> ModItems.COPPER_DUST).block(() -> ModBlocks.COPPER_BLOCK).ore(() -> ModBlocks.COPPER_ORE).armorMaterial(15, new int[]{2, 5, 6, 2}, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f).putDamageSpeed(
       Type.AXE, 5.0f, -3.1f,
       Type.KNIFE, 2.5f, -1.5f);
 
@@ -43,7 +43,7 @@ public class ModMaterials {
       Type.AXE, 6.0f, -3.1f,
       Type.KNIFE, 2.5f, -1.0f);
 
-  public static MaterialType TIN = new MaterialType(TIN_NAME).itemMaterial(165, 6.5f, 2.0f, 2, 7).item(() -> ModItems.TIN_INGOT).nugget(() -> ModItems.TIN_NUGGET).dust(() -> ModItems.TIN_DUST).block(() -> ModBlocks.TIN_BLOCK).ore(() -> ModBlocks.TIN_ORE).armorMaterial(10, new int[]{1, 4, 5, 2}, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f).putDamageSpeed(
+  public static MaterialType TIN = new MaterialType(TIN_NAME).itemMaterial(165, 6.5f, 2.0f, 1, 7).item(() -> ModItems.TIN_INGOT).nugget(() -> ModItems.TIN_NUGGET).dust(() -> ModItems.TIN_DUST).block(() -> ModBlocks.TIN_BLOCK).ore(() -> ModBlocks.TIN_ORE).armorMaterial(10, new int[]{1, 4, 5, 2}, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f).putDamageSpeed(
       Type.AXE, 6.0f, -2.7f,
       Type.KNIFE, 2.5f, -1.2f);
 
