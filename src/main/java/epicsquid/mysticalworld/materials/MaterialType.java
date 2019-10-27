@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.materials;
 
-import epicsquid.mysticallib.block.OreBlockProperties;
 import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -15,7 +14,9 @@ import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class MaterialType implements IItemTier, IArmorMaterial {
@@ -53,7 +54,7 @@ public class MaterialType implements IItemTier, IArmorMaterial {
 
   private List<Type> itemTypes;
 
-  public static List<MaterialType> getMaterialTypes () {
+  public static List<MaterialType> getMaterialTypes() {
     return MATERIAL_TYPES;
   }
 
@@ -168,7 +169,7 @@ public class MaterialType implements IItemTier, IArmorMaterial {
     return dust.get();
   }
 
-  public Supplier<? extends Item> getNugget () {
+  public Supplier<? extends Item> getNugget() {
     return nugget.get();
   }
 
@@ -213,27 +214,27 @@ public class MaterialType implements IItemTier, IArmorMaterial {
     return () -> Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(getHarvestLevel());
   }
 
-  public String gemName () {
+  public String gemName() {
     return name + "_gem";
   }
 
-  public String ingotName () {
+  public String ingotName() {
     return name + "_ingot";
   }
 
-  public String dustName () {
+  public String dustName() {
     return name + "_dust";
   }
 
-  public String blockName () {
+  public String blockName() {
     return name + "_block";
   }
 
-  public String oreName () {
+  public String oreName() {
     return name + "_ore";
   }
 
-  public String nuggetName () {
+  public String nuggetName() {
     return name + "_nugget";
   }
 
@@ -279,6 +280,12 @@ public class MaterialType implements IItemTier, IArmorMaterial {
   @Override
   public int getEnchantability() {
     return tier == null ? enchantability : tier.getEnchantability();
+  }
+
+  // Hopefully this hack is enough to resolve the above method being disambiguated
+  // into only being the implementation for IItemTier.
+  public int func_200900_a () {
+    return material == null ? enchantability : material.getEnchantability();
   }
 
   @Override
