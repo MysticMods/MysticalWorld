@@ -204,28 +204,17 @@ public class ConfigManager {
     @Config.Comment(("Set to false to disable silkworms entirely"))
     public boolean enabled = true;
 
-    @Config.Comment(("Set to false to disable silkworm eggs from dropping from grass"))
-    public boolean grassDrops = true;
-
     @Config.Comment(("Set to false to disable silkworm eggs from dropping when leaves are broken"))
     public boolean leafDrops = true;
 
-    /*@Config.Comment(("Set to false to disable silkworms from spawning when leaves are broken"))
-    @Config.Ignore
-    public boolean leafSpawns = true;*/
-
     @Config.Comment(("Specify a chance (1 in X) for silkworm eggs to drop when leaves are broken"))
-    public int leafDropChance = 30;
-
-    /*@Config.Comment(("Specify a chance (1 in X) for silkworms to spawn when leaves are broken"))
-    @Config.Ignore
-    public int leafSpawnChance = 150;*/
+    public int leafDropChance = 55;
 
     @Config.Comment(("Specify a chance (1 in X) for silkworm eggs used to successfully spawn a silkworm"))
-    public int successChance = 3;
+    public int successChance = 2;
 
     @Config.Comment(("Specify a chance (1 in X) per chunk for a silkworm to grow (default 40, around 3-4 minutes per)"))
-    public int growthChance = 40;
+    public int growthChance = 85;
   }
 
   @Config.Comment(("Minimum distance between Barrow structures. Set to -1 to disable."))

@@ -171,13 +171,9 @@ public class ModItems {
     OreDictionary.registerOre("listAllvenisonraw", ModItems.venison);
 
     OreDictionary.registerOre("string", ModItems.silk_thread);
-
   }
 
   private static void registerSeedDrops() {
     MinecraftForge.addGrassSeed(new ItemStack(aubergine_seed, 1), 5);
-    if (ConfigManager.silkworm.enabled && ConfigManager.silkworm.grassDrops) {
-      MinecraftForge.addGrassSeed(new ItemStack(silkworm_egg, 1), 1);
-    }
   }
 }
