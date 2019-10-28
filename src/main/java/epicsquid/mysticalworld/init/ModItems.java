@@ -116,7 +116,7 @@ public class ModItems {
 
     event.addItem(silk_cocoon = new ItemBase("silk_cocoon").setCreativeTab(MysticalWorld.tab));
     event.addItem(silk_thread = new ItemBase("silk_thread").setCreativeTab(MysticalWorld.tab));
-    event.addItem(spindle = new ItemBase("spindle").setCreativeTab(MysticalWorld.tab).setMaxDamage(64));
+    event.addItem(spindle = new ItemBase("spindle").setCreativeTab(MysticalWorld.tab).setMaxStackSize(1).setMaxDamage(64));
     event.addItem(silkworm_egg = new ItemSilkwormEgg("silkworm_egg").setCreativeTab(MysticalWorld.tab));
 
     event.addItem(charm = new ItemCharm("charm").setCreativeTab(MysticalWorld.tab).setMaxStackSize(1));
