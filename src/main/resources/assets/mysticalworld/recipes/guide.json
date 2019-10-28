@@ -4,9 +4,14 @@
     {
       "item": "minecraft:book"
     },
+    [{
+      "type": "forge:ore_dict",
+      "ore": "cropAubergine"
+    },
     {
-      "item": "mysticalworld:aubergine"
-    }
+      "type": "forge:ore_dict",
+      "ore": "cropEggplant"
+    }]
   ],
   "result": {
     "item": "patchouli:guide_book",
