@@ -119,7 +119,7 @@ public class ModItems {
     event.addItem(spindle = new ItemBase("spindle").setCreativeTab(MysticalWorld.tab).setMaxStackSize(1).setMaxDamage(64));
     event.addItem(silkworm_egg = new ItemSilkwormEgg("silkworm_egg").setCreativeTab(MysticalWorld.tab));
 
-    event.addItem(charm = new ItemCharm("charm").setCreativeTab(MysticalWorld.tab).setMaxStackSize(1));
+    //event.addItem(charm = new ItemCharm("charm").setCreativeTab(MysticalWorld.tab).setMaxStackSize(1));
 
     registerSeedDrops();
   }
