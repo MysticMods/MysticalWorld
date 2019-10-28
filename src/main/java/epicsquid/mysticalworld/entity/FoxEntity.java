@@ -289,6 +289,7 @@ public class FoxEntity extends TameableEntity {
     }
   }
 
+  @Override
   public boolean isSleeping() {
     try {
       return (this.dataManager.get(SLEEPING));
@@ -358,6 +359,7 @@ public class FoxEntity extends TameableEntity {
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
+    @Override
     public boolean shouldExecute() {
       if (!this.tameable.isTamed()) {
         return false;
@@ -379,6 +381,7 @@ public class FoxEntity extends TameableEntity {
     /**
      * Execute a one shot task or start executing a continuous task
      */
+    @Override
     public void startExecuting() {
       this.tameable.getNavigator().clearPath();
       this.tameable.setSleeping(true);
@@ -387,6 +390,7 @@ public class FoxEntity extends TameableEntity {
     /**
      * Reset the task's internal state. Called when this task is interrupted by another one
      */
+    @Override
     public void resetTask() {
       this.tameable.setSleeping(false);
     }

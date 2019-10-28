@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.items;
+package epicsquid.mysticalworld.items.quicksilver;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;

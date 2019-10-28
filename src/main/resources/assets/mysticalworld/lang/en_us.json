@@ -164,5 +164,6 @@
   "block.mysticalworld.red_painted_chest": "Red Painted Chest",
   "block.mysticalworld.black_painted_chest": "Black Painted Chest",
   "item.mysticalworld.unripe_ender_pearl": "Unripe Enderpearl",
-  "message.squid.cooldown": "Give it time to produce more ink!"
+  "message.squid.cooldown": "Give it time to produce more ink!",
+  "attribute.name.generic.reachDistance": "Reach"
 }

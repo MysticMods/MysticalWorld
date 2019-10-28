@@ -36,10 +36,12 @@ public class HasHorns implements ILootCondition {
       super(new ResourceLocation("has_horns"), HasHorns.class);
     }
 
+    @Override
     public void serialize(JsonObject json, HasHorns value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);
     }
 
+    @Override
     public HasHorns deserialize(JsonObject json, JsonDeserializationContext context) {
       return new HasHorns(JSONUtils.getBoolean(json, "inverse", false));
     }

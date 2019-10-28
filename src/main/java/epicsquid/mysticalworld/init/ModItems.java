@@ -3,6 +3,12 @@ package epicsquid.mysticalworld.init;
 import epicsquid.mysticallib.item.KnifeItem;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.items.*;
+import epicsquid.mysticalworld.items.amethyst.AmethystArmorItem;
+import epicsquid.mysticalworld.items.copper.CopperArmorItem;
+import epicsquid.mysticalworld.items.lead.LeadArmorItem;
+import epicsquid.mysticalworld.items.quicksilver.*;
+import epicsquid.mysticalworld.items.silver.SilverArmorItem;
+import epicsquid.mysticalworld.items.tin.TinArmorItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.event.RegistryEvent;
@@ -109,35 +115,35 @@ public class ModItems {
 
 
   // Armors
-  public static RegistryObject<ArmorItem> AMETHYST_HELMET = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_helmet", ModRegistries.armor(ArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> AMETHYST_CHESTPLATE = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_chestplate", ModRegistries.armor(ArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> AMETHYST_LEGGINGS = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_leggings", ModRegistries.armor(ArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> AMETHYST_BOOTS = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_boots", ModRegistries.armor(ArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> AMETHYST_HELMET = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_helmet", ModRegistries.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> AMETHYST_CHESTPLATE = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_chestplate", ModRegistries.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> AMETHYST_LEGGINGS = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_leggings", ModRegistries.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> AMETHYST_BOOTS = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_boots", ModRegistries.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static RegistryObject<ArmorItem> COPPER_HELMET = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_helmet", ModRegistries.armor(ArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> COPPER_CHESTPLATE = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_chestplate", ModRegistries.armor(ArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> COPPER_LEGGINGS = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_leggings", ModRegistries.armor(ArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> COPPER_BOOTS = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_boots", ModRegistries.armor(ArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> COPPER_HELMET = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_helmet", ModRegistries.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> COPPER_CHESTPLATE = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_chestplate", ModRegistries.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> COPPER_LEGGINGS = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_leggings", ModRegistries.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> COPPER_BOOTS = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_boots", ModRegistries.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static RegistryObject<ArmorItem> LEAD_HELMET = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_helmet", ModRegistries.armor(ArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> LEAD_CHESTPLATE = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_chestplate", ModRegistries.armor(ArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> LEAD_LEGGINGS = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_leggings", ModRegistries.armor(ArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> LEAD_BOOTS = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_boots", ModRegistries.armor(ArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> LEAD_HELMET = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_helmet", ModRegistries.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> LEAD_CHESTPLATE = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_chestplate", ModRegistries.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> LEAD_LEGGINGS = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_leggings", ModRegistries.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> LEAD_BOOTS = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_boots", ModRegistries.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.FEET, ModRegistries.SMG));
 
   public static RegistryObject<ArmorItem> QUICKSILVER_HELMET = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_helmet", ModRegistries.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.HEAD, ModRegistries.SMG));
   public static RegistryObject<ArmorItem> QUICKSILVER_CHESTPLATE = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_chestplate", ModRegistries.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.CHEST, ModRegistries.SMG));
   public static RegistryObject<ArmorItem> QUICKSILVER_LEGGINGS = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_leggings", ModRegistries.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.LEGS, ModRegistries.SMG));
   public static RegistryObject<ArmorItem> QUICKSILVER_BOOTS = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_boots", ModRegistries.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static RegistryObject<ArmorItem> SILVER_HELMET = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_helmet", ModRegistries.armor(ArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> SILVER_CHESTPLATE = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_chestplate", ModRegistries.armor(ArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> SILVER_LEGGINGS = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_leggings", ModRegistries.armor(ArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> SILVER_BOOTS = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_boots", ModRegistries.armor(ArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> SILVER_HELMET = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_helmet", ModRegistries.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> SILVER_CHESTPLATE = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_chestplate", ModRegistries.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> SILVER_LEGGINGS = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_leggings", ModRegistries.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> SILVER_BOOTS = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_boots", ModRegistries.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static RegistryObject<ArmorItem> TIN_HELMET = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_helmet", ModRegistries.armor(ArmorItem::new, ModMaterials.TIN, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> TIN_CHESTPLATE = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_chestplate", ModRegistries.armor(ArmorItem::new, ModMaterials.TIN, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> TIN_LEGGINGS = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_leggings", ModRegistries.armor(ArmorItem::new, ModMaterials.TIN, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> TIN_BOOTS = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_boots", ModRegistries.armor(ArmorItem::new, ModMaterials.TIN, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> TIN_HELMET = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_helmet", ModRegistries.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> TIN_CHESTPLATE = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_chestplate", ModRegistries.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> TIN_LEGGINGS = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_leggings", ModRegistries.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> TIN_BOOTS = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_boots", ModRegistries.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.FEET, ModRegistries.SMG));
 
   public static void init() {}
 

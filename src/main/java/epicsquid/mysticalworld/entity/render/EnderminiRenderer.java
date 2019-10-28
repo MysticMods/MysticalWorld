@@ -60,6 +60,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EndermanMode
       super(p_i50949_1_);
     }
 
+    @Override
     public void render(EnderminiEntity entityIn, float p_212842_2_, float p_212842_3_, float p_212842_4_, float p_212842_5_, float p_212842_6_, float p_212842_7_, float p_212842_8_) {
       BlockState blockstate = entityIn.getHeldBlockState();
       if (blockstate != null) {
@@ -83,6 +84,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EndermanMode
       }
     }
 
+    @Override
     public boolean shouldCombineTextures() {
       return false;
     }

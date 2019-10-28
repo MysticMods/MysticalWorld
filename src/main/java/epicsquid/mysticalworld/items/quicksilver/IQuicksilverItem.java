@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.items;
+package epicsquid.mysticalworld.items.quicksilver;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;

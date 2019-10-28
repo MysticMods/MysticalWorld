@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.items;
+package epicsquid.mysticalworld.items.quicksilver;
 
 import epicsquid.mysticallib.item.KnifeItem;
 import net.minecraft.block.BlockState;

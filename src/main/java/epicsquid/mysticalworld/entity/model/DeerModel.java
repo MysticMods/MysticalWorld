@@ -146,6 +146,7 @@ public class DeerModel extends EntityModel<DeerEntity> {
     setRotation(horn8, 0F, 0.1745329F, 0.7853982F);
   }
 
+  @Override
   public void render(@Nonnull DeerEntity entity, float f, float limbSwingAmount, float age, float f3, float f4, float f5) {
     float sin = (float) Math.sin(age * 0.125f * (Math.PI * 2.0f));
     float cos = (float) Math.cos(age * 0.0625f * (Math.PI * 2.0f));

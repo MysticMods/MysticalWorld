@@ -1,17 +1,16 @@
-package epicsquid.mysticalworld.items;
+package epicsquid.mysticalworld.items.quicksilver;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -19,12 +18,12 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class QuicksilverAxeItem extends AxeItem implements IQuicksilverItem {
+public class QuicksilverShovelItem extends ShovelItem implements IQuicksilverItem {
 
   private int counter;
   private Random random = new Random();
 
-  public QuicksilverAxeItem(IItemTier tier, float attackDamage, float attackSpeed, Properties props) {
+  public QuicksilverShovelItem(IItemTier tier, float attackDamage, float attackSpeed, Properties props) {
     super(tier, attackDamage, attackSpeed, props);
   }
 
@@ -50,18 +49,19 @@ public class QuicksilverAxeItem extends AxeItem implements IQuicksilverItem {
   public ActionResultType onItemUse(ItemUseContext context) {
     World world = context.getWorld();
     BlockPos blockpos = context.getPos();
-    BlockState blockstate = world.getBlockState(blockpos);
-    Block block = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
-    if (block != null) {
-      PlayerEntity playerentity = context.getPlayer();
-      world.playSound(playerentity, blockpos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-      if (!world.isRemote) {
-        world.setBlockState(blockpos, block.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
-      }
+    if (context.getFace() != Direction.DOWN && world.getBlockState(blockpos.up()).isAir(world, blockpos.up())) {
+      BlockState blockstate = field_195955_e.get(world.getBlockState(blockpos).getBlock());
+      if (blockstate != null) {
+        PlayerEntity playerentity = context.getPlayer();
+        world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        if (!world.isRemote) {
+          world.setBlockState(blockpos, blockstate, 11);
+        }
 
-      return ActionResultType.SUCCESS;
-    } else {
-      return ActionResultType.PASS;
+        return ActionResultType.SUCCESS;
+      }
     }
+
+    return ActionResultType.PASS;
   }
 }

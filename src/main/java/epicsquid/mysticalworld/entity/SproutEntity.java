@@ -92,6 +92,7 @@ public class SproutEntity extends AnimalEntity {
     }
   }
 
+  @Override
   public float getStandingEyeHeight(Pose pose, EntitySize size) {
     return isChild() ? getHeight() : 1.3F;
   }
