@@ -18,7 +18,6 @@ public class ConfigKeys {
     PatchouliAPI.instance.setConfigFlag("roots:lava_cat", ConfigManager.mobs.spawnLavaCat);
 
     PatchouliAPI.instance.setConfigFlag("roots:silkworm", ConfigManager.silkworm.enabled);
-    PatchouliAPI.instance.setConfigFlag("roots:silkworm_grass", ConfigManager.silkworm.grassDrops);
     PatchouliAPI.instance.setConfigFlag("roots:silkworm_leaves", ConfigManager.silkworm.leafDrops);
 
     // Ores
