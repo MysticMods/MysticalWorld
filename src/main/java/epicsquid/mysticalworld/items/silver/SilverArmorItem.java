@@ -18,11 +18,11 @@ public class SilverArmorItem extends ModifiedArmorItem implements ISilverItem {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
 
     if (this.slot == equipmentSlot) {
-      if (slot == EquipmentSlotType.CHEST || slot == EquipmentSlotType.LEGS) {
+      /*if (slot == EquipmentSlotType.CHEST || slot == EquipmentSlotType.LEGS) {
         map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), getOrCreateModifier(SharedMonsterAttributes.ATTACK_DAMAGE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Attack damage multiplier", 0.02f, AttributeModifier.Operation.MULTIPLY_TOTAL)));
       } else {
         map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), getOrCreateModifier(SharedMonsterAttributes.ATTACK_DAMAGE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Attack damage multiplier", 0.06f, AttributeModifier.Operation.MULTIPLY_TOTAL)));
-      }
+      }*/
     }
 
     return map;

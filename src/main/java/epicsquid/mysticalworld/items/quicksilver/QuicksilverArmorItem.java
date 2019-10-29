@@ -43,7 +43,7 @@ public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksil
         val = 0.1f;
       }
       final float val2 = val;
-      map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), getOrCreateModifier(SharedMonsterAttributes.MOVEMENT_SPEED, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Movement speed", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
+      //map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), getOrCreateModifier(SharedMonsterAttributes.MOVEMENT_SPEED, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Movement speed", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
     }
 
     return map;

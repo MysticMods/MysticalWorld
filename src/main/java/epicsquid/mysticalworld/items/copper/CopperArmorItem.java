@@ -19,7 +19,7 @@ public class CopperArmorItem extends ModifiedArmorItem implements ICopperItem {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
 
     if (this.slot == equipmentSlot) {
-      map.put(SharedMonsterAttributes.MAX_HEALTH.getName(), getOrCreateModifier(SharedMonsterAttributes.MAX_HEALTH, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Healthiness", 1f, AttributeModifier.Operation.ADDITION)));
+      //map.put(SharedMonsterAttributes.MAX_HEALTH.getName(), getOrCreateModifier(SharedMonsterAttributes.MAX_HEALTH, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Healthiness", 1f, AttributeModifier.Operation.ADDITION)));
     }
 
     return map;
