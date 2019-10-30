@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld;
 
+import epicsquid.mysticallib.registry.ModRegistry;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModEntities;
@@ -10,12 +11,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.pathfinding.ClimberPathNavigator;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
@@ -40,22 +38,22 @@ public class MysticalWorld {
     }
   };
 
+  public static final ModRegistry REGISTRY = new ModRegistry(MODID);
+
   public static ModSetup setup = new ModSetup();
 
   public MysticalWorld() {
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     modBus.addListener(setup::init);
-    ModItems.init();
-    ModBlocks.init();
-    ModEntities.init();
-    ModRegistries.BLOCKS.register(modBus);
-    ModRegistries.ITEMS.register(modBus);
-    ModRegistries.ENTITIES.register(modBus);
+    ModItems.load();
+    ModBlocks.load();
+    ModEntities.load();
 
     modBus.addGenericListener(EntityType.class, EventPriority.LOWEST, ModEntities::registerEntities);
     modBus.addGenericListener(Item.class, EventPriority.LOWEST, ModItems::registerItems);
 
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
+    REGISTRY.registerEventBus(modBus);
   }
 }
