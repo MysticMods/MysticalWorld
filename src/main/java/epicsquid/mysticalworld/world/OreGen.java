@@ -15,7 +15,23 @@ public class OreGen {
   private static List<OreGenerator> generators = new ArrayList<>();
 
   public static void registerOreGeneration() {
-    ConfigManager.ORE_CONFIG.stream().filter(OreConfig::shouldRegister).forEach(ore -> generators.add(new OreGenerator(new OreProperties(() -> new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ore.getOre().getDefaultState(), ore.getChance()), new CountRangeConfig(ore.getSize(), ore.getMinY(), 0, ore.getMaxY() - ore.getMinY())))));
+    ConfigManager.ORE_CONFIG.stream().filter(OreConfig::shouldRegister).forEach(ore -> {
+      generators.add(
+          new OreGenerator(
+              new OreProperties(
+                  () -> new OreFeatureConfig(
+                      OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+                      ore.getOre().getDefaultState(),
+                      ore.getChance()),
+                  new CountRangeConfig(
+                      ore.getSize(),
+                      ore.getMinY(),
+                      0,
+                      ore.getMaxY() - ore.getMinY())
+              )
+          )
+      );
+    });
 
     generators.forEach(OreGenerator::init);
   }

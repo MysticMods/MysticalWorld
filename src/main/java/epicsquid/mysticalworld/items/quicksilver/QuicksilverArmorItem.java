@@ -2,19 +2,15 @@ package epicsquid.mysticalworld.items.quicksilver;
 
 import com.google.common.collect.Multimap;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
-import epicsquid.mysticalworld.materials.MaterialType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.Random;
-import java.util.UUID;
 
 // TODO find a way to block damaging the item
 public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksilverItem {

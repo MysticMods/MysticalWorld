@@ -2,11 +2,7 @@ package epicsquid.mysticalworld.items.tin;
 
 import com.google.common.collect.Multimap;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
-import epicsquid.mysticalworld.items.copper.ICopperItem;
-import epicsquid.mysticalworld.materials.MaterialType;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 

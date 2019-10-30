@@ -2,8 +2,6 @@ package epicsquid.mysticalworld.setup;
 
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
-import epicsquid.mysticalworld.init.ModMaterials;
-import epicsquid.mysticalworld.materials.*;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.world.OreGen;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
