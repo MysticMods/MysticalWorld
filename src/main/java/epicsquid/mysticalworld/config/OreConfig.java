@@ -16,14 +16,14 @@ public class OreConfig {
   private int minY;
   private int maxY;
   private int size;
-  private Supplier<RegistryObject<XPOreBlock>> ore;
+  private Supplier<RegistryObject<BaseOreBlock>> ore;
 
   private ForgeConfigSpec.IntValue configChance;
   private ForgeConfigSpec.IntValue configMinY;
   private ForgeConfigSpec.IntValue configMaxY;
   private ForgeConfigSpec.IntValue configSize;
 
-  public OreConfig(String name, int chance, int minY, int maxY, int size, Supplier<RegistryObject<XPOreBlock>> ore) {
+  public OreConfig(String name, int chance, int minY, int maxY, int size, Supplier<RegistryObject<BaseOreBlock>> ore) {
     this.name = name;
     this.chance = chance;
     this.minY = minY;
