@@ -44,13 +44,13 @@ public class ModEntities {
   public static Supplier<EntityType<FoxEntity>> SILVER_FOX = () -> SILVER_FOX_TYPE;
   public static Supplier<EntityType<SproutEntity>> SPROUT = () -> SPROUT_TYPE;
 
-  public static RegistryObject<SpawnEggItem> SPAWN_BEETLE = ModRegistries.registerItem(BEETLE_ID + "_spawn_egg", () -> new SpawnEggItem(BEETLE_TYPE, 0x418594, 0x211D15, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_DEER = ModRegistries.registerItem(DEER_ID + "_spawn_egg", () -> new SpawnEggItem(DEER_TYPE, 0xa18458, 0x5e4d33, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_FROG = ModRegistries.registerItem(FROG_ID + "_spawn_egg", () -> new SpawnEggItem(FROG_TYPE, 0x285234, 0xDBE697, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_SPROUT = ModRegistries.registerItem(SPROUT_ID + "_spawn_egg", () -> new SpawnEggItem(SPROUT_TYPE, 0xe8f442, 0xd11f5a, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_SILVER_FOX = ModRegistries.registerItem(SILVER_FOX_ID + "_spawn_egg", () -> new SpawnEggItem(SILVER_FOX_TYPE, 0x9e9088, 0xF5E0D3, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_BEETLE = MysticalWorld.REGISTRY.registerItem(BEETLE_ID + "_spawn_egg", () -> new SpawnEggItem(BEETLE_TYPE, 0x418594, 0x211D15, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_DEER = MysticalWorld.REGISTRY.registerItem(DEER_ID + "_spawn_egg", () -> new SpawnEggItem(DEER_TYPE, 0xa18458, 0x5e4d33, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_FROG = MysticalWorld.REGISTRY.registerItem(FROG_ID + "_spawn_egg", () -> new SpawnEggItem(FROG_TYPE, 0x285234, 0xDBE697, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_SPROUT = MysticalWorld.REGISTRY.registerItem(SPROUT_ID + "_spawn_egg", () -> new SpawnEggItem(SPROUT_TYPE, 0xe8f442, 0xd11f5a, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_SILVER_FOX = MysticalWorld.REGISTRY.registerItem(SILVER_FOX_ID + "_spawn_egg", () -> new SpawnEggItem(SILVER_FOX_TYPE, 0x9e9088, 0xF5E0D3, ModRegistries.SIG.get()));
 
-  public static void init () {}
+  public static void load() {}
 
   public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
     IForgeRegistry<EntityType<?>> registry = event.getRegistry();
