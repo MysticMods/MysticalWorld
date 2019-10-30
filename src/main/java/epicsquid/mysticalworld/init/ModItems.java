@@ -16,136 +16,136 @@ import net.minecraftforge.fml.RegistryObject;
 
 @SuppressWarnings("unused")
 public class ModItems {
-  public static RegistryObject<DyeItem> CARAPACE = ModRegistries.registerItem("carapace", ModRegistries.dyeItem(DyeColor.BLUE, ModRegistries.SIG));
-  public static RegistryObject<Item> PELT = ModRegistries.registerItem("pelt", ModRegistries.item(Item::new, ModRegistries.SIG));
-  public static RegistryObject<Item> ANTLERS = ModRegistries.registerItem("antlers", ModRegistries.item(Item::new, ModRegistries.SIG));
-  public static RegistryObject<DyeItem> INK_BOTTLE = ModRegistries.registerItem("ink_bottle", ModRegistries.dyeItem(DyeColor.BLACK, ModRegistries.SIG));
+  public static RegistryObject<DyeItem> CARAPACE = MysticalWorld.REGISTRY.registerItem("carapace", MysticalWorld.REGISTRY.dyeItem(DyeColor.BLUE, ModRegistries.SIG));
+  public static RegistryObject<Item> PELT = MysticalWorld.REGISTRY.registerItem("pelt", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));
+  public static RegistryObject<Item> ANTLERS = MysticalWorld.REGISTRY.registerItem("antlers", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));
+  public static RegistryObject<DyeItem> INK_BOTTLE = MysticalWorld.REGISTRY.registerItem("ink_bottle", MysticalWorld.REGISTRY.dyeItem(DyeColor.BLACK, ModRegistries.SIG));
 
-  public static RegistryObject<Item> VENISON = ModRegistries.registerItem("venison", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.VENISON)));
-  public static RegistryObject<Item> COOKED_VENISON = ModRegistries.registerItem("cooked_venison", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_VENISON)));
+  public static RegistryObject<Item> VENISON = MysticalWorld.REGISTRY.registerItem("venison", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.VENISON)));
+  public static RegistryObject<Item> COOKED_VENISON = MysticalWorld.REGISTRY.registerItem("cooked_venison", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_VENISON)));
 
-  public static RegistryObject<BlockNamedItem> AUBERGINE_SEEDS = ModRegistries.registerItem("aubergine_seeds", ModRegistries.blockNamedItem(() -> ModBlocks.AUBERGINE_CROP, ModRegistries.SIG));
+  public static RegistryObject<BlockNamedItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRY.registerItem("aubergine_seeds", MysticalWorld.REGISTRY.blockNamedItem(() -> ModBlocks.AUBERGINE_CROP, ModRegistries.SIG));
 
-  public static RegistryObject<Item> AUBERGINE = ModRegistries.registerItem("aubergine", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.AUBERGINE)));
-  public static RegistryObject<Item> COOKED_AUBERGINE = ModRegistries.registerItem("cooked_aubergine", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_AUBERGINE)));
-  public static RegistryObject<Item> STUFFED_AUBERGINE = ModRegistries.registerItem("stuffed_aubergine", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.STUFFED_AUBERGINE)));
+  public static RegistryObject<Item> AUBERGINE = MysticalWorld.REGISTRY.registerItem("aubergine", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.AUBERGINE)));
+  public static RegistryObject<Item> COOKED_AUBERGINE = MysticalWorld.REGISTRY.registerItem("cooked_aubergine", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_AUBERGINE)));
+  public static RegistryObject<Item> STUFFED_AUBERGINE = MysticalWorld.REGISTRY.registerItem("stuffed_aubergine", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.STUFFED_AUBERGINE)));
 
-  public static RegistryObject<Item> RAW_SQUID = ModRegistries.registerItem("raw_squid", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.RAW_SQUID)));
-  public static RegistryObject<Item> COOKED_SQUID = ModRegistries.registerItem("cooked_squid", ModRegistries.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_SQUID)));
-  public static RegistryObject<EffectItem> EPIC_SQUID = ModRegistries.registerItem("epic_squid", ModRegistries.item(EffectItem::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.EPIC_SQUID).rarity(Rarity.EPIC)));
+  public static RegistryObject<Item> RAW_SQUID = MysticalWorld.REGISTRY.registerItem("raw_squid", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.RAW_SQUID)));
+  public static RegistryObject<Item> COOKED_SQUID = MysticalWorld.REGISTRY.registerItem("cooked_squid", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_SQUID)));
+  public static RegistryObject<EffectItem> EPIC_SQUID = MysticalWorld.REGISTRY.registerItem("epic_squid", MysticalWorld.REGISTRY.item(EffectItem::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.EPIC_SQUID).rarity(Rarity.EPIC)));
 
   // Ingots/gems
-  public static RegistryObject<Item> AMETHYST_GEM = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> COPPER_INGOT = ModRegistries.registerItem(ModMaterials.COPPER.ingotName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> LEAD_INGOT = ModRegistries.registerItem(ModMaterials.LEAD.ingotName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> QUICKSILVER_INGOT = ModRegistries.registerItem(ModMaterials.QUICKSILVER.ingotName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> SILVER_INGOT = ModRegistries.registerItem(ModMaterials.SILVER.ingotName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> TIN_INGOT = ModRegistries.registerItem(ModMaterials.TIN.ingotName(), ModRegistries.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> AMETHYST_GEM = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> COPPER_INGOT = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.ingotName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> LEAD_INGOT = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.ingotName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> QUICKSILVER_INGOT = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.ingotName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> SILVER_INGOT = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.ingotName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> TIN_INGOT = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.ingotName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
 
   // Nuggets
-  public static RegistryObject<Item> COPPER_NUGGET = ModRegistries.registerItem(ModMaterials.COPPER.nuggetName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> LEAD_NUGGET = ModRegistries.registerItem(ModMaterials.LEAD.nuggetName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> QUICKSILVER_NUGGET = ModRegistries.registerItem(ModMaterials.QUICKSILVER.nuggetName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> SILVER_NUGGET = ModRegistries.registerItem(ModMaterials.SILVER.nuggetName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> TIN_NUGGET = ModRegistries.registerItem(ModMaterials.TIN.nuggetName(), ModRegistries.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> COPPER_NUGGET = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.nuggetName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> LEAD_NUGGET = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.nuggetName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> QUICKSILVER_NUGGET = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.nuggetName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> SILVER_NUGGET = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.nuggetName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> TIN_NUGGET = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.nuggetName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
 
   // Dusts
-  public static RegistryObject<Item> COPPER_DUST = ModRegistries.registerItem(ModMaterials.COPPER.dustName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> LEAD_DUST = ModRegistries.registerItem(ModMaterials.LEAD.dustName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> QUICKSILVER_DUST = ModRegistries.registerItem(ModMaterials.QUICKSILVER.dustName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> SILVER_DUST = ModRegistries.registerItem(ModMaterials.SILVER.dustName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> TIN_DUST = ModRegistries.registerItem(ModMaterials.TIN.dustName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> GOLD_DUST = ModRegistries.registerItem(ModMaterials.GOLD.dustName(), ModRegistries.item(Item::new, ModRegistries.SMG));
-  public static RegistryObject<Item> IRON_DUST = ModRegistries.registerItem(ModMaterials.IRON.dustName(), ModRegistries.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> COPPER_DUST = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.dustName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> LEAD_DUST = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.dustName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> QUICKSILVER_DUST = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.dustName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> SILVER_DUST = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.dustName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> TIN_DUST = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.dustName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> GOLD_DUST = MysticalWorld.REGISTRY.registerItem(ModMaterials.GOLD.dustName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
+  public static RegistryObject<Item> IRON_DUST = MysticalWorld.REGISTRY.registerItem(ModMaterials.IRON.dustName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));
 
-  public static RegistryObject<AxeItem> AMETHYST_AXE = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_axe", ModRegistries.axe(AxeItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
-  public static RegistryObject<HoeItem> AMETHYST_HOE = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_hoe", ModRegistries.hoe(HoeItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> AMETHYST_KNIFE = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
-  public static RegistryObject<PickaxeItem> AMETHYST_PICKAXE = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_pickaxe", ModRegistries.pickaxe(PickaxeItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
-  public static RegistryObject<ShovelItem> AMETHYST_SHOVEL = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_shovel", ModRegistries.shovel(ShovelItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
-  public static RegistryObject<SwordItem> AMETHYST_SWORD = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_sword", ModRegistries.sword(SwordItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
+  public static RegistryObject<AxeItem> AMETHYST_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(AxeItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
+  public static RegistryObject<HoeItem> AMETHYST_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(HoeItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> AMETHYST_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
+  public static RegistryObject<PickaxeItem> AMETHYST_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(PickaxeItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
+  public static RegistryObject<ShovelItem> AMETHYST_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(ShovelItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
+  public static RegistryObject<SwordItem> AMETHYST_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(SwordItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
 
-  public static RegistryObject<AxeItem> CACTUS_AXE = ModRegistries.registerItem(ModMaterials.CACTUS.getInternalName() + "_axe", ModRegistries.axe(AxeItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
-  public static RegistryObject<HoeItem> CACTUS_HOE = ModRegistries.registerItem(ModMaterials.CACTUS.getInternalName() + "_hoe", ModRegistries.hoe(HoeItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> CACTUS_KNIFE = ModRegistries.registerItem(ModMaterials.CACTUS.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
-  public static RegistryObject<PickaxeItem> CACTUS_PICKAXE = ModRegistries.registerItem(ModMaterials.CACTUS.getInternalName() + "_pickaxe", ModRegistries.pickaxe(PickaxeItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
-  public static RegistryObject<ShovelItem> CACTUS_SHOVEL = ModRegistries.registerItem(ModMaterials.CACTUS.getInternalName() + "_shovel", ModRegistries.shovel(ShovelItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
-  public static RegistryObject<SwordItem> CACTUS_SWORD = ModRegistries.registerItem(ModMaterials.CACTUS.getInternalName() + "_sword", ModRegistries.sword(SwordItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
+  public static RegistryObject<AxeItem> CACTUS_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.CACTUS.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(AxeItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
+  public static RegistryObject<HoeItem> CACTUS_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.CACTUS.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(HoeItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> CACTUS_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.CACTUS.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
+  public static RegistryObject<PickaxeItem> CACTUS_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.CACTUS.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(PickaxeItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
+  public static RegistryObject<ShovelItem> CACTUS_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.CACTUS.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(ShovelItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
+  public static RegistryObject<SwordItem> CACTUS_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.CACTUS.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(SwordItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
 
-  public static RegistryObject<AxeItem> COPPER_AXE = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_axe", ModRegistries.axe(AxeItem::new, ModMaterials.COPPER, ModRegistries.SMG));
-  public static RegistryObject<HoeItem> COPPER_HOE = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_hoe", ModRegistries.hoe(HoeItem::new, ModMaterials.COPPER, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> COPPER_KNIFE = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.COPPER, ModRegistries.SMG));
-  public static RegistryObject<PickaxeItem> COPPER_PICKAXE = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_pickaxe", ModRegistries.pickaxe(PickaxeItem::new, ModMaterials.COPPER, ModRegistries.SMG));
-  public static RegistryObject<ShovelItem> COPPER_SHOVEL = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_shovel", ModRegistries.shovel(ShovelItem::new, ModMaterials.COPPER, ModRegistries.SMG));
-  public static RegistryObject<SwordItem> COPPER_SWORD = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_sword", ModRegistries.sword(SwordItem::new, ModMaterials.COPPER, ModRegistries.SMG));
+  public static RegistryObject<AxeItem> COPPER_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(AxeItem::new, ModMaterials.COPPER, ModRegistries.SMG));
+  public static RegistryObject<HoeItem> COPPER_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(HoeItem::new, ModMaterials.COPPER, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> COPPER_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.COPPER, ModRegistries.SMG));
+  public static RegistryObject<PickaxeItem> COPPER_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(PickaxeItem::new, ModMaterials.COPPER, ModRegistries.SMG));
+  public static RegistryObject<ShovelItem> COPPER_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(ShovelItem::new, ModMaterials.COPPER, ModRegistries.SMG));
+  public static RegistryObject<SwordItem> COPPER_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(SwordItem::new, ModMaterials.COPPER, ModRegistries.SMG));
 
-  public static RegistryObject<AxeItem> LEAD_AXE = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_axe", ModRegistries.axe(AxeItem::new, ModMaterials.LEAD, ModRegistries.SMG));
-  public static RegistryObject<HoeItem> LEAD_HOE = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_hoe", ModRegistries.hoe(HoeItem::new, ModMaterials.LEAD, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> LEAD_KNIFE = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.LEAD, ModRegistries.SMG));
-  public static RegistryObject<PickaxeItem> LEAD_PICKAXE = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_pickaxe", ModRegistries.pickaxe(PickaxeItem::new, ModMaterials.LEAD, ModRegistries.SMG));
-  public static RegistryObject<ShovelItem> LEAD_SHOVEL = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_shovel", ModRegistries.shovel(ShovelItem::new, ModMaterials.LEAD, ModRegistries.SMG));
-  public static RegistryObject<SwordItem> LEAD_SWORD = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_sword", ModRegistries.sword(SwordItem::new, ModMaterials.LEAD, ModRegistries.SMG));
+  public static RegistryObject<AxeItem> LEAD_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(AxeItem::new, ModMaterials.LEAD, ModRegistries.SMG));
+  public static RegistryObject<HoeItem> LEAD_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(HoeItem::new, ModMaterials.LEAD, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> LEAD_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.LEAD, ModRegistries.SMG));
+  public static RegistryObject<PickaxeItem> LEAD_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(PickaxeItem::new, ModMaterials.LEAD, ModRegistries.SMG));
+  public static RegistryObject<ShovelItem> LEAD_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(ShovelItem::new, ModMaterials.LEAD, ModRegistries.SMG));
+  public static RegistryObject<SwordItem> LEAD_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(SwordItem::new, ModMaterials.LEAD, ModRegistries.SMG));
 
-  public static RegistryObject<AxeItem> QUICKSILVER_AXE = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_axe", ModRegistries.axe(QuicksilverAxeItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
-  public static RegistryObject<HoeItem> QUICKSILVER_HOE = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_hoe", ModRegistries.hoe(QuicksilverHoeItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> QUICKSILVER_KNIFE = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_knife", ModRegistries.knife(QuicksilverKnifeItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
-  public static RegistryObject<PickaxeItem> QUICKSILVER_PICKAXE = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_pickaxe", ModRegistries.pickaxe(QuicksilverPickaxeItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
-  public static RegistryObject<ShovelItem> QUICKSILVER_SHOVEL = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_shovel", ModRegistries.shovel(QuicksilverShovelItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
-  public static RegistryObject<SwordItem> QUICKSILVER_SWORD = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_sword", ModRegistries.sword(QuicksilverSwordItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
+  public static RegistryObject<AxeItem> QUICKSILVER_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(QuicksilverAxeItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
+  public static RegistryObject<HoeItem> QUICKSILVER_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(QuicksilverHoeItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> QUICKSILVER_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(QuicksilverKnifeItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
+  public static RegistryObject<PickaxeItem> QUICKSILVER_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(QuicksilverPickaxeItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
+  public static RegistryObject<ShovelItem> QUICKSILVER_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(QuicksilverShovelItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
+  public static RegistryObject<SwordItem> QUICKSILVER_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(QuicksilverSwordItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
 
-  public static RegistryObject<AxeItem> SILVER_AXE = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_axe", ModRegistries.axe(AxeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<HoeItem> SILVER_HOE = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_hoe", ModRegistries.hoe(HoeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> SILVER_KNIFE = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<PickaxeItem> SILVER_PICKAXE = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_pickaxe", ModRegistries.pickaxe(PickaxeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<ShovelItem> SILVER_SHOVEL = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_shovel", ModRegistries.shovel(ShovelItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<SwordItem> SILVER_SWORD = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_sword", ModRegistries.sword(SwordItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<AxeItem> SILVER_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(AxeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<HoeItem> SILVER_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(HoeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> SILVER_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<PickaxeItem> SILVER_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(PickaxeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<ShovelItem> SILVER_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(ShovelItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<SwordItem> SILVER_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(SwordItem::new, ModMaterials.SILVER, ModRegistries.SMG));
 
-  public static RegistryObject<AxeItem> TIN_AXE = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_axe", ModRegistries.axe(AxeItem::new, ModMaterials.TIN, ModRegistries.SMG));
-  public static RegistryObject<HoeItem> TIN_HOE = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_hoe", ModRegistries.hoe(HoeItem::new, ModMaterials.TIN, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> TIN_KNIFE = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.TIN, ModRegistries.SMG));
-  public static RegistryObject<PickaxeItem> TIN_PICKAXE = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_pickaxe", ModRegistries.pickaxe(PickaxeItem::new, ModMaterials.TIN, ModRegistries.SMG));
-  public static RegistryObject<ShovelItem> TIN_SHOVEL = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_shovel", ModRegistries.shovel(ShovelItem::new, ModMaterials.TIN, ModRegistries.SMG));
-  public static RegistryObject<SwordItem> TIN_SWORD = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_sword", ModRegistries.sword(SwordItem::new, ModMaterials.TIN, ModRegistries.SMG));
+  public static RegistryObject<AxeItem> TIN_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(AxeItem::new, ModMaterials.TIN, ModRegistries.SMG));
+  public static RegistryObject<HoeItem> TIN_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(HoeItem::new, ModMaterials.TIN, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> TIN_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.TIN, ModRegistries.SMG));
+  public static RegistryObject<PickaxeItem> TIN_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(PickaxeItem::new, ModMaterials.TIN, ModRegistries.SMG));
+  public static RegistryObject<ShovelItem> TIN_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(ShovelItem::new, ModMaterials.TIN, ModRegistries.SMG));
+  public static RegistryObject<SwordItem> TIN_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(SwordItem::new, ModMaterials.TIN, ModRegistries.SMG));
 
-  public static RegistryObject<KnifeItem> STONE_KNIFE = ModRegistries.registerItem(ModMaterials.STONE.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.STONE, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> WOODEN_KNIFE = ModRegistries.registerItem(ModMaterials.WOODEN.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.WOODEN, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> DIAMOND_KNIFE = ModRegistries.registerItem(ModMaterials.DIAMOND.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.DIAMOND, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> GOLD_KNIFE = ModRegistries.registerItem(ModMaterials.GOLD.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.GOLD, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> IRON_KNIFE = ModRegistries.registerItem(ModMaterials.IRON.getInternalName() + "_knife", ModRegistries.knife(KnifeItem::new, ModMaterials.IRON, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> STONE_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.STONE.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.STONE, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> WOODEN_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.WOODEN.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.WOODEN, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> DIAMOND_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.DIAMOND.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.DIAMOND, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> GOLD_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.GOLD.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.GOLD, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> IRON_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.IRON.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.IRON, ModRegistries.SMG));
 
 
   // Armors
-  public static RegistryObject<ArmorItem> AMETHYST_HELMET = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_helmet", ModRegistries.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> AMETHYST_CHESTPLATE = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_chestplate", ModRegistries.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> AMETHYST_LEGGINGS = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_leggings", ModRegistries.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> AMETHYST_BOOTS = ModRegistries.registerItem(ModMaterials.AMETHYST.getInternalName() + "_boots", ModRegistries.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> AMETHYST_HELMET = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_helmet", MysticalWorld.REGISTRY.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> AMETHYST_CHESTPLATE = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_chestplate", MysticalWorld.REGISTRY.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> AMETHYST_LEGGINGS = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_leggings", MysticalWorld.REGISTRY.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> AMETHYST_BOOTS = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_boots", MysticalWorld.REGISTRY.armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static RegistryObject<ArmorItem> COPPER_HELMET = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_helmet", ModRegistries.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> COPPER_CHESTPLATE = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_chestplate", ModRegistries.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> COPPER_LEGGINGS = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_leggings", ModRegistries.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> COPPER_BOOTS = ModRegistries.registerItem(ModMaterials.COPPER.getInternalName() + "_boots", ModRegistries.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> COPPER_HELMET = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.getInternalName() + "_helmet", MysticalWorld.REGISTRY.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> COPPER_CHESTPLATE = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.getInternalName() + "_chestplate", MysticalWorld.REGISTRY.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> COPPER_LEGGINGS = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.getInternalName() + "_leggings", MysticalWorld.REGISTRY.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> COPPER_BOOTS = MysticalWorld.REGISTRY.registerItem(ModMaterials.COPPER.getInternalName() + "_boots", MysticalWorld.REGISTRY.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static RegistryObject<ArmorItem> LEAD_HELMET = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_helmet", ModRegistries.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> LEAD_CHESTPLATE = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_chestplate", ModRegistries.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> LEAD_LEGGINGS = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_leggings", ModRegistries.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> LEAD_BOOTS = ModRegistries.registerItem(ModMaterials.LEAD.getInternalName() + "_boots", ModRegistries.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> LEAD_HELMET = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.getInternalName() + "_helmet", MysticalWorld.REGISTRY.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> LEAD_CHESTPLATE = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.getInternalName() + "_chestplate", MysticalWorld.REGISTRY.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> LEAD_LEGGINGS = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.getInternalName() + "_leggings", MysticalWorld.REGISTRY.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> LEAD_BOOTS = MysticalWorld.REGISTRY.registerItem(ModMaterials.LEAD.getInternalName() + "_boots", MysticalWorld.REGISTRY.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static RegistryObject<ArmorItem> QUICKSILVER_HELMET = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_helmet", ModRegistries.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> QUICKSILVER_CHESTPLATE = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_chestplate", ModRegistries.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> QUICKSILVER_LEGGINGS = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_leggings", ModRegistries.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> QUICKSILVER_BOOTS = ModRegistries.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_boots", ModRegistries.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> QUICKSILVER_HELMET = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_helmet", MysticalWorld.REGISTRY.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> QUICKSILVER_CHESTPLATE = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_chestplate", MysticalWorld.REGISTRY.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> QUICKSILVER_LEGGINGS = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_leggings", MysticalWorld.REGISTRY.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> QUICKSILVER_BOOTS = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_boots", MysticalWorld.REGISTRY.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static RegistryObject<ArmorItem> SILVER_HELMET = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_helmet", ModRegistries.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> SILVER_CHESTPLATE = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_chestplate", ModRegistries.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> SILVER_LEGGINGS = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_leggings", ModRegistries.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> SILVER_BOOTS = ModRegistries.registerItem(ModMaterials.SILVER.getInternalName() + "_boots", ModRegistries.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> SILVER_HELMET = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_helmet", MysticalWorld.REGISTRY.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> SILVER_CHESTPLATE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_chestplate", MysticalWorld.REGISTRY.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> SILVER_LEGGINGS = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_leggings", MysticalWorld.REGISTRY.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> SILVER_BOOTS = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_boots", MysticalWorld.REGISTRY.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static RegistryObject<ArmorItem> TIN_HELMET = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_helmet", ModRegistries.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.HEAD, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> TIN_CHESTPLATE = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_chestplate", ModRegistries.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.CHEST, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> TIN_LEGGINGS = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_leggings", ModRegistries.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.LEGS, ModRegistries.SMG));
-  public static RegistryObject<ArmorItem> TIN_BOOTS = ModRegistries.registerItem(ModMaterials.TIN.getInternalName() + "_boots", ModRegistries.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.FEET, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> TIN_HELMET = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_helmet", MysticalWorld.REGISTRY.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.HEAD, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> TIN_CHESTPLATE = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_chestplate", MysticalWorld.REGISTRY.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.CHEST, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> TIN_LEGGINGS = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_leggings", MysticalWorld.REGISTRY.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.LEGS, ModRegistries.SMG));
+  public static RegistryObject<ArmorItem> TIN_BOOTS = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_boots", MysticalWorld.REGISTRY.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.FEET, ModRegistries.SMG));
 
-  public static void init() {}
+  public static void load() {}
 
   public static void registerItems (RegistryEvent.Register<Item> event) {
     ModCompost.init();
