@@ -117,6 +117,11 @@ dependencies {
 //    deobfCompile "info.tehnut.harvest:Harvest:1.12-1.2.7-20"
 }
 
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
+
+
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {

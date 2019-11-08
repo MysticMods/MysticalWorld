@@ -31,30 +31,34 @@ public class ModEntities {
   private static final String FROG_ID = "frog";
   private static final String SILVER_FOX_ID = "silver_fox";
   private static final String SPROUT_ID = "sprout";
+  private static final String ENDERMINI_ID = "endermini";
 
   private static EntityType<BeetleEntity> BEETLE_TYPE = (EntityType<BeetleEntity>) EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(BEETLE_ID).setRegistryName(MysticalWorld.MODID, BEETLE_ID);
   private static EntityType<DeerEntity> DEER_TYPE = (EntityType<DeerEntity>) EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(DEER_ID).setRegistryName(MysticalWorld.MODID, DEER_ID);
   private static EntityType<FrogEntity> FROG_TYPE = (EntityType<FrogEntity>) EntityType.Builder.create(FrogEntity::new, EntityClassification.AMBIENT).size(0.5f, 0.5f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(FROG_ID).setRegistryName(MysticalWorld.MODID, FROG_ID);
   private static EntityType<FoxEntity> SILVER_FOX_TYPE = (EntityType<FoxEntity>) EntityType.Builder.create(FoxEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(SILVER_FOX_ID).setRegistryName(MysticalWorld.MODID, SILVER_FOX_ID);
   private static EntityType<SproutEntity> SPROUT_TYPE = (EntityType<SproutEntity>) EntityType.Builder.create(SproutEntity::new, EntityClassification.CREATURE).size(0.5f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(SPROUT_ID).setRegistryName(MysticalWorld.MODID, SPROUT_ID);
+  private static EntityType<EnderminiEntity> ENDERMINI_TYPE = (EntityType<EnderminiEntity>) EntityType.Builder.create(EnderminiEntity::new, EntityClassification.MONSTER).size(0.3f, 1.45f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(ENDERMINI_ID).setRegistryName(MysticalWorld.MODID, ENDERMINI_ID);
 
   public static Supplier<EntityType<BeetleEntity>> BEETLE = () -> BEETLE_TYPE;
   public static Supplier<EntityType<DeerEntity>> DEER = () -> DEER_TYPE;
   public static Supplier<EntityType<FrogEntity>> FROG = () -> FROG_TYPE;
   public static Supplier<EntityType<FoxEntity>> SILVER_FOX = () -> SILVER_FOX_TYPE;
   public static Supplier<EntityType<SproutEntity>> SPROUT = () -> SPROUT_TYPE;
+  public static Supplier<EntityType<EnderminiEntity>> ENDERMINI = () -> ENDERMINI_TYPE;
 
   public static RegistryObject<SpawnEggItem> SPAWN_BEETLE = MysticalWorld.REGISTRY.registerItem(BEETLE_ID + "_spawn_egg", () -> new SpawnEggItem(BEETLE_TYPE, 0x418594, 0x211D15, ModRegistries.SIG.get()));
   public static RegistryObject<SpawnEggItem> SPAWN_DEER = MysticalWorld.REGISTRY.registerItem(DEER_ID + "_spawn_egg", () -> new SpawnEggItem(DEER_TYPE, 0xa18458, 0x5e4d33, ModRegistries.SIG.get()));
   public static RegistryObject<SpawnEggItem> SPAWN_FROG = MysticalWorld.REGISTRY.registerItem(FROG_ID + "_spawn_egg", () -> new SpawnEggItem(FROG_TYPE, 0x285234, 0xDBE697, ModRegistries.SIG.get()));
   public static RegistryObject<SpawnEggItem> SPAWN_SPROUT = MysticalWorld.REGISTRY.registerItem(SPROUT_ID + "_spawn_egg", () -> new SpawnEggItem(SPROUT_TYPE, 0xe8f442, 0xd11f5a, ModRegistries.SIG.get()));
   public static RegistryObject<SpawnEggItem> SPAWN_SILVER_FOX = MysticalWorld.REGISTRY.registerItem(SILVER_FOX_ID + "_spawn_egg", () -> new SpawnEggItem(SILVER_FOX_TYPE, 0x9e9088, 0xF5E0D3, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_ENDERMINI = MysticalWorld.REGISTRY.registerItem(ENDERMINI_ID + "_spawn_egg", () -> new SpawnEggItem(ENDERMINI_TYPE, 0xa11e78, 0x650cbe, ModRegistries.SIG.get()));
 
   public static void load() {}
 
   public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
     IForgeRegistry<EntityType<?>> registry = event.getRegistry();
-    registry.registerAll(BEETLE_TYPE, DEER_TYPE, FROG_TYPE, SILVER_FOX_TYPE, SPROUT_TYPE);
+    registry.registerAll(BEETLE_TYPE, DEER_TYPE, FROG_TYPE, SILVER_FOX_TYPE, SPROUT_TYPE, ENDERMINI_TYPE);
 
     Set<Biome> biomes = new HashSet<>();
 
@@ -109,6 +113,16 @@ public class ModEntities {
       biomes.forEach(biome -> biome.getSpawns(EntityClassification.CREATURE).add(
           new Biome.SpawnListEntry(SILVER_FOX.get(), ConfigManager.SILVER_FOX_CONFIG.getChance(), ConfigManager.SILVER_FOX_CONFIG.getMin(),
               ConfigManager.SILVER_FOX_CONFIG.getMax())));
+    }
+
+    biomes.clear();
+
+    if (ConfigManager.ENDERMINI_CONFIG.shouldRegister()) {
+      for (String biomeName : ConfigManager.ENDERMINI_CONFIG.getBiomes()) {
+        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
+      }
+      biomes.forEach(biome -> biome.getSpawns(EntityClassification.MONSTER).add(
+          new Biome.SpawnListEntry(ENDERMINI.get(), ConfigManager.ENDERMINI_CONFIG.getChance(), ConfigManager.ENDERMINI_CONFIG.getMin(), ConfigManager.ENDERMINI_CONFIG.getMax())));
     }
 
     biomes.clear();

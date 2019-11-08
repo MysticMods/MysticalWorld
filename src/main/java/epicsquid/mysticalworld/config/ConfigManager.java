@@ -9,6 +9,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ConfigManager {
@@ -22,6 +23,7 @@ public class ConfigManager {
   public static MobConfig BEETLE_CONFIG;
   public static MobConfig SILVER_FOX_CONFIG;
   public static MobConfig FROG_CONFIG;
+  public static MobConfig ENDERMINI_CONFIG;
 
   static {
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
@@ -51,12 +53,14 @@ public class ConfigManager {
     SILVER_FOX_CONFIG = new MobConfig("Silver Fox", 4, 1, 3, Arrays.asList("FOREST", "COLD", "CONIFEROUS"));
     BEETLE_CONFIG = new MobConfig("Beetle", 5, 2, 4, Arrays.asList("SWAMP", "JUNGLE", "FOREST", "PLAINS"));
     FROG_CONFIG = new MobConfig("Frog", 6, 2, 4, Arrays.asList("SWAMP", "JUNGLE", "BEACH", "RIVER"));
+    ENDERMINI_CONFIG = new MobConfig("Endermini", 50, 1, 1, Collections.singletonList("END"));
 
     DEER_CONFIG.apply(COMMON_BUILDER);
     SPROUT_CONFIG.apply(COMMON_BUILDER);
     SILVER_FOX_CONFIG.apply(COMMON_BUILDER);
     BEETLE_CONFIG.apply(COMMON_BUILDER);
     FROG_CONFIG.apply(COMMON_BUILDER);
+    ENDERMINI_CONFIG.apply(COMMON_BUILDER);
   }
 
   public static void loadConfig(ForgeConfigSpec spec, Path path) {

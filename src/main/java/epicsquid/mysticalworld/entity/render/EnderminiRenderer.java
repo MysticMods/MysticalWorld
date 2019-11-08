@@ -31,6 +31,15 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EndermanMode
   }
 
   @Override
+  protected void renderModel(EnderminiEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+    GlStateManager.pushMatrix();
+    GlStateManager.scaled(0.4, 0.4, 0.4);
+    GlStateManager.translated(0, 2.2, 0);
+    super.renderModel(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
+    GlStateManager.popMatrix();
+  }
+
+  @Override
   public void doRender(EnderminiEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
     BlockState blockstate = entity.getHeldBlockState();
     EndermanModel<EnderminiEntity> endermanmodel = this.getEntityModel();
@@ -91,7 +100,6 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EndermanMode
   }
 
   public static class Factory implements IRenderFactory<EnderminiEntity> {
-
     @Override
     public EntityRenderer<? super EnderminiEntity> createRenderFor(EntityRendererManager manager) {
       return new EnderminiRenderer(manager, ModelHolder.enderminiModel, 0.35f);

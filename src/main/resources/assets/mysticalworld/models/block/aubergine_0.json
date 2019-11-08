@@ -1,7 +1,7 @@
 {
   "parent": "block/crop",
   "textures": {
-    "particle": "mysticalworld:blocks/aubergine_0",
-    "crop": "mysticalworld:blocks/aubergine_0"
+    "particle": "mysticalworld:block/aubergine_0",
+    "crop": "mysticalworld:block/aubergine_0"
   }
 }

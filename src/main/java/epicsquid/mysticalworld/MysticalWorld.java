@@ -46,6 +46,7 @@ public class MysticalWorld {
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     modBus.addListener(setup::init);
+    modBus.addListener(setup::gatherData);
     ModItems.load();
     ModBlocks.load();
     ModEntities.load();

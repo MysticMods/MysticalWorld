@@ -13,40 +13,16 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class MudBlock extends Block {
-  protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
-
-  public static final IntegerProperty DRYNESS = IntegerProperty.create("dryness", 0, 5);
-
-  private Block dryEquivalent;
+  private static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
 
   public MudBlock(Properties props) {
     super(props);
-    this.setDefaultState(this.getDefaultState().with(DRYNESS, 5));
-  }
-
-  public Block getDryEquivalent() {
-    return dryEquivalent;
-  }
-
-  public MudBlock setDryEquivalent(Block dryEquivalent) {
-    this.dryEquivalent = dryEquivalent;
-    return this;
   }
 
   @Override
-  public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
-    super.tick(state, worldIn, pos, random);
-
-    int i = state.get(DRYNESS);
-    if (i == 0) {
-      worldIn.setBlockState(pos, getDryEquivalent().getDefaultState(), 2);
-    } else {
-      worldIn.setBlockState(pos, state.with(DRYNESS, i - 1), 2);
-    }
-  }
-
-  public void onEntityCollision(World worldIn, BlockPos pos, BlockState state, Entity entityIn) {
+  public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
     entityIn.setMotion(entityIn.getMotion().getX() * 0.4, entityIn.getMotion().getY(), entityIn.getMotion().getZ() * 0.4);
+    super.onEntityCollision(state, worldIn, pos, entityIn);
   }
 
   @Override

@@ -24,16 +24,13 @@ public class UnripePearlItem extends Item {
     if (!world.isRemote) {
       int counter = 0;
       boolean flag;
-      while (true) {
+      do {
         double d0 = player.posX + (Util.rand.nextDouble() - 0.5D) * 64.0D;
         double d1 = player.posY + (double) (Util.rand.nextInt(64) - 32);
         double d2 = player.posZ + (Util.rand.nextDouble() - 0.5D) * 64.0D;
         flag = player.attemptTeleport(d0, d1, d2, false);
         counter++;
-        if (flag || counter == 15) {
-          break;
-        }
-      }
+      } while (!flag && counter != 15);
       if (flag) {
         player.world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, player.getSoundCategory(), 1.0F, 1.0F);
         player.playSound(ModSounds.Endermini.PORTAL, 1.0F, 1.0F);
@@ -44,7 +41,6 @@ public class UnripePearlItem extends Item {
       }
     }
 
-    //    player.addStat(Stat.getObjectUseStats(this));
     return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
   }
 }

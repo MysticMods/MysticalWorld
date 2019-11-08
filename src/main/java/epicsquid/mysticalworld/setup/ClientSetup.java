@@ -25,8 +25,6 @@ public class ClientSetup {
     RenderingRegistry.registerEntityRenderingHandler(FrogEntity.class, new FrogRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(SproutEntity.class, new SproutRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.Factory());
-
-    //ScreenManager.registerFactory(ModContainers.RED_PAINTED_CHEST, ChestScreen::new);
-    //ClientRegistry.bindTileEntitySpecialRenderer(PaintedChestTileEntity.class, new PaintedChestTileEntityRenderer());
+    RenderingRegistry.registerEntityRenderingHandler(EnderminiEntity.class, new EnderminiRenderer.Factory());
   }
 }

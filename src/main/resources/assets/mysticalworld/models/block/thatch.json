@@ -2,9 +2,9 @@
   "__comment": "Designed by Elucent with Cubik Studio - https://cubik.studio",
   "parent": "block/block",
   "textures": {
-    "particle": "mysticalworld:blocks/thatch",
-    "face": "mysticalworld:blocks/thatch",
-    "border": "mysticalworld:blocks/thatch_border"
+    "particle": "mysticalworld:block/thatch",
+    "face": "mysticalworld:block/thatch",
+    "border": "mysticalworld:block/thatch_border"
   },
   "elements": [
     {
