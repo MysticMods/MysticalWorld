@@ -53,7 +53,7 @@ public class ConfigManager {
     SILVER_FOX_CONFIG = new MobConfig("Silver Fox", 4, 1, 3, Arrays.asList("FOREST", "COLD", "CONIFEROUS"));
     BEETLE_CONFIG = new MobConfig("Beetle", 5, 2, 4, Arrays.asList("SWAMP", "JUNGLE", "FOREST", "PLAINS"));
     FROG_CONFIG = new MobConfig("Frog", 6, 2, 4, Arrays.asList("SWAMP", "JUNGLE", "BEACH", "RIVER"));
-    ENDERMINI_CONFIG = new MobConfig("Endermini", 50, 1, 1, Collections.singletonList("END"));
+    ENDERMINI_CONFIG = new MobConfig("Endermini", 1, 1, 2, Collections.singletonList("END"));
 
     DEER_CONFIG.apply(COMMON_BUILDER);
     SPROUT_CONFIG.apply(COMMON_BUILDER);
