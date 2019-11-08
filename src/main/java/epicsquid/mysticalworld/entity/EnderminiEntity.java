@@ -46,8 +46,6 @@ public class EnderminiEntity extends CreatureEntity {
 
   public EnderminiEntity(EntityType<? extends EnderminiEntity> type, World worldIn) {
     super(type, worldIn);
-
-//		this.setSize(0.3F, 1.45F);
     this.stepHeight = 1.0F;
     this.setPathPriority(PathNodeType.WATER, -1.0F);
   }
@@ -238,7 +236,7 @@ public class EnderminiEntity extends CreatureEntity {
   @Override
   @Nullable
   public ResourceLocation getLootTable() {
-    return LOOT_TABLE;
+    return new ResourceLocation(MysticalWorld.MODID, "entities/endermini");
   }
 
   /**
