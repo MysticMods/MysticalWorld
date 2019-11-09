@@ -9,6 +9,9 @@ public class ModFoods {
   public static final Food VENISON = (new Food.Builder().hunger(3).meat().saturation(0.3f)).build();
   public static final Food COOKED_VENISON = (new Food.Builder().hunger(7).meat().saturation(0.8f)).build();
   public static final Food AUBERGINE = (new Food.Builder().hunger(4).saturation(0.3f)).build();
+  public static final Food COOKED_BEETROOT = (new Food.Builder()).hunger(4).saturation(0.8F).build();
+  public static final Food COOKED_CARROT = (new Food.Builder()).hunger(4).saturation(0.6F).build();
+  public static final Food SLICED_CARROT = (new Food.Builder()).hunger(1).saturation(0.6F).fastToEat().build();
   public static final Food COOKED_AUBERGINE = (new Food.Builder().hunger(5).saturation(0.8f)).build();
   public static final Food STUFFED_AUBERGINE = (new Food.Builder().hunger(10).saturation(0.8f)).build();
   public static final Food RAW_SQUID = (new Food.Builder().hunger(1).saturation(0.3f)).meat().build();

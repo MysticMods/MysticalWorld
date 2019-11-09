@@ -154,5 +154,9 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     generated(ModItems.SILK_THREAD);
     generated(ModItems.SPINDLE);
     generated(ModItems.SILK_COCOON);
+
+    generated(ModItems.COOKED_BEETROOT);
+    generated(ModItems.COOKED_CARROT);
+    generated(ModItems.SLICED_CARROT);
   }
 }
