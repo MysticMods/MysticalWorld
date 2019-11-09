@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticalworld:mud_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:mud_brick",
+    "count": 4
+  }
+}

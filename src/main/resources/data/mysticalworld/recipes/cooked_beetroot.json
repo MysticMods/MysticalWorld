@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:beetroot"
+  },
+  "result": "mysticalworld:cooked_beetroot",
+  "experience": 0.3,
+  "cookingtime": 200
+}

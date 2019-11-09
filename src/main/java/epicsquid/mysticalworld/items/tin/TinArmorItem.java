@@ -1,8 +1,10 @@
 package epicsquid.mysticalworld.items.tin;
 
 import com.google.common.collect.Multimap;
+import epicsquid.mysticallib.material.MaterialType;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 
@@ -21,7 +23,7 @@ public class TinArmorItem extends ModifiedArmorItem implements ITinItem {
         val = 0.5f;
       }
       final float val2 = val;
-      //map.put(PlayerEntity.REACH_DISTANCE.getName(), getOrCreateModifier(PlayerEntity.REACH_DISTANCE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Reachiness", val2, AttributeModifier.Operation.ADDITION)));
+      map.put(PlayerEntity.REACH_DISTANCE.getName(), getOrCreateModifier(PlayerEntity.REACH_DISTANCE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Reachiness", val2, AttributeModifier.Operation.ADDITION)));
     }
 
     return map;

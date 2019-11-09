@@ -1,7 +1,9 @@
 package epicsquid.mysticalworld.items.lead;
 
 import com.google.common.collect.Multimap;
+import epicsquid.mysticallib.material.MaterialType;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
@@ -21,7 +23,7 @@ public class LeadArmorItem extends ModifiedArmorItem implements ILeadItem {
         val = 0.20f;
       }
       final float val2 = val;
-      //map.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), getOrCreateModifier(SharedMonsterAttributes.KNOCKBACK_RESISTANCE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Knockback resistance", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
+      map.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), getOrCreateModifier(SharedMonsterAttributes.KNOCKBACK_RESISTANCE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Knockback resistance", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
     }
 
     return map;

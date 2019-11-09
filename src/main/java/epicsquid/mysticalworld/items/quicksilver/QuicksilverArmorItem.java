@@ -1,10 +1,13 @@
 package epicsquid.mysticalworld.items.quicksilver;
 
 import com.google.common.collect.Multimap;
+import epicsquid.mysticallib.material.MaterialType;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
@@ -39,7 +42,8 @@ public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksil
         val = 0.1f;
       }
       final float val2 = val;
-      //map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), getOrCreateModifier(SharedMonsterAttributes.MOVEMENT_SPEED, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Movement speed", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
+      map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), getOrCreateModifier(SharedMonsterAttributes.MOVEMENT_SPEED, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Movement speed", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
+      map.put(PlayerEntity.SWIM_SPEED.getName(), getOrCreateModifier(PlayerEntity.SWIM_SPEED, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Movement speed", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
     }
 
     return map;

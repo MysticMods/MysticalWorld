@@ -1,7 +1,9 @@
 package epicsquid.mysticalworld.items.copper;
 
 import com.google.common.collect.Multimap;
+import epicsquid.mysticallib.material.MaterialType;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
@@ -16,7 +18,7 @@ public class CopperArmorItem extends ModifiedArmorItem implements ICopperItem {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
 
     if (this.slot == equipmentSlot) {
-      //map.put(SharedMonsterAttributes.MAX_HEALTH.getName(), getOrCreateModifier(SharedMonsterAttributes.MAX_HEALTH, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Healthiness", 1f, AttributeModifier.Operation.ADDITION)));
+      map.put(SharedMonsterAttributes.MAX_HEALTH.getName(), getOrCreateModifier(SharedMonsterAttributes.MAX_HEALTH, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Healthiness", 1f, AttributeModifier.Operation.ADDITION)));
     }
 
     return map;

@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.RegistryManager;
 import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
