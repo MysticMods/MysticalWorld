@@ -1,9 +1,7 @@
 package epicsquid.mysticalworld.config;
 
 import epicsquid.mysticallib.block.BaseOreBlock;
-import epicsquid.mysticalworld.blocks.XPOreBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.OreBlock;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.RegistryObject;
 
