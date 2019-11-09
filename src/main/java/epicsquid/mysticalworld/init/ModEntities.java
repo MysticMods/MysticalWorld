@@ -62,9 +62,9 @@ public class ModEntities {
   public static RegistryObject<SpawnEggItem> SPAWN_SPROUT = MysticalWorld.REGISTRY.registerItem(SPROUT_ID + "_spawn_egg", () -> new SpawnEggItem(SPROUT_TYPE, 0xe8f442, 0xd11f5a, ModRegistries.SIG.get()));
   public static RegistryObject<SpawnEggItem> SPAWN_SILVER_FOX = MysticalWorld.REGISTRY.registerItem(SILVER_FOX_ID + "_spawn_egg", () -> new SpawnEggItem(SILVER_FOX_TYPE, 0x9e9088, 0xF5E0D3, ModRegistries.SIG.get()));
   public static RegistryObject<SpawnEggItem> SPAWN_ENDERMINI = MysticalWorld.REGISTRY.registerItem(ENDERMINI_ID + "_spawn_egg", () -> new SpawnEggItem(ENDERMINI_TYPE, 0xa11e78, 0x650cbe, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_LAVA_CAT = MysticalWorld.REGISTRY.registerItem(ENDERMINI_ID + "_spawn_egg", () -> new SpawnEggItem(LAVA_CAT_TYPE, 0xde3535, 0xe89613, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_OWL = MysticalWorld.REGISTRY.registerItem(ENDERMINI_ID + "_spawn_egg", () -> new SpawnEggItem(OWL_TYPE, 0x8c654a, 0xdec9ba, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_SILKWORM = MysticalWorld.REGISTRY.registerItem(ENDERMINI_ID + "_spawn_egg", () -> new SpawnEggItem(SILKWORM_TYPE, 0xd1cecd, 0x635e5b, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_LAVA_CAT = MysticalWorld.REGISTRY.registerItem(LAVA_CAT_ID + "_spawn_egg", () -> new SpawnEggItem(LAVA_CAT_TYPE, 0xde3535, 0xe89613, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_OWL = MysticalWorld.REGISTRY.registerItem(OWL_ID + "_spawn_egg", () -> new SpawnEggItem(OWL_TYPE, 0x8c654a, 0xdec9ba, ModRegistries.SIG.get()));
+  public static RegistryObject<SpawnEggItem> SPAWN_SILKWORM = MysticalWorld.REGISTRY.registerItem(SILKWORM_ID + "_spawn_egg", () -> new SpawnEggItem(SILKWORM_TYPE, 0xd1cecd, 0x635e5b, ModRegistries.SIG.get()));
 
   public static void load() {}
 

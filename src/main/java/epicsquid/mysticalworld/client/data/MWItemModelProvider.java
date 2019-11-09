@@ -146,5 +146,13 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     spawnEgg(ModEntities.SPAWN_SPROUT);
     spawnEgg(ModEntities.SPAWN_SILVER_FOX);
     spawnEgg(ModEntities.SPAWN_ENDERMINI);
+    spawnEgg(ModEntities.SPAWN_LAVA_CAT);
+    spawnEgg(ModEntities.SPAWN_SILKWORM);
+    spawnEgg(ModEntities.SPAWN_OWL);
+
+    generated(ModItems.SILKWORM_EGG);
+    generated(ModItems.SILK_THREAD);
+    generated(ModItems.SPINDLE);
+    generated(ModItems.SILK_COCOON);
   }
 }
