@@ -15,6 +15,7 @@
   "item.mysticalworld.silk_cocoon": "Silk Cocoon",
   "item.mysticalworld.silk_thread": "Silk Thread",
   "item.mysticalworld.spindle": "Spindle",
+  "item.mysticalworld.silkworm_egg": "Silkworm Egg",
   "_comment": "Advancements",
   "advancement.mysticalworld.root": "Mystical World",
   "advancement.mysticalworld.root.desc": "Breathe in a brand new, mystical world!",
@@ -163,5 +164,9 @@
   "item.mysticalworld.epic_squid": "Epic Squid",
   "item.mysticalworld.unripe_ender_pearl": "Unripe Ender Pearl",
   "message.squid.cooldown": "Give it time to produce more ink!",
-  "attribute.name.generic.reachDistance": "Reach"
+  "attribute.name.generic.reachDistance": "Reach",
+  "block.mysticalworld.mud_brick": "Mud Bricks",
+  "block.mysticalworld.mud_block": "Mud Block",
+  "block.mysticalworld.wet_mud_brick": "Wet Mud Bricks",
+  "block.mysticalworld.wet_mud_block": "Wet Mud Block"
 }
