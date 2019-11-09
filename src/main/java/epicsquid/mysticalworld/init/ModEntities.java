@@ -139,6 +139,29 @@ public class ModEntities {
 
     biomes.clear();
 
+    if (ConfigManager.OWL_CONFIG.shouldRegister()) {
+      for (String biomeName : ConfigManager.OWL_CONFIG.getBiomes()) {
+        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
+      }
+      biomes.forEach(biome -> biome.getSpawns(EntityClassification.CREATURE).add(
+          new Biome.SpawnListEntry(OWL.get(), ConfigManager.OWL_CONFIG.getChance(), ConfigManager.OWL_CONFIG.getMin(),
+              ConfigManager.OWL_CONFIG.getMax())));
+    }
+
+    biomes.clear();
+
+    if (ConfigManager.LAVA_CAT_CONFIG.shouldRegister()) {
+      for (String biomeName : ConfigManager.LAVA_CAT_CONFIG.getBiomes()) {
+        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
+      }
+      // For hell biomes they have to spawn as monsters
+      // or at least they had to in 1.12...
+      // TODO
+      biomes.forEach(biome -> biome.getSpawns(EntityClassification.MONSTER).add(
+          new Biome.SpawnListEntry(LAVA_CAT.get(), ConfigManager.LAVA_CAT_CONFIG.getChance(), ConfigManager.LAVA_CAT_CONFIG.getMin(),
+              ConfigManager.LAVA_CAT_CONFIG.getMax())));
+    }
+
     EntitySpawnPlacementRegistry.register(DEER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
         AnimalEntity::func_223316_b);
     EntitySpawnPlacementRegistry.register(FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
@@ -149,5 +172,7 @@ public class ModEntities {
         AnimalEntity::func_223316_b);
     EntitySpawnPlacementRegistry.register(BEETLE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
         AnimalEntity::func_223316_b);
+    EntitySpawnPlacementRegistry.register(OWL.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING, OwlEntity::placement);
+    EntitySpawnPlacementRegistry.register(LAVA_CAT.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING, LavaCatEntity::placement);
   }
 }

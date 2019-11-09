@@ -6,8 +6,8 @@ import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.IFlyingAnimal;
-import net.minecraft.entity.passive.ParrotEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -121,6 +121,11 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
     BlockPos blockpos = new BlockPos(i, j, k);
     Block block = worldIn.getBlockState(blockpos.down()).getBlock();
     return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || block instanceof LogBlock || block == Blocks.AIR && worldIn.getLight(blockpos) > 8 && super.canSpawn(worldIn, spawnReasonIn);
+  }
+
+  public static boolean placement (EntityType<? extends AnimalEntity> p_223316_0_, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random p_223316_4_) {
+    Block block = worldIn.getBlockState(blockpos.down()).getBlock();
+    return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || block instanceof LogBlock || block == Blocks.AIR && worldIn.getLight(blockpos) > 8;
   }
 
   @Override

@@ -2,6 +2,10 @@ package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModEntities;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.LogBlock;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
@@ -20,6 +24,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
@@ -27,6 +32,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 import java.util.UUID;
 
 public class LavaCatEntity extends TameableEntity {
@@ -59,6 +65,11 @@ public class LavaCatEntity extends TameableEntity {
     this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
     this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
     this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
+  }
+
+  public static boolean placement (EntityType<? extends AnimalEntity> p_223316_0_, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random p_223316_4_) {
+    Block block = worldIn.getBlockState(blockpos.down()).getBlock();
+    return block == Blocks.NETHERRACK || block == Blocks.OBSIDIAN || block == Blocks.MAGMA_BLOCK || block == Blocks.SOUL_SAND || block == Blocks.NETHER_BRICKS || block == Blocks.BONE_BLOCK || block == Blocks.AIR;
   }
 
   @Override
