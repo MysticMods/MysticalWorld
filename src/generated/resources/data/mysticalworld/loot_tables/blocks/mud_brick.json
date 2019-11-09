@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mysticalworld:amethyst"
+          "name": "mysticalworld:mud_brick"
         }
       ],
       "conditions": [

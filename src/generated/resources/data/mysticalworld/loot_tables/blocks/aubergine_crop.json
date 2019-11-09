@@ -3,7 +3,6 @@
   "pools": [
     {
       "rolls": 1.0,
-      "name": "aubergine_crop0",
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -31,7 +30,6 @@
     },
     {
       "rolls": 1.0,
-      "name": "aubergine_crop1",
       "entries": [
         {
           "type": "minecraft:item",
