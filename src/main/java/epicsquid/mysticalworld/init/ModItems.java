@@ -21,6 +21,10 @@ public class ModItems {
   public static RegistryObject<Item> ANTLERS = MysticalWorld.REGISTRY.registerItem("antlers", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));
   public static RegistryObject<DyeItem> INK_BOTTLE = MysticalWorld.REGISTRY.registerItem("ink_bottle", MysticalWorld.REGISTRY.dyeItem(DyeColor.BLACK, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).containerItem(Items.GLASS_BOTTLE)));
   public static RegistryObject<UnripePearlItem> UNRIPE_ENDER_PEARL = MysticalWorld.REGISTRY.registerItem("unripe_ender_pearl", MysticalWorld.REGISTRY.item(UnripePearlItem::new, ModRegistries.SIG));
+  public static RegistryObject<SilkwormEgg> SILKWORM_EGG = MysticalWorld.REGISTRY.registerItem("silkworm_egg", MysticalWorld.REGISTRY.item(SilkwormEgg::new, ModRegistries.SIG));
+  public static RegistryObject<Item> SILK_COCOON = MysticalWorld.REGISTRY.registerItem("silk_cocoon", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));
+  public static RegistryObject<Item> SILK_THREAD = MysticalWorld.REGISTRY.registerItem("silk_thread", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));
+  public static RegistryObject<Item> SPINDLE = MysticalWorld.REGISTRY.registerItem("spindle", MysticalWorld.REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(64).maxStackSize(1)));
 
   public static RegistryObject<Item> VENISON = MysticalWorld.REGISTRY.registerItem("venison", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.VENISON)));
   public static RegistryObject<Item> COOKED_VENISON = MysticalWorld.REGISTRY.registerItem("cooked_venison", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_VENISON)));

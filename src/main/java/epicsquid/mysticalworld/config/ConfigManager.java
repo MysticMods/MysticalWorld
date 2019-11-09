@@ -24,6 +24,10 @@ public class ConfigManager {
   public static MobConfig SILVER_FOX_CONFIG;
   public static MobConfig FROG_CONFIG;
   public static MobConfig ENDERMINI_CONFIG;
+  public static MobConfig LAVA_CAT_CONFIG;
+  public static MobConfig OWL_CONFIG;
+  public static SilkwormConfig SILKWORM_CONFIG;
+
 
   static {
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
@@ -54,6 +58,9 @@ public class ConfigManager {
     BEETLE_CONFIG = new MobConfig("Beetle", 5, 2, 4, Arrays.asList("SWAMP", "JUNGLE", "FOREST", "PLAINS"));
     FROG_CONFIG = new MobConfig("Frog", 6, 2, 4, Arrays.asList("SWAMP", "JUNGLE", "BEACH", "RIVER"));
     ENDERMINI_CONFIG = new MobConfig("Endermini", 1, 1, 2, Collections.singletonList("END"));
+    OWL_CONFIG = new MobConfig("Owl", 9, 1, 3, Arrays.asList("CONIFEROUS", "SPOOKY", "MAGICAL", "FOREST", "MOUNTAIN", "SNOWY"));
+    LAVA_CAT_CONFIG = new MobConfig("Lava Cat", 2, 1, 1, Collections.singletonList("NETHER")); // Test
+    SILKWORM_CONFIG = new SilkwormConfig(true, 55, 2, 85);
 
     DEER_CONFIG.apply(COMMON_BUILDER);
     SPROUT_CONFIG.apply(COMMON_BUILDER);
@@ -61,6 +68,9 @@ public class ConfigManager {
     BEETLE_CONFIG.apply(COMMON_BUILDER);
     FROG_CONFIG.apply(COMMON_BUILDER);
     ENDERMINI_CONFIG.apply(COMMON_BUILDER);
+    OWL_CONFIG.apply(COMMON_BUILDER);
+    LAVA_CAT_CONFIG.apply(COMMON_BUILDER);
+    SILKWORM_CONFIG.apply(COMMON_BUILDER);
   }
 
   public static void loadConfig(ForgeConfigSpec spec, Path path) {

@@ -1,21 +1,14 @@
 package epicsquid.mysticalworld.setup;
 
-import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import epicsquid.mysticalworld.entity.render.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IReloadableResourceManager;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
-
-  @SubscribeEvent
   public static void init(FMLClientSetupEvent event) {
     ((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new ModelHolder());
     ModelHolder.init();
@@ -26,5 +19,8 @@ public class ClientSetup {
     RenderingRegistry.registerEntityRenderingHandler(SproutEntity.class, new SproutRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(EnderminiEntity.class, new EnderminiRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(OwlEntity.class, new OwlRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(LavaCatEntity.class, new LavaCatRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(SilkwormEntity.class, new SilkwormRenderer.Factory());
   }
 }

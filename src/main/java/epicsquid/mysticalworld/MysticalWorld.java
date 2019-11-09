@@ -2,17 +2,22 @@ package epicsquid.mysticalworld;
 
 import epicsquid.mysticallib.registry.ModRegistry;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.events.LeafHandler;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModRegistries;
+import epicsquid.mysticalworld.setup.ClientSetup;
 import epicsquid.mysticalworld.setup.ModSetup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -43,18 +48,27 @@ public class MysticalWorld {
   public static ModSetup setup = new ModSetup();
 
   public MysticalWorld() {
+    ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
+
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-    modBus.addListener(setup::init);
-    modBus.addListener(setup::gatherData);
+    // This is literally to ensure that they static declarations are loaded
+    // before we attempt to actually register stuff.
     ModItems.load();
     ModBlocks.load();
     ModEntities.load();
 
+    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+      modBus.addListener(ClientSetup::init);
+    });
+
+    modBus.addListener(setup::init);
+    modBus.addListener(setup::gatherData);
     modBus.addGenericListener(EntityType.class, EventPriority.LOWEST, ModEntities::registerEntities);
     modBus.addGenericListener(Item.class, EventPriority.LOWEST, ModItems::registerItems);
 
-    ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
     REGISTRY.registerEventBus(modBus);
+
+    MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
   }
 }
