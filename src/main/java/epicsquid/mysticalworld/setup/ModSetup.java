@@ -4,6 +4,7 @@ import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.client.data.MWBlockstateProvider;
 import epicsquid.mysticalworld.client.data.MWItemModelProvider;
+import epicsquid.mysticalworld.data.MWLootTableProvider;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.world.OreGen;
 import net.minecraft.data.DataGenerator;
@@ -31,7 +32,7 @@ public class ModSetup {
       gen.addProvider(new MWItemModelProvider(gen, event.getExistingFileHelper()));
     }
     if (event.includeServer()) {
-
+      gen.addProvider(new MWLootTableProvider(gen));
     }
   }
 }

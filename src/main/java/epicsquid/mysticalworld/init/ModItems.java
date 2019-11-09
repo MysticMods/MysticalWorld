@@ -24,7 +24,7 @@ public class ModItems {
   public static RegistryObject<SilkwormEgg> SILKWORM_EGG = MysticalWorld.REGISTRY.registerItem("silkworm_egg", MysticalWorld.REGISTRY.item(SilkwormEgg::new, ModRegistries.SIG));
   public static RegistryObject<Item> SILK_COCOON = MysticalWorld.REGISTRY.registerItem("silk_cocoon", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));
   public static RegistryObject<Item> SILK_THREAD = MysticalWorld.REGISTRY.registerItem("silk_thread", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));
-  public static RegistryObject<Item> SPINDLE = MysticalWorld.REGISTRY.registerItem("spindle", MysticalWorld.REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(64).maxStackSize(1)));
+  public static RegistryObject<Item> SPINDLE = MysticalWorld.REGISTRY.registerItem("spindle", MysticalWorld.REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(64)));
 
   public static RegistryObject<Item> VENISON = MysticalWorld.REGISTRY.registerItem("venison", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.VENISON)));
   public static RegistryObject<Item> COOKED_VENISON = MysticalWorld.REGISTRY.registerItem("cooked_venison", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_VENISON)));

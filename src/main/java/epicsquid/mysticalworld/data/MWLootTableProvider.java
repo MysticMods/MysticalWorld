@@ -4,26 +4,26 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import epicsquid.mysticallib.data.DeferredBlockLootTableProvider;
 import epicsquid.mysticallib.data.DeferredEntityLootTableProvider;
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModItems;
+import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.*;
+import net.minecraft.world.storage.loot.LootParameterSet;
+import net.minecraft.world.storage.loot.LootParameterSets;
+import net.minecraft.world.storage.loot.LootTable;
+import net.minecraft.world.storage.loot.ValidationResults;
 import net.minecraft.world.storage.loot.conditions.BlockStateProperty;
-import net.minecraft.world.storage.loot.conditions.EntityHasProperty;
-import net.minecraft.world.storage.loot.functions.LootingEnchantBonus;
-import net.minecraft.world.storage.loot.functions.SetCount;
-import net.minecraft.world.storage.loot.functions.Smelt;
 
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("ConstantConditions")
 public class MWLootTableProvider extends LootTableProvider {
@@ -32,33 +32,17 @@ public class MWLootTableProvider extends LootTableProvider {
   }
 
   @Override
+  public String getName() {
+    return "Mystical World Loot Table Provider";
+  }
+
+  @Override
   protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
-    return ImmutableList.of(Pair.of(Blocks::new, LootParameterSets.BLOCK), Pair.of(Entities::new, LootParameterSets.ENTITY));
+    return ImmutableList.of(Pair.of(Blocks::new, LootParameterSets.BLOCK));
   }
 
   @Override
   protected void validate(Map<ResourceLocation, LootTable> map, ValidationResults validationresults) {
-    super.validate(map, validationresults);
-  }
-
-  public static class Entities extends DeferredEntityLootTableProvider {
-    @Override
-    public void addTables() {
-      /*
-         LootTable.builder()
-         .addLootPool(LootPool.builder()
-          .rolls(ConstantRange.of(1))
-          .addEntry(ItemLootEntry.builder(Items.FEATHER)
-           .acceptFunction(SetCount.builder(RandomValueRange.of(0.0 F, 2.0 F)))
-           .acceptFunction(LootingEnchantBonus.func_215915_a(RandomValueRange.of(0.0 F, 1.0 F)))))
-         .addLootPool(LootPool.builder()
-          .rolls(ConstantRange.of(1))
-          .addEntry(ItemLootEntry.builder(Items.CHICKEN)
-           .acceptFunction(Smelt.func_215953_b()
-            .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, PROPERTY_ON_FIRE)))
-           .acceptFunction(LootingEnchantBonus.func_215915_a(RandomValueRange.of(0.0 F, 1.0 F))))));
-       */
-    }
   }
 
   public static class Blocks extends DeferredBlockLootTableProvider {
@@ -87,6 +71,11 @@ public class MWLootTableProvider extends LootTableProvider {
       registerLootTable(ModBlocks.AUBERGINE_CROP.get(), b -> droppingAndBonusWhen(b, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), BlockStateProperty.builder(ModBlocks.AUBERGINE_CROP.get()).with(CropsBlock.AGE, 7)));
 
       orePieces(ModBlocks.AMETHYST_ORE, ModItems.AMETHYST_GEM);
+    }
+
+    @Override
+    protected Iterable<Block> getKnownBlocks() {
+      return MysticalWorld.REGISTRY.getBlocks().stream().map(Supplier::get).collect(Collectors.toList());
     }
   }
 }
