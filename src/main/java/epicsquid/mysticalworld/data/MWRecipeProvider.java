@@ -10,13 +10,10 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
 
-import java.util.Arrays;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class MWRecipeProvider extends DeferredRecipeProvider {
   public MWRecipeProvider(DataGenerator generatorIn) {
@@ -79,7 +76,7 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     storage(ModItems.TIN_NUGGET, ModItems.TIN_INGOT, consumer);
     storage(ModItems.LEAD_NUGGET, ModItems.LEAD_INGOT, consumer);
 
-    storage(ModItems.UNRIPE_ENDER_PEARL, () -> Items.ENDER_PEARL, consumer);
+    singleItem(ModItems.UNRIPE_ENDER_PEARL, () -> Items.ENDER_PEARL, 9, 1, consumer);
 
     pickaxe(ModItems.AMETHYST_GEM, ModItems.AMETHYST_PICKAXE, "pickaxe", consumer);
     pickaxe(ModItems.COPPER_INGOT, ModItems.COPPER_PICKAXE, "pickaxe", consumer);
