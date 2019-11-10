@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "mysticalworld:mud_block_wall",
-    "mysticalworld:mud_brick_wall"
+    "mysticalworld:mud_brick_wall",
+    "mysticalworld:charred_wall"
   ]
 }

@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "mysticalworld:mud_block_fence",
-    "mysticalworld:mud_brick_fence"
+    "mysticalworld:mud_brick_fence",
+    "mysticalworld:charred_fence"
   ]
 }

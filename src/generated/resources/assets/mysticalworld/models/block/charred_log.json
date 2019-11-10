@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "mysticalworld:block/charred_log",
+    "end": "mysticalworld:block/charred_log_top"
+  }
+}

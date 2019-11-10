@@ -6,6 +6,7 @@ import epicsquid.mysticalworld.blocks.MudBlock;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.fml.RegistryObject;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRY;
@@ -26,6 +27,14 @@ public class ModBlocks {
   //public static RegistryObject<StoneButtonBlock> MUD_BLOCK_BUTTON = REGISTRY.registerBlock("mud_block_button", REGISTRY.stoneButton(MUD_BLOCK), ModRegistries.SIG);
   //public static RegistryObject<TrapDoorBlock> MUD_BLOCK_TRAPDOOR = REGISTRY.registerBlock("mud_block_trapdoor", REGISTRY.trapDoor(MUD_BLOCK), ModRegistries.SIG);
   //public static RegistryObject<PressurePlateBlock> MUD_BLOCK_PRESSURE_PLATE = REGISTRY.registerBlock("mud_block_pressure_plate", REGISTRY.pressurePlate(MUD_BLOCK, PressurePlateBlock.Sensitivity.MOBS), ModRegistries.SIG);
+
+  public static RegistryObject<LogBlock> CHARRED_LOG = REGISTRY.registerBlock("charred_log", REGISTRY.log(MaterialColor.WOOD, () -> Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0f)), ModRegistries.SIG);
+  public static RegistryObject<Block> CHARRED_PLANKS = REGISTRY.registerBlock("charred_planks", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0f, 3.0f)), ModRegistries.SIG);
+  public static RegistryObject<StairsBlock> CHARRED_STAIRS = REGISTRY.registerBlock("charred_stairs", REGISTRY.stair(CHARRED_PLANKS), ModRegistries.SIG);
+  public static RegistryObject<SlabBlock> CHARRED_SLAB = REGISTRY.registerBlock("charred_slab", REGISTRY.slab(CHARRED_PLANKS), ModRegistries.SIG);
+  public static RegistryObject<WallBlock> CHARRED_WALL = REGISTRY.registerBlock("charred_wall", REGISTRY.wall(CHARRED_PLANKS), ModRegistries.SIG);
+  public static RegistryObject<FenceBlock> CHARRED_FENCE = REGISTRY.registerBlock("charred_fence", REGISTRY.fence(CHARRED_PLANKS), ModRegistries.SIG);
+  public static RegistryObject<FenceGateBlock> CHARRED_FENCE_GATE = REGISTRY.registerBlock("charred_fence_gate", REGISTRY.fenceGate(CHARRED_PLANKS), ModRegistries.SIG);
 
   public static RegistryObject<Block> MUD_BRICK = REGISTRY.registerBlock("mud_brick", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE)), ModRegistries.SIG);
   public static RegistryObject<StairsBlock> MUD_BRICK_STAIRS = REGISTRY.registerBlock("mud_brick_stairs", REGISTRY.stair(MUD_BRICK), ModRegistries.SIG);

@@ -38,6 +38,8 @@ public class Tags {
 
   public static class Items extends Tags {
     public static Tag<Item> SWORDS = compatTag("swords");
+    public static Tag<Item> KNIVES = modTag("knives");
+    public static Tag<Item> GEMS = modTag("gems");
 
     public static Tag<Item> AMETHYST_ORE = compatTag("ores/amethyst");
     public static Tag<Item> COPPER_ORE = compatTag("ores/copper");
