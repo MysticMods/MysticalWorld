@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chestplate",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:lead_ingot"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:lead_chestplate"
+  }
+}

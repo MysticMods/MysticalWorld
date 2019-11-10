@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:leather"
+    ]
+  },
+  "criteria": {
+    "has_pelt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:pelt"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:leather"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pelt",
+      "has_the_recipe"
+    ]
+  ]
+}
