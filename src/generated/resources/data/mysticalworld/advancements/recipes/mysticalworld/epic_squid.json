@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:epic_squid"
+    ]
+  },
+  "criteria": {
+    "has_squid": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:cooked_squid"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:epic_squid"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_squid",
+      "has_the_recipe"
+    ]
+  ]
+}

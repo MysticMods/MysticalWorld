@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:tin_ingot"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_tin_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:tin_nugget",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:tin_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_tin_nugget",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX ",
+    "XS ",
+    " S "
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:amethyst"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:amethyst_axe"
+  }
+}

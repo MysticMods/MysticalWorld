@@ -40,6 +40,14 @@ public class Tags {
     public static Tag<Item> SWORDS = compatTag("swords");
     public static Tag<Item> KNIVES = modTag("knives");
     public static Tag<Item> GEMS = modTag("gems");
+    public static Tag<Item> VEGETABLES = compatTag("vegetables");
+    public static Tag<Item> COOKED_VEGETABLES = compatTag("cooked_vegetables");
+
+    public static Tag<Item> COPPER_ITEMS = modTag("copper_items");
+    public static Tag<Item> LEAD_ITEMS = modTag("lead_items");
+    public static Tag<Item> QUICKSILVER_ITEMS = modTag("quicksilver_items");
+    public static Tag<Item> SILVER_ITEMS = modTag("silver_items");
+    public static Tag<Item> TIN_ITEMS = modTag("tin_items");
 
     public static Tag<Item> AMETHYST_ORE = compatTag("ores/amethyst");
     public static Tag<Item> COPPER_ORE = compatTag("ores/copper");

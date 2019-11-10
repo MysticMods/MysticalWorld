@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:ender_pearl"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_unripe_ender_pearl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:unripe_ender_pearl",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:ender_pearl"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_unripe_ender_pearl",
+      "has_the_recipe"
+    ]
+  ]
+}

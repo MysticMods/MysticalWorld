@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "minecraft:beetroot"
+  },
+  "result": "mysticalworld:cooked_beetroot",
+  "experience": 0.15,
+  "cookingtime": 100
+}

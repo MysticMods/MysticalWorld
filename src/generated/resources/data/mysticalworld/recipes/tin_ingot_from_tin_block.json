@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mysticalworld:tin_block"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:tin_ingot",
+    "count": 9
+  }
+}

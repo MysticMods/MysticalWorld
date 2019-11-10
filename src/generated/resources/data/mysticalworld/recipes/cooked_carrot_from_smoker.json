@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "minecraft:carrot"
+  },
+  "result": "mysticalworld:cooked_carrot",
+  "experience": 0.15,
+  "cookingtime": 100
+}

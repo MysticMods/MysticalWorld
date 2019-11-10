@@ -8,6 +8,7 @@ import epicsquid.mysticalworld.client.data.MWLangProvider;
 import epicsquid.mysticalworld.data.MWBlockTagsProvider;
 import epicsquid.mysticalworld.data.MWItemTagsProvider;
 import epicsquid.mysticalworld.data.MWLootTableProvider;
+import epicsquid.mysticalworld.data.MWRecipeProvider;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.world.OreGen;
 import net.minecraft.data.DataGenerator;
@@ -39,6 +40,7 @@ public class ModSetup {
       gen.addProvider(new MWLootTableProvider(gen));
       gen.addProvider(new MWBlockTagsProvider(gen));
       gen.addProvider(new MWItemTagsProvider(gen));
+      gen.addProvider(new MWRecipeProvider(gen));
     }
   }
 }

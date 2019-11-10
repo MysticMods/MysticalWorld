@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "mysticalworld:aubergine"
+  },
+  "result": "mysticalworld:cooked_aubergine",
+  "experience": 0.15,
+  "cookingtime": 100
+}

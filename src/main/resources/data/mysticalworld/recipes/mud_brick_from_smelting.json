@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "mysticalworld:wet_mud_brick"
-  },
-  "result": "mysticalworld:mud_brick",
-  "experience": 1.0,
-  "cookingtime": 200
-}
