@@ -3,7 +3,6 @@ package epicsquid.mysticalworld.data;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import epicsquid.mysticallib.data.DeferredBlockLootTableProvider;
-import epicsquid.mysticallib.data.DeferredEntityLootTableProvider;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModItems;
@@ -63,8 +62,20 @@ public class MWLootTableProvider extends LootTableProvider {
 
       self(ModBlocks.WET_MUD_BLOCK);
       self(ModBlocks.WET_MUD_BRICK);
+
       self(ModBlocks.MUD_BLOCK);
+      self(ModBlocks.MUD_BLOCK_STAIRS);
+      self(ModBlocks.MUD_BLOCK_SLAB);
+      self(ModBlocks.MUD_BLOCK_WALL);
+      self(ModBlocks.MUD_BLOCK_FENCE);
+      self(ModBlocks.MUD_BLOCK_FENCE_GATE);
+
       self(ModBlocks.MUD_BRICK);
+      self(ModBlocks.MUD_BRICK_STAIRS);
+      self(ModBlocks.MUD_BRICK_SLAB);
+      self(ModBlocks.MUD_BRICK_WALL);
+      self(ModBlocks.MUD_BRICK_FENCE);
+      self(ModBlocks.MUD_BRICK_FENCE_GATE);
 
       self(ModBlocks.THATCH);
 

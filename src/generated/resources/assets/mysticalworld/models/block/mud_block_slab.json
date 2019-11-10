@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "side": "mysticalworld:block/mud_block",
+    "bottom": "mysticalworld:block/mud_block",
+    "top": "mysticalworld:block/mud_block"
+  }
+}

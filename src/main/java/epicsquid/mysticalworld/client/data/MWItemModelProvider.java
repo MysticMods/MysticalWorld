@@ -31,8 +31,20 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
 
     blockItem(ModBlocks.WET_MUD_BLOCK);
     blockItem(ModBlocks.WET_MUD_BRICK);
+
     blockItem(ModBlocks.MUD_BLOCK);
+    blockItem(ModBlocks.MUD_BLOCK_STAIRS);
+    blockItem(ModBlocks.MUD_BLOCK_SLAB);
+    blockWithInventoryModel(ModBlocks.MUD_BLOCK_WALL);
+    blockWithInventoryModel(ModBlocks.MUD_BLOCK_FENCE);
+    blockItem(ModBlocks.MUD_BLOCK_FENCE_GATE);
+
     blockItem(ModBlocks.MUD_BRICK);
+    blockItem(ModBlocks.MUD_BRICK_STAIRS);
+    blockItem(ModBlocks.MUD_BRICK_SLAB);
+    blockWithInventoryModel(ModBlocks.MUD_BRICK_WALL);
+    blockWithInventoryModel(ModBlocks.MUD_BRICK_FENCE);
+    blockItem(ModBlocks.MUD_BRICK_FENCE_GATE);
 
     generated(ModItems.CARAPACE);
     generated(ModItems.PELT);

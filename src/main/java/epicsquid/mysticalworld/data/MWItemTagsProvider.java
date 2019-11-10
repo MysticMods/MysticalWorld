@@ -1,0 +1,79 @@
+package epicsquid.mysticalworld.data;
+
+import epicsquid.mysticallib.data.DeferredItemTagsProvider;
+import epicsquid.mysticalworld.init.ModBlocks;
+import epicsquid.mysticalworld.init.ModItems;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static epicsquid.mysticalworld.Tags.Items.*;
+import static epicsquid.mysticalworld.Tags.Blocks;
+
+public class MWItemTagsProvider extends DeferredItemTagsProvider {
+  public MWItemTagsProvider(DataGenerator generatorIn) {
+    super(generatorIn, "Mystical World Item Tags Provider");
+  }
+
+  @Override
+  protected void registerTags() {
+    addItemsToTag(AMETHYST_ORE, ModBlocks.AMETHYST_ORE);
+    addItemsToTag(COPPER_ORE, ModBlocks.COPPER_ORE);
+    addItemsToTag(LEAD_ORE, ModBlocks.LEAD_ORE);
+    addItemsToTag(QUICKSILVER_ORE, ModBlocks.QUICKSILVER_ORE);
+    addItemsToTag(SILVER_ORE, ModBlocks.SILVER_ORE);
+    addItemsToTag(TIN_ORE, ModBlocks.TIN_ORE);
+    appendToTag(Tags.Items.ORES, AMETHYST_ORE, COPPER_ORE, LEAD_ORE, QUICKSILVER_ORE, SILVER_ORE, TIN_ORE);
+
+    addItemsToTag(AMETHYST_BLOCK, ModBlocks.AMETHYST_BLOCK);
+    addItemsToTag(COPPER_BLOCK, ModBlocks.COPPER_BLOCK);
+    addItemsToTag(LEAD_BLOCK, ModBlocks.LEAD_BLOCK);
+    addItemsToTag(QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_BLOCK);
+    addItemsToTag(SILVER_BLOCK, ModBlocks.SILVER_BLOCK);
+    addItemsToTag(TIN_BLOCK, ModBlocks.TIN_BLOCK);
+    appendToTag(Tags.Items.STORAGE_BLOCKS, AMETHYST_BLOCK, COPPER_BLOCK, LEAD_BLOCK, QUICKSILVER_BLOCK, SILVER_BLOCK, TIN_BLOCK);
+
+    addItemsToTag(AMETHYST_GEM, ModItems.AMETHYST_GEM);
+    appendToTag(Tags.Items.GEMS, AMETHYST_GEM);
+
+    addItemsToTag(COPPER_INGOT, ModItems.COPPER_INGOT);
+    addItemsToTag(LEAD_INGOT, ModItems.LEAD_INGOT);
+    addItemsToTag(QUICKSILVER_INGOT, ModItems.QUICKSILVER_INGOT);
+    addItemsToTag(SILVER_INGOT, ModItems.SILVER_INGOT);
+    addItemsToTag(TIN_INGOT, ModItems.TIN_INGOT);
+    appendToTag(Tags.Items.INGOTS, COPPER_INGOT, LEAD_INGOT, QUICKSILVER_INGOT, SILVER_INGOT, TIN_INGOT);
+
+    addItemsToTag(COPPER_NUGGET, ModItems.COPPER_NUGGET);
+    addItemsToTag(LEAD_NUGGET, ModItems.LEAD_NUGGET);
+    addItemsToTag(QUICKSILVER_NUGGET, ModItems.QUICKSILVER_NUGGET);
+    addItemsToTag(SILVER_NUGGET, ModItems.SILVER_NUGGET);
+    addItemsToTag(TIN_NUGGET, ModItems.TIN_NUGGET);
+    appendToTag(Tags.Items.NUGGETS, COPPER_NUGGET, LEAD_NUGGET, QUICKSILVER_NUGGET, SILVER_NUGGET, TIN_NUGGET);
+
+    addItemsToTag(COPPER_DUST, ModItems.COPPER_DUST);
+    addItemsToTag(LEAD_DUST, ModItems.LEAD_DUST);
+    addItemsToTag(QUICKSILVER_DUST, ModItems.QUICKSILVER_DUST);
+    addItemsToTag(SILVER_DUST, ModItems.SILVER_DUST);
+    addItemsToTag(TIN_DUST, ModItems.TIN_DUST);
+    addItemsToTag(GOLD_DUST, ModItems.GOLD_DUST);
+    addItemsToTag(IRON_DUST, ModItems.IRON_DUST);
+    appendToTag(Tags.Items.DUSTS, COPPER_DUST, LEAD_DUST, QUICKSILVER_DUST, SILVER_DUST, TIN_DUST, GOLD_DUST, IRON_DUST);
+
+    addItemsToTag(SWORDS, ModItems.AMETHYST_SWORD, ModItems.CACTUS_SWORD, ModItems.COPPER_SWORD, ModItems.LEAD_SWORD, ModItems.QUICKSILVER_SWORD, ModItems.SILVER_SWORD, ModItems.TIN_SWORD);
+
+    copy(Blocks.FENCES, FENCES);
+    copy(Blocks.SLABS, SLABS);
+    copy(Blocks.WALLS, WALLS);
+    copy(Blocks.STAIRS, STAIRS);
+
+    copy(Blocks.WOODEN_FENCES, WOODEN_FENCES);
+    copy(Blocks.WOODEN_SLABS, WOODEN_SLABS);
+    copy(Blocks.WOODEN_STAIRS, WOODEN_STAIRS);
+
+    copy(Blocks.LOGS, LOGS);
+    copy(Blocks.PLANKS, PLANKS);
+  }
+}
