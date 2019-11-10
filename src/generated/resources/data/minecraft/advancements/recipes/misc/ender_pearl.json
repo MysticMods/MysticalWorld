@@ -6,15 +6,12 @@
     ]
   },
   "criteria": {
-    "has_at_least_9_unripe_ender_pearl": {
+    "has_unripe_ender_pearl": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:unripe_ender_pearl",
-            "count": {
-              "min": 9
-            }
+            "item": "mysticalworld:unripe_ender_pearl"
           }
         ]
       }
@@ -28,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_at_least_9_unripe_ender_pearl",
+      "has_unripe_ender_pearl",
       "has_the_recipe"
     ]
   ]
