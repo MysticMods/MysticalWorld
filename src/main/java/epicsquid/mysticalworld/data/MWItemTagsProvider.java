@@ -66,7 +66,7 @@ public class MWItemTagsProvider extends DeferredItemTagsProvider {
 
     addItemsToTag(GEMS, ModItems.AMETHYST_GEM, () -> Items.DIAMOND);
 
-    addItemsToTag(VEGETABLES, () -> Items.CARROT, () -> Items.BEETROOT, () -> Items.POTATO);
+    addItemsToTag(VEGETABLES, () -> Items.CARROT, () -> Items.BEETROOT);
     addItemsToTag(COOKED_VEGETABLES, ModItems.COOKED_BEETROOT, ModItems.COOKED_CARROT, () -> Items.BAKED_POTATO);
 
     addItemsToTag(SILVER_ITEMS, ModItems.SILVER_SWORD, ModItems.SILVER_KNIFE, ModItems.SILVER_AXE, ModItems.SILVER_HOE, ModItems.SILVER_PICKAXE, ModItems.SILVER_SHOVEL, ModItems.SILVER_BOOTS, ModItems.SILVER_CHESTPLATE, ModItems.SILVER_HELMET, ModItems.SILVER_LEGGINGS);
