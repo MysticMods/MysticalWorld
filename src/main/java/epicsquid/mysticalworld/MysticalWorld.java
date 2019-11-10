@@ -3,10 +3,7 @@ package epicsquid.mysticalworld;
 import epicsquid.mysticallib.registry.ModRegistry;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.events.LeafHandler;
-import epicsquid.mysticalworld.init.ModBlocks;
-import epicsquid.mysticalworld.init.ModEntities;
-import epicsquid.mysticalworld.init.ModItems;
-import epicsquid.mysticalworld.init.ModRegistries;
+import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.setup.ClientSetup;
 import epicsquid.mysticalworld.setup.ModSetup;
 import net.minecraft.entity.EntityType;
@@ -57,6 +54,7 @@ public class MysticalWorld {
     ModItems.load();
     ModBlocks.load();
     ModEntities.load();
+    ModRecipes.load();
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
       modBus.addListener(ClientSetup::init);
