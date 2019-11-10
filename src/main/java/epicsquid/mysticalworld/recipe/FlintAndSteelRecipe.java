@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.recipe;
 
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.Tags;
+import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModRecipes;
 import net.minecraft.inventory.CraftingInventory;
@@ -90,7 +91,7 @@ public class FlintAndSteelRecipe extends SpecialRecipe {
 
   @Override
   public ItemStack getCraftingResult(CraftingInventory inv) {
-    return ItemStack.EMPTY; // return new ItemStack(ModItems.SLICED_CARROT.get(), 4);
+    return new ItemStack(ModBlocks.CHARRED_LOG.get());
   }
 
   @Override
