@@ -224,7 +224,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
   }
 
   @Override
-  protected ResourceLocation getLootTable() {
+  public ResourceLocation getLootTable() {
     return LOOT_TABLE;
   }
 
