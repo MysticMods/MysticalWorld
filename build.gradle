@@ -127,7 +127,7 @@ dependencies {
     }
 
     compileOnly fg.deobf("mezz.jei:jei-1.14.4:6.0.0.18:api")
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
     //compile("jeresources:JustEnoughResources-1.14.4:0.10.0.66")
 
 //    deobfCompile "info.tehnut.harvest:Harvest:1.12-1.2.7-20"
