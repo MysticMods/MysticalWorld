@@ -100,6 +100,6 @@ public class KnifeHornRecipe extends SpecialRecipe {
 
   @Override
   public IRecipeSerializer<?> getSerializer() {
-    return ModRecipes.KNIFE_SERIALIZER.get();
+    return ModRecipes.HORN_SERIALIZER.get();
   }
 }
