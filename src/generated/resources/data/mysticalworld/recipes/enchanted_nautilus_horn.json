@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XSX",
+    "XHX",
+    "XXX"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:nautilus_shell"
+    },
+    "X": {
+      "tag": "forge:ingots/silver"
+    },
+    "H": {
+      "item": "mysticalworld:nautilus_horn"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:enchanted_nautilus_horn"
+  }
+}
