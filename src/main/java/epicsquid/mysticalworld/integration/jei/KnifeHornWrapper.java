@@ -4,6 +4,7 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.Tags;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.recipe.DamagedIngredient;
+import epicsquid.mysticalworld.recipe.KnifeHornRecipe;
 import epicsquid.mysticalworld.recipe.KnifeRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.ingredients.IIngredients;
@@ -16,19 +17,19 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 
-public class KnifeWrapper implements ICraftingCategoryExtension {
-  public KnifeWrapper(KnifeRecipe recipe) {
+public class KnifeHornWrapper implements ICraftingCategoryExtension {
+  public KnifeHornWrapper(KnifeHornRecipe recipe) {
   }
 
   @Override
   public void setIngredients(IIngredients iIngredients) {
-    iIngredients.setInputIngredients(Arrays.asList(Ingredient.fromItems(Items.CARROT), DamagedIngredient.getInstance(Tags.Items.KNIVES)));
-    iIngredients.setOutput(VanillaTypes.ITEM, new ItemStack(ModItems.SLICED_CARROT.get(), 4));
+    iIngredients.setInputIngredients(Arrays.asList(Ingredient.fromItems(Items.NAUTILUS_SHELL), DamagedIngredient.getInstance(Tags.Items.KNIVES)));
+    iIngredients.setOutput(VanillaTypes.ITEM, new ItemStack(ModItems.NAUTILUS_HORN.get(), 1));
   }
 
   @Nullable
   @Override
   public ResourceLocation getRegistryName() {
-    return new ResourceLocation(MysticalWorld.MODID, "spindle_recipe");
+    return new ResourceLocation(MysticalWorld.MODID, "horn_recipe");
   }
 }

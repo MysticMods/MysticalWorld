@@ -29,6 +29,6 @@ public class KnifeWrapper implements ICraftingCategoryExtension {
   @Nullable
   @Override
   public ResourceLocation getRegistryName() {
-    return new ResourceLocation(MysticalWorld.MODID, "spindle_recipe");
+    return new ResourceLocation(MysticalWorld.MODID, "knife_recipe");
   }
 }

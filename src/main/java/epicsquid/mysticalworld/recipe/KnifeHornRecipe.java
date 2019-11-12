@@ -14,21 +14,21 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class KnifeRecipe extends SpecialRecipe {
-  private static Ingredient CARROT_INGREDIENT = null;
+public class KnifeHornRecipe extends SpecialRecipe {
+  private static Ingredient SHELL_INGREDIENT = null;
   private static Ingredient KNIFE_INGREDIENT = null;
 
-  public KnifeRecipe(ResourceLocation idIn) {
+  public KnifeHornRecipe(ResourceLocation idIn) {
     super(idIn);
   }
 
   @Override
   public boolean matches(CraftingInventory inv, World worldIn) {
     boolean found_knife = false;
-    boolean found_carrot = false;
+    boolean found_shell = false;
 
-    if (CARROT_INGREDIENT == null) {
-      CARROT_INGREDIENT = Ingredient.fromItems(Items.CARROT);
+    if (SHELL_INGREDIENT == null) {
+      SHELL_INGREDIENT = Ingredient.fromItems(Items.NAUTILUS_SHELL);
     }
     if (KNIFE_INGREDIENT == null) {
       KNIFE_INGREDIENT = DamagedIngredient.fromTag(Tags.Items.KNIVES);
@@ -48,9 +48,9 @@ public class KnifeRecipe extends SpecialRecipe {
 
       count++;
 
-      if (CARROT_INGREDIENT.test(current)) {
-        if (!found_carrot) {
-          found_carrot = true;
+      if (SHELL_INGREDIENT.test(current)) {
+        if (!found_shell) {
+          found_shell = true;
         } else {
           return false;
         }
@@ -65,7 +65,7 @@ public class KnifeRecipe extends SpecialRecipe {
       }
     }
 
-    return found_carrot && found_knife;
+    return found_shell && found_knife;
   }
 
   @Override
@@ -90,7 +90,7 @@ public class KnifeRecipe extends SpecialRecipe {
 
   @Override
   public ItemStack getCraftingResult(CraftingInventory inv) {
-    return new ItemStack(ModItems.SLICED_CARROT.get(), 4);
+    return new ItemStack(ModItems.NAUTILUS_HORN.get(), 1);
   }
 
   @Override

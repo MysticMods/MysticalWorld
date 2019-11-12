@@ -9,7 +9,7 @@
     "description": {
       "translate": "advancement.mysticalworld.root.desc"
     },
-    "background": "mysticalworld:textures/blocks/thatch.png",
+    "background": "mysticalworld:textures/block/thatch.png",
     "show_toast": false,
     "announce_to_chat": false
   },

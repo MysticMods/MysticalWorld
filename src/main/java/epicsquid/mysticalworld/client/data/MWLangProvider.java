@@ -159,6 +159,8 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.DIAMOND_KNIFE);
     addItem(ModItems.GOLD_KNIFE);
     addItem(ModItems.IRON_KNIFE);
+    addItem(ModItems.NAUTILUS_HORN);
+    addItem(ModItems.ENCHANTED_NAUTILUS_HORN);
 
     addItem(ModEntities.SPAWN_BEETLE);
     addItem(ModEntities.SPAWN_DEER);
@@ -194,5 +196,14 @@ public class MWLangProvider extends DeferredLanguageProvider {
 
     add("message.squid.cooldown", "Give it time to produce more ink!");
     add("attribute.name.generic.reachDistance", "Reach");
+    add("advancement.mysticalworld.root", "Mystical World");
+    add("advancement.mysticalworld.root.desc", "Breathe in a brand new, mystical world!");
+    add("advancement.mysticalworld.amethyst", "Sobriety Test");
+    add("advancement.mysticalworld.amethyst.desc", "Find a gem more divine than diamond!");
+    add("advancement.mysticalworld.aubergine", "That's No Carrot...");
+    add("advancement.mysticalworld.aubergine.desc", "Once, purple carrots were all the rage. But this is an aubergine.");
+    add("advancement.mysticalworld.epic_squid", "Epic Squid!");
+    add("advancement.mysticalworld.epic_squid.desc", "Partake in some of the delicious, purple-y goodness of Epic Squid.");
+
   }
 }

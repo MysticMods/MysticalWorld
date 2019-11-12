@@ -11,6 +11,8 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 
 import java.util.function.Consumer;
@@ -212,6 +214,15 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .key('X', ItemTags.WOODEN_SLABS)
         .key('T', Items.TRIPWIRE_HOOK)
         .addCriterion("has_slab", this.hasItem(ItemTags.WOODEN_SLABS))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.ENCHANTED_NAUTILUS_HORN.get(), 1)
+        .patternLine("XXX")
+        .patternLine("XHX")
+        .patternLine("XXX")
+        .key('X', Tags.Items.SILVER_INGOT)
+        .key('H', ModItems.NAUTILUS_HORN.get())
+        .addCriterion("has_horn", this.hasItem(ModItems.NAUTILUS_HORN.get()))
         .build(consumer);
   }
 }

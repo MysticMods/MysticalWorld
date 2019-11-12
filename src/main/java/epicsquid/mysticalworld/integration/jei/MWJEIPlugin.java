@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.integration.jei;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.recipe.FlintAndSteelRecipe;
+import epicsquid.mysticalworld.recipe.KnifeHornRecipe;
 import epicsquid.mysticalworld.recipe.KnifeRecipe;
 import epicsquid.mysticalworld.recipe.SpindleRecipe;
 import mezz.jei.api.IModPlugin;
@@ -34,6 +35,7 @@ public class MWJEIPlugin implements IModPlugin {
     registration.getCraftingCategory().addCategoryExtension(KnifeRecipe.class, KnifeWrapper::new);
     registration.getCraftingCategory().addCategoryExtension(SpindleRecipe.class, SpindleWrapper::new);
     registration.getCraftingCategory().addCategoryExtension(FlintAndSteelRecipe.class, FlintAndSteelWrapper::new);
+    registration.getCraftingCategory().addCategoryExtension(KnifeHornRecipe.class, KnifeHornWrapper::new);
   }
 
   @Override
@@ -41,7 +43,8 @@ public class MWJEIPlugin implements IModPlugin {
     registration.addRecipes(Arrays.asList(
         new KnifeRecipe(new ResourceLocation(MysticalWorld.MODID, "knife_temp")),
         new SpindleRecipe(new ResourceLocation(MysticalWorld.MODID, "spindle_temp")),
-        new FlintAndSteelRecipe(new ResourceLocation(MysticalWorld.MODID, "flint_temp"))
+        new FlintAndSteelRecipe(new ResourceLocation(MysticalWorld.MODID, "flint_temp")),
+        new KnifeHornRecipe(new ResourceLocation(MysticalWorld.MODID, "horn_temp"))
     ), new ResourceLocation("minecraft", "crafting"));
   }
 }
