@@ -160,7 +160,7 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     handheld(ModItems.GOLD_KNIFE);
     handheld(ModItems.IRON_KNIFE);
     handheld(ModItems.NAUTILUS_HORN);
-    withExistingParent(name(ModItems.ENCHANTED_NAUTILUS_HORN), "item/handheld").texture("layer0", itemTexture(ModItems.NAUTILUS_HORN));
+    withExistingParent(name(ModItems.GLISTERING_HORN), "item/handheld").texture("layer0", itemTexture(ModItems.NAUTILUS_HORN));
 
     spawnEgg(ModEntities.SPAWN_BEETLE);
     spawnEgg(ModEntities.SPAWN_DEER);

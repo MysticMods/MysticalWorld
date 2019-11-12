@@ -160,7 +160,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.GOLD_KNIFE);
     addItem(ModItems.IRON_KNIFE);
     addItem(ModItems.NAUTILUS_HORN);
-    addItem(ModItems.ENCHANTED_NAUTILUS_HORN);
+    addItem(ModItems.GLISTERING_HORN);
 
     addItem(ModEntities.SPAWN_BEETLE);
     addItem(ModEntities.SPAWN_DEER);

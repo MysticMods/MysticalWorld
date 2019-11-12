@@ -339,7 +339,7 @@ public class FoxEntity extends TameableEntity {
   @Override
   @Nonnull
   public ResourceLocation getLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "entities/fox");
+    return new ResourceLocation(MysticalWorld.MODID, "entities/silver_fox");
   }
 
   public static class SleepGoal extends Goal {
