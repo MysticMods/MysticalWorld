@@ -174,5 +174,6 @@
   "item.mysticalworld.wood_knife": "Wood Knife",
   "itemGroup.mysticalworld": "Mystical World",
   "itemGroup.mysticalworld.metals": "Mystical World Metals",
-  "message.squid.cooldown": "Give it time to produce more ink!"
+  "message.squid.cooldown": "Give it time to produce more ink!",
+  "mysticalworld.entity.obsidian_cat": "Obsidian Cat"
 }
