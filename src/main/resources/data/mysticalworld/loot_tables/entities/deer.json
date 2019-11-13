@@ -75,7 +75,7 @@
           "name": "mysticalworld:antlers",
           "conditions": [
             {
-              "condition": "has_horns"
+              "condition": "mysticalworld:has_horns"
             }
           ],
           "functions": [

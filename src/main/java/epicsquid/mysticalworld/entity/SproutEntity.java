@@ -76,20 +76,7 @@ public class SproutEntity extends AnimalEntity {
   @Override
   @Nonnull
   public ResourceLocation getLootTable() {
-    switch (getDataManager().get(SproutEntity.variant)) {
-      case 1: {
-        return new ResourceLocation("mysticalworld:entities/sprout_tan");
-      }
-      case 2: {
-        return new ResourceLocation("mysticalworld:entities/sprout_red");
-      }
-      case 3: {
-        return new ResourceLocation("mysticalworld:entities/sprout_purple");
-      }
-      default: {
-        return new ResourceLocation("mysticalworld:entities/sprout_green");
-      }
-    }
+    return new ResourceLocation("mysticalworld:entities/sprout");
   }
 
   @Override
@@ -107,5 +94,26 @@ public class SproutEntity extends AnimalEntity {
   public void writeAdditional(CompoundNBT compound) {
     super.writeAdditional(compound);
     compound.putInt("variant", getDataManager().get(variant));
+  }
+
+  public static int StringToVariant (String color) {
+    switch (color) {
+      case "tan": return 1;
+      case "red": return 2;
+      case "purple": return 3;
+      case "green": return 0;
+      default:
+        return 0;
+    }
+  }
+
+  public static String VariantToString (int variant) {
+    switch (variant) {
+      case 0: return "green";
+      case 1: return "tan";
+      case 2: return "red";
+      case 3: return "purple";
+      default: return "INVALID";
+    }
   }
 }

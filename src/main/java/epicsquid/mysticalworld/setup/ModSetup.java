@@ -10,6 +10,9 @@ import epicsquid.mysticalworld.data.MWItemTagsProvider;
 import epicsquid.mysticalworld.data.MWLootTableProvider;
 import epicsquid.mysticalworld.data.MWRecipeProvider;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
+import epicsquid.mysticalworld.loot.conditions.IsColor;
+import epicsquid.mysticalworld.loot.conditions.IsLava;
+import epicsquid.mysticalworld.loot.conditions.IsObsidian;
 import epicsquid.mysticalworld.world.OreGen;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
@@ -25,6 +28,9 @@ public class ModSetup {
     CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
 
     LootConditionManager.registerCondition(new HasHorns.Serializer());
+    LootConditionManager.registerCondition(new IsColor.Serializer());
+    LootConditionManager.registerCondition(new IsLava.Serializer());
+    LootConditionManager.registerCondition(new IsObsidian.Serializer());
 
     OreGen.registerOreGeneration();
   }

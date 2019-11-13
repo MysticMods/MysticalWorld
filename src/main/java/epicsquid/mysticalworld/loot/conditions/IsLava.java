@@ -4,7 +4,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.DeerEntity;
+import epicsquid.mysticalworld.entity.LavaCatEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
@@ -12,39 +12,39 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootParameters;
 import net.minecraft.world.storage.loot.conditions.ILootCondition;
 
-public class HasHorns implements ILootCondition {
+public class IsLava implements ILootCondition {
   private final boolean inverse;
 
-  public HasHorns(boolean inverseIn) {
+  public IsLava(boolean inverseIn) {
     this.inverse = inverseIn;
   }
 
   @Override
-  public boolean test(LootContext lootContext) {
+  public boolean test(LootContext context) {
     boolean flag;
-    Entity looted = lootContext.get(LootParameters.THIS_ENTITY);
-    if (looted instanceof DeerEntity) {
-      DeerEntity deer = (DeerEntity) looted;
-      flag = deer.getDataManager().get(DeerEntity.hasHorns);
+    Entity looted = context.get(LootParameters.THIS_ENTITY);
+    if (looted instanceof LavaCatEntity) {
+      LavaCatEntity cat = (LavaCatEntity) looted;
+      flag = cat.getIsLava();
     } else {
       flag = false;
     }
     return flag == !this.inverse;
   }
 
-  public static class Serializer extends ILootCondition.AbstractSerializer<HasHorns> {
+  public static class Serializer extends ILootCondition.AbstractSerializer<IsLava> {
     public Serializer() {
-      super(new ResourceLocation(MysticalWorld.MODID, "has_horns"), HasHorns.class);
+      super(new ResourceLocation(MysticalWorld.MODID, "is_lava"), IsLava.class);
     }
 
     @Override
-    public void serialize(JsonObject json, HasHorns value, JsonSerializationContext context) {
+    public void serialize(JsonObject json, IsLava value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);
     }
 
     @Override
-    public HasHorns deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new HasHorns(JSONUtils.getBoolean(json, "inverse", false));
+    public IsLava deserialize(JsonObject json, JsonDeserializationContext context) {
+      return new IsLava(JSONUtils.getBoolean(json, "inverse", false));
     }
   }
 }
