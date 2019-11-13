@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:leather"
+      "mysticalworld:ender_pearl_from_unripe_pearls"
     ]
   },
   "criteria": {
-    "has_pelt": {
+    "has_unripe_ender_pearl": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:pelt"
+            "item": "mysticalworld:unripe_ender_pearl"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:leather"
+        "recipe": "mysticalworld:ender_pearl_from_unripe_pearls"
       }
     }
   },
   "requirements": [
     [
-      "has_pelt",
+      "has_unripe_ender_pearl",
       "has_the_recipe"
     ]
   ]

@@ -1,9 +1,8 @@
 package epicsquid.mysticalworld.recipe;
 
 import epicsquid.mysticallib.util.Util;
-import epicsquid.mysticalworld.Tags;
+import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.init.ModBlocks;
-import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModRecipes;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
@@ -29,7 +28,7 @@ public class FlintAndSteelRecipe extends SpecialRecipe {
     boolean found_log = false;
 
     if (LOG_INGREDIENT == null) {
-      LOG_INGREDIENT = Ingredient.fromTag(Tags.Items.LOGS);
+      LOG_INGREDIENT = Ingredient.fromTag(MWTags.Items.LOGS);
     }
     if (FLINT_INGREDIENT == null) {
       FLINT_INGREDIENT = DamagedIngredient.fromItems(Items.FLINT_AND_STEEL);

@@ -5,11 +5,10 @@ import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Items;
-import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
 
-import static epicsquid.mysticalworld.Tags.Blocks;
-import static epicsquid.mysticalworld.Tags.Items.*;
+import static epicsquid.mysticalworld.MWTags.Blocks;
+import static epicsquid.mysticalworld.MWTags.Items.*;
 
 public class MWItemTagsProvider extends DeferredItemTagsProvider {
   public MWItemTagsProvider(DataGenerator generatorIn) {
@@ -86,5 +85,10 @@ public class MWItemTagsProvider extends DeferredItemTagsProvider {
 
     copy(Blocks.LOGS, LOGS);
     copy(Blocks.PLANKS, PLANKS);
+
+    copy(Blocks.PURPUR, PURPUR);
+    copy(Blocks.NETHER_BRICKS, NETHER_BRICKS);
+    copy(Blocks.RED_NETHER_BRICKS, RED_NETHER_BRICKS);
+    copy(Blocks.TERRACOTTA, TERRACOTTA);
   }
 }

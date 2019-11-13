@@ -1,7 +1,7 @@
 package epicsquid.mysticalworld.recipe;
 
 import epicsquid.mysticallib.util.Util;
-import epicsquid.mysticalworld.Tags;
+import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModRecipes;
 import net.minecraft.inventory.CraftingInventory;
@@ -31,7 +31,7 @@ public class KnifeRecipe extends SpecialRecipe {
       CARROT_INGREDIENT = Ingredient.fromItems(Items.CARROT);
     }
     if (KNIFE_INGREDIENT == null) {
-      KNIFE_INGREDIENT = DamagedIngredient.fromTag(Tags.Items.KNIVES);
+      KNIFE_INGREDIENT = DamagedIngredient.fromTag(MWTags.Items.KNIVES);
     }
 
     int count = 0;

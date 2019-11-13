@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:bone_meal"
+      "mysticalworld:pelt_to_leather"
     ]
   },
   "criteria": {
-    "has_antlers": {
+    "has_pelt": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:antlers"
+            "item": "mysticalworld:pelt"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:bone_meal"
+        "recipe": "mysticalworld:pelt_to_leather"
       }
     }
   },
   "requirements": [
     [
-      "has_antlers",
+      "has_pelt",
       "has_the_recipe"
     ]
   ]

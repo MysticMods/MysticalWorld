@@ -1,7 +1,7 @@
 package epicsquid.mysticalworld.integration.jei;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.Tags;
+import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.recipe.DamagedIngredient;
 import epicsquid.mysticalworld.recipe.KnifeRecipe;
@@ -22,7 +22,7 @@ public class KnifeWrapper implements ICraftingCategoryExtension {
 
   @Override
   public void setIngredients(IIngredients iIngredients) {
-    iIngredients.setInputIngredients(Arrays.asList(Ingredient.fromItems(Items.CARROT), DamagedIngredient.getInstance(Tags.Items.KNIVES)));
+    iIngredients.setInputIngredients(Arrays.asList(Ingredient.fromItems(Items.CARROT), DamagedIngredient.getInstance(MWTags.Items.KNIVES)));
     iIngredients.setOutput(VanillaTypes.ITEM, new ItemStack(ModItems.SLICED_CARROT.get(), 4));
   }
 

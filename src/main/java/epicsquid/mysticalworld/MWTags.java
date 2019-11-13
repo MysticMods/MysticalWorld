@@ -9,8 +9,8 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.function.Function;
 
-public class Tags {
-  public static class Blocks extends Tags {
+public class MWTags {
+  public static class Blocks extends MWTags {
     public static Tag<Block> LOGS = modTag("logs");
     public static Tag<Block> PLANKS = modTag("planks");
 
@@ -22,6 +22,11 @@ public class Tags {
     public static Tag<Block> STAIRS = modTag("stairs");
     public static Tag<Block> FENCES = modTag("fences");
     public static Tag<Block> WALLS = modTag("walls");
+
+    public static Tag<Block> PURPUR = compatTag("purpur");
+    public static Tag<Block> NETHER_BRICKS = compatTag("nether_bricks");
+    public static Tag<Block> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
+    public static Tag<Block> TERRACOTTA = compatTag("terracotta");
 
     static Tag<Block> tag(String modid, String name) {
       return tag(BlockTags.Wrapper::new, modid, name);
@@ -36,7 +41,7 @@ public class Tags {
     }
   }
 
-  public static class Items extends Tags {
+  public static class Items extends MWTags {
     public static Tag<Item> SWORDS = compatTag("swords");
     public static Tag<Item> KNIVES = modTag("knives");
     public static Tag<Item> GEMS = modTag("gems");
@@ -98,6 +103,11 @@ public class Tags {
     public static Tag<Item> STAIRS = modTag("stairs");
     public static Tag<Item> FENCES = modTag("fences");
     public static Tag<Item> WALLS = modTag("walls");
+
+    public static Tag<Item> PURPUR = compatTag("purpur");
+    public static Tag<Item> NETHER_BRICKS = compatTag("nether_bricks");
+    public static Tag<Item> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
+    public static Tag<Item> TERRACOTTA = compatTag("terracotta");
 
     static Tag<Item> tag(String modid, String name) {
       return tag(ItemTags.Wrapper::new, modid, name);

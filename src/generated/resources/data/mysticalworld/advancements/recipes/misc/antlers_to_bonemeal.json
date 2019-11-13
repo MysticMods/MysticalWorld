@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:ender_pearl"
+      "mysticalworld:antlers_to_bonemeal"
     ]
   },
   "criteria": {
-    "has_unripe_ender_pearl": {
+    "has_antlers": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:unripe_ender_pearl"
+            "item": "mysticalworld:antlers"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:ender_pearl"
+        "recipe": "mysticalworld:antlers_to_bonemeal"
       }
     }
   },
   "requirements": [
     [
-      "has_unripe_ender_pearl",
+      "has_antlers",
       "has_the_recipe"
     ]
   ]

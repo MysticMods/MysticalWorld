@@ -2,7 +2,7 @@ package epicsquid.mysticalworld.data;
 
 import epicsquid.mysticallib.data.DeferredRecipeProvider;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.Tags;
+import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.Blocks;
@@ -12,6 +12,7 @@ import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.function.Consumer;
 
@@ -25,10 +26,10 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     dye(ModItems.INK_BOTTLE, Items.BLACK_DYE.delegate, 1, 2, consumer);
     dye(ModItems.CARAPACE, Items.BLUE_DYE.delegate, 1, 2, consumer);
 
-    singleItem(ModItems.ANTLERS, () -> Items.BONE_MEAL, 1, 9, consumer);
+    singleItemUnfinished(ModItems.ANTLERS, () -> Items.BONE_MEAL, 1, 9).build(consumer, new ResourceLocation(MysticalWorld.MODID, "antlers_to_bonemeal"));
     singleItem(ModItems.AUBERGINE, ModItems.AUBERGINE_SEEDS, 1, 1, consumer);
     singleItem(ModItems.SILK_COCOON, ModItems.SILK_THREAD, 1, 3, consumer);
-    singleItem(ModItems.PELT, () -> Items.LEATHER, 1, 1, consumer);
+    singleItemUnfinished(ModItems.PELT, () -> Items.LEATHER, 1, 1).build(consumer, new ResourceLocation(MysticalWorld.MODID, "pelt_to_leather"));
 
     smelting(ModBlocks.WET_MUD_BLOCK, ModBlocks.MUD_BLOCK, 0.15f, false, consumer);
     smelting(ModBlocks.WET_MUD_BRICK, ModBlocks.MUD_BRICK, 0.15f, false, consumer);
@@ -76,7 +77,7 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     storage(ModItems.TIN_NUGGET, ModItems.TIN_INGOT, consumer);
     storage(ModItems.LEAD_NUGGET, ModItems.LEAD_INGOT, consumer);
 
-    singleItem(ModItems.UNRIPE_ENDER_PEARL, () -> Items.ENDER_PEARL, 9, 1, consumer);
+    singleItemUnfinished(ModItems.UNRIPE_ENDER_PEARL, () -> Items.ENDER_PEARL, 9, 1).build(consumer, new ResourceLocation(MysticalWorld.MODID, "ender_pearl_from_unripe_pearls"));
 
     pickaxe(ModItems.AMETHYST_GEM, ModItems.AMETHYST_PICKAXE, "pickaxe", consumer);
     pickaxe(ModItems.COPPER_INGOT, ModItems.COPPER_PICKAXE, "pickaxe", consumer);
@@ -152,12 +153,12 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     legs(ModItems.TIN_INGOT, ModItems.TIN_LEGGINGS, "leggings", consumer);
     legs(ModItems.LEAD_INGOT, ModItems.LEAD_LEGGINGS, "leggings", consumer);
 
-    ore(Tags.Items.AMETHYST_ORE, ModItems.AMETHYST_GEM, 0.3f, consumer);
-    ore(Tags.Items.COPPER_ORE, ModItems.COPPER_INGOT, 0.3f, consumer);
-    ore(Tags.Items.LEAD_ORE, ModItems.LEAD_INGOT, 0.3f, consumer);
-    ore(Tags.Items.QUICKSILVER_ORE, ModItems.QUICKSILVER_INGOT, 0.3f, consumer);
-    ore(Tags.Items.SILVER_ORE, ModItems.SILVER_INGOT, 0.3f, consumer);
-    ore(Tags.Items.TIN_ORE, ModItems.TIN_INGOT, 0.3f, consumer);
+    ore(MWTags.Items.AMETHYST_ORE, ModItems.AMETHYST_GEM, 0.3f, consumer);
+    ore(MWTags.Items.COPPER_ORE, ModItems.COPPER_INGOT, 0.3f, consumer);
+    ore(MWTags.Items.LEAD_ORE, ModItems.LEAD_INGOT, 0.3f, consumer);
+    ore(MWTags.Items.QUICKSILVER_ORE, ModItems.QUICKSILVER_INGOT, 0.3f, consumer);
+    ore(MWTags.Items.SILVER_ORE, ModItems.SILVER_INGOT, 0.3f, consumer);
+    ore(MWTags.Items.TIN_ORE, ModItems.TIN_INGOT, 0.3f, consumer);
 
     food(ModItems.VENISON, ModItems.COOKED_VENISON, 0.15f, consumer);
     food(() -> Items.CARROT, ModItems.COOKED_CARROT, 0.15f, consumer);
@@ -165,16 +166,16 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     food(ModItems.AUBERGINE, ModItems.COOKED_AUBERGINE, 0.15f, consumer);
     food(ModItems.RAW_SQUID, ModItems.COOKED_SQUID, 0.15f, consumer);
 
-    recycle(Tags.Items.SILVER_ITEMS, ModItems.SILVER_NUGGET, 0.15f, consumer);
-    recycle(Tags.Items.COPPER_ITEMS, ModItems.COPPER_NUGGET, 0.15f, consumer);
-    recycle(Tags.Items.QUICKSILVER_ITEMS, ModItems.QUICKSILVER_NUGGET, 0.15f, consumer);
-    recycle(Tags.Items.TIN_ITEMS, ModItems.TIN_NUGGET, 0.15f, consumer);
-    recycle(Tags.Items.LEAD_ITEMS, ModItems.LEAD_NUGGET, 0.15f, consumer);
+    recycle(MWTags.Items.SILVER_ITEMS, ModItems.SILVER_NUGGET, 0.15f, consumer);
+    recycle(MWTags.Items.COPPER_ITEMS, ModItems.COPPER_NUGGET, 0.15f, consumer);
+    recycle(MWTags.Items.QUICKSILVER_ITEMS, ModItems.QUICKSILVER_NUGGET, 0.15f, consumer);
+    recycle(MWTags.Items.TIN_ITEMS, ModItems.TIN_NUGGET, 0.15f, consumer);
+    recycle(MWTags.Items.LEAD_ITEMS, ModItems.LEAD_NUGGET, 0.15f, consumer);
 
     recycle(ModItems.GOLD_KNIFE, () -> Items.GOLD_NUGGET, 0.15f, consumer);
     recycle(ModItems.IRON_KNIFE, () -> Items.IRON_NUGGET, 0.15f, consumer);
 
-    ShapelessRecipeBuilder.shapelessRecipe(ModItems.STUFFED_AUBERGINE.get(), 1).addIngredient(ModItems.COOKED_AUBERGINE.get()).addIngredient(Tags.Items.VEGETABLES).addIngredient(Tags.Items.VEGETABLES).addIngredient(Tags.Items.COOKED_VEGETABLES).addCriterion("has_cooked_aubergine", this.hasItem(ModItems.COOKED_AUBERGINE.get())).build(consumer);
+    ShapelessRecipeBuilder.shapelessRecipe(ModItems.STUFFED_AUBERGINE.get(), 1).addIngredient(ModItems.COOKED_AUBERGINE.get()).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.COOKED_VEGETABLES).addCriterion("has_cooked_aubergine", this.hasItem(ModItems.COOKED_AUBERGINE.get())).build(consumer);
 
     ShapedRecipeBuilder.shapedRecipe(ModBlocks.WET_MUD_BLOCK.get(), 8)
         .patternLine("XXX")
@@ -199,7 +200,7 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .patternLine("AEA")
         .patternLine("CAC")
         .key('C', ModItems.COOKED_SQUID.get())
-        .key('A', Tags.Items.GEMS)
+        .key('A', MWTags.Items.GEMS)
         .key('E', net.minecraftforge.common.Tags.Items.GEMS_EMERALD)
         .addCriterion("has_squid", this.hasItem(ModItems.COOKED_SQUID.get()))
         .build(consumer);
@@ -218,7 +219,7 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .patternLine("XXX")
         .patternLine("XHX")
         .patternLine("XXX")
-        .key('X', Tags.Items.SILVER_INGOT)
+        .key('X', MWTags.Items.SILVER_INGOT)
         .key('H', ModItems.NAUTILUS_HORN.get())
         .addCriterion("has_horn", this.hasItem(ModItems.NAUTILUS_HORN.get()))
         .build(consumer);
