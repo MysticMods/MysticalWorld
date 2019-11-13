@@ -190,6 +190,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addEntityType(ModEntities.LAVA_CAT);
     addEntityType(ModEntities.OWL);
     addEntityType(ModEntities.SILKWORM);
+    add("mysticalworld.entity.obsidian_cat", "Obsidian Cat");
 
     addItemGroup(MysticalWorld.ITEM_GROUP, "Mystical World");
     addItemGroup(MysticalWorld.METAL_ITEM_GROUP, "Mystical World Metals");

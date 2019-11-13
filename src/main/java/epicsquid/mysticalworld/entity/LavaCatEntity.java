@@ -342,9 +342,9 @@ public class LavaCatEntity extends TameableEntity {
       return super.getName();
     } else {
       if (this.getIsLava()) {
-        return new TranslationTextComponent("entity.entity_lava_cat.name");
+        return new TranslationTextComponent("mysticalworld.entity.lava_cat");
       } else {
-        return new TranslationTextComponent("entity.entity_obsidian_cat.name");
+        return new TranslationTextComponent("mysticalworld.entity.obsidian_cat");
       }
     }
   }
