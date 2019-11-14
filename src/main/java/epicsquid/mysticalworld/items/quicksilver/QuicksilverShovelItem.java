@@ -50,7 +50,7 @@ public class QuicksilverShovelItem extends ShovelItem implements IQuicksilverIte
     World world = context.getWorld();
     BlockPos blockpos = context.getPos();
     if (context.getFace() != Direction.DOWN && world.getBlockState(blockpos.up()).isAir(world, blockpos.up())) {
-      BlockState blockstate = field_195955_e.get(world.getBlockState(blockpos).getBlock());
+      BlockState blockstate = SHOVEL_LOOKUP.get(world.getBlockState(blockpos).getBlock());
       if (blockstate != null) {
         PlayerEntity playerentity = context.getPlayer();
         world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
