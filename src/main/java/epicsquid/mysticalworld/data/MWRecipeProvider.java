@@ -13,6 +13,7 @@ import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
@@ -222,6 +223,75 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .key('X', MWTags.Items.SILVER_INGOT)
         .key('H', ModItems.NAUTILUS_HORN.get())
         .addCriterion("has_horn", this.hasItem(ModItems.NAUTILUS_HORN.get()))
+        .build(consumer);
+
+    // Fix Minecraft default recipes! >:0
+    ShapedRecipeBuilder.shapedRecipe(Items.FISHING_ROD, 1)
+        .patternLine("  X")
+        .patternLine(" XS")
+        .patternLine("X S")
+        .key('X', Tags.Items.RODS_WOODEN)
+        .key('S', Tags.Items.STRING)
+        .addCriterion("has_string", this.hasItem(Tags.Items.STRING))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(Items.SCAFFOLDING, 6)
+        .patternLine("XSX")
+        .patternLine("X X")
+        .patternLine("X X")
+        .key('X', Items.BAMBOO)
+        .key('S', Tags.Items.STRING)
+        .addCriterion("has_bamboo", this.hasItem(Items.BAMBOO))
+        .build(consumer);
+
+    // String -> wool
+    ShapedRecipeBuilder.shapedRecipe(Blocks.WHITE_WOOL, 1)
+        .patternLine("XX")
+        .patternLine("XX")
+        .key('X', Tags.Items.STRING)
+        .addCriterion("has_string", this.hasItem(Tags.Items.STRING))
+        .build(consumer);
+
+    // Bow
+    ShapedRecipeBuilder.shapedRecipe(Items.BOW, 1)
+        .patternLine(" XS")
+        .patternLine("X S")
+        .patternLine(" XS")
+        .key('X', Tags.Items.RODS_WOODEN)
+        .key('S', Tags.Items.STRING)
+        .addCriterion("has_string", this.hasItem(Tags.Items.STRING))
+        .build(consumer);
+
+    // Loom
+    ShapedRecipeBuilder.shapedRecipe(Blocks.LOOM, 1)
+        .patternLine("SS")
+        .patternLine("XX")
+        .key('X', ItemTags.PLANKS)
+        .key('S', Tags.Items.STRING)
+        .addCriterion("has_string", this.hasItem(Tags.Items.STRING))
+        .build(consumer);
+
+    // Crossbow
+    ShapedRecipeBuilder.shapedRecipe(Items.CROSSBOW, 1)
+        .patternLine("XIX")
+        .patternLine("STS")
+        .patternLine(" X ")
+        .key('X', Tags.Items.RODS_WOODEN)
+        .key('S', Tags.Items.STRING)
+        .key('I', Tags.Items.INGOTS_IRON)
+        .key('T', Items.TRIPWIRE_HOOK)
+        .addCriterion("has_string", this.hasItem(Tags.Items.STRING))
+        .addCriterion("has_iron", this.hasItem(Tags.Items.INGOTS_IRON))
+        .build(consumer);
+
+    // Lead
+    ShapedRecipeBuilder.shapedRecipe(Items.LEAD, 2)
+        .patternLine("SS ")
+        .patternLine("SB ")
+        .patternLine("  S")
+        .key('S', Tags.Items.STRING)
+        .key('B', Tags.Items.SLIMEBALLS)
+        .addCriterion("has_slime", this.hasItem(Tags.Items.SLIMEBALLS))
         .build(consumer);
   }
 }
