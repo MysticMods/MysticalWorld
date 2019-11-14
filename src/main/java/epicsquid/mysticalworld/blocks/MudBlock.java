@@ -9,11 +9,15 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
+@SuppressWarnings("deprecation")
 public class MudBlock extends Block {
   private static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
 
-  public MudBlock(Properties props) {
+  private final boolean smallerBlock;
+
+  public MudBlock(Properties props, boolean smallerBlock) {
     super(props);
+    this.smallerBlock = smallerBlock;
   }
 
   @Override
@@ -24,6 +28,10 @@ public class MudBlock extends Block {
 
   @Override
   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-    return SHAPE;
+    if (smallerBlock) {
+      return SHAPE;
+    } else {
+      return super.getShape(state, worldIn, pos, context);
+    }
   }
 }

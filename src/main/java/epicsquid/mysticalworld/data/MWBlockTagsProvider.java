@@ -29,6 +29,6 @@ public class MWBlockTagsProvider extends DeferredBlockTagsProvider {
     createTag(MWTags.Blocks.PURPUR, () -> Blocks.PURPUR_BLOCK, () -> Blocks.PURPUR_PILLAR);
     createTag(MWTags.Blocks.NETHER_BRICKS, () -> Blocks.NETHER_BRICKS);
     createTag(MWTags.Blocks.RED_NETHER_BRICKS, () -> Blocks.RED_NETHER_BRICKS);
-    createTag(MWTags.Blocks.TERRACOTTA, () -> Blocks.WHITE_TERRACOTTA, () -> Blocks.ORANGE_TERRACOTTA, () -> Blocks.MAGENTA_TERRACOTTA, () -> Blocks.LIGHT_BLUE_TERRACOTTA, () -> Blocks.YELLOW_TERRACOTTA, () -> Blocks.LIME_TERRACOTTA, () -> Blocks.PINK_TERRACOTTA, () -> Blocks.GRAY_TERRACOTTA, () -> Blocks.LIGHT_GRAY_TERRACOTTA, () -> Blocks.CYAN_TERRACOTTA, () -> Blocks.PURPLE_TERRACOTTA, () -> Blocks.BLUE_TERRACOTTA, () -> Blocks.BROWN_TERRACOTTA, () -> Blocks.GREEN_TERRACOTTA, () -> Blocks.RED_TERRACOTTA, () -> Blocks.BLACK_TERRACOTTA, () -> Blocks.TERRACOTTA);
+    createTag(MWTags.Blocks.TERRACOTTA, () -> Blocks.WHITE_TERRACOTTA, () -> Blocks.ORANGE_TERRACOTTA, () -> Blocks.MAGENTA_TERRACOTTA, () -> Blocks.LIGHT_BLUE_TERRACOTTA, () -> Blocks.YELLOW_TERRACOTTA, () -> Blocks.LIME_TERRACOTTA, () -> Blocks.PINK_TERRACOTTA, () -> Blocks.GRAY_TERRACOTTA, () -> Blocks.LIGHT_GRAY_TERRACOTTA, () -> Blocks.CYAN_TERRACOTTA, () -> Blocks.PURPLE_TERRACOTTA, () -> Blocks.BLUE_TERRACOTTA, () -> Blocks.BROWN_TERRACOTTA, () -> Blocks.GREEN_TERRACOTTA, () -> Blocks.RED_TERRACOTTA, () -> Blocks.BLACK_TERRACOTTA, () -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK);
   }
 }

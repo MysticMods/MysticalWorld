@@ -54,6 +54,8 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addBlock(ModBlocks.SILVER_BLOCK);
     addBlock(ModBlocks.TIN_BLOCK);
 
+    addBlock(ModBlocks.TERRACOTTA_BRICK);
+
     addItem(ModItems.CARAPACE);
     addItem(ModItems.PELT);
     addItem(ModItems.ANTLERS);

@@ -37,6 +37,7 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
 
     twoByTwo(ModBlocks.WET_MUD_BLOCK, ModBlocks.WET_MUD_BRICK, null, consumer);
     twoByTwo(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BRICK, null, consumer);
+    twoByTwo(() -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK, null, consumer);
 
     planks(ModBlocks.CHARRED_LOG, ModBlocks.CHARRED_PLANKS, consumer);
     stairs(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_STAIRS, "stairs", false, consumer);

@@ -3,9 +3,12 @@ package epicsquid.mysticalworld.client.data;
 import epicsquid.mysticallib.client.data.DeferredBlockStateProvider;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModBlocks;
+import net.minecraft.block.FenceBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraftforge.client.model.generators.ModelFile;
 
 public class MWBlockstateProvider extends DeferredBlockStateProvider {
 
@@ -29,8 +32,10 @@ public class MWBlockstateProvider extends DeferredBlockStateProvider {
     simpleBlock(ModBlocks.SILVER_BLOCK);
     simpleBlock(ModBlocks.TIN_BLOCK);
 
-    simpleBlock(ModBlocks.WET_MUD_BLOCK);
+    simpleBlock(ModBlocks.WET_MUD_BLOCK, new ModelFile.ExistingModelFile(new ResourceLocation(MysticalWorld.MODID, "block/wet_mud_block"), existingFileHelper));
     simpleBlock(ModBlocks.WET_MUD_BRICK);
+
+    simpleBlock(ModBlocks.TERRACOTTA_BRICK);
 
     simpleBlock(ModBlocks.MUD_BLOCK);
     stairsBlock(ModBlocks.MUD_BLOCK_STAIRS, "mud_block");

@@ -15,8 +15,8 @@ import static epicsquid.mysticalworld.MysticalWorld.REGISTRY;
 public class ModBlocks {
   public static RegistryObject<ThatchBlock> THATCH = REGISTRY.registerBlock("thatch", REGISTRY.block(ThatchBlock::new, () -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT)), ModRegistries.SIG);
   public static RegistryObject<AubergineCropBlock> AUBERGINE_CROP = REGISTRY.registerBlockWithoutItem("aubergine_crop", REGISTRY.block(AubergineCropBlock::new, () -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly()));
-  public static RegistryObject<MudBlock> WET_MUD_BLOCK = REGISTRY.registerBlock("wet_mud_block", REGISTRY.block(MudBlock::new, () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
-  public static RegistryObject<MudBlock> WET_MUD_BRICK = REGISTRY.registerBlock("wet_mud_brick", REGISTRY.block(MudBlock::new, () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
+  public static RegistryObject<MudBlock> WET_MUD_BLOCK = REGISTRY.registerBlock("wet_mud_block", REGISTRY.block((b) -> new MudBlock(b, true), () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
+  public static RegistryObject<MudBlock> WET_MUD_BRICK = REGISTRY.registerBlock("wet_mud_brick", REGISTRY.block((b) -> new MudBlock(b, false), () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
 
   public static RegistryObject<Block> MUD_BLOCK = REGISTRY.registerBlock("mud_block", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE)), ModRegistries.SIG);
   public static RegistryObject<StairsBlock> MUD_BLOCK_STAIRS = REGISTRY.registerBlock("mud_block_stairs", REGISTRY.stair(MUD_BLOCK), ModRegistries.SIG);
@@ -42,6 +42,8 @@ public class ModBlocks {
   public static RegistryObject<WallBlock> MUD_BRICK_WALL = REGISTRY.registerBlock("mud_brick_wall", REGISTRY.wall(MUD_BRICK), ModRegistries.SIG);
   public static RegistryObject<FenceBlock> MUD_BRICK_FENCE = REGISTRY.registerBlock("mud_brick_fence", REGISTRY.fence(MUD_BRICK), ModRegistries.SIG);
   public static RegistryObject<FenceGateBlock> MUD_BRICK_FENCE_GATE = REGISTRY.registerBlock("mud_brick_fence_gate", REGISTRY.fenceGate(MUD_BRICK), ModRegistries.SIG);
+
+  public static RegistryObject<Block> TERRACOTTA_BRICK = REGISTRY.registerBlock("terracotta_brick", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE)), ModRegistries.SIG);
 
   // Ore Blocks
   public static RegistryObject<BaseOreBlock> AMETHYST_ORE = REGISTRY.registerBlock(ModMaterials.AMETHYST.oreName(), REGISTRY.ore(BaseOreBlock::new, ModMaterials.AMETHYST), ModRegistries.SMG);

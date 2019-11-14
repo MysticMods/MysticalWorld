@@ -32,6 +32,8 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     blockItem(ModBlocks.WET_MUD_BLOCK);
     blockItem(ModBlocks.WET_MUD_BRICK);
 
+    blockItem(ModBlocks.TERRACOTTA_BRICK);
+
     blockItem(ModBlocks.MUD_BLOCK);
     blockItem(ModBlocks.MUD_BLOCK_STAIRS);
     blockItem(ModBlocks.MUD_BLOCK_SLAB);
