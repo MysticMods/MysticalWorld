@@ -79,8 +79,8 @@ public class KnifeHornRecipe extends SpecialRecipe {
       }
 
       if (KNIFE_INGREDIENT.test(current)) {
-        current.attemptDamageItem(1, Util.rand, null);
-        result.set(i, current.copy());
+        ItemStack newStack = Util.damageItem(1, current, inv);
+        result.set(i, newStack.copy());
         break;
       }
     }
