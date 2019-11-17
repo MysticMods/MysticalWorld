@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_aubergine": {
+    "has_eggplant": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:aubergine"
+            "tag": "simplefarming:eggplant"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_aubergine",
+      "has_eggplant",
       "has_the_recipe"
     ]
   ]

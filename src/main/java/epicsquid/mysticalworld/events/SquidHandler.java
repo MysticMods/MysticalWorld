@@ -11,6 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -42,10 +45,10 @@ public class SquidHandler {
               if (!player.isCreative()) heldItem.shrink(1);
               player.inventory.addItemStackToInventory(new ItemStack(ModItems.INK_BOTTLE.get()));
               return;
+            } else {
+              player.sendStatusMessage(new TranslationTextComponent("message.squid.cooldown").setStyle(new Style().setColor(TextFormatting.BLUE).setBold(true)), true);
             }
           });
-          // TODO fix this
-//					player.sendStatusMessage(new TextComponentTranslation("message.squid.cooldown").setStyle(new Style().setColor(TextFormatting.BLACK).setBold(true)), true);
         }
       }
     }

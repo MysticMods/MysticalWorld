@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "minecraft:carrot"
+    "tag": "mysticalworld:vegetables/carrot"
   },
   "result": "mysticalworld:cooked_carrot",
   "experience": 0.15,

@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_beetroot": {
+    "has_vegetables_beetroot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:beetroot"
+            "tag": "mysticalworld:vegetables/beetroot"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_beetroot",
+      "has_vegetables_beetroot",
       "has_the_recipe"
     ]
   ]

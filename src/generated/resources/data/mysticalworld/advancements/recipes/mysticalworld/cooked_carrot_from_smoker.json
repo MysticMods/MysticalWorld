@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_carrot": {
+    "has_vegetables_carrot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:carrot"
+            "tag": "mysticalworld:vegetables/carrot"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_carrot",
+      "has_vegetables_carrot",
       "has_the_recipe"
     ]
   ]

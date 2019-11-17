@@ -48,6 +48,10 @@ public class MWTags {
     public static Tag<Item> VEGETABLES = compatTag("vegetables");
     public static Tag<Item> COOKED_VEGETABLES = compatTag("cooked_vegetables");
 
+    public static Tag<Item> AUBERGINE = modTag("vegetables/aubergine");
+    public static Tag<Item> CARROT = modTag("vegetables/carrot");
+    public static Tag<Item> BEETROOT = modTag("vegetables/beetroot");
+
     public static Tag<Item> COPPER_ITEMS = modTag("copper_items");
     public static Tag<Item> LEAD_ITEMS = modTag("lead_items");
     public static Tag<Item> QUICKSILVER_ITEMS = modTag("quicksilver_items");
@@ -109,6 +113,10 @@ public class MWTags {
     public static Tag<Item> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
     public static Tag<Item> TERRACOTTA = compatTag("terracotta");
 
+    public static Tag<Item> SF_EGGPLANT = simpleFarming("eggplant");
+    public static Tag<Item> SF_CARROT = simpleFarming("carrot");
+    public static Tag<Item> SF_BEETROOT = simpleFarming("beetroot");
+
     static Tag<Item> tag(String modid, String name) {
       return tag(ItemTags.Wrapper::new, modid, name);
     }
@@ -119,6 +127,10 @@ public class MWTags {
 
     static Tag<Item> compatTag(String name) {
       return tag("forge", name);
+    }
+
+    static Tag<Item> simpleFarming(String name) {
+      return tag("simplefarming", name);
     }
   }
 

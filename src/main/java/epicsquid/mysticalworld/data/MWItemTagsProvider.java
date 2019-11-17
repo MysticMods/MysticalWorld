@@ -25,6 +25,15 @@ public class MWItemTagsProvider extends DeferredItemTagsProvider {
     addItemsToTag(TIN_ORE, ModBlocks.TIN_ORE);
     appendToTag(Tags.Items.ORES, AMETHYST_ORE, COPPER_ORE, LEAD_ORE, QUICKSILVER_ORE, SILVER_ORE, TIN_ORE);
 
+    addItemsToTag(AUBERGINE, ModItems.AUBERGINE);
+    appendToTag(SF_EGGPLANT, AUBERGINE);
+
+    addItemsToTag(CARROT, () -> Items.CARROT);
+    appendToTag(SF_CARROT, CARROT);
+
+    addItemsToTag(BEETROOT, () -> Items.BEETROOT);
+    appendToTag(SF_BEETROOT, BEETROOT);
+
     addItemsToTag(Tags.Items.STRING, ModItems.SILK_THREAD);
 
     addItemsToTag(AMETHYST_BLOCK, ModBlocks.AMETHYST_BLOCK);

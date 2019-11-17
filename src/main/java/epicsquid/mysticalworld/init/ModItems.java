@@ -9,7 +9,7 @@ import epicsquid.mysticalworld.items.amethyst.AmethystArmorItem;
 import epicsquid.mysticalworld.items.copper.CopperArmorItem;
 import epicsquid.mysticalworld.items.lead.LeadArmorItem;
 import epicsquid.mysticalworld.items.quicksilver.*;
-import epicsquid.mysticalworld.items.silver.SilverArmorItem;
+import epicsquid.mysticalworld.items.silver.*;
 import epicsquid.mysticalworld.items.tin.TinArmorItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -107,12 +107,12 @@ public class ModItems {
   public static RegistryObject<ShovelItem> QUICKSILVER_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(QuicksilverShovelItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
   public static RegistryObject<SwordItem> QUICKSILVER_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.QUICKSILVER.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(QuicksilverSwordItem::new, ModMaterials.QUICKSILVER, ModRegistries.SMG));
 
-  public static RegistryObject<AxeItem> SILVER_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(AxeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<HoeItem> SILVER_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(HoeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<KnifeItem> SILVER_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(KnifeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<PickaxeItem> SILVER_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(PickaxeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<ShovelItem> SILVER_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(ShovelItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<SwordItem> SILVER_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(SwordItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<AxeItem> SILVER_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(SilverAxeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<HoeItem> SILVER_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(SilverHoeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<KnifeItem> SILVER_KNIFE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_knife", MysticalWorld.REGISTRY.knife(SilverKnifeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<PickaxeItem> SILVER_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(SilverPickaxeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<ShovelItem> SILVER_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(SilverShovelItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<SwordItem> SILVER_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(SilverSwordItem::new, ModMaterials.SILVER, ModRegistries.SMG));
 
   public static RegistryObject<AxeItem> TIN_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(AxeItem::new, ModMaterials.TIN, ModRegistries.SMG));
   public static RegistryObject<HoeItem> TIN_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(HoeItem::new, ModMaterials.TIN, ModRegistries.SMG));

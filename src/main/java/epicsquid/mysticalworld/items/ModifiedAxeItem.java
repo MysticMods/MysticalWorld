@@ -8,7 +8,7 @@ import net.minecraft.item.IItemTier;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class ModifiedAxeItem extends AxeItem {
+public abstract class ModifiedAxeItem extends AxeItem implements IModifiable {
   protected Map<IAttribute, AttributeModifier> modifiers = new HashMap<>();
 
   public Map<IAttribute, AttributeModifier> getModifiers() {

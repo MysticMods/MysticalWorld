@@ -169,9 +169,9 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     ore(MWTags.Items.TIN_ORE, ModItems.TIN_INGOT, 0.3f, consumer);
 
     food(ModItems.VENISON, ModItems.COOKED_VENISON, 0.15f, consumer);
-    food(() -> Items.CARROT, ModItems.COOKED_CARROT, 0.15f, consumer);
-    food(() -> Items.BEETROOT, ModItems.COOKED_BEETROOT, 0.15f, consumer);
-    food(ModItems.AUBERGINE, ModItems.COOKED_AUBERGINE, 0.15f, consumer);
+    food(MWTags.Items.CARROT, ModItems.COOKED_CARROT, 0.15f, consumer);
+    food(MWTags.Items.BEETROOT, ModItems.COOKED_BEETROOT, 0.15f, consumer);
+    food(MWTags.Items.SF_EGGPLANT, ModItems.COOKED_AUBERGINE, 0.15f, consumer);
     food(ModItems.RAW_SQUID, ModItems.COOKED_SQUID, 0.15f, consumer);
 
     recycle(MWTags.Items.SILVER_ITEMS, ModItems.SILVER_NUGGET, 0.15f, consumer);

@@ -204,6 +204,9 @@ public class MWLangProvider extends DeferredLanguageProvider {
 
     add("message.squid.cooldown", "Give it time to produce more ink!");
     add("attribute.name.generic.reachDistance", "Reach");
+    add("attribute.name.mysticalworld.blessed", "Blessed");
+    add("attribute.name.mysticalworld.smite", "Smite");
+    add("attribute.name.forge.swimSpeed", "Swim Speed");
     add("advancement.mysticalworld.root", "Mystical World");
     add("advancement.mysticalworld.root.desc", "Breathe in a brand new, mystical world!");
     add("advancement.mysticalworld.amethyst", "Sobriety Test");

@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.items.silver;
 
 import com.google.common.collect.Multimap;
 import epicsquid.mysticallib.material.MaterialType;
+import epicsquid.mysticalworld.init.ModModifiers;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -23,6 +24,8 @@ public class SilverArmorItem extends ModifiedArmorItem implements ISilverItem {
       } else {
         map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), getOrCreateModifier(SharedMonsterAttributes.ATTACK_DAMAGE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Attack damage multiplier", 0.06f, AttributeModifier.Operation.MULTIPLY_TOTAL)));
       }
+
+      map.put(ModModifiers.BLESSED.getName(), getOrCreateModifier(ModModifiers.BLESSED, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Blessed addition", 1f, AttributeModifier.Operation.ADDITION)));
     }
 
     return map;

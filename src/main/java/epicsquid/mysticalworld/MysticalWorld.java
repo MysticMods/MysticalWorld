@@ -2,6 +2,7 @@ package epicsquid.mysticalworld;
 
 import epicsquid.mysticallib.registry.ModRegistry;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.events.DamageHandler;
 import epicsquid.mysticalworld.events.LeafHandler;
 import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.setup.ClientSetup;
@@ -69,5 +70,6 @@ public class MysticalWorld {
     REGISTRY.registerEventBus(modBus);
 
     MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
+    MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
   }
 }
