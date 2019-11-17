@@ -53,6 +53,6 @@ A Small set of vanllia-esque features to liven up your world..
 [[dependencies.mysticalworld]]
     modId="mysticallib"
     mandatory=true
-    versionRange="[1.7,)"
+    versionRange="[1.8,)"
     ordering="NONE"
     side="BOTH"
