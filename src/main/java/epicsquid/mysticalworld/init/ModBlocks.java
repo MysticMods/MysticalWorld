@@ -44,6 +44,11 @@ public class ModBlocks {
   public static RegistryObject<FenceGateBlock> MUD_BRICK_FENCE_GATE = REGISTRY.registerBlock("mud_brick_fence_gate", REGISTRY.fenceGate(MUD_BRICK), ModRegistries.SIG);
 
   public static RegistryObject<Block> TERRACOTTA_BRICK = REGISTRY.registerBlock("terracotta_brick", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE)), ModRegistries.SIG);
+  public static RegistryObject<StairsBlock> TERRACOTTA_BRICK_STAIRS = REGISTRY.registerBlock("terracotta_brick_stairs", REGISTRY.stair(TERRACOTTA_BRICK), ModRegistries.SIG);
+  public static RegistryObject<SlabBlock> TERRACOTTA_BRICK_SLAB = REGISTRY.registerBlock("terracotta_brick_slab", REGISTRY.slab(TERRACOTTA_BRICK), ModRegistries.SIG);
+  public static RegistryObject<WallBlock> TERRACOTTA_BRICK_WALL = REGISTRY.registerBlock("terracotta_brick_wall", REGISTRY.wall(TERRACOTTA_BRICK), ModRegistries.SIG);
+  public static RegistryObject<FenceBlock> TERRACOTTA_BRICK_FENCE = REGISTRY.registerBlock("terracotta_brick_fence", REGISTRY.fence(TERRACOTTA_BRICK), ModRegistries.SIG);
+  public static RegistryObject<FenceGateBlock> TERRACOTTA_BRICK_FENCE_GATE = REGISTRY.registerBlock("terracotta_brick_fence_gate", REGISTRY.fenceGate(TERRACOTTA_BRICK), ModRegistries.SIG);
 
   // Ore Blocks
   public static RegistryObject<BaseOreBlock> AMETHYST_ORE = REGISTRY.registerBlock(ModMaterials.AMETHYST.oreName(), REGISTRY.ore(BaseOreBlock::new, ModMaterials.AMETHYST), ModRegistries.SMG);

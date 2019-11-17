@@ -86,6 +86,11 @@ public class MWLootTableProvider extends LootTableProvider {
       self(ModBlocks.CHARRED_WALL);
 
       self(ModBlocks.TERRACOTTA_BRICK);
+      self(ModBlocks.TERRACOTTA_BRICK_STAIRS);
+      self(ModBlocks.TERRACOTTA_BRICK_SLAB);
+      self(ModBlocks.TERRACOTTA_BRICK_WALL);
+      self(ModBlocks.TERRACOTTA_BRICK_FENCE);
+      self(ModBlocks.TERRACOTTA_BRICK_FENCE_GATE);
 
       self(ModBlocks.THATCH);
 

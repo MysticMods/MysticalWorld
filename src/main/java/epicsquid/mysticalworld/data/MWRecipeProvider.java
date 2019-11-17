@@ -58,6 +58,12 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     fenceGate(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_FENCE_GATE, "fence_gate", consumer);
     wall(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_WALL, false, consumer);
 
+    stairs(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_STAIRS, "stairs", false, consumer);
+    slab(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_SLAB, "slabs", false, consumer);
+    fence(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_FENCE, "fence", consumer);
+    fenceGate(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_FENCE_GATE, "fence_gate", consumer);
+    wall(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_WALL, false, consumer);
+
     axe(ModItems.AMETHYST_GEM, ModItems.AMETHYST_AXE, "axe", consumer);
     axe(ModItems.COPPER_INGOT, ModItems.COPPER_AXE, "axe", consumer);
     axe(ModItems.SILVER_INGOT, ModItems.SILVER_AXE, "axe", consumer);

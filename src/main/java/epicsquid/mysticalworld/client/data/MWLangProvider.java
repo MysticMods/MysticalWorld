@@ -55,6 +55,11 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addBlock(ModBlocks.TIN_BLOCK);
 
     addBlock(ModBlocks.TERRACOTTA_BRICK);
+    addBlock(ModBlocks.TERRACOTTA_BRICK_FENCE);
+    addBlock(ModBlocks.TERRACOTTA_BRICK_SLAB);
+    addBlock(ModBlocks.TERRACOTTA_BRICK_STAIRS);
+    addBlock(ModBlocks.TERRACOTTA_BRICK_WALL);
+    addBlock(ModBlocks.TERRACOTTA_BRICK_FENCE_GATE);
 
     addItem(ModItems.CARAPACE);
     addItem(ModItems.PELT);

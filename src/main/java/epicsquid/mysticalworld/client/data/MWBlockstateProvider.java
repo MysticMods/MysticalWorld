@@ -36,6 +36,11 @@ public class MWBlockstateProvider extends DeferredBlockStateProvider {
     simpleBlock(ModBlocks.WET_MUD_BRICK);
 
     simpleBlock(ModBlocks.TERRACOTTA_BRICK);
+    stairsBlock(ModBlocks.TERRACOTTA_BRICK_STAIRS, "terracotta_brick");
+    slabBlock(ModBlocks.TERRACOTTA_BRICK_SLAB, ModBlocks.TERRACOTTA_BRICK, "terracotta_brick");
+    wallBlock(ModBlocks.TERRACOTTA_BRICK_WALL, "terracotta_brick");
+    fenceBlock(ModBlocks.TERRACOTTA_BRICK_FENCE, "terracotta_brick");
+    fenceGateBlock(ModBlocks.TERRACOTTA_BRICK_FENCE_GATE, "terracotta_brick");
 
     simpleBlock(ModBlocks.MUD_BLOCK);
     stairsBlock(ModBlocks.MUD_BLOCK_STAIRS, "mud_block");

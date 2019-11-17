@@ -3,6 +3,7 @@
   "values": [
     "mysticalworld:mud_block_wall",
     "mysticalworld:mud_brick_wall",
-    "mysticalworld:charred_wall"
+    "mysticalworld:charred_wall",
+    "mysticalworld:terracotta_brick_wall"
   ]
 }
