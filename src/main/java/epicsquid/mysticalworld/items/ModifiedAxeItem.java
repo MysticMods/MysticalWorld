@@ -11,6 +11,7 @@ import java.util.Map;
 public abstract class ModifiedAxeItem extends AxeItem implements IModifiable {
   protected Map<IAttribute, AttributeModifier> modifiers = new HashMap<>();
 
+  @Override
   public Map<IAttribute, AttributeModifier> getModifiers() {
     return modifiers;
   }

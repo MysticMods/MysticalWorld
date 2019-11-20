@@ -80,6 +80,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
       super(p_i50949_1_);
     }
 
+    @Override
     public void render(EnderminiEntity entityIn, float p_212842_2_, float p_212842_3_, float p_212842_4_, float p_212842_5_, float p_212842_6_, float p_212842_7_, float p_212842_8_) {
       BlockState blockstate = entityIn.getHeldBlockState();
       if (blockstate != null) {
@@ -107,6 +108,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
       }
     }
 
+    @Override
     public boolean shouldCombineTextures() {
       return false;
     }
@@ -120,6 +122,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
       super(p_i50939_1_);
     }
 
+    @Override
     public void render(T entityIn, float p_212842_2_, float p_212842_3_, float p_212842_4_, float p_212842_5_, float p_212842_6_, float p_212842_7_, float p_212842_8_) {
       this.bindTexture(RES_ENDERMAN_EYES);
       GlStateManager.pushMatrix();
@@ -147,6 +150,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
       GlStateManager.popMatrix();
     }
 
+    @Override
     public boolean shouldCombineTextures() {
       return false;
     }
