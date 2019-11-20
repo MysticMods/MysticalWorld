@@ -13,6 +13,7 @@ import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.loot.conditions.IsColor;
 import epicsquid.mysticalworld.loot.conditions.IsLava;
 import epicsquid.mysticalworld.loot.conditions.IsObsidian;
+import epicsquid.mysticalworld.potions.PotionRecipes;
 import epicsquid.mysticalworld.world.OreGen;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
@@ -33,6 +34,7 @@ public class ModSetup {
     LootConditionManager.registerCondition(new IsObsidian.Serializer());
 
     OreGen.registerOreGeneration();
+    PotionRecipes.registerRecipes();
   }
 
   public void gatherData (GatherDataEvent event) {
