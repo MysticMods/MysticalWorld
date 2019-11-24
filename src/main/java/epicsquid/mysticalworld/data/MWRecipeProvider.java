@@ -300,5 +300,15 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .key('B', Tags.Items.SLIMEBALLS)
         .addCriterion("has_slime", this.hasItem(Tags.Items.SLIMEBALLS))
         .build(consumer);
+
+    // Withered Apple
+    ShapedRecipeBuilder.shapedRecipe(ModItems.WITHERED_APPLE.get(), 1)
+        .patternLine("WWW")
+        .patternLine("WGW")
+        .patternLine("WWW")
+        .key('W', Items.WITHER_SKELETON_SKULL)
+        .key('G', Items.GOLDEN_APPLE)
+        .addCriterion("has_golden_apple", this.hasItem(Items.GOLDEN_APPLE))
+        .build(consumer);
   }
 }

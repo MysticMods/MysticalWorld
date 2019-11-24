@@ -3,6 +3,7 @@ package epicsquid.mysticalworld;
 import epicsquid.mysticallib.registry.ModRegistry;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.events.DamageHandler;
+import epicsquid.mysticalworld.events.EntityHandler;
 import epicsquid.mysticalworld.events.LeafHandler;
 import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.setup.ClientSetup;
@@ -71,5 +72,6 @@ public class MysticalWorld {
 
     MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
+    MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);
   }
 }

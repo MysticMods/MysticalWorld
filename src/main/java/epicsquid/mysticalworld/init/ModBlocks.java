@@ -18,7 +18,7 @@ public class ModBlocks {
   public static RegistryObject<MudBlock> WET_MUD_BLOCK = REGISTRY.registerBlock("wet_mud_block", REGISTRY.block((b) -> new MudBlock(b, true), () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
   public static RegistryObject<MudBlock> WET_MUD_BRICK = REGISTRY.registerBlock("wet_mud_brick", REGISTRY.block((b) -> new MudBlock(b, false), () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
 
-  public static RegistryObject<Block> MUD_BLOCK = REGISTRY.registerBlock("mud_block", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE)), ModRegistries.SIG);
+  public static RegistryObject<Block> MUD_BLOCK = REGISTRY.registerBlock("mud_block", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f)), ModRegistries.SIG);
   public static RegistryObject<StairsBlock> MUD_BLOCK_STAIRS = REGISTRY.registerBlock("mud_block_stairs", REGISTRY.stair(MUD_BLOCK), ModRegistries.SIG);
   public static RegistryObject<SlabBlock> MUD_BLOCK_SLAB = REGISTRY.registerBlock("mud_block_slab", REGISTRY.slab(MUD_BLOCK), ModRegistries.SIG);
   public static RegistryObject<WallBlock> MUD_BLOCK_WALL = REGISTRY.registerBlock("mud_block_wall", REGISTRY.wall(MUD_BLOCK), ModRegistries.SIG);
@@ -36,14 +36,14 @@ public class ModBlocks {
   public static RegistryObject<FenceBlock> CHARRED_FENCE = REGISTRY.registerBlock("charred_fence", REGISTRY.fence(CHARRED_PLANKS), ModRegistries.SIG);
   public static RegistryObject<FenceGateBlock> CHARRED_FENCE_GATE = REGISTRY.registerBlock("charred_fence_gate", REGISTRY.fenceGate(CHARRED_PLANKS), ModRegistries.SIG);
 
-  public static RegistryObject<Block> MUD_BRICK = REGISTRY.registerBlock("mud_brick", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE)), ModRegistries.SIG);
+  public static RegistryObject<Block> MUD_BRICK = REGISTRY.registerBlock("mud_brick", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f)), ModRegistries.SIG);
   public static RegistryObject<StairsBlock> MUD_BRICK_STAIRS = REGISTRY.registerBlock("mud_brick_stairs", REGISTRY.stair(MUD_BRICK), ModRegistries.SIG);
   public static RegistryObject<SlabBlock> MUD_BRICK_SLAB = REGISTRY.registerBlock("mud_brick_slab", REGISTRY.slab(MUD_BRICK), ModRegistries.SIG);
   public static RegistryObject<WallBlock> MUD_BRICK_WALL = REGISTRY.registerBlock("mud_brick_wall", REGISTRY.wall(MUD_BRICK), ModRegistries.SIG);
   public static RegistryObject<FenceBlock> MUD_BRICK_FENCE = REGISTRY.registerBlock("mud_brick_fence", REGISTRY.fence(MUD_BRICK), ModRegistries.SIG);
   public static RegistryObject<FenceGateBlock> MUD_BRICK_FENCE_GATE = REGISTRY.registerBlock("mud_brick_fence_gate", REGISTRY.fenceGate(MUD_BRICK), ModRegistries.SIG);
 
-  public static RegistryObject<Block> TERRACOTTA_BRICK = REGISTRY.registerBlock("terracotta_brick", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE)), ModRegistries.SIG);
+  public static RegistryObject<Block> TERRACOTTA_BRICK = REGISTRY.registerBlock("terracotta_brick", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f)), ModRegistries.SIG);
   public static RegistryObject<StairsBlock> TERRACOTTA_BRICK_STAIRS = REGISTRY.registerBlock("terracotta_brick_stairs", REGISTRY.stair(TERRACOTTA_BRICK), ModRegistries.SIG);
   public static RegistryObject<SlabBlock> TERRACOTTA_BRICK_SLAB = REGISTRY.registerBlock("terracotta_brick_slab", REGISTRY.slab(TERRACOTTA_BRICK), ModRegistries.SIG);
   public static RegistryObject<WallBlock> TERRACOTTA_BRICK_WALL = REGISTRY.registerBlock("terracotta_brick_wall", REGISTRY.wall(TERRACOTTA_BRICK), ModRegistries.SIG);
