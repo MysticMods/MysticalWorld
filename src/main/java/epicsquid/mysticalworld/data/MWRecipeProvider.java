@@ -301,14 +301,15 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_slime", this.hasItem(Tags.Items.SLIMEBALLS))
         .build(consumer);
 
-    // Withered Apple
-    ShapedRecipeBuilder.shapedRecipe(ModItems.WITHERED_APPLE.get(), 1)
-        .patternLine("WWW")
-        .patternLine("WGW")
-        .patternLine("WWW")
-        .key('W', Items.WITHER_SKELETON_SKULL)
-        .key('G', Items.GOLDEN_APPLE)
-        .addCriterion("has_golden_apple", this.hasItem(Items.GOLDEN_APPLE))
+    // Rotten Apple
+    ShapedRecipeBuilder.shapedRecipe(ModItems.ROTTEN_APPLE.get(), 1)
+        .patternLine("WLW")
+        .patternLine("LAL")
+        .patternLine("WLW")
+        .key('W', Items.ROTTEN_FLESH)
+        .key('A', Items.APPLE)
+        .key('L', MWTags.Items.LEAD_INGOT)
+        .addCriterion("has_apple", this.hasItem(Items.APPLE))
         .build(consumer);
   }
 }

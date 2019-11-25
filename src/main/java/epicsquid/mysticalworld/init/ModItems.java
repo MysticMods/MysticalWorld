@@ -48,7 +48,7 @@ public class ModItems {
   public static RegistryObject<Item> COOKED_SQUID = MysticalWorld.REGISTRY.registerItem("cooked_squid", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_SQUID)));
   public static RegistryObject<EffectItem> EPIC_SQUID = MysticalWorld.REGISTRY.registerItem("epic_squid", MysticalWorld.REGISTRY.item(EffectItem::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.EPIC_SQUID).rarity(Rarity.EPIC)));
 
-  public static RegistryObject<Item> WITHERED_APPLE = MysticalWorld.REGISTRY.registerItem("withered_apple", MysticalWorld.REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).rarity(Rarity.EPIC)));
+  public static RegistryObject<Item> ROTTEN_APPLE = MysticalWorld.REGISTRY.registerItem("rotten_apple", MysticalWorld.REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).rarity(Rarity.RARE)));
 
   // Ingots/gems
   public static RegistryObject<Item> AMETHYST_GEM = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName(), MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SMG));

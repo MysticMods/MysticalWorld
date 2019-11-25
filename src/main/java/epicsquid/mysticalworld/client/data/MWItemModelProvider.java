@@ -62,7 +62,7 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     blockWithInventoryModel(ModBlocks.TERRACOTTA_BRICK_FENCE);
     blockItem(ModBlocks.TERRACOTTA_BRICK_FENCE_GATE);
 
-    generated(ModItems.WITHERED_APPLE);
+    generated(ModItems.ROTTEN_APPLE);
 
     generated(ModItems.CARAPACE);
     generated(ModItems.PELT);

@@ -71,6 +71,8 @@ public class MWTags {
     public static Tag<Item> QUICKSILVER_BLOCK = compatTag("storage_blocks/quicksilver");
     public static Tag<Item> SILVER_BLOCK = compatTag("storage_blocks/silver");
     public static Tag<Item> TIN_BLOCK = compatTag("storage_blocks/tin");
+    public static Tag<Item> SLIME_BLOCK = compatTag("storage_blocks/slime");
+    public static Tag<Item> SLIME = compatTag("slime");
 
     public static Tag<Item> AMETHYST_GEM = compatTag("gems/amethyst");
 
