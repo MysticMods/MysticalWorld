@@ -2,13 +2,13 @@
 {
   "modid": "mysticalworld",
   "name": "Mystical World",
-  "description": "Foundational mod for Roots, Embers and more!",
-  "version": "1.1.0",
-  "mcversion": "1.12.2",
+  "description": "Provides world content including ores, blocks, and creatures, for Roots.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["EpicSquid", "Elucent"],
-  "credits": "",
+  "authorList": ["Noobanidus", "EpicSquid", "Martacus", "Davoleo", "Kalaxi", "Vulpie"],
+  "credits": "Elucent for the original ideas",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

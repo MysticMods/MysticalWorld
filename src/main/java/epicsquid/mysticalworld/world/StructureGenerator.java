@@ -117,7 +117,7 @@ public class StructureGenerator implements IWorldGenerator {
     Biome biome = world.getBiome(zxPos);
     if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.PLAINS)) return;
 
-    ChunkProviderServer serverProvider = ((WorldServer)world).getChunkProvider();
+    ChunkProviderServer serverProvider = ((WorldServer) world).getChunkProvider();
     if (serverProvider.isInsideStructure(world, "Village", zxPos)) return;
     if (serverProvider.isInsideStructure(world, "Mansion", zxPos)) return;
     if (serverProvider.isInsideStructure(world, "Stronghold", zxPos)) return;
@@ -175,22 +175,13 @@ public class StructureGenerator implements IWorldGenerator {
       if (s.equals("spawner")) {
         if (world.setBlockState(blockPos, Blocks.MOB_SPAWNER.getDefaultState(), 16)) {
           TileEntity te = world.getTileEntity(blockPos);
-          int i = 0;
-          while (!(te instanceof TileEntityMobSpawner)) {
-            i++;
-            if (i == 10) {
-              throw new IllegalStateException("[Mystical World] Failed to replace structure block with mob spawner at " + blockPos.getX() + "/" + blockPos.getY() + "/" + blockPos.getZ() + " after 10 attempts. This should not happen.");
-            }
-            world.setBlockState(blockPos, Blocks.MOB_SPAWNER.getDefaultState(), 16);
-            te = world.getTileEntity(blockPos);
-          }
-          if (te instanceof TileEntityMobSpawner) {
+          IBlockState bs = world.getBlockState(blockPos);
+          if (!(te instanceof TileEntityMobSpawner) || bs.getBlock() != Blocks.MOB_SPAWNER) {
+          } else {
             TileEntityMobSpawner ms = (TileEntityMobSpawner) te;
-            if (ms != null) {
-              ResourceLocation key = EntityList.getKey(entity.get());
-              if (key == null) key = EntityList.getKey(EntityZombie.class);
-              ms.getSpawnerBaseLogic().setEntityId(key);
-            }
+            ResourceLocation key = EntityList.getKey(entity.get());
+            if (key == null) key = EntityList.getKey(EntityZombie.class);
+            ms.getSpawnerBaseLogic().setEntityId(key);
           }
         }
         // Two floor chests
@@ -200,16 +191,9 @@ public class StructureGenerator implements IWorldGenerator {
         } else {
           if (world.setBlockState(blockPos, chest, 16)) {
             TileEntity te = world.getTileEntity(blockPos);
-            int i = 0;
-            while (!(te instanceof TileEntityChest)) {
-              i++;
-              if (i == 10) {
-                throw new IllegalStateException("[Mystical World] Failed to replace structure block with a chest at " + blockPos.getX() + "/" + blockPos.getY() + "/" + blockPos.getZ() + " after 10 attempts. This should not happen.");
-              }
-              world.setBlockState(blockPos, chest, 16);
-              te = world.getTileEntity(blockPos);
-            }
-            if (te instanceof TileEntityChest) {
+            IBlockState bs = world.getBlockState(blockPos);
+            if (!(te instanceof TileEntityChest) || bs.getBlock() != Blocks.CHEST) {
+            } else {
               ((TileEntityChest) te).setLootTable(loot, world.getSeed() * blockPos.getX() + blockPos.getY() ^ blockPos.getZ());
             }
           }
