@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.world;
 
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.world.data.DataHelper;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
@@ -177,6 +178,7 @@ public class StructureGenerator implements IWorldGenerator {
           TileEntity te = world.getTileEntity(blockPos);
           IBlockState bs = world.getBlockState(blockPos);
           if (!(te instanceof TileEntityMobSpawner) || bs.getBlock() != Blocks.MOB_SPAWNER) {
+            MysticalWorld.logger.error("[MysticalWorld] Failed to generate a structure. Are you using Chunk Pregenerator?");
           } else {
             TileEntityMobSpawner ms = (TileEntityMobSpawner) te;
             ResourceLocation key = EntityList.getKey(entity.get());
@@ -193,6 +195,7 @@ public class StructureGenerator implements IWorldGenerator {
             TileEntity te = world.getTileEntity(blockPos);
             IBlockState bs = world.getBlockState(blockPos);
             if (!(te instanceof TileEntityChest) || bs.getBlock() != Blocks.CHEST) {
+              MysticalWorld.logger.error("[MysticalWorld] Failed to generate a structure. Are you using Chunk Pregenerator?");
             } else {
               ((TileEntityChest) te).setLootTable(loot, world.getSeed() * blockPos.getX() + blockPos.getY() ^ blockPos.getZ());
             }
