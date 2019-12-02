@@ -171,6 +171,19 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.NAUTILUS_HORN);
     addItem(ModItems.GLISTERING_HORN);
 
+    addItem(ModItems.AMETHYST_SPEAR);
+    addItem(ModItems.CACTUS_SPEAR);
+    addItem(ModItems.COPPER_SPEAR);
+    addItem(ModItems.LEAD_SPEAR);
+    addItem(ModItems.QUICKSILVER_SPEAR);
+    addItem(ModItems.SILVER_SPEAR);
+    addItem(ModItems.TIN_SPEAR);
+    addItem(ModItems.STONE_SPEAR);
+    addItem(ModItems.WOODEN_SPEAR);
+    addItem(ModItems.DIAMOND_SPEAR);
+    addItem(ModItems.GOLD_SPEAR);
+    addItem(ModItems.IRON_SPEAR);
+
     addItem(ModEntities.SPAWN_BEETLE);
     addItem(ModEntities.SPAWN_DEER);
     addItem(ModEntities.SPAWN_FROG);

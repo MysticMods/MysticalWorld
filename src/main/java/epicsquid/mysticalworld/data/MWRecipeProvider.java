@@ -1,8 +1,8 @@
 package epicsquid.mysticalworld.data;
 
 import epicsquid.mysticallib.data.DeferredRecipeProvider;
-import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.MWTags;
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.Blocks;
@@ -101,14 +101,25 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     sword(ModItems.TIN_INGOT, ModItems.TIN_SWORD, "sword", consumer);
     sword(ModItems.LEAD_INGOT, ModItems.LEAD_SWORD, "sword", consumer);
 
+    spear(ModItems.AMETHYST_SWORD, ModItems.AMETHYST_SPEAR, "spear", consumer);
+    spear(ModItems.CACTUS_SWORD, ModItems.CACTUS_SPEAR, "spear", consumer);
+    spear(ModItems.COPPER_SWORD, ModItems.COPPER_SPEAR, "spear", consumer);
+    spear(ModItems.LEAD_SWORD, ModItems.LEAD_SPEAR, "spear", consumer);
+    spear(ModItems.QUICKSILVER_SWORD, ModItems.QUICKSILVER_SPEAR, "spear", consumer);
+    spear(ModItems.SILVER_SWORD, ModItems.SILVER_SPEAR, "spear", consumer);
+    spear(ModItems.TIN_SWORD, ModItems.TIN_SPEAR, "spear", consumer);
+    spear(() -> Items.STONE_SWORD, ModItems.STONE_SPEAR, "spear", consumer);
+    spear(() -> Items.WOODEN_SWORD, ModItems.WOODEN_SPEAR, "spear", consumer);
+    spear(() -> Items.DIAMOND_SWORD, ModItems.DIAMOND_SPEAR, "spear", consumer);
+    spear(() -> Items.GOLDEN_SWORD, ModItems.GOLD_SPEAR, "spear", consumer);
+    spear(() -> Items.IRON_SWORD, ModItems.IRON_SPEAR, "spear", consumer);
+
     shovel(ModItems.AMETHYST_GEM, ModItems.AMETHYST_SHOVEL, "shovel", consumer);
     shovel(ModItems.COPPER_INGOT, ModItems.COPPER_SHOVEL, "shovel", consumer);
     shovel(ModItems.SILVER_INGOT, ModItems.SILVER_SHOVEL, "shovel", consumer);
     shovel(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SHOVEL, "shovel", consumer);
     shovel(ModItems.TIN_INGOT, ModItems.TIN_SHOVEL, "shovel", consumer);
     shovel(ModItems.LEAD_INGOT, ModItems.LEAD_SHOVEL, "shovel", consumer);
-
-
 
     hoe(ModItems.AMETHYST_GEM, ModItems.AMETHYST_HOE, "hoe", consumer);
     hoe(ModItems.COPPER_INGOT, ModItems.COPPER_HOE, "hoe", consumer);
@@ -184,6 +195,8 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
 
     recycle(ModItems.GOLD_KNIFE, () -> Items.GOLD_NUGGET, 0.15f, MysticalWorld.MODID, consumer);
     recycle(ModItems.IRON_KNIFE, () -> Items.IRON_NUGGET, 0.15f, MysticalWorld.MODID, consumer);
+    recycle(ModItems.GOLD_SPEAR, () -> Items.GOLD_NUGGET, 0.15f, MysticalWorld.MODID, consumer);
+    recycle(ModItems.IRON_SPEAR, () -> Items.IRON_NUGGET, 0.15f, MysticalWorld.MODID, consumer);
 
     ShapelessRecipeBuilder.shapelessRecipe(ModItems.STUFFED_AUBERGINE.get(), 1).addIngredient(ModItems.COOKED_AUBERGINE.get()).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.COOKED_VEGETABLES).addCriterion("has_cooked_aubergine", this.hasItem(ModItems.COOKED_AUBERGINE.get())).build(consumer);
 
