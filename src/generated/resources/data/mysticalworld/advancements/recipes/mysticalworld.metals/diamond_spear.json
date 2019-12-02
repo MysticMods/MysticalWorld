@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:diamond_spear"
+    ]
+  },
+  "criteria": {
+    "has_diamond_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:diamond_sword"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:diamond_spear"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_diamond_sword",
+      "has_the_recipe"
+    ]
+  ]
+}

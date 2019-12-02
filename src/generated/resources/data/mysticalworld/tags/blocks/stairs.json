@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:mud_block_stairs",
+    "mysticalworld:mud_brick_stairs",
+    "mysticalworld:charred_stairs",
+    "mysticalworld:terracotta_brick_stairs"
+  ]
+}

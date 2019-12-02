@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ores/amethyst",
+    "#forge:ores/copper",
+    "#forge:ores/lead",
+    "#forge:ores/quicksilver",
+    "#forge:ores/silver",
+    "#forge:ores/tin"
+  ]
+}

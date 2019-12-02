@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mysticalworld:quicksilver_block"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:quicksilver_ingot",
+    "count": 9
+  }
+}

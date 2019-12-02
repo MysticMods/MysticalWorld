@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boots",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:quicksilver_ingot"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:quicksilver_boots"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:cooked_carrot_from_campfire"
+    ]
+  },
+  "criteria": {
+    "has_vegetables_carrot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "mysticalworld:vegetables/carrot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:cooked_carrot_from_campfire"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_vegetables_carrot",
+      "has_the_recipe"
+    ]
+  ]
+}

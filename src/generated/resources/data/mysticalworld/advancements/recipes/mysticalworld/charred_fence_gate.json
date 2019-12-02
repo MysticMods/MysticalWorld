@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:charred_fence_gate"
+    ]
+  },
+  "criteria": {
+    "has_charred_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:charred_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:charred_fence_gate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_charred_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

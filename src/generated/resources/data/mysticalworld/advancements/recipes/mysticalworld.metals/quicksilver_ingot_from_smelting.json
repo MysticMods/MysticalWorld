@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:quicksilver_ingot_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_ores_quicksilver": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ores/quicksilver"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:quicksilver_ingot_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ores_quicksilver",
+      "has_the_recipe"
+    ]
+  ]
+}

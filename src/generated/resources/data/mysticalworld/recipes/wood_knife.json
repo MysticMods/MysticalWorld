@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "knife",
+  "pattern": [
+    " X",
+    "S "
+  ],
+  "key": {
+    "X": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:wood_knife"
+  }
+}

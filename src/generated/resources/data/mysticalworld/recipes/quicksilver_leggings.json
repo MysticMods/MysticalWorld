@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "leggings",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:quicksilver_ingot"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:quicksilver_leggings"
+  }
+}

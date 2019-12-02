@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "mysticalworld:iron_knife"
+  },
+  "result": "minecraft:iron_nugget",
+  "experience": 0.15,
+  "cookingtime": 200
+}

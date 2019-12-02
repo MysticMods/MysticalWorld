@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:cooked_aubergine_from_smoker"
+    ]
+  },
+  "criteria": {
+    "has_eggplant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "simplefarming:eggplant"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:cooked_aubergine_from_smoker"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_eggplant",
+      "has_the_recipe"
+    ]
+  ]
+}
