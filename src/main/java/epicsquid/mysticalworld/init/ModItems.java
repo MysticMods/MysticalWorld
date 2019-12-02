@@ -121,7 +121,7 @@ public class ModItems {
   public static RegistryObject<PickaxeItem> SILVER_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(SilverPickaxeItem::new, ModMaterials.SILVER, ModRegistries.SMG));
   public static RegistryObject<ShovelItem> SILVER_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(SilverShovelItem::new, ModMaterials.SILVER, ModRegistries.SMG));
   public static RegistryObject<SwordItem> SILVER_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(SilverSwordItem::new, ModMaterials.SILVER, ModRegistries.SMG));
-  public static RegistryObject<SpearItem> SILVER_SPEAR = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_spear", MysticalWorld.REGISTRY.spear(ModifiedSpearItem::new, ModMaterials.SILVER, ModRegistries.SMG));
+  public static RegistryObject<SpearItem> SILVER_SPEAR = MysticalWorld.REGISTRY.registerItem(ModMaterials.SILVER.getInternalName() + "_spear", MysticalWorld.REGISTRY.spear(SilverSpearItem::new, ModMaterials.SILVER, ModRegistries.SMG));
 
   public static RegistryObject<AxeItem> TIN_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(AxeItem::new, ModMaterials.TIN, ModRegistries.SMG));
   public static RegistryObject<HoeItem> TIN_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.TIN.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(HoeItem::new, ModMaterials.TIN, ModRegistries.SMG));
