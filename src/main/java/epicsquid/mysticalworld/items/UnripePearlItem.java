@@ -32,8 +32,8 @@ public class UnripePearlItem extends Item {
         counter++;
       } while (!flag && counter != 15);
       if (flag) {
-        player.world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, player.getSoundCategory(), 1.0F, 1.0F);
-        player.playSound(ModSounds.Endermini.PORTAL, 1.0F, 1.0F);
+        player.world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, ModSounds.Endermini.PORTAL.get(), player.getSoundCategory(), 1.0F, 1.0F);
+        player.playSound(ModSounds.Endermini.PORTAL.get(), 1.0F, 1.0F);
         player.getCooldownTracker().setCooldown(this, 20);
         if (!player.isCreative()) {
           itemstack.shrink(1);

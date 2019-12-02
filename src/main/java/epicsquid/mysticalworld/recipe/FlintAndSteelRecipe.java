@@ -10,9 +10,11 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.SpecialRecipe;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.Tags;
 
 public class FlintAndSteelRecipe extends SpecialRecipe {
   private static Ingredient LOG_INGREDIENT = null;
@@ -28,7 +30,7 @@ public class FlintAndSteelRecipe extends SpecialRecipe {
     boolean found_log = false;
 
     if (LOG_INGREDIENT == null) {
-      LOG_INGREDIENT = Ingredient.fromTag(MWTags.Items.LOGS);
+      LOG_INGREDIENT = Ingredient.fromTag(ItemTags.LOGS);
     }
     if (FLINT_INGREDIENT == null) {
       FLINT_INGREDIENT = DamagedIngredient.fromItems(Items.FLINT_AND_STEEL);

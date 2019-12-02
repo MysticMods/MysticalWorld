@@ -50,13 +50,13 @@ public class FoxEntity extends TameableEntity {
   @Nullable
   @Override
   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-    return ModSounds.Fox.BARK;
+    return ModSounds.Fox.BARK.get();
   }
 
   @Nullable
   @Override
   protected SoundEvent getDeathSound() {
-    return ModSounds.Fox.DEATH;
+    return ModSounds.Fox.DEATH.get();
   }
 
   @Override
@@ -158,11 +158,11 @@ public class FoxEntity extends TameableEntity {
   @Override
   protected SoundEvent getAmbientSound() {
     if (this.isAngry()) {
-      return ModSounds.Fox.AGGRO;
+      return ModSounds.Fox.AGGRO.get();
     } else if (this.isSleeping()) {
-      return ModSounds.Fox.SLEEP;
+      return ModSounds.Fox.SLEEP.get();
     } else {
-      return ModSounds.Fox.IDLE;
+      return ModSounds.Fox.IDLE.get();
     }
   }
 
@@ -208,7 +208,7 @@ public class FoxEntity extends TameableEntity {
 
     if (flag) {
       applyEnchantments(this, entityIn);
-      playSound(ModSounds.Fox.BITE, 1.0f, 1.0f);
+      playSound(ModSounds.Fox.BITE.get(), 1.0f, 1.0f);
     }
 
     return flag;

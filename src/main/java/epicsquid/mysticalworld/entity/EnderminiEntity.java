@@ -98,7 +98,7 @@ public class EnderminiEntity extends CreatureEntity {
       this.lastCreepySound = this.ticksExisted;
 
       if (!this.isSilent()) {
-        this.world.playSound(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ, ModSounds.Endermini.STARE, this.getSoundCategory(), 2.5F, 1.0F, false);
+        this.world.playSound(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ, ModSounds.Endermini.STARE.get(), this.getSoundCategory(), 2.5F, 1.0F, false);
       }
     }
   }
@@ -200,8 +200,8 @@ public class EnderminiEntity extends CreatureEntity {
     boolean flag = this.attemptTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), false);
 
     if (flag) {
-      this.world.playSound(null, this.prevPosX, this.prevPosY, this.prevPosZ, ModSounds.Endermini.PORTAL, this.getSoundCategory(), 1.0F, 1.0F);
-      this.playSound(ModSounds.Endermini.PORTAL, 1.0F, 1.0F);
+      this.world.playSound(null, this.prevPosX, this.prevPosY, this.prevPosZ, ModSounds.Endermini.PORTAL.get(), this.getSoundCategory(), 1.0F, 1.0F);
+      this.playSound(ModSounds.Endermini.PORTAL.get(), 1.0F, 1.0F);
     }
 
     return flag;
@@ -209,17 +209,17 @@ public class EnderminiEntity extends CreatureEntity {
 
   @Override
   protected SoundEvent getAmbientSound() {
-    return this.isScreaming() ? ModSounds.Endermini.SCREAM : ModSounds.Endermini.IDLE;
+    return this.isScreaming() ? ModSounds.Endermini.SCREAM.get() : ModSounds.Endermini.IDLE.get();
   }
 
   @Override
   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-    return ModSounds.Endermini.HIT;
+    return ModSounds.Endermini.HIT.get();
   }
 
   @Override
   protected SoundEvent getDeathSound() {
-    return ModSounds.Endermini.DEATH;
+    return ModSounds.Endermini.DEATH.get();
   }
 
   @Override
