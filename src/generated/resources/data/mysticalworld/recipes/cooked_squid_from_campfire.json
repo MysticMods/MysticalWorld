@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "mysticalworld:raw_squid"
-  },
-  "result": "mysticalworld:cooked_squid",
-  "experience": 0.15,
-  "cookingtime": 600
-}

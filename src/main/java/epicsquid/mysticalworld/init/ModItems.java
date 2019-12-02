@@ -81,7 +81,7 @@ public class ModItems {
   public static RegistryObject<PickaxeItem> AMETHYST_PICKAXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_pickaxe", MysticalWorld.REGISTRY.pickaxe(PickaxeItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
   public static RegistryObject<ShovelItem> AMETHYST_SHOVEL = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_shovel", MysticalWorld.REGISTRY.shovel(ShovelItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
   public static RegistryObject<SwordItem> AMETHYST_SWORD = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_sword", MysticalWorld.REGISTRY.sword(SwordItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
-  public static RegistryObject<SpearItem> AMETHYST_SPEAR = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + " _spear", MysticalWorld.REGISTRY.spear(ModifiedSpearItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
+  public static RegistryObject<SpearItem> AMETHYST_SPEAR = MysticalWorld.REGISTRY.registerItem(ModMaterials.AMETHYST.getInternalName() + "_spear", MysticalWorld.REGISTRY.spear(ModifiedSpearItem::new, ModMaterials.AMETHYST, ModRegistries.SMG));
 
   public static RegistryObject<AxeItem> CACTUS_AXE = MysticalWorld.REGISTRY.registerItem(ModMaterials.CACTUS.getInternalName() + "_axe", MysticalWorld.REGISTRY.axe(AxeItem::new, ModMaterials.CACTUS, ModRegistries.SMG));
   public static RegistryObject<HoeItem> CACTUS_HOE = MysticalWorld.REGISTRY.registerItem(ModMaterials.CACTUS.getInternalName() + "_hoe", MysticalWorld.REGISTRY.hoe(HoeItem::new, ModMaterials.CACTUS, ModRegistries.SMG));

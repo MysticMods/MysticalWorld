@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "mysticalworld:quicksilver_items"
-  },
-  "result": "mysticalworld:quicksilver_nugget",
-  "experience": 0.15,
-  "cookingtime": 200
-}

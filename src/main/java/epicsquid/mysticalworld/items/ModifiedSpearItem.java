@@ -28,7 +28,9 @@ public class ModifiedSpearItem extends SpearItem implements IModifiable {
   public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
 
-    map.put(PlayerEntity.REACH_DISTANCE.getName(), getOrCreateModifier(PlayerEntity.REACH_DISTANCE, () -> new AttributeModifier(MaterialType.MAIN_HAND_MODIFIER, "Reaching", 2.5, AttributeModifier.Operation.ADDITION)));
+    if (equipmentSlot == EquipmentSlotType.MAINHAND) {
+      map.put(PlayerEntity.REACH_DISTANCE.getName(), getOrCreateModifier(PlayerEntity.REACH_DISTANCE, () -> new AttributeModifier(MaterialType.MAIN_HAND_MODIFIER, "Reaching", 2.5, AttributeModifier.Operation.ADDITION)));
+    }
 
     return map;
   }
