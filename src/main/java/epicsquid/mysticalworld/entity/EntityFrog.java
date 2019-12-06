@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -114,7 +115,7 @@ public class EntityFrog extends EntityAnimal {
 
     if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextSlime <= 0 && shouldDropSlime())
     {
-        this.playSound(SoundEvents.BLOCK_SLIME_PLACE, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+        this.playSound(ModSounds.Frog.SLIME, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
         this.dropItem(Items.SLIME_BALL, 1);
         this.timeUntilNextSlime = this.rand.nextInt(getSlimeTime()) + getSlimeTime();
     }

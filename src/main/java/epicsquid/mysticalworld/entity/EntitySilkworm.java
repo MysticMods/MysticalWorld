@@ -6,6 +6,7 @@ import epicsquid.mysticalworld.entity.ai.EntityAIConsumeLeaves;
 import epicsquid.mysticalworld.entity.ai.EntityAITargetLeaves;
 import epicsquid.mysticalworld.events.LeafHandler;
 import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -28,17 +29,15 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 public class EntitySilkworm extends EntityAnimal {
-  public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID,  "entity/silkworm");
+  public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/silkworm");
 
   private static final DataParameter<Integer> SIZE = EntityDataManager.createKey(EntitySilkworm.class, DataSerializers.VARINT);
   private static final DataParameter<Integer> LEAVES_CONSUMED = EntityDataManager.createKey(EntitySilkworm.class, DataSerializers.VARINT);
@@ -89,7 +88,7 @@ public class EntitySilkworm extends EntityAnimal {
     return this.dataManager.get(LEAVES_CONSUMED);
   }
 
-  public void setLeavesConsumed (int amount) {
+  public void setLeavesConsumed(int amount) {
     this.dataManager.set(LEAVES_CONSUMED, amount);
     this.dataManager.setDirty(LEAVES_CONSUMED);
   }
@@ -99,18 +98,18 @@ public class EntitySilkworm extends EntityAnimal {
     this.dataManager.setDirty(LEAVES_CONSUMED);
   }
 
-  private boolean shouldPlaySound () {
+  private boolean shouldPlaySound() {
     return (ticksExisted - lastTickPlayed) > 8;
   }
 
-  public void eatLeaves () {
+  public void eatLeaves() {
     incLeaves();
     for (int i = 0; i < 1 + rand.nextInt(3); i++) {
       grow();
     }
     this.heal(1f);
     if (shouldPlaySound()) {
-      world.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_LLAMA_EAT, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() * 0.02f);
+      world.playSound(null, posX, posY, posZ, ModSounds.Silkworm.EAT, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() * 0.02f);
       lastTickPlayed = ticksExisted;
     }
   }
@@ -171,7 +170,7 @@ public class EntitySilkworm extends EntityAnimal {
   @Override
   protected SoundEvent getAmbientSound() {
     if (world.rand.nextInt(4) == 0) {
-      return SoundEvents.ENTITY_ENDERMITE_AMBIENT;
+      return ModSounds.Silkworm.AMBIENT;
     }
 
     return null;
@@ -179,17 +178,17 @@ public class EntitySilkworm extends EntityAnimal {
 
   @Override
   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-    return SoundEvents.ENTITY_ENDERMITE_HURT;
+    return ModSounds.Silkworm.HURT;
   }
 
   @Override
   protected SoundEvent getDeathSound() {
-    return SoundEvents.ENTITY_ENDERMITE_DEATH;
+    return ModSounds.Silkworm.DEATH;
   }
 
   @Override
   protected void playStepSound(BlockPos pos, Block blockIn) {
-    this.playSound(SoundEvents.ENTITY_ENDERMITE_STEP, 0.15F, 1.3F + (world.rand.nextFloat() - 0.5f));
+    this.playSound(ModSounds.Silkworm.STEP, 0.15F, 1.3F + (world.rand.nextFloat() - 0.5f));
   }
 
   @Override
@@ -269,7 +268,7 @@ public class EntitySilkworm extends EntityAnimal {
         int quantity = Math.max(1, Math.min(5, (rand.nextInt(Math.max(getLeavesConsumed() % 8, 1)))));
         this.dropItem(ModItems.silk_cocoon, quantity);
         this.resetLeaves();
-        world.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_CHICKEN_EGG, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() - 0.5f);
+        world.playSound(null, posX, posY, posZ, ModSounds.Silkworm.PLOP, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() - 0.5f);
       }
     } else {
       incSize();

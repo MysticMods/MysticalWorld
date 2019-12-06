@@ -4,6 +4,7 @@ import epicsquid.mysticallib.capability.EntityCooldownCapability;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -33,7 +34,7 @@ public class SquidHandler {
           if (cap != null) {
             if (cap.canHarvest()) {
               cap.setCooldown(20 * 15);
-              event.getWorld().playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_COW_MILK, SoundCategory.PLAYERS, 0.5F, event.getWorld().rand.nextFloat() * 0.25F + 0.6F, true);
+              event.getWorld().playSound(player.posX, player.posY, player.posZ, ModSounds.General.SQUID_MILK, SoundCategory.PLAYERS, 0.5F, event.getWorld().rand.nextFloat() * 0.25F + 0.6F, true);
               if (!player.isCreative()) heldItem.shrink(1);
               player.inventory.addItemStackToInventory(new ItemStack(ModItems.ink_bottle));
               return;

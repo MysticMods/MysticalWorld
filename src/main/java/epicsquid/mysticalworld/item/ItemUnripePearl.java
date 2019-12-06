@@ -37,7 +37,7 @@ public class ItemUnripePearl extends ItemBase {
         }
       }
       if (flag) {
-        player.world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, player.getSoundCategory(), 1.0F, 1.0F);
+        player.world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, ModSounds.General.UNRIPE_PEARL, player.getSoundCategory(), 1.0F, 1.0F);
         player.playSound(ModSounds.Endermini.PORTAL, 1.0F, 1.0F);
         player.getCooldownTracker().setCooldown(this, 20);
         if (!player.capabilities.isCreativeMode) {

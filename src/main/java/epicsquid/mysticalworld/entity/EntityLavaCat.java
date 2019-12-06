@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -114,9 +115,9 @@ public class EntityLavaCat extends EntityOcelot {
   protected SoundEvent getAmbientSound() {
     if (this.isTamed()) {
       if (this.isInLove()) {
-        return SoundEvents.ENTITY_CAT_PURR;
+        return ModSounds.LavaCat.PURR;
       } else {
-        return this.rand.nextInt(4) == 0 ? SoundEvents.ENTITY_CAT_PURREOW : SoundEvents.ENTITY_CAT_AMBIENT;
+        return this.rand.nextInt(4) == 0 ? ModSounds.LavaCat.PURREOW : ModSounds.LavaCat.AMBIENT;
       }
     } else {
       return null;
@@ -125,12 +126,12 @@ public class EntityLavaCat extends EntityOcelot {
 
   @Override
   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-    return SoundEvents.ENTITY_CAT_HURT;
+    return ModSounds.LavaCat.HURT;
   }
 
   @Override
   protected SoundEvent getDeathSound() {
-    return SoundEvents.ENTITY_CAT_DEATH;
+    return ModSounds.LavaCat.DEATH;
   }
 
   @Override
@@ -328,7 +329,7 @@ public class EntityLavaCat extends EntityOcelot {
     super.onLivingUpdate();
 
     if (getIsLava() && world.isRainingAt(getPosition()) && world.canSeeSky(getPosition()) && rand.nextInt(30) == 0) {
-      world.playSound(null, posX, posY, posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.NEUTRAL, 0.2f, 1.3f);
+      world.playSound(null, posX, posY, posZ, ModSounds.LavaCat.SIZZLE, SoundCategory.NEUTRAL, 0.2f, 1.3f);
     }
 
     if (getIsLava() && inWater) {

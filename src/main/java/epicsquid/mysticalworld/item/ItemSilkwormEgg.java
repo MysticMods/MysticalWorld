@@ -4,10 +4,10 @@ import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.EntitySilkworm;
+import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -42,12 +42,10 @@ public class ItemSilkwormEgg extends ItemBase {
         itemstack.shrink(1);
       }
 
-      if (!worldIn.isRemote) {
-        if (success) {
-          worldIn.playSound(null, blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, SoundEvents.ENTITY_CHICKEN_EGG, SoundCategory.NEUTRAL, 1f, 1.4f + (worldIn.rand.nextFloat() - 0.5f));
-        } else {
-          worldIn.playSound(null, blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.NEUTRAL, 0.5f, 2);
-        }
+      if (success) {
+        worldIn.playSound(null, blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, ModSounds.Silkworm.PLOP, SoundCategory.NEUTRAL, 1f, 1.4f + (worldIn.rand.nextFloat() - 0.5f));
+      } else {
+        worldIn.playSound(null, blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, ModSounds.Silkworm.USE_EGG, SoundCategory.NEUTRAL, 0.5f, 2);
       }
 
       return EnumActionResult.SUCCESS;
@@ -74,12 +72,10 @@ public class ItemSilkwormEgg extends ItemBase {
             itemstack.shrink(1);
           }
 
-          if (!worldIn.isRemote) {
-            if (success) {
-              worldIn.playSound(blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, SoundEvents.ENTITY_CHICKEN_EGG, SoundCategory.NEUTRAL, 1f, 1.4f + (worldIn.rand.nextFloat() - 0.5f), false);
-            } else {
-              worldIn.playSound(blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.NEUTRAL, 0.5f, 2, false);
-            }
+          if (success) {
+            worldIn.playSound(blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, ModSounds.Silkworm.PLOP, SoundCategory.NEUTRAL, 1f, 1.4f + (worldIn.rand.nextFloat() - 0.5f), false);
+          } else {
+            worldIn.playSound(blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, ModSounds.Silkworm.USE_EGG, SoundCategory.NEUTRAL, 0.5f, 2, false);
           }
 
           return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
