@@ -34,13 +34,13 @@ public class SquidHandler {
           if (cap != null) {
             if (cap.canHarvest()) {
               cap.setCooldown(20 * 15);
-              event.getWorld().playSound(player.posX, player.posY, player.posZ, ModSounds.General.SQUID_MILK, SoundCategory.PLAYERS, 0.5F, event.getWorld().rand.nextFloat() * 0.25F + 0.6F, true);
+              event.getWorld().playSound(null, player.posX, player.posY, player.posZ, ModSounds.General.SQUID_MILK, SoundCategory.PLAYERS, 0.5F, event.getWorld().rand.nextFloat() * 0.25F + 0.6F);
               if (!player.isCreative()) heldItem.shrink(1);
               player.inventory.addItemStackToInventory(new ItemStack(ModItems.ink_bottle));
               return;
             }
           }
-          player.sendStatusMessage(new TextComponentTranslation("message.squid.cooldown").setStyle(new Style().setColor(TextFormatting.BLACK).setBold(true)), true);
+          player.sendStatusMessage(new TextComponentTranslation("message.squid.cooldown").setStyle(new Style().setColor(TextFormatting.BLUE).setBold(true)), true);
         }
       }
     }
