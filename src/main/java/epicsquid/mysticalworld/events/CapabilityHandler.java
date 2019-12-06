@@ -30,17 +30,6 @@ public class CapabilityHandler {
   }
 
   @SubscribeEvent
-  public void onPlayerClone(PlayerEvent.Clone event) {
-    if (!event.isWasDeath()) {
-      return;
-    }
-
-    PlayerShoulderCapability capOld = event.getOriginal().getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY, null);
-    PlayerShoulderCapability capNew = event.getEntityPlayer().getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY, null);
-    capNew.readNBT(capOld.writeNBT());
-  }
-
-  @SubscribeEvent
   public void onTracking(PlayerEvent.StartTracking event) {
     Entity target = event.getTarget();
     EntityPlayer victim = event.getEntityPlayer();
