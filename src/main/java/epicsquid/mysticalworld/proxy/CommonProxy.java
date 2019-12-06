@@ -10,7 +10,6 @@ import epicsquid.mysticalworld.integration.endercore.EndercoreHarvest;
 import epicsquid.mysticalworld.integration.harvest.HarvestIntegration;
 import epicsquid.mysticalworld.integration.jer.JERIntegration;
 import epicsquid.mysticalworld.integration.patchouli.api.ConfigKeys;
-import epicsquid.mysticalworld.item.ItemCharm;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.loot.conditions.IsLava;
 import epicsquid.mysticalworld.loot.conditions.IsObsidian;
@@ -81,7 +80,7 @@ public class CommonProxy {
   }
 
   public void postInit(FMLPostInitializationEvent event) {
-    ItemCharm.ALLOWED_ENCHANTS.addAll(Arrays.asList(Enchantments.PROTECTION,
+/*    ItemCharm.ALLOWED_ENCHANTS.addAll(Arrays.asList(Enchantments.PROTECTION,
         Enchantments.FIRE_PROTECTION,
         Enchantments.FEATHER_FALLING,
         Enchantments.BLAST_PROTECTION,
@@ -110,7 +109,7 @@ public class CommonProxy {
         Enchantments.LUCK_OF_THE_SEA,
         Enchantments.LURE,
         Enchantments.MENDING,
-        Enchantments.VANISHING_CURSE));
+        Enchantments.VANISHING_CURSE));*/
   }
 
   public void loadComplete(FMLLoadCompleteEvent event) {

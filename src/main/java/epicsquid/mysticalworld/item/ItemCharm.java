@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.item;
+/*package epicsquid.mysticalworld.item;
 
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticalworld.MysticalWorld;
@@ -160,4 +160,4 @@ public class ItemCharm extends ItemBase {
       return null;
     }
   }
-}
+}*/

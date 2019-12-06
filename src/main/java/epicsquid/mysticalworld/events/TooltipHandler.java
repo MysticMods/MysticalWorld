@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.events;
+/*package epicsquid.mysticalworld.events;
 
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.item.ItemCharm;
@@ -49,4 +49,4 @@ public class TooltipHandler {
 
 
   }
-}
+}*/

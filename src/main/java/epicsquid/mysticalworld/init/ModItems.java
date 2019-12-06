@@ -8,28 +8,26 @@ import epicsquid.mysticallib.item.ItemSeedBase;
 import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticallib.util.MirrorHelper;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.integration.roots.Knives;
-import epicsquid.mysticalworld.item.ItemCharm;
 import epicsquid.mysticalworld.item.ItemSilkwormEgg;
 import epicsquid.mysticalworld.item.ItemUnripePearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.*;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemSeedFood;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 
 public class ModItems {
 
@@ -44,7 +42,7 @@ public class ModItems {
 
   public static Item poisoned_potato;
 
-  public static Item charm;
+  /*  public static Item charm;*/
 
   /**
    * Register all items
