@@ -64,7 +64,7 @@ public class LeafHandler {
     if (ConfigManager.silkworm.enabled && ConfigManager.silkworm.leafDrops && !event.getWorld().isRemote) {
       IBlockState state = event.getState();
       if (getLeafBlocks().contains(state.getBlock())) {
-        if (event.getWorld().rand.nextInt(ConfigManager.silkworm.leafDropChance) == 0) {
+        if (event.getWorld().rand.nextInt(ConfigManager.safeInt(ConfigManager.silkworm.leafDropChance)) == 0) {
           event.getDrops().add(new ItemStack(ModItems.silkworm_egg));
         }
         /*if (event.getWorld().rand.nextInt(ConfigManager.silkworm.leafSpawnChance) == 0) {

@@ -34,7 +34,7 @@ public class WorldGeneratorTrees implements IWorldGenerator {
 
     Biome biome = world.getChunk(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
-    if (ConfigManager.burntTrees.chance == -1 || random.nextInt(ConfigManager.burntTrees.chance) != 0) {
+    if (ConfigManager.burntTrees.chance == -1 || random.nextInt(ConfigManager.safeInt(ConfigManager.burntTrees.chance)) != 0) {
       return;
     }
 

@@ -254,7 +254,7 @@ public class EntitySilkworm extends EntityAnimal {
     super.onLivingUpdate();
 
     if (!this.world.isRemote) {
-      if (this.rand.nextInt(ConfigManager.silkworm.growthChance) == 0) {
+      if (this.rand.nextInt(ConfigManager.safeInt(ConfigManager.silkworm.growthChance)) == 0) {
         grow();
       }
     }

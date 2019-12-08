@@ -23,6 +23,10 @@ public class ConfigManager {
     }
   }
 
+  public static int safeInt (int incoming) {
+    return Math.max(1, incoming);
+  }
+
   @Config.Comment(("Grant the Patchouli-based Guide Book when first joining the server"))
   public static boolean GiveBook = true;
 

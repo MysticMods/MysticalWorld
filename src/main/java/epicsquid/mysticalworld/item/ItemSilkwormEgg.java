@@ -89,7 +89,7 @@ public class ItemSilkwormEgg extends ItemBase {
   }
 
   private boolean spawnCreature(World worldIn, double x, double y, double z) {
-    if (worldIn.rand.nextInt(ConfigManager.silkworm.successChance) == 0) {
+    if (worldIn.rand.nextInt(ConfigManager.safeInt(ConfigManager.silkworm.successChance)) == 0) {
       doSpawnCreature(worldIn, x, y, z);
       return true;
     }
