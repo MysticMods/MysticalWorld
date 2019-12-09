@@ -1,14 +1,13 @@
 package epicsquid.mysticalworld.events;
 
-import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
+import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.GlassBottleItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -17,20 +16,16 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
-public class SquidHandler {
-
-  @SubscribeEvent
+public class CapabilityHandler {
   public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
     if (event.getObject() instanceof SquidEntity) {
       event.addCapability(AnimalCooldownCapabilityProvider.IDENTIFIER, new AnimalCooldownCapabilityProvider());
+    } else if (event.getObject() instanceof PlayerEntity) {
+      event.addCapability(PlayerShoulderCapabilityProvider.IDENTIFIER, new PlayerShoulderCapabilityProvider());
     }
   }
 
-  @SubscribeEvent
   public static void onSquidMilked(PlayerInteractEvent.EntityInteract event) {
     PlayerEntity player = (PlayerEntity) event.getEntity();
     ItemStack heldItem = player.getHeldItem(event.getHand());

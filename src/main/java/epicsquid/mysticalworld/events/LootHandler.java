@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Set;
 
-@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 @SuppressWarnings("unused")
 public class LootHandler {
   private static Set<ResourceLocation> tables = Sets
@@ -21,7 +20,6 @@ public class LootHandler {
   private static ResourceLocation grass_table = new ResourceLocation("minecraft", "blocks/grass");
   private static ResourceLocation squid_table = new ResourceLocation("minecraft", "entities/squid");
 
-  @SubscribeEvent
   public static void onLootLoad(LootTableLoadEvent event) {
     if (tables.contains(event.getName())) {
       event.getTable().addPool(

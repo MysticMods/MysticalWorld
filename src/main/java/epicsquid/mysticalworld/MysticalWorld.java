@@ -65,13 +65,14 @@ public class MysticalWorld {
 
     modBus.addListener(setup::init);
     modBus.addListener(setup::gatherData);
+
     modBus.addGenericListener(EntityType.class, EventPriority.LOWEST, ModEntities::registerEntities);
     modBus.addGenericListener(Item.class, EventPriority.LOWEST, ModItems::registerItems);
 
+    MinecraftForge.EVENT_BUS.addListener(setup::serverStarting);
+
     REGISTRY.registerEventBus(modBus);
 
-    MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
-    MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
-    MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);
+    setup.registerListeners();
   }
 }

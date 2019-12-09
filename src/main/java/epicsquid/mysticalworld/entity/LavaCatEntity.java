@@ -69,7 +69,7 @@ public class LavaCatEntity extends TameableEntity {
 
   public static boolean placement (EntityType<? extends AnimalEntity> p_223316_0_, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random p_223316_4_) {
     Block block = worldIn.getBlockState(blockpos.down()).getBlock();
-    return block == Blocks.NETHERRACK || block == Blocks.OBSIDIAN || block == Blocks.MAGMA_BLOCK || block == Blocks.SOUL_SAND || block == Blocks.NETHER_BRICKS || block == Blocks.BONE_BLOCK || block == Blocks.AIR;
+    return block == Blocks.NETHERRACK || block == Blocks.OBSIDIAN || block == Blocks.MAGMA_BLOCK || block == Blocks.SOUL_SAND || block == Blocks.NETHER_BRICKS || block == Blocks.BONE_BLOCK;
   }
 
   @Override
