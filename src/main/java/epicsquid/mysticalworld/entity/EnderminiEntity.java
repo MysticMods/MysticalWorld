@@ -102,7 +102,7 @@ public class EnderminiEntity extends CreatureEntity {
       this.lastCreepySound = this.ticksExisted;
 
       if (!this.isSilent()) {
-        this.world.playSound(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ, ModSounds.Endermini.STARE.get(), this.getSoundCategory(), 2.5F, 1.0F, false);
+        this.world.playSound(null, this.posX, this.posY + (double) this.getEyeHeight(), this.posZ, ModSounds.Endermini.STARE.get(), this.getSoundCategory(), 2.5F, 1.0F);
       }
     }
   }
@@ -205,7 +205,7 @@ public class EnderminiEntity extends CreatureEntity {
 
     if (flag) {
       this.world.playSound(null, this.prevPosX, this.prevPosY, this.prevPosZ, ModSounds.Endermini.PORTAL.get(), this.getSoundCategory(), 1.0F, 1.0F);
-      this.playSound(ModSounds.Endermini.PORTAL.get(), 1.0F, 1.0F);
+      /*this.playSound(ModSounds.Endermini.PORTAL.get(), 1.0F, 1.0F);*/
     }
 
     return flag;

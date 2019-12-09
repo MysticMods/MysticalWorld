@@ -1,11 +1,14 @@
 package epicsquid.mysticalworld.events;
 
+import epicsquid.mysticallib.network.PacketHandler;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.network.ShoulderRide;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.GlassBottleItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
@@ -15,9 +18,19 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class CapabilityHandler {
+  public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+    event.getPlayer().getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
+      if (cap.isShouldered()) {
+        ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
+        PacketHandler.sendTo(message, (ServerPlayerEntity) event.getPlayer());
+      }
+    });
+  }
+
   public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
     if (event.getObject() instanceof SquidEntity) {
       event.addCapability(AnimalCooldownCapabilityProvider.IDENTIFIER, new AnimalCooldownCapabilityProvider());

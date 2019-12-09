@@ -29,6 +29,7 @@ import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -81,6 +82,7 @@ public class ModSetup {
     MinecraftForge.EVENT_BUS.addListener(LootHandler::onLootLoad);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::attachCapability);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onSquidMilked);
+    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientSetup::registerListeners);
   }
