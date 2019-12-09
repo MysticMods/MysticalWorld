@@ -171,7 +171,7 @@ public class LavaCatEntity extends TameableEntity {
         this.sitGoal.setSitting(false);
       }
 
-      if (source != null && source.isFireDamage()) {
+      if (source.isFireDamage()) {
         return false;
       }
 
@@ -183,17 +183,17 @@ public class LavaCatEntity extends TameableEntity {
       boolean lava = getIsLava();
 
       // Obsidian cats take half damage from non-magic damage
-      if (!lava && (source == null || !source.isMagicDamage())) {
+      if (!lava && !source.isMagicDamage()) {
         amount /= 2;
       }
 
       // Lava cats take half damage from magic
-      if (lava && (source != null && source.isMagicDamage())) {
+      if (lava && source.isMagicDamage()) {
         amount /= 2;
       }
 
       // They don't take damage from their owners unless sneaking
-      if (isTamed() && source != null && source.getTrueSource() != null && source.getTrueSource() == getOwner() && !source.getTrueSource().isSneaking()) {
+      if (isTamed() && source.getTrueSource() != null && source.getTrueSource() == getOwner() && !source.getTrueSource().isSneaking()) {
         return false;
       }
 
