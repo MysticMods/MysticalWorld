@@ -30,6 +30,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -38,14 +39,16 @@ import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ModSetup {
   public ModSetup() {
   }
 
   public void init(FMLCommonSetupEvent event) {
-    Networking.init();
+    Networking.INSTANCE.registerMessages();
     CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
     CapabilityManager.INSTANCE.register(PlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
 
@@ -73,7 +76,7 @@ public class ModSetup {
   }
 
   @SuppressWarnings("Duplicates")
-  public void registerListeners() {
+  public <T extends Event> void registerListeners() {
     MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
     MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);
@@ -83,6 +86,7 @@ public class ModSetup {
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::attachCapability);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onSquidMilked);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);
+    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onStartTracking);
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientSetup::registerListeners);
   }

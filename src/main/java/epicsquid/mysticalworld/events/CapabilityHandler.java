@@ -4,6 +4,7 @@ import epicsquid.mysticallib.network.PacketHandler;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.network.ShoulderRide;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.SquidEntity;
@@ -26,9 +27,19 @@ public class CapabilityHandler {
     event.getPlayer().getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
       if (cap.isShouldered()) {
         ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
-        PacketHandler.sendTo(message, (ServerPlayerEntity) event.getPlayer());
+        Networking.sendTo(message, (ServerPlayerEntity) event.getPlayer());
       }
     });
+  }
+
+  public static void onStartTracking(PlayerEvent.StartTracking event) {
+    if (event.getTarget() instanceof PlayerEntity) {
+      Entity target = event.getTarget();
+      target.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
+        ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
+        Networking.sendTo(message, (ServerPlayerEntity) event.getPlayer());
+      });
+    }
   }
 
   public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {

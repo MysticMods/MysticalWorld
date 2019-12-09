@@ -1,8 +1,8 @@
 package epicsquid.mysticalworld.events;
 
-import epicsquid.mysticallib.network.PacketHandler;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
+import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.network.ShoulderRide;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -40,8 +40,8 @@ public class ShoulderHandler {
               cap.drop();
               event.setCanceled(true);
               ShoulderRide message = new ShoulderRide(player, cap);
-              PacketHandler.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), message);
-              PacketHandler.sendTo(message, (ServerPlayerEntity) player);
+              Networking.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), message);
+              Networking.sendTo(message, (ServerPlayerEntity) player);
             }
           }
         }
@@ -70,8 +70,8 @@ public class ShoulderHandler {
               cap.drop();
               event.setCanceled(true);
               ShoulderRide message = new ShoulderRide(player, cap);
-              PacketHandler.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), message);
-              PacketHandler.sendTo(message, (ServerPlayerEntity) player);
+              Networking.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), message);
+              Networking.sendTo(message, (ServerPlayerEntity) player);
             }
           }
         }

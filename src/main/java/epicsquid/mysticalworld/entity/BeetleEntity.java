@@ -6,6 +6,7 @@ import epicsquid.mysticalworld.RegistryManager;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModEntities;
+import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.network.ShoulderRide;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -87,8 +88,8 @@ public class BeetleEntity extends TameableEntity {
                 cap.shoulder(this);
                 player.swingArm(Hand.MAIN_HAND);
                 ShoulderRide message = new ShoulderRide(player, cap);
-                PacketHandler.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), message);
-                PacketHandler.sendTo(message, (ServerPlayerEntity) player);
+                Networking.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), message);
+                Networking.sendTo(message, (ServerPlayerEntity) player);
                 this.remove();
                 return true;
               }
