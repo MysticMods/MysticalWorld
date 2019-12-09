@@ -10,6 +10,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.EndermiteEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,6 +35,7 @@ import java.util.EnumSet;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Predicate;
 
 // Base heavily on vanilla Enderman
 public class EnderminiEntity extends CreatureEntity {
@@ -43,6 +45,7 @@ public class EnderminiEntity extends CreatureEntity {
   private static final DataParameter<Boolean> SCREAMING = EntityDataManager.createKey(EnderminiEntity.class, DataSerializers.BOOLEAN);
   private int lastCreepySound;
   private int targetChangeTime;
+  private static final Predicate<LivingEntity> endermitePredicate = (entity) -> entity instanceof EndermiteEntity && ((EndermiteEntity) entity).isSpawnedByPlayer();
 
   public EnderminiEntity(EntityType<? extends EnderminiEntity> type, World worldIn) {
     super(type, worldIn);
@@ -62,6 +65,7 @@ public class EnderminiEntity extends CreatureEntity {
     goalSelector.addGoal(11, new EnderminiEntity.TakeBlockGoal(this));
     targetSelector.addGoal(1, new FindPlayerGoal(this));
     targetSelector.addGoal(2, new HurtByTargetGoal(this, PlayerEntity.class));
+    targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EndermiteEntity.class, 10, true, false, endermitePredicate));
   }
 
   @Override

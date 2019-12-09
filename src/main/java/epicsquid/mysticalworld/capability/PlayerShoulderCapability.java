@@ -1,8 +1,12 @@
 package epicsquid.mysticalworld.capability;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import javax.annotation.Nullable;
 
 public class PlayerShoulderCapability {
   private CompoundNBT animalSerialized = new CompoundNBT();
@@ -22,6 +26,16 @@ public class PlayerShoulderCapability {
 
   public ResourceLocation getRegistryName() {
     return registryName;
+  }
+
+  @Nullable
+  public EntityType<?> getEntityType (ResourceLocation registryName) {
+    return ForgeRegistries.ENTITIES.getValue(registryName);
+  }
+
+  @Nullable
+  public EntityType<?> getEntityType () {
+    return getEntityType(getRegistryName());
   }
 
   public void drop() {

@@ -1,8 +1,13 @@
 package epicsquid.mysticalworld.entity.model;
 
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.BeetleEntity;
 import net.minecraft.client.renderer.entity.model.EntityModel;
+import net.minecraft.client.renderer.entity.model.ParrotModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 
@@ -10,7 +15,7 @@ import javax.annotation.Nonnull;
  * BeetleModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class BeetleModel extends EntityModel<BeetleEntity> {
+public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
 
   private RendererModel body;
   private RendererModel wingL;
@@ -109,22 +114,41 @@ public class BeetleModel extends EntityModel<BeetleEntity> {
     return (float) Math.sin(ageInTicks * 0.03125f * (Math.PI * 2.0f) + Math.toRadians(deg));
   }
 
-  @Override
-  public void render(@Nonnull BeetleEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+  public void renderOnShoulder(float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch, float scaleFactor, int ticksExisted) {
+    this.setRotationAngles(ModelState.SHOULDER, ticksExisted, limbSwing, limbSwingAmount, 0.0F, netHeadYaw, headPitch);
+    this.render(scaleFactor);
+  }
+
+  public void setRotationAngles(ModelState state, int ticksExisted, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     this.head.rotateAngleX = headPitch * 0.017453292F;
     this.head.rotateAngleY = netHeadYaw * 0.017453292F;
     this.antennaR1.rotateAngleX = 0.1308996938995747F + getBobble(30, ageInTicks) * 0.2617993877991494F;
     this.antennaL1.rotateAngleX = 0.1308996938995747F + getBobble(100, ageInTicks) * 0.2617993877991494F;
     this.wingL.rotateAngleY = 0.17453292519943295F + 0.0872664626F * getBobble(45, ageInTicks);
     this.wingR.rotateAngleY = -0.17453292519943295F - 0.0872664626F * getBobble(160, ageInTicks);
-    this.legL1.rotateAngleZ = limbSwingAmount * getSwing(0, ageInTicks) - 0.2617993877991494F;
-    this.legL2.rotateAngleZ = limbSwingAmount * getSwing(120, ageInTicks) - 0.2617993877991494F;
-    this.legL3.rotateAngleZ = limbSwingAmount * getSwing(240, ageInTicks) - 0.2617993877991494F;
-    this.legR1.rotateAngleZ = limbSwingAmount * getSwing(180, ageInTicks) + 0.2617993877991494F;
-    this.legR2.rotateAngleZ = limbSwingAmount * getSwing(300, ageInTicks) + 0.2617993877991494F;
-    this.legR3.rotateAngleZ = limbSwingAmount * getSwing(60, ageInTicks) + 0.2617993877991494F;
+    if (state != ModelState.SHOULDER) {
+      this.legL1.rotateAngleZ = limbSwingAmount * getSwing(0, ageInTicks) - 0.2617993877991494F;
+      this.legL2.rotateAngleZ = limbSwingAmount * getSwing(120, ageInTicks) - 0.2617993877991494F;
+      this.legL3.rotateAngleZ = limbSwingAmount * getSwing(240, ageInTicks) - 0.2617993877991494F;
+      this.legR1.rotateAngleZ = limbSwingAmount * getSwing(180, ageInTicks) + 0.2617993877991494F;
+      this.legR2.rotateAngleZ = limbSwingAmount * getSwing(300, ageInTicks) + 0.2617993877991494F;
+      this.legR3.rotateAngleZ = limbSwingAmount * getSwing(60, ageInTicks) + 0.2617993877991494F;
+    }
+  }
 
-    this.body.render(scaleFactor);
+  public void render(float scale) {
+    this.body.render(scale);
+  }
+
+  @Override
+  public ResourceLocation getTexture() {
+    return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/beetle_blue.png");
+  }
+
+  @Override
+  public void render(@Nonnull BeetleEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+    setRotationAngles(ModelState.NORMAL, entity.ticksExisted, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+    render(scaleFactor);
   }
 
   /**
