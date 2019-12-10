@@ -221,9 +221,10 @@ public class MWLangProvider extends DeferredLanguageProvider {
     add("attribute.name.generic.reachDistance", "Reach");
     add("attribute.name.mysticalworld.blessed", "Blessed");
     add("attribute.name.mysticalworld.smite", "Smite");
+    add("attribute.name.mysticalworld.serendipity", "Serendipity");
     add("attribute.name.forge.swimSpeed", "Swim Speed");
     add("advancement.mysticalworld.root", "Mystical World");
-    add("advancement.mysticalworld.root.desc", "Breathe in a brand new, mystical world!");
+    add("advancement.mysticalworld.root.desc", "There's magic everywhere!");
     add("advancement.mysticalworld.amethyst", "Sobriety Test");
     add("advancement.mysticalworld.amethyst.desc", "Find a gem more divine than diamond!");
     add("advancement.mysticalworld.aubergine", "That's No Carrot...");

@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.items.amethyst;
 
 import com.google.common.collect.Multimap;
 import epicsquid.mysticallib.material.MaterialType;
+import epicsquid.mysticalworld.init.ModModifiers;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
 import epicsquid.mysticalworld.items.lead.ILeadItem;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,10 +21,12 @@ public class AmethystArmorItem extends ModifiedArmorItem implements ILeadItem {
 
     if (this.slot == equipmentSlot) {
       if (slot == EquipmentSlotType.CHEST || slot == EquipmentSlotType.LEGS) {
-        map.put(SharedMonsterAttributes.LUCK.getName(), getOrCreateModifier(SharedMonsterAttributes.LUCK, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Luck base", 0.5f, AttributeModifier.Operation.ADDITION)));
+        map.put(ModModifiers.SERENDIPITY.getName(), getOrCreateModifier(ModModifiers.SERENDIPITY, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Serendipity addition", 0.50f, AttributeModifier.Operation.MULTIPLY_TOTAL)));
       } else {
-        map.put(SharedMonsterAttributes.LUCK.getName(), getOrCreateModifier(SharedMonsterAttributes.LUCK, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Luck multiplier", 0.25f, AttributeModifier.Operation.ADDITION)));
+        map.put(ModModifiers.SERENDIPITY.getName(), getOrCreateModifier(ModModifiers.SERENDIPITY, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Serendipity addition", 0.25f, AttributeModifier.Operation.MULTIPLY_TOTAL)));
       }
+
+      map.put(SharedMonsterAttributes.LUCK.getName(), getOrCreateModifier(SharedMonsterAttributes.LUCK, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Luck multiplier", 1f, AttributeModifier.Operation.ADDITION)));
     }
 
     return map;

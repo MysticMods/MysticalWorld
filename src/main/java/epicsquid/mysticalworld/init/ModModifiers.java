@@ -8,6 +8,7 @@ import net.minecraft.entity.ai.attributes.RangedAttribute;
 public class ModModifiers {
   public static final IAttribute BLESSED = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.blessed", 0D, 0D, 10D).setDescription("Causes undead attackers to be set on fire and take fire damage").setShouldWatch(true));
   public static final IAttribute SMITE = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.smite", 0D, 0D, 5D).setDescription("Deals additional damage to undead entities").setShouldWatch(true));
+  public static final IAttribute SERENDIPITY = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.serendipity", 1D, 1D, 10D).setDescription("Increases your luck and looting levels").setShouldWatch(true));
   /*
   public static final IAttribute BOUYANT = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.bouyant", 0D, 0D, 1D).setDescription("While underwater you float without sinking").setShouldWatch(true));
   public static final IAttribute LEADEN = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.leaden", 0D, 0D, 1D).setDescription("While underwater, you sink faster").setShouldWatch(true));

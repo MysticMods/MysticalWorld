@@ -6,10 +6,11 @@
   "advancement.mysticalworld.epic_squid": "Epic Squid!",
   "advancement.mysticalworld.epic_squid.desc": "Partake in some of the delicious, purple-y goodness of Epic Squid.",
   "advancement.mysticalworld.root": "Mystical World",
-  "advancement.mysticalworld.root.desc": "Breathe in a brand new, mystical world!",
+  "advancement.mysticalworld.root.desc": "There's magic everywhere!",
   "attribute.name.forge.swimSpeed": "Swim Speed",
   "attribute.name.generic.reachDistance": "Reach",
   "attribute.name.mysticalworld.blessed": "Blessed",
+  "attribute.name.mysticalworld.serendipity": "Serendipity",
   "attribute.name.mysticalworld.smite": "Smite",
   "block.mysticalworld.amethyst_block": "Amethyst Block",
   "block.mysticalworld.amethyst_ore": "Amethyst Ore",
@@ -55,7 +56,6 @@
   "entity.mysticalworld.deer": "Deer",
   "entity.mysticalworld.endermini": "Endermini",
   "entity.mysticalworld.frog": "Frog",
-  "entity.mysticalworld.lava_cat": "Lava Cat",
   "entity.mysticalworld.owl": "Owl",
   "entity.mysticalworld.silkworm": "Silkworm",
   "entity.mysticalworld.silver_fox": "Silver Fox",
@@ -197,5 +197,6 @@
   "itemGroup.mysticalworld": "Mystical World",
   "itemGroup.mysticalworld.metals": "Mystical World Metals",
   "message.squid.cooldown": "Give it time to produce more ink!",
+  "mysticalworld.entity.lava_cat": "Lava Cat",
   "mysticalworld.entity.obsidian_cat": "Obsidian Cat"
 }

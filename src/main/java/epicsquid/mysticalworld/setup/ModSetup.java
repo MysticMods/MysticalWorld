@@ -35,6 +35,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -75,7 +76,11 @@ public class ModSetup {
     }
   }
 
-  @SuppressWarnings("Duplicates")
+  public void serverAboutToStart (FMLServerAboutToStartEvent event) {
+    ModifyLoot.modify();
+  }
+
+                                  @SuppressWarnings("Duplicates")
   public <T extends Event> void registerListeners() {
     MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
@@ -83,6 +88,7 @@ public class ModSetup {
     MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onDeath);
     MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onRightClickBlock);
     MinecraftForge.EVENT_BUS.addListener(LootHandler::onLootLoad);
+    MinecraftForge.EVENT_BUS.addListener(LootHandler::onLooting);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::attachCapability);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onSquidMilked);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);
