@@ -1,0 +1,20 @@
+{
+  "name": "Lead",
+  "icon": "mysticalworld:lead_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:lead_ore",
+      "text": "Found in the lower parts of the world, lead is a dense material that can be used for multiple purposes."
+    },
+    {
+      "type": "smelting",
+      "link_recipe": true,
+      "item": "mysticalworld:lead_ingot_from_smelting",
+      "title": "Lead Ingot",
+      "text": "While thankfully not poisonous in this form, lead can be smelted into ingots using both a furnace and a blast furnace."
+    }
+  ]
+}

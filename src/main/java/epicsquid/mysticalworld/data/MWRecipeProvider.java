@@ -66,40 +66,41 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
 
     singleItemUnfinished(ModItems.UNRIPE_ENDER_PEARL, () -> Items.ENDER_PEARL, 9, 1).build(consumer, new ResourceLocation(MysticalWorld.MODID, "ender_pearl_from_unripe_pearls"));
 
-    axe(ModItems.AMETHYST_GEM, ModItems.AMETHYST_AXE, "axe", consumer);
-    axe(ModItems.COPPER_INGOT, ModItems.COPPER_AXE, "axe", consumer);
-    axe(ModItems.SILVER_INGOT, ModItems.SILVER_AXE, "axe", consumer);
-    axe(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_AXE, "axe", consumer);
-    axe(ModItems.TIN_INGOT, ModItems.TIN_AXE, "axe", consumer);
-    axe(ModItems.LEAD_INGOT, ModItems.LEAD_AXE, "axe", consumer);
+
+    axe(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_AXE, "axe", consumer);
+    axe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_AXE, "axe", consumer);
+    axe(MWTags.Items.SILVER_INGOT, ModItems.SILVER_AXE, "axe", consumer);
+    axe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_AXE, "axe", consumer);
+    axe(MWTags.Items.TIN_INGOT, ModItems.TIN_AXE, "axe", consumer);
+    axe(MWTags.Items.LEAD_INGOT, ModItems.LEAD_AXE, "axe", consumer);
     axe(() -> Items.CACTUS, ModItems.CACTUS_AXE, "axe", consumer);
 
-    storage(ModItems.AMETHYST_GEM, ModBlocks.AMETHYST_BLOCK, consumer);
-    storage(ModItems.COPPER_INGOT, ModBlocks.COPPER_BLOCK, consumer);
-    storage(ModItems.SILVER_INGOT, ModBlocks.SILVER_BLOCK, consumer);
-    storage(ModItems.QUICKSILVER_INGOT, ModBlocks.QUICKSILVER_BLOCK, consumer);
-    storage(ModItems.TIN_INGOT, ModBlocks.TIN_BLOCK, consumer);
-    storage(ModItems.LEAD_INGOT, ModBlocks.LEAD_BLOCK, consumer);
+    storage(MWTags.Items.AMETHYST_GEM, ModBlocks.AMETHYST_BLOCK, consumer);
+    storage(MWTags.Items.COPPER_INGOT, ModBlocks.COPPER_BLOCK, consumer);
+    storage(MWTags.Items.SILVER_INGOT, ModBlocks.SILVER_BLOCK, consumer);
+    storage(MWTags.Items.QUICKSILVER_INGOT, ModBlocks.QUICKSILVER_BLOCK, consumer);
+    storage(MWTags.Items.TIN_INGOT, ModBlocks.TIN_BLOCK, consumer);
+    storage(MWTags.Items.LEAD_INGOT, ModBlocks.LEAD_BLOCK, consumer);
 
-    storage(ModItems.COPPER_NUGGET, ModItems.COPPER_INGOT, consumer);
-    storage(ModItems.SILVER_NUGGET, ModItems.SILVER_INGOT, consumer);
-    storage(ModItems.QUICKSILVER_NUGGET, ModItems.QUICKSILVER_INGOT, consumer);
-    storage(ModItems.TIN_NUGGET, ModItems.TIN_INGOT, consumer);
-    storage(ModItems.LEAD_NUGGET, ModItems.LEAD_INGOT, consumer);
+    storage(MWTags.Items.COPPER_NUGGET, ModItems.COPPER_INGOT, consumer);
+    storage(MWTags.Items.SILVER_NUGGET, ModItems.SILVER_INGOT, consumer);
+    storage(MWTags.Items.QUICKSILVER_NUGGET, ModItems.QUICKSILVER_INGOT, consumer);
+    storage(MWTags.Items.TIN_NUGGET, ModItems.TIN_INGOT, consumer);
+    storage(MWTags.Items.LEAD_NUGGET, ModItems.LEAD_INGOT, consumer);
 
-    pickaxe(ModItems.AMETHYST_GEM, ModItems.AMETHYST_PICKAXE, "pickaxe", consumer);
-    pickaxe(ModItems.COPPER_INGOT, ModItems.COPPER_PICKAXE, "pickaxe", consumer);
-    pickaxe(ModItems.SILVER_INGOT, ModItems.SILVER_PICKAXE, "pickaxe", consumer);
-    pickaxe(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_PICKAXE, "pickaxe", consumer);
-    pickaxe(ModItems.TIN_INGOT, ModItems.TIN_PICKAXE, "pickaxe", consumer);
-    pickaxe(ModItems.LEAD_INGOT, ModItems.LEAD_PICKAXE, "pickaxe", consumer);
+    pickaxe(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_PICKAXE, "pickaxe", consumer);
+    pickaxe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_PICKAXE, "pickaxe", consumer);
+    pickaxe(MWTags.Items.SILVER_INGOT, ModItems.SILVER_PICKAXE, "pickaxe", consumer);
+    pickaxe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_PICKAXE, "pickaxe", consumer);
+    pickaxe(MWTags.Items.TIN_INGOT, ModItems.TIN_PICKAXE, "pickaxe", consumer);
+    pickaxe(MWTags.Items.LEAD_INGOT, ModItems.LEAD_PICKAXE, "pickaxe", consumer);
 
-    sword(ModItems.AMETHYST_GEM, ModItems.AMETHYST_SWORD, "sword", consumer);
-    sword(ModItems.COPPER_INGOT, ModItems.COPPER_SWORD, "sword", consumer);
-    sword(ModItems.SILVER_INGOT, ModItems.SILVER_SWORD, "sword", consumer);
-    sword(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SWORD, "sword", consumer);
-    sword(ModItems.TIN_INGOT, ModItems.TIN_SWORD, "sword", consumer);
-    sword(ModItems.LEAD_INGOT, ModItems.LEAD_SWORD, "sword", consumer);
+    sword(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_SWORD, "sword", consumer);
+    sword(MWTags.Items.COPPER_INGOT, ModItems.COPPER_SWORD, "sword", consumer);
+    sword(MWTags.Items.SILVER_INGOT, ModItems.SILVER_SWORD, "sword", consumer);
+    sword(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SWORD, "sword", consumer);
+    sword(MWTags.Items.TIN_INGOT, ModItems.TIN_SWORD, "sword", consumer);
+    sword(MWTags.Items.LEAD_INGOT, ModItems.LEAD_SWORD, "sword", consumer);
 
     spear(ModItems.AMETHYST_SWORD, ModItems.AMETHYST_SPEAR, "spear", consumer);
     spear(ModItems.CACTUS_SWORD, ModItems.CACTUS_SPEAR, "spear", consumer);
@@ -114,54 +115,54 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     spear(() -> Items.GOLDEN_SWORD, ModItems.GOLD_SPEAR, "spear", consumer);
     spear(() -> Items.IRON_SWORD, ModItems.IRON_SPEAR, "spear", consumer);
 
-    shovel(ModItems.AMETHYST_GEM, ModItems.AMETHYST_SHOVEL, "shovel", consumer);
-    shovel(ModItems.COPPER_INGOT, ModItems.COPPER_SHOVEL, "shovel", consumer);
-    shovel(ModItems.SILVER_INGOT, ModItems.SILVER_SHOVEL, "shovel", consumer);
-    shovel(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SHOVEL, "shovel", consumer);
-    shovel(ModItems.TIN_INGOT, ModItems.TIN_SHOVEL, "shovel", consumer);
-    shovel(ModItems.LEAD_INGOT, ModItems.LEAD_SHOVEL, "shovel", consumer);
+    shovel(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_SHOVEL, "shovel", consumer);
+    shovel(MWTags.Items.COPPER_INGOT, ModItems.COPPER_SHOVEL, "shovel", consumer);
+    shovel(MWTags.Items.SILVER_INGOT, ModItems.SILVER_SHOVEL, "shovel", consumer);
+    shovel(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SHOVEL, "shovel", consumer);
+    shovel(MWTags.Items.TIN_INGOT, ModItems.TIN_SHOVEL, "shovel", consumer);
+    shovel(MWTags.Items.LEAD_INGOT, ModItems.LEAD_SHOVEL, "shovel", consumer);
 
-    hoe(ModItems.AMETHYST_GEM, ModItems.AMETHYST_HOE, "hoe", consumer);
-    hoe(ModItems.COPPER_INGOT, ModItems.COPPER_HOE, "hoe", consumer);
-    hoe(ModItems.SILVER_INGOT, ModItems.SILVER_HOE, "hoe", consumer);
-    hoe(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HOE, "hoe", consumer);
-    hoe(ModItems.TIN_INGOT, ModItems.TIN_HOE, "hoe", consumer);
-    hoe(ModItems.LEAD_INGOT, ModItems.LEAD_HOE, "hoe", consumer);
+    hoe(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_HOE, "hoe", consumer);
+    hoe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_HOE, "hoe", consumer);
+    hoe(MWTags.Items.SILVER_INGOT, ModItems.SILVER_HOE, "hoe", consumer);
+    hoe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HOE, "hoe", consumer);
+    hoe(MWTags.Items.TIN_INGOT, ModItems.TIN_HOE, "hoe", consumer);
+    hoe(MWTags.Items.LEAD_INGOT, ModItems.LEAD_HOE, "hoe", consumer);
 
-    knife(ModItems.AMETHYST_GEM, ModItems.AMETHYST_KNIFE, "knife", consumer);
-    knife(ModItems.COPPER_INGOT, ModItems.COPPER_KNIFE, "knife", consumer);
-    knife(ModItems.SILVER_INGOT, ModItems.SILVER_KNIFE, "knife", consumer);
-    knife(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_KNIFE, "knife", consumer);
-    knife(ModItems.TIN_INGOT, ModItems.TIN_KNIFE, "knife", consumer);
-    knife(ModItems.LEAD_INGOT, ModItems.LEAD_KNIFE, "knife", consumer);
+    knife(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_KNIFE, "knife", consumer);
+    knife(MWTags.Items.COPPER_INGOT, ModItems.COPPER_KNIFE, "knife", consumer);
+    knife(MWTags.Items.SILVER_INGOT, ModItems.SILVER_KNIFE, "knife", consumer);
+    knife(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_KNIFE, "knife", consumer);
+    knife(MWTags.Items.TIN_INGOT, ModItems.TIN_KNIFE, "knife", consumer);
+    knife(MWTags.Items.LEAD_INGOT, ModItems.LEAD_KNIFE, "knife", consumer);
 
-    helmet(ModItems.AMETHYST_GEM, ModItems.AMETHYST_HELMET, "helmet", consumer);
-    helmet(ModItems.COPPER_INGOT, ModItems.COPPER_HELMET, "helmet", consumer);
-    helmet(ModItems.SILVER_INGOT, ModItems.SILVER_HELMET, "helmet", consumer);
-    helmet(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HELMET, "helmet", consumer);
-    helmet(ModItems.TIN_INGOT, ModItems.TIN_HELMET, "helmet", consumer);
-    helmet(ModItems.LEAD_INGOT, ModItems.LEAD_HELMET, "helmet", consumer);
+    helmet(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_HELMET, "helmet", consumer);
+    helmet(MWTags.Items.COPPER_INGOT, ModItems.COPPER_HELMET, "helmet", consumer);
+    helmet(MWTags.Items.SILVER_INGOT, ModItems.SILVER_HELMET, "helmet", consumer);
+    helmet(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HELMET, "helmet", consumer);
+    helmet(MWTags.Items.TIN_INGOT, ModItems.TIN_HELMET, "helmet", consumer);
+    helmet(MWTags.Items.LEAD_INGOT, ModItems.LEAD_HELMET, "helmet", consumer);
 
-    chest(ModItems.AMETHYST_GEM, ModItems.AMETHYST_CHESTPLATE, "chestplate", consumer);
-    chest(ModItems.COPPER_INGOT, ModItems.COPPER_CHESTPLATE, "chestplate", consumer);
-    chest(ModItems.SILVER_INGOT, ModItems.SILVER_CHESTPLATE, "chestplate", consumer);
-    chest(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_CHESTPLATE, "chestplate", consumer);
-    chest(ModItems.TIN_INGOT, ModItems.TIN_CHESTPLATE, "chestplate", consumer);
-    chest(ModItems.LEAD_INGOT, ModItems.LEAD_CHESTPLATE, "chestplate", consumer);
+    chest(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_CHESTPLATE, "chestplate", consumer);
+    chest(MWTags.Items.COPPER_INGOT, ModItems.COPPER_CHESTPLATE, "chestplate", consumer);
+    chest(MWTags.Items.SILVER_INGOT, ModItems.SILVER_CHESTPLATE, "chestplate", consumer);
+    chest(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_CHESTPLATE, "chestplate", consumer);
+    chest(MWTags.Items.TIN_INGOT, ModItems.TIN_CHESTPLATE, "chestplate", consumer);
+    chest(MWTags.Items.LEAD_INGOT, ModItems.LEAD_CHESTPLATE, "chestplate", consumer);
 
-    boots(ModItems.AMETHYST_GEM, ModItems.AMETHYST_BOOTS, "boots", consumer);
-    boots(ModItems.COPPER_INGOT, ModItems.COPPER_BOOTS, "boots", consumer);
-    boots(ModItems.SILVER_INGOT, ModItems.SILVER_BOOTS, "boots", consumer);
-    boots(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_BOOTS, "boots", consumer);
-    boots(ModItems.TIN_INGOT, ModItems.TIN_BOOTS, "boots", consumer);
-    boots(ModItems.LEAD_INGOT, ModItems.LEAD_BOOTS, "boots", consumer);
+    boots(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_BOOTS, "boots", consumer);
+    boots(MWTags.Items.COPPER_INGOT, ModItems.COPPER_BOOTS, "boots", consumer);
+    boots(MWTags.Items.SILVER_INGOT, ModItems.SILVER_BOOTS, "boots", consumer);
+    boots(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_BOOTS, "boots", consumer);
+    boots(MWTags.Items.TIN_INGOT, ModItems.TIN_BOOTS, "boots", consumer);
+    boots(MWTags.Items.LEAD_INGOT, ModItems.LEAD_BOOTS, "boots", consumer);
 
-    legs(ModItems.AMETHYST_GEM, ModItems.AMETHYST_LEGGINGS, "leggings", consumer);
-    legs(ModItems.COPPER_INGOT, ModItems.COPPER_LEGGINGS, "leggings", consumer);
-    legs(ModItems.SILVER_INGOT, ModItems.SILVER_LEGGINGS, "leggings", consumer);
-    legs(ModItems.QUICKSILVER_INGOT, ModItems.QUICKSILVER_LEGGINGS, "leggings", consumer);
-    legs(ModItems.TIN_INGOT, ModItems.TIN_LEGGINGS, "leggings", consumer);
-    legs(ModItems.LEAD_INGOT, ModItems.LEAD_LEGGINGS, "leggings", consumer);
+    legs(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_LEGGINGS, "leggings", consumer);
+    legs(MWTags.Items.COPPER_INGOT, ModItems.COPPER_LEGGINGS, "leggings", consumer);
+    legs(MWTags.Items.SILVER_INGOT, ModItems.SILVER_LEGGINGS, "leggings", consumer);
+    legs(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_LEGGINGS, "leggings", consumer);
+    legs(MWTags.Items.TIN_INGOT, ModItems.TIN_LEGGINGS, "leggings", consumer);
+    legs(MWTags.Items.LEAD_INGOT, ModItems.LEAD_LEGGINGS, "leggings", consumer);
 
     pickaxe(() -> Items.CACTUS, ModItems.CACTUS_PICKAXE, "pickaxe", consumer);
     sword(() -> Items.CACTUS, ModItems.CACTUS_SWORD, "sword", consumer);

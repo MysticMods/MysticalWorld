@@ -1,0 +1,20 @@
+{
+  "name": "Tin",
+  "icon": "mysticalworld:tin_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:tin_ore",
+      "text": "Amethyst ore can be broken to gain amethyst gems, and is as rare as diamond, with similar uses."
+    },
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:tin_in",
+      "title": "Tin Ingots",
+      "text": ""
+    }
+  ]
+}

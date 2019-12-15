@@ -1,0 +1,6 @@
+{
+  "name": "Tools",
+  "parent": "metals",
+  "description": "Each of the tools crafted from the various ores obtained throughout the world have special effects in addition to their actual function.",
+  "icon": "mysticalworld:amethyst_pickaxe"
+}

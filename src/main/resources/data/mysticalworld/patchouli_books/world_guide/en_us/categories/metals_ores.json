@@ -1,0 +1,6 @@
+{
+  "name": "Ores",
+  "parent": "metals",
+  "description": "Some are found deep underground, while others are found closer to the surface. When processed, they can be used for a variety of purposes.",
+  "icon": "mysticalworld:amethyst_ore"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Amethyst",
+  "icon": "mysticalworld:amethyst_ore",
+  "category": "ores",
+  "flag": "roots:amethyst",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:amethyst_ore",
+      "text": "Amethyst can be found at similar depths to diamond and with a similar rarity. When mined with the Fortune enchantment, it gives considerably higher yield, although "
+    },
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "recipe": "mysticalworld:amethyst_gem",
+      "title": "Amethyst Gems",
+      "text": "Amethyst ore that has been obtained can also be smelted to gain a single gem, either in a furnace or a blast furnace."
+    }
+  ]
+}

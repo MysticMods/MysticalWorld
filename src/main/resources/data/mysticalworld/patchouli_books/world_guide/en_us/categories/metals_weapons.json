@@ -1,0 +1,6 @@
+{
+  "name": "Weapons",
+  "parent": "metals",
+  "description": "As with tools, each of the weapons crafted from mystical metals have special properties.",
+  "icon": "mysticalworld:amethyst_knife"
+}

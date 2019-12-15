@@ -1,0 +1,21 @@
+{
+  "name": "Copper",
+  "icon": "mysticalworld:copper_ore",
+  "category": "ores",
+  "flags": "roots:copper",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:copper_ore",
+      "text": "Copper Ore can be found throughout the world, although generally, and perhaps distinctively, at much higher altitudes than other ores."
+    },
+    {
+      "type": "smelting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:copper_ore",
+      "title": "Copper Ingots",
+      "text": "As with other ores, copper can be smelted in both the furnace and the blast furnace."
+    }
+  ]
+}

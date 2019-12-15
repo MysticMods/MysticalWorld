@@ -1,0 +1,20 @@
+{
+  "name": "Silver",
+  "icon": "mysticalworld:silver_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:silver_ore",
+      "text": "Silver is found in many of the same places that you would also discover gold. Similarly precious, it is slightly more durable than gold."
+    },
+    {
+      "type": "smelting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:silver_ore",
+      "title": "Silver Ingots",
+      "text": "Silver ingots can be smelted with both a furnace and a blast furnace."
+    }
+  ]
+}

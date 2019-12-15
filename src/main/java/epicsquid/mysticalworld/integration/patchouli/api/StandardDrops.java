@@ -1,32 +1,43 @@
-import epicsquid.mysticalworld.init.ModItems;
+package epicsquid.mysticalworld.integration.patchouli.api;
+
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
-/*package epicsquid.mysticalworld.integration.patchouli.api;
-
-import epicsquid.mysticalworld.init.ModItems;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-
-import java.util.*;
-
-TODO: This class is bad and it should feel bad
 public class StandardDrops {
-  public static Map<String, List<ItemStack>> DROPS = new HashMap<>();
+  private static Map<String, List<ResourceLocation>> DROPS = new HashMap<>();
+  private static Map<String, List<ItemStack>> DROP_ITEMS = new HashMap<>();
 
   static {
-    DROPS.put("beetle", Arrays.asList(new ItemStack(ModItems.CARAPACE), new ItemStack(Items.SLIME_BALL)));
-    DROPS.put("deer", Arrays.asList(new ItemStack(ModItems.VENISON), new ItemStack(Items.LEATHER), new ItemStack(ModItems.ANTLERS)));
-    DROPS.put("fox", Arrays.asList(new ItemStack(ModItems.PELT)));
-    DROPS.put("frog", Arrays.asList(new ItemStack(Items.SLIME_BALL)));
-    DROPS.put("sprout", Arrays.asList(new ItemStack(Items.MELON), new ItemStack(ModItems.AUBERGINE), new ItemStack(Items.BEETROOT), new ItemStack(Items.POTATO)));
-    DROPS.put("squid", Arrays.asList(new ItemStack(ModItems.RAW_SQUID), new ItemStack(ModItems.INK_BOTTLE)));
-    //DROPS.put("endermini", Arrays.asList(new ItemStack(ModItems.UNRIPE_PEARL)));
+    DROPS.put("beetle", Arrays.asList(new ResourceLocation("mysticalworld", "carapace"), new ResourceLocation("minecraft", "slime_ball")));
+    DROPS.put("deer", Arrays.asList(new ResourceLocation("minecraft", "leather"), new ResourceLocation("mysticalworld", "venison"), new ResourceLocation("mysticalworld", "antlers")));
+    DROPS.put("endermini", Arrays.asList(new ResourceLocation("mysticalworld", "unripe_ender_pearl")));
+    DROPS.put("frog", Arrays.asList(new ResourceLocation("minecraft", "slime_ball")));
+    DROPS.put("lava_cat", Arrays.asList(new ResourceLocation("minecraft", "obsidian"), new ResourceLocation("minecraft", "cobblestone"), new ResourceLocation("minecraft", "cobblestone")));
+    DROPS.put("owl", Arrays.asList(new ResourceLocation("minecraft", "feather")));
+    DROPS.put("silkworm", Arrays.asList(new ResourceLocation("mysticalworld", "silkworm_egg")));
+    DROPS.put("silver_fox", Arrays.asList(new ResourceLocation("mysticalworld", "pelt")));
+    DROPS.put("sprout", Arrays.asList(new ResourceLocation("minecraft", "melon_slice"), new ResourceLocation("mysticalworld", "aubergine"), new ResourceLocation("minecraft", "beetroot"), new ResourceLocation("minecraft", "potato")));
+    DROPS.put("squid", Arrays.asList(new ResourceLocation("mysticalworld", "raw_squid")));
   }
 
   public static List<ItemStack> getDrops(String name) {
-    return DROPS.getOrDefault(name, new ArrayList<>());
+    return DROP_ITEMS.computeIfAbsent(name, (s) -> {
+      List<ItemStack> result = new ArrayList<>();
+      List<ResourceLocation> data = DROPS.get(name);
+      if (data != null && !data.isEmpty()) {
+        for (ResourceLocation rl : data) {
+          Item item = ForgeRegistries.ITEMS.getValue(rl);
+          if (item != null) {
+            result.add(new ItemStack(item));
+          }
+        }
+      }
+
+      return result;
+    });
   }
-}*/
+}

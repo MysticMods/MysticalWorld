@@ -1,0 +1,6 @@
+{
+  "name": "Metals, Gems, Ores: Tools & Armor",
+  "parent": "metals",
+  "description": "As with the tools and weapons, each of the armors grant special effects in addition to the base armor value & toughness.",
+  "icon": "mysticalworld:amethyst_chestplate"
+}
