@@ -126,11 +126,8 @@ dependencies {
         })
     }
 
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
-        transitive = false
-    }
-
-    compileOnly fg.deobf("mezz.jei:jei-1.14.4:6.0.0.18:api")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     //compile fileTree(dir: 'libs', include: ['*.jar'])
     //compile("jeresources:JustEnoughResources-1.14.4:0.10.0.66")
 

@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_quicksilver_ingot": {
+    "has_ingots_quicksilver": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:quicksilver_ingot"
+            "tag": "forge:ingots/quicksilver"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_quicksilver_ingot",
+      "has_ingots_quicksilver",
       "has_the_recipe"
     ]
   ]

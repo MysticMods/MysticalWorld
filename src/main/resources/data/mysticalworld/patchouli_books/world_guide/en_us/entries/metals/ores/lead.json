@@ -1,7 +1,7 @@
 {
   "name": "Lead",
   "icon": "mysticalworld:lead_ore",
-  "category": "ores",
+  "category": "metals_ores",
   "pages": [
     {
       "type": "spotlight",
@@ -12,7 +12,7 @@
     {
       "type": "smelting",
       "link_recipe": true,
-      "item": "mysticalworld:lead_ingot_from_smelting",
+      "item": "mysticalworld:lead_ore",
       "title": "Lead Ingot",
       "text": "While thankfully not poisonous in this form, lead can be smelted into ingots using both a furnace and a blast furnace."
     }

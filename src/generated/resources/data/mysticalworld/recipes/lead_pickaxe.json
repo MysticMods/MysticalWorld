@@ -8,7 +8,7 @@
   ],
   "key": {
     "X": {
-      "item": "mysticalworld:lead_ingot"
+      "tag": "forge:ingots/lead"
     },
     "S": {
       "tag": "forge:rods/wooden"

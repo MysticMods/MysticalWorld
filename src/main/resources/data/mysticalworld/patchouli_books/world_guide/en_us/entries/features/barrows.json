@@ -1,7 +1,7 @@
 {
   "name": "Barrows",
   "icon": "minecraft:stonebrick:1",
-  "category": "locations",
+  "category": "features",
   "pages": [
     {
       "type": "text",

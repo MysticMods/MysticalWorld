@@ -8,7 +8,7 @@
   ],
   "key": {
     "X": {
-      "item": "mysticalworld:copper_ingot"
+      "tag": "forge:ingots/copper"
     }
   },
   "result": {

@@ -8,7 +8,7 @@
   ],
   "key": {
     "X": {
-      "item": "mysticalworld:amethyst"
+      "tag": "forge:gems/amethyst"
     },
     "S": {
       "tag": "forge:rods/wooden"

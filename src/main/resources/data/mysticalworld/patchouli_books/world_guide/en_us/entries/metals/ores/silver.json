@@ -1,7 +1,7 @@
 {
   "name": "Silver",
   "icon": "mysticalworld:silver_ore",
-  "category": "ores",
+  "category": "metals_ores",
   "pages": [
     {
       "type": "spotlight",

@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_tin_ingot": {
+    "has_ingots_tin": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:tin_ingot"
+            "tag": "forge:ingots/tin"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_tin_ingot",
+      "has_ingots_tin",
       "has_the_recipe"
     ]
   ]

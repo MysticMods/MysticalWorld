@@ -1,20 +1,20 @@
 {
   "name": "Tin",
   "icon": "mysticalworld:tin_ore",
-  "category": "ores",
+  "category": "metals_ores",
   "pages": [
     {
       "type": "spotlight",
       "link_recipe": true,
       "item": "mysticalworld:tin_ore",
-      "text": "Amethyst ore can be broken to gain amethyst gems, and is as rare as diamond, with similar uses."
+      "text": "A softer and more flexible material, this ore is commonly found near the surface."
     },
     {
-      "type": "spotlight",
+      "type": "smelting",
       "link_recipe": true,
-      "item": "mysticalworld:tin_in",
+      "item": "mysticalworld:tin_ore",
       "title": "Tin Ingots",
-      "text": ""
+      "text": "Tin ore can be smelted into ingots using both the furnace and the blast furnace."
     }
   ]
 }

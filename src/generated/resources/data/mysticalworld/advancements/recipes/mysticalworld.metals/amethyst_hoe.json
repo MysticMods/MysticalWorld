@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_amethyst": {
+    "has_gems_amethyst": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:amethyst"
+            "tag": "forge:gems/amethyst"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_amethyst",
+      "has_gems_amethyst",
       "has_the_recipe"
     ]
   ]

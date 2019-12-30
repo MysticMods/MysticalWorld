@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_lead_ingot": {
+    "has_ingots_lead": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:lead_ingot"
+            "tag": "forge:ingots/lead"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_lead_ingot",
+      "has_ingots_lead",
       "has_the_recipe"
     ]
   ]

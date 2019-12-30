@@ -6,15 +6,12 @@
     ]
   },
   "criteria": {
-    "has_at_least_9_tin_nugget": {
+    "has_at_least_9_nuggets_tin": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:tin_nugget",
-            "count": {
-              "min": 9
-            }
+            "tag": "forge:nuggets/tin"
           }
         ]
       }
@@ -28,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_at_least_9_tin_nugget",
+      "has_at_least_9_nuggets_tin",
       "has_the_recipe"
     ]
   ]

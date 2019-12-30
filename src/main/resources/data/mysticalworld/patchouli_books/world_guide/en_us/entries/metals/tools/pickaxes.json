@@ -1,21 +1,17 @@
 {
-  "name": "Amethyst",
-  "icon": "mysticalworld:amethyst_ore",
-  "category": "ores",
-  "flag": "roots:amethyst",
+  "name": "Pickaxes",
+  "icon": "mysticalworld:amethyst_pickaxe",
+  "category": "metals_tools",
   "pages": [
     {
-      "type": "spotlight",
-      "link_recipe": true,
-      "item": "mysticalworld:amethyst_ore",
-      "text": "Amethyst ore can be broken to gain amethyst gems, and is as rare as diamond, with similar uses."
+      "type": "text",
+      "text": "Pickaxes are used to break down stone and other tough blocks. They come in many varieties, each with a mining strength relative to that of stone, and each with an efficiency relative to that of stone."
     },
     {
-      "type": "spotlight",
-      "link_recipe": true,
-      "item": "mysticalworld:amethyst_gem",
-      "title": "Amethyst Gems",
-      "text": "Amethyst tools and weapons have the same mining level as diamond tools and a similar durability."
+      "type": "crafting",
+      "recipe": "mysticalworld:tin_pickaxe",
+      "recipe2": "mysticalworld:copper_pickaxe",
+      "text": "Copper is more durable than tin, but tin is more efficient. They have a mining level of iron."
     },
     {
       "type": "crafting",

@@ -1,7 +1,7 @@
 {
   "name": "Huts",
   "icon": "mysticalworld:thatch",
-  "category": "locations",
+  "category": "features",
   "pages": [
     {
       "type": "text",
