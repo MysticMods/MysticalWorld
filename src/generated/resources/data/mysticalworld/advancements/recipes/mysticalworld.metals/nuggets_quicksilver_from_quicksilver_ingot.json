@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:nuggets_quicksilver_from_quicksilver_ingot"
+    ]
+  },
+  "criteria": {
+    "has_quicksilver_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:quicksilver_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:nuggets_quicksilver_from_quicksilver_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_quicksilver_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}
