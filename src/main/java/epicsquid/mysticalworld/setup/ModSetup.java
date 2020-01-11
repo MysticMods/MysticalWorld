@@ -92,7 +92,6 @@ public class ModSetup {
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::attachCapability);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onSquidMilked);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);
-    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onStartTracking);
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientSetup::registerListeners);
   }

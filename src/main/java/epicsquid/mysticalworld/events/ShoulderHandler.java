@@ -40,8 +40,7 @@ public class ShoulderHandler {
               cap.drop();
               event.setCanceled(true);
               ShoulderRide message = new ShoulderRide(player, cap);
-              Networking.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), message);
-              Networking.sendTo(message, (ServerPlayerEntity) player);
+              Networking.send(PacketDistributor.ALL.noArg(), message);
             }
           }
         }
@@ -70,7 +69,7 @@ public class ShoulderHandler {
               cap.drop();
               event.setCanceled(true);
               ShoulderRide message = new ShoulderRide(player, cap);
-              Networking.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), message);
+              Networking.send(PacketDistributor.ALL.noArg(), message);
               Networking.sendTo(message, (ServerPlayerEntity) player);
             }
           }

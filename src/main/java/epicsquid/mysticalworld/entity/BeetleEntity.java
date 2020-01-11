@@ -88,8 +88,7 @@ public class BeetleEntity extends TameableEntity {
                 cap.shoulder(this);
                 player.swingArm(Hand.MAIN_HAND);
                 ShoulderRide message = new ShoulderRide(player, cap);
-                Networking.send(PacketDistributor.TRACKING_ENTITY.with(() -> player), message);
-                Networking.sendTo(message, (ServerPlayerEntity) player);
+                Networking.send(PacketDistributor.ALL.noArg(), message);
                 this.remove();
                 return true;
               }

@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.events;
 
-import epicsquid.mysticallib.network.PacketHandler;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
@@ -12,6 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.GlassBottleItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -21,23 +21,25 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class CapabilityHandler {
   public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-    event.getPlayer().getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
+    ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+    player.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
       if (cap.isShouldered()) {
         ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
-        Networking.sendTo(message, (ServerPlayerEntity) event.getPlayer());
+        Networking.send(PacketDistributor.ALL.noArg(), message);
       }
     });
-  }
-
-  public static void onStartTracking(PlayerEvent.StartTracking event) {
-    if (event.getTarget() instanceof PlayerEntity) {
-      Entity target = event.getTarget();
-      target.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
-        ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
-        Networking.sendTo(message, (ServerPlayerEntity) event.getPlayer());
+    MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+    for (ServerPlayerEntity other : server.getPlayerList().getPlayers()) {
+      other.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
+        if (cap.isShouldered()) {
+          ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
+          Networking.sendTo(message, player);
+        }
       });
     }
   }
