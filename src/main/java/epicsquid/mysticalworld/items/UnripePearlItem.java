@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class UnripePearlItem extends Item {
@@ -32,8 +31,8 @@ public class UnripePearlItem extends Item {
         counter++;
       } while (!flag && counter != 15);
       if (flag) {
-        player.world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, ModSounds.Endermini.PORTAL.get(), player.getSoundCategory(), 1.0F, 1.0F);
-        player.playSound(ModSounds.Endermini.PORTAL.get(), 1.0F, 1.0F);
+        player.world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, ModSounds.ENDERMINI_PORTAL.get(), player.getSoundCategory(), 1.0F, 1.0F);
+        player.playSound(ModSounds.ENDERMINI_PORTAL.get(), 1.0F, 1.0F);
         player.getCooldownTracker().setCooldown(this, 20);
         if (!player.isCreative()) {
           itemstack.shrink(1);

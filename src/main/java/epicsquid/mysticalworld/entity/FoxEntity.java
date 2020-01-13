@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.RegistryManager;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.*;
@@ -50,13 +49,13 @@ public class FoxEntity extends TameableEntity {
   @Nullable
   @Override
   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-    return ModSounds.Fox.BARK.get();
+    return ModSounds.FOX_BARK.get();
   }
 
   @Nullable
   @Override
   protected SoundEvent getDeathSound() {
-    return ModSounds.Fox.DEATH.get();
+    return ModSounds.FOX_DEATH.get();
   }
 
   @Override
@@ -158,11 +157,11 @@ public class FoxEntity extends TameableEntity {
   @Override
   protected SoundEvent getAmbientSound() {
     if (this.isAngry()) {
-      return ModSounds.Fox.AGGRO.get();
+      return ModSounds.FOX_AGGRO.get();
     } else if (this.isSleeping()) {
-      return ModSounds.Fox.SLEEP.get();
+      return ModSounds.FOX_SLEEP.get();
     } else {
-      return ModSounds.Fox.IDLE.get();
+      return ModSounds.FOX_IDLE.get();
     }
   }
 
@@ -208,7 +207,7 @@ public class FoxEntity extends TameableEntity {
 
     if (flag) {
       applyEnchantments(this, entityIn);
-      playSound(ModSounds.Fox.BITE.get(), 1.0f, 1.0f);
+      playSound(ModSounds.FOX_BITE.get(), 1.0f, 1.0f);
     }
 
     return flag;

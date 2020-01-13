@@ -60,6 +60,7 @@ public class MysticalWorld {
     ModEntities.load();
     ModRecipes.load();
     ModModifiers.load();
+    ModSounds.load();
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
       modBus.addListener(ClientSetup::init);

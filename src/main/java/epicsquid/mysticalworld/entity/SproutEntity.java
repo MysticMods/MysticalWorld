@@ -40,7 +40,7 @@ public class SproutEntity extends AnimalEntity {
   @Override
   protected SoundEvent getAmbientSound() {
     if (rand.nextInt(14) == 0) {
-      return ModSounds.Sprout.AMBIENT.get();
+      return ModSounds.SPROUT_AMBIENT.get();
     }
 
     return null;
