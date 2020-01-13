@@ -40,7 +40,7 @@ public class LavaCatEntity extends TameableEntity {
 
   private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.createKey(LavaCatEntity.class, DataSerializers.BOOLEAN);
   private static final UUID OBSIDIAN_SPEED_DEBUFF_ID = UUID.fromString("f58f95e9-fb51-4604-a66d-89433c9dd8a5");
-  private static final AttributeModifier OBSIDIAN_SPEED_DEBUFF = (new AttributeModifier(OBSIDIAN_SPEED_DEBUFF_ID, "Speed debuff for being obsidian", -0.1D, AttributeModifier.Operation.MULTIPLY_TOTAL)).setSaved(false);
+  private static final AttributeModifier OBSIDIAN_SPEED_DEBUFF = (new AttributeModifier(OBSIDIAN_SPEED_DEBUFF_ID, "Speed debuff for being obsidian", -0.05D, AttributeModifier.Operation.MULTIPLY_TOTAL)).setSaved(false);
 
   private TemptGoal aiTempt;
 
