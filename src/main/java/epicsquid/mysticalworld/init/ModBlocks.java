@@ -2,8 +2,9 @@ package epicsquid.mysticalworld.init;
 
 import epicsquid.mysticallib.block.BaseOreBlock;
 import epicsquid.mysticalworld.blocks.AubergineCropBlock;
-import epicsquid.mysticalworld.blocks.MudBlock;
+import epicsquid.mysticalworld.blocks.WetMudBlock;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
+import epicsquid.mysticalworld.blocks.WetMudBrick;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -15,8 +16,8 @@ import static epicsquid.mysticalworld.MysticalWorld.REGISTRY;
 public class ModBlocks {
   public static RegistryObject<ThatchBlock> THATCH = REGISTRY.registerBlock("thatch", REGISTRY.block(ThatchBlock::new, () -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT)), ModRegistries.SIG);
   public static RegistryObject<AubergineCropBlock> AUBERGINE_CROP = REGISTRY.registerBlockWithoutItem("aubergine_crop", REGISTRY.block(AubergineCropBlock::new, () -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly()));
-  public static RegistryObject<MudBlock> WET_MUD_BLOCK = REGISTRY.registerBlock("wet_mud_block", REGISTRY.block((b) -> new MudBlock(b, true), () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
-  public static RegistryObject<MudBlock> WET_MUD_BRICK = REGISTRY.registerBlock("wet_mud_brick", REGISTRY.block((b) -> new MudBlock(b, false), () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
+  public static RegistryObject<WetMudBlock> WET_MUD_BLOCK = REGISTRY.registerBlock("wet_mud_block", REGISTRY.block(WetMudBlock::new, () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
+  public static RegistryObject<WetMudBrick> WET_MUD_BRICK = REGISTRY.registerBlock("wet_mud_brick", REGISTRY.block(WetMudBrick::new, () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
 
   public static RegistryObject<Block> MUD_BLOCK = REGISTRY.registerBlock("mud_block", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f)), ModRegistries.SIG);
   public static RegistryObject<StairsBlock> MUD_BLOCK_STAIRS = REGISTRY.registerBlock("mud_block_stairs", REGISTRY.stair(MUD_BLOCK), ModRegistries.SIG);

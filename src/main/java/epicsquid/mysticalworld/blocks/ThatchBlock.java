@@ -1,14 +1,14 @@
 package epicsquid.mysticalworld.blocks;
 
-import net.minecraft.block.Block;
+import epicsquid.mysticallib.block.AbstractWaterloggedBlock;
 import net.minecraft.util.BlockRenderLayer;
 
 import javax.annotation.Nonnull;
 
-public class ThatchBlock extends Block {
-
+public class ThatchBlock extends AbstractWaterloggedBlock {
   public ThatchBlock(Properties props) {
     super(props);
+    this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED, false));
   }
 
   @Nonnull
