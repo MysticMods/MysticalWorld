@@ -1,0 +1,11 @@
+{
+  "name": "Extension",
+  "icon": "mysticalworld:tin_helmet",
+  "category": "metals_modifiers",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Each piece of tin armor will mystically increase your reach, allowing you to hit blocks (but not enemies) further than you normally would."
+    }
+  ]
+}

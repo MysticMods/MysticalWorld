@@ -5,32 +5,18 @@
   "pages": [
     {
       "type": "spotlight",
-      "link_recipe": true,
-      "item": "mysticalworld:amethyst_ore",
-      "text": "Amethyst ore can be broken to gain amethyst gems, and is as rare as diamond, with similar uses."
-    },
-    {
-      "type": "spotlight",
-      "link_recipe": true,
-      "item": "mysticalworld:amethyst",
-      "title": "Amethyst Gems",
-      "text": "Amethyst tools and weapons have the same mining level as diamond tools and a similar durability."
+      "item": "mysticalworld:tin_helmet",
+      "text": "Light but also protective, tin armor also grants $(l:metals/modifiers/extension)Extension$()."
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:amethyst_axe",
-      "recipe2": "mysticalworld:amethyst_hoe",
-      "title": "Amethyst Tools"
+      "recipe": "mysticalworld:tin_helmet",
+      "recipe2": "mysticalworld:tin_chestplate"
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:amethyst_knife",
-      "recipe2": "mysticalworld:amethyst_pickaxe"
-    },
-    {
-      "type": "crafting",
-      "recipe": "mysticalworld:amethyst_shovel",
-      "recipe2": "mysticalworld:amethyst_sword"
+      "recipe": "mysticalworld:tin_leggings",
+      "recipe2": "mysticalworld:tin_boots"
     }
   ]
 }

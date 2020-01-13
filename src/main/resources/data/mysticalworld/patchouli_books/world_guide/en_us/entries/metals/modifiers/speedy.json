@@ -1,0 +1,11 @@
+{
+  "name": "Speedy",
+  "icon": "mysticalworld:quicksilver_chestplate",
+  "category": "metals_modifiers",
+  "pages": [
+    {
+      "type": "text",
+      "text": "By its nature unstable, armor made from solidified quicksilver will increase the speed at which you move -- both on land and through the water.$(br2)This movement bonus is increased for each piece of quicksilver armor worn."
+    }
+  ]
+}

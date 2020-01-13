@@ -1,0 +1,22 @@
+{
+  "name": "Lead Weapons",
+  "icon": "mysticalworld:lead_knife",
+  "category": "metals_weapons",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:lead_ore",
+      "text": "Lead is a heavy metal that makes a formidable weapon."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lead_knife",
+      "recipe2": "mysticalworld:lead_spear",
+      "title": "Lead Weapons"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lead_sword"
+    }
+  ]
+}

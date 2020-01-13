@@ -1,0 +1,24 @@
+{
+  "name": "Quicksilver Tools",
+  "icon": "mysticalworld:quicksilver_axe",
+  "category": "metals_tools",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:quicksilver_ingot",
+      "text": "Quicksilver is an uncommon, magical metal that, while generally liquid, can be formed into a solid object that can be used to craft tools.$(br2)In addition to having the same harvest level as iron, these do not naturally take durability damage from use, instead decaying over time."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:quicksilver_axe",
+      "recipe2": "mysticalworld:quicksilver_hoe",
+      "title": "Quicksilver Tools"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:quicksilver_shovel",
+      "recipe2": "mysticalworld:quicksilver_pickaxe",
+      "title": "Quicksilver Tools"
+    }
+  ]
+}

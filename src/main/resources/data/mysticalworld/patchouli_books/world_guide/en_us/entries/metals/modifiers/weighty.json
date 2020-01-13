@@ -1,0 +1,11 @@
+{
+  "name": "Weighty",
+  "icon": "mysticalworld:lead_helmet",
+  "category": "metals_modifiers",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Lead, being an extremely heavy metal, also makes it harder for others to move you.$(br2)Each piece of lead armor that you wear increases your knockback resistance."
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
-  "name": "Silver",
+  "name": "Silver Ore",
   "icon": "mysticalworld:silver_ore",
-  "category": "metals_ores",
+  "category": "metals",
   "pages": [
     {
       "type": "spotlight",
@@ -12,7 +12,7 @@
     {
       "type": "smelting",
       "link_recipe": true,
-      "recipe": "mysticalworld:silver_ore",
+      "recipe": "mysticalworld:silver_ingot_from_smelting",
       "title": "Silver Ingots",
       "text": "Silver ingots can be smelted with both a furnace and a blast furnace."
     }

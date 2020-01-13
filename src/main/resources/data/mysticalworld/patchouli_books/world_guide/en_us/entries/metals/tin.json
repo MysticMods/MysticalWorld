@@ -1,7 +1,7 @@
 {
-  "name": "Tin",
+  "name": "Tin Ore",
   "icon": "mysticalworld:tin_ore",
-  "category": "metals_ores",
+  "category": "metals",
   "pages": [
     {
       "type": "spotlight",
@@ -12,7 +12,7 @@
     {
       "type": "smelting",
       "link_recipe": true,
-      "item": "mysticalworld:tin_ore",
+      "recipe": "mysticalworld:tin_ingot_from_smelting",
       "title": "Tin Ingots",
       "text": "Tin ore can be smelted into ingots using both the furnace and the blast furnace."
     }

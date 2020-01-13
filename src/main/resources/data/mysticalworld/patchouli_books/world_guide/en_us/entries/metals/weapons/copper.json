@@ -1,0 +1,22 @@
+{
+  "name": "Copper Weapons",
+  "icon": "mysticalworld:copper_knife",
+  "category": "metals_weapons",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:copper_ingot",
+      "text": "Copper ingots can be crafted into a variety of weapons."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:copper_knife",
+      "recipe2": "mysticalworld:copper_spear",
+      "title": "Copper Weapons"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:copper_sword"
+    }
+  ]
+}

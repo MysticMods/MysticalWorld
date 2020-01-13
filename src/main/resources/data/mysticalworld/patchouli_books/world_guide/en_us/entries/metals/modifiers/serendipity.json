@@ -1,0 +1,11 @@
+{
+  "name": "Serendipity",
+  "icon": "mysticalworld:amethyst",
+  "category": "metals_modifiers",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Serendipity grants bonuses to your total Fortune and Luck, regardless of enchantment.$(br2)Each whole point of Serendipity grants 1 point to Fortune and Luck, while each partial point has a percent chance (equal to the decimal portion, i.e.: 0.25 is a 25% chance) to add an additional point."
+    }
+  ]
+}

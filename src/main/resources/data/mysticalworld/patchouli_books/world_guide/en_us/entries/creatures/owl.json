@@ -2,7 +2,6 @@
   "name": "Owl",
   "icon": "minecraft:feather",
   "category": "creatures",
-  "flag": "roots:owl",
   "pages": [
     {
       "type": "animal_spawn_info",

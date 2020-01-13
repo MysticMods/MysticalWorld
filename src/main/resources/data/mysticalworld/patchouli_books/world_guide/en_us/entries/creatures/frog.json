@@ -2,7 +2,6 @@
   "name": "Frog",
   "icon": "minecraft:slime_ball",
   "category": "creatures",
-  "flag": "roots:frog",
   "pages": [
     {
       "type": "animal_spawn_info",

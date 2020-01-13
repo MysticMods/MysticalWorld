@@ -1,0 +1,24 @@
+{
+  "name": "Lead Tools",
+  "icon": "mysticalworld:lead_axe",
+  "category": "metals_tools",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:lead_ingot",
+      "text": "Lead is an uncommon, heavy metal that can be used to make durable tools.$(br2)These tools have the same harvest level as iron tools."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lead_axe",
+      "recipe2": "mysticalworld:lead_hoe",
+      "title": "Lead Tools"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lead_shovel",
+      "recipe2": "mysticalworld:lead_pickaxe",
+      "title": "Lead Tools"
+    }
+  ]
+}

@@ -2,7 +2,6 @@
   "name": "Lava Cat",
   "icon": "minecraft:lava_bucket",
   "category": "creatures",
-  "flag": "roots:lava_cat",
   "pages": [
     {
       "type": "animal_spawn_info",

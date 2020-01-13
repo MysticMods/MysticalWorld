@@ -1,0 +1,24 @@
+{
+  "name": "Tin Tools",
+  "icon": "mysticalworld:tin_axe",
+  "category": "metals_tools",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:tin_ingot",
+      "text": "Tin is a common although soft metal which can be used to make a variety of tools.$(br2)These tools have the same harvest level as iron tools."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:tin_axe",
+      "recipe2": "mysticalworld:tin_hoe",
+      "title": "Tin Tools"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:tin_shovel",
+      "recipe2": "mysticalworld:tin_pickaxe",
+      "title": "Tin Tools"
+    }
+  ]
+}

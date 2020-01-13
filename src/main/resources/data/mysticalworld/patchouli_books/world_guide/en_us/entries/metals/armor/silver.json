@@ -5,32 +5,18 @@
   "pages": [
     {
       "type": "spotlight",
-      "link_recipe": true,
-      "item": "mysticalworld:amethyst_ore",
-      "text": "Amethyst ore can be broken to gain amethyst gems, and is as rare as diamond, with similar uses."
-    },
-    {
-      "type": "spotlight",
-      "link_recipe": true,
-      "item": "mysticalworld:amethyst",
-      "title": "Amethyst Gems",
-      "text": "Amethyst tools and weapons have the same mining level as diamond tools and a similar durability."
+      "item": "mysticalworld:silver_helmet",
+      "text": "Silver armor provides spiritual as well as physical protection, granting $(l:metals/modifiers/smiting_blessed)Blessed$()."
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:amethyst_axe",
-      "recipe2": "mysticalworld:amethyst_hoe",
-      "title": "Amethyst Tools"
+      "recipe": "mysticalworld:silver_helmet",
+      "recipe2": "mysticalworld:silver_chestplate"
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:amethyst_knife",
-      "recipe2": "mysticalworld:amethyst_pickaxe"
-    },
-    {
-      "type": "crafting",
-      "recipe": "mysticalworld:amethyst_shovel",
-      "recipe2": "mysticalworld:amethyst_sword"
+      "recipe": "mysticalworld:silver_leggings",
+      "recipe2": "mysticalworld:silver_boots"
     }
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "name": "Healthy",
+  "icon": "mysticalworld:copper_leggings",
+  "category": "metals_modifiers",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Each item with the Healthy modifier that is made of copper will grant you an additional half-heart of health."
+    }
+  ]
+}

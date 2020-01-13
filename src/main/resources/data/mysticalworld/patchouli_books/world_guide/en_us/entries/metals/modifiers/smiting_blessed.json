@@ -1,0 +1,17 @@
+{
+  "name": "Smiting & Blessed",
+  "icon": "mysticalworld:silver_knife",
+  "category": "metals_modifiers",
+  "pages": [
+    {
+      "title": "Smiting",
+      "type": "text",
+      "text": "Silver is naturally strong against werewolves and the undead, and silver tools and weapons will do additional damage to any undead creature you hit."
+    },
+    {
+      "title": "Blessed",
+      "type": "text",
+      "text": "The protection of silver armor is not just physical: it is also spiritual. Any undead enemy that attacks you will also take damage according to the number of pieces of armor with the Blessed stat."
+    }
+  ]
+}

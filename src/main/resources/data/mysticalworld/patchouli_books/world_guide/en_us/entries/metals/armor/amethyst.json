@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "mysticalworld:amethyst_helmet",
-      "text": "Dense, beautiful and prized by many, amethyst armor grants a great boon to the wearer's Luck, while it serendipitously grants a bonus to Fortune and Looting."
+      "text": "Dense, beautiful and prized by many, amethyst armor grants $(l:metals/modifiers/serendipity)Serendipity$()."
     },
     {
       "type": "crafting",

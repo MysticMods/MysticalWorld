@@ -1,0 +1,22 @@
+{
+  "name": "Quicksilver Weapons",
+  "icon": "mysticalworld:quicksilver_knife",
+  "category": "metals_weapons",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:quicksilver_ingot",
+      "text": "Quicksilver is a volatile metal magically contained in solid form. While they make excellent weapons that do not naturally take durability damage, they decay over time."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:quicksilver_knife",
+      "recipe2": "mysticalworld:quicksilver_spear",
+      "title": "Quicksilver Weapons"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:quicksilver_sword"
+    }
+  ]
+}

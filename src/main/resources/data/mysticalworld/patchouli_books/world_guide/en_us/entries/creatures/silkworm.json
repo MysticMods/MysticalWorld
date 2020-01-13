@@ -2,7 +2,6 @@
   "name": "Silkworm",
   "icon": "mysticalworld:silk_cocoon",
   "category": "creatures",
-  "flag": "roots:silkworm",
   "pages": [
     {
       "type": "spotlight",

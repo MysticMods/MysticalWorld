@@ -1,0 +1,24 @@
+{
+  "name": "Copper Tools",
+  "icon": "mysticalworld:copper_axe",
+  "category": "metals_tools",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:copper_ingot",
+      "text": "Copper is a common metal that can be smelted into ingots and then crafted into durable tools.$(br2)These tools have the same harvest level as iron tools."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:copper_axe",
+      "recipe2": "mysticalworld:copper_hoe",
+      "title": "Copper Tools"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:copper_shovel",
+      "recipe2": "mysticalworld:copper_pickaxe",
+      "title": "Copper Tools"
+    }
+  ]
+}

@@ -1,18 +1,18 @@
 {
-  "name": "Quicksilver",
+  "name": "Quicksilver Ore",
   "icon": "mysticalworld:quicksilver_ore",
-  "category": "metals_ores",
+  "category": "metals",
   "pages": [
     {
       "type": "spotlight",
       "link_recipe": true,
       "item": "mysticalworld:quicksilver_ore",
-      "text": "This mystical ore somehow encapsulates quicksilver in a solid form that can be converted into ingots and used for crafting."
+      "text": "This fantastical, mystical ore contains solidified quicksilver. It can be formed into ingots that mostly retain their solidity, and thus can be used for crafting purposes."
     },
     {
       "type": "smelting",
       "link_recipe": true,
-      "recipe": "mysticalworld:quicksilver_ore",
+      "recipe": "mysticalworld:quicksilver_ingot_from_smelting",
       "title": "Quicksilver Ingots",
       "text": "Like all other ores, this can be smelted in a furnace or a blast furnace."
     }

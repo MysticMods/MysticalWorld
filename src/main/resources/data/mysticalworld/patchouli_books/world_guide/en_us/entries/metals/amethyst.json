@@ -1,7 +1,7 @@
 {
-  "name": "Amethyst",
+  "name": "Amethyst Ore",
   "icon": "mysticalworld:amethyst_ore",
-  "category": "metals_ores",
+  "category": "metals",
   "flag": "roots:amethyst",
   "pages": [
     {
@@ -13,7 +13,7 @@
     {
       "type": "smelting",
       "link_recipe": true,
-      "recipe": "mysticalworld:amethyst_ore",
+      "recipe": "mysticalworld:amethyst_from_smelting",
       "title": "Amethyst Gems",
       "text": "Amethyst ore that has been obtained can also be smelted to gain a single gem, either in a furnace or a blast furnace."
     }

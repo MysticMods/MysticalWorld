@@ -1,0 +1,24 @@
+{
+  "name": "Silver Tools",
+  "icon": "mysticalworld:silver_axe",
+  "category": "metals_tools",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:silver_ingot",
+      "text": "Silver is an uncommon, precious metal that can be used to craft a variety of tools.$(br2)In addition to having the same harvest level as gold tools, it also does increased damage towards undead entities."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:silver_axe",
+      "recipe2": "mysticalworld:silver_hoe",
+      "title": "Silver Tools"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:silver_shovel",
+      "recipe2": "mysticalworld:silver_pickaxe",
+      "title": "Silver Tools"
+    }
+  ]
+}

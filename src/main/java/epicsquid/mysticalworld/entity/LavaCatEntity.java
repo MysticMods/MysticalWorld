@@ -108,7 +108,7 @@ public class LavaCatEntity extends TameableEntity {
   protected void registerAttributes() {
     super.registerAttributes();
     this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-    this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4);
+    this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25);
     this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
   }
 
