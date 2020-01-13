@@ -11,17 +11,17 @@ import java.util.function.Function;
 
 public class MWTags {
   public static class Blocks extends MWTags {
-    public static Tag<Block> LOGS = compatTag("logs");
-    public static Tag<Block> PLANKS = compatTag("planks");
+    public static Tag<Block> LOGS = modTag("logs");
+    public static Tag<Block> PLANKS = modTag("planks");
 
-    public static Tag<Block> WOODEN_SLABS = compatTag("wooden_slabs");
-    public static Tag<Block> WOODEN_STAIRS = compatTag("wooden_stairs");
-    public static Tag<Block> WOODEN_FENCES = compatTag("wooden_fences");
+    public static Tag<Block> WOODEN_SLABS = modTag("wooden_slabs");
+    public static Tag<Block> WOODEN_STAIRS = modTag("wooden_stairs");
+    public static Tag<Block> WOODEN_FENCES = modTag("wooden_fences");
 
-    public static Tag<Block> SLABS = compatTag("slabs");
-    public static Tag<Block> STAIRS = compatTag("stairs");
-    public static Tag<Block> FENCES = compatTag("fences");
-    public static Tag<Block> WALLS = compatTag("walls");
+    public static Tag<Block> SLABS = modTag("slabs");
+    public static Tag<Block> STAIRS = modTag("stairs");
+    public static Tag<Block> FENCES = modTag("fences");
+    public static Tag<Block> WALLS = modTag("walls");
 
     public static Tag<Block> PURPUR = compatTag("purpur");
     public static Tag<Block> NETHER_BRICKS = compatTag("nether_bricks");
@@ -96,19 +96,19 @@ public class MWTags {
     public static Tag<Item> GOLD_DUST = compatTag("dusts/gold");
     public static Tag<Item> IRON_DUST = compatTag("dusts/iron");
 
-    public static Tag<Item> LOGS = compatTag("logs");
-    public static Tag<Item> PLANKS = compatTag("planks");
+    public static Tag<Item> LOGS = mcTag("logs");
+    public static Tag<Item> PLANKS = mcTag("planks");
 
-    public static Tag<Item> WOODEN_SLABS = compatTag("wooden_slabs");
-    public static Tag<Item> WOODEN_STAIRS = compatTag("wooden_stairs");
-    public static Tag<Item> WOODEN_DOORS = compatTag("wooden_doors");
-    public static Tag<Item> WOODEN_TRAPDOORS = compatTag("wooden_trapdoors");
-    public static Tag<Item> WOODEN_FENCES = compatTag("wooden_fences");
+    public static Tag<Item> WOODEN_SLABS = mcTag("wooden_slabs");
+    public static Tag<Item> WOODEN_STAIRS = mcTag("wooden_stairs");
+    public static Tag<Item> WOODEN_DOORS = mcTag("wooden_doors");
+    public static Tag<Item> WOODEN_TRAPDOORS = mcTag("wooden_trapdoors");
+    public static Tag<Item> WOODEN_FENCES = mcTag("wooden_fences");
 
-    public static Tag<Item> SLABS = compatTag("slabs");
-    public static Tag<Item> STAIRS = compatTag("stairs");
-    public static Tag<Item> FENCES = compatTag("fences");
-    public static Tag<Item> WALLS = compatTag("walls");
+    public static Tag<Item> SLABS = mcTag("slabs");
+    public static Tag<Item> STAIRS = mcTag("stairs");
+    public static Tag<Item> FENCES = mcTag("fences");
+    public static Tag<Item> WALLS = mcTag("walls");
 
     public static Tag<Item> PURPUR = compatTag("purpur");
     public static Tag<Item> NETHER_BRICKS = compatTag("nether_bricks");
@@ -125,6 +125,10 @@ public class MWTags {
 
     static Tag<Item> modTag(String name) {
       return tag(MysticalWorld.MODID, name);
+    }
+
+    static Tag<Item> mcTag (String name) {
+      return tag("minecraft", name);
     }
 
     static Tag<Item> compatTag(String name) {
