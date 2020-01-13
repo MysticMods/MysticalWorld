@@ -36,6 +36,7 @@ public class ShoulderLayer<T extends PlayerEntity> extends LayerRenderer<T, Play
     });
   }
 
+  @Override
   public void render(T entityIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleIn) {
     GlStateManager.enableRescaleNormal();
     GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -59,6 +60,7 @@ public class ShoulderLayer<T extends PlayerEntity> extends LayerRenderer<T, Play
     GlStateManager.popMatrix();
   }
 
+  @Override
   public boolean shouldCombineTextures() {
     return false;
   }

@@ -185,6 +185,8 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     handheld(ModItems.GOLD_SPEAR);
     handheld(ModItems.IRON_SPEAR);
 
+    handheld(ModItems.ENCYCLOPEDIA);
+
     spawnEgg(ModEntities.SPAWN_BEETLE);
     spawnEgg(ModEntities.SPAWN_DEER);
     spawnEgg(ModEntities.SPAWN_FROG);

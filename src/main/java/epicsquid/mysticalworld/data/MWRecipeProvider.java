@@ -327,5 +327,11 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .key('L', MWTags.Items.LEAD_INGOT)
         .addCriterion("has_apple", this.hasItem(Items.APPLE))
         .build(consumer);
+
+    ShapelessRecipeBuilder.shapelessRecipe(ModItems.ENCYCLOPEDIA.get(), 1)
+        .addIngredient(Items.BOOK)
+        .addIngredient(MWTags.Items.AUBERGINE)
+        .addCriterion("has_aubergine", this.hasItem(MWTags.Items.AUBERGINE))
+        .build(consumer);
   }
 }

@@ -114,11 +114,13 @@ public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
     return (float) Math.sin(ageInTicks * 0.03125f * (Math.PI * 2.0f) + Math.toRadians(deg));
   }
 
+  @Override
   public void renderOnShoulder(float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch, float scaleFactor, int ticksExisted) {
     this.setRotationAngles(ModelState.SHOULDER, ticksExisted, limbSwing, limbSwingAmount, 0.0F, netHeadYaw, headPitch);
     this.render(scaleFactor);
   }
 
+  @Override
   public void setRotationAngles(ModelState state, int ticksExisted, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     this.head.rotateAngleX = headPitch * 0.017453292F;
     this.head.rotateAngleY = netHeadYaw * 0.017453292F;
@@ -136,6 +138,7 @@ public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
     }
   }
 
+  @Override
   public void render(float scale) {
     this.body.render(scale);
   }

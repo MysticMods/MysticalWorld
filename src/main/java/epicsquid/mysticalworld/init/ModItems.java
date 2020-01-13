@@ -19,6 +19,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 @SuppressWarnings("unused")
 public class ModItems {
+  public static RegistryObject<GuideItem> ENCYCLOPEDIA = MysticalWorld.REGISTRY.registerItem("encyclopedia", MysticalWorld.REGISTRY.item(GuideItem::new, ModRegistries.SIG));
   public static RegistryObject<DyeItem> CARAPACE = MysticalWorld.REGISTRY.registerItem("carapace", MysticalWorld.REGISTRY.dyeItem(DyeColor.BLUE, ModRegistries.SIG));
   public static RegistryObject<Item> PELT = MysticalWorld.REGISTRY.registerItem("pelt", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));
   public static RegistryObject<Item> ANTLERS = MysticalWorld.REGISTRY.registerItem("antlers", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));

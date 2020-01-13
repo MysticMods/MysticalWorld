@@ -203,6 +203,8 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.COOKED_CARROT);
     addItem(ModItems.SLICED_CARROT);
 
+    addItem(ModItems.ENCYCLOPEDIA);
+
     addEntityType(ModEntities.BEETLE);
     addEntityType(ModEntities.DEER);
     addEntityType(ModEntities.FROG);
