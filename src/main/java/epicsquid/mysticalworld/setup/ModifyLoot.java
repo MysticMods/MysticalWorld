@@ -11,7 +11,13 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import java.util.Map;
 
 public class ModifyLoot {
+  private static boolean applied = false;
+
   public static void modify() {
+    if (applied) {
+      return;
+    }
+
     Map<ResourceLocation, ILootFunction.Serializer<?>> map1 = ObfuscationReflectionHelper.getPrivateValue(LootFunctionManager.class, null, "field_186584_a");
     Map<Class<? extends ILootFunction>, ILootFunction.Serializer<?>> map2 = ObfuscationReflectionHelper.getPrivateValue(LootFunctionManager.class, null, "field_186585_b");
 
@@ -22,6 +28,7 @@ public class ModifyLoot {
       map2.remove(ApplyBonus.class);
 
       LootFunctionManager.registerFunction(new ApplyBonusModified.Serializer());
+      applied = true;
     }
   }
 }
