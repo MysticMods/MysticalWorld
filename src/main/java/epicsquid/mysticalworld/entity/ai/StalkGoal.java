@@ -62,14 +62,14 @@ public class StalkGoal extends Goal {
     } else {
       if (canPenalize) {
         if (--this.delayCounter <= 0) {
-          this.path = this.attacker.getNavigator().getPathToEntityLiving(entitylivingbase, 32);
+          this.path = this.attacker.getNavigator().func_75494_a(entitylivingbase, 32);
           this.delayCounter = 4 + this.attacker.getRNG().nextInt(7);
           return this.path != null;
         } else {
           return true;
         }
       }
-      this.path = this.attacker.getNavigator().getPathToEntityLiving(entitylivingbase, 32);
+      this.path = this.attacker.getNavigator().func_75494_a(entitylivingbase, 32);
 
       if (this.path != null) {
         return true;
