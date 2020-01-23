@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DCD",
+    "BBB",
+    "BBB"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:dandelion"
+    },
+    "C": {
+      "item": "minecraft:cactus"
+    },
+    "B": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:cactus_dandelion_salad",
+    "count": 6
+  }
+}

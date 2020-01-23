@@ -61,6 +61,11 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addBlock(ModBlocks.TERRACOTTA_BRICK_WALL);
     addBlock(ModBlocks.TERRACOTTA_BRICK_FENCE_GATE);
 
+    addBlock(ModBlocks.IRON_BRICK);
+    addBlock(ModBlocks.IRON_BRICK_SLAB);
+    addBlock(ModBlocks.IRON_BRICK_STAIRS);
+    addBlock(ModBlocks.IRON_BRICK_WALL);
+
     addItem(ModItems.ROTTEN_APPLE);
 
     addItem(ModItems.CARAPACE);
@@ -193,6 +198,20 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModEntities.SPAWN_LAVA_CAT);
     addItem(ModEntities.SPAWN_SILKWORM);
     addItem(ModEntities.SPAWN_OWL);
+
+    addItem(ModItems.APPLE_CORDIAL);
+    addItem(ModItems.CACTUS_SYRUP);
+    addItem(ModItems.DANDELION_CORDIAL);
+    addItem(ModItems.LILAC_CORDIAL);
+    addItem(ModItems.PEONY_CORDIAL);
+    addItem(ModItems.ROSE_CORDIAL);
+    addItem(ModItems.VINEGAR);
+    addItem(ModItems.VEGETABLE_JUICE);
+    addItem(ModItems.AUBERGINE_SALAD);
+    addItem(ModItems.BEETROOT_SALAD);
+    addItem(ModItems.CACTUS_DANDELION_SALAD);
+    addItem(ModItems.DANDELION_CORNFLOWER_SALAD);
+    addItem(ModItems.STEWED_EGGPLANT);
 
     addItem(ModItems.SILKWORM_EGG);
     addItem(ModItems.SILK_THREAD);

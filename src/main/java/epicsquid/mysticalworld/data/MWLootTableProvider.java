@@ -92,6 +92,11 @@ public class MWLootTableProvider extends LootTableProvider {
       self(ModBlocks.TERRACOTTA_BRICK_FENCE);
       self(ModBlocks.TERRACOTTA_BRICK_FENCE_GATE);
 
+      self(ModBlocks.IRON_BRICK);
+      self(ModBlocks.IRON_BRICK_STAIRS);
+      self(ModBlocks.IRON_BRICK_SLAB);
+      self(ModBlocks.IRON_BRICK_WALL);
+
       self(ModBlocks.THATCH);
 
       registerLootTable(ModBlocks.AUBERGINE_CROP.get(), b -> droppingAndBonusWhen(b, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), BlockStateProperty.builder(ModBlocks.AUBERGINE_CROP.get()).with(CropsBlock.AGE, 7)));

@@ -38,6 +38,7 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     twoByTwo(ModBlocks.WET_MUD_BLOCK, ModBlocks.WET_MUD_BRICK, null, consumer);
     twoByTwo(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BRICK, null, consumer);
     twoByTwo(() -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK, null, consumer);
+    twoByTwo(() -> Items.IRON_INGOT, ModBlocks.IRON_BRICK, null, consumer);
 
     planks(ModBlocks.CHARRED_LOG, ModBlocks.CHARRED_PLANKS, consumer);
     stairs(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_STAIRS, "stairs", false, consumer);
@@ -64,8 +65,11 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     fenceGate(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_FENCE_GATE, "fence_gate", consumer);
     wall(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_WALL, false, consumer);
 
-    singleItemUnfinished(ModItems.UNRIPE_ENDER_PEARL, () -> Items.ENDER_PEARL, 9, 1).build(consumer, new ResourceLocation(MysticalWorld.MODID, "ender_pearl_from_unripe_pearls"));
+    stairs(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_STAIRS, "stairs", false, consumer);
+    slab(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SLAB, "slabs", false, consumer);
+    wall(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_WALL, false, consumer);
 
+    singleItemUnfinished(ModItems.UNRIPE_ENDER_PEARL, () -> Items.ENDER_PEARL, 9, 1).build(consumer, new ResourceLocation(MysticalWorld.MODID, "ender_pearl_from_unripe_pearls"));
 
     axe(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_AXE, "axe", consumer);
     axe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_AXE, "axe", consumer);
@@ -332,6 +336,152 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addIngredient(Items.BOOK)
         .addIngredient(MWTags.Items.AUBERGINE)
         .addCriterion("has_aubergine", this.hasItem(MWTags.Items.AUBERGINE))
+        .build(consumer);
+
+    // DRINKIES
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.APPLE_CORDIAL.get(), 5)
+        .patternLine("ASA")
+        .patternLine("BBB")
+        .patternLine("BWB")
+        .key('A', Items.APPLE)
+        .key('S', Items.SUGAR)
+        .key('B', Items.GLASS_BOTTLE)
+        .key('W', Items.WATER_BUCKET)
+        .addCriterion("has_apples", this.hasItem(Items.APPLE))
+        .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.CACTUS_SYRUP.get(), 5)
+        .patternLine("CSC")
+        .patternLine("BBB")
+        .patternLine("BWB")
+        .key('C', Items.CACTUS)
+        .key('S', Items.SUGAR)
+        .key('B', Items.GLASS_BOTTLE)
+        .key('W', Items.WATER_BUCKET)
+        .addCriterion("has_cactus", this.hasItem(Items.CACTUS))
+        .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.DANDELION_CORDIAL.get(), 5)
+        .patternLine("DSD")
+        .patternLine("BBB")
+        .patternLine("BWB")
+        .key('W', Items.WATER_BUCKET)
+        .key('D', Items.DANDELION)
+        .key('S', Items.SUGAR)
+        .key('B', Items.GLASS_BOTTLE)
+        .addCriterion("has_dandelion", this.hasItem(Items.DANDELION))
+        .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.LILAC_CORDIAL.get(), 5)
+        .patternLine("LSL")
+        .patternLine("BBB")
+        .patternLine("BWB")
+        .key('L', Items.LILAC)
+        .key('S', Items.SUGAR)
+        .key('B', Items.GLASS_BOTTLE)
+        .key('W', Items.WATER_BUCKET)
+        .addCriterion("has_lilac", this.hasItem(Items.LILAC))
+        .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.PEONY_CORDIAL.get(), 5)
+        .patternLine("PSP")
+        .patternLine("BBB")
+        .patternLine("BWB")
+        .key('P', Items.PEONY)
+        .key('S', Items.SUGAR)
+        .key('B', Items.GLASS_BOTTLE)
+        .key('W', Items.WATER_BUCKET)
+        .addCriterion("has_peony", this.hasItem(Items.PEONY))
+        .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.ROSE_CORDIAL.get(), 5)
+        .patternLine("RSR")
+        .patternLine("BBB")
+        .patternLine("BWB")
+        .key('R', Items.ROSE_BUSH)
+        .key('S', Items.SUGAR)
+        .key('B', Items.GLASS_BOTTLE)
+        .key('W', Items.WATER_BUCKET)
+        .addCriterion("has_rose", this.hasItem(Items.ROSE_BUSH))
+        .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.VINEGAR.get(), 6)
+        .patternLine("BBB")
+        .patternLine("PPP")
+        .patternLine("BBB")
+        .key('P', Items.SEA_PICKLE)
+        .key('B', Items.GLASS_BOTTLE)
+        .addCriterion("has_sea_pickle", this.hasItem(Items.SEA_PICKLE))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.VEGETABLE_JUICE.get(), 5)
+        .patternLine("ARC")
+        .patternLine("BBB")
+        .patternLine("BWB")
+        .key('A', MWTags.Items.AUBERGINE)
+        .key('R', Items.BEETROOT)
+        .key('C', Items.CARROT)
+        .key('B', Items.GLASS_BOTTLE)
+        .key('W', Items.WATER_BUCKET)
+        .addCriterion("has_aubergine", this.hasItem(MWTags.Items.AUBERGINE))
+        .addCriterion("has_beetroot", this.hasItem(Items.BEETROOT))
+        .addCriterion("has_carrot", this.hasItem(Items.CARROT))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.AUBERGINE_SALAD.get(), 6)
+        .patternLine("AAA")
+        .patternLine("BBB")
+        .patternLine("BBB")
+        .key('A', MWTags.Items.AUBERGINE)
+        .key('B', Items.BOWL)
+        .addCriterion("has_aubergine", this.hasItem(MWTags.Items.AUBERGINE))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.BEETROOT_SALAD.get(), 6)
+        .patternLine("AAA")
+        .patternLine("BBB")
+        .patternLine("BBB")
+        .key('A', Items.BEETROOT)
+        .key('B', Items.BOWL)
+        .addCriterion("has_beetroot", this.hasItem(Items.BEETROOT))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.CACTUS_DANDELION_SALAD.get(), 6)
+        .patternLine("DCD")
+        .patternLine("BBB")
+        .patternLine("BBB")
+        .key('D', Items.DANDELION)
+        .key('C', Items.CACTUS)
+        .key('B', Items.BOWL)
+        .addCriterion("has_dandelion", this.hasItem(Items.DANDELION))
+        .addCriterion("has_cactus", this.hasItem(Items.CACTUS))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.DANDELION_CORNFLOWER_SALAD.get(), 6)
+        .patternLine("CDC")
+        .patternLine("BBB")
+        .patternLine("BBB")
+        .key('D', Items.DANDELION)
+        .key('C', Items.CORNFLOWER)
+        .key('B', Items.BOWL)
+        .addCriterion("has_dandelion", this.hasItem(Items.DANDELION))
+        .addCriterion("has_cornflower", this.hasItem(Items.CORNFLOWER))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.STEWED_EGGPLANT.get(), 6)
+        .patternLine("AAA")
+        .patternLine("BBB")
+        .patternLine("BBB")
+        .key('A', ModItems.COOKED_AUBERGINE.get())
+        .key('B', Items.BOWL)
+        .addCriterion("has_cooked_aubergine", this.hasItem(ModItems.COOKED_AUBERGINE.get()))
         .build(consumer);
   }
 }

@@ -33,6 +33,7 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     blockItem(ModBlocks.WET_MUD_BRICK);
 
     blockItem(ModBlocks.TERRACOTTA_BRICK);
+    blockItem(ModBlocks.IRON_BRICK);
 
     blockItem(ModBlocks.MUD_BLOCK);
     blockItem(ModBlocks.MUD_BLOCK_STAIRS);
@@ -61,6 +62,10 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     blockWithInventoryModel(ModBlocks.TERRACOTTA_BRICK_WALL);
     blockWithInventoryModel(ModBlocks.TERRACOTTA_BRICK_FENCE);
     blockItem(ModBlocks.TERRACOTTA_BRICK_FENCE_GATE);
+
+    blockItem(ModBlocks.IRON_BRICK_STAIRS);
+    blockItem(ModBlocks.IRON_BRICK_SLAB);
+    blockWithInventoryModel(ModBlocks.IRON_BRICK_WALL);
 
     generated(ModItems.ROTTEN_APPLE);
 
@@ -186,6 +191,20 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     handheld(ModItems.IRON_SPEAR);
 
     handheld(ModItems.ENCYCLOPEDIA);
+
+    handheld(ModItems.APPLE_CORDIAL);
+    handheld(ModItems.CACTUS_SYRUP);
+    handheld(ModItems.DANDELION_CORDIAL);
+    handheld(ModItems.LILAC_CORDIAL);
+    handheld(ModItems.PEONY_CORDIAL);
+    handheld(ModItems.ROSE_CORDIAL);
+    handheld(ModItems.VINEGAR);
+    handheld(ModItems.VEGETABLE_JUICE);
+    handheld(ModItems.AUBERGINE_SALAD);
+    handheld(ModItems.BEETROOT_SALAD);
+    handheld(ModItems.CACTUS_DANDELION_SALAD);
+    handheld(ModItems.DANDELION_CORNFLOWER_SALAD);
+    handheld(ModItems.STEWED_EGGPLANT);
 
     spawnEgg(ModEntities.SPAWN_BEETLE);
     spawnEgg(ModEntities.SPAWN_DEER);

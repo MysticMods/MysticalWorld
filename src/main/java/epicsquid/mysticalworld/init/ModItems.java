@@ -1,9 +1,6 @@
 package epicsquid.mysticalworld.init;
 
-import epicsquid.mysticallib.item.EffectItem;
-import epicsquid.mysticallib.item.FastFoodItem;
-import epicsquid.mysticallib.item.KnifeItem;
-import epicsquid.mysticallib.item.SpearItem;
+import epicsquid.mysticallib.item.*;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.items.*;
 import epicsquid.mysticalworld.items.amethyst.AmethystArmorItem;
@@ -49,6 +46,23 @@ public class ModItems {
   public static RegistryObject<Item> RAW_SQUID = MysticalWorld.REGISTRY.registerItem("raw_squid", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.RAW_SQUID)));
   public static RegistryObject<Item> COOKED_SQUID = MysticalWorld.REGISTRY.registerItem("cooked_squid", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_SQUID)));
   public static RegistryObject<EffectItem> EPIC_SQUID = MysticalWorld.REGISTRY.registerItem("epic_squid", MysticalWorld.REGISTRY.item(EffectItem::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).food(ModFoods.EPIC_SQUID).rarity(Rarity.EPIC)));
+
+  // Drinkies
+  public static RegistryObject<Item> APPLE_CORDIAL = MysticalWorld.REGISTRY.registerItem("apple_cordial", MysticalWorld.REGISTRY.item(DrinkItem::new, ModRegistries.foodProp(ModFoods.APPLE_CORDIAL)));
+  public static RegistryObject<Item> CACTUS_SYRUP = MysticalWorld.REGISTRY.registerItem("cactus_syrup", MysticalWorld.REGISTRY.item(DrinkItem::new, ModRegistries.foodProp(ModFoods.CACTUS_SYRUP)));
+  public static RegistryObject<Item> DANDELION_CORDIAL = MysticalWorld.REGISTRY.registerItem("dandelion_cordial", MysticalWorld.REGISTRY.item(DrinkItem::new, ModRegistries.foodProp(ModFoods.DANDELION_CORDIAL)));
+  public static RegistryObject<Item> LILAC_CORDIAL = MysticalWorld.REGISTRY.registerItem("lilac_cordial", MysticalWorld.REGISTRY.item(DrinkItem::new, ModRegistries.foodProp(ModFoods.LILAC_CORDIAL)));
+  public static RegistryObject<Item> PEONY_CORDIAL = MysticalWorld.REGISTRY.registerItem("peony_cordial", MysticalWorld.REGISTRY.item(DrinkItem::new, ModRegistries.foodProp(ModFoods.PEONY_CORDIAL)));
+  public static RegistryObject<Item> ROSE_CORDIAL = MysticalWorld.REGISTRY.registerItem("rose_cordial", MysticalWorld.REGISTRY.item(DrinkItem::new, ModRegistries.foodProp(ModFoods.ROSE_CORDIAL)));
+  public static RegistryObject<Item> VINEGAR = MysticalWorld.REGISTRY.registerItem("vinegar", MysticalWorld.REGISTRY.item(DrinkItem::new, ModRegistries.foodProp(ModFoods.VINEGAR)));
+  public static RegistryObject<Item> VEGETABLE_JUICE = MysticalWorld.REGISTRY.registerItem("vegetable_juice", MysticalWorld.REGISTRY.item(DrinkItem::new, ModRegistries.foodProp(ModFoods.VEGETABLE_JUICE)));
+
+  // Salads
+  public static RegistryObject<Item> AUBERGINE_SALAD = MysticalWorld.REGISTRY.registerItem("aubergine_salad", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.AUBERGINE_SALAD)));
+  public static RegistryObject<Item> BEETROOT_SALAD = MysticalWorld.REGISTRY.registerItem("beetroot_salad", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.BEETROOT_SALAD)));
+  public static RegistryObject<Item> CACTUS_DANDELION_SALAD = MysticalWorld.REGISTRY.registerItem("cactus_dandelion_salad", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.CACTUS_DANDELION_SALAD)));
+  public static RegistryObject<Item> DANDELION_CORNFLOWER_SALAD = MysticalWorld.REGISTRY.registerItem("dandelion_cornflower_salad", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.DANDELION_CORNFLOWER_SALAD)));
+  public static RegistryObject<Item> STEWED_EGGPLANT = MysticalWorld.REGISTRY.registerItem("stewed_eggplant", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.STEWED_EGGPLANT)));
 
   public static RegistryObject<Item> ROTTEN_APPLE = MysticalWorld.REGISTRY.registerItem("rotten_apple", MysticalWorld.REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).rarity(Rarity.RARE)));
 
