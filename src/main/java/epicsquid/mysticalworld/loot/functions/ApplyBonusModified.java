@@ -25,8 +25,10 @@ import net.minecraft.world.storage.loot.LootFunction;
 import net.minecraft.world.storage.loot.LootParameter;
 import net.minecraft.world.storage.loot.LootParameters;
 import net.minecraft.world.storage.loot.conditions.ILootCondition;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
@@ -182,6 +184,7 @@ public class ApplyBonusModified extends LootFunction {
     }
   }
 
+  @SuppressWarnings("NullableProblems")
   public static class Serializer extends LootFunction.Serializer<ApplyBonusModified> {
     public Serializer() {
       super(new ResourceLocation("apply_bonus"), ApplyBonusModified.class);
@@ -190,7 +193,7 @@ public class ApplyBonusModified extends LootFunction {
     @Override
     public void serialize(JsonObject object, ApplyBonusModified functionClazz, JsonSerializationContext serializationContext) {
       super.serialize(object, functionClazz, serializationContext);
-      object.addProperty("enchantment", Registry.ENCHANTMENT.getKey(functionClazz.enchantment).toString());
+      object.addProperty("enchantment", Objects.requireNonNull(ForgeRegistries.ENCHANTMENTS.getKey(functionClazz.enchantment)).toString());
       object.addProperty("formula", functionClazz.field_215877_d.func_216203_a().toString());
       JsonObject jsonobject = new JsonObject();
       functionClazz.field_215877_d.func_216202_a(jsonobject, serializationContext);
@@ -203,9 +206,10 @@ public class ApplyBonusModified extends LootFunction {
     @Override
     public ApplyBonusModified deserialize(JsonObject object, JsonDeserializationContext deserializationContext, ILootCondition[] conditionsIn) {
       ResourceLocation resourcelocation = new ResourceLocation(JSONUtils.getString(object, "enchantment"));
-      Enchantment enchantment = Registry.ENCHANTMENT.getValue(resourcelocation).orElseThrow(() -> {
-        return new JsonParseException("Invalid enchantment id: " + resourcelocation);
-      });
+      Enchantment enchantment = ForgeRegistries.ENCHANTMENTS.getValue(resourcelocation);
+      if (enchantment == null) {
+        throw new JsonParseException("Invalid enchantment id: " + resourcelocation);
+      }
       ResourceLocation resourcelocation1 = new ResourceLocation(JSONUtils.getString(object, "formula"));
       ApplyBonusModified.IFormulaDeserializer applybonus$iformuladeserializer = ApplyBonusModified.field_215875_a.get(resourcelocation1);
       if (applybonus$iformuladeserializer == null) {

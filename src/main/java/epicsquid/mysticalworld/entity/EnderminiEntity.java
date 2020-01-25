@@ -14,6 +14,7 @@ import net.minecraft.entity.monster.EndermiteEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -38,6 +39,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 // Base heavily on vanilla Enderman
+@SuppressWarnings("deprecation")
 public class EnderminiEntity extends CreatureEntity {
   public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/endermini");
   private static final Set<Block> CARRIABLE_BLOCKS = Sets.newIdentityHashSet();
@@ -302,7 +304,7 @@ public class EnderminiEntity extends CreatureEntity {
   private boolean shouldFollowPlayer(PlayerEntity player) {
     ItemStack itemstack = player.inventory.armorInventory.get(3);
 
-    if (itemstack.getItem() == Item.getItemFromBlock(Blocks.PUMPKIN)) {
+    if (itemstack.getItem() == Items.PUMPKIN) {
       return false;
     } else {
       Vec3d vec3d = player.getLook(1.0F).normalize();

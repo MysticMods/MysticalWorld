@@ -12,6 +12,7 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -63,7 +64,7 @@ public class FrogEntity extends AnimalEntity {
 
   @Override
   public boolean isBreedingItem(@Nonnull ItemStack stack) {
-    return stack.getItem() == Item.getItemFromBlock(Blocks.BROWN_MUSHROOM);
+    return stack.getItem() == Items.BROWN_MUSHROOM;
   }
 
   @Override
