@@ -28,6 +28,20 @@ public class MWTags {
     public static Tag<Block> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
     public static Tag<Block> TERRACOTTA = compatTag("terracotta");
 
+    public static Tag<Block> AMETHYST_ORE = compatTag("ores/amethyst");
+    public static Tag<Block> COPPER_ORE = compatTag("ores/copper");
+    public static Tag<Block> LEAD_ORE = compatTag("ores/lead");
+    public static Tag<Block> QUICKSILVER_ORE = compatTag("ores/quicksilver");
+    public static Tag<Block> SILVER_ORE = compatTag("ores/silver");
+    public static Tag<Block> TIN_ORE = compatTag("ores/tin");
+
+    public static Tag<Block> AMETHYST_STORAGE = compatTag("storage_blocks/amethyst");
+    public static Tag<Block> COPPER_STORAGE = compatTag("storage_blocks/copper");
+    public static Tag<Block> LEAD_STORAGE = compatTag("storage_blocks/lead");
+    public static Tag<Block> QUICKSILVER_STORAGE = compatTag("storage_blocks/quicksilver");
+    public static Tag<Block> SILVER_STORAGE = compatTag("storage_blocks/silver");
+    public static Tag<Block> TIN_STORAGE = compatTag("storage_blocks/tin");
+
     static Tag<Block> tag(String modid, String name) {
       return tag(BlockTags.Wrapper::new, modid, name);
     }

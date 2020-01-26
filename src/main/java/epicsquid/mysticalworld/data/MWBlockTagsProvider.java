@@ -6,6 +6,7 @@ import epicsquid.mysticalworld.init.ModBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.Tags;
 
 public class MWBlockTagsProvider extends DeferredBlockTagsProvider {
   public MWBlockTagsProvider(DataGenerator generatorIn) {
@@ -30,5 +31,19 @@ public class MWBlockTagsProvider extends DeferredBlockTagsProvider {
     createTag(MWTags.Blocks.NETHER_BRICKS, () -> Blocks.NETHER_BRICKS);
     createTag(MWTags.Blocks.RED_NETHER_BRICKS, () -> Blocks.RED_NETHER_BRICKS);
     createTag(MWTags.Blocks.TERRACOTTA, () -> Blocks.WHITE_TERRACOTTA, () -> Blocks.ORANGE_TERRACOTTA, () -> Blocks.MAGENTA_TERRACOTTA, () -> Blocks.LIGHT_BLUE_TERRACOTTA, () -> Blocks.YELLOW_TERRACOTTA, () -> Blocks.LIME_TERRACOTTA, () -> Blocks.PINK_TERRACOTTA, () -> Blocks.GRAY_TERRACOTTA, () -> Blocks.LIGHT_GRAY_TERRACOTTA, () -> Blocks.CYAN_TERRACOTTA, () -> Blocks.PURPLE_TERRACOTTA, () -> Blocks.BLUE_TERRACOTTA, () -> Blocks.BROWN_TERRACOTTA, () -> Blocks.GREEN_TERRACOTTA, () -> Blocks.RED_TERRACOTTA, () -> Blocks.BLACK_TERRACOTTA, () -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK);
+
+    createTag(MWTags.Blocks.AMETHYST_ORE, ModBlocks.AMETHYST_ORE);
+    createTag(MWTags.Blocks.COPPER_ORE, ModBlocks.COPPER_ORE);
+    createTag(MWTags.Blocks.LEAD_ORE, ModBlocks.LEAD_ORE);
+    createTag(MWTags.Blocks.QUICKSILVER_ORE, ModBlocks.QUICKSILVER_ORE);
+    createTag(MWTags.Blocks.SILVER_ORE, ModBlocks.SILVER_ORE);
+    createTag(MWTags.Blocks.TIN_ORE, ModBlocks.TIN_ORE);
+
+    createTag(MWTags.Blocks.AMETHYST_STORAGE, ModBlocks.AMETHYST_BLOCK);
+    createTag(MWTags.Blocks.COPPER_STORAGE, ModBlocks.COPPER_BLOCK);
+    createTag(MWTags.Blocks.LEAD_STORAGE, ModBlocks.LEAD_BLOCK);
+    createTag(MWTags.Blocks.QUICKSILVER_STORAGE, ModBlocks.QUICKSILVER_BLOCK);
+    createTag(MWTags.Blocks.SILVER_STORAGE, ModBlocks.SILVER_BLOCK);
+    createTag(MWTags.Blocks.TIN_STORAGE, ModBlocks.TIN_BLOCK);
   }
 }
