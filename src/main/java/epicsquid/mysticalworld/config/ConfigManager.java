@@ -60,7 +60,7 @@ public class ConfigManager {
     ENDERMINI_CONFIG = new MobConfig("Endermini", 1, 1, 2, Collections.singletonList("END"));
     OWL_CONFIG = new MobConfig("Owl", 9, 1, 3, Arrays.asList("CONIFEROUS", "SPOOKY", "MAGICAL", "FOREST", "MOUNTAIN", "SNOWY"));
     LAVA_CAT_CONFIG = new MobConfig("Lava Cat", 1, 1, 1, Collections.singletonList("NETHER")); // Test
-    SILKWORM_CONFIG = new SilkwormConfig(true, 40, 1, 85);
+    SILKWORM_CONFIG = new SilkwormConfig(true, 65, 1, 68);
 
     DEER_CONFIG.apply(COMMON_BUILDER);
     SPROUT_CONFIG.apply(COMMON_BUILDER);
