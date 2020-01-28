@@ -58,11 +58,11 @@ public class ModItems {
   public static RegistryObject<Item> VEGETABLE_JUICE = MysticalWorld.REGISTRY.registerItem("vegetable_juice", MysticalWorld.REGISTRY.item(DrinkItem::new, ModRegistries.foodProp(ModFoods.VEGETABLE_JUICE)));
 
   // Salads
-  public static RegistryObject<Item> AUBERGINE_SALAD = MysticalWorld.REGISTRY.registerItem("aubergine_salad", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.AUBERGINE_SALAD)));
-  public static RegistryObject<Item> BEETROOT_SALAD = MysticalWorld.REGISTRY.registerItem("beetroot_salad", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.BEETROOT_SALAD)));
-  public static RegistryObject<Item> CACTUS_DANDELION_SALAD = MysticalWorld.REGISTRY.registerItem("cactus_dandelion_salad", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.CACTUS_DANDELION_SALAD)));
-  public static RegistryObject<Item> DANDELION_CORNFLOWER_SALAD = MysticalWorld.REGISTRY.registerItem("dandelion_cornflower_salad", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.DANDELION_CORNFLOWER_SALAD)));
-  public static RegistryObject<Item> STEWED_EGGPLANT = MysticalWorld.REGISTRY.registerItem("stewed_eggplant", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.STEWED_EGGPLANT)));
+  public static RegistryObject<Item> AUBERGINE_SALAD = MysticalWorld.REGISTRY.registerItem("aubergine_salad", MysticalWorld.REGISTRY.item(SoupItem::new, ModRegistries.foodProp(ModFoods.AUBERGINE_SALAD)));
+  public static RegistryObject<Item> BEETROOT_SALAD = MysticalWorld.REGISTRY.registerItem("beetroot_salad", MysticalWorld.REGISTRY.item(SoupItem::new, ModRegistries.foodProp(ModFoods.BEETROOT_SALAD)));
+  public static RegistryObject<Item> CACTUS_DANDELION_SALAD = MysticalWorld.REGISTRY.registerItem("cactus_dandelion_salad", MysticalWorld.REGISTRY.item(SoupItem::new, ModRegistries.foodProp(ModFoods.CACTUS_DANDELION_SALAD)));
+  public static RegistryObject<Item> DANDELION_CORNFLOWER_SALAD = MysticalWorld.REGISTRY.registerItem("dandelion_cornflower_salad", MysticalWorld.REGISTRY.item(SoupItem::new, ModRegistries.foodProp(ModFoods.DANDELION_CORNFLOWER_SALAD)));
+  public static RegistryObject<Item> STEWED_EGGPLANT = MysticalWorld.REGISTRY.registerItem("stewed_eggplant", MysticalWorld.REGISTRY.item(SoupItem::new, ModRegistries.foodProp(ModFoods.STEWED_EGGPLANT)));
 
   public static RegistryObject<Item> ROTTEN_APPLE = MysticalWorld.REGISTRY.registerItem("rotten_apple", MysticalWorld.REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).rarity(Rarity.RARE)));
 
