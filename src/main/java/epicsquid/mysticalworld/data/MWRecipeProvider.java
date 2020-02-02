@@ -340,10 +340,10 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
 
     // DRINKIES
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.APPLE_CORDIAL.get(), 5)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.APPLE_CORDIAL.get(), 4)
         .patternLine("ASA")
-        .patternLine("BBB")
         .patternLine("BWB")
+        .patternLine("B B")
         .key('A', Items.APPLE)
         .key('S', Items.SUGAR)
         .key('B', Items.GLASS_BOTTLE)
@@ -352,10 +352,10 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.CACTUS_SYRUP.get(), 5)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.CACTUS_SYRUP.get(), 4)
         .patternLine("CSC")
-        .patternLine("BBB")
         .patternLine("BWB")
+        .patternLine("BSB")
         .key('C', Items.CACTUS)
         .key('S', Items.SUGAR)
         .key('B', Items.GLASS_BOTTLE)
@@ -364,10 +364,10 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.DANDELION_CORDIAL.get(), 5)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.DANDELION_CORDIAL.get(), 4)
         .patternLine("DSD")
-        .patternLine("BBB")
         .patternLine("BWB")
+        .patternLine("BSB")
         .key('W', Items.WATER_BUCKET)
         .key('D', Items.DANDELION)
         .key('S', Items.SUGAR)
@@ -376,10 +376,10 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.LILAC_CORDIAL.get(), 5)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.LILAC_CORDIAL.get(), 4)
         .patternLine("LSL")
-        .patternLine("BBB")
         .patternLine("BWB")
+        .patternLine("BSB")
         .key('L', Items.LILAC)
         .key('S', Items.SUGAR)
         .key('B', Items.GLASS_BOTTLE)
@@ -388,10 +388,10 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.PEONY_CORDIAL.get(), 5)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.PEONY_CORDIAL.get(), 4)
         .patternLine("PSP")
-        .patternLine("BBB")
         .patternLine("BWB")
+        .patternLine("BSB")
         .key('P', Items.PEONY)
         .key('S', Items.SUGAR)
         .key('B', Items.GLASS_BOTTLE)
@@ -400,10 +400,10 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_sugar", this.hasItem(Items.SUGAR))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.ROSE_CORDIAL.get(), 5)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.ROSE_CORDIAL.get(), 4)
         .patternLine("RSR")
-        .patternLine("BBB")
         .patternLine("BWB")
+        .patternLine("BSB")
         .key('R', Items.ROSE_BUSH)
         .key('S', Items.SUGAR)
         .key('B', Items.GLASS_BOTTLE)
