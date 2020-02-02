@@ -435,27 +435,24 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_carrot", this.hasItem(Items.CARROT))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.AUBERGINE_SALAD.get(), 6)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.AUBERGINE_SALAD.get(), 3)
         .patternLine("AAA")
-        .patternLine("BBB")
         .patternLine("BBB")
         .key('A', MWTags.Items.AUBERGINE)
         .key('B', Items.BOWL)
         .addCriterion("has_aubergine", this.hasItem(MWTags.Items.AUBERGINE))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.BEETROOT_SALAD.get(), 6)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.BEETROOT_SALAD.get(), 3)
         .patternLine("AAA")
-        .patternLine("BBB")
         .patternLine("BBB")
         .key('A', Items.BEETROOT)
         .key('B', Items.BOWL)
         .addCriterion("has_beetroot", this.hasItem(Items.BEETROOT))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.CACTUS_DANDELION_SALAD.get(), 6)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.CACTUS_DANDELION_SALAD.get(), 3)
         .patternLine("DCD")
-        .patternLine("BBB")
         .patternLine("BBB")
         .key('D', Items.DANDELION)
         .key('C', Items.CACTUS)
@@ -464,9 +461,8 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_cactus", this.hasItem(Items.CACTUS))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.DANDELION_CORNFLOWER_SALAD.get(), 6)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.DANDELION_CORNFLOWER_SALAD.get(), 3)
         .patternLine("CDC")
-        .patternLine("BBB")
         .patternLine("BBB")
         .key('D', Items.DANDELION)
         .key('C', Items.CORNFLOWER)
@@ -475,9 +471,8 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_cornflower", this.hasItem(Items.CORNFLOWER))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.STEWED_EGGPLANT.get(), 6)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.STEWED_EGGPLANT.get(), 3)
         .patternLine("AAA")
-        .patternLine("BBB")
         .patternLine("BBB")
         .key('A', ModItems.COOKED_AUBERGINE.get())
         .key('B', Items.BOWL)
