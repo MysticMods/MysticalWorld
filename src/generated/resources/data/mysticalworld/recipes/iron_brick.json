@@ -6,11 +6,10 @@
   ],
   "key": {
     "X": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:iron_nugget"
     }
   },
   "result": {
-    "item": "mysticalworld:iron_brick",
-    "count": 4
+    "item": "mysticalworld:iron_brick"
   }
 }
