@@ -28,7 +28,9 @@ public class DamageHandler {
           if (((LivingEntity) trueAttacker).isEntityUndead()) {
             PlayerEntity player = (PlayerEntity) target;
             float blessedAmount = (float) player.getAttribute(ModModifiers.BLESSED).getValue();
-            trueAttacker.attackEntityFrom(DamageSource.ON_FIRE, blessedAmount);
+            if (blessedAmount > 0) {
+              trueAttacker.attackEntityFrom(DamageSource.ON_FIRE, blessedAmount);
+            }
           }
         }
       }
