@@ -5,6 +5,7 @@ import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.events.DamageHandler;
 import epicsquid.mysticalworld.events.EntityHandler;
 import epicsquid.mysticalworld.events.LeafHandler;
+import epicsquid.mysticalworld.events.TooltipHandler;
 import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.setup.ClientSetup;
 import epicsquid.mysticalworld.setup.ModSetup;
@@ -64,6 +65,7 @@ public class MysticalWorld {
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
       modBus.addListener(ClientSetup::init);
+      //MinecraftForge.EVENT_BUS.addListener(TooltipHandler::onTooltip);
     });
 
     modBus.addListener(setup::init);

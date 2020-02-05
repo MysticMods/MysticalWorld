@@ -6,6 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.Function;
 
@@ -60,11 +61,17 @@ public class MWTags {
     public static Tag<Item> KNIVES = modTag("knives");
     public static Tag<Item> GEMS = modTag("gems");
     public static Tag<Item> VEGETABLES = compatTag("vegetables");
+    public static Tag<Item> CROPS = compatTag("crops");
     public static Tag<Item> COOKED_VEGETABLES = compatTag("cooked_vegetables");
 
-    public static Tag<Item> AUBERGINE = modTag("vegetables/aubergine");
+    public static Tag<Item> AUBERGINE = compatTag("vegetables/aubergine");
+    public static Tag<Item> EGGPLANT = compatTag("vegetables/eggplant");
+
     public static Tag<Item> CARROT = modTag("vegetables/carrot");
     public static Tag<Item> BEETROOT = modTag("vegetables/beetroot");
+
+    public static Tag<Item> CROP_AUBERGINE = compatTag("crops/aubergine");
+    public static Tag<Item> CROP_EGGPLANT = compatTag("crops/eggplant");
 
     public static Tag<Item> COPPER_ITEMS = modTag("copper_items");
     public static Tag<Item> LEAD_ITEMS = modTag("lead_items");

@@ -21,28 +21,16 @@ import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.potions.PotionRecipes;
 import epicsquid.mysticalworld.world.OreGen;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
-import net.minecraft.util.WeightedRandom;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
 
 public class ModSetup {
   public ModSetup() {
@@ -76,11 +64,11 @@ public class ModSetup {
     }
   }
 
-  public void serverAboutToStart (FMLServerAboutToStartEvent event) {
+  public void serverAboutToStart(FMLServerAboutToStartEvent event) {
     ModifyLoot.modify();
   }
 
-                                  @SuppressWarnings("Duplicates")
+  @SuppressWarnings("Duplicates")
   public <T extends Event> void registerListeners() {
     MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
