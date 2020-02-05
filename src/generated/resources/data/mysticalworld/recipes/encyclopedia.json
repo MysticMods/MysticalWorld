@@ -5,7 +5,7 @@
       "item": "minecraft:book"
     },
     {
-      "tag": "mysticalworld:vegetables/aubergine"
+      "tag": "forge:vegetables/aubergine"
     }
   ],
   "result": {

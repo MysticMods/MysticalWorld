@@ -340,7 +340,7 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
 
     // DRINKIES
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.APPLE_CORDIAL.get(), 4)
+/*    ShapedRecipeBuilder.shapedRecipe(ModItems.APPLE_CORDIAL.get(), 4)
         .patternLine("ASA")
         .patternLine("BWB")
         .patternLine("B B")
@@ -477,6 +477,6 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .key('A', ModItems.COOKED_AUBERGINE.get())
         .key('B', Items.BOWL)
         .addCriterion("has_cooked_aubergine", this.hasItem(ModItems.COOKED_AUBERGINE.get()))
-        .build(consumer);
+        .build(consumer);*/
   }
 }

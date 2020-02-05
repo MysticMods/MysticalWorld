@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "mysticalworld:vegetables/aubergine"
+            "tag": "forge:vegetables/aubergine"
           }
         ]
       }

@@ -192,7 +192,7 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
 
     handheld(ModItems.ENCYCLOPEDIA);
 
-    handheld(ModItems.APPLE_CORDIAL);
+/*    handheld(ModItems.APPLE_CORDIAL);
     handheld(ModItems.CACTUS_SYRUP);
     handheld(ModItems.DANDELION_CORDIAL);
     handheld(ModItems.LILAC_CORDIAL);
@@ -204,7 +204,7 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     handheld(ModItems.BEETROOT_SALAD);
     handheld(ModItems.CACTUS_DANDELION_SALAD);
     handheld(ModItems.DANDELION_CORNFLOWER_SALAD);
-    handheld(ModItems.STEWED_EGGPLANT);
+    handheld(ModItems.STEWED_EGGPLANT);*/
 
     spawnEgg(ModEntities.SPAWN_BEETLE);
     spawnEgg(ModEntities.SPAWN_DEER);

@@ -199,7 +199,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModEntities.SPAWN_SILKWORM);
     addItem(ModEntities.SPAWN_OWL);
 
-    addItem(ModItems.APPLE_CORDIAL);
+/*    addItem(ModItems.APPLE_CORDIAL);
     addItem(ModItems.CACTUS_SYRUP);
     addItem(ModItems.DANDELION_CORDIAL);
     addItem(ModItems.LILAC_CORDIAL);
@@ -211,7 +211,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.BEETROOT_SALAD);
     addItem(ModItems.CACTUS_DANDELION_SALAD);
     addItem(ModItems.DANDELION_CORNFLOWER_SALAD);
-    addItem(ModItems.STEWED_EGGPLANT);
+    addItem(ModItems.STEWED_EGGPLANT);*/
 
     addItem(ModItems.SILKWORM_EGG);
     addItem(ModItems.SILK_THREAD);
@@ -236,7 +236,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     add("mysticalworld.entity.obsidian_cat", "Obsidian Cat");
 
     addItemGroup(MysticalWorld.ITEM_GROUP, "Mystical World");
-    addItemGroup(MysticalWorld.METAL_ITEM_GROUP, "Mystical World Metals");
+    addItemGroup(MysticalWorld.METAL_ITEM_GROUP, "Mystical Metals");
 
     add("message.squid.cooldown", "Give it time to produce more ink!");
     add("attribute.name.generic.reachDistance", "Reach");
