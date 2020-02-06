@@ -1,0 +1,6 @@
+{
+  "parent": "block/fence_post",
+  "textures": {
+    "texture": "mysticalworld:block/lead_block"
+  }
+}

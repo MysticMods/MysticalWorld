@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 90,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 90,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 90,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 90,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 270,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 270,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 270,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "mysticalworld:block/amethyst_wide_post",
+        "x": 270,
+        "y": 270,
+        "uvlock": true
+      }
+    ]
+  }
+}
