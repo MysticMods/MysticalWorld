@@ -11,6 +11,7 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
@@ -340,10 +341,10 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
 
     // DRINKIES
 
-/*    ShapedRecipeBuilder.shapedRecipe(ModItems.APPLE_CORDIAL.get(), 4)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.APPLE_CORDIAL.get(), 4)
         .patternLine("ASA")
         .patternLine("BWB")
-        .patternLine("B B")
+        .patternLine("BSB")
         .key('A', Items.APPLE)
         .key('S', Items.SUGAR)
         .key('B', Items.GLASS_BOTTLE)
@@ -421,38 +422,47 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_sea_pickle", this.hasItem(Items.SEA_PICKLE))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.VEGETABLE_JUICE.get(), 5)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.VEGETABLE_JUICE.get(), 4)
         .patternLine("ARC")
-        .patternLine("BBB")
+        .patternLine("BPB")
         .patternLine("BWB")
         .key('A', MWTags.Items.AUBERGINE)
         .key('R', Items.BEETROOT)
         .key('C', Items.CARROT)
+        .key('P', Items.APPLE)
         .key('B', Items.GLASS_BOTTLE)
         .key('W', Items.WATER_BUCKET)
         .addCriterion("has_aubergine", this.hasItem(MWTags.Items.AUBERGINE))
         .addCriterion("has_beetroot", this.hasItem(Items.BEETROOT))
         .addCriterion("has_carrot", this.hasItem(Items.CARROT))
+        .addCriterion("has_apple", this.hasItem(Items.APPLE))
         .build(consumer);
 
     ShapedRecipeBuilder.shapedRecipe(ModItems.AUBERGINE_SALAD.get(), 3)
         .patternLine("AAA")
+        .patternLine("KKK")
         .patternLine("BBB")
         .key('A', MWTags.Items.AUBERGINE)
         .key('B', Items.BOWL)
+        .key('K', Items.KELP)
         .addCriterion("has_aubergine", this.hasItem(MWTags.Items.AUBERGINE))
+        .addCriterion("has_kelp", this.hasItem(Items.KELP))
         .build(consumer);
 
     ShapedRecipeBuilder.shapedRecipe(ModItems.BEETROOT_SALAD.get(), 3)
         .patternLine("AAA")
+        .patternLine("KKK")
         .patternLine("BBB")
         .key('A', Items.BEETROOT)
         .key('B', Items.BOWL)
+        .key('K', Items.KELP)
         .addCriterion("has_beetroot", this.hasItem(Items.BEETROOT))
+        .addCriterion("has_kelp", this.hasItem(Items.KELP))
         .build(consumer);
 
     ShapedRecipeBuilder.shapedRecipe(ModItems.CACTUS_DANDELION_SALAD.get(), 3)
         .patternLine("DCD")
+        .patternLine("CDC")
         .patternLine("BBB")
         .key('D', Items.DANDELION)
         .key('C', Items.CACTUS)
@@ -463,6 +473,7 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
 
     ShapedRecipeBuilder.shapedRecipe(ModItems.DANDELION_CORNFLOWER_SALAD.get(), 3)
         .patternLine("CDC")
+        .patternLine("DCD")
         .patternLine("BBB")
         .key('D', Items.DANDELION)
         .key('C', Items.CORNFLOWER)
@@ -473,10 +484,13 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
 
     ShapedRecipeBuilder.shapedRecipe(ModItems.STEWED_EGGPLANT.get(), 3)
         .patternLine("AAA")
+        .patternLine("MLM")
         .patternLine("BBB")
         .key('A', ModItems.COOKED_AUBERGINE.get())
         .key('B', Items.BOWL)
+        .key('L', Items.ALLIUM)
+        .key('M', Ingredient.fromItems(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM))
         .addCriterion("has_cooked_aubergine", this.hasItem(ModItems.COOKED_AUBERGINE.get()))
-        .build(consumer);*/
+        .build(consumer);
   }
 }

@@ -97,6 +97,74 @@ public class MWLootTableProvider extends LootTableProvider {
       self(ModBlocks.IRON_BRICK_SLAB);
       self(ModBlocks.IRON_BRICK_WALL);
 
+      self(ModBlocks.MUD_BLOCK_WIDE_POST);
+      self(ModBlocks.MUD_BLOCK_SMALL_POST);
+      self(ModBlocks.MUD_BRICK_WIDE_POST);
+      self(ModBlocks.MUD_BRICK_SMALL_POST);
+
+      self(ModBlocks.CHARRED_LOG);
+      self(ModBlocks.CHARRED_PLANKS);
+      self(ModBlocks.CHARRED_FENCE);
+      self(ModBlocks.CHARRED_SLAB);
+      self(ModBlocks.CHARRED_STAIRS);
+      self(ModBlocks.CHARRED_WALL);
+      self(ModBlocks.CHARRED_FENCE_GATE);
+      self(ModBlocks.CHARRED_WIDE_POST);
+      self(ModBlocks.CHARRED_SMALL_POST);
+
+      self(ModBlocks.AMETHYST_ORE);
+      self(ModBlocks.COPPER_ORE);
+      self(ModBlocks.LEAD_ORE);
+      self(ModBlocks.QUICKSILVER_ORE);
+      self(ModBlocks.SILVER_ORE);
+      self(ModBlocks.TIN_ORE);
+
+      self(ModBlocks.AMETHYST_BLOCK);
+      self(ModBlocks.AMETHYST_STAIRS);
+      self(ModBlocks.AMETHYST_SLAB);
+      self(ModBlocks.AMETHYST_WALL);
+      self(ModBlocks.AMETHYST_WIDE_POST);
+      self(ModBlocks.AMETHYST_SMALL_POST);
+
+      self(ModBlocks.COPPER_BLOCK);
+      self(ModBlocks.COPPER_STAIRS);
+      self(ModBlocks.COPPER_SLAB);
+      self(ModBlocks.COPPER_WALL);
+      self(ModBlocks.COPPER_WIDE_POST);
+      self(ModBlocks.COPPER_SMALL_POST);
+
+      self(ModBlocks.LEAD_BLOCK);
+      self(ModBlocks.LEAD_STAIRS);
+      self(ModBlocks.LEAD_SLAB);
+      self(ModBlocks.LEAD_WALL);
+      self(ModBlocks.LEAD_WIDE_POST);
+      self(ModBlocks.LEAD_SMALL_POST);
+
+      self(ModBlocks.QUICKSILVER_BLOCK);
+      self(ModBlocks.QUICKSILVER_STAIRS);
+      self(ModBlocks.QUICKSILVER_SLAB);
+      self(ModBlocks.QUICKSILVER_WALL);
+      self(ModBlocks.QUICKSILVER_WIDE_POST);
+      self(ModBlocks.QUICKSILVER_SMALL_POST);
+
+      self(ModBlocks.SILVER_BLOCK);
+      self(ModBlocks.SILVER_STAIRS);
+      self(ModBlocks.SILVER_SLAB);
+      self(ModBlocks.SILVER_WALL);
+      self(ModBlocks.SILVER_WIDE_POST);
+      self(ModBlocks.SILVER_SMALL_POST);
+
+      self(ModBlocks.TIN_BLOCK);
+      self(ModBlocks.TIN_STAIRS);
+      self(ModBlocks.TIN_SLAB);
+      self(ModBlocks.TIN_WALL);
+      self(ModBlocks.TIN_WIDE_POST);
+      self(ModBlocks.TIN_SMALL_POST);
+      self(ModBlocks.TERRACOTTA_BRICK_WIDE_POST);
+      self(ModBlocks.TERRACOTTA_BRICK_SMALL_POST);
+      self(ModBlocks.IRON_BRICK_WIDE_POST);
+      self(ModBlocks.IRON_BRICK_SMALL_POST);
+
       self(ModBlocks.THATCH);
 
       registerLootTable(ModBlocks.AUBERGINE_CROP.get(), b -> droppingAndBonusWhen(b, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), BlockStateProperty.builder(ModBlocks.AUBERGINE_CROP.get()).with(CropsBlock.AGE, 7)));

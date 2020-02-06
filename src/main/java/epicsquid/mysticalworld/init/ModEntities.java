@@ -3,8 +3,6 @@ package epicsquid.mysticalworld.init;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.*;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -14,13 +12,10 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
@@ -43,8 +38,8 @@ public class ModEntities {
   private static EntityType<SproutEntity> SPROUT_TYPE = (EntityType<SproutEntity>) EntityType.Builder.create(SproutEntity::new, EntityClassification.CREATURE).size(0.5f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(SPROUT_ID).setRegistryName(MysticalWorld.MODID, SPROUT_ID);
   private static EntityType<EnderminiEntity> ENDERMINI_TYPE = (EntityType<EnderminiEntity>) EntityType.Builder.create(EnderminiEntity::new, EntityClassification.MONSTER).size(0.3f, 1.45f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(ENDERMINI_ID).setRegistryName(MysticalWorld.MODID, ENDERMINI_ID);
   private static EntityType<LavaCatEntity> LAVA_CAT_TYPE = (EntityType<LavaCatEntity>) EntityType.Builder.create(LavaCatEntity::new, EntityClassification.CREATURE).size(0.75f, 0.875f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(LAVA_CAT_ID).setRegistryName(MysticalWorld.MODID, LAVA_CAT_ID);
-  private static EntityType<OwlEntity> OWL_TYPE = (EntityType<OwlEntity>) EntityType.Builder.create(OwlEntity::new, EntityClassification.CREATURE).size(0.5f,0.9f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(OWL_ID).setRegistryName(MysticalWorld.MODID, OWL_ID);
-  private static EntityType<SilkwormEntity> SILKWORM_TYPE = (EntityType<SilkwormEntity>) EntityType.Builder.create(SilkwormEntity::new, EntityClassification.CREATURE).size(0.8f,0.6f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(SILKWORM_ID).setRegistryName(MysticalWorld.MODID, SILKWORM_ID);
+  private static EntityType<OwlEntity> OWL_TYPE = (EntityType<OwlEntity>) EntityType.Builder.create(OwlEntity::new, EntityClassification.CREATURE).size(0.5f, 0.9f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(OWL_ID).setRegistryName(MysticalWorld.MODID, OWL_ID);
+  private static EntityType<SilkwormEntity> SILKWORM_TYPE = (EntityType<SilkwormEntity>) EntityType.Builder.create(SilkwormEntity::new, EntityClassification.CREATURE).size(0.8f, 0.6f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(SILKWORM_ID).setRegistryName(MysticalWorld.MODID, SILKWORM_ID);
 
   public static Supplier<EntityType<BeetleEntity>> BEETLE = () -> BEETLE_TYPE;
   public static Supplier<EntityType<DeerEntity>> DEER = () -> DEER_TYPE;
@@ -66,7 +61,8 @@ public class ModEntities {
   public static RegistryObject<SpawnEggItem> SPAWN_OWL = MysticalWorld.REGISTRY.registerItem(OWL_ID + "_spawn_egg", () -> new SpawnEggItem(OWL_TYPE, 0x8c654a, 0xdec9ba, ModRegistries.SIG.get()));
   public static RegistryObject<SpawnEggItem> SPAWN_SILKWORM = MysticalWorld.REGISTRY.registerItem(SILKWORM_ID + "_spawn_egg", () -> new SpawnEggItem(SILKWORM_TYPE, 0xd1cecd, 0x635e5b, ModRegistries.SIG.get()));
 
-  public static void load() {}
+  public static void load() {
+  }
 
   public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
     IForgeRegistry<EntityType<?>> registry = event.getRegistry();

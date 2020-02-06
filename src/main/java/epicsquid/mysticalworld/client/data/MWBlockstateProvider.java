@@ -25,13 +25,6 @@ public class MWBlockstateProvider extends DeferredBlockStateProvider {
     simpleBlock(ModBlocks.SILVER_ORE);
     simpleBlock(ModBlocks.TIN_ORE);
 
-    simpleBlock(ModBlocks.AMETHYST_BLOCK);
-    simpleBlock(ModBlocks.COPPER_BLOCK);
-    simpleBlock(ModBlocks.LEAD_BLOCK);
-    simpleBlock(ModBlocks.QUICKSILVER_BLOCK);
-    simpleBlock(ModBlocks.SILVER_BLOCK);
-    simpleBlock(ModBlocks.TIN_BLOCK);
-
     simpleBlock(ModBlocks.WET_MUD_BLOCK, new ModelFile.ExistingModelFile(new ResourceLocation(MysticalWorld.MODID, "block/wet_mud_block"), existingFileHelper));
     simpleBlock(ModBlocks.WET_MUD_BRICK);
 
@@ -41,11 +34,15 @@ public class MWBlockstateProvider extends DeferredBlockStateProvider {
     wallBlock(ModBlocks.TERRACOTTA_BRICK_WALL, "terracotta_brick");
     fenceBlock(ModBlocks.TERRACOTTA_BRICK_FENCE, "terracotta_brick");
     fenceGateBlock(ModBlocks.TERRACOTTA_BRICK_FENCE_GATE, "terracotta_brick");
+    widePostBlock(ModBlocks.TERRACOTTA_BRICK_WIDE_POST, "terracotta_brick");
+    narrowPostBlock(ModBlocks.TERRACOTTA_BRICK_SMALL_POST, "terracotta_brick");
 
     simpleBlock(ModBlocks.IRON_BRICK);
     stairsBlock(ModBlocks.IRON_BRICK_STAIRS, "iron_brick");
     slabBlock(ModBlocks.IRON_BRICK_SLAB, ModBlocks.IRON_BRICK, "iron_brick");
     wallBlock(ModBlocks.IRON_BRICK_WALL, "iron_brick");
+    widePostBlock(ModBlocks.IRON_BRICK_WIDE_POST, "iron_brick");
+    narrowPostBlock(ModBlocks.IRON_BRICK_SMALL_POST, "iron_brick");
 
     simpleBlock(ModBlocks.MUD_BLOCK);
     stairsBlock(ModBlocks.MUD_BLOCK_STAIRS, "mud_block");
@@ -53,6 +50,8 @@ public class MWBlockstateProvider extends DeferredBlockStateProvider {
     wallBlock(ModBlocks.MUD_BLOCK_WALL, "mud_block");
     fenceBlock(ModBlocks.MUD_BLOCK_FENCE, "mud_block");
     fenceGateBlock(ModBlocks.MUD_BLOCK_FENCE_GATE, "mud_block");
+    widePostBlock(ModBlocks.MUD_BLOCK_WIDE_POST, "mud_block");
+    narrowPostBlock(ModBlocks.MUD_BLOCK_SMALL_POST, "mud_block");
 
     simpleBlock(ModBlocks.MUD_BRICK);
     stairsBlock(ModBlocks.MUD_BRICK_STAIRS, "mud_brick");
@@ -60,6 +59,8 @@ public class MWBlockstateProvider extends DeferredBlockStateProvider {
     wallBlock(ModBlocks.MUD_BRICK_WALL, "mud_brick");
     fenceBlock(ModBlocks.MUD_BRICK_FENCE, "mud_brick");
     fenceGateBlock(ModBlocks.MUD_BRICK_FENCE_GATE, "mud_brick");
+    widePostBlock(ModBlocks.MUD_BRICK_WIDE_POST, "mud_brick");
+    narrowPostBlock(ModBlocks.MUD_BRICK_SMALL_POST, "mud_brick");
 
     simpleBlock(ModBlocks.CHARRED_PLANKS);
     logBlock(ModBlocks.CHARRED_LOG);
@@ -68,5 +69,49 @@ public class MWBlockstateProvider extends DeferredBlockStateProvider {
     wallBlock(ModBlocks.CHARRED_WALL, "charred_planks");
     fenceBlock(ModBlocks.CHARRED_FENCE, "charred_planks");
     fenceGateBlock(ModBlocks.CHARRED_FENCE_GATE, "charred_planks");
+    widePostBlock(ModBlocks.CHARRED_WIDE_POST, "charred_planks");
+    narrowPostBlock(ModBlocks.CHARRED_SMALL_POST, "charred_planks");
+
+    simpleBlock(ModBlocks.AMETHYST_BLOCK);
+    stairsBlock(ModBlocks.AMETHYST_STAIRS, "amethyst_block");
+    slabBlock(ModBlocks.AMETHYST_SLAB, ModBlocks.AMETHYST_BLOCK, "amethyst_block");
+    wallBlock(ModBlocks.AMETHYST_WALL, "amethyst_block");
+    widePostBlock(ModBlocks.AMETHYST_WIDE_POST, "amethyst_block");
+    narrowPostBlock(ModBlocks.AMETHYST_SMALL_POST, "amethyst_block");
+
+    simpleBlock(ModBlocks.COPPER_BLOCK);
+    stairsBlock(ModBlocks.COPPER_STAIRS, "copper_block");
+    slabBlock(ModBlocks.COPPER_SLAB, ModBlocks.COPPER_BLOCK, "copper_block");
+    wallBlock(ModBlocks.COPPER_WALL, "copper_block");
+    widePostBlock(ModBlocks.COPPER_WIDE_POST, "copper_block");
+    narrowPostBlock(ModBlocks.COPPER_SMALL_POST, "copper_block");
+
+    simpleBlock(ModBlocks.LEAD_BLOCK);
+    stairsBlock(ModBlocks.LEAD_STAIRS, "lead_block");
+    slabBlock(ModBlocks.LEAD_SLAB, ModBlocks.LEAD_BLOCK, "lead_block");
+    wallBlock(ModBlocks.LEAD_WALL, "lead_block");
+    widePostBlock(ModBlocks.LEAD_WIDE_POST, "lead_block");
+    narrowPostBlock(ModBlocks.LEAD_SMALL_POST, "lead_block");
+
+    simpleBlock(ModBlocks.QUICKSILVER_BLOCK);
+    stairsBlock(ModBlocks.QUICKSILVER_STAIRS, "quicksilver_block");
+    slabBlock(ModBlocks.QUICKSILVER_SLAB, ModBlocks.QUICKSILVER_BLOCK, "quicksilver_block");
+    wallBlock(ModBlocks.QUICKSILVER_WALL, "quicksilver_block");
+    widePostBlock(ModBlocks.QUICKSILVER_WIDE_POST, "quicksilver_block");
+    narrowPostBlock(ModBlocks.QUICKSILVER_SMALL_POST, "quicksilver_block");
+
+    simpleBlock(ModBlocks.SILVER_BLOCK);
+    stairsBlock(ModBlocks.SILVER_STAIRS, "silver_block");
+    slabBlock(ModBlocks.SILVER_SLAB, ModBlocks.SILVER_BLOCK, "silver_block");
+    wallBlock(ModBlocks.SILVER_WALL, "silver_block");
+    widePostBlock(ModBlocks.SILVER_WIDE_POST, "silver_block");
+    narrowPostBlock(ModBlocks.SILVER_SMALL_POST, "silver_block");
+
+    simpleBlock(ModBlocks.TIN_BLOCK);
+    stairsBlock(ModBlocks.TIN_STAIRS, "tin_block");
+    slabBlock(ModBlocks.TIN_SLAB, ModBlocks.TIN_BLOCK, "tin_block");
+    wallBlock(ModBlocks.TIN_WALL, "tin_block");
+    widePostBlock(ModBlocks.TIN_WIDE_POST, "tin_block");
+    narrowPostBlock(ModBlocks.TIN_SMALL_POST, "tin_block");
   }
 }

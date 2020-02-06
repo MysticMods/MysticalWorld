@@ -65,7 +65,7 @@ public class MysticalWorld {
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
       modBus.addListener(ClientSetup::init);
-      //MinecraftForge.EVENT_BUS.addListener(TooltipHandler::onTooltip);
+      MinecraftForge.EVENT_BUS.addListener(TooltipHandler::onTooltip);
     });
 
     modBus.addListener(setup::init);

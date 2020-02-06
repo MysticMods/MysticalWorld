@@ -32,6 +32,11 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addBlock(ModBlocks.MUD_BRICK_WALL);
     addBlock(ModBlocks.MUD_BRICK_FENCE_GATE);
 
+    addBlock(ModBlocks.MUD_BLOCK_WIDE_POST);
+    addBlock(ModBlocks.MUD_BLOCK_SMALL_POST);
+    addBlock(ModBlocks.MUD_BRICK_WIDE_POST);
+    addBlock(ModBlocks.MUD_BRICK_SMALL_POST);
+
     addBlock(ModBlocks.CHARRED_LOG);
     addBlock(ModBlocks.CHARRED_PLANKS);
     addBlock(ModBlocks.CHARRED_FENCE);
@@ -39,6 +44,8 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addBlock(ModBlocks.CHARRED_STAIRS);
     addBlock(ModBlocks.CHARRED_WALL);
     addBlock(ModBlocks.CHARRED_FENCE_GATE);
+    addBlock(ModBlocks.CHARRED_WIDE_POST);
+    addBlock(ModBlocks.CHARRED_SMALL_POST);
 
     addBlock(ModBlocks.AMETHYST_ORE);
     addBlock(ModBlocks.COPPER_ORE);
@@ -48,11 +55,50 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addBlock(ModBlocks.TIN_ORE);
 
     addBlock(ModBlocks.AMETHYST_BLOCK);
+    addBlock(ModBlocks.AMETHYST_STAIRS);
+    addBlock(ModBlocks.AMETHYST_SLAB);
+    addBlock(ModBlocks.AMETHYST_WALL);
+    addBlock(ModBlocks.AMETHYST_WIDE_POST);
+    addBlock(ModBlocks.AMETHYST_SMALL_POST);
+
     addBlock(ModBlocks.COPPER_BLOCK);
+    addBlock(ModBlocks.COPPER_STAIRS);
+    addBlock(ModBlocks.COPPER_SLAB);
+    addBlock(ModBlocks.COPPER_WALL);
+    addBlock(ModBlocks.COPPER_WIDE_POST);
+    addBlock(ModBlocks.COPPER_SMALL_POST);
+
     addBlock(ModBlocks.LEAD_BLOCK);
+    addBlock(ModBlocks.LEAD_STAIRS);
+    addBlock(ModBlocks.LEAD_SLAB);
+    addBlock(ModBlocks.LEAD_WALL);
+    addBlock(ModBlocks.LEAD_WIDE_POST);
+    addBlock(ModBlocks.LEAD_SMALL_POST);
+
     addBlock(ModBlocks.QUICKSILVER_BLOCK);
+    addBlock(ModBlocks.QUICKSILVER_STAIRS);
+    addBlock(ModBlocks.QUICKSILVER_SLAB);
+    addBlock(ModBlocks.QUICKSILVER_WALL);
+    addBlock(ModBlocks.QUICKSILVER_WIDE_POST);
+    addBlock(ModBlocks.QUICKSILVER_SMALL_POST);
+
     addBlock(ModBlocks.SILVER_BLOCK);
+    addBlock(ModBlocks.SILVER_STAIRS);
+    addBlock(ModBlocks.SILVER_SLAB);
+    addBlock(ModBlocks.SILVER_WALL);
+    addBlock(ModBlocks.SILVER_WIDE_POST);
+    addBlock(ModBlocks.SILVER_SMALL_POST);
+
     addBlock(ModBlocks.TIN_BLOCK);
+    addBlock(ModBlocks.TIN_STAIRS);
+    addBlock(ModBlocks.TIN_SLAB);
+    addBlock(ModBlocks.TIN_WALL);
+    addBlock(ModBlocks.TIN_WIDE_POST);
+    addBlock(ModBlocks.TIN_SMALL_POST);
+    addBlock(ModBlocks.TERRACOTTA_BRICK_WIDE_POST);
+    addBlock(ModBlocks.TERRACOTTA_BRICK_SMALL_POST);
+    addBlock(ModBlocks.IRON_BRICK_WIDE_POST);
+    addBlock(ModBlocks.IRON_BRICK_SMALL_POST);
 
     addBlock(ModBlocks.TERRACOTTA_BRICK);
     addBlock(ModBlocks.TERRACOTTA_BRICK_FENCE);
@@ -65,6 +111,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addBlock(ModBlocks.IRON_BRICK_SLAB);
     addBlock(ModBlocks.IRON_BRICK_STAIRS);
     addBlock(ModBlocks.IRON_BRICK_WALL);
+
 
     addItem(ModItems.ROTTEN_APPLE);
 
@@ -199,7 +246,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModEntities.SPAWN_SILKWORM);
     addItem(ModEntities.SPAWN_OWL);
 
-/*    addItem(ModItems.APPLE_CORDIAL);
+    addItem(ModItems.APPLE_CORDIAL);
     addItem(ModItems.CACTUS_SYRUP);
     addItem(ModItems.DANDELION_CORDIAL);
     addItem(ModItems.LILAC_CORDIAL);
@@ -211,7 +258,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.BEETROOT_SALAD);
     addItem(ModItems.CACTUS_DANDELION_SALAD);
     addItem(ModItems.DANDELION_CORNFLOWER_SALAD);
-    addItem(ModItems.STEWED_EGGPLANT);*/
+    addItem(ModItems.STEWED_EGGPLANT);
 
     addItem(ModItems.SILKWORM_EGG);
     addItem(ModItems.SILK_THREAD);
@@ -238,6 +285,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItemGroup(MysticalWorld.ITEM_GROUP, "Mystical World");
     addItemGroup(MysticalWorld.METAL_ITEM_GROUP, "Mystical Metals");
 
+    add("message.dandelion_cordial", "You feel well-rested!");
     add("message.squid.cooldown", "Give it time to produce more ink!");
     add("attribute.name.generic.reachDistance", "Reach");
     add("attribute.name.mysticalworld.blessed", "Blessed");

@@ -23,11 +23,47 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     blockItem(ModBlocks.TIN_ORE);
 
     blockItem(ModBlocks.AMETHYST_BLOCK);
+    blockItem(ModBlocks.AMETHYST_STAIRS);
+    blockItem(ModBlocks.AMETHYST_SLAB);
+    blockWithInventoryModel(ModBlocks.AMETHYST_WALL);
+    blockItem(ModBlocks.AMETHYST_WIDE_POST);
+    blockItem(ModBlocks.AMETHYST_SMALL_POST);
+
     blockItem(ModBlocks.COPPER_BLOCK);
+    blockItem(ModBlocks.COPPER_STAIRS);
+    blockItem(ModBlocks.COPPER_SLAB);
+    blockWithInventoryModel(ModBlocks.COPPER_WALL);
+    blockItem(ModBlocks.COPPER_WIDE_POST);
+    blockItem(ModBlocks.COPPER_SMALL_POST);
+
     blockItem(ModBlocks.LEAD_BLOCK);
+    blockItem(ModBlocks.LEAD_STAIRS);
+    blockItem(ModBlocks.LEAD_SLAB);
+    blockWithInventoryModel(ModBlocks.LEAD_WALL);
+    blockItem(ModBlocks.LEAD_WIDE_POST);
+    blockItem(ModBlocks.LEAD_SMALL_POST);
+
     blockItem(ModBlocks.QUICKSILVER_BLOCK);
+    blockItem(ModBlocks.QUICKSILVER_STAIRS);
+    blockItem(ModBlocks.QUICKSILVER_SLAB);
+    blockWithInventoryModel(ModBlocks.QUICKSILVER_WALL);
+    blockItem(ModBlocks.QUICKSILVER_WIDE_POST);
+    blockItem(ModBlocks.QUICKSILVER_SMALL_POST);
+
     blockItem(ModBlocks.SILVER_BLOCK);
+    blockItem(ModBlocks.SILVER_STAIRS);
+    blockItem(ModBlocks.SILVER_SLAB);
+    blockWithInventoryModel(ModBlocks.SILVER_WALL);
+    blockItem(ModBlocks.SILVER_WIDE_POST);
+    blockItem(ModBlocks.SILVER_SMALL_POST);
+
     blockItem(ModBlocks.TIN_BLOCK);
+    blockItem(ModBlocks.TIN_STAIRS);
+    blockItem(ModBlocks.TIN_SLAB);
+    blockWithInventoryModel(ModBlocks.TIN_WALL);
+    blockItem(ModBlocks.TIN_WIDE_POST);
+    blockItem(ModBlocks.TIN_SMALL_POST);
+
 
     blockItem(ModBlocks.WET_MUD_BLOCK);
     blockItem(ModBlocks.WET_MUD_BRICK);
@@ -41,6 +77,8 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     blockWithInventoryModel(ModBlocks.MUD_BLOCK_WALL);
     blockWithInventoryModel(ModBlocks.MUD_BLOCK_FENCE);
     blockItem(ModBlocks.MUD_BLOCK_FENCE_GATE);
+    blockItem(ModBlocks.MUD_BLOCK_WIDE_POST);
+    blockItem(ModBlocks.MUD_BLOCK_SMALL_POST);
 
     blockItem(ModBlocks.MUD_BRICK);
     blockItem(ModBlocks.MUD_BRICK_STAIRS);
@@ -48,6 +86,8 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     blockWithInventoryModel(ModBlocks.MUD_BRICK_WALL);
     blockWithInventoryModel(ModBlocks.MUD_BRICK_FENCE);
     blockItem(ModBlocks.MUD_BRICK_FENCE_GATE);
+    blockItem(ModBlocks.MUD_BRICK_WIDE_POST);
+    blockItem(ModBlocks.MUD_BRICK_SMALL_POST);
 
     blockItem(ModBlocks.CHARRED_LOG);
     blockItem(ModBlocks.CHARRED_PLANKS);
@@ -56,16 +96,22 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     blockWithInventoryModel(ModBlocks.CHARRED_WALL);
     blockWithInventoryModel(ModBlocks.CHARRED_FENCE);
     blockItem(ModBlocks.CHARRED_FENCE_GATE);
+    blockItem(ModBlocks.CHARRED_WIDE_POST);
+    blockItem(ModBlocks.CHARRED_SMALL_POST);
 
     blockItem(ModBlocks.TERRACOTTA_BRICK_STAIRS);
     blockItem(ModBlocks.TERRACOTTA_BRICK_SLAB);
     blockWithInventoryModel(ModBlocks.TERRACOTTA_BRICK_WALL);
     blockWithInventoryModel(ModBlocks.TERRACOTTA_BRICK_FENCE);
     blockItem(ModBlocks.TERRACOTTA_BRICK_FENCE_GATE);
+    blockItem(ModBlocks.TERRACOTTA_BRICK_WIDE_POST);
+    blockItem(ModBlocks.TERRACOTTA_BRICK_SMALL_POST);
 
     blockItem(ModBlocks.IRON_BRICK_STAIRS);
     blockItem(ModBlocks.IRON_BRICK_SLAB);
     blockWithInventoryModel(ModBlocks.IRON_BRICK_WALL);
+    blockItem(ModBlocks.IRON_BRICK_WIDE_POST);
+    blockItem(ModBlocks.IRON_BRICK_SMALL_POST);
 
     generated(ModItems.ROTTEN_APPLE);
 
@@ -192,7 +238,7 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
 
     handheld(ModItems.ENCYCLOPEDIA);
 
-/*    handheld(ModItems.APPLE_CORDIAL);
+    handheld(ModItems.APPLE_CORDIAL);
     handheld(ModItems.CACTUS_SYRUP);
     handheld(ModItems.DANDELION_CORDIAL);
     handheld(ModItems.LILAC_CORDIAL);
@@ -204,7 +250,7 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     handheld(ModItems.BEETROOT_SALAD);
     handheld(ModItems.CACTUS_DANDELION_SALAD);
     handheld(ModItems.DANDELION_CORNFLOWER_SALAD);
-    handheld(ModItems.STEWED_EGGPLANT);*/
+    handheld(ModItems.STEWED_EGGPLANT);
 
     spawnEgg(ModEntities.SPAWN_BEETLE);
     spawnEgg(ModEntities.SPAWN_DEER);

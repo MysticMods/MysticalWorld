@@ -29,24 +29,26 @@ public class ModFoods {
 
   // Drinks
   public static final Food APPLE_CORDIAL = (new Food.Builder().hunger(1).saturation(3.9f)).setAlwaysEdible().effect(
-      new EffectInstance(Effects.SPEED, 600), 0.5f).build();
-  public static final Food CACTUS_SYRUP = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().build();
-  public static final Food DANDELION_CORDIAL = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().build();
-  public static final Food LILAC_CORDIAL = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().build();
-  public static final Food PEONY_CORDIAL = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().build();
-  public static final Food ROSE_CORDIAL = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().build();
+      new EffectInstance(Effects.SPEED, 600), 1f).build();
+  public static final Food CACTUS_SYRUP = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().effect(
+      new EffectInstance(Effects.JUMP_BOOST, 600), 1f).build();
+  public static final Food DANDELION_CORDIAL = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().effect(
+      new EffectInstance(ModEffects.WAKEFUL.get(), 1), 1f).build();
+  public static final Food LILAC_CORDIAL = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().effect(
+      new EffectInstance(Effects.HEALTH_BOOST, 600, 1), 1f).build();
+  public static final Food PEONY_CORDIAL = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().effect(
+      new EffectInstance(Effects.INVISIBILITY, 600, 1), 1f).build();
+  public static final Food ROSE_CORDIAL = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().effect(
+      new EffectInstance(Effects.WATER_BREATHING, 600, 1), 1f).build();
   public static final Food VINEGAR = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().effect(
       new EffectInstance(Effects.HUNGER, 200), 1.0f).build();
-  public static final Food VEGETABLE_JUICE = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().build();
+  public static final Food VEGETABLE_JUICE = new Food.Builder().hunger(1).saturation(3.9f).setAlwaysEdible().effect(
+      new EffectInstance(Effects.ABSORPTION, 600, 1), 1f).build();
 
   // Salads
-  public static final Food AUBERGINE_SALAD = buildStew(5);
-  public static final Food BEETROOT_SALAD = buildStew(3);
-  public static final Food CACTUS_DANDELION_SALAD = buildStew(3);
-  public static final Food DANDELION_CORNFLOWER_SALAD = buildStew(3);
-  public static final Food STEWED_EGGPLANT = buildStew(7);
-
-   private static Food buildStew(int hunger) {
-      return (new Food.Builder()).hunger(hunger).saturation(0.6F).build();
-   }
+  public static final Food AUBERGINE_SALAD = new Food.Builder().hunger(5).saturation(0.4F).build();
+  public static final Food BEETROOT_SALAD = new Food.Builder().hunger(2).saturation(0.6F).build();
+  public static final Food CACTUS_DANDELION_SALAD = new Food.Builder().hunger(3).saturation(0.4F).build();
+  public static final Food DANDELION_CORNFLOWER_SALAD = new Food.Builder().hunger(3).saturation(0.4F).build();
+  public static final Food STEWED_EGGPLANT = new Food.Builder().hunger(6).saturation(0.8F).build();
 }
