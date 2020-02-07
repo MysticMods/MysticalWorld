@@ -1,5 +1,5 @@
 {
-  "parent": "block/template_wall_post",
+  "parent": "mysticallib:block/wide_post",
   "textures": {
     "wall": "mysticalworld:block/terracotta_brick"
   }

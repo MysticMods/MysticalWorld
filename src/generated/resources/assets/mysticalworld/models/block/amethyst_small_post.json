@@ -1,6 +1,6 @@
 {
-  "parent": "block/fence_post",
+  "parent": "mysticallib:block/narrow_post",
   "textures": {
-    "texture": "mysticalworld:block/amethyst_block"
+    "wall": "mysticalworld:block/amethyst_block"
   }
 }
