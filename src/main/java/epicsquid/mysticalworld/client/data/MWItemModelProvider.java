@@ -119,7 +119,7 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     generated(ModItems.PELT);
     generated(ModItems.ANTLERS);
     generated(ModItems.INK_BOTTLE);
-    generated(ModItems.UNRIPE_ENDER_PEARL);
+    generated(ModItems.YOUNG_PEARL);
     generated(ModItems.VENISON);
     generated(ModItems.COOKED_VENISON);
     generated(ModItems.AUBERGINE_SEEDS);

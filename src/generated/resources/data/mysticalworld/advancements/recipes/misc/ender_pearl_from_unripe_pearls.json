@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_unripe_ender_pearl": {
+    "has_young_pearl": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:unripe_ender_pearl"
+            "item": "mysticalworld:young_pearl"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_unripe_ender_pearl",
+      "has_young_pearl",
       "has_the_recipe"
     ]
   ]

@@ -24,6 +24,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.event.RegistryEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

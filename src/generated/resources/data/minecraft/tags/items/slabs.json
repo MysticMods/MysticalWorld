@@ -5,6 +5,12 @@
     "mysticalworld:mud_brick_slab",
     "mysticalworld:charred_slab",
     "mysticalworld:terracotta_brick_slab",
-    "mysticalworld:iron_brick_slab"
+    "mysticalworld:iron_brick_slab",
+    "mysticalworld:amethyst_slab",
+    "mysticalworld:copper_slab",
+    "mysticalworld:lead_slab",
+    "mysticalworld:quicksilver_slab",
+    "mysticalworld:silver_slab",
+    "mysticalworld:tin_slab"
   ]
 }

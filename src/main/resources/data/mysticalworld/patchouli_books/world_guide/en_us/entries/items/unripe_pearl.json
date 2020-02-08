@@ -1,12 +1,12 @@
 {
   "name": "Unripe Ender Pearls",
-  "icon": "mysticalworld:unripe_ender_pearl",
+  "icon": "mysticalworld:young_pearl",
   "category": "items",
   "pages": [
     {
       "type": "spotlight",
       "link_recipe": true,
-      "item": "mysticalworld:unripe_ender_pearl",
+      "item": "mysticalworld:young_pearl",
       "text": "Unripe ender pearls can be found dropped by the unripe young of the Endermen, known as $(l:creatures/endermini)Endermini$()."
     },
     {

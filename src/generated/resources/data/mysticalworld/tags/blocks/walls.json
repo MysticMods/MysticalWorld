@@ -5,6 +5,12 @@
     "mysticalworld:mud_brick_wall",
     "mysticalworld:charred_wall",
     "mysticalworld:terracotta_brick_wall",
-    "mysticalworld:iron_brick_wall"
+    "mysticalworld:iron_brick_wall",
+    "mysticalworld:amethyst_wall",
+    "mysticalworld:copper_wall",
+    "mysticalworld:lead_wall",
+    "mysticalworld:quicksilver_wall",
+    "mysticalworld:silver_wall",
+    "mysticalworld:tin_wall"
   ]
 }

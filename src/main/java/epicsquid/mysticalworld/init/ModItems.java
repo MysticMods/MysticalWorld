@@ -21,7 +21,7 @@ public class ModItems {
   public static RegistryObject<Item> PELT = MysticalWorld.REGISTRY.registerItem("pelt", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));
   public static RegistryObject<Item> ANTLERS = MysticalWorld.REGISTRY.registerItem("antlers", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.SIG));
   public static RegistryObject<DyeItem> INK_BOTTLE = MysticalWorld.REGISTRY.registerItem("ink_bottle", MysticalWorld.REGISTRY.dyeItem(DyeColor.BLACK, () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).containerItem(Items.GLASS_BOTTLE)));
-  public static RegistryObject<UnripePearlItem> UNRIPE_ENDER_PEARL = MysticalWorld.REGISTRY.registerItem("unripe_ender_pearl", MysticalWorld.REGISTRY.item(UnripePearlItem::new, ModRegistries.SIG));
+  public static RegistryObject<UnripePearlItem> YOUNG_PEARL = MysticalWorld.REGISTRY.registerItem("young_pearl", MysticalWorld.REGISTRY.item(UnripePearlItem::new, ModRegistries.SIG));
   public static RegistryObject<NautilusHorn> NAUTILUS_HORN = MysticalWorld.REGISTRY.registerItem("nautilus_horn", MysticalWorld.REGISTRY.item((prop) -> new NautilusHorn(prop, 200), () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(32).rarity(Rarity.RARE)));
   public static RegistryObject<NautilusHorn> GLISTERING_HORN = MysticalWorld.REGISTRY.registerItem("glistering_horn", MysticalWorld.REGISTRY.item((prop) -> new NautilusHorn(prop, 500), () -> new Item.Properties().group(MysticalWorld.ITEM_GROUP).maxDamage(64).rarity(Rarity.EPIC)));
 

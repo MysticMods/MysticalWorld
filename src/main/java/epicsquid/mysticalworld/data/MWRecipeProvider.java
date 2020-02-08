@@ -70,7 +70,7 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     slab(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SLAB, "slabs", false, consumer);
     wall(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_WALL, false, consumer);
 
-    singleItemUnfinished(ModItems.UNRIPE_ENDER_PEARL, () -> Items.ENDER_PEARL, 9, 1).build(consumer, new ResourceLocation(MysticalWorld.MODID, "ender_pearl_from_unripe_pearls"));
+    singleItemUnfinished(ModItems.YOUNG_PEARL, () -> Items.ENDER_PEARL, 9, 1).build(consumer, new ResourceLocation(MysticalWorld.MODID, "ender_pearl_from_unripe_pearls"));
 
     axe(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_AXE, "axe", consumer);
     axe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_AXE, "axe", consumer);

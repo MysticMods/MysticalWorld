@@ -14,7 +14,7 @@ public class StandardDrops {
   static {
     DROPS.put("beetle", Arrays.asList(new ResourceLocation("mysticalworld", "carapace"), new ResourceLocation("minecraft", "slime_ball")));
     DROPS.put("deer", Arrays.asList(new ResourceLocation("minecraft", "leather"), new ResourceLocation("mysticalworld", "venison"), new ResourceLocation("mysticalworld", "antlers")));
-    DROPS.put("endermini", Arrays.asList(new ResourceLocation("mysticalworld", "unripe_ender_pearl")));
+    DROPS.put("endermini", Arrays.asList(new ResourceLocation("mysticalworld", "young_pearl")));
     DROPS.put("frog", Arrays.asList(new ResourceLocation("minecraft", "slime_ball")));
     DROPS.put("lava_cat", Arrays.asList(new ResourceLocation("minecraft", "obsidian"), new ResourceLocation("minecraft", "cobblestone"), new ResourceLocation("minecraft", "cobblestone")));
     DROPS.put("owl", Arrays.asList(new ResourceLocation("minecraft", "feather")));

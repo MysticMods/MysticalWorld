@@ -6,6 +6,7 @@ import epicsquid.mysticalworld.events.DamageHandler;
 import epicsquid.mysticalworld.events.EntityHandler;
 import epicsquid.mysticalworld.events.LeafHandler;
 import epicsquid.mysticalworld.events.TooltipHandler;
+import epicsquid.mysticalworld.events.mappings.Remaps;
 import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.setup.ClientSetup;
 import epicsquid.mysticalworld.setup.ModSetup;
@@ -76,6 +77,10 @@ public class MysticalWorld {
 
     MinecraftForge.EVENT_BUS.addListener(setup::serverStarting);
     MinecraftForge.EVENT_BUS.addListener(setup::serverAboutToStart);
+
+    MinecraftForge.EVENT_BUS.addListener(Remaps::remapBlockEvent);
+    MinecraftForge.EVENT_BUS.addListener(Remaps::remapItemEvent);
+    MinecraftForge.EVENT_BUS.addListener(Remaps::remapEntityEvent);
 
     REGISTRY.registerEventBus(modBus);
 

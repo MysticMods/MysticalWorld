@@ -49,7 +49,7 @@ public class SproutEntity extends AnimalEntity {
   @Override
   protected void registerData() {
     super.registerData();
-    this.getDataManager().register(variant, rand.nextInt(3));
+    this.getDataManager().register(variant, rand.nextInt(4));
   }
 
   @Override

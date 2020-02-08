@@ -119,7 +119,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.PELT);
     addItem(ModItems.ANTLERS);
     addItem(ModItems.INK_BOTTLE);
-    addItem(ModItems.UNRIPE_ENDER_PEARL);
+    addItem(ModItems.YOUNG_PEARL);
     addItem(ModItems.VENISON);
     addItem(ModItems.COOKED_VENISON);
     addItem(ModItems.AUBERGINE_SEEDS);

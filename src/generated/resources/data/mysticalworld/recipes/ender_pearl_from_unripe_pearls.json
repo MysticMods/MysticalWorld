@@ -2,31 +2,31 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "mysticalworld:unripe_ender_pearl"
+      "item": "mysticalworld:young_pearl"
     },
     {
-      "item": "mysticalworld:unripe_ender_pearl"
+      "item": "mysticalworld:young_pearl"
     },
     {
-      "item": "mysticalworld:unripe_ender_pearl"
+      "item": "mysticalworld:young_pearl"
     },
     {
-      "item": "mysticalworld:unripe_ender_pearl"
+      "item": "mysticalworld:young_pearl"
     },
     {
-      "item": "mysticalworld:unripe_ender_pearl"
+      "item": "mysticalworld:young_pearl"
     },
     {
-      "item": "mysticalworld:unripe_ender_pearl"
+      "item": "mysticalworld:young_pearl"
     },
     {
-      "item": "mysticalworld:unripe_ender_pearl"
+      "item": "mysticalworld:young_pearl"
     },
     {
-      "item": "mysticalworld:unripe_ender_pearl"
+      "item": "mysticalworld:young_pearl"
     },
     {
-      "item": "mysticalworld:unripe_ender_pearl"
+      "item": "mysticalworld:young_pearl"
     }
   ],
   "result": {
