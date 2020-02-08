@@ -43,7 +43,7 @@ public class ModFoods {
   public static final Food VINEGAR = new Food.Builder().hunger(1).saturation(4.5f).setAlwaysEdible().effect(
       new EffectInstance(Effects.HUNGER, 300, 0, false, false), 1.0f).build();
   public static final Food VEGETABLE_JUICE = new Food.Builder().hunger(1).saturation(4.5f).setAlwaysEdible().effect(
-      new EffectInstance(Effects.ABSORPTION, 300, 0, false, false), 1f).build();
+      new EffectInstance(ModEffects.SLOW_REGEN.get(), 1200, 0, false, false), 1f).build();
 
   // Salads
   public static final Food AUBERGINE_SALAD = new Food.Builder().hunger(5).saturation(0.4F).build();
