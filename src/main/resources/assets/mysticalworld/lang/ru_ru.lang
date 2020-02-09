@@ -108,7 +108,7 @@ tile.amethyst_ore.name=Аметистовая Руда
 
 #Tools
 item.copper_axe.name=Медный топор
-item.silver_axe.name=Серебрянный топор
+item.silver_axe.name=Серебряный топор
 item.amethyst_axe.name=Аметистовый топор
 item.copper_hoe.name=Медная мотыга
 item.silver_hoe.name=Серебрянная мотыга
@@ -120,9 +120,9 @@ item.copper_shovel.name=Медная лопата
 item.silver_shovel.name=Серебрянная лопата
 item.amethyst_shovel.name=Аметистная лопата
 item.copper_sword.name=Медный меч
-item.silver_sword.name=Серебрянный меч
+item.silver_sword.name=Серебряный меч
 item.amethyst_sword.name=Аметистный меч
-item.silver_knife.name=Серебрянный нож
+item.silver_knife.name=Серебряный нож
 item.copper_knife.name=Медный нож
 item.amethyst_knife.name=Аметистный нож
 
