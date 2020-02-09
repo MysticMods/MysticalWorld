@@ -1,10 +1,10 @@
 package epicsquid.mysticalworld.network;
 
 
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.api.Capabilities;
 import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
-import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -63,8 +63,15 @@ public class ShoulderRide {
       return;
     }
 
+    final PlayerEntity player = target;
+
     target.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
       cap.readNBT(message.getTag());
+      try {
+        PlayerShoulderCapability.setRightShoulder.invoke(player, cap.generateShoulderNBT());
+      } catch (Throwable throwable) {
+        MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
+      }
     });
   }
 }

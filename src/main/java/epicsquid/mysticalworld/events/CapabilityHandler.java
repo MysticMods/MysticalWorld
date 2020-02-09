@@ -1,7 +1,9 @@
 package epicsquid.mysticalworld.events;
 
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.api.Capabilities;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
+import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.network.Networking;
@@ -32,6 +34,11 @@ public class CapabilityHandler {
       if (cap.isShouldered()) {
         ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
         Networking.send(PacketDistributor.ALL.noArg(), message);
+        try {
+          PlayerShoulderCapability.setRightShoulder.invoke(player, cap.generateShoulderNBT());
+        } catch (Throwable throwable) {
+          MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
+        }
       }
     });
     MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
@@ -40,6 +47,11 @@ public class CapabilityHandler {
         if (cap.isShouldered()) {
           ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
           Networking.sendTo(message, player);
+          try {
+            PlayerShoulderCapability.setRightShoulder.invoke(other, cap.generateShoulderNBT());
+          } catch (Throwable throwable) {
+            MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
+          }
         }
       });
     }
@@ -67,7 +79,6 @@ public class CapabilityHandler {
               event.getWorld().playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_COW_MILK, SoundCategory.PLAYERS, 0.5F, event.getWorld().rand.nextFloat() * 0.25F + 0.6F, true);
               if (!player.isCreative()) heldItem.shrink(1);
               player.inventory.addItemStackToInventory(new ItemStack(ModItems.INK_BOTTLE.get()));
-              return;
             } else {
               player.sendStatusMessage(new TranslationTextComponent("message.squid.cooldown").setStyle(new Style().setColor(TextFormatting.BLUE).setBold(true)), true);
             }

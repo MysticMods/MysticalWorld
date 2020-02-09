@@ -1,15 +1,34 @@
 package epicsquid.mysticalworld.capability;
 
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.Method;
 
 public class PlayerShoulderCapability implements IPlayerShoulderCapability {
+  public static MethodHandle setRightShoulder = null;
+
+  static {
+    MethodHandles.Lookup lookup = MethodHandles.lookup();
+    Method setRight = ObfuscationReflectionHelper.findMethod(PlayerEntity.class, "func_192031_i", CompoundNBT.class);
+    setRight.setAccessible(true);
+    try {
+      setRightShoulder = lookup.unreflect(setRight);
+    } catch (IllegalAccessException e) {
+      MysticalWorld.LOG.error("Unable to unprotect setRightShoulder", e);
+    }
+  }
+
   private CompoundNBT animalSerialized = new CompoundNBT();
   private boolean shouldered = false;
   private ResourceLocation registryName = null;
@@ -65,6 +84,14 @@ public class PlayerShoulderCapability implements IPlayerShoulderCapability {
     result.put("animalSerialized", animalSerialized);
     result.putBoolean("shouldered", shouldered);
     result.putString("registryName", registryName == null ? "" : registryName.toString());
+    return result;
+  }
+
+  @Override
+  public CompoundNBT generateShoulderNBT() {
+    CompoundNBT result = new CompoundNBT();
+    result.putBoolean("Silent", true);
+    result.putString("id", registryName == null ? "minecraft:pig" : registryName.toString());
     return result;
   }
 

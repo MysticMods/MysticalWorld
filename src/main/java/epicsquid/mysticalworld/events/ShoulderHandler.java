@@ -1,9 +1,9 @@
 package epicsquid.mysticalworld.events;
 
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.api.Capabilities;
 import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
-import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.network.ShoulderRide;
 import net.minecraft.entity.Entity;
@@ -11,6 +11,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -24,6 +25,9 @@ public class ShoulderHandler {
   public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
     PlayerEntity player = event.getPlayer();
     World world = event.getWorld();
+    if (!world.isAirBlock(event.getPos())) {
+      return;
+    }
 
     if (!world.isRemote && event.getHand() == Hand.MAIN_HAND && player.isSneaking()) {
       LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
@@ -40,6 +44,11 @@ public class ShoulderHandler {
               world.addEntity(animal);
               player.swingArm(Hand.MAIN_HAND);
               cap.drop();
+              try {
+                PlayerShoulderCapability.setRightShoulder.invoke(player, new CompoundNBT());
+              } catch (Throwable throwable) {
+                MysticalWorld.LOG.error("Unable to unset player having a shoulder entity", throwable);
+              }
               event.setCanceled(true);
               ShoulderRide message = new ShoulderRide(player, cap);
               Networking.send(PacketDistributor.ALL.noArg(), message);
@@ -69,10 +78,14 @@ public class ShoulderHandler {
               world.addEntity(animal);
               player.swingArm(Hand.MAIN_HAND);
               cap.drop();
+              try {
+                PlayerShoulderCapability.setRightShoulder.invoke(player, new CompoundNBT());
+              } catch (Throwable throwable) {
+                MysticalWorld.LOG.error("Unable to unset player having a shoulder entity", throwable);
+              }
               event.setCanceled(true);
               ShoulderRide message = new ShoulderRide(player, cap);
               Networking.send(PacketDistributor.ALL.noArg(), message);
-              Networking.sendTo(message, (ServerPlayerEntity) player);
             }
           }
         }

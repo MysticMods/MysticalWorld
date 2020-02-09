@@ -21,6 +21,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -89,6 +90,11 @@ public class BeetleEntity extends TameableEntity {
                 this.setSneaking(false);
                 cap.shoulder(this);
                 player.swingArm(Hand.MAIN_HAND);
+                try {
+                  PlayerShoulderCapability.setRightShoulder.invoke(player, cap.generateShoulderNBT());
+                } catch (Throwable throwable) {
+                  MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
+                }
 
                 ShoulderRide message = new ShoulderRide(player, cap);
                 Networking.send(PacketDistributor.ALL.noArg(), message);

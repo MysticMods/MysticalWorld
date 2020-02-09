@@ -28,5 +28,7 @@ public interface IPlayerShoulderCapability {
 
   CompoundNBT writeNBT();
 
+  CompoundNBT generateShoulderNBT ();
+
   void readNBT(CompoundNBT incoming);
 }
