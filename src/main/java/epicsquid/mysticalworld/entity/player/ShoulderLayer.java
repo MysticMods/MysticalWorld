@@ -1,7 +1,7 @@
 package epicsquid.mysticalworld.entity.player;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
+import epicsquid.mysticalworld.api.Capabilities;
 import epicsquid.mysticalworld.entity.model.BeetleModel;
 import epicsquid.mysticalworld.entity.model.ShoulderRidingModel;
 import epicsquid.mysticalworld.init.ModEntities;
@@ -40,7 +40,7 @@ public class ShoulderLayer<T extends PlayerEntity> extends LayerRenderer<T, Play
   public void render(T entityIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleIn) {
     GlStateManager.enableRescaleNormal();
     GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-    entityIn.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
+    entityIn.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
       EntityType<?> type = cap.getEntityType();
       ShoulderRidingModel<?> model = getModelFor(type);
       if (model != null) {

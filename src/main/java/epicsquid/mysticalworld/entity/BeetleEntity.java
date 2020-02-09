@@ -3,6 +3,8 @@ package epicsquid.mysticalworld.entity;
 import epicsquid.mysticallib.network.PacketHandler;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.RegistryManager;
+import epicsquid.mysticalworld.api.Capabilities;
+import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModEntities;
@@ -79,14 +81,15 @@ public class BeetleEntity extends TameableEntity {
         if (itemstack.isEmpty() && player.isSneaking()) {
           if (!world.isRemote) {
             // Try some shoulder surfing!
-            LazyOptional<PlayerShoulderCapability> laycap = player.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY);
+            LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
             if (laycap.isPresent()) {
-              PlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
+              IPlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
               if (!cap.isShouldered()) {
                 setSitting(false);
                 this.setSneaking(false);
                 cap.shoulder(this);
                 player.swingArm(Hand.MAIN_HAND);
+
                 ShoulderRide message = new ShoulderRide(player, cap);
                 Networking.send(PacketDistributor.ALL.noArg(), message);
                 this.remove();

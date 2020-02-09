@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.capability;
 
+import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.CompoundNBT;
@@ -8,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 
-public class PlayerShoulderCapability {
+public class PlayerShoulderCapability implements IPlayerShoulderCapability {
   private CompoundNBT animalSerialized = new CompoundNBT();
   private boolean shouldered = false;
   private ResourceLocation registryName = null;
@@ -16,34 +17,41 @@ public class PlayerShoulderCapability {
   public PlayerShoulderCapability() {
   }
 
+  @Override
   public CompoundNBT getAnimalSerialized() {
     return animalSerialized;
   }
 
+  @Override
   public boolean isShouldered() {
     return shouldered;
   }
 
+  @Override
   public ResourceLocation getRegistryName() {
     return registryName;
   }
 
+  @Override
   @Nullable
-  public EntityType<?> getEntityType (ResourceLocation registryName) {
+  public EntityType<?> getEntityType(ResourceLocation registryName) {
     return ForgeRegistries.ENTITIES.getValue(registryName);
   }
 
+  @Override
   @Nullable
-  public EntityType<?> getEntityType () {
+  public EntityType<?> getEntityType() {
     return getEntityType(getRegistryName());
   }
 
+  @Override
   public void drop() {
     this.animalSerialized = new CompoundNBT();
     this.shouldered = false;
     this.registryName = null;
   }
 
+  @Override
   public void shoulder(Entity entity) {
     this.animalSerialized = new CompoundNBT();
     entity.writeUnlessPassenger(this.animalSerialized);
@@ -51,6 +59,7 @@ public class PlayerShoulderCapability {
     this.registryName = entity.getType().getRegistryName();
   }
 
+  @Override
   public CompoundNBT writeNBT() {
     CompoundNBT result = new CompoundNBT();
     result.put("animalSerialized", animalSerialized);
@@ -59,6 +68,7 @@ public class PlayerShoulderCapability {
     return result;
   }
 
+  @Override
   public void readNBT(CompoundNBT incoming) {
     CompoundNBT tag = (CompoundNBT) incoming;
     if (tag.contains("animalSerialized")) {

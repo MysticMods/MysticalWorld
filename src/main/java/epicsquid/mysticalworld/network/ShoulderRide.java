@@ -1,6 +1,8 @@
 package epicsquid.mysticalworld.network;
 
 
+import epicsquid.mysticalworld.api.Capabilities;
+import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import net.minecraft.client.Minecraft;
@@ -26,7 +28,7 @@ public class ShoulderRide {
     tag = buffer.readCompoundTag();
   }
 
-  public ShoulderRide(PlayerEntity player, PlayerShoulderCapability cap) {
+  public ShoulderRide(PlayerEntity player, IPlayerShoulderCapability cap) {
     this.tag = cap.writeNBT();
     this.id = player.getUniqueID();
   }
@@ -61,7 +63,7 @@ public class ShoulderRide {
       return;
     }
 
-    target.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
+    target.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
       cap.readNBT(message.getTag());
     });
   }

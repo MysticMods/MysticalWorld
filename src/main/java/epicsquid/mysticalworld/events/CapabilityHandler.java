@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.events;
 
+import epicsquid.mysticalworld.api.Capabilities;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
@@ -27,7 +28,7 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public class CapabilityHandler {
   public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
     ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
-    player.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
+    player.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
       if (cap.isShouldered()) {
         ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
         Networking.send(PacketDistributor.ALL.noArg(), message);
@@ -35,7 +36,7 @@ public class CapabilityHandler {
     });
     MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
     for (ServerPlayerEntity other : server.getPlayerList().getPlayers()) {
-      other.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY).ifPresent((cap) -> {
+      other.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
         if (cap.isShouldered()) {
           ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
           Networking.sendTo(message, player);

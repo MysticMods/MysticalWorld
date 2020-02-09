@@ -1,5 +1,7 @@
 package epicsquid.mysticalworld.events;
 
+import epicsquid.mysticalworld.api.Capabilities;
+import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.network.Networking;
@@ -24,9 +26,9 @@ public class ShoulderHandler {
     World world = event.getWorld();
 
     if (!world.isRemote && event.getHand() == Hand.MAIN_HAND && player.isSneaking()) {
-      LazyOptional<PlayerShoulderCapability> laycap = player.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY);
+      LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
       if (laycap.isPresent()) {
-        PlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
+        IPlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
         if (cap.isShouldered()) {
           EntityType<?> type = ForgeRegistries.ENTITIES.getValue(cap.getRegistryName());
           if (type != null) {
@@ -53,9 +55,9 @@ public class ShoulderHandler {
     if (living instanceof PlayerEntity) {
       PlayerEntity player = (PlayerEntity) living;
       World world = player.world;
-      LazyOptional<PlayerShoulderCapability> laycap = player.getCapability(PlayerShoulderCapabilityProvider.PLAYER_SHOULDER_CAPABILITY, null);
+      LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY, null);
       if (laycap.isPresent()) {
-        PlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
+        IPlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
         if (cap.isShouldered()) {
           EntityType<?> type = ForgeRegistries.ENTITIES.getValue(cap.getRegistryName());
           if (type != null) {
