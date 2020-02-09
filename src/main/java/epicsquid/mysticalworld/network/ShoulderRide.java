@@ -73,6 +73,8 @@ public class ShoulderRide {
         MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
       }
     });
+
+    context.get().setPacketHandled(true);
   }
 }
 

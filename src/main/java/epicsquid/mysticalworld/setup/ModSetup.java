@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.setup;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
@@ -39,7 +40,7 @@ public class ModSetup {
   public void init(FMLCommonSetupEvent event) {
     Networking.INSTANCE.registerMessages();
     CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
-    CapabilityManager.INSTANCE.register(PlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
+    CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
 
     LootConditionManager.registerCondition(new HasHorns.Serializer());
     LootConditionManager.registerCondition(new IsColor.Serializer());

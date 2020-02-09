@@ -25,7 +25,7 @@ public class ShoulderHandler {
   public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
     PlayerEntity player = event.getPlayer();
     World world = event.getWorld();
-    if (!world.isAirBlock(event.getPos())) {
+    if (!world.isAirBlock(event.getPos().up())) {
       return;
     }
 
