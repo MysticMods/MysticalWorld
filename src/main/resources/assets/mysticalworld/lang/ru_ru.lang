@@ -1,0 +1,243 @@
+itemGroup.mysticalworld=Mystical World
+
+entity.entity_fox.name=Лиса
+entity.entity_frog.name=Лягушка
+entity.entity_beetle.name=Жук
+entity.entity_deer.name=Олень
+entity.entity_sprout.name=Спроут
+entity.entity_endermini.name=Эндермини
+entity.entity_owl.name=Сова
+entity.entity_silkworm.name=Шелкопряд
+entity.entity_lava_cat.name=Лавовая Кошка
+entity.entity_obsidian_cat.name=Обсидиановая Кошка
+
+item.carapace.name=Панцирь
+item.pelt.name=Шкура
+item.raw_squid.name=Сырой Кальмар
+item.cooked_squid.name=Приготовленный Кальмар
+item.epic_squid.name=Эпический Кальмар
+item.unripe_pearl.name=Незрелая жемчужина
+item.silk_thread.name=Шелковая нить
+item.silk_cocoon.name=Шелковый кокон
+item.spindle.name=Шпиндель
+item.silkworm_egg.name=Яйцо шелкопряда
+item.cooked_apple.name=Приготовленное яблоко
+
+# Ingots
+item.copper_ingot.name=Медный слиток
+item.tin_ingot.name=Оловянный слиток
+item.silver_ingot.name=Серебряный слиток
+item.lead_ingot.name=Свинцовый слиток
+item.nickel_ingot.name=Слиток Никеля
+item.aluminum_ingot.name=Алюминиевый слиток
+item.zinc_ingot.name=Слиток Цинка
+item.invar_ingot.name=Слиток Инвара
+item.electrum_ingot.name=Слиток Электрума
+item.brass_ingot.name=Латунный слиток
+item.bronze_ingot.name=Бронзовый слиток
+item.amethyst_gem.name=Аметист
+
+# Nuggets
+item.copper_nugget.name=Самородок Меди
+item.tin_nugget.name=Самородок Олова
+item.silver_nugget.name=Самородок Серебра
+item.lead_nugget.name=Самородок Свинца
+item.nickel_nugget.name=Самородок Никеля
+item.aluminum_nugget.name=Самородок Алюминия
+item.zinc_nugget.name=Самородок Цинка
+item.invar_nugget.name=Самородок Инвара
+item.electrum_nugget.name=Самородок Электрума
+item.brass_nugget.name=Латунный Самородок 
+item.bronze_nugget.name=Самородок Бронзы
+
+# Metal Blocks
+tile.copper_block.name=Блок Меди
+tile.tin_block.name=Блок Олова
+tile.silver_block.name=Блок Серебра
+tile.lead_block.name=Блок Свинца
+tile.nickel_block.name=Блок Никеля
+tile.aluminum_block.name=Блок Алюминия
+tile.zinc_block.name=Блок Цинка
+tile.invar_block.name=Блок Инвара
+tile.electrum_block.name=Блок Электрума
+tile.brass_block.name=Латунный Блок
+tile.bronze_block.name=Блок Бронзы
+tile.amethyst_block.name=Блок Аметиста
+
+# Dusts
+item.copper_dust.name=Пыль Меди
+item.tin_dust.name=Пыль Олова
+item.silver_dust.name=Пыль Серебра
+item.lead_dust.name=Пыль Свинца
+item.nickel_dust.name=Пыль Никеля
+item.aluminum_dust.name=Пыль Алюминия
+item.zinc_dust.name=Пыль Цинка
+item.invar_dust.name=Пыль Инвара
+item.electrum_dust.name=Пыль Электрума
+item.brass_dust.name=Латунная Пыль
+item.bronze_dust.name=Пыль Бронзы
+
+item.iron_dust.name=Пыль Железа
+item.gold_dust.name=Пыль Золота
+
+# Tiny Dusts
+item.copper_dust_tiny.name=Кучка Пыли Меди
+item.tin_dust_tiny.name=Кучка Пыли Олова
+item.silver_dust_tiny.name=Кучка Пыли Серебра
+item.lead_dust_tiny.name=Кучка Пыли Свинца
+item.nickel_dust_tiny.name=Кучка Пыли Никеля
+item.aluminum_dust_tiny.name=Кучка Пыли Алюминия
+item.zinc_dust_tiny.name=Кучка Пыли Цинка
+item.invar_dust_tiny.name=Кучка Пыли Инвара
+item.electrum_dust_tiny.name=Кучка Пыли Электрума
+item.brass_dust_tiny.name=Кучка Латунной Пыли
+item.bronze_dust_tiny.name=Кучка Пыли Бронзы
+
+item.iron_dust_tiny.name=Кучка Пыли Железа
+item.gold_dust_tiny.name=Кучка Пыли Золота
+
+# Ores
+tile.copper_ore.name=Медная Руда
+tile.tin_ore.name=Оловянная Руда
+tile.silver_ore.name=Серебрянная Руда
+tile.lead_ore.name=Свинцовая Руда
+tile.nickel_ore.name=Никелевая Руда
+tile.aluminum_ore.name=Алюминивая Руда
+tile.zinc_ore.name=Цинковая Руда
+tile.amethyst_ore.name=Аметистовая Руда
+
+#Tools
+item.copper_axe.name=Медный топор
+item.silver_axe.name=Серебрянный топор
+item.amethyst_axe.name=Аметистовый топор
+item.copper_hoe.name=Медная мотыга
+item.silver_hoe.name=Серебрянная мотыга
+item.amethyst_hoe.name=Аметистная мотыга
+item.copper_pickaxe.name=Медная кирка
+item.silver_pickaxe.name=Серебрянная кирка
+item.amethyst_pickaxe.name=Аметистная кирка
+item.copper_shovel.name=Медная лопата
+item.silver_shovel.name=Серебрянная лопата
+item.amethyst_shovel.name=Аметистная лопата
+item.copper_sword.name=Медный меч
+item.silver_sword.name=Серебрянный меч
+item.amethyst_sword.name=Аметистный меч
+item.silver_knife.name=Серебрянный нож
+item.copper_knife.name=Медный нож
+item.amethyst_knife.name=Аметистный нож
+
+# Embers Metals
+item.dawnstone_ingot.name=Слиток рассветного камня
+item.sooty_iron_ingot.name=Черноватый железный слиток
+
+item.dawnstone_nugget.name=Самородок рассветного камня
+item.sooty_iron_nugget.name=Черноватый железный самородок
+
+tile.dawnstone_block.name=Блок Рассветного Камня
+tile.sooty_iron_block.name=Блок Черноватого Железа
+
+# Caminite
+tile.caminite.name=Блок Каминита
+tile.caminite_stairs.name=Ступеньки Каминита
+tile.caminite_slab.name=Плита Каминита
+tile.caminite_double_slab.name=Двойная Плита Каминита
+tile.caminite_wall.name=Стена Каминита
+
+tile.caminite_bricks.name=Кирпичный Блок Каминита
+tile.caminite_bricks_stairs.name=Кирпичные Ступеньки Каминита
+tile.caminite_bricks_slab.name=Кирпичная Плита Каминита
+tile.caminite_bricks_double_slab.name=Кирпичная Двойная Плита Каминита
+tile.caminite_bricks_wall.name=Кирпичная Стена Каминита
+
+# Mud Brick
+tile.wet_mud_brick.name=Кирпич мокрой грязи
+tile.wet_mud_block.name=Блок мокрой грязи
+tile.mud_brick.name=Грязевой кирпич
+tile.mud_block.name=Грязевой блок
+tile.mud_block_stairs.name=Грязевая ступенька
+tile.mud_block_slab.name=Грязевая плита
+tile.mud_block_wall.name=Грязевая стена
+tile.mud_block_button.name=Грязевая кнопка
+tile.mud_block_pressure_plate.name=Грязевая нажимная пластина
+tile.mud_block_fence.name=Грязевой забор
+tile.mud_block_fence_gate.name=Грязевые ворота
+tile.mud_brick_stairs.name=Грязевая кирпичная ступенька
+tile.mud_brick_slab.name=Грязевая кирпичная плита
+tile.mud_brick_wall.name=Грязевая кирпичная стена
+tile.mud_brick_button.name=Грязевая кирпичная кнопка
+tile.mud_brick_pressure_plate.name=Грязевая кирпичная нажимная пластина
+tile.mud_brick_fence.name=Грязевой кирпичный забор
+tile.mud_brick_fence_gat.ename=Грязевые кирпичные ворота
+
+# Charred
+tile.charred_planks.name=Обгоревшая доска
+tile.charred_log.name=Обгоревшее бревно
+tile.charred_stairs.name=Обгоревшие ступеньки
+tile.charred_slab.name=Обгоревшая плита
+tile.charred_wall.name=Обгоревшая стена
+tile.charred_button.name=Обгоревшая кнопка
+tile.charred_pressure_plate.name=Обгоревшая нажимная пластина
+tile.charred_fence.name=Обгоревшый забор
+tile.charred_fence_gate.name=Обгоревшые ворота
+
+#Solar Infused
+tile.solar_infused_stone.name=Заряженный солнцем камень
+tile.solar_infused_stone_stairs.name=Заряженная солнцем каменная ступенька
+tile.solar_infused_stone_slab.name=Заряженная солнцем каменная плита
+tile.solar_infused_stone_double_slab.name=Заряженная солнцем каменная двойная плита
+tile.solar_infused_stone_wall.name=Заряженная солнцем каменная стена
+
+#Advancements
+advancement.mysticalworld.root=Мистический мир
+advancement.mysticalworld.root.desc=Вдохни совершенно новый, мистический мир!
+advancement.mysticalworld.amethyst=Тест на трезвость
+advancement.mysticalworld.amethyst.desc=Найти камень более божественный, чем алмаз!
+advancement.mysticalworld.aubergine=Это не морковь...
+advancement.mysticalworld.aubergine.desc=Когда-то фиолетовая морковь была в ярости. Но теперь она стала баклажаном.
+advancement.mysticalworld.epic_squid=Эпический кальмар!
+advancement.mysticalworld.epic_squid.desc=Примите участие в вкуснейшем фиолетовом совершенстве Эпического Кальмара.
+
+item.venison.name=Оленина
+item.cooked_venison.name=Приготовленная оленина
+item.antlers.name=Оленьи рога
+item.ink_bottle.name=Бутылка чернил
+item.aubergine_seed.name=Семена Баклажан
+item.aubergine.name=Баклажан
+item.cooked_aubergine.name=Приготовленный Баклажан
+item.stuffed_aubergine.name=Фаршированный Баклажан
+
+message.squid.cooldown=Дайте время, чтобы произвести больше чернил!
+
+# Sounds
+mysticalworld.subtitles.entity.fox.aggro=Лиса лает
+mysticalworld.subtitles.entity.fox.bark=Лиса фыркает
+mysticalworld.subtitles.entity.fox.bite=Лиса кусает
+mysticalworld.subtitles.entity.fox.death=Лиса погибает 
+mysticalworld.subtitles.entity.fox.eat=Лиса ест
+mysticalworld.subtitles.entity.fox.idle=Лиса визжит
+mysticalworld.subtitles.entity.fox.sleep=Лиса спит
+mysticalworld.subtitles.entity.fox.sniff=Лиса принюхивается
+mysticalworld.subtitles.entity.fox.spit=Лиса шипит
+mysticalworld.subtitles.entity.sprout.ambient=Спроут бродит
+mysticalworld.subtitles.entity.endermini.death=Эндермини умирает
+mysticalworld.subtitles.entity.endermini.hit=Эндермини ранен
+mysticalworld.subtitles.entity.endermini.idle=Эндермини щебечет
+mysticalworld.subtitles.entity.endermini.portal=Эндермини телепортируется
+mysticalworld.subtitles.entity.endermini.scream=Эндермини кричит
+mysticalworld.subtitles.entity.endermini.stare=Эндермини смотрит
+mysticalworld.subtitles.entity.silkworm.egg.use=Яйцо шелкопряда раскололось
+mysticalworld.subtitles.entity.lava_cat.sizzle=Лавовая кошка шипит
+mysticalworld.subtitles.entity.frog.slime=Frog spits out slime
+mysticalworld.subtitles.entity.lava_cat.ambient=Лавовая кошка мяукает
+mysticalworld.subtitles.entity.lava_cat.death=Лавовая кошка умирает
+mysticalworld.subtitles.entity.lava_cat.hurt=Лавовая кошка умирает
+mysticalworld.subtitles.entity.lava_cat.purr=Лавовая кошка мурлычет
+mysticalworld.subtitles.entity.lava_cat.purreow=Лавовая кошка мурлыкает
+mysticalworld.subtitles.entity.silkworm.plop=Шелкопряд вылупился
+mysticalworld.subtitles.entity.squid.milk=Дойка Кальмара
+mysticalworld.subtitles.item.unripe_pearl.use=Жемчужная телепортация
+mysticalworld.subtitles.entity.silkworm.ambient=Шелкопряд щебечет
+mysticalworld.subtitles.entity.silkworm.death=Шелкопряд умирает
+mysticalworld.subtitles.entity.silkworm.hurt=Шелкопряд ранен
+mysticalworld.subtitles.entity.silkworm.step=Шелкопряд гуляет
+mysticalworld.subtitles.entity.silkworm.eat=Шелкопряд ест
