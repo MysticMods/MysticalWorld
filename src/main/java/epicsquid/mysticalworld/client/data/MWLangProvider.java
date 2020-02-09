@@ -300,6 +300,6 @@ public class MWLangProvider extends DeferredLanguageProvider {
     add("advancement.mysticalworld.aubergine.desc", "Once, purple carrots were all the rage. But this is an aubergine.");
     add("advancement.mysticalworld.epic_squid", "Epic Squid!");
     add("advancement.mysticalworld.epic_squid.desc", "Partake in some of the delicious, purple-y goodness of Epic Squid.");
-
+    add("message.shoulder.occupied", "Your shoulders are otherwise occupied!");
   }
 }

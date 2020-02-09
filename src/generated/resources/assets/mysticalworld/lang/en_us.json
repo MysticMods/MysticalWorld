@@ -255,6 +255,7 @@
   "itemGroup.mysticalworld": "Mystical World",
   "itemGroup.mysticalworld.metals": "Mystical Metals",
   "message.dandelion_cordial": "You feel well-rested!",
+  "message.shoulder.occupied": "Your shoulders are otherwise occupied!",
   "message.squid.cooldown": "Give it time to produce more ink!",
   "mysticalworld.entity.lava_cat": "Lava Cat",
   "mysticalworld.entity.obsidian_cat": "Obsidian Cat"

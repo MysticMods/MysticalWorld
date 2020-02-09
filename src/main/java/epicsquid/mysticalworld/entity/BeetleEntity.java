@@ -24,6 +24,9 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.network.NetworkDirection;
@@ -85,7 +88,7 @@ public class BeetleEntity extends TameableEntity {
             LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
             if (laycap.isPresent()) {
               IPlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
-              if (!cap.isShouldered()) {
+              if (!cap.isShouldered() && player.getLeftShoulderEntity().isEmpty()) {
                 setSitting(false);
                 this.setSneaking(false);
                 cap.shoulder(this);
@@ -100,6 +103,8 @@ public class BeetleEntity extends TameableEntity {
                 Networking.send(PacketDistributor.ALL.noArg(), message);
                 this.remove();
                 return true;
+              } else {
+                player.sendStatusMessage(new TranslationTextComponent("message.shoulder.occupied").setStyle(new Style().setColor(TextFormatting.GREEN).setBold(true)), true);
               }
             }
           }

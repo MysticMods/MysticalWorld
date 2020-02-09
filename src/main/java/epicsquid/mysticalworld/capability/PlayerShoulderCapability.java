@@ -20,7 +20,7 @@ public class PlayerShoulderCapability implements IPlayerShoulderCapability {
 
   static {
     MethodHandles.Lookup lookup = MethodHandles.lookup();
-    Method setRight = ObfuscationReflectionHelper.findMethod(PlayerEntity.class, "func_192031_i", CompoundNBT.class);
+    Method setRight = ObfuscationReflectionHelper.findMethod(PlayerEntity.class, "func_192029_h", CompoundNBT.class);
     setRight.setAccessible(true);
     try {
       setRightShoulder = lookup.unreflect(setRight);

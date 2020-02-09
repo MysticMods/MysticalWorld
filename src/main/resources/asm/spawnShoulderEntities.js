@@ -21,8 +21,8 @@ function initializeCoreMod() {
 
                 var insn = new InsnList();
                 insn.add(new VarInsnNode(Opcodes.ALOAD, 0));
-                insn.add(new FieldInsnNode(Opcodes.GETSTATIC, "net/minecraft/entity/player/PlayerEntity", "field_192032_bt", "Lnet/minecraft/network/datasync/DataParameter;"));
-                insn.add(new FieldInsnNode(Opcodes.GETSTATIC, "net/minecraft/entity/player/PlayerEntity", "field_192033_bu", "Lnet/minecraft/network/datasync/DataParameter;"));
+                insn.add(new FieldInsnNode(Opcodes.GETSTATIC, "net/minecraft/entity/player/PlayerEntity", ASMAPI.mapField("field_192032_bt"), "Lnet/minecraft/network/datasync/DataParameter;"));
+                insn.add(new FieldInsnNode(Opcodes.GETSTATIC, "net/minecraft/entity/player/PlayerEntity", ASMAPI.mapField("field_192033_bu"), "Lnet/minecraft/network/datasync/DataParameter;"));
                 insn.add(ASMAPI.buildMethodCall("epicsquid/mysticalworld/core/PlayerHooks", "spawnShoulderEntities", "(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/network/datasync/DataParameter;Lnet/minecraft/network/datasync/DataParameter;)V", ASMAPI.MethodType.STATIC));
                 insn.add(new InsnNode(Opcodes.RETURN));
                 instr.insert(insn);
