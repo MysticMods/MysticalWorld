@@ -151,6 +151,23 @@ public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
   @Override
   public void render(@Nonnull BeetleEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
     setRotationAngles(ModelState.NORMAL, entity.ticksExisted, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+    if (entity.isSitting()) {
+      this.body.setRotationPoint(0.0F, 20.0F, -4.0F);
+      this.setRotateAngle(legR1, -0.4619008920774175F, -0.12228424816241118F, 1.2226123587776043F);
+      this.setRotateAngle(legR2, 0.0F, 0.0F, 1.1609087739532686F);
+      this.setRotateAngle(legR3, 0.2617993950843811F, 0.0F, 1.1727415173224531F);
+      this.setRotateAngle(legL1, -0.5508348907409892F, 0.12228424816241122F, -1.213797560945557F);
+      this.setRotateAngle(legL2, 0.0F, 0.0F, -1.1873531674494129F);
+      this.setRotateAngle(legL3, 0.2617993950843811F, 0.0F, -1.231427156609652F);
+    } else {
+      this.body.setRotationPoint(0.0F, 16.0F, -4.0F);
+      this.setRotateAngle(legR1, -0.2617993877991494F, 0.0F, 0.2617993877991494F);
+      this.setRotateAngle(legR2, 0.0F, 0.0F, 0.2617993877991494F);
+      this.setRotateAngle(legR3, 0.2617993877991494F, 0.0F, 0.2617993877991494F);
+      this.setRotateAngle(legL1, -0.2617993877991494F, 0.0F, -0.2617993877991494F);
+      this.setRotateAngle(legL2, 0.0F, 0.0F, -0.2617993877991494F);
+      this.setRotateAngle(legL3, 0.2617993877991494F, 0.0F, -0.2617993877991494F);
+    }
     render(scaleFactor);
   }
 
