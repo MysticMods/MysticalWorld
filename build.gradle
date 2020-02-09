@@ -117,9 +117,6 @@ repositories {
 }
 
 dependencies {
-    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
-    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
-    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     if (project(':MysticalLib') != null) {
@@ -132,18 +129,12 @@ dependencies {
 
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
-    //compile fileTree(dir: 'libs', include: ['*.jar'])
-    //compile("jeresources:JustEnoughResources-1.14.4:0.10.0.66")
-
-//    deobfCompile "info.tehnut.harvest:Harvest:1.12-1.2.7-20"
 }
 
 sourceSets.main.resources {
     srcDir 'src/generated/resources'
 }
 
-
-// Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
         attributes([
@@ -158,77 +149,11 @@ jar {
     }
 }
 
-//processResources {
-//    // this will ensure that this task is redone when the versions change.
-//    inputs.property "version", project.version
-//    inputs.property "mcversion", project.minecraft_version
-//
-//    // replace stuff in mcmod.info, nothing else
-//    from(sourceSets.main.resources.srcDirs) {
-//        include 'mcmod.info'
-//
-//        // replace version and mcversion
-//        expand 'version': project.version, 'mcversion': project.minecraft_version
-//    }
-//
-//    // copy everything else except the mcmod.info
-//    from(sourceSets.main.resources.srcDirs) {
-//        exclude 'mcmod.info'
-//    }
-//}
+task apiJar(type: Jar) {
+    from(sourceSets.main.output)
+    include 'epicsquid/mysticalworld/api/**'
 
-// Example configuration to allow publishing using the maven-publish task
-// we define a custom artifact that is sourced from the reobfJar output task
-// and then declare that to be published
-// Note you'll need to add a repository here
-def reobfFile = file("$buildDir/reobfJar/output.jar")
-def reobfArtifact = artifacts.add('default', reobfFile) {
-    type 'jar'
-    builtBy 'reobfJar'
-}
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact reobfArtifact
-        }
-    }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
-        }
-    }
+    classifier = 'api'
 }
 
-// publishing {
-
-//     publications {
-
-//         mavenJava(MavenPublication) {
-
-//             groupId project.group
-//             artifactId project.archivesBaseName
-//             version project.version
-//             from components.java
-
-//             artifact deobfJar {
-
-//                 classifier 'deobf'
-//             }
-//         }
-//     }
-
-//     repositories {
-
-//         maven {
-
-//             url "file://" + System.getenv("local_maven")
-//         }
-//     }
-// }
-
-// task deobfJar(type: Jar) {
-//     from sourceSets.main.output
-//     classifier = 'deobf'
-// }
-
-// tasks.build.dependsOn deobfJar
+build.dependsOn apiJar
