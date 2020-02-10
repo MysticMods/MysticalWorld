@@ -62,7 +62,7 @@ public class Remaps {
   }
 
   public static void remapItemEvent (RegistryEvent.MissingMappings<Item> event) {
-    for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getMappings()) {
+    for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedItems.get(mapping.key);
       if (remap != null) {
         mapping.remap(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(remap)));
@@ -71,7 +71,7 @@ public class Remaps {
   }
 
   public static void remapBlockEvent (RegistryEvent.MissingMappings<Block> event) {
-    for (RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getMappings()) {
+    for (RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedBlocks.get(mapping.key);
       if (remap != null) {
         mapping.remap(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(remap)));
@@ -80,7 +80,7 @@ public class Remaps {
   }
 
   public static void remapEntityEvent (RegistryEvent.MissingMappings<EntityType<?>> event) {
-    for (RegistryEvent.MissingMappings.Mapping<EntityType<?>> mapping : event.getMappings()) {
+    for (RegistryEvent.MissingMappings.Mapping<EntityType<?>> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedEntities.get(mapping.key);
       if (remap != null) {
         mapping.remap(Objects.requireNonNull(ForgeRegistries.ENTITIES.getValue(remap)));
