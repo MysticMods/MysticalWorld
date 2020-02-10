@@ -11,6 +11,7 @@ import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.setup.ClientSetup;
 import epicsquid.mysticalworld.setup.ModSetup;
 import epicsquid.mysticalworld.setup.ModifyLoot;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -81,9 +82,9 @@ public class MysticalWorld {
     MinecraftForge.EVENT_BUS.addListener(setup::serverStarting);
     MinecraftForge.EVENT_BUS.addListener(setup::serverAboutToStart);
 
-    MinecraftForge.EVENT_BUS.addListener(Remaps::remapBlockEvent);
-    MinecraftForge.EVENT_BUS.addListener(Remaps::remapItemEvent);
-    MinecraftForge.EVENT_BUS.addListener(Remaps::remapEntityEvent);
+    MinecraftForge.EVENT_BUS.addGenericListener(Block.class, Remaps::remapBlockEvent);
+    MinecraftForge.EVENT_BUS.addGenericListener(Item.class, Remaps::remapItemEvent);
+    MinecraftForge.EVENT_BUS.addGenericListener(EntityType.class, Remaps::remapEntityEvent);
 
     REGISTRY.registerEventBus(modBus);
 

@@ -13,6 +13,7 @@ public class ModRecipes {
   public static RegistryObject<IRecipeSerializer<SpindleRecipe>> SPINDLE_SERIALIZER = MysticalWorld.REGISTRY.registerRecipeSerializer("spindle_recipe", () -> new SpecialRecipeSerializer<>(SpindleRecipe::new));
   public static RegistryObject<IRecipeSerializer<KnifeHornRecipe>> HORN_SERIALIZER = MysticalWorld.REGISTRY.registerRecipeSerializer("knife_horn_recipe", () -> new SpecialRecipeSerializer<>(KnifeHornRecipe::new));
   public static RegistryObject<IRecipeSerializer<BlazeRocketRecipe>> BLAZE_SERIALIZER = MysticalWorld.REGISTRY.registerRecipeSerializer("blaze_rocket_recipe", () -> new SpecialRecipeSerializer<>(BlazeRocketRecipe::new));
+  public static RegistryObject<IRecipeSerializer<EmptyRecipe>> EMPTY_SERIALIZER = MysticalWorld.REGISTRY.registerRecipeSerializer("empty_recipe", () -> new SpecialRecipeSerializer<>(EmptyRecipe::new));
 
   private static <T extends IRecipe<?>> IRecipeType<T> register (String key) {
     return Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(MysticalWorld.MODID, key), new IRecipeType<T>() {
