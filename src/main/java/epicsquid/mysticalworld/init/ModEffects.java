@@ -9,4 +9,7 @@ import static epicsquid.mysticalworld.MysticalWorld.REGISTRY;
 public class ModEffects {
   public static final RegistryObject<WakefulEffect> WAKEFUL = REGISTRY.registerEffect("wakeful", WakefulEffect::new);
   public static final RegistryObject<SlowRegenerationEffect> SLOW_REGEN = REGISTRY.registerEffect("slow_regeneration", SlowRegenerationEffect::new);
+
+  public static void load () {
+  }
 }

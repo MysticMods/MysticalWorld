@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wide_post",
+  "pattern": [
+    "X",
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:terracotta_brick"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:terracotta_brick_wide_post",
+    "count": 6
+  }
+}

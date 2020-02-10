@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "slabs",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:amethyst_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:amethyst_slab",
+    "count": 6
+  }
+}

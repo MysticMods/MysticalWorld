@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "narrow_post",
+  "pattern": [
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:charred_planks"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:charred_small_post",
+    "count": 4
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "slabs",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:silver_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:silver_slab",
+    "count": 6
+  }
+}

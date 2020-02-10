@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wide_post",
+  "pattern": [
+    "X",
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:mud_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:mud_block_wide_post",
+    "count": 6
+  }
+}

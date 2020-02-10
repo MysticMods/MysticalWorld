@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:amethyst_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:amethyst_wall",
+    "count": 6
+  }
+}

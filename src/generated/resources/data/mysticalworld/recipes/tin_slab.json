@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "slabs",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:tin_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:tin_slab",
+    "count": 6
+  }
+}
