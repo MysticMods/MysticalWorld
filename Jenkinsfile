@@ -10,12 +10,6 @@ pipeline {
                 sh './gradlew clean'
             }
         }
-        stage('Generating Resources') {
-            steps {
-                echo 'Generating Resources'
-                sh './gradlew runData'
-            }
-        }
         stage('Build and Deploy') {
             steps {
                 echo 'Building and Deploying to Maven'
