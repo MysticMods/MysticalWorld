@@ -80,7 +80,7 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'mysticalworld', '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0], '--existing', sourceSets.main.resources.srcDirs[1]      
+            args '--mod', 'mysticalworld', '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0], '--existing', sourceSets.main.resources.srcDirs[1]
 
             mods {
                 mysticalworld {
@@ -122,7 +122,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    if (project(':MysticalLib') != null) {
+    if (findProject(':MysticalLib') != null) {
         compile project(':MysticalLib')
     } else {
         compile fg.deobf(project.dependencies.create("epicsquid.mysticallib:mysticallib:${mysticallib_version}-${mysticallib_build}") {
