@@ -67,9 +67,9 @@ public class JERIntegration {
         new PlantDrop(new ItemStack(ModItems.aubergine), 1, 1),
         new PlantDrop(new ItemStack(ModItems.aubergine_seed), 1, 4));
 
-    plantRegistry.register((ItemSeedFood) ModItems.poisoned_potato,
+/*    plantRegistry.register((ItemSeedFood) ModItems.poisoned_potato,
         new PlantDrop(new ItemStack(ModItems.poisoned_potato), 1, 1),
-        new PlantDrop(new ItemStack(ModItems.poisoned_potato), 1, 1));
+        new PlantDrop(new ItemStack(ModItems.poisoned_potato), 1, 1));*/
   }
 }
 

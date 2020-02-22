@@ -12,8 +12,8 @@ public class HarvestIntegration {
     Crop crop = new Crop(ModBlocks.aubergine, 7);
     Harvest.config.getCropMap().put(stack, crop);
 
-    stack = new BlockStack(ModBlocks.poisoned_potato, 7);
+/*    stack = new BlockStack(ModBlocks.poisoned_potato, 7);
     crop = new Crop(ModBlocks.poisoned_potato, 7);
-    Harvest.config.getCropMap().put(stack, crop);
+    Harvest.config.getCropMap().put(stack, crop);*/
   }
 }

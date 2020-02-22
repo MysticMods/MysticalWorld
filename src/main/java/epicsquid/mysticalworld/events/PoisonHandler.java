@@ -1,7 +1,6 @@
-package epicsquid.mysticalworld.events;
+/*package epicsquid.mysticalworld.events;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.block.BlockPoisonedPotatoCrop;
 import epicsquid.mysticalworld.init.ModBlocks;
 import net.minecraft.block.BlockPotato;
 import net.minecraft.block.state.IBlockState;
@@ -45,4 +44,4 @@ public class PoisonHandler {
       }
     }
   }
-}
+}*/

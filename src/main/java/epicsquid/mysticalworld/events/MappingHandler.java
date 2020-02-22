@@ -3,6 +3,8 @@ package epicsquid.mysticalworld.events;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,10 +16,16 @@ public class MappingHandler {
   @SubscribeEvent
   public static void onMissingBlock (RegistryEvent.MissingMappings<Block> event) {
     for (RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
-      if (!mapping.key.getNamespace().equals("roots")) continue;
+      if (mapping.key.getNamespace().equals("mysticalworld")) {
+        if (mapping.key.getPath().equals("poisoned_potato_crop")) {
+          mapping.remap(Blocks.POTATOES);
+        }
+      } else {
+        if (!mapping.key.getNamespace().equals("roots")) continue;
 
-      if (mapping.key.getPath().equals("aubergine_crop")) {
-        mapping.remap(ModBlocks.aubergine);
+        if (mapping.key.getPath().equals("aubergine_crop")) {
+          mapping.remap(ModBlocks.aubergine);
+        }
       }
     }
   }

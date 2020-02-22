@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.block;
+/*package epicsquid.mysticalworld.block;
 
 import epicsquid.mysticallib.block.BlockCropBase;
 import net.minecraft.block.state.IBlockState;
@@ -35,4 +35,4 @@ public class BlockPoisonedPotatoCrop extends BlockCropBase {
   public AxisAlignedBB getBoundingBox(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
     return POTATO_AABB[state.getValue(this.getAgeProperty())];
   }
-}
+}*/
