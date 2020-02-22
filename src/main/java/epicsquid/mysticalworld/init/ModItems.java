@@ -36,7 +36,7 @@ public class ModItems {
 
   public static Item amethyst_knife, copper_knife, silver_knife;
 
-  public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, cooked_apple, raw_squid, cooked_squid, epic_squid, unripe_pearl;
+  public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, raw_squid, cooked_squid, epic_squid, unripe_pearl;
 
   public static Item silk_cocoon, silk_thread, spindle, silkworm_egg;
 

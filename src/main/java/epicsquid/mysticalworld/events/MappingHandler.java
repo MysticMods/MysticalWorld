@@ -33,23 +33,32 @@ public class MappingHandler {
   @SubscribeEvent
   public static void onMissingItem (RegistryEvent.MissingMappings<Item> event) {
     for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
-      if (!mapping.key.getNamespace().equals("roots")) continue;
+      if (mapping.key.getNamespace().equals("mysticalworld")) {
+        switch (mapping.key.getPath()) {
+          case "cooked_apple":
+            mapping.remap(Items.APPLE);
+            break;
+        }
+      } else {
 
-      switch (mapping.key.getPath()) {
-        case "aubergine_seed":
-          mapping.remap(ModItems.aubergine_seed);
-          break;
-        case "stuffed_aubergine":
-          mapping.remap(ModItems.stuffed_aubergine);
-          break;
-        case "cooked_aubergine":
-          mapping.remap(ModItems.cooked_aubergine);
-          break;
-        case "aubergine":
-          mapping.remap(ModItems.aubergine);
-          break;
-        default:
-          continue;
+        if (!mapping.key.getNamespace().equals("roots")) continue;
+
+        switch (mapping.key.getPath()) {
+          case "aubergine_seed":
+            mapping.remap(ModItems.aubergine_seed);
+            break;
+          case "stuffed_aubergine":
+            mapping.remap(ModItems.stuffed_aubergine);
+            break;
+          case "cooked_aubergine":
+            mapping.remap(ModItems.cooked_aubergine);
+            break;
+          case "aubergine":
+            mapping.remap(ModItems.aubergine);
+            break;
+          default:
+            continue;
+        }
       }
     }
   }
