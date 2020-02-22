@@ -3,6 +3,14 @@
   "texture_base": "mysticalworld:items/",
   "models": [
     {
+      "type": "item",
+      "base": "assorted_seeds"
+    },
+    {
+      "type": "item",
+      "base": "cooked_seeds"
+    },
+    {
       "type": "tool",
       "base": "amethyst_axe"
     },
