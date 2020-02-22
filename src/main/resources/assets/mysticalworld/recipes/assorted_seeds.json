@@ -6,10 +6,10 @@
   "type": "forge:ore_shaped",
   "key": {
     "S": {
-      "type": "roots:seed"
+      "type": "mysticalworld:seed"
     }
   },
   "result": {
-    "item": "roots:assorted_seeds"
+    "item": "mysticalworld:assorted_seeds"
   }
 }
