@@ -77,6 +77,7 @@ public abstract class Material implements IMaterial {
     return ingot;
   }
 
+  @Override
   @Nonnull
   public Item setItem(@Nonnull Item item) {
     this.ingot = item;
@@ -149,6 +150,7 @@ public abstract class Material implements IMaterial {
     return this.ore;
   }
 
+  @Override
   public abstract boolean isEnabled();
 
   @Override
@@ -171,8 +173,10 @@ public abstract class Material implements IMaterial {
     return maxXP;
   }
 
+  @Override
   public abstract void initMaterial (@Nonnull RegisterContentEvent event);
 
+  @Override
   public abstract void initOreDictionary();
     /*for (Material metal : values()) {
 

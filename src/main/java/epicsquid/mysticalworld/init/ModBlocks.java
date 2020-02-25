@@ -107,7 +107,7 @@ public class ModBlocks {
     Block wall;
     Block button;
     Block pressure_plate;
-    LibRegistry.addSlabPair(material, sound, 1.7f, name, base.getDefaultState(), slabs, false, MysticalWorld.tab);
+    LibRegistry.addSlabPair(material, sound, 1.7f, name, base.getDefaultState(), slabs, MysticalWorld.tab);
     event.addBlock(stairs = new BlockStairsBase(base.getDefaultState(), sound, 1.7f, name + "_stairs")).setCreativeTab(MysticalWorld.tab);
     event.addBlock(wall = new BlockWallBase(base, sound, 1.7f, name + "_wall")).setCreativeTab(MysticalWorld.tab);
     if (material.equals(Material.ROCK)) {
