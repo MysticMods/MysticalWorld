@@ -11,6 +11,11 @@
     "mysticalworld:lead_slab",
     "mysticalworld:quicksilver_slab",
     "mysticalworld:silver_slab",
-    "mysticalworld:tin_slab"
+    "mysticalworld:tin_slab",
+    "mysticalworld:soft_stone_slab",
+    "mysticalworld:cracked_stone_slab",
+    "mysticalworld:weathered_stone_slab",
+    "mysticalworld:weathered_obsidian_slab",
+    "mysticalworld:smooth_obsidian_slab"
   ]
 }

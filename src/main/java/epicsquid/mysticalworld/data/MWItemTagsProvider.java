@@ -45,6 +45,14 @@ public class MWItemTagsProvider extends DeferredItemTagsProvider {
     addItemsToTag(SLIME_BLOCK, () -> Items.SLIME_BLOCK);
     appendToTag(Tags.Items.STORAGE_BLOCKS, AMETHYST_BLOCK, COPPER_BLOCK, LEAD_BLOCK, QUICKSILVER_BLOCK, SILVER_BLOCK, TIN_BLOCK, SLIME_BLOCK);
 
+    addItemsToTag(SOFT_STONE, ModBlocks.SOFT_STONE);
+    addItemsToTag(CRACKED_SOFT_STONE, ModBlocks.CRACKED_STONE, ModBlocks.WEATHERED_STONE);
+    appendToTag(Tags.Items.STONE, SOFT_STONE, CRACKED_SOFT_STONE);
+
+    addItemsToTag(WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN);
+    addItemsToTag(SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN);
+    appendToTag(Tags.Items.OBSIDIAN, WEATHERED_OBSIDIAN, SMOOTH_OBSIDIAN);
+
     addItemsToTag(SLIME, () -> Items.SLIME_BALL);
 
     addItemsToTag(AMETHYST_GEM, ModItems.AMETHYST_GEM);

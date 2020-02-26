@@ -11,6 +11,11 @@
     "mysticalworld:lead_wall",
     "mysticalworld:quicksilver_wall",
     "mysticalworld:silver_wall",
-    "mysticalworld:tin_wall"
+    "mysticalworld:tin_wall",
+    "mysticalworld:soft_stone_wall",
+    "mysticalworld:cracked_stone_wall",
+    "mysticalworld:weathered_stone_wall",
+    "mysticalworld:weathered_obsidian_wall",
+    "mysticalworld:smooth_obsidian_wall"
   ]
 }

@@ -3,10 +3,8 @@ package epicsquid.mysticalworld.client.data;
 import epicsquid.mysticallib.client.data.DeferredBlockStateProvider;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModBlocks;
-import net.minecraft.block.FenceBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import net.minecraftforge.client.model.generators.ModelFile;
 
@@ -43,6 +41,41 @@ public class MWBlockstateProvider extends DeferredBlockStateProvider {
     wallBlock(ModBlocks.IRON_BRICK_WALL, "iron_brick");
     widePostBlock(ModBlocks.IRON_BRICK_WIDE_POST, "iron_brick");
     narrowPostBlock(ModBlocks.IRON_BRICK_SMALL_POST, "iron_brick");
+
+    simpleBlock(ModBlocks.SOFT_STONE);
+    stairsBlock(ModBlocks.SOFT_STONE_STAIRS, "soft_stone");
+    slabBlock(ModBlocks.SOFT_STONE_SLAB, ModBlocks.SOFT_STONE, "soft_stone");
+    wallBlock(ModBlocks.SOFT_STONE_WALL, "soft_stone");
+    widePostBlock(ModBlocks.SOFT_STONE_WIDE_POST, "soft_stone");
+    narrowPostBlock(ModBlocks.SOFT_STONE_SMALL_POST, "soft_stone");
+
+    simpleBlock(ModBlocks.CRACKED_STONE);
+    stairsBlock(ModBlocks.CRACKED_STONE_STAIRS, "cracked_stone");
+    slabBlock(ModBlocks.CRACKED_STONE_SLAB, ModBlocks.CRACKED_STONE, "cracked_stone");
+    wallBlock(ModBlocks.CRACKED_STONE_WALL, "cracked_stone");
+    widePostBlock(ModBlocks.CRACKED_STONE_WIDE_POST, "cracked_stone");
+    narrowPostBlock(ModBlocks.CRACKED_STONE_SMALL_POST, "cracked_stone");
+
+    simpleBlock(ModBlocks.WEATHERED_STONE);
+    stairsBlock(ModBlocks.WEATHERED_STONE_STAIRS, "weathered_stone");
+    slabBlock(ModBlocks.WEATHERED_STONE_SLAB, ModBlocks.WEATHERED_STONE, "weathered_stone");
+    wallBlock(ModBlocks.WEATHERED_STONE_WALL, "weathered_stone");
+    widePostBlock(ModBlocks.WEATHERED_STONE_WIDE_POST, "weathered_stone");
+    narrowPostBlock(ModBlocks.WEATHERED_STONE_SMALL_POST, "weathered_stone");
+
+    simpleBlock(ModBlocks.WEATHERED_OBSIDIAN);
+    stairsBlock(ModBlocks.WEATHERED_OBSIDIAN_STAIRS, "weathered_obsidian");
+    slabBlock(ModBlocks.WEATHERED_OBSIDIAN_SLAB, ModBlocks.WEATHERED_OBSIDIAN, "weathered_obsidian");
+    wallBlock(ModBlocks.WEATHERED_OBSIDIAN_WALL, "weathered_obsidian");
+    widePostBlock(ModBlocks.WEATHERED_OBSIDIAN_WIDE_POST, "weathered_obsidian");
+    narrowPostBlock(ModBlocks.WEATHERED_OBSIDIAN_SMALL_POST, "weathered_obsidian");
+
+    simpleBlock(ModBlocks.SMOOTH_OBSIDIAN);
+    stairsBlock(ModBlocks.SMOOTH_OBSIDIAN_STAIRS, "smooth_obsidian");
+    slabBlock(ModBlocks.SMOOTH_OBSIDIAN_SLAB, ModBlocks.SMOOTH_OBSIDIAN, "smooth_obsidian");
+    wallBlock(ModBlocks.SMOOTH_OBSIDIAN_WALL, "smooth_obsidian");
+    widePostBlock(ModBlocks.SMOOTH_OBSIDIAN_WIDE_POST, "smooth_obsidian");
+    narrowPostBlock(ModBlocks.SMOOTH_OBSIDIAN_SMALL_POST, "smooth_obsidian");
 
     simpleBlock(ModBlocks.MUD_BLOCK);
     stairsBlock(ModBlocks.MUD_BLOCK_STAIRS, "mud_block");

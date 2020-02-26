@@ -112,6 +112,40 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addBlock(ModBlocks.IRON_BRICK_STAIRS);
     addBlock(ModBlocks.IRON_BRICK_WALL);
 
+    addBlock(ModBlocks.SOFT_STONE);
+    addBlock(ModBlocks.SOFT_STONE_STAIRS);
+    addBlock(ModBlocks.SOFT_STONE_SLAB);
+    addBlock(ModBlocks.SOFT_STONE_WALL);
+    addBlock(ModBlocks.SOFT_STONE_WIDE_POST);
+    addBlock(ModBlocks.SOFT_STONE_SMALL_POST);
+
+    addBlock(ModBlocks.CRACKED_STONE);
+    addBlock(ModBlocks.CRACKED_STONE_STAIRS);
+    addBlock(ModBlocks.CRACKED_STONE_SLAB);
+    addBlock(ModBlocks.CRACKED_STONE_WALL);
+    addBlock(ModBlocks.CRACKED_STONE_WIDE_POST);
+    addBlock(ModBlocks.CRACKED_STONE_SMALL_POST);
+
+    addBlock(ModBlocks.WEATHERED_STONE);
+    addBlock(ModBlocks.WEATHERED_STONE_STAIRS);
+    addBlock(ModBlocks.WEATHERED_STONE_SLAB);
+    addBlock(ModBlocks.WEATHERED_STONE_WALL);
+    addBlock(ModBlocks.WEATHERED_STONE_WIDE_POST);
+    addBlock(ModBlocks.WEATHERED_STONE_SMALL_POST);
+
+    addBlock(ModBlocks.WEATHERED_OBSIDIAN);
+    addBlock(ModBlocks.WEATHERED_OBSIDIAN_STAIRS);
+    addBlock(ModBlocks.WEATHERED_OBSIDIAN_SLAB);
+    addBlock(ModBlocks.WEATHERED_OBSIDIAN_WALL);
+    addBlock(ModBlocks.WEATHERED_OBSIDIAN_WIDE_POST);
+    addBlock(ModBlocks.WEATHERED_OBSIDIAN_SMALL_POST);
+
+    addBlock(ModBlocks.SMOOTH_OBSIDIAN);
+    addBlock(ModBlocks.SMOOTH_OBSIDIAN_STAIRS);
+    addBlock(ModBlocks.SMOOTH_OBSIDIAN_SLAB);
+    addBlock(ModBlocks.SMOOTH_OBSIDIAN_WALL);
+    addBlock(ModBlocks.SMOOTH_OBSIDIAN_WIDE_POST);
+    addBlock(ModBlocks.SMOOTH_OBSIDIAN_SMALL_POST);
 
     addItem(ModItems.ROTTEN_APPLE);
 

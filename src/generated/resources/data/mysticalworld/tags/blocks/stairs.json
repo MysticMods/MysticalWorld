@@ -11,6 +11,11 @@
     "mysticalworld:lead_stairs",
     "mysticalworld:quicksilver_stairs",
     "mysticalworld:silver_stairs",
-    "mysticalworld:tin_stairs"
+    "mysticalworld:tin_stairs",
+    "mysticalworld:soft_stone_stairs",
+    "mysticalworld:cracked_stone_stairs",
+    "mysticalworld:weathered_stone_stairs",
+    "mysticalworld:weathered_obsidian_stairs",
+    "mysticalworld:smooth_obsidian_stairs"
   ]
 }

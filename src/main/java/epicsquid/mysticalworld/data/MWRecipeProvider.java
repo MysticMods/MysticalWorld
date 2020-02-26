@@ -6,10 +6,7 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.data.*;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
@@ -37,9 +34,31 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     smelting(ModBlocks.WET_MUD_BRICK, ModBlocks.MUD_BRICK, 0.15f, false, consumer);
 
     twoByTwo(ModBlocks.WET_MUD_BLOCK, ModBlocks.WET_MUD_BRICK, null, consumer);
-    twoByTwo(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BRICK, null, consumer);
-    twoByTwo(() -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK, null, consumer);
+    twoByTwo(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BRICK, null, consumer); // -> stonecutter?
+    twoByTwo(() -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK, null, consumer); // -> stonecutter?
     twoByTwo(() -> Items.IRON_NUGGET, ModBlocks.IRON_BRICK, null, 1, consumer);
+    twoByTwo(() -> Items.SMOOTH_STONE, ModBlocks.SOFT_STONE, null, consumer);
+    twoByTwo(() -> Items.OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN, null, consumer);
+
+    SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.SMOOTH_STONE), ModBlocks.SOFT_STONE.get())
+          .addCriterion("has_stone", this.hasItem(Items.SMOOTH_STONE))
+          .build(consumer, "soft_stone_from_smooth_stone_stonecutting");
+
+    SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.TERRACOTTA), ModBlocks.TERRACOTTA_BRICK.get())
+          .addCriterion("has_stone", this.hasItem(Items.TERRACOTTA))
+          .build(consumer, "terracotta_bricks_from_terracotta_stonecutting");
+
+    SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(ModBlocks.MUD_BLOCK.get()), ModBlocks.MUD_BRICK.get())
+          .addCriterion("has_mud_block", this.hasItem(ModBlocks.MUD_BLOCK.get()))
+          .build(consumer, "mud_bricks_from_mud_blocks_stonecutting");
+
+    SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.OBSIDIAN), ModBlocks.SMOOTH_OBSIDIAN.get())
+          .addCriterion("has_obsidian", this.hasItem(Items.OBSIDIAN))
+          .build(consumer, "smooth_obsidian_from_obsidian_stonecutting");
+
+    smelting(ModBlocks.SOFT_STONE, ModBlocks.CRACKED_STONE, 0.15f, false, consumer);
+    smelting(ModBlocks.CRACKED_STONE, ModBlocks.WEATHERED_STONE, 0.15f, false, consumer);
+    smelting(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN, 0.15f, false, consumer);
 
     planks(ModBlocks.CHARRED_LOG, ModBlocks.CHARRED_PLANKS, consumer);
     stairs(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_STAIRS, "stairs", false, consumer);
@@ -248,6 +267,36 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     wall(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_WALL, false, consumer);
     widePost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_WIDE_POST, "wide_post", false, consumer);
     narrowPost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SMALL_POST, "narrow_post", false, consumer);
+
+    stairs(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_STAIRS, "stairs", true, consumer);
+    slab(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SLAB, "slabs", true, consumer);
+    wall(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_WALL, true, consumer);
+    widePost(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_WIDE_POST, "wide_post", true, consumer);
+    narrowPost(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SMALL_POST, "narrow_post", true, consumer);
+
+    stairs(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_STAIRS, "stairs", true, consumer);
+    slab(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_SLAB, "slabs", true, consumer);
+    wall(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_WALL, true, consumer);
+    widePost(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_WIDE_POST, "wide_post", true, consumer);
+    narrowPost(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_SMALL_POST, "narrow_post", true, consumer);
+
+    stairs(ModBlocks.WEATHERED_STONE, ModBlocks.WEATHERED_STONE_STAIRS, "stairs", true, consumer);
+    slab(ModBlocks.WEATHERED_STONE, ModBlocks.WEATHERED_STONE_SLAB, "slabs", true, consumer);
+    wall(ModBlocks.WEATHERED_STONE, ModBlocks.WEATHERED_STONE_WALL, true, consumer);
+    widePost(ModBlocks.WEATHERED_STONE, ModBlocks.WEATHERED_STONE_WIDE_POST, "wide_post", true, consumer);
+    narrowPost(ModBlocks.WEATHERED_STONE, ModBlocks.WEATHERED_STONE_SMALL_POST, "narrow_post", true, consumer);
+
+    stairs(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN_STAIRS, "stairs", true, consumer);
+    slab(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN_SLAB, "slabs", true, consumer);
+    wall(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN_WALL, true, consumer);
+    widePost(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN_WIDE_POST, "wide_post", true, consumer);
+    narrowPost(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN_SMALL_POST, "narrow_post", true, consumer);
+
+    stairs(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_STAIRS, "stairs", true, consumer);
+    slab(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_SLAB, "slabs", true, consumer);
+    wall(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_WALL, true, consumer);
+    widePost(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_WIDE_POST, "wide_post", true, consumer);
+    narrowPost(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_SMALL_POST, "narrow_post", true, consumer);
 
     ShapelessRecipeBuilder.shapelessRecipe(ModItems.STUFFED_AUBERGINE.get(), 1).addIngredient(ModItems.COOKED_AUBERGINE.get()).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.COOKED_VEGETABLES).addCriterion("has_cooked_aubergine", this.hasItem(ModItems.COOKED_AUBERGINE.get())).build(consumer);
 

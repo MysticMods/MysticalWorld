@@ -1,0 +1,6 @@
+{
+  "parent": "mysticallib:block/narrow_post",
+  "textures": {
+    "wall": "mysticalworld:block/soft_stone"
+  }
+}

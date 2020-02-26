@@ -15,6 +15,12 @@ public class MWTags {
     public static Tag<Block> LOGS = modTag("logs");
     public static Tag<Block> PLANKS = modTag("planks");
 
+    public static Tag<Block> SOFT_STONE = modTag("soft_stone");
+    public static Tag<Block> CRACKED_SOFT_STONE = modTag("cracked_stone");
+
+    public static Tag<Block> SMOOTH_OBSIDIAN = modTag("smooth_obsidian");
+    public static Tag<Block> WEATHERED_OBSIDIAN = modTag("weathered_obsidian");
+
     public static Tag<Block> WOODEN_SLABS = modTag("wooden_slabs");
     public static Tag<Block> WOODEN_STAIRS = modTag("wooden_stairs");
     public static Tag<Block> WOODEN_FENCES = modTag("wooden_fences");
@@ -119,6 +125,12 @@ public class MWTags {
 
     public static Tag<Item> LOGS = mcTag("logs");
     public static Tag<Item> PLANKS = mcTag("planks");
+
+    public static Tag<Item> SOFT_STONE = modTag("soft_stone");
+    public static Tag<Item> CRACKED_SOFT_STONE = modTag("cracked_soft_stone");
+
+    public static Tag<Item> SMOOTH_OBSIDIAN = modTag("smooth_obsidian");
+    public static Tag<Item> WEATHERED_OBSIDIAN = modTag("weathered_obsidian");
 
     public static Tag<Item> WOODEN_SLABS = mcTag("wooden_slabs");
     public static Tag<Item> WOODEN_STAIRS = mcTag("wooden_stairs");

@@ -10,7 +10,6 @@ import epicsquid.mysticalworld.blocks.WetMudBrick;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.RegistryObject;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRY;
@@ -65,6 +64,41 @@ public class ModBlocks {
   public static RegistryObject<WallBlock> IRON_BRICK_WALL = REGISTRY.registerBlock("iron_brick_wall", REGISTRY.wall(IRON_BRICK), ModRegistries.SIG);
   public static RegistryObject<WidePostBlock> IRON_BRICK_WIDE_POST = REGISTRY.registerBlock("iron_brick_wide_post", REGISTRY.widePost(IRON_BRICK), ModRegistries.SIG);
   public static RegistryObject<NarrowPostBlock> IRON_BRICK_SMALL_POST = REGISTRY.registerBlock("iron_brick_small_post", REGISTRY.narrowPost(IRON_BRICK), ModRegistries.SIG);
+
+  public static RegistryObject<Block> SOFT_STONE = REGISTRY.registerBlock("soft_stone", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
+  public static RegistryObject<StairsBlock> SOFT_STONE_STAIRS = REGISTRY.registerBlock("soft_stone_stairs", REGISTRY.stair(SOFT_STONE), ModRegistries.SIG);
+  public static RegistryObject<SlabBlock> SOFT_STONE_SLAB = REGISTRY.registerBlock("soft_stone_slab", REGISTRY.slab(SOFT_STONE), ModRegistries.SIG);
+  public static RegistryObject<WallBlock> SOFT_STONE_WALL = REGISTRY.registerBlock("soft_stone_wall", REGISTRY.wall(SOFT_STONE), ModRegistries.SIG);
+  public static RegistryObject<WidePostBlock> SOFT_STONE_WIDE_POST = REGISTRY.registerBlock("soft_stone_wide_post", REGISTRY.widePost(SOFT_STONE), ModRegistries.SIG);
+  public static RegistryObject<NarrowPostBlock> SOFT_STONE_SMALL_POST = REGISTRY.registerBlock("soft_stone_small_post", REGISTRY.narrowPost(SOFT_STONE), ModRegistries.SIG);
+
+  public static RegistryObject<Block> CRACKED_STONE = REGISTRY.registerBlock("cracked_stone", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
+  public static RegistryObject<StairsBlock> CRACKED_STONE_STAIRS = REGISTRY.registerBlock("cracked_stone_stairs", REGISTRY.stair(CRACKED_STONE), ModRegistries.SIG);
+  public static RegistryObject<SlabBlock> CRACKED_STONE_SLAB = REGISTRY.registerBlock("cracked_stone_slab", REGISTRY.slab(CRACKED_STONE), ModRegistries.SIG);
+  public static RegistryObject<WallBlock> CRACKED_STONE_WALL = REGISTRY.registerBlock("cracked_stone_wall", REGISTRY.wall(CRACKED_STONE), ModRegistries.SIG);
+  public static RegistryObject<WidePostBlock> CRACKED_STONE_WIDE_POST = REGISTRY.registerBlock("cracked_stone_wide_post", REGISTRY.widePost(CRACKED_STONE), ModRegistries.SIG);
+  public static RegistryObject<NarrowPostBlock> CRACKED_STONE_SMALL_POST = REGISTRY.registerBlock("cracked_stone_small_post", REGISTRY.narrowPost(CRACKED_STONE), ModRegistries.SIG);
+
+  public static RegistryObject<Block> WEATHERED_STONE = REGISTRY.registerBlock("weathered_stone", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
+  public static RegistryObject<StairsBlock> WEATHERED_STONE_STAIRS = REGISTRY.registerBlock("weathered_stone_stairs", REGISTRY.stair(WEATHERED_STONE), ModRegistries.SIG);
+  public static RegistryObject<SlabBlock> WEATHERED_STONE_SLAB = REGISTRY.registerBlock("weathered_stone_slab", REGISTRY.slab(WEATHERED_STONE), ModRegistries.SIG);
+  public static RegistryObject<WallBlock> WEATHERED_STONE_WALL = REGISTRY.registerBlock("weathered_stone_wall", REGISTRY.wall(WEATHERED_STONE), ModRegistries.SIG);
+  public static RegistryObject<WidePostBlock> WEATHERED_STONE_WIDE_POST = REGISTRY.registerBlock("weathered_stone_wide_post", REGISTRY.widePost(WEATHERED_STONE), ModRegistries.SIG);
+  public static RegistryObject<NarrowPostBlock> WEATHERED_STONE_SMALL_POST = REGISTRY.registerBlock("weathered_stone_small_post", REGISTRY.narrowPost(WEATHERED_STONE), ModRegistries.SIG);
+
+   public static RegistryObject<Block> SMOOTH_OBSIDIAN = REGISTRY.registerBlock("smooth_obsidian", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
+  public static RegistryObject<StairsBlock> SMOOTH_OBSIDIAN_STAIRS = REGISTRY.registerBlock("smooth_obsidian_stairs", REGISTRY.stair(SMOOTH_OBSIDIAN), ModRegistries.SIG);
+  public static RegistryObject<SlabBlock> SMOOTH_OBSIDIAN_SLAB = REGISTRY.registerBlock("smooth_obsidian_slab", REGISTRY.slab(SMOOTH_OBSIDIAN), ModRegistries.SIG);
+  public static RegistryObject<WallBlock> SMOOTH_OBSIDIAN_WALL = REGISTRY.registerBlock("smooth_obsidian_wall", REGISTRY.wall(SMOOTH_OBSIDIAN), ModRegistries.SIG);
+  public static RegistryObject<WidePostBlock> SMOOTH_OBSIDIAN_WIDE_POST = REGISTRY.registerBlock("smooth_obsidian_wide_post", REGISTRY.widePost(SMOOTH_OBSIDIAN), ModRegistries.SIG);
+  public static RegistryObject<NarrowPostBlock> SMOOTH_OBSIDIAN_SMALL_POST = REGISTRY.registerBlock("smooth_obsidian_small_post", REGISTRY.narrowPost(SMOOTH_OBSIDIAN), ModRegistries.SIG);
+
+   public static RegistryObject<Block> WEATHERED_OBSIDIAN = REGISTRY.registerBlock("weathered_obsidian", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
+  public static RegistryObject<StairsBlock> WEATHERED_OBSIDIAN_STAIRS = REGISTRY.registerBlock("weathered_obsidian_stairs", REGISTRY.stair(WEATHERED_OBSIDIAN), ModRegistries.SIG);
+  public static RegistryObject<SlabBlock> WEATHERED_OBSIDIAN_SLAB = REGISTRY.registerBlock("weathered_obsidian_slab", REGISTRY.slab(WEATHERED_OBSIDIAN), ModRegistries.SIG);
+  public static RegistryObject<WallBlock> WEATHERED_OBSIDIAN_WALL = REGISTRY.registerBlock("weathered_obsidian_wall", REGISTRY.wall(WEATHERED_OBSIDIAN), ModRegistries.SIG);
+  public static RegistryObject<WidePostBlock> WEATHERED_OBSIDIAN_WIDE_POST = REGISTRY.registerBlock("weathered_obsidian_wide_post", REGISTRY.widePost(WEATHERED_OBSIDIAN), ModRegistries.SIG);
+  public static RegistryObject<NarrowPostBlock> WEATHERED_OBSIDIAN_SMALL_POST = REGISTRY.registerBlock("weathered_obsidian_small_post", REGISTRY.narrowPost(WEATHERED_OBSIDIAN), ModRegistries.SIG);
 
   // Ore Blocks
   public static RegistryObject<BaseOreBlock> AMETHYST_ORE = REGISTRY.registerBlock(ModMaterials.AMETHYST.oreName(), REGISTRY.ore(BaseOreBlock::new, ModMaterials.AMETHYST), ModRegistries.SMG);

@@ -57,6 +57,41 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     blockItem(ModBlocks.SILVER_WIDE_POST);
     blockItem(ModBlocks.SILVER_SMALL_POST);
 
+    blockItem(ModBlocks.SOFT_STONE);
+    blockItem(ModBlocks.SOFT_STONE_STAIRS);
+    blockItem(ModBlocks.SOFT_STONE_SLAB);
+    blockWithInventoryModel(ModBlocks.SOFT_STONE_WALL);
+    blockItem(ModBlocks.SOFT_STONE_WIDE_POST);
+    blockItem(ModBlocks.SOFT_STONE_SMALL_POST);
+
+    blockItem(ModBlocks.CRACKED_STONE);
+    blockItem(ModBlocks.CRACKED_STONE_STAIRS);
+    blockItem(ModBlocks.CRACKED_STONE_SLAB);
+    blockWithInventoryModel(ModBlocks.CRACKED_STONE_WALL);
+    blockItem(ModBlocks.CRACKED_STONE_WIDE_POST);
+    blockItem(ModBlocks.CRACKED_STONE_SMALL_POST);
+
+    blockItem(ModBlocks.WEATHERED_STONE);
+    blockItem(ModBlocks.WEATHERED_STONE_STAIRS);
+    blockItem(ModBlocks.WEATHERED_STONE_SLAB);
+    blockWithInventoryModel(ModBlocks.WEATHERED_STONE_WALL);
+    blockItem(ModBlocks.WEATHERED_STONE_WIDE_POST);
+    blockItem(ModBlocks.WEATHERED_STONE_SMALL_POST);
+
+    blockItem(ModBlocks.WEATHERED_OBSIDIAN);
+    blockItem(ModBlocks.WEATHERED_OBSIDIAN_STAIRS);
+    blockItem(ModBlocks.WEATHERED_OBSIDIAN_SLAB);
+    blockWithInventoryModel(ModBlocks.WEATHERED_OBSIDIAN_WALL);
+    blockItem(ModBlocks.WEATHERED_OBSIDIAN_WIDE_POST);
+    blockItem(ModBlocks.WEATHERED_OBSIDIAN_SMALL_POST);
+
+    blockItem(ModBlocks.SMOOTH_OBSIDIAN);
+    blockItem(ModBlocks.SMOOTH_OBSIDIAN_STAIRS);
+    blockItem(ModBlocks.SMOOTH_OBSIDIAN_SLAB);
+    blockWithInventoryModel(ModBlocks.SMOOTH_OBSIDIAN_WALL);
+    blockItem(ModBlocks.SMOOTH_OBSIDIAN_WIDE_POST);
+    blockItem(ModBlocks.SMOOTH_OBSIDIAN_SMALL_POST);
+
     blockItem(ModBlocks.TIN_BLOCK);
     blockItem(ModBlocks.TIN_STAIRS);
     blockItem(ModBlocks.TIN_SLAB);
