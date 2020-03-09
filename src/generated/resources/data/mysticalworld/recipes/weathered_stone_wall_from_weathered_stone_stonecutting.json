@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:weathered_stone"
+  },
+  "result": "mysticalworld:weathered_stone_wall",
+  "count": 1
+}

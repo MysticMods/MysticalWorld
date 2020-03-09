@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "side": "mysticalworld:block/weathered_obsidian",
+    "bottom": "mysticalworld:block/weathered_obsidian",
+    "top": "mysticalworld:block/weathered_obsidian"
+  }
+}

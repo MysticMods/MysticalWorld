@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "slabs",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:weathered_obsidian"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:weathered_obsidian_slab",
+    "count": 6
+  }
+}

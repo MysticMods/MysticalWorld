@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stairs",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:smooth_obsidian"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:smooth_obsidian_stairs",
+    "count": 4
+  }
+}

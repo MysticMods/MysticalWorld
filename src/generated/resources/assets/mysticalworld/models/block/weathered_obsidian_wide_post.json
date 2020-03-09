@@ -1,0 +1,6 @@
+{
+  "parent": "mysticallib:block/wide_post",
+  "textures": {
+    "wall": "mysticalworld:block/weathered_obsidian"
+  }
+}

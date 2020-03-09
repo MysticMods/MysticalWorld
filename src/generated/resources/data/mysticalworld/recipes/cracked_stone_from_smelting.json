@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "mysticalworld:soft_stone"
+  },
+  "result": "mysticalworld:cracked_stone",
+  "experience": 0.15,
+  "cookingtime": 200
+}

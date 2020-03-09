@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:cracked_stone_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_soft_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:soft_stone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:cracked_stone_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_soft_stone",
+      "has_the_recipe"
+    ]
+  ]
+}

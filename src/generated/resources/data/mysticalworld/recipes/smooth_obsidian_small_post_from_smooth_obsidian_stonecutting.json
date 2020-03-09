@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:smooth_obsidian"
+  },
+  "result": "mysticalworld:smooth_obsidian_small_post",
+  "count": 2
+}

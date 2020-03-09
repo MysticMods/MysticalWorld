@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "narrow_post",
+  "pattern": [
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:soft_stone"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:soft_stone_small_post",
+    "count": 4
+  }
+}

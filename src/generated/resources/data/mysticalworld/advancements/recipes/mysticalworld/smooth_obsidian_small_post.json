@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:smooth_obsidian_small_post"
+    ]
+  },
+  "criteria": {
+    "has_smooth_obsidian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:smooth_obsidian"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:smooth_obsidian_small_post"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_obsidian",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "side": "mysticalworld:block/smooth_obsidian",
+    "bottom": "mysticalworld:block/smooth_obsidian",
+    "top": "mysticalworld:block/smooth_obsidian"
+  }
+}

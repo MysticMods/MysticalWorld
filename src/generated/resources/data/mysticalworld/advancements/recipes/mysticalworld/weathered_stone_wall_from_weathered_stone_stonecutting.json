@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:weathered_stone_wall_from_weathered_stone_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_weathered_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:weathered_stone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:weathered_stone_wall_from_weathered_stone_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_weathered_stone",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "mysticalworld:weathered_obsidian"
+  },
+  "result": "mysticalworld:smooth_obsidian",
+  "experience": 0.15,
+  "cookingtime": 200
+}

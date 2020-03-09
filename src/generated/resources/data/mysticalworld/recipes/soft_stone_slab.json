@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "slabs",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:soft_stone"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:soft_stone_slab",
+    "count": 6
+  }
+}
