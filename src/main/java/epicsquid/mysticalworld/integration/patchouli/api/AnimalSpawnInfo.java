@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.integration.patchouli.api;
 
 import epicsquid.mysticalworld.config.ConfigManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.text.WordUtils;
 import scala.annotation.meta.field;
@@ -88,26 +89,27 @@ public class AnimalSpawnInfo implements IComponentProcessor {
     if (this.animal == null && !animalName.equals("squid")) return null;
     if (s.startsWith("groupSize")) {
       if (animalName.equals("squid")) {
-        return "Standard group sizes.";
+        return I18n.format("mysticalworld.patchouli.standard_group");
       } else {
-        return String.format("Groups of: %d-%d", getInt("min"), getInt("max"));
+        return I18n.format("mysticalworld.patchouli.groups", getInt("min"), getInt("max"));
       }
     }
     if (s.startsWith("biomes")) {
       if (animalName.equals("squid")) {
-        return "Default biomes.";
+        return I18n.format("forge.biome.tags.default.name");
       } else if (animalName.equals("endermini")) {
-        return "The End";
+        return I18n.format("forge.biome.tags.end.name");
       } else {
         StringJoiner joiner = new StringJoiner(", ");
         for (String biomeName : getString("biomes")) {
-          joiner.add(WordUtils.capitalize(biomeName.toLowerCase()));
+          joiner.add(I18n.format("forge.biome.tags." + biomeName.toLowerCase() + ".name"));
         }
-        return "Biomes tagged with: " + joiner.toString();
+        return I18n.format("mysticalworld.patchouli.biomes", joiner.toString());
       }
     }
     if (s.startsWith("title")) {
-      return WordUtils.capitalize(this.animalName.toLowerCase());
+      return I18n.format("entity.entity_" + this.animalName.toLowerCase() + ".name");
+      //WordUtils.capitalize(this.animalName.toLowerCase());
     }
     if (s.startsWith("item")) {
       List<ItemStack> drops = StandardDrops.getDrops(animalName);
