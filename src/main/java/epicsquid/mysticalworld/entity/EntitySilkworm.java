@@ -69,11 +69,11 @@ public class EntitySilkworm extends EntityAnimal {
   @Override
   protected void initEntityAI() {
     this.tasks.addTask(1, new EntityAISwimming(this));
-    this.tasks.addTask(2, new EntityAIConsumeLeaves(this, 1.1d, false));
-    this.tasks.addTask(3, new EntityAIWander(this, 0.5d));
-    this.tasks.addTask(3, new EntityAITempt(this, 0.9d, false, LeafHandler.getLeafItems()));
+    //this.tasks.addTask(2, new EntityAIConsumeLeaves(this, 1.1d, false));
+    //this.tasks.addTask(3, new EntityAIWander(this, 0.5d));
+    //this.tasks.addTask(3, new EntityAITempt(this, 0.9d, false, LeafHandler.getLeafItems()));
     this.tasks.addTask(8, new EntityAILookIdle(this));
-    this.targetTasks.addTask(0, new EntityAITargetLeaves(this));
+    //this.targetTasks.addTask(0, new EntityAITargetLeaves(this));
   }
 
   @Override

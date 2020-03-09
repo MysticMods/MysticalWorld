@@ -36,7 +36,9 @@ public class EntityFrog extends EntityAnimal {
     super(worldIn);
     setSize(0.5f, 0.5f);
     this.experienceValue = 2;
-    this.timeUntilNextSlime = this.rand.nextInt(getSlimeTime()) + getSlimeTime();
+    if (shouldDropSlime()) {
+      this.timeUntilNextSlime = this.rand.nextInt(getSlimeTime()) + getSlimeTime();
+    }
   }
 
   public static int getSlimeTime () {
