@@ -1,21 +1,27 @@
 buildscript {
     repositories {
-        mavenLocal()
-        maven { url = 'http://files.minecraftforge.net/maven' }
-        jcenter()
         mavenCentral()
+        mavenLocal()
         maven {
-            url 'https://dogforce-games.com/maven'
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.165-run-configs-rework', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.+', changing: true
     }
 }
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
 apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'eclipse'
 
 version = "${minecraft_version}-${mod_version}"
 //if (System.getenv('BUILD_NUMBER') != null) {
@@ -119,6 +125,9 @@ repositories {
     }
 }
 
+configurations {
+    shade
+}
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
@@ -132,6 +141,10 @@ dependencies {
 
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+
+    def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
+    implementation fg.deobf(registrate)
+    shade registrate
 }
 
 sourceSets.main.resources {
@@ -151,6 +164,20 @@ jar {
         ])
     }
 }
+
+shadowJar {
+    configurations = [project.configurations.shade]
+    relocate 'com.tterrag.registrate', 'epicsquid.mysticalworld.repack.registrate'
+    classifier ''
+}
+
+jar.classifier = 'nodep'
+
+reobf {
+    shadowJar {}
+}
+
+build.dependsOn reobfShadowJar
 
 task apiJar(type: Jar) {
     from(sourceSets.main.output)
