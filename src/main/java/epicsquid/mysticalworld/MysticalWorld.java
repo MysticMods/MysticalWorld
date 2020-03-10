@@ -1,5 +1,11 @@
 package epicsquid.mysticalworld;
 
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateProvider;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import epicsquid.mysticallib.data.RecipeProvider;
+import epicsquid.mysticallib.registrate.CustomRegistrate;
 import epicsquid.mysticallib.registry.ModRegistry;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.events.DamageHandler;
@@ -27,6 +33,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.server.ServerLifecycleEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,6 +41,12 @@ import org.apache.logging.log4j.Logger;
 public class MysticalWorld {
   public static final Logger LOG = LogManager.getLogger();
   public static final String MODID = "mysticalworld";
+
+  public static CustomRegistrate REGISTRATE;
+  public static RecipeProvider RECIPES = new RecipeProvider(MODID);
+  public static <R extends IForgeRegistryEntry<R>, E extends R, V extends RegistrateProvider> NonNullBiConsumer<DataGenContext<R, E>, V> NOOP () {
+    return (ctx, p) -> {};
+  }
 
   public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
     @Override
@@ -73,6 +86,9 @@ public class MysticalWorld {
       modBus.addListener(ClientSetup::init);
       MinecraftForge.EVENT_BUS.addListener(TooltipHandler::onTooltip);
     });
+
+    REGISTRATE = CustomRegistrate.create(MODID);
+    REGISTRATE.itemGroup(NonNullSupplier.of(() -> ITEM_GROUP));
 
     modBus.addListener(setup::init);
     modBus.addListener(setup::gatherData);

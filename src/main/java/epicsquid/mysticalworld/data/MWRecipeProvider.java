@@ -300,23 +300,9 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
 
     ShapelessRecipeBuilder.shapelessRecipe(ModItems.STUFFED_AUBERGINE.get(), 1).addIngredient(ModItems.COOKED_AUBERGINE.get()).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.COOKED_VEGETABLES).addCriterion("has_cooked_aubergine", this.hasItem(ModItems.COOKED_AUBERGINE.get())).build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModBlocks.WET_MUD_BLOCK.get(), 8)
-        .patternLine("XXX")
-        .patternLine("XWX")
-        .patternLine("XXX")
-        .key('X', Blocks.DIRT)
-        .key('W', Items.WATER_BUCKET)
-        .addCriterion("has_dirt", this.hasItem(Blocks.DIRT))
-        .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModBlocks.THATCH.get(), 32)
-        .patternLine("XY")
-        .patternLine("YX")
-        .key('X', Blocks.HAY_BLOCK)
-        .key('Y', Items.WHEAT)
-        .addCriterion("has_hay", this.hasItem(Blocks.HAY_BLOCK))
-        .addCriterion("has_wheat", this.hasItem(Items.WHEAT))
-        .build(consumer);
+
+
 
     ShapedRecipeBuilder.shapedRecipe(ModItems.EPIC_SQUID.get(), 2)
         .patternLine("CAC")

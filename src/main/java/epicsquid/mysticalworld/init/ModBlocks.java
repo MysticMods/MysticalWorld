@@ -1,24 +1,75 @@
 package epicsquid.mysticalworld.init;
 
+import com.tterrag.registrate.util.RegistryEntry;
 import epicsquid.mysticallib.block.BaseOreBlock;
 import epicsquid.mysticallib.block.NarrowPostBlock;
 import epicsquid.mysticallib.block.WidePostBlock;
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.blocks.AubergineCropBlock;
-import epicsquid.mysticalworld.blocks.WetMudBlock;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
+import epicsquid.mysticalworld.blocks.WetMudBlock;
 import epicsquid.mysticalworld.blocks.WetMudBrick;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.RegistryObject;
 
+import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRY;
 
 @SuppressWarnings("unused")
 public class ModBlocks {
-  public static RegistryObject<ThatchBlock> THATCH = REGISTRY.registerBlock("thatch", REGISTRY.block(ThatchBlock::new, () -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT)), ModRegistries.SIG);
-  public static RegistryObject<AubergineCropBlock> AUBERGINE_CROP = REGISTRY.registerBlockWithoutItem("aubergine_crop", REGISTRY.block(AubergineCropBlock::new, () -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly()));
-  public static RegistryObject<WetMudBlock> WET_MUD_BLOCK = REGISTRY.registerBlock("wet_mud_block", REGISTRY.block(WetMudBlock::new, () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
+  public static RegistryEntry<ThatchBlock> THATCH = REGISTRATE.block("thatch", ThatchBlock::new)
+      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .item().model(MysticalWorld.NOOP()).build()
+      .blockstate(MysticalWorld.NOOP())
+      .recipe((ctx, p) ->
+          ShapedRecipeBuilder.shapedRecipe(ModBlocks.THATCH.get(), 32)
+              .patternLine("XY")
+              .patternLine("YX")
+              .key('X', Blocks.HAY_BLOCK)
+              .key('Y', Tags.Items.CROPS_WHEAT)
+              .addCriterion("has_hay", p.hasItem(Blocks.HAY_BLOCK))
+              .addCriterion("has_wheat", p.hasItem(Items.WHEAT))
+              .build(p)
+      )
+      .register();
+
+  //public static RegistryObject<ThatchBlock> THATCH = REGISTRY.registerBlock("thatch", REGISTRY.block(ThatchBlock::new, () -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT)), ModRegistries.SIG);
+
+  public static RegistryEntry<AubergineCropBlock> AUBERGINE_CROP = REGISTRATE.block("aubergine_crop", AubergineCropBlock::new)
+      .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
+      .blockstate(MysticalWorld.NOOP())
+      .register();
+
+  //public static RegistryObject<AubergineCropBlock> AUBERGINE_CROP = REGISTRY.registerBlockWithoutItem("aubergine_crop", REGISTRY.block(AubergineCropBlock::new, () -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly()));
+
+  public static RegistryEntry<WetMudBlock> WET_MUD_BLOCK = REGISTRATE.block("wet_mud_block", WetMudBlock::new)
+      .properties((o) -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME))
+      .item()
+      .model((ctx, p) ->
+          p.blockItem(ModBlocks.WET_MUD_BLOCK)
+      )
+      .build()
+      .blockstate((ctx, p) ->
+          p.simpleBlock(ModBlocks.WET_MUD_BLOCK.get(), p.getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/wet_mud_block")))
+      ).recipe((ctx, p) ->
+          ShapedRecipeBuilder.shapedRecipe(ModBlocks.WET_MUD_BLOCK.get(), 8)
+              .patternLine("XXX")
+              .patternLine("XWX")
+              .patternLine("XXX")
+              .key('X', Blocks.DIRT)
+              .key('W', Items.WATER_BUCKET)
+              .addCriterion("has_dirt", p.hasItem(Blocks.DIRT))
+              .build(p)
+      )
+      .register();
+
+  //public static RegistryObject<WetMudBlock> WET_MUD_BLOCK = REGISTRY.registerBlock("wet_mud_block", REGISTRY.block(WetMudBlock::new, () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
   public static RegistryObject<WetMudBrick> WET_MUD_BRICK = REGISTRY.registerBlock("wet_mud_brick", REGISTRY.block(WetMudBrick::new, () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
 
   public static RegistryObject<Block> MUD_BLOCK = REGISTRY.registerBlock("mud_block", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f)), ModRegistries.SIG);
@@ -86,14 +137,14 @@ public class ModBlocks {
   public static RegistryObject<WidePostBlock> WEATHERED_STONE_WIDE_POST = REGISTRY.registerBlock("weathered_stone_wide_post", REGISTRY.widePost(WEATHERED_STONE), ModRegistries.SIG);
   public static RegistryObject<NarrowPostBlock> WEATHERED_STONE_SMALL_POST = REGISTRY.registerBlock("weathered_stone_small_post", REGISTRY.narrowPost(WEATHERED_STONE), ModRegistries.SIG);
 
-   public static RegistryObject<Block> SMOOTH_OBSIDIAN = REGISTRY.registerBlock("smooth_obsidian", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
+  public static RegistryObject<Block> SMOOTH_OBSIDIAN = REGISTRY.registerBlock("smooth_obsidian", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
   public static RegistryObject<StairsBlock> SMOOTH_OBSIDIAN_STAIRS = REGISTRY.registerBlock("smooth_obsidian_stairs", REGISTRY.stair(SMOOTH_OBSIDIAN), ModRegistries.SIG);
   public static RegistryObject<SlabBlock> SMOOTH_OBSIDIAN_SLAB = REGISTRY.registerBlock("smooth_obsidian_slab", REGISTRY.slab(SMOOTH_OBSIDIAN), ModRegistries.SIG);
   public static RegistryObject<WallBlock> SMOOTH_OBSIDIAN_WALL = REGISTRY.registerBlock("smooth_obsidian_wall", REGISTRY.wall(SMOOTH_OBSIDIAN), ModRegistries.SIG);
   public static RegistryObject<WidePostBlock> SMOOTH_OBSIDIAN_WIDE_POST = REGISTRY.registerBlock("smooth_obsidian_wide_post", REGISTRY.widePost(SMOOTH_OBSIDIAN), ModRegistries.SIG);
   public static RegistryObject<NarrowPostBlock> SMOOTH_OBSIDIAN_SMALL_POST = REGISTRY.registerBlock("smooth_obsidian_small_post", REGISTRY.narrowPost(SMOOTH_OBSIDIAN), ModRegistries.SIG);
 
-   public static RegistryObject<Block> WEATHERED_OBSIDIAN = REGISTRY.registerBlock("weathered_obsidian", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
+  public static RegistryObject<Block> WEATHERED_OBSIDIAN = REGISTRY.registerBlock("weathered_obsidian", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
   public static RegistryObject<StairsBlock> WEATHERED_OBSIDIAN_STAIRS = REGISTRY.registerBlock("weathered_obsidian_stairs", REGISTRY.stair(WEATHERED_OBSIDIAN), ModRegistries.SIG);
   public static RegistryObject<SlabBlock> WEATHERED_OBSIDIAN_SLAB = REGISTRY.registerBlock("weathered_obsidian_slab", REGISTRY.slab(WEATHERED_OBSIDIAN), ModRegistries.SIG);
   public static RegistryObject<WallBlock> WEATHERED_OBSIDIAN_WALL = REGISTRY.registerBlock("weathered_obsidian_wall", REGISTRY.wall(WEATHERED_OBSIDIAN), ModRegistries.SIG);
