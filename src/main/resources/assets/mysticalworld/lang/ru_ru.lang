@@ -239,3 +239,43 @@ mysticalworld.subtitles.entity.silkworm.death=Шелкопряд умирает
 mysticalworld.subtitles.entity.silkworm.hurt=Шелкопряд ранен
 mysticalworld.subtitles.entity.silkworm.step=Шелкопряд ползёт
 mysticalworld.subtitles.entity.silkworm.eat=Шелкопряд ест
+
+# Tags
+forge.biome.tags.hot.name=Горячий
+forge.biome.tags.cold.name=Холодный
+forge.biome.tags.sparse.name=Негустой
+forge.biome.tags.dense.name=Густой
+forge.biome.tags.wet.name=Влажный
+forge.biome.tags.dry.name=Сухой
+forge.biome.tags.savanna.name=Саванна
+forge.biome.tags.coniferous.name=Хвойный
+forge.biome.tags.jungle.name=Джунгли
+forge.biome.tags.spooky.name=Пугающий
+forge.biome.tags.dead.name=Мёртвый
+forge.biome.tags.lush.name=Буйный
+forge.biome.tags.nether.name=Нижний мир
+forge.biome.tags.end.name=Край
+forge.biome.tags.mushroom.name=Грибной
+forge.biome.tags.magical.name=Магический
+forge.biome.tags.rare.name=Редкий
+forge.biome.tags.ocean.name=Океан
+forge.biome.tags.river.name=Речка
+forge.biome.tags.water.name=Вода
+forge.biome.tags.mesa.name=Меза
+forge.biome.tags.forest.name=Лес
+forge.biome.tags.plains.name=Равнины
+forge.biome.tags.mountain.name=Горы
+forge.biome.tags.hills.name=Холмы
+forge.biome.tags.swamp.name=Болото
+forge.biome.tags.sandy.name=Песчаный
+forge.biome.tags.snowy.name=Снежный
+forge.biome.tags.wasteland.name=Пустошь
+forge.biome.tags.beach.name=Пляж
+forge.biome.tags.void.name=Пустота
+forge.biome.tags.end.name=Край
+forge.biome.tags.default.name=По умолчанию
+
+# Patchouli integration
+mysticalworld.patchouli.standard_group=Стандартные размеры группы.
+mysticalworld.patchouli.groups=Группы по %s-%s.
+mysticalworld.patchouli.biomes=Биомы с меткой: %s
