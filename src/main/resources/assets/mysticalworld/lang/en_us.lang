@@ -277,7 +277,6 @@ forge.biome.tags.snowy.name=Snowy
 forge.biome.tags.wasteland.name=Wasteland
 forge.biome.tags.beach.name=Beach
 forge.biome.tags.void.name=Void
-forge.biome.tags.end.name=The End
 forge.biome.tags.default.name=Default
 
 # Patchouli integration
