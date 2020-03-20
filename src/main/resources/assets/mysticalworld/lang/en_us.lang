@@ -167,7 +167,7 @@ tile.mud_brick_wall.name=Mud Brick Wall
 tile.mud_brick_button.name=Mud Brick Button
 tile.mud_brick_pressure_plate.name=Mud Brick Pressure Plate
 tile.mud_brick_fence.name=Mud Brick Fence
-tile.mud_brick_fence_gat.ename=Mud Brick Fence Gate
+tile.mud_brick_fence_gate.name=Mud Brick Fence Gate
 
 # Charred
 tile.charred_planks.name=Charred Planks
@@ -179,6 +179,9 @@ tile.charred_button.name=Charred Button
 tile.charred_pressure_plate.name=Charred Pressure Plate
 tile.charred_fence.name=Charred Fence
 tile.charred_fence_gate.name=Charred Fence Gate
+
+# Other Blocks
+tile.thatch.name=Thatch
 
 #Solar Infused
 tile.solar_infused_stone.name=Solar Infused Stone
