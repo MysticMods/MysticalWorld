@@ -31,12 +31,15 @@ public class LeafHandler {
   public static Set<Block> LEAF_BLOCKS = null;
   public static Set<Item> LEAF_ITEMS = null;
 
+  public static boolean isLeafBlock (Block block) {
+    return getLeafBlocks().contains(block);
+  }
+
   public static Set<Item> getLeafItems () {
     getLeafBlocks();
     return LEAF_ITEMS;
   }
 
-  @Nullable
   public static Set<Block> getLeafBlocks() {
     if (LEAF_BLOCKS == null) {
       LEAF_BLOCKS = new HashSet<>();
@@ -63,15 +66,10 @@ public class LeafHandler {
   public static void onBlockDrops(BlockEvent.HarvestDropsEvent event) {
     if (ConfigManager.silkworm.enabled && ConfigManager.silkworm.leafDrops && !event.getWorld().isRemote) {
       IBlockState state = event.getState();
-      if (getLeafBlocks().contains(state.getBlock())) {
+      if (isLeafBlock(state.getBlock())) {
         if (event.getWorld().rand.nextInt(ConfigManager.safeInt(ConfigManager.silkworm.leafDropChance)) == 0) {
           event.getDrops().add(new ItemStack(ModItems.silkworm_egg));
         }
-        /*if (event.getWorld().rand.nextInt(ConfigManager.silkworm.leafSpawnChance) == 0) {
-          BlockPos pos = event.getPos();
-          ItemSilkwormEgg.doSpawnCreature(event.getWorld(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-          event.getWorld().playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.ENTITY_CHICKEN_EGG, SoundCategory.NEUTRAL, 1f, 1.4f + (event.getWorld().rand.nextFloat() - 0.5f));
-        }*/
       }
     }
   }
