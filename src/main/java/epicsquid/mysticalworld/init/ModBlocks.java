@@ -1,9 +1,17 @@
 package epicsquid.mysticalworld.init;
 
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
+import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+import com.tterrag.registrate.util.nullness.NonNullFunction;
+import epicsquid.mysticallib.MysticalLib;
 import epicsquid.mysticallib.block.BaseOreBlock;
 import epicsquid.mysticallib.block.NarrowPostBlock;
 import epicsquid.mysticallib.block.WidePostBlock;
+import epicsquid.mysticallib.material.MaterialType;
+import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.blocks.AubergineCropBlock;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
@@ -13,20 +21,95 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.data.SingleItemRecipeBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
+import java.util.Objects;
+
+import static epicsquid.mysticalworld.MysticalWorld.RECIPES;
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
-import static epicsquid.mysticalworld.MysticalWorld.REGISTRY;
 
 @SuppressWarnings("unused")
 public class ModBlocks {
+
+  @SuppressWarnings("unchecked")
+  public static NonNullFunction<Block.Properties, BaseOreBlock> oreBlock(MaterialType material) {
+    return (o) -> new BaseOreBlock(o, material.getMinXP(), material.getMaxXP());
+  }
+
+  public static <T extends Item> ItemModelBuilder itemModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider p) {
+    return p.blockItem(ctx::getEntry);
+  }
+
+  public static <T extends Item> ItemModelBuilder inventoryModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider p) {
+    return p.blockWithInventoryModel(ctx::getEntry);
+  }
+
+  public static <T extends Block> void simpleBlockState(DataGenContext<Block, T> ctx, RegistrateBlockstateProvider p) {
+    p.simpleBlock(ctx.getEntry());
+  }
+
+  public static <T extends Block> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> simpleBlockState(ResourceLocation parent) {
+    return (ctx, p) -> p.simpleBlock(ctx.getEntry(), p.getExistingFile(parent));
+  }
+
+  public static <T extends Block> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> simpleBlockState(String parent) {
+    return simpleBlockState(new ResourceLocation(MysticalWorld.MODID, parent));
+  }
+
+  public static <T extends StairsBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> stairs(RegistryEntry<Block> parent) {
+    return (ctx, p) -> p.stairsBlock(ctx.getEntry(), p.blockTexture(parent.get()));
+  }
+
+  public static <T extends SlabBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> slab(RegistryEntry<Block> parent) {
+    return (ctx, p) -> p.slabBlock(ctx.getEntry(), p.blockTexture(parent.get()), p.blockTexture(parent.get()));
+  }
+
+  public static <T extends FenceBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> fence(RegistryEntry<Block> parent) {
+    return (ctx, p) -> {
+      p.fenceBlock(ctx.getEntry(), p.blockTexture(parent.get()));
+      p.fenceInventory(name(ctx.getEntry()), p.blockTexture(parent.get()));
+    };
+  }
+
+  public static <T extends WallBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> wall(RegistryEntry<Block> parent) {
+    return (ctx, p) -> {
+      p.wallBlock(ctx.getEntry(), p.blockTexture(parent.get()));
+      p.wallInventory(name(ctx.getEntry()), p.blockTexture(parent.get()));
+    };
+  }
+
+  public static <T extends FenceGateBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> gate(RegistryEntry<Block> parent) {
+    return (ctx, p) -> p.fenceGateBlock(ctx.getEntry(), p.blockTexture(parent.get()));
+  }
+
+  public static <T extends WidePostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> widePost(RegistryEntry<Block> parent) {
+    return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.getBuilder(name(ctx.getEntry())).parent(p.getExistingFile(new ResourceLocation(MysticalLib.MODID, "wide_post"))).texture("wall", p.blockTexture(parent.get()))));
+  }
+
+  public static <T extends NarrowPostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> narrowPost(RegistryEntry<Block> parent) {
+    return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.getBuilder(name(ctx.getEntry())).parent(p.getExistingFile(new ResourceLocation(MysticalLib.MODID, "narrow_post"))).texture("wall", p.blockTexture(parent.get()))));
+  }
+
+  private static <T extends IForgeRegistryEntry<?>> String name(T block) {
+    return Objects.requireNonNull(block.getRegistryName()).getPath();
+  }
+
   public static RegistryEntry<ThatchBlock> THATCH = REGISTRATE.block("thatch", ThatchBlock::new)
       .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
-      .item().model(MysticalWorld.NOOP()).build()
-      .blockstate(MysticalWorld.NOOP())
+      .item()
+      .model(NonNullBiConsumer.noop())
+      .build()
+      .blockstate(NonNullBiConsumer.noop())
       .recipe((ctx, p) ->
           ShapedRecipeBuilder.shapedRecipe(ModBlocks.THATCH.get(), 32)
               .patternLine("XY")
@@ -39,25 +122,20 @@ public class ModBlocks {
       )
       .register();
 
-  //public static RegistryObject<ThatchBlock> THATCH = REGISTRY.registerBlock("thatch", REGISTRY.block(ThatchBlock::new, () -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT)), ModRegistries.SIG);
-
   public static RegistryEntry<AubergineCropBlock> AUBERGINE_CROP = REGISTRATE.block("aubergine_crop", AubergineCropBlock::new)
       .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
-      .blockstate(MysticalWorld.NOOP())
+      .blockstate(NonNullBiConsumer.noop())
       .register();
 
-  //public static RegistryObject<AubergineCropBlock> AUBERGINE_CROP = REGISTRY.registerBlockWithoutItem("aubergine_crop", REGISTRY.block(AubergineCropBlock::new, () -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly()));
+  // MUD BLOCK
 
   public static RegistryEntry<WetMudBlock> WET_MUD_BLOCK = REGISTRATE.block("wet_mud_block", WetMudBlock::new)
       .properties((o) -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME))
       .item()
-      .model((ctx, p) ->
-          p.blockItem(ModBlocks.WET_MUD_BLOCK)
-      )
+      .model(ModBlocks::itemModel)
       .build()
-      .blockstate((ctx, p) ->
-          p.simpleBlock(ModBlocks.WET_MUD_BLOCK.get(), p.getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/wet_mud_block")))
-      ).recipe((ctx, p) ->
+      .blockstate(simpleBlockState("block/wet_mud_block"))
+      .recipe((ctx, p) ->
           ShapedRecipeBuilder.shapedRecipe(ModBlocks.WET_MUD_BLOCK.get(), 8)
               .patternLine("XXX")
               .patternLine("XWX")
@@ -69,138 +147,1093 @@ public class ModBlocks {
       )
       .register();
 
-  //public static RegistryObject<WetMudBlock> WET_MUD_BLOCK = REGISTRY.registerBlock("wet_mud_block", REGISTRY.block(WetMudBlock::new, () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
-  public static RegistryObject<WetMudBrick> WET_MUD_BRICK = REGISTRY.registerBlock("wet_mud_brick", REGISTRY.block(WetMudBrick::new, () -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME)), ModRegistries.SIG);
+  public static RegistryEntry<Block> MUD_BLOCK = REGISTRATE.block("mud_block", Block::new)
+      .properties(o -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f))
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) ->
+          RECIPES.smelting(ModBlocks.WET_MUD_BLOCK, ModBlocks.MUD_BLOCK, 0.15f, false, p)
+      )
+      .register();
 
-  public static RegistryObject<Block> MUD_BLOCK = REGISTRY.registerBlock("mud_block", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f)), ModRegistries.SIG);
-  public static RegistryObject<StairsBlock> MUD_BLOCK_STAIRS = REGISTRY.registerBlock("mud_block_stairs", REGISTRY.stair(MUD_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> MUD_BLOCK_SLAB = REGISTRY.registerBlock("mud_block_slab", REGISTRY.slab(MUD_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> MUD_BLOCK_WALL = REGISTRY.registerBlock("mud_block_wall", REGISTRY.wall(MUD_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<FenceBlock> MUD_BLOCK_FENCE = REGISTRY.registerBlock("mud_block_fence", REGISTRY.fence(MUD_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<FenceGateBlock> MUD_BLOCK_FENCE_GATE = REGISTRY.registerBlock("mud_block_fence_gate", REGISTRY.fenceGate(MUD_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> MUD_BLOCK_WIDE_POST = REGISTRY.registerBlock("mud_block_wide_post", REGISTRY.widePost(MUD_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> MUD_BLOCK_SMALL_POST = REGISTRY.registerBlock("mud_block_small_post", REGISTRY.narrowPost(MUD_BLOCK), ModRegistries.SIG);
+  public static RegistryEntry<StairsBlock> MUD_BLOCK_STAIRS = REGISTRATE.stairs("mud_block_stairs", MUD_BLOCK)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.MUD_BLOCK))
+      .register();
 
-  public static RegistryObject<LogBlock> CHARRED_LOG = REGISTRY.registerBlock("charred_log", REGISTRY.log(MaterialColor.WOOD, () -> Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0f)), ModRegistries.SIG);
-  public static RegistryObject<Block> CHARRED_PLANKS = REGISTRY.registerBlock("charred_planks", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0f, 3.0f)), ModRegistries.SIG);
-  public static RegistryObject<StairsBlock> CHARRED_STAIRS = REGISTRY.registerBlock("charred_stairs", REGISTRY.stair(CHARRED_PLANKS), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> CHARRED_SLAB = REGISTRY.registerBlock("charred_slab", REGISTRY.slab(CHARRED_PLANKS), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> CHARRED_WALL = REGISTRY.registerBlock("charred_wall", REGISTRY.wall(CHARRED_PLANKS), ModRegistries.SIG);
-  public static RegistryObject<FenceBlock> CHARRED_FENCE = REGISTRY.registerBlock("charred_fence", REGISTRY.fence(CHARRED_PLANKS), ModRegistries.SIG);
-  public static RegistryObject<FenceGateBlock> CHARRED_FENCE_GATE = REGISTRY.registerBlock("charred_fence_gate", REGISTRY.fenceGate(CHARRED_PLANKS), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> CHARRED_WIDE_POST = REGISTRY.registerBlock("charred_wide_post", REGISTRY.widePost(CHARRED_PLANKS), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> CHARRED_SMALL_POST = REGISTRY.registerBlock("charred_small_post", REGISTRY.narrowPost(CHARRED_PLANKS), ModRegistries.SIG);
+  public static RegistryEntry<SlabBlock> MUD_BLOCK_SLAB = REGISTRATE.slab("mud_block_slab", MUD_BLOCK)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.MUD_BLOCK))
+      .register();
 
-  public static RegistryObject<Block> MUD_BRICK = REGISTRY.registerBlock("mud_brick", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f)), ModRegistries.SIG);
-  public static RegistryObject<StairsBlock> MUD_BRICK_STAIRS = REGISTRY.registerBlock("mud_brick_stairs", REGISTRY.stair(MUD_BRICK), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> MUD_BRICK_SLAB = REGISTRY.registerBlock("mud_brick_slab", REGISTRY.slab(MUD_BRICK), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> MUD_BRICK_WALL = REGISTRY.registerBlock("mud_brick_wall", REGISTRY.wall(MUD_BRICK), ModRegistries.SIG);
-  public static RegistryObject<FenceBlock> MUD_BRICK_FENCE = REGISTRY.registerBlock("mud_brick_fence", REGISTRY.fence(MUD_BRICK), ModRegistries.SIG);
-  public static RegistryObject<FenceGateBlock> MUD_BRICK_FENCE_GATE = REGISTRY.registerBlock("mud_brick_fence_gate", REGISTRY.fenceGate(MUD_BRICK), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> MUD_BRICK_WIDE_POST = REGISTRY.registerBlock("mud_brick_wide_post", REGISTRY.widePost(MUD_BRICK), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> MUD_BRICK_SMALL_POST = REGISTRY.registerBlock("mud_brick_small_post", REGISTRY.narrowPost(MUD_BRICK), ModRegistries.SIG);
+  public static RegistryEntry<WallBlock> MUD_BLOCK_WALL = REGISTRATE.wall("mud_block_wall", MUD_BLOCK)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.MUD_BLOCK))
+      .register();
 
-  public static RegistryObject<Block> TERRACOTTA_BRICK = REGISTRY.registerBlock("terracotta_brick", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f)), ModRegistries.SIG);
-  public static RegistryObject<StairsBlock> TERRACOTTA_BRICK_STAIRS = REGISTRY.registerBlock("terracotta_brick_stairs", REGISTRY.stair(TERRACOTTA_BRICK), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> TERRACOTTA_BRICK_SLAB = REGISTRY.registerBlock("terracotta_brick_slab", REGISTRY.slab(TERRACOTTA_BRICK), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> TERRACOTTA_BRICK_WALL = REGISTRY.registerBlock("terracotta_brick_wall", REGISTRY.wall(TERRACOTTA_BRICK), ModRegistries.SIG);
-  public static RegistryObject<FenceBlock> TERRACOTTA_BRICK_FENCE = REGISTRY.registerBlock("terracotta_brick_fence", REGISTRY.fence(TERRACOTTA_BRICK), ModRegistries.SIG);
-  public static RegistryObject<FenceGateBlock> TERRACOTTA_BRICK_FENCE_GATE = REGISTRY.registerBlock("terracotta_brick_fence_gate", REGISTRY.fenceGate(TERRACOTTA_BRICK), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> TERRACOTTA_BRICK_WIDE_POST = REGISTRY.registerBlock("terracotta_brick_wide_post", REGISTRY.widePost(TERRACOTTA_BRICK), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> TERRACOTTA_BRICK_SMALL_POST = REGISTRY.registerBlock("terracotta_brick_small_post", REGISTRY.narrowPost(TERRACOTTA_BRICK), ModRegistries.SIG);
+  public static RegistryEntry<FenceBlock> MUD_BLOCK_FENCE = REGISTRATE.fence("mud_block_fence", MUD_BLOCK)
+      .item()
+      .tag(ItemTags.FENCES)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.FENCES)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_FENCE, true, p)
+      )
+      .blockstate(fence(ModBlocks.MUD_BLOCK))
+      .register();
 
-  public static RegistryObject<Block> IRON_BRICK = REGISTRY.registerBlock("iron_brick", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f)), ModRegistries.SIG);
-  public static RegistryObject<StairsBlock> IRON_BRICK_STAIRS = REGISTRY.registerBlock("iron_brick_stairs", REGISTRY.stair(IRON_BRICK), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> IRON_BRICK_SLAB = REGISTRY.registerBlock("iron_brick_slab", REGISTRY.slab(IRON_BRICK), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> IRON_BRICK_WALL = REGISTRY.registerBlock("iron_brick_wall", REGISTRY.wall(IRON_BRICK), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> IRON_BRICK_WIDE_POST = REGISTRY.registerBlock("iron_brick_wide_post", REGISTRY.widePost(IRON_BRICK), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> IRON_BRICK_SMALL_POST = REGISTRY.registerBlock("iron_brick_small_post", REGISTRY.narrowPost(IRON_BRICK), ModRegistries.SIG);
+  public static RegistryEntry<FenceGateBlock> MUD_BLOCK_FENCE_GATE = REGISTRATE.gate("mud_block_fence_gate", MUD_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.fenceGate(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_SLAB, null, p)
+      )
+      .blockstate(gate(ModBlocks.MUD_BLOCK))
+      .register();
 
-  public static RegistryObject<Block> SOFT_STONE = REGISTRY.registerBlock("soft_stone", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
-  public static RegistryObject<StairsBlock> SOFT_STONE_STAIRS = REGISTRY.registerBlock("soft_stone_stairs", REGISTRY.stair(SOFT_STONE), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> SOFT_STONE_SLAB = REGISTRY.registerBlock("soft_stone_slab", REGISTRY.slab(SOFT_STONE), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> SOFT_STONE_WALL = REGISTRY.registerBlock("soft_stone_wall", REGISTRY.wall(SOFT_STONE), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> SOFT_STONE_WIDE_POST = REGISTRY.registerBlock("soft_stone_wide_post", REGISTRY.widePost(SOFT_STONE), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> SOFT_STONE_SMALL_POST = REGISTRY.registerBlock("soft_stone_small_post", REGISTRY.narrowPost(SOFT_STONE), ModRegistries.SIG);
+  public static RegistryEntry<WidePostBlock> MUD_BLOCK_WIDE_POST = REGISTRATE.widePost("mud_block_wide_post", MUD_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.MUD_BLOCK))
+      .register();
 
-  public static RegistryObject<Block> CRACKED_STONE = REGISTRY.registerBlock("cracked_stone", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
-  public static RegistryObject<StairsBlock> CRACKED_STONE_STAIRS = REGISTRY.registerBlock("cracked_stone_stairs", REGISTRY.stair(CRACKED_STONE), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> CRACKED_STONE_SLAB = REGISTRY.registerBlock("cracked_stone_slab", REGISTRY.slab(CRACKED_STONE), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> CRACKED_STONE_WALL = REGISTRY.registerBlock("cracked_stone_wall", REGISTRY.wall(CRACKED_STONE), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> CRACKED_STONE_WIDE_POST = REGISTRY.registerBlock("cracked_stone_wide_post", REGISTRY.widePost(CRACKED_STONE), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> CRACKED_STONE_SMALL_POST = REGISTRY.registerBlock("cracked_stone_small_post", REGISTRY.narrowPost(CRACKED_STONE), ModRegistries.SIG);
+  public static RegistryEntry<NarrowPostBlock> MUD_BLOCK_SMALL_POST = REGISTRATE.narrowPost("mud_block_small_post", MUD_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.MUD_BLOCK))
+      .register();
 
-  public static RegistryObject<Block> WEATHERED_STONE = REGISTRY.registerBlock("weathered_stone", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
-  public static RegistryObject<StairsBlock> WEATHERED_STONE_STAIRS = REGISTRY.registerBlock("weathered_stone_stairs", REGISTRY.stair(WEATHERED_STONE), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> WEATHERED_STONE_SLAB = REGISTRY.registerBlock("weathered_stone_slab", REGISTRY.slab(WEATHERED_STONE), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> WEATHERED_STONE_WALL = REGISTRY.registerBlock("weathered_stone_wall", REGISTRY.wall(WEATHERED_STONE), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> WEATHERED_STONE_WIDE_POST = REGISTRY.registerBlock("weathered_stone_wide_post", REGISTRY.widePost(WEATHERED_STONE), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> WEATHERED_STONE_SMALL_POST = REGISTRY.registerBlock("weathered_stone_small_post", REGISTRY.narrowPost(WEATHERED_STONE), ModRegistries.SIG);
+  // MUD BRICK
 
-  public static RegistryObject<Block> SMOOTH_OBSIDIAN = REGISTRY.registerBlock("smooth_obsidian", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
-  public static RegistryObject<StairsBlock> SMOOTH_OBSIDIAN_STAIRS = REGISTRY.registerBlock("smooth_obsidian_stairs", REGISTRY.stair(SMOOTH_OBSIDIAN), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> SMOOTH_OBSIDIAN_SLAB = REGISTRY.registerBlock("smooth_obsidian_slab", REGISTRY.slab(SMOOTH_OBSIDIAN), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> SMOOTH_OBSIDIAN_WALL = REGISTRY.registerBlock("smooth_obsidian_wall", REGISTRY.wall(SMOOTH_OBSIDIAN), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> SMOOTH_OBSIDIAN_WIDE_POST = REGISTRY.registerBlock("smooth_obsidian_wide_post", REGISTRY.widePost(SMOOTH_OBSIDIAN), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> SMOOTH_OBSIDIAN_SMALL_POST = REGISTRY.registerBlock("smooth_obsidian_small_post", REGISTRY.narrowPost(SMOOTH_OBSIDIAN), ModRegistries.SIG);
+  public static RegistryEntry<WetMudBrick> WET_MUD_BRICK = REGISTRATE.block("wet_mud_brick", WetMudBrick::new)
+      .properties(o -> Block.Properties.create(Material.EARTH).sound(SoundType.SLIME))
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) ->
+          RECIPES.twoByTwo(ModBlocks.WET_MUD_BLOCK, ModBlocks.WET_MUD_BRICK, null, p)
+      )
+      .register();
 
-  public static RegistryObject<Block> WEATHERED_OBSIDIAN = REGISTRY.registerBlock("weathered_obsidian", REGISTRY.block(Block::new, () -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f)), ModRegistries.SIG);
-  public static RegistryObject<StairsBlock> WEATHERED_OBSIDIAN_STAIRS = REGISTRY.registerBlock("weathered_obsidian_stairs", REGISTRY.stair(WEATHERED_OBSIDIAN), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> WEATHERED_OBSIDIAN_SLAB = REGISTRY.registerBlock("weathered_obsidian_slab", REGISTRY.slab(WEATHERED_OBSIDIAN), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> WEATHERED_OBSIDIAN_WALL = REGISTRY.registerBlock("weathered_obsidian_wall", REGISTRY.wall(WEATHERED_OBSIDIAN), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> WEATHERED_OBSIDIAN_WIDE_POST = REGISTRY.registerBlock("weathered_obsidian_wide_post", REGISTRY.widePost(WEATHERED_OBSIDIAN), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> WEATHERED_OBSIDIAN_SMALL_POST = REGISTRY.registerBlock("weathered_obsidian_small_post", REGISTRY.narrowPost(WEATHERED_OBSIDIAN), ModRegistries.SIG);
+  public static RegistryEntry<Block> MUD_BRICK = REGISTRATE.block("mud_brick", Block::new)
+      .properties(o -> Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2f))
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) -> {
+        RECIPES.smelting(ModBlocks.WET_MUD_BRICK, ModBlocks.MUD_BRICK, 0.15f, false, p);
+        RECIPES.twoByTwo(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BRICK, null, p);
+        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(ModBlocks.MUD_BLOCK.get()), ModBlocks.MUD_BRICK.get())
+            .addCriterion("has_mud_block", p.hasItem(ModBlocks.MUD_BLOCK.get()))
+            .build(p, "mud_bricks_from_mud_blocks_stonecutting");
+      })
+      .register();
 
-  // Ore Blocks
-  public static RegistryObject<BaseOreBlock> AMETHYST_ORE = REGISTRY.registerBlock(ModMaterials.AMETHYST.oreName(), REGISTRY.ore(BaseOreBlock::new, ModMaterials.AMETHYST), ModRegistries.SMG);
-  public static RegistryObject<BaseOreBlock> COPPER_ORE = REGISTRY.registerBlock(ModMaterials.COPPER.oreName(), REGISTRY.ore(BaseOreBlock::new, ModMaterials.COPPER), ModRegistries.SMG);
-  public static RegistryObject<BaseOreBlock> LEAD_ORE = REGISTRY.registerBlock(ModMaterials.LEAD.oreName(), REGISTRY.ore(BaseOreBlock::new, ModMaterials.LEAD), ModRegistries.SMG);
-  public static RegistryObject<BaseOreBlock> QUICKSILVER_ORE = REGISTRY.registerBlock(ModMaterials.QUICKSILVER.oreName(), REGISTRY.ore(BaseOreBlock::new, ModMaterials.QUICKSILVER), ModRegistries.SMG);
-  public static RegistryObject<BaseOreBlock> SILVER_ORE = REGISTRY.registerBlock(ModMaterials.SILVER.oreName(), REGISTRY.ore(BaseOreBlock::new, ModMaterials.SILVER), ModRegistries.SMG);
-  public static RegistryObject<BaseOreBlock> TIN_ORE = REGISTRY.registerBlock(ModMaterials.TIN.oreName(), REGISTRY.ore(BaseOreBlock::new, ModMaterials.TIN), ModRegistries.SMG);
+  public static RegistryEntry<StairsBlock> MUD_BRICK_STAIRS = REGISTRATE.stairs("mud_brick_stairs", MUD_BRICK)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.MUD_BRICK))
+      .register();
 
-  // Blocks
-  public static RegistryObject<Block> AMETHYST_BLOCK = REGISTRY.registerBlock(ModMaterials.AMETHYST.blockName(), REGISTRY.block(Block::new, ModMaterials.AMETHYST.getBlockProps()), ModRegistries.SMG);
-  public static RegistryObject<StairsBlock> AMETHYST_STAIRS = REGISTRY.registerBlock("amethyst_stairs", REGISTRY.stair(AMETHYST_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> AMETHYST_SLAB = REGISTRY.registerBlock("amethyst_slab", REGISTRY.slab(AMETHYST_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> AMETHYST_WALL = REGISTRY.registerBlock("amethyst_wall", REGISTRY.wall(AMETHYST_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> AMETHYST_WIDE_POST = REGISTRY.registerBlock("amethyst_wide_post", REGISTRY.widePost(AMETHYST_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> AMETHYST_SMALL_POST = REGISTRY.registerBlock("amethyst_small_post", REGISTRY.narrowPost(AMETHYST_BLOCK), ModRegistries.SIG);
+  public static RegistryEntry<SlabBlock> MUD_BRICK_SLAB = REGISTRATE.slab("mud_brick_slab", MUD_BRICK)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.MUD_BRICK))
+      .register();
 
-  public static RegistryObject<Block> COPPER_BLOCK = REGISTRY.registerBlock(ModMaterials.COPPER.blockName(), REGISTRY.block(Block::new, ModMaterials.COPPER.getBlockProps()), ModRegistries.SMG);
-  public static RegistryObject<StairsBlock> COPPER_STAIRS = REGISTRY.registerBlock("copper_stairs", REGISTRY.stair(COPPER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> COPPER_SLAB = REGISTRY.registerBlock("copper_slab", REGISTRY.slab(COPPER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> COPPER_WALL = REGISTRY.registerBlock("copper_wall", REGISTRY.wall(COPPER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> COPPER_WIDE_POST = REGISTRY.registerBlock("copper_wide_post", REGISTRY.widePost(COPPER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> COPPER_SMALL_POST = REGISTRY.registerBlock("copper_small_post", REGISTRY.narrowPost(COPPER_BLOCK), ModRegistries.SIG);
+  public static RegistryEntry<WallBlock> MUD_BRICK_WALL = REGISTRATE.wall("mud_brick_wall", MUD_BRICK)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.MUD_BRICK))
+      .register();
 
-  public static RegistryObject<Block> LEAD_BLOCK = REGISTRY.registerBlock(ModMaterials.LEAD.blockName(), REGISTRY.block(Block::new, ModMaterials.LEAD.getBlockProps()), ModRegistries.SMG);
-  public static RegistryObject<StairsBlock> LEAD_STAIRS = REGISTRY.registerBlock("lead_stairs", REGISTRY.stair(LEAD_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> LEAD_SLAB = REGISTRY.registerBlock("lead_slab", REGISTRY.slab(LEAD_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> LEAD_WALL = REGISTRY.registerBlock("lead_wall", REGISTRY.wall(LEAD_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> LEAD_WIDE_POST = REGISTRY.registerBlock("lead_wide_post", REGISTRY.widePost(LEAD_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> LEAD_SMALL_POST = REGISTRY.registerBlock("lead_small_post", REGISTRY.narrowPost(LEAD_BLOCK), ModRegistries.SIG);
+  public static RegistryEntry<FenceBlock> MUD_BRICK_FENCE = REGISTRATE.fence("mud_brick_fence", MUD_BRICK)
+      .item()
+      .tag(ItemTags.FENCES)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.FENCES)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_FENCE, true, p)
+      )
+      .blockstate(fence(ModBlocks.MUD_BRICK))
+      .register();
 
-  public static RegistryObject<Block> QUICKSILVER_BLOCK = REGISTRY.registerBlock(ModMaterials.QUICKSILVER.blockName(), REGISTRY.block(Block::new, ModMaterials.QUICKSILVER.getBlockProps()), ModRegistries.SMG);
-  public static RegistryObject<StairsBlock> QUICKSILVER_STAIRS = REGISTRY.registerBlock("quicksilver_stairs", REGISTRY.stair(QUICKSILVER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> QUICKSILVER_SLAB = REGISTRY.registerBlock("quicksilver_slab", REGISTRY.slab(QUICKSILVER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> QUICKSILVER_WALL = REGISTRY.registerBlock("quicksilver_wall", REGISTRY.wall(QUICKSILVER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> QUICKSILVER_WIDE_POST = REGISTRY.registerBlock("quicksilver_wide_post", REGISTRY.widePost(QUICKSILVER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> QUICKSILVER_SMALL_POST = REGISTRY.registerBlock("quicksilver_small_post", REGISTRY.narrowPost(QUICKSILVER_BLOCK), ModRegistries.SIG);
+  public static RegistryEntry<FenceGateBlock> MUD_BRICK_FENCE_GATE = REGISTRATE.gate("mud_brick_fence_gate", MUD_BRICK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.fenceGate(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_SLAB, null, p)
+      )
+      .blockstate(gate(ModBlocks.MUD_BRICK))
+      .register();
 
-  public static RegistryObject<Block> SILVER_BLOCK = REGISTRY.registerBlock(ModMaterials.SILVER.blockName(), REGISTRY.block(Block::new, ModMaterials.SILVER.getBlockProps()), ModRegistries.SMG);
-  public static RegistryObject<StairsBlock> SILVER_STAIRS = REGISTRY.registerBlock("silver_stairs", REGISTRY.stair(SILVER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> SILVER_SLAB = REGISTRY.registerBlock("silver_slab", REGISTRY.slab(SILVER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> SILVER_WALL = REGISTRY.registerBlock("silver_wall", REGISTRY.wall(SILVER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> SILVER_WIDE_POST = REGISTRY.registerBlock("silver_wide_post", REGISTRY.widePost(SILVER_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> SILVER_SMALL_POST = REGISTRY.registerBlock("silver_small_post", REGISTRY.narrowPost(SILVER_BLOCK), ModRegistries.SIG);
+  public static RegistryEntry<WidePostBlock> MUD_BRICK_WIDE_POST = REGISTRATE.widePost("mud_brick_wide_post", MUD_BRICK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.MUD_BRICK))
+      .register();
 
-  public static RegistryObject<Block> TIN_BLOCK = REGISTRY.registerBlock(ModMaterials.TIN.blockName(), REGISTRY.block(Block::new, ModMaterials.TIN.getBlockProps()), ModRegistries.SMG);
-  public static RegistryObject<StairsBlock> TIN_STAIRS = REGISTRY.registerBlock("tin_stairs", REGISTRY.stair(TIN_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<SlabBlock> TIN_SLAB = REGISTRY.registerBlock("tin_slab", REGISTRY.slab(TIN_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WallBlock> TIN_WALL = REGISTRY.registerBlock("tin_wall", REGISTRY.wall(TIN_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<WidePostBlock> TIN_WIDE_POST = REGISTRY.registerBlock("tin_wide_post", REGISTRY.widePost(TIN_BLOCK), ModRegistries.SIG);
-  public static RegistryObject<NarrowPostBlock> TIN_SMALL_POST = REGISTRY.registerBlock("tin_small_post", REGISTRY.narrowPost(TIN_BLOCK), ModRegistries.SIG);
+  public static RegistryEntry<NarrowPostBlock> MUD_BRICK_SMALL_POST = REGISTRATE.narrowPost("mud_brick_small_post", MUD_BRICK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.MUD_BRICK))
+      .register();
+
+  // CHARRED STUFF
+
+  public static RegistryEntry<LogBlock> CHARRED_LOG = REGISTRATE.log("charred_log", MaterialColor.BROWN_TERRACOTTA)
+      .properties(o -> o.sound(SoundType.WOOD).hardnessAndResistance(2.0f))
+      .tag(BlockTags.LOGS)
+      .item()
+      .tag(ItemTags.LOGS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .register();
+
+  public static RegistryEntry<Block> CHARRED_PLANKS = REGISTRATE.block("charred_planks", Material.WOOD, Block::new)
+      .properties(o -> o.sound(SoundType.WOOD).hardnessAndResistance(2.0f, 3.0f))
+      .tag(BlockTags.PLANKS)
+      .item()
+      .tag(ItemTags.PLANKS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) -> RECIPES.planks(ModBlocks.CHARRED_LOG, ctx::getEntry, p))
+      .blockstate(ModBlocks::simpleBlockState)
+      .register();
+
+
+  public static RegistryEntry<StairsBlock> CHARRED_STAIRS = REGISTRATE.stairs("charred_stairs", CHARRED_PLANKS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.CHARRED_PLANKS))
+      .register();
+
+  public static RegistryEntry<SlabBlock> CHARRED_SLAB = REGISTRATE.slab("charred_slab", CHARRED_PLANKS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.CHARRED_PLANKS))
+      .register();
+
+  public static RegistryEntry<FenceBlock> CHARRED_FENCE = REGISTRATE.fence("charred_fence", CHARRED_PLANKS)
+      .item()
+      .tag(ItemTags.FENCES)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.FENCES)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_FENCE, true, p)
+      )
+      .blockstate(fence(ModBlocks.CHARRED_PLANKS))
+      .register();
+
+  public static RegistryEntry<FenceGateBlock> CHARRED_FENCE_GATE = REGISTRATE.gate("charred_fence_gate", CHARRED_PLANKS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.fenceGate(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SLAB, null, p)
+      )
+      .blockstate(gate(ModBlocks.CHARRED_PLANKS))
+      .register();
+
+  public static RegistryEntry<WallBlock> CHARRED_WALL = REGISTRATE.wall("charred_wall", CHARRED_PLANKS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.CHARRED_PLANKS))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> CHARRED_WIDE_POST = REGISTRATE.widePost("charred_wide_post", CHARRED_PLANKS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.CHARRED_PLANKS))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> CHARRED_SMALL_POST = REGISTRATE.narrowPost("charred_small_post", CHARRED_PLANKS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.CHARRED_PLANKS))
+      .register();
+
+  // TERRACOTTA BRICK
+
+  public static RegistryEntry<Block> TERRACOTTA_BRICK = REGISTRATE.block("terracotta_brick", Block::new)
+      .properties(o -> o.sound(SoundType.STONE).hardnessAndResistance(2f))
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) -> {
+        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.TERRACOTTA), ModBlocks.TERRACOTTA_BRICK.get())
+            .addCriterion("has_stone", p.hasItem(Items.TERRACOTTA))
+            .build(p, "terracotta_bricks_from_terracotta_stonecutting");
+        RECIPES.twoByTwo(() -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK, null, p);
+      })
+      .register();
+
+  public static RegistryEntry<StairsBlock> TERRACOTTA_BRICK_STAIRS = REGISTRATE.stairs("terracotta_brick_stairs", TERRACOTTA_BRICK)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.TERRACOTTA_BRICK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> TERRACOTTA_BRICK_SLAB = REGISTRATE.slab("terracotta_brick_slab", TERRACOTTA_BRICK)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.TERRACOTTA_BRICK))
+      .register();
+
+  public static RegistryEntry<WallBlock> TERRACOTTA_BRICK_WALL = REGISTRATE.wall("terracotta_brick_wall", TERRACOTTA_BRICK)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.TERRACOTTA_BRICK))
+      .register();
+
+  public static RegistryEntry<FenceBlock> TERRACOTTA_BRICK_FENCE = REGISTRATE.fence("terracotta_brick_fence", TERRACOTTA_BRICK)
+      .item()
+      .tag(ItemTags.FENCES)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.FENCES)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_FENCE, true, p)
+      )
+      .blockstate(fence(ModBlocks.TERRACOTTA_BRICK))
+      .register();
+
+  public static RegistryEntry<FenceGateBlock> TERRACOTTA_BRICK_FENCE_GATE = REGISTRATE.gate("terracotta_brick_fence_gate", TERRACOTTA_BRICK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.fenceGate(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_SLAB, null, p)
+      )
+      .blockstate(gate(ModBlocks.TERRACOTTA_BRICK))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> TERRACOTTA_BRICK_WIDE_POST = REGISTRATE.widePost("terracotta_brick_wide_post", TERRACOTTA_BRICK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.TERRACOTTA_BRICK))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> TERRACOTTA_BRICK_SMALL_POST = REGISTRATE.narrowPost("terracotta_brick_small_post", TERRACOTTA_BRICK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.TERRACOTTA_BRICK))
+      .register();
+
+  // IRON BRICK
+
+  public static RegistryEntry<Block> IRON_BRICK = REGISTRATE.block("iron_brick", Material.IRON, Block::new)
+      .properties(o -> o.sound(SoundType.METAL).hardnessAndResistance(3.2f))
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) -> {
+        RECIPES.twoByTwo(() -> Items.IRON_NUGGET, ModBlocks.IRON_BRICK, null, 1, p);
+      })
+      .register();
+
+  public static RegistryEntry<StairsBlock> IRON_BRICK_STAIRS = REGISTRATE.stairs("iron_brick_stairs", IRON_BRICK)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.IRON_BRICK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> IRON_BRICK_SLAB = REGISTRATE.slab("iron_brick_slab", IRON_BRICK)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.IRON_BRICK))
+      .register();
+
+  public static RegistryEntry<WallBlock> IRON_BRICK_WALL = REGISTRATE.wall("iron_brick_wall", IRON_BRICK)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.IRON_BRICK))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> IRON_BRICK_WIDE_POST = REGISTRATE.widePost("iron_brick_wide_post", IRON_BRICK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.IRON_BRICK))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> IRON_BRICK_SMALL_POST = REGISTRATE.narrowPost("iron_brick_small_post", IRON_BRICK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.IRON_BRICK))
+      .register();
+
+  // SOFT STONE
+
+  public static RegistryEntry<Block> SOFT_STONE = REGISTRATE.block("soft_stone", Block::new)
+      .properties(o -> o.sound(SoundType.STONE).hardnessAndResistance(1f))
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(Tags.Items.STONE)
+      .build()
+      .recipe((ctx, p) -> {
+        RECIPES.twoByTwo(() -> Items.SMOOTH_STONE, ModBlocks.SOFT_STONE, null, p);
+        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.SMOOTH_STONE), ModBlocks.SOFT_STONE.get())
+            .addCriterion("has_stone", p.hasItem(Items.SMOOTH_STONE))
+            .build(p, "soft_stone_from_smooth_stone_stonecutting");
+      })
+      .blockstate(ModBlocks::simpleBlockState)
+      .register();
+
+  public static RegistryEntry<StairsBlock> SOFT_STONE_STAIRS = REGISTRATE.stairs("soft_stone_stairs", SOFT_STONE)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.SOFT_STONE))
+      .register();
+
+  public static RegistryEntry<SlabBlock> SOFT_STONE_SLAB = REGISTRATE.slab("soft_stone_slab", SOFT_STONE)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.SOFT_STONE))
+      .register();
+
+  public static RegistryEntry<WallBlock> SOFT_STONE_WALL = REGISTRATE.wall("soft_stone_wall", SOFT_STONE)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.SOFT_STONE))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> SOFT_STONE_WIDE_POST = REGISTRATE.widePost("soft_stone_wide_post", SOFT_STONE)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.SOFT_STONE))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> SOFT_STONE_SMALL_POST = REGISTRATE.narrowPost("soft_stone_small_post", SOFT_STONE)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.SOFT_STONE))
+      .register();
+
+  // SMOOTH OBSIDIAN
+
+  public static RegistryEntry<Block> SMOOTH_OBSIDIAN = REGISTRATE.block("smooth_obsidian", Block::new)
+      .properties(o -> o.sound(SoundType.STONE).hardnessAndResistance(20f))
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) -> {
+        RECIPES.twoByTwo(() -> Items.OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN, null, p);
+        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.OBSIDIAN), ModBlocks.SMOOTH_OBSIDIAN.get())
+            .addCriterion("has_obsidian", p.hasItem(Items.OBSIDIAN))
+            .build(p, "smooth_obsidian_from_obsidian_stonecutting");
+      })
+      .register();
+
+  public static RegistryEntry<StairsBlock> SMOOTH_OBSIDIAN_STAIRS = REGISTRATE.stairs("smooth_obsidian_stairs", SMOOTH_OBSIDIAN)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.SMOOTH_OBSIDIAN))
+      .register();
+
+  public static RegistryEntry<SlabBlock> SMOOTH_OBSIDIAN_SLAB = REGISTRATE.slab("smooth_obsidian_slab", SMOOTH_OBSIDIAN)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.SMOOTH_OBSIDIAN))
+      .register();
+
+  public static RegistryEntry<WallBlock> SMOOTH_OBSIDIAN_WALL = REGISTRATE.wall("smooth_obsidian_wall", SMOOTH_OBSIDIAN)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.SMOOTH_OBSIDIAN))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> SMOOTH_OBSIDIAN_WIDE_POST = REGISTRATE.widePost("smooth_obsidian_wide_post", SMOOTH_OBSIDIAN)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.SMOOTH_OBSIDIAN))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> SMOOTH_OBSIDIAN_SMALL_POST = REGISTRATE.narrowPost("smooth_obsidian_small_post", SMOOTH_OBSIDIAN)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.SMOOTH_OBSIDIAN))
+      .register();
+
+  // AMETHYST
+  public static RegistryEntry<BaseOreBlock> AMETHYST_ORE = REGISTRATE.block(ModMaterials.AMETHYST.oreName(), oreBlock(ModMaterials.AMETHYST))
+      .properties(ModMaterials.AMETHYST.getOreBlockProperties())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.AMETHYST_ORE)
+      .build()
+      .tag(MWTags.Blocks.AMETHYST_ORE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .register();
+
+  public static RegistryEntry<Block> AMETHYST_BLOCK = REGISTRATE.block(ModMaterials.AMETHYST.blockName(), Block::new)
+      .properties(ModMaterials.AMETHYST.getBlockProps())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.AMETHYST_BLOCK)
+      .build()
+      .tag(MWTags.Blocks.AMETHYST_STORAGE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) ->
+          RECIPES.storage(MWTags.Items.AMETHYST_GEM, ModBlocks.AMETHYST_BLOCK, p)
+      )
+      .register();
+
+  public static RegistryEntry<StairsBlock> AMETHYST_STAIRS = REGISTRATE.stairs("amethyst_stairs", AMETHYST_BLOCK)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.AMETHYST_BLOCK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> AMETHYST_SLAB = REGISTRATE.slab("amethyst_slab", AMETHYST_BLOCK)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.AMETHYST_BLOCK))
+      .register();
+
+  public static RegistryEntry<WallBlock> AMETHYST_WALL = REGISTRATE.wall("amethyst_wall", AMETHYST_BLOCK)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.AMETHYST_BLOCK))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> AMETHYST_WIDE_POST = REGISTRATE.widePost("amethyst_wide_post", AMETHYST_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.AMETHYST_BLOCK))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> AMETHYST_SMALL_POST = REGISTRATE.narrowPost("amethyst_small_post", AMETHYST_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.AMETHYST_BLOCK))
+      .register();
+
+  // COPPER
+  public static RegistryEntry<BaseOreBlock> COPPER_ORE = REGISTRATE.block(ModMaterials.COPPER.oreName(), oreBlock(ModMaterials.COPPER))
+      .properties(ModMaterials.COPPER.getOreBlockProperties())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.COPPER_ORE)
+      .build()
+      .tag(MWTags.Blocks.COPPER_ORE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .register();
+
+  public static RegistryEntry<Block> COPPER_BLOCK = REGISTRATE.block(ModMaterials.COPPER.blockName(), Block::new)
+      .properties(ModMaterials.COPPER.getBlockProps())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.COPPER_BLOCK)
+      .build()
+      .tag(MWTags.Blocks.COPPER_STORAGE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) ->
+          RECIPES.storage(MWTags.Items.COPPER_INGOT, ModBlocks.COPPER_BLOCK, p)
+      )
+      .register();
+
+  public static RegistryEntry<StairsBlock> COPPER_STAIRS = REGISTRATE.stairs("copper_stairs", COPPER_BLOCK)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.COPPER_BLOCK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> COPPER_SLAB = REGISTRATE.slab("copper_slab", COPPER_BLOCK)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.COPPER_BLOCK))
+      .register();
+
+  public static RegistryEntry<WallBlock> COPPER_WALL = REGISTRATE.wall("copper_wall", COPPER_BLOCK)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.COPPER_BLOCK))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> COPPER_WIDE_POST = REGISTRATE.widePost("copper_wide_post", COPPER_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.COPPER_BLOCK))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> COPPER_SMALL_POST = REGISTRATE.narrowPost("copper_small_post", COPPER_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.COPPER_BLOCK))
+      .register();
+
+
+  // LEAD
+  public static RegistryEntry<BaseOreBlock> LEAD_ORE = REGISTRATE.block(ModMaterials.LEAD.oreName(), oreBlock(ModMaterials.LEAD))
+      .properties(ModMaterials.LEAD.getOreBlockProperties())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.LEAD_ORE)
+      .build()
+      .blockstate(ModBlocks::simpleBlockState)
+      .tag(MWTags.Blocks.LEAD_ORE)
+      .register();
+
+  public static RegistryEntry<Block> LEAD_BLOCK = REGISTRATE.block(ModMaterials.LEAD.blockName(), Block::new)
+      .properties(ModMaterials.LEAD.getBlockProps())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.LEAD_BLOCK)
+      .build()
+      .tag(MWTags.Blocks.LEAD_STORAGE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) ->
+          RECIPES.storage(MWTags.Items.LEAD_INGOT, ModBlocks.LEAD_BLOCK, p)
+      )
+      .register();
+
+  public static RegistryEntry<StairsBlock> LEAD_STAIRS = REGISTRATE.stairs("lead_stairs", LEAD_BLOCK)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.LEAD_BLOCK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> LEAD_SLAB = REGISTRATE.slab("lead_slab", LEAD_BLOCK)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.LEAD_BLOCK))
+      .register();
+
+  public static RegistryEntry<WallBlock> LEAD_WALL = REGISTRATE.wall("lead_wall", LEAD_BLOCK)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.LEAD_BLOCK))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> LEAD_WIDE_POST = REGISTRATE.widePost("lead_wide_post", LEAD_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.LEAD_BLOCK))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> LEAD_SMALL_POST = REGISTRATE.narrowPost("lead_small_post", LEAD_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.LEAD_BLOCK))
+      .register();
+
+
+  // QUICKSILVER
+  public static RegistryEntry<BaseOreBlock> QUICKSILVER_ORE = REGISTRATE.block(ModMaterials.QUICKSILVER.oreName(), oreBlock(ModMaterials.QUICKSILVER))
+      .properties(ModMaterials.QUICKSILVER.getOreBlockProperties())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.QUICKSILVER_ORE)
+      .build()
+      .tag(MWTags.Blocks.QUICKSILVER_ORE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .register();
+
+  public static RegistryEntry<Block> QUICKSILVER_BLOCK = REGISTRATE.block(ModMaterials.QUICKSILVER.blockName(), Block::new)
+      .properties(ModMaterials.QUICKSILVER.getBlockProps())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.QUICKSILVER_BLOCK)
+      .build()
+      .tag(MWTags.Blocks.QUICKSILVER_STORAGE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) ->
+          RECIPES.storage(MWTags.Items.QUICKSILVER_INGOT, ModBlocks.QUICKSILVER_BLOCK, p)
+      )
+      .register();
+
+  public static RegistryEntry<StairsBlock> QUICKSILVER_STAIRS = REGISTRATE.stairs("quicksilver_stairs", QUICKSILVER_BLOCK)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.QUICKSILVER_BLOCK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> QUICKSILVER_SLAB = REGISTRATE.slab("quicksilver_slab", QUICKSILVER_BLOCK)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.QUICKSILVER_BLOCK))
+      .register();
+
+  public static RegistryEntry<WallBlock> QUICKSILVER_WALL = REGISTRATE.wall("quicksilver_wall", QUICKSILVER_BLOCK)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.QUICKSILVER_BLOCK))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> QUICKSILVER_WIDE_POST = REGISTRATE.widePost("quicksilver_wide_post", QUICKSILVER_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.QUICKSILVER_BLOCK))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> QUICKSILVER_SMALL_POST = REGISTRATE.narrowPost("quicksilver_small_post", QUICKSILVER_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.QUICKSILVER_BLOCK))
+      .register();
+
+  // SILVER
+  public static RegistryEntry<BaseOreBlock> SILVER_ORE = REGISTRATE.block(ModMaterials.SILVER.oreName(), oreBlock(ModMaterials.SILVER))
+      .properties(ModMaterials.SILVER.getOreBlockProperties())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.SILVER_ORE)
+      .build()
+      .tag(MWTags.Blocks.SILVER_ORE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .register();
+
+  public static RegistryEntry<Block> SILVER_BLOCK = REGISTRATE.block(ModMaterials.SILVER.blockName(), Block::new)
+      .properties(ModMaterials.SILVER.getBlockProps())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.SILVER_BLOCK)
+      .build()
+      .tag(MWTags.Blocks.SILVER_STORAGE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) ->
+          RECIPES.storage(MWTags.Items.SILVER_INGOT, ModBlocks.SILVER_BLOCK, p)
+      )
+      .register();
+
+  public static RegistryEntry<StairsBlock> SILVER_STAIRS = REGISTRATE.stairs("silver_stairs", SILVER_BLOCK)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.SILVER_BLOCK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> SILVER_SLAB = REGISTRATE.slab("silver_slab", SILVER_BLOCK)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.SILVER_BLOCK))
+      .register();
+
+  public static RegistryEntry<WallBlock> SILVER_WALL = REGISTRATE.wall("silver_wall", SILVER_BLOCK)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.SILVER_BLOCK))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> SILVER_WIDE_POST = REGISTRATE.widePost("silver_wide_post", SILVER_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.SILVER_BLOCK))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> SILVER_SMALL_POST = REGISTRATE.narrowPost("silver_small_post", SILVER_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.SILVER_BLOCK))
+      .register();
+
+
+  // TIN
+  public static RegistryEntry<BaseOreBlock> TIN_ORE = REGISTRATE.block(ModMaterials.TIN.oreName(), oreBlock(ModMaterials.TIN))
+      .properties(ModMaterials.TIN.getOreBlockProperties())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.TIN_ORE)
+      .build()
+      .tag(MWTags.Blocks.TIN_ORE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .register();
+
+  public static RegistryEntry<Block> TIN_BLOCK = REGISTRATE.block(ModMaterials.TIN.blockName(), Block::new)
+      .properties(ModMaterials.TIN.getBlockProps())
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.TIN_BLOCK)
+      .build()
+      .tag(MWTags.Blocks.TIN_STORAGE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .recipe((ctx, p) ->
+          RECIPES.storage(MWTags.Items.TIN_INGOT, ModBlocks.TIN_BLOCK, p)
+      )
+      .register();
+
+  public static RegistryEntry<StairsBlock> TIN_STAIRS = REGISTRATE.stairs("tin_stairs", TIN_BLOCK)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.stairs(ModBlocks.TIN_BLOCK, ModBlocks.TIN_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.TIN_BLOCK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> TIN_SLAB = REGISTRATE.slab("tin_slab", TIN_BLOCK)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          RECIPES.slab(ModBlocks.TIN_BLOCK, ModBlocks.TIN_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.TIN_BLOCK))
+      .register();
+
+  public static RegistryEntry<WallBlock> TIN_WALL = REGISTRATE.wall("tin_wall", TIN_BLOCK)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          RECIPES.wall(ModBlocks.TIN_BLOCK, ModBlocks.TIN_SLAB, true, p)
+      )
+      .blockstate(wall(ModBlocks.TIN_BLOCK))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> TIN_WIDE_POST = REGISTRATE.widePost("tin_wide_post", TIN_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.TIN_BLOCK, ModBlocks.TIN_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.TIN_BLOCK))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> TIN_SMALL_POST = REGISTRATE.narrowPost("tin_small_post", TIN_BLOCK)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.TIN_BLOCK, ModBlocks.TIN_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.TIN_BLOCK))
+      .register();
+
 
   public static void load() {
   }

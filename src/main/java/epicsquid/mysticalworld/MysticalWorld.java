@@ -44,9 +44,6 @@ public class MysticalWorld {
 
   public static CustomRegistrate REGISTRATE;
   public static RecipeProvider RECIPES = new RecipeProvider(MODID);
-  public static <R extends IForgeRegistryEntry<R>, E extends R, V extends RegistrateProvider> NonNullBiConsumer<DataGenContext<R, E>, V> NOOP () {
-    return (ctx, p) -> {};
-  }
 
   public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
     @Override

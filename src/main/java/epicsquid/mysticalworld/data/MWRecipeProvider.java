@@ -30,74 +30,6 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     singleItem(ModItems.SILK_COCOON, ModItems.SILK_THREAD, 1, 3, consumer);
     singleItemUnfinished(ModItems.PELT, () -> Items.LEATHER, 1, 1).build(consumer, new ResourceLocation(MysticalWorld.MODID, "pelt_to_leather"));
 
-    smelting(ModBlocks.WET_MUD_BLOCK, ModBlocks.MUD_BLOCK, 0.15f, false, consumer);
-    smelting(ModBlocks.WET_MUD_BRICK, ModBlocks.MUD_BRICK, 0.15f, false, consumer);
-
-    twoByTwo(ModBlocks.WET_MUD_BLOCK, ModBlocks.WET_MUD_BRICK, null, consumer);
-    twoByTwo(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BRICK, null, consumer); // -> stonecutter?
-    twoByTwo(() -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK, null, consumer); // -> stonecutter?
-    twoByTwo(() -> Items.IRON_NUGGET, ModBlocks.IRON_BRICK, null, 1, consumer);
-    twoByTwo(() -> Items.SMOOTH_STONE, ModBlocks.SOFT_STONE, null, consumer);
-    twoByTwo(() -> Items.OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN, null, consumer);
-
-    SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.SMOOTH_STONE), ModBlocks.SOFT_STONE.get())
-          .addCriterion("has_stone", this.hasItem(Items.SMOOTH_STONE))
-          .build(consumer, "soft_stone_from_smooth_stone_stonecutting");
-
-    SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.TERRACOTTA), ModBlocks.TERRACOTTA_BRICK.get())
-          .addCriterion("has_stone", this.hasItem(Items.TERRACOTTA))
-          .build(consumer, "terracotta_bricks_from_terracotta_stonecutting");
-
-    SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(ModBlocks.MUD_BLOCK.get()), ModBlocks.MUD_BRICK.get())
-          .addCriterion("has_mud_block", this.hasItem(ModBlocks.MUD_BLOCK.get()))
-          .build(consumer, "mud_bricks_from_mud_blocks_stonecutting");
-
-    SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.OBSIDIAN), ModBlocks.SMOOTH_OBSIDIAN.get())
-          .addCriterion("has_obsidian", this.hasItem(Items.OBSIDIAN))
-          .build(consumer, "smooth_obsidian_from_obsidian_stonecutting");
-
-    smelting(ModBlocks.SOFT_STONE, ModBlocks.CRACKED_STONE, 0.15f, false, consumer);
-    smelting(ModBlocks.CRACKED_STONE, ModBlocks.WEATHERED_STONE, 0.15f, false, consumer);
-    smelting(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN, 0.15f, false, consumer);
-
-    planks(ModBlocks.CHARRED_LOG, ModBlocks.CHARRED_PLANKS, consumer);
-    stairs(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SLAB, "slabs", false, consumer);
-    fence(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_FENCE, "fence", consumer);
-    fenceGate(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_FENCE_GATE, "fence_gate", consumer);
-    wall(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_WALL, false, consumer);
-    widePost(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SMALL_POST, "narrow_post", false, consumer);
-
-    stairs(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_SLAB, "slabs", false, consumer);
-    fence(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_FENCE, "fence", consumer);
-    fenceGate(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_FENCE_GATE, "fence_gate", consumer);
-    wall(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_WALL, false, consumer);
-    widePost(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_SMALL_POST, "narrow_post", false, consumer);
-
-    stairs(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_SLAB, "slabs", false, consumer);
-    fence(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_FENCE, "fence", consumer);
-    fenceGate(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_FENCE_GATE, "fence_gate", consumer);
-    wall(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_WALL, false, consumer);
-    widePost(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_SMALL_POST, "narrow_post", false, consumer);
-
-    stairs(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_SLAB, "slabs", false, consumer);
-    fence(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_FENCE, "fence", consumer);
-    fenceGate(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_FENCE_GATE, "fence_gate", consumer);
-    wall(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_WALL, false, consumer);
-    widePost(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_SMALL_POST, "narrow_post", false, consumer);
-    stairs(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SLAB, "slabs", false, consumer);
-    wall(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_WALL, false, consumer);
-    widePost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SMALL_POST, "narrow_post", false, consumer);
-
     singleItemUnfinished(ModItems.YOUNG_PEARL, () -> Items.ENDER_PEARL, 9, 1).build(consumer, new ResourceLocation(MysticalWorld.MODID, "ender_pearl_from_unripe_pearls"));
 
     axe(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_AXE, "axe", consumer);
@@ -107,13 +39,6 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     axe(MWTags.Items.TIN_INGOT, ModItems.TIN_AXE, "axe", consumer);
     axe(MWTags.Items.LEAD_INGOT, ModItems.LEAD_AXE, "axe", consumer);
     axe(() -> Items.CACTUS, ModItems.CACTUS_AXE, "axe", consumer);
-
-    storage(MWTags.Items.AMETHYST_GEM, ModBlocks.AMETHYST_BLOCK, consumer);
-    storage(MWTags.Items.COPPER_INGOT, ModBlocks.COPPER_BLOCK, consumer);
-    storage(MWTags.Items.SILVER_INGOT, ModBlocks.SILVER_BLOCK, consumer);
-    storage(MWTags.Items.QUICKSILVER_INGOT, ModBlocks.QUICKSILVER_BLOCK, consumer);
-    storage(MWTags.Items.TIN_INGOT, ModBlocks.TIN_BLOCK, consumer);
-    storage(MWTags.Items.LEAD_INGOT, ModBlocks.LEAD_BLOCK, consumer);
 
     storage(MWTags.Items.COPPER_NUGGET, ModItems.COPPER_INGOT, consumer);
     storage(MWTags.Items.SILVER_NUGGET, ModItems.SILVER_INGOT, consumer);
@@ -231,72 +156,6 @@ public class MWRecipeProvider extends DeferredRecipeProvider {
     recycle(ModItems.IRON_KNIFE, () -> Items.IRON_NUGGET, 0.15f, MysticalWorld.MODID, consumer);
     recycle(ModItems.GOLD_SPEAR, () -> Items.GOLD_NUGGET, 0.15f, MysticalWorld.MODID, consumer);
     recycle(ModItems.IRON_SPEAR, () -> Items.IRON_NUGGET, 0.15f, MysticalWorld.MODID, consumer);
-
-    stairs(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_SLAB, "slabs", false, consumer);
-    wall(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_WALL, false, consumer);
-    widePost(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_SMALL_POST, "narrow_post", false, consumer);
-
-    stairs(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_SLAB, "slabs", false, consumer);
-    wall(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_WALL, false, consumer);
-    widePost(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_SMALL_POST, "narrow_post", false, consumer);
-
-    stairs(ModBlocks.TIN_BLOCK, ModBlocks.TIN_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.TIN_BLOCK, ModBlocks.TIN_SLAB, "slabs", false, consumer);
-    wall(ModBlocks.TIN_BLOCK, ModBlocks.TIN_WALL, false, consumer);
-    widePost(ModBlocks.TIN_BLOCK, ModBlocks.TIN_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.TIN_BLOCK, ModBlocks.TIN_SMALL_POST, "narrow_post", false, consumer);
-
-    stairs(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_SLAB, "slabs", false, consumer);
-    wall(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_WALL, false, consumer);
-    widePost(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_SMALL_POST, "narrow_post", false, consumer);
-
-    stairs(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_SLAB, "slabs", false, consumer);
-    wall(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_WALL, false, consumer);
-    widePost(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_SMALL_POST, "narrow_post", false, consumer);
-
-    stairs(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_STAIRS, "stairs", false, consumer);
-    slab(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SLAB, "slabs", false, consumer);
-    wall(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_WALL, false, consumer);
-    widePost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_WIDE_POST, "wide_post", false, consumer);
-    narrowPost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SMALL_POST, "narrow_post", false, consumer);
-
-    stairs(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_STAIRS, "stairs", true, consumer);
-    slab(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SLAB, "slabs", true, consumer);
-    wall(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_WALL, true, consumer);
-    widePost(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_WIDE_POST, "wide_post", true, consumer);
-    narrowPost(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SMALL_POST, "narrow_post", true, consumer);
-
-    stairs(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_STAIRS, "stairs", true, consumer);
-    slab(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_SLAB, "slabs", true, consumer);
-    wall(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_WALL, true, consumer);
-    widePost(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_WIDE_POST, "wide_post", true, consumer);
-    narrowPost(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_SMALL_POST, "narrow_post", true, consumer);
-
-    stairs(ModBlocks.WEATHERED_STONE, ModBlocks.WEATHERED_STONE_STAIRS, "stairs", true, consumer);
-    slab(ModBlocks.WEATHERED_STONE, ModBlocks.WEATHERED_STONE_SLAB, "slabs", true, consumer);
-    wall(ModBlocks.WEATHERED_STONE, ModBlocks.WEATHERED_STONE_WALL, true, consumer);
-    widePost(ModBlocks.WEATHERED_STONE, ModBlocks.WEATHERED_STONE_WIDE_POST, "wide_post", true, consumer);
-    narrowPost(ModBlocks.WEATHERED_STONE, ModBlocks.WEATHERED_STONE_SMALL_POST, "narrow_post", true, consumer);
-
-    stairs(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN_STAIRS, "stairs", true, consumer);
-    slab(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN_SLAB, "slabs", true, consumer);
-    wall(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN_WALL, true, consumer);
-    widePost(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN_WIDE_POST, "wide_post", true, consumer);
-    narrowPost(ModBlocks.WEATHERED_OBSIDIAN, ModBlocks.WEATHERED_OBSIDIAN_SMALL_POST, "narrow_post", true, consumer);
-
-    stairs(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_STAIRS, "stairs", true, consumer);
-    slab(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_SLAB, "slabs", true, consumer);
-    wall(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_WALL, true, consumer);
-    widePost(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_WIDE_POST, "wide_post", true, consumer);
-    narrowPost(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_SMALL_POST, "narrow_post", true, consumer);
 
     ShapelessRecipeBuilder.shapelessRecipe(ModItems.STUFFED_AUBERGINE.get(), 1).addIngredient(ModItems.COOKED_AUBERGINE.get()).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.COOKED_VEGETABLES).addCriterion("has_cooked_aubergine", this.hasItem(ModItems.COOKED_AUBERGINE.get())).build(consumer);
 
