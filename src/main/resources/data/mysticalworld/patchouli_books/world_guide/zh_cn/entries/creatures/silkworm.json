@@ -1,0 +1,26 @@
+{
+  "name": "蚕",
+  "icon": "mysticalworld:silk_cocoon",
+  "category": "creatures",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:silkworm_egg",
+      "text": "随着时间流逝，它们会慢慢长大并产出$(l:items/silk_cocoon)蚕茧$()。$(br2)它们不会在任何确定的群系生成，也不能繁殖，但是可以从蚕卵中孵化出来。蚕成熟后蚕茧会像鸡蛋一样掉落。"
+    },
+    {
+      "type": "entity",
+      "name": "蚕",
+      "entity": "mysticalworld:silkworm",
+      "scale": 1.5,
+      "offset": -0.3,
+      "text": "你可以把树叶扔在附近加快蚕的生长。"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:leaves",
+      "flag": "roots:silkworm_leaves",
+      "text": "蚕既不会自然生成也不能繁殖，但可以拿着卵右键进行孵化（有失败几率）。$(br2)破坏树叶有几率获得蚕卵，类似获得树苗。"
+    }
+  ]
+}

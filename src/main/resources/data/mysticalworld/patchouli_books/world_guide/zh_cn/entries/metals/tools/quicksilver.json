@@ -1,0 +1,24 @@
+{
+  "name": "水银工具",
+  "icon": "mysticalworld:quicksilver_axe",
+  "category": "metals_tools",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:quicksilver_ingot",
+      "text": "水银是一种非常罕见的金属，通常呈液态存在，但也能成型为可以制作工具的固体。$(br2)以此材料制作出的工具的挖掘等级与铁相当。它们不会因为使用而消耗耐久，而是会因为时间的流逝慢慢衰变丧失耐久。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:quicksilver_axe",
+      "recipe2": "mysticalworld:quicksilver_hoe",
+      "title": "Quicksilver Tools"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:quicksilver_shovel",
+      "recipe2": "mysticalworld:quicksilver_pickaxe",
+      "title": "Quicksilver Tools"
+    }
+  ]
+}

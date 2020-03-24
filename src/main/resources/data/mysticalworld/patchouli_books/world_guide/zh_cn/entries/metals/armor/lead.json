@@ -1,0 +1,22 @@
+{
+  "name": "铅盔甲",
+  "icon": "mysticalworld:lead_helmet",
+  "category": "metals_armor",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:lead_helmet",
+      "text": "笨重但是高防护，它不会妨碍你的活动，并且可以赋予您$(l:metals/modifiers/weighty)厚重$()效果，并防止别人推动您。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lead_helmet",
+      "recipe2": "mysticalworld:lead_chestplate"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lead_leggings",
+      "recipe2": "mysticalworld:lead_boots"
+    }
+  ]
+}
