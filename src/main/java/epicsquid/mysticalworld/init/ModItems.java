@@ -33,7 +33,7 @@ public class ModItems {
   public static RegistryObject<Item> VENISON = MysticalWorld.REGISTRY.registerItem("venison", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.VENISON)));
   public static RegistryObject<Item> COOKED_VENISON = MysticalWorld.REGISTRY.registerItem("cooked_venison", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_VENISON)));
 
-  public static RegistryObject<BlockNamedItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRY.registerItem("aubergine_seeds", MysticalWorld.REGISTRY.blockNamedItem(() -> ModBlocks.AUBERGINE_CROP, ModRegistries.SIG));
+  public static RegistryObject<BlockNamedItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRY.registerItem("aubergine_seeds", MysticalWorld.REGISTRY.blockNamedItem(ModBlocks.AUBERGINE_CROP, ModRegistries.SIG));
 
   public static RegistryObject<Item> COOKED_BEETROOT = MysticalWorld.REGISTRY.registerItem("cooked_beetroot", MysticalWorld.REGISTRY.item(Item::new, ModRegistries.foodProp(ModFoods.COOKED_BEETROOT)));
   public static RegistryObject<Item> SLICED_CARROT = MysticalWorld.REGISTRY.registerItem("sliced_carrot", MysticalWorld.REGISTRY.item(FastFoodItem::new, ModRegistries.foodProp(ModFoods.SLICED_CARROT)));
