@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.config;
 
+import com.tterrag.registrate.util.RegistryEntry;
 import epicsquid.mysticallib.block.BaseOreBlock;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -14,14 +15,14 @@ public class OreConfig {
   private int minY;
   private int maxY;
   private int size;
-  private Supplier<RegistryObject<BaseOreBlock>> ore;
+  private Supplier<RegistryEntry<BaseOreBlock>> ore;
 
   private ForgeConfigSpec.IntValue configChance;
   private ForgeConfigSpec.IntValue configMinY;
   private ForgeConfigSpec.IntValue configMaxY;
   private ForgeConfigSpec.IntValue configSize;
 
-  public OreConfig(String name, int chance, int minY, int maxY, int size, Supplier<RegistryObject<BaseOreBlock>> ore) {
+  public OreConfig(String name, int chance, int minY, int maxY, int size, Supplier<RegistryEntry<BaseOreBlock>> ore) {
     this.name = name;
     this.chance = chance;
     this.minY = minY;

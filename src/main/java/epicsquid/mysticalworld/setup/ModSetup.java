@@ -6,7 +6,6 @@ import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityStorage;
-import epicsquid.mysticalworld.client.data.MWBlockstateProvider;
 import epicsquid.mysticalworld.client.data.MWItemModelProvider;
 import epicsquid.mysticalworld.client.data.MWLangProvider;
 import epicsquid.mysticalworld.data.MWBlockTagsProvider;
@@ -88,7 +87,6 @@ public class ModSetup {
   public void gatherData(GatherDataEvent event) {
     DataGenerator gen = event.getGenerator();
     if (event.includeClient()) {
-      gen.addProvider(new MWBlockstateProvider(gen, event.getExistingFileHelper()));
       gen.addProvider(new MWItemModelProvider(gen, event.getExistingFileHelper()));
       gen.addProvider(new MWLangProvider(gen));
     }

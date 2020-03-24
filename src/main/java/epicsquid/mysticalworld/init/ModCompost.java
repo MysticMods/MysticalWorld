@@ -2,6 +2,8 @@ package epicsquid.mysticalworld.init;
 
 import net.minecraft.block.ComposterBlock;
 
+// TODO: Aubergine Seeds
+
 public class ModCompost {
   public static void init () {
     ComposterBlock.CHANCES.put(ModItems.AUBERGINE.get(), 0.65f);

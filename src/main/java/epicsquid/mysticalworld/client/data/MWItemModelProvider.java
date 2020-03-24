@@ -64,27 +64,6 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     blockItem(ModBlocks.SOFT_STONE_WIDE_POST);
     blockItem(ModBlocks.SOFT_STONE_SMALL_POST);
 
-    blockItem(ModBlocks.CRACKED_STONE);
-    blockItem(ModBlocks.CRACKED_STONE_STAIRS);
-    blockItem(ModBlocks.CRACKED_STONE_SLAB);
-    blockWithInventoryModel(ModBlocks.CRACKED_STONE_WALL);
-    blockItem(ModBlocks.CRACKED_STONE_WIDE_POST);
-    blockItem(ModBlocks.CRACKED_STONE_SMALL_POST);
-
-    blockItem(ModBlocks.WEATHERED_STONE);
-    blockItem(ModBlocks.WEATHERED_STONE_STAIRS);
-    blockItem(ModBlocks.WEATHERED_STONE_SLAB);
-    blockWithInventoryModel(ModBlocks.WEATHERED_STONE_WALL);
-    blockItem(ModBlocks.WEATHERED_STONE_WIDE_POST);
-    blockItem(ModBlocks.WEATHERED_STONE_SMALL_POST);
-
-    blockItem(ModBlocks.WEATHERED_OBSIDIAN);
-    blockItem(ModBlocks.WEATHERED_OBSIDIAN_STAIRS);
-    blockItem(ModBlocks.WEATHERED_OBSIDIAN_SLAB);
-    blockWithInventoryModel(ModBlocks.WEATHERED_OBSIDIAN_WALL);
-    blockItem(ModBlocks.WEATHERED_OBSIDIAN_WIDE_POST);
-    blockItem(ModBlocks.WEATHERED_OBSIDIAN_SMALL_POST);
-
     blockItem(ModBlocks.SMOOTH_OBSIDIAN);
     blockItem(ModBlocks.SMOOTH_OBSIDIAN_STAIRS);
     blockItem(ModBlocks.SMOOTH_OBSIDIAN_SLAB);
@@ -287,7 +266,7 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     handheld(ModItems.DANDELION_CORNFLOWER_SALAD);
     handheld(ModItems.STEWED_EGGPLANT);
 
-    spawnEgg(ModEntities.SPAWN_BEETLE);
+/*    spawnEgg(ModEntities.SPAWN_BEETLE);
     spawnEgg(ModEntities.SPAWN_DEER);
     spawnEgg(ModEntities.SPAWN_FROG);
     spawnEgg(ModEntities.SPAWN_SPROUT);
@@ -295,7 +274,7 @@ public class MWItemModelProvider extends DeferredItemModelProvider {
     spawnEgg(ModEntities.SPAWN_ENDERMINI);
     spawnEgg(ModEntities.SPAWN_LAVA_CAT);
     spawnEgg(ModEntities.SPAWN_SILKWORM);
-    spawnEgg(ModEntities.SPAWN_OWL);
+    spawnEgg(ModEntities.SPAWN_OWL);*/
 
     generated(ModItems.SILKWORM_EGG);
     generated(ModItems.SILK_THREAD);

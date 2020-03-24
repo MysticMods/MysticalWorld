@@ -5,6 +5,8 @@ import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
 
+// TODO: No Registrate conversion
+
 public class ModModifiers {
   public static final IAttribute BLESSED = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.blessed", 0D, 0D, 10D).setDescription("Causes undead attackers to be set on fire and take fire damage").setShouldWatch(true));
   public static final IAttribute SMITE = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.smite", 0D, 0D, 5D).setDescription("Deals additional damage to undead entities").setShouldWatch(true));

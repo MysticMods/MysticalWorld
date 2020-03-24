@@ -6,6 +6,8 @@ import net.minecraft.item.crafting.SpecialRecipeSerializer;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
+// TODO: Done
+
 public class ModRecipes {
   public static RegistryEntry<SpecialRecipeSerializer<KnifeRecipe>> KNIFE_SERIALIZER = REGISTRATE.recipeSerializer("knife_recipe", () -> new SpecialRecipeSerializer<>(KnifeRecipe::new)).register();
 

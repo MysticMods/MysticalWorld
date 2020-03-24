@@ -10,10 +10,10 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class NautilusHorn extends Item {
+public class NautilusHornBase extends Item {
   private int duration;
 
-  public NautilusHorn(Properties properties, int duration) {
+  public NautilusHornBase(Properties properties, int duration) {
     super(properties);
     this.duration = duration;
   }
@@ -33,5 +33,17 @@ public class NautilusHorn extends Item {
   @Override
   public boolean hasEffect(ItemStack stack) {
     return duration == 500;
+  }
+
+  public static class NautilusHorn extends NautilusHornBase {
+    public NautilusHorn(Properties properties) {
+      super(properties, 200);
+    }
+  }
+
+  public static class GlisteringHorn extends NautilusHornBase {
+    public GlisteringHorn(Properties properties) {
+      super(properties, 500);
+    }
   }
 }

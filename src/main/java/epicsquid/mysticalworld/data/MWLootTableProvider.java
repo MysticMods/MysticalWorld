@@ -172,33 +172,12 @@ public class MWLootTableProvider extends LootTableProvider {
       self(ModBlocks.SOFT_STONE_WIDE_POST);
       self(ModBlocks.SOFT_STONE_SMALL_POST);
 
-      self(ModBlocks.CRACKED_STONE);
-      self(ModBlocks.CRACKED_STONE_STAIRS);
-      self(ModBlocks.CRACKED_STONE_SLAB);
-      self(ModBlocks.CRACKED_STONE_WALL);
-      self(ModBlocks.CRACKED_STONE_WIDE_POST);
-      self(ModBlocks.CRACKED_STONE_SMALL_POST);
-
-      self(ModBlocks.WEATHERED_STONE);
-      self(ModBlocks.WEATHERED_STONE_STAIRS);
-      self(ModBlocks.WEATHERED_STONE_SLAB);
-      self(ModBlocks.WEATHERED_STONE_WALL);
-      self(ModBlocks.WEATHERED_STONE_WIDE_POST);
-      self(ModBlocks.WEATHERED_STONE_SMALL_POST);
-
       self(ModBlocks.SMOOTH_OBSIDIAN);
       self(ModBlocks.SMOOTH_OBSIDIAN_STAIRS);
       self(ModBlocks.SMOOTH_OBSIDIAN_SLAB);
       self(ModBlocks.SMOOTH_OBSIDIAN_WALL);
       self(ModBlocks.SMOOTH_OBSIDIAN_WIDE_POST);
       self(ModBlocks.SMOOTH_OBSIDIAN_SMALL_POST);
-
-      self(ModBlocks.WEATHERED_OBSIDIAN);
-      self(ModBlocks.WEATHERED_OBSIDIAN_STAIRS);
-      self(ModBlocks.WEATHERED_OBSIDIAN_SLAB);
-      self(ModBlocks.WEATHERED_OBSIDIAN_WALL);
-      self(ModBlocks.WEATHERED_OBSIDIAN_WIDE_POST);
-      self(ModBlocks.WEATHERED_OBSIDIAN_SMALL_POST);
 
       self(ModBlocks.THATCH);
 

@@ -119,27 +119,6 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addBlock(ModBlocks.SOFT_STONE_WIDE_POST);
     addBlock(ModBlocks.SOFT_STONE_SMALL_POST);
 
-    addBlock(ModBlocks.CRACKED_STONE);
-    addBlock(ModBlocks.CRACKED_STONE_STAIRS);
-    addBlock(ModBlocks.CRACKED_STONE_SLAB);
-    addBlock(ModBlocks.CRACKED_STONE_WALL);
-    addBlock(ModBlocks.CRACKED_STONE_WIDE_POST);
-    addBlock(ModBlocks.CRACKED_STONE_SMALL_POST);
-
-    addBlock(ModBlocks.WEATHERED_STONE);
-    addBlock(ModBlocks.WEATHERED_STONE_STAIRS);
-    addBlock(ModBlocks.WEATHERED_STONE_SLAB);
-    addBlock(ModBlocks.WEATHERED_STONE_WALL);
-    addBlock(ModBlocks.WEATHERED_STONE_WIDE_POST);
-    addBlock(ModBlocks.WEATHERED_STONE_SMALL_POST);
-
-    addBlock(ModBlocks.WEATHERED_OBSIDIAN);
-    addBlock(ModBlocks.WEATHERED_OBSIDIAN_STAIRS);
-    addBlock(ModBlocks.WEATHERED_OBSIDIAN_SLAB);
-    addBlock(ModBlocks.WEATHERED_OBSIDIAN_WALL);
-    addBlock(ModBlocks.WEATHERED_OBSIDIAN_WIDE_POST);
-    addBlock(ModBlocks.WEATHERED_OBSIDIAN_SMALL_POST);
-
     addBlock(ModBlocks.SMOOTH_OBSIDIAN);
     addBlock(ModBlocks.SMOOTH_OBSIDIAN_STAIRS);
     addBlock(ModBlocks.SMOOTH_OBSIDIAN_SLAB);
@@ -270,7 +249,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.GOLD_SPEAR);
     addItem(ModItems.IRON_SPEAR);
 
-    addItem(ModEntities.SPAWN_BEETLE);
+/*    addItem(ModEntities.SPAWN_BEETLE);
     addItem(ModEntities.SPAWN_DEER);
     addItem(ModEntities.SPAWN_FROG);
     addItem(ModEntities.SPAWN_SPROUT);
@@ -278,7 +257,7 @@ public class MWLangProvider extends DeferredLanguageProvider {
     addItem(ModEntities.SPAWN_ENDERMINI);
     addItem(ModEntities.SPAWN_LAVA_CAT);
     addItem(ModEntities.SPAWN_SILKWORM);
-    addItem(ModEntities.SPAWN_OWL);
+    addItem(ModEntities.SPAWN_OWL);*/
 
     addItem(ModItems.APPLE_CORDIAL);
     addItem(ModItems.CACTUS_SYRUP);

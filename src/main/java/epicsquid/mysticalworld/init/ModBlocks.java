@@ -38,6 +38,8 @@ import java.util.Objects;
 import static epicsquid.mysticalworld.MysticalWorld.RECIPES;
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
+// TODO: Registrate is DONE for this file
+
 @SuppressWarnings("unused")
 public class ModBlocks {
 

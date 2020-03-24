@@ -10,6 +10,8 @@ import net.minecraft.util.SoundEvents;
 
 import static epicsquid.mysticallib.material.MaterialType.Type;
 
+// TODO: No Registrate conversion
+
 public class ModMaterials {
   public static final String AMETHYST_NAME = "amethyst";
   public static final String COPPER_NAME = "copper";

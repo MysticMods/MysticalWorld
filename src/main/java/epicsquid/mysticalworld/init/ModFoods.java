@@ -5,6 +5,8 @@ import net.minecraft.item.Food;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
+// TODO: ? Convert to Registrate
+
 @SuppressWarnings("WeakerAccess")
 public class ModFoods {
   public static final Food VENISON = (new Food.Builder().hunger(3).meat().saturation(0.3f)).build();

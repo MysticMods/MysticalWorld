@@ -5,6 +5,8 @@ import net.minecraftforge.fml.RegistryObject;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRY;
 
+// TODO: Convert to Registrate
+
 public class ModSounds {
   public static final RegistryObject<SoundEvent> ENDERMINI_DEATH = REGISTRY.registerSoundEvent("mob.endermini.death");
   public static final RegistryObject<SoundEvent> ENDERMINI_HIT = REGISTRY.registerSoundEvent("mob.endermini.hit");
