@@ -1,16 +1,15 @@
 package epicsquid.mysticalworld.init;
 
+import com.tterrag.registrate.util.RegistryEntry;
 import epicsquid.mysticalworld.effects.SlowRegenerationEffect;
 import epicsquid.mysticalworld.effects.WakefulEffect;
-import net.minecraftforge.fml.RegistryObject;
 
-import static epicsquid.mysticalworld.MysticalWorld.REGISTRY;
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
 public class ModEffects {
-  public static final RegistryObject<WakefulEffect> WAKEFUL = REGISTRY.registerEffect("wakeful", WakefulEffect::new);
-  public static final RegistryObject<SlowRegenerationEffect> SLOW_REGEN = REGISTRY.registerEffect("slow_regeneration", SlowRegenerationEffect::new);
+  public static final RegistryEntry<WakefulEffect> WAKEFUL = REGISTRATE.effect("wakeful", WakefulEffect::new).register();
+  public static final RegistryEntry<SlowRegenerationEffect> SLOW_REGEN = REGISTRATE.effect("slow_regeneration", SlowRegenerationEffect::new).register();
 
-  public static void load () {
+  public static void load() {
   }
 }
