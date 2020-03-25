@@ -181,6 +181,17 @@ tile.charred_pressure_plate.name=Charred Pressure Plate
 tile.charred_fence.name=Charred Fence
 tile.charred_fence_gate.name=Charred Fence Gate
 
+# Pearl
+tile.pearl_block.name=Pearl Block
+tile.pearl_stairs.name=Pearl Stairs
+tile.pearl_slab.name=Pearl Slab
+tile.pearl_wall.name=Pearl Wall
+tile.pearl_button.name=Pearl Button
+tile.pearl_pressure_plate.name=Pearl Pressure Plate
+tile.pearl_fence.name=Pearl Fence
+tile.pearl_fence_gate.name=Pearl Fence Gate
+
+
 # Other Blocks
 tile.thatch.name=Thatch
 
