@@ -22,6 +22,7 @@ item.silk_cocoon.name=Silk Cocoon
 item.spindle.name=Spindle
 item.silkworm_egg.name=Silkworm Egg
 item.cooked_apple.name=Cooked Apple
+item.pearl.name=Lustrous Pearl
 
 # Ingots
 item.copper_ingot.name=Copper Ingot

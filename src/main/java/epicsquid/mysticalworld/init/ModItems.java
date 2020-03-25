@@ -40,7 +40,9 @@ public class ModItems {
 
   public static Item silk_cocoon, silk_thread, spindle, silkworm_egg;
 
-  public static Item seeds, cooked_seeds;
+  //public static Item seeds, cooked_seeds;
+
+  public static Item pearl;
 
 
   /**
@@ -94,13 +96,21 @@ public class ModItems {
     event.addItem(ink_bottle = new ItemBase("ink_bottle").setCreativeTab(MysticalWorld.tab).setContainerItem(Items.GLASS_BOTTLE));
     event.addItem(unripe_pearl = new ItemUnripePearl("unripe_pearl").setCreativeTab(MysticalWorld.tab));
 
-    event.addItem(seeds = new ItemBase("assorted_seeds").setCreativeTab(MysticalWorld.tab));
+    event.addItem(pearl = new ItemBase("pearl") {
+          @SuppressWarnings("deprecation")
+          @Override
+          public EnumRarity getRarity(ItemStack stack) {
+            return EnumRarity.UNCOMMON;
+          }
+        }.setCreativeTab(MysticalWorld.tab));
+
+/*    event.addItem(seeds = new ItemBase("assorted_seeds").setCreativeTab(MysticalWorld.tab));
     event.addItem(cooked_seeds = new ItemFoodBase("cooked_seeds", 1, 0.4f, false) {
       @Override
       public int getMaxItemUseDuration(ItemStack stack) {
         return 8;
       }
-    }.setCreativeTab(MysticalWorld.tab));
+    }.setCreativeTab(MysticalWorld.tab));*/
 
     if (!Loader.isModLoaded("roots") || !Knives.initKnives(event)) {
       event.addItem(amethyst_knife = new ItemKnifeBase("amethyst_knife", MaterialTypes.material("mysticalworld:amethyst")).setCreativeTab(MysticalWorld.tab));
@@ -133,6 +143,7 @@ public class ModItems {
    * Register item oredicts here
    */
   public static void registerOredict() {
+    OreDictionary.registerOre("gemPearl", pearl);
     OreDictionary.registerOre("dyeBlack", ink_bottle);
     OreDictionary.registerOre("logWood", ModBlocks.charred_log);
     OreDictionary.registerOre("plankWood", ModBlocks.charred_planks);

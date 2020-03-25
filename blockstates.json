@@ -150,6 +150,50 @@
     {
       "type": "block",
       "base": "silver_ore"
+    },
+    {
+      "type": "block",
+      "base": "pearl_block"
+    },
+    {
+      "type": "double_slab",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "slab",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "stairs",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "wall",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "fence",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "fence_gate",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "button",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "pressure_plate",
+      "base": "pearl",
+      "texture": "pearl_block"
     }
   ]
 }
