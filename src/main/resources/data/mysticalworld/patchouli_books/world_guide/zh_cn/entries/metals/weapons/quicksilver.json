@@ -1,0 +1,22 @@
+{
+  "name": "水银武器",
+  "icon": "mysticalworld:quicksilver_knife",
+  "category": "metals_weapons",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:quicksilver_ingot",
+      "text": "水银是一种挥发性金属，但在此间它却能以固体的方式神奇的存在着。水银制作的武器不会因为使用而损失耐久，但仍然会因为时间的流逝而慢慢衰败。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:quicksilver_knife",
+      "recipe2": "mysticalworld:quicksilver_spear",
+      "title": "Quicksilver Weapons"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:quicksilver_sword"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "蚕丝",
+  "icon": "mysticalworld:silk_thread",
+  "category": "items",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:silk_thread",
+      "link_recipe": true,
+      "text": "蚕丝可以通过处理$(l:items/silk_cocoon)蚕茧$()获得，根据加工的方法不同，蚕丝的产量也不同。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:spindle",
+      "recipe2": "mysticalworld:silk_thread_spindle",
+      "text": "用纺锤处理蚕茧可以获得最大产出，但这样会消耗一点纺锤的耐久。"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "银武器",
+  "icon": "mysticalworld:silver_knife",
+  "category": "metals_weapons",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:silver_ingot",
+      "text": "银是一种贵金属"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:silver_knife",
+      "recipe2": "mysticalworld:silver_spear",
+      "title": "Silver Weapons"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:silver_sword"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "铜工具",
+  "icon": "mysticalworld:copper_axe",
+  "category": "metals_tools",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:copper_ingot",
+      "text": "铜是一种常见的金属，它可以熔炼成锭并制成不错的工具。$(br2)这些工具的挖掘等级与铁相当。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:copper_axe",
+      "recipe2": "mysticalworld:copper_hoe",
+      "title": "Copper Tools"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:copper_shovel",
+      "recipe2": "mysticalworld:copper_pickaxe",
+      "title": "Copper Tools"
+    }
+  ]
+}

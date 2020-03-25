@@ -1,0 +1,25 @@
+{
+  "name": "茄子",
+  "icon": "mysticalworld:aubergine",
+  "category": "cuisine",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:cooked_aubergine",
+      "text": "茄子可以从$(l:blocks/aubergine)成熟的茄子作物$()中收获，它能以多种方式来使用。"
+    },
+    {
+      "type": "smelting",
+      "recipe": "mysticalworld:aubergine",
+      "title": "Cooked Aubergine",
+      "text": "烤熟并去籽后，茄子会变得更鲜美！"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:stuffed_aubergine",
+      "title": "酿茄子",
+      "text": "将烤茄子配上甜菜、胡萝卜和马铃薯，真是一道绝妙的素食佳肴！"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "鹿肉",
+  "icon": "mysticalworld:cooked_venison",
+  "category": "cuisine",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:venison",
+      "text": "鹿肉通过宰杀$(l:creatures/deer)鹿$()获得，它能制作出丰盛的鹿肉料理。"
+    },
+    {
+      "type": "smelting",
+      "recipe": "mysticalworld:venison",
+      "title": "烤鹿肉",
+      "text": "可以烤制生鹿肉获得，也可以从被火焰烧死的鹿身上取得。"
+    }
+  ]
+}

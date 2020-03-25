@@ -1,0 +1,11 @@
+{
+  "name": "快银",
+  "icon": "mysticalworld:quicksilver_chestplate",
+  "category": "metals_modifiers",
+  "pages": [
+    {
+      "type": "text",
+      "text": "由于其性质的不稳定性，水银制成的装甲将提高您在陆地和水中的行动速度。$(br2)每穿一件水银制作的盔甲，您的移动速度就会增加。"
+    }
+  ]
+}
