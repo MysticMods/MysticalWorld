@@ -191,6 +191,10 @@ tile.pearl_pressure_plate.name=Pearl Pressure Plate
 tile.pearl_fence.name=Pearl Fence
 tile.pearl_fence_gate.name=Pearl Fence Gate
 
+# Thatch
+tile.thatch_stairs.name=Thatch Stairs
+tile.thatch_slab.name=Thatch Slab
+tile.thatch_wall.name=Thatch Wall
 
 # Other Blocks
 tile.thatch.name=Thatch

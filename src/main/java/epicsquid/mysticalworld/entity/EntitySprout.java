@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.entity;
 
+import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityCreature;
@@ -7,6 +8,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -15,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class EntitySprout extends EntityAnimal {
@@ -34,7 +38,12 @@ public class EntitySprout extends EntityAnimal {
   @Nullable
   @Override
   public EntityAgeable createChild(EntityAgeable ageable) {
-    return null;
+    return new EntitySprout(ageable.world);
+  }
+
+  @Override
+  public boolean isBreedingItem(@Nonnull ItemStack stack) {
+    return stack.getItem() == ModItems.aubergine;
   }
 
   @Override
@@ -62,9 +71,13 @@ public class EntitySprout extends EntityAnimal {
   protected void initEntityAI() {
     this.tasks.addTask(0, new EntityAISwimming(this));
     this.tasks.addTask(1, new EntityAIPanic(this, 1.5D));
+    this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
+    this.tasks.addTask(3, new EntityAITempt(this, 1.25D, ModItems.aubergine, false));
     this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
     this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
     this.tasks.addTask(7, new EntityAILookIdle(this));
+    this.tasks.addTask(7, new EntityAIMate(this, 1.0D));
+
   }
 
   @Override

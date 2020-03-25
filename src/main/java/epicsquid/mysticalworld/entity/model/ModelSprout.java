@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.math.Vec3d;
 
 public class ModelSprout extends ModelBase {
@@ -53,6 +54,10 @@ public class ModelSprout extends ModelBase {
   @Override
   public void render(Entity entity, float f, float f1, float age, float f3, float f4, float f5) {
     GlStateManager.pushMatrix();
+    if (((EntityAnimal) entity).getGrowingAge() < 0) {
+      GlStateManager.scale(0.5, 0.5, 0.5);
+      GlStateManager.translate(0, 1.5, 0);
+    }
     float speed = (float) Math.min(0.25f, ((new Vec3d(entity.motionX, 0, entity.motionZ)).length() * 4.0f));
     super.render(entity, f, f1, age, f3, f4, f5);
     setRotationAngles(f, f1, age, f3, f4, f5);

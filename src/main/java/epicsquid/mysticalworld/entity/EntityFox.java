@@ -85,11 +85,6 @@ public class EntityFox extends EntityTameable {
   }
 
   @Override
-  public void setScaleForAge(boolean child) {
-    this.setScale(child ? 0.5f : 1.0f);
-  }
-
-  @Override
   protected void applyEntityAttributes() {
     super.applyEntityAttributes();
     if (this.isTamed()) {

@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
 public class ModBlocks {
 
   // All blocks
-  public static Block thatch;
+  public static Block thatch, thatch_wall, thatch_double_slab, thatch_slab, thatch_stairs;
   public static BlockCropBase aubergine;
   public static Block mud_block, wet_mud_block, mud_brick, wet_mud_brick, charred_log, charred_planks;
   public static Block mud_brick_stair, mud_brick_slab, mud_brick_double_slab, mud_brick_wall, mud_brick_fence, mud_brick_button, mud_brick_pressure_plate, mud_brick_fence_gate;
@@ -33,6 +33,14 @@ public class ModBlocks {
    */
   public static void registerBlocks(@Nonnull RegisterContentEvent event) {
     event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch").setCreativeTab(MysticalWorld.tab));
+
+    // Thatch
+    Block[] slabs = new Block[2];
+    LibRegistry.addSlabPair(Material.LEAVES, SoundType.PLANT, 1.7f, "thatch", thatch.getDefaultState(), slabs, MysticalWorld.tab);
+    event.addBlock(thatch_stairs = new BlockStairsBase(thatch.getDefaultState(), SoundType.PLANT, 1.7f, "thatch" + "_stairs")).setCreativeTab(MysticalWorld.tab);
+    event.addBlock(thatch_wall = new BlockWallBase(thatch, SoundType.PLANT, 1.7f, "thatch" + "_wall")).setCreativeTab(MysticalWorld.tab);
+    thatch_slab = slabs[0];
+    thatch_double_slab = slabs[1];
 
     event.addBlock(aubergine = new BlockAubergineCrop("aubergine_crop", EnumPlantType.Crop));
     /*    event.addBlock(poisoned_potato = new BlockPoisonedPotatoCrop("poisoned_potato_crop", EnumPlantType.Crop));*/
