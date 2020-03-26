@@ -1,0 +1,6 @@
+{
+  "name": "武器",
+  "parent": "metals",
+  "description": "与工具一样，每种由神秘金属构成的武器也拥有与众不同的特殊效果。",
+  "icon": "mysticalworld:amethyst_knife"
+}

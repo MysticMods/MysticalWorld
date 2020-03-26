@@ -1,0 +1,22 @@
+{
+  "name": "青蛙",
+  "icon": "minecraft:slime_ball",
+  "category": "creatures",
+  "pages": [
+    {
+      "type": "animal_spawn_info",
+      "animal": "frog",
+      "breed": "繁殖：使用棕色蘑菇。",
+      "tame": "驯服：不可驯服。",
+      "blurb": ""
+    },
+    {
+      "type": "entity",
+      "name": "青蛙",
+      "entity": "mysticalworld:frog",
+      "scale": 1.5,
+      "offset": -0.3,
+      "text": "青蛙在跳来跳去，它们会定期掉落粘液球！"
+    }
+  ]
+}

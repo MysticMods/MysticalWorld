@@ -1,0 +1,24 @@
+{
+  "name": "银工具",
+  "icon": "mysticalworld:silver_axe",
+  "category": "metals_tools",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:silver_ingot",
+      "text": "银是一种罕见的贵重金属，可用于制作各种工具。$(br2)除了与金相同的挖掘等级外，银工具还对亡灵生物有额外的伤害加成。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:silver_axe",
+      "recipe2": "mysticalworld:silver_hoe",
+      "title": "Silver Tools"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:silver_shovel",
+      "recipe2": "mysticalworld:silver_pickaxe",
+      "title": "Silver Tools"
+    }
+  ]
+}

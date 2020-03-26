@@ -1,0 +1,22 @@
+{
+  "name": "锡武器",
+  "icon": "mysticalworld:tin_knife",
+  "category": "metals_weapons",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:tin_ingot",
+      "text": "锡质武器轻巧而柔软。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:tin_knife",
+      "recipe2": "mysticalworld:tin_spear",
+      "title": "Tin Weapons"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:tin_sword"
+    }
+  ]
+}

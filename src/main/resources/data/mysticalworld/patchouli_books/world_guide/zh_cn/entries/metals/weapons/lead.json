@@ -1,0 +1,22 @@
+{
+  "name": "铅盔甲",
+  "icon": "mysticalworld:lead_knife",
+  "category": "metals_weapons",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:lead_ore",
+      "text": "铅是可以制造威力强大的武器的重金属。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lead_knife",
+      "recipe2": "mysticalworld:lead_spear",
+      "title": "Lead Weapons"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lead_sword"
+    }
+  ]
+}

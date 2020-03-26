@@ -1,0 +1,22 @@
+{
+  "name": "银盔甲",
+  "icon": "mysticalworld:silver_helmet",
+  "category": "metals_armor",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:silver_helmet",
+      "text": "银盔甲可以提供肉体和精神的双重防护，并能赐予您$(l:metals/modifiers/smiting_blessed)祝福()效果。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:silver_helmet",
+      "recipe2": "mysticalworld:silver_chestplate"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:silver_leggings",
+      "recipe2": "mysticalworld:silver_boots"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "紫水晶盔甲",
+  "icon": "mysticalworld:amethyst_helmet",
+  "category": "metals_armor",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:amethyst_helmet",
+      "text": "致密而华美，这种盔甲被许多人所珍视，紫水晶盔甲可以赋予您$(l:metals/modifiers/serendipity)惊喜$()效果"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:amethyst_helmet",
+      "recipe2": "mysticalworld:amethyst_chestplate"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:amethyst_leggings",
+      "recipe2": "mysticalworld:amethyst_boots"
+    }
+  ]
+}

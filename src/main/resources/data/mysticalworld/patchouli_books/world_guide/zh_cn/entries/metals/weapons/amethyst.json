@@ -1,0 +1,22 @@
+{
+  "name": "紫水晶武器",
+  "icon": "mysticalworld:amethyst_knife",
+  "category": "metals_weapons",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:amethyst",
+      "text": "紫水晶宝石可以制作成精致而又强大的武器，可以对大多数敌人造成巨大的伤害。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:amethyst_knife",
+      "recipe2": "mysticalworld:amethyst_spear",
+      "title": "Amethyst Weapons"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:amethyst_sword"
+    }
+  ]
+}

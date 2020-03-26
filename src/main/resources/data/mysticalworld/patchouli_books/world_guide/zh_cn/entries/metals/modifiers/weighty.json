@@ -1,0 +1,11 @@
+{
+  "name": "厚重",
+  "icon": "mysticalworld:lead_helmet",
+  "category": "metals_modifiers",
+  "pages": [
+    {
+      "type": "text",
+      "text": "铅是一种极其厚重的金属，它可以使得您很难被推动。$(br2)每穿一件铅质盔甲，您的击退抗性就会增加一些。"
+    }
+  ]
+}

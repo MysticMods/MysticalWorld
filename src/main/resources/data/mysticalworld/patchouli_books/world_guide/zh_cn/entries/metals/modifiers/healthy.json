@@ -1,0 +1,11 @@
+{
+  "name": "健壮",
+  "icon": "mysticalworld:copper_leggings",
+  "category": "metals_modifiers",
+  "pages": [
+    {
+      "type": "text",
+      "text": "每个部位的铜质盔甲都会增加您半颗心的血量上限。"
+    }
+  ]
+}
