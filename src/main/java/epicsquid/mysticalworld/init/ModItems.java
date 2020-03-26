@@ -37,7 +37,7 @@ public class ModItems {
 
   public static Item silk_cocoon, silk_thread, spindle, silkworm_egg;
 
-  //public static Item seeds, cooked_seeds;
+  public static Item seeds, cooked_seeds;
 
   public static Item pearl;
 
@@ -101,13 +101,13 @@ public class ModItems {
           }
         }.setCreativeTab(MysticalWorld.tab));
 
-/*    event.addItem(seeds = new ItemBase("assorted_seeds").setCreativeTab(MysticalWorld.tab));
+    event.addItem(seeds = new ItemBase("assorted_seeds").setCreativeTab(MysticalWorld.tab));
     event.addItem(cooked_seeds = new ItemFoodBase("cooked_seeds", 1, 0.4f, false) {
       @Override
       public int getMaxItemUseDuration(ItemStack stack) {
         return 8;
       }
-    }.setCreativeTab(MysticalWorld.tab));*/
+    }.setCreativeTab(MysticalWorld.tab));
 
     if (!Loader.isModLoaded("roots") || !Knives.initKnives(event)) {
       event.addItem(amethyst_knife = new ItemKnifeBase("amethyst_knife", MaterialTypes.material("mysticalworld:amethyst")).setCreativeTab(MysticalWorld.tab));
@@ -119,19 +119,11 @@ public class ModItems {
     event.addItem(aubergine = new ItemFoodBase("aubergine", 4, false).setCreativeTab(MysticalWorld.tab));
     event.addItem(cooked_aubergine = new ItemFoodBase("cooked_aubergine", 5, false).setCreativeTab(MysticalWorld.tab));
     event.addItem(stuffed_aubergine = new ItemFoodBase("stuffed_aubergine", 10, false).setCreativeTab(MysticalWorld.tab));
-    //event.addItem(cooked_apple = new ItemFoodBase("cooked_apple", 4, 0.3f, false).setCreativeTab(MysticalWorld.tab));
-/*    event.addItem(poisoned_potato = new ItemSeedFood(2, 0.3f, ModBlocks.poisoned_potato, Blocks.FARMLAND).setPotionEffect(new PotionEffect(MobEffects.POISON, 100, 0), 0.6F).setTranslationKey("potatoPoisonous").setRegistryName(new ResourceLocation("minecraft", "poisonous_potato")));*/
-
-/*    if (!MirrorHelper.setStaticFinalValue(Items.class, "field_151170_bI", poisoned_potato)) {
-      MysticalWorld.logger.error("Failed to override poisonous potato");
-    }*/
 
     event.addItem(silk_cocoon = new ItemBase("silk_cocoon").setCreativeTab(MysticalWorld.tab));
     event.addItem(silk_thread = new ItemBase("silk_thread").setCreativeTab(MysticalWorld.tab));
     event.addItem(spindle = new ItemBase("spindle").setCreativeTab(MysticalWorld.tab).setMaxStackSize(1).setMaxDamage(64));
     event.addItem(silkworm_egg = new ItemSilkwormEgg("silkworm_egg").setCreativeTab(MysticalWorld.tab));
-
-    //event.addItem(charm = new ItemCharm("charm").setCreativeTab(MysticalWorld.tab).setMaxStackSize(1));
 
     registerSeedDrops();
   }
