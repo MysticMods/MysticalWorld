@@ -1,6 +1,6 @@
 {
   "name": "Toasted Seeds",
-  "icon": "mysticalworld:toasted_seeds",
+  "icon": "mysticalworld:cooked_seeds",
   "category": "cuisine",
   "pages": [
     {
@@ -11,7 +11,7 @@
     },
     {
       "type": "smelting",
-      "recipe": "mysticalworld:cooked_seeds",
+      "recipe": "mysticalworld:assorted_seeds",
       "title": "Toasted Seeds",
       "text": "A simple and quick snack that allows you to use up excess amounts of seeds, they provide a burst of energy just when you need it!"
     }
