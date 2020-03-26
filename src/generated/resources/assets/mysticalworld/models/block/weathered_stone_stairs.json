@@ -1,8 +1,0 @@
-{
-  "parent": "block/stairs",
-  "textures": {
-    "side": "mysticalworld:block/weathered_stone",
-    "bottom": "mysticalworld:block/weathered_stone",
-    "top": "mysticalworld:block/weathered_stone"
-  }
-}

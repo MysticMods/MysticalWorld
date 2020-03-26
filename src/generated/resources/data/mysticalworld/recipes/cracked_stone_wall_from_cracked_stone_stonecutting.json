@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:cracked_stone"
-  },
-  "result": "mysticalworld:cracked_stone_wall",
-  "count": 1
-}

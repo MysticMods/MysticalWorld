@@ -1,6 +1,0 @@
-{
-  "parent": "mysticallib:block/narrow_post",
-  "textures": {
-    "wall": "mysticalworld:block/silver_block"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab_top",
-  "textures": {
-    "side": "mysticalworld:block/weathered_obsidian",
-    "bottom": "mysticalworld:block/weathered_obsidian",
-    "top": "mysticalworld:block/weathered_obsidian"
-  }
-}

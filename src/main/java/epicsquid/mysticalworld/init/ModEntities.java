@@ -1,75 +1,115 @@
 package epicsquid.mysticalworld.init;
 
+import com.tterrag.registrate.util.LazySpawnEggItem;
+import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+import com.tterrag.registrate.util.nullness.NonNullFunction;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Supplier;
+import java.util.function.Function;
+
+import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
 // TODO: Entities need to convert to Registrate
 
 @SuppressWarnings({"WeakerAccess", "ConstantConditions", "unchecked"})
 public class ModEntities {
-  private static final String BEETLE_ID = "beetle";
-  private static final String DEER_ID = "deer";
-  private static final String FROG_ID = "frog";
-  private static final String SILVER_FOX_ID = "silver_fox";
-  private static final String SPROUT_ID = "sprout";
-  private static final String ENDERMINI_ID = "endermini";
-  private static final String OWL_ID = "owl";
-  private static final String LAVA_CAT_ID = "lava_cat";
-  private static final String SILKWORM_ID = "silkworm";
+  private static <E extends Entity> NonNullFunction<Item.Properties, LazySpawnEggItem<E>> spawnEgg(RegistryEntry<EntityType<E>> entity, int color1, int color2) {
+    return properties -> new LazySpawnEggItem<>(entity, color1, color2, properties);
+  }
 
-  private static EntityType<BeetleEntity> BEETLE_TYPE = (EntityType<BeetleEntity>) EntityType.Builder.create(BeetleEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(BEETLE_ID).setRegistryName(MysticalWorld.MODID, BEETLE_ID);
-  private static EntityType<DeerEntity> DEER_TYPE = (EntityType<DeerEntity>) EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE).size(1.0f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(DEER_ID).setRegistryName(MysticalWorld.MODID, DEER_ID);
-  private static EntityType<FrogEntity> FROG_TYPE = (EntityType<FrogEntity>) EntityType.Builder.create(FrogEntity::new, EntityClassification.AMBIENT).size(0.5f, 0.5f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(FROG_ID).setRegistryName(MysticalWorld.MODID, FROG_ID);
-  private static EntityType<FoxEntity> SILVER_FOX_TYPE = (EntityType<FoxEntity>) EntityType.Builder.create(FoxEntity::new, EntityClassification.CREATURE).size(0.75f, 0.75f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(SILVER_FOX_ID).setRegistryName(MysticalWorld.MODID, SILVER_FOX_ID);
-  private static EntityType<SproutEntity> SPROUT_TYPE = (EntityType<SproutEntity>) EntityType.Builder.create(SproutEntity::new, EntityClassification.CREATURE).size(0.5f, 1.0f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(SPROUT_ID).setRegistryName(MysticalWorld.MODID, SPROUT_ID);
-  private static EntityType<EnderminiEntity> ENDERMINI_TYPE = (EntityType<EnderminiEntity>) EntityType.Builder.create(EnderminiEntity::new, EntityClassification.MONSTER).size(0.3f, 1.45f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(ENDERMINI_ID).setRegistryName(MysticalWorld.MODID, ENDERMINI_ID);
-  private static EntityType<LavaCatEntity> LAVA_CAT_TYPE = (EntityType<LavaCatEntity>) EntityType.Builder.create(LavaCatEntity::new, EntityClassification.CREATURE).size(0.75f, 0.875f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(LAVA_CAT_ID).setRegistryName(MysticalWorld.MODID, LAVA_CAT_ID);
-  private static EntityType<OwlEntity> OWL_TYPE = (EntityType<OwlEntity>) EntityType.Builder.create(OwlEntity::new, EntityClassification.CREATURE).size(0.5f, 0.9f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(OWL_ID).setRegistryName(MysticalWorld.MODID, OWL_ID);
-  private static EntityType<SilkwormEntity> SILKWORM_TYPE = (EntityType<SilkwormEntity>) EntityType.Builder.create(SilkwormEntity::new, EntityClassification.CREATURE).size(0.8f, 0.6f).setTrackingRange(64).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).build(SILKWORM_ID).setRegistryName(MysticalWorld.MODID, SILKWORM_ID);
+  public static RegistryEntry<EntityType<BeetleEntity>> BEETLE = REGISTRATE.entity("beetle", BeetleEntity::new, EntityClassification.CREATURE)
+      .properties(o -> o.size(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
 
-  public static Supplier<EntityType<BeetleEntity>> BEETLE = () -> BEETLE_TYPE;
-  public static Supplier<EntityType<DeerEntity>> DEER = () -> DEER_TYPE;
-  public static Supplier<EntityType<FrogEntity>> FROG = () -> FROG_TYPE;
-  public static Supplier<EntityType<FoxEntity>> SILVER_FOX = () -> SILVER_FOX_TYPE;
-  public static Supplier<EntityType<SproutEntity>> SPROUT = () -> SPROUT_TYPE;
-  public static Supplier<EntityType<EnderminiEntity>> ENDERMINI = () -> ENDERMINI_TYPE;
-  public static Supplier<EntityType<LavaCatEntity>> LAVA_CAT = () -> LAVA_CAT_TYPE;
-  public static Supplier<EntityType<OwlEntity>> OWL = () -> OWL_TYPE;
-  public static Supplier<EntityType<SilkwormEntity>> SILKWORM = () -> SILKWORM_TYPE;
+  public static RegistryEntry<EntityType<DeerEntity>> DEER = REGISTRATE.entity("deer", DeerEntity::new, EntityClassification.CREATURE)
+      .properties(o -> o.size(1.0f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
 
-/*  public static RegistryObject<SpawnEggItem> SPAWN_BEETLE = MysticalWorld.REGISTRY.registerItem(BEETLE_ID + "_spawn_egg", () -> new SpawnEggItem(BEETLE_TYPE, 0x418594, 0x211D15, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_DEER = MysticalWorld.REGISTRY.registerItem(DEER_ID + "_spawn_egg", () -> new SpawnEggItem(DEER_TYPE, 0xa18458, 0x5e4d33, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_FROG = MysticalWorld.REGISTRY.registerItem(FROG_ID + "_spawn_egg", () -> new SpawnEggItem(FROG_TYPE, 0x285234, 0xDBE697, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_SPROUT = MysticalWorld.REGISTRY.registerItem(SPROUT_ID + "_spawn_egg", () -> new SpawnEggItem(SPROUT_TYPE, 0xe8f442, 0xd11f5a, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_SILVER_FOX = MysticalWorld.REGISTRY.registerItem(SILVER_FOX_ID + "_spawn_egg", () -> new SpawnEggItem(SILVER_FOX_TYPE, 0x9e9088, 0xF5E0D3, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_ENDERMINI = MysticalWorld.REGISTRY.registerItem(ENDERMINI_ID + "_spawn_egg", () -> new SpawnEggItem(ENDERMINI_TYPE, 0xa11e78, 0x650cbe, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_LAVA_CAT = MysticalWorld.REGISTRY.registerItem(LAVA_CAT_ID + "_spawn_egg", () -> new SpawnEggItem(LAVA_CAT_TYPE, 0xde3535, 0xe89613, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_OWL = MysticalWorld.REGISTRY.registerItem(OWL_ID + "_spawn_egg", () -> new SpawnEggItem(OWL_TYPE, 0x8c654a, 0xdec9ba, ModRegistries.SIG.get()));
-  public static RegistryObject<SpawnEggItem> SPAWN_SILKWORM = MysticalWorld.REGISTRY.registerItem(SILKWORM_ID + "_spawn_egg", () -> new SpawnEggItem(SILKWORM_TYPE, 0xd1cecd, 0x635e5b, ModRegistries.SIG.get()));*/
+  public static RegistryEntry<EntityType<FrogEntity>> FROG = REGISTRATE.entity("frog", FrogEntity::new, EntityClassification.AMBIENT)
+      .properties(o -> o.size(0.5f, 0.5f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
+  public static RegistryEntry<EntityType<SilverFoxEntity>> SILVER_FOX = REGISTRATE.entity("silver_fox", SilverFoxEntity::new, EntityClassification.CREATURE)
+      .properties(o -> o.size(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
+  public static RegistryEntry<EntityType<SproutEntity>> SPROUT = REGISTRATE.entity("sprout", SproutEntity::new, EntityClassification.CREATURE)
+      .properties(o -> o.size(0.5f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
+  public static RegistryEntry<EntityType<EnderminiEntity>> ENDERMINI = REGISTRATE.entity("endermini", EnderminiEntity::new, EntityClassification.MONSTER)
+      .properties(o -> o.size(0.3f, 1.45f).setTrackingRange(32).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
+  public static RegistryEntry<EntityType<LavaCatEntity>> LAVA_CAT = REGISTRATE.entity("lava_cat", LavaCatEntity::new, EntityClassification.CREATURE)
+      .properties(o -> o.size(0.75f, 0.875f).setTrackingRange(34).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
+  public static RegistryEntry<EntityType<OwlEntity>> OWL = REGISTRATE.entity("owl", OwlEntity::new, EntityClassification.CREATURE)
+      .properties(o -> o.size(0.5f, 0.9f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
+  public static RegistryEntry<EntityType<SilkwormEntity>> SILKWORM = REGISTRATE.entity("silkworm", SilkwormEntity::new, EntityClassification.CREATURE)
+      .properties(o -> o.size(0.8f, 0.6f).setTrackingRange(5).setShouldReceiveVelocityUpdates(false).setUpdateInterval(20))
+      .register();
+
+  public static RegistryEntry<LazySpawnEggItem<BeetleEntity>> SPAWN_BEETLE = REGISTRATE.item("beetle_spawn_egg", spawnEgg(BEETLE, 0x418594, 0x211D15))
+      .model((ctx, p) -> p.withExistingParent(p.name(ModEntities.SPAWN_BEETLE), "item/template_spawn_egg"))
+      .register();
+
+  public static RegistryEntry<LazySpawnEggItem<DeerEntity>> SPAWN_DEER = REGISTRATE.item("deer_spawn_egg", spawnEgg(DEER, 0xa18458, 0x5e4d33))
+      .model((ctx, p) -> p.withExistingParent(p.name(ModEntities.SPAWN_DEER), "item/template_spawn_egg"))
+      .register();
+
+  public static RegistryEntry<LazySpawnEggItem<FrogEntity>> SPAWN_FROG = REGISTRATE.item("frog_spawn_egg", spawnEgg(FROG, 0x285234, 0xDBE697))
+      .model((ctx, p) -> p.withExistingParent(p.name(ModEntities.SPAWN_FROG), "item/template_spawn_egg"))
+      .register();
+
+  public static RegistryEntry<LazySpawnEggItem<SproutEntity>> SPAWN_SPROUT = REGISTRATE.item("sprout_spawn_egg", spawnEgg(SPROUT, 0xe8f442, 0xd11f5a))
+      .model((ctx, p) -> p.withExistingParent(p.name(ModEntities.SPAWN_SPROUT), "item/template_spawn_egg"))
+      .register();
+
+  public static RegistryEntry<LazySpawnEggItem<SilverFoxEntity>> SPAWN_SILVER_FOX = REGISTRATE.item("silver_fox_spawn_egg", spawnEgg(SILVER_FOX, 0x9e9088, 0xF5E0D3))
+      .model((ctx, p) -> p.withExistingParent(p.name(ModEntities.SPAWN_SILVER_FOX), "item/template_spawn_egg"))
+      .register();
+
+  public static RegistryEntry<LazySpawnEggItem<EnderminiEntity>> SPAWN_ENDERMINI = REGISTRATE.item("endermini_spawn_egg", spawnEgg(ENDERMINI, 0xa11e78, 0x650cbe))
+      .model((ctx, p) -> p.withExistingParent(p.name(ModEntities.SPAWN_ENDERMINI), "item/template_spawn_egg"))
+      .register();
+
+  public static RegistryEntry<LazySpawnEggItem<LavaCatEntity>> SPAWN_LAVA_CAT = REGISTRATE.item("lava_cat_spawn_egg", spawnEgg(LAVA_CAT, 0xde3535, 0xe89613))
+      .model((ctx, p) -> p.withExistingParent(p.name(ModEntities.SPAWN_LAVA_CAT), "item/template_spawn_egg"))
+      .register();
+
+  public static RegistryEntry<LazySpawnEggItem<OwlEntity>> SPAWN_OWL = REGISTRATE.item("owl_spawn_egg", spawnEgg(OWL, 0x8c654a, 0xdec9ba))
+      .model((ctx, p) -> p.withExistingParent(p.name(ModEntities.SPAWN_OWL), "item/template_spawn_egg"))
+      .register();
+
+  public static RegistryEntry<LazySpawnEggItem<SilkwormEntity>> SPAWN_SILKWORM = REGISTRATE.item("silkworm_spawn_egg", spawnEgg(SILKWORM, 0xd1cecd, 0x635e5b))
+      .model((ctx, p) -> p.withExistingParent(p.name(ModEntities.SPAWN_SILKWORM), "item/template_spawn_egg"))
+      .register();
 
   public static void load() {
   }
 
   public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
-    IForgeRegistry<EntityType<?>> registry = event.getRegistry();
-    registry.registerAll(BEETLE_TYPE, DEER_TYPE, FROG_TYPE, SILVER_FOX_TYPE, SPROUT_TYPE, ENDERMINI_TYPE, OWL_TYPE, LAVA_CAT_TYPE, SILKWORM_TYPE);
-
     Set<Biome> biomes = new HashSet<>();
 
     if (ConfigManager.DEER_CONFIG.shouldRegister()) {
@@ -171,6 +211,6 @@ public class ModEntities {
     EntitySpawnPlacementRegistry.register(BEETLE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
         AnimalEntity::func_223316_b);
     EntitySpawnPlacementRegistry.register(OWL.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING, OwlEntity::placement);
-    EntitySpawnPlacementRegistry.register(LAVA_CAT.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING, LavaCatEntity::placement);
+    EntitySpawnPlacementRegistry.register(LAVA_CAT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LavaCatEntity::placement);
   }
 }

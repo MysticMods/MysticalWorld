@@ -2,7 +2,7 @@ package epicsquid.mysticalworld.entity.render;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.FoxEntity;
+import epicsquid.mysticalworld.entity.SilverFoxEntity;
 import epicsquid.mysticalworld.entity.model.FoxModel;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -12,13 +12,13 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
-public class FoxRenderer extends MobRenderer<FoxEntity, FoxModel> {
+public class FoxRenderer extends MobRenderer<SilverFoxEntity, FoxModel> {
 
   private FoxRenderer(@Nonnull EntityRendererManager renderManager, @Nonnull FoxModel m, float f) {
     super(renderManager, m, f);
   }
 
-  public static class Factory implements IRenderFactory<FoxEntity> {
+  public static class Factory implements IRenderFactory<SilverFoxEntity> {
 
     @Override
     @Nonnull
@@ -28,7 +28,7 @@ public class FoxRenderer extends MobRenderer<FoxEntity, FoxModel> {
   }
 
   @Override
-  public void renderModel(@Nonnull FoxEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch,
+  public void renderModel(@Nonnull SilverFoxEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch,
                           float scaleFactor) {
     GlStateManager.pushMatrix();
     if ((entity).getGrowingAge() < 0) {
@@ -42,7 +42,7 @@ public class FoxRenderer extends MobRenderer<FoxEntity, FoxModel> {
 
   @Override
   @Nonnull
-  protected ResourceLocation getEntityTexture(@Nonnull FoxEntity entity) {
+  protected ResourceLocation getEntityTexture(@Nonnull SilverFoxEntity entity) {
     return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/fox.png");
   }
 }

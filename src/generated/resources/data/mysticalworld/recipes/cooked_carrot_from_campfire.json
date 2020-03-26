@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "tag": "mysticalworld:vegetables/carrot"
-  },
-  "result": "mysticalworld:cooked_carrot",
-  "experience": 0.15,
-  "cookingtime": 600
-}

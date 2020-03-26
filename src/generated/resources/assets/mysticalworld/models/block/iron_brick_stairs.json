@@ -1,8 +1,0 @@
-{
-  "parent": "block/stairs",
-  "textures": {
-    "side": "mysticalworld:block/iron_brick",
-    "bottom": "mysticalworld:block/iron_brick",
-    "top": "mysticalworld:block/iron_brick"
-  }
-}

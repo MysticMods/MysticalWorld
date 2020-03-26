@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld.entity.model;
 
-import epicsquid.mysticalworld.entity.FoxEntity;
+import epicsquid.mysticalworld.entity.SilverFoxEntity;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 
@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
  * FoxModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class FoxModel extends EntityModel<FoxEntity> {
+public class FoxModel extends EntityModel<SilverFoxEntity> {
 
   private RendererModel body1;
   private RendererModel frontL;
@@ -109,13 +109,13 @@ public class FoxModel extends EntityModel<FoxEntity> {
   }
 
   @Override
-  public void render(@Nonnull FoxEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+  public void render(@Nonnull SilverFoxEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
     this.setRotationAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
     this.body1.render(scaleFactor);
   }
 
   @Override
-  public void setRotationAngles(FoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+  public void setRotationAngles(SilverFoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
     float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
     float cos = (float) Math.cos(ageInTicks * 0.0625f * (Math.PI * 2.0f));
     if (state == 0) {
@@ -169,8 +169,8 @@ public class FoxModel extends EntityModel<FoxEntity> {
   }
 
   @Override
-  public void setLivingAnimations(FoxEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
-    FoxEntity fox = (FoxEntity) entitylivingbaseIn;
+  public void setLivingAnimations(SilverFoxEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
+    SilverFoxEntity fox = (SilverFoxEntity) entitylivingbaseIn;
 
     this.backL.setRotationPoint(1.0F, 4.0F, 1.5F);
     this.backR.setRotationPoint(-1.0F, 4.0F, 1.5F);

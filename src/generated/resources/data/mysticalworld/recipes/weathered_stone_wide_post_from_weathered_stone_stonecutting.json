@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:weathered_stone"
-  },
-  "result": "mysticalworld:weathered_stone_wide_post",
-  "count": 2
-}

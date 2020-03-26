@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "mysticalworld:cracked_stone"
-  },
-  "result": "mysticalworld:weathered_stone",
-  "experience": 0.15,
-  "cookingtime": 200
-}

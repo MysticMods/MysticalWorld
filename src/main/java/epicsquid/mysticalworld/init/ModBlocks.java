@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.init;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
+import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
@@ -28,6 +29,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.conditions.BlockStateProperty;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.Tags;
@@ -126,6 +128,7 @@ public class ModBlocks {
 
   public static RegistryEntry<AubergineCropBlock> AUBERGINE_CROP = REGISTRATE.block("aubergine_crop", AubergineCropBlock::new)
       .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
+      .loot((p, t) -> p.registerLootTable(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), BlockStateProperty.builder(ModBlocks.AUBERGINE_CROP.get()).with(CropsBlock.AGE, 7))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
@@ -368,9 +371,9 @@ public class ModBlocks {
 
 
   public static RegistryEntry<StairsBlock> CHARRED_STAIRS = REGISTRATE.stairs("charred_stairs", CHARRED_PLANKS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.WOODEN_STAIRS)
       .item()
-      .tag(ItemTags.STAIRS)
+      .tag(ItemTags.WOODEN_STAIRS)
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
@@ -381,10 +384,10 @@ public class ModBlocks {
 
   public static RegistryEntry<SlabBlock> CHARRED_SLAB = REGISTRATE.slab("charred_slab", CHARRED_PLANKS)
       .item()
-      .tag(ItemTags.SLABS)
+      .tag(ItemTags.WOODEN_SLABS)
       .model(ModBlocks::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.WOODEN_SLABS)
       .recipe((ctx, p) ->
           RECIPES.slab(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SLAB, null, true, p)
       )
@@ -393,10 +396,10 @@ public class ModBlocks {
 
   public static RegistryEntry<FenceBlock> CHARRED_FENCE = REGISTRATE.fence("charred_fence", CHARRED_PLANKS)
       .item()
-      .tag(ItemTags.FENCES)
+      .tag(ItemTags.WOODEN_FENCES)
       .model(ModBlocks::inventoryModel)
       .build()
-      .tag(BlockTags.FENCES)
+      .tag(BlockTags.WOODEN_FENCES)
       .recipe((ctx, p) ->
           RECIPES.wall(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_FENCE, true, p)
       )
@@ -622,6 +625,7 @@ public class ModBlocks {
             .addCriterion("has_stone", p.hasItem(Items.SMOOTH_STONE))
             .build(p, "soft_stone_from_smooth_stone_stonecutting");
       })
+      .tag(Tags.Blocks.STONE)
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
@@ -683,74 +687,76 @@ public class ModBlocks {
 
   // SMOOTH OBSIDIAN
 
-  public static RegistryEntry<Block> SMOOTH_OBSIDIAN = REGISTRATE.block("smooth_obsidian", Block::new)
+  public static RegistryEntry<Block> SOFT_OBSIDIAN = REGISTRATE.block("soft_obsidian", Block::new)
       .properties(o -> o.sound(SoundType.STONE).hardnessAndResistance(20f))
       .item()
+      .tag(Tags.Items.OBSIDIAN)
       .model(ModBlocks::itemModel)
       .build()
+      .tag(Tags.Blocks.OBSIDIAN)
       .blockstate(ModBlocks::simpleBlockState)
       .recipe((ctx, p) -> {
-        RECIPES.twoByTwo(() -> Items.OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN, null, p);
-        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.OBSIDIAN), ModBlocks.SMOOTH_OBSIDIAN.get())
+        RECIPES.twoByTwo(() -> Items.OBSIDIAN, ModBlocks.SOFT_OBSIDIAN, null, p);
+        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.OBSIDIAN), ModBlocks.SOFT_OBSIDIAN.get())
             .addCriterion("has_obsidian", p.hasItem(Items.OBSIDIAN))
-            .build(p, "smooth_obsidian_from_obsidian_stonecutting");
+            .build(p, "soft_obsidian_from_obsidian_stonecutting");
       })
       .register();
 
-  public static RegistryEntry<StairsBlock> SMOOTH_OBSIDIAN_STAIRS = REGISTRATE.stairs("smooth_obsidian_stairs", SMOOTH_OBSIDIAN)
+  public static RegistryEntry<StairsBlock> SOFT_OBSIDIAN_STAIRS = REGISTRATE.stairs("soft_obsidian_stairs", SOFT_OBSIDIAN)
       .tag(BlockTags.STAIRS)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_STAIRS, null, true, p)
+          RECIPES.stairs(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_STAIRS, null, true, p)
       )
-      .blockstate(stairs(ModBlocks.SMOOTH_OBSIDIAN))
+      .blockstate(stairs(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<SlabBlock> SMOOTH_OBSIDIAN_SLAB = REGISTRATE.slab("smooth_obsidian_slab", SMOOTH_OBSIDIAN)
+  public static RegistryEntry<SlabBlock> SOFT_OBSIDIAN_SLAB = REGISTRATE.slab("soft_obsidian_slab", SOFT_OBSIDIAN)
       .item()
       .tag(ItemTags.SLABS)
       .model(ModBlocks::itemModel)
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_SLAB, null, true, p)
+          RECIPES.slab(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_SLAB, null, true, p)
       )
-      .blockstate(slab(ModBlocks.SMOOTH_OBSIDIAN))
+      .blockstate(slab(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<WallBlock> SMOOTH_OBSIDIAN_WALL = REGISTRATE.wall("smooth_obsidian_wall", SMOOTH_OBSIDIAN)
+  public static RegistryEntry<WallBlock> SOFT_OBSIDIAN_WALL = REGISTRATE.wall("soft_obsidian_wall", SOFT_OBSIDIAN)
       .item()
       .tag(ItemTags.WALLS)
       .model(ModBlocks::inventoryModel)
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_SLAB, true, p)
+          RECIPES.wall(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_SLAB, true, p)
       )
-      .blockstate(wall(ModBlocks.SMOOTH_OBSIDIAN))
+      .blockstate(wall(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<WidePostBlock> SMOOTH_OBSIDIAN_WIDE_POST = REGISTRATE.widePost("smooth_obsidian_wide_post", SMOOTH_OBSIDIAN)
+  public static RegistryEntry<WidePostBlock> SOFT_OBSIDIAN_WIDE_POST = REGISTRATE.widePost("soft_obsidian_wide_post", SOFT_OBSIDIAN)
       .item()
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.widePost(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_WIDE_POST, null, true, p)
+          RECIPES.widePost(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_WIDE_POST, null, true, p)
       )
-      .blockstate(widePost(ModBlocks.SMOOTH_OBSIDIAN))
+      .blockstate(widePost(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> SMOOTH_OBSIDIAN_SMALL_POST = REGISTRATE.narrowPost("smooth_obsidian_small_post", SMOOTH_OBSIDIAN)
+  public static RegistryEntry<NarrowPostBlock> SOFT_OBSIDIAN_SMALL_POST = REGISTRATE.narrowPost("soft_obsidian_small_post", SOFT_OBSIDIAN)
       .item()
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.narrowPost(ModBlocks.SMOOTH_OBSIDIAN, ModBlocks.SMOOTH_OBSIDIAN_SMALL_POST, null, true, p)
+          RECIPES.narrowPost(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_SMALL_POST, null, true, p)
       )
-      .blockstate(narrowPost(ModBlocks.SMOOTH_OBSIDIAN))
+      .blockstate(narrowPost(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
   // AMETHYST
@@ -762,6 +768,9 @@ public class ModBlocks {
       .build()
       .tag(MWTags.Blocks.AMETHYST_ORE)
       .blockstate(ModBlocks::simpleBlockState)
+      .loot((p, t) ->
+              p.registerLootTable(ModBlocks.AMETHYST_ORE.get(), RegistrateBlockLootTables.droppingItemWithFortune(t, ModItems.AMETHYST_GEM.get()))
+      )
       .register();
 
   public static RegistryEntry<Block> AMETHYST_BLOCK = REGISTRATE.block(ModMaterials.AMETHYST.blockName(), Block::new)

@@ -1,8 +1,0 @@
-{
-  "parent": "block/outer_stairs",
-  "textures": {
-    "side": "mysticalworld:block/silver_block",
-    "bottom": "mysticalworld:block/silver_block",
-    "top": "mysticalworld:block/silver_block"
-  }
-}

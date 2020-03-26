@@ -6,8 +6,6 @@ import epicsquid.mysticalworld.entity.player.ShoulderLayer;
 import epicsquid.mysticalworld.entity.render.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IReloadableResourceManager;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -17,7 +15,7 @@ public class ClientSetup {
     ModelHolder.init();
 
     RenderingRegistry.registerEntityRenderingHandler(BeetleEntity.class, new BeetleRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(FoxEntity.class, new FoxRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(SilverFoxEntity.class, new FoxRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(FrogEntity.class, new FrogRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(SproutEntity.class, new SproutRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.Factory());

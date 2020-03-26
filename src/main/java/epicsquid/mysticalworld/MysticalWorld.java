@@ -1,22 +1,15 @@
 package epicsquid.mysticalworld;
 
-import com.tterrag.registrate.providers.DataGenContext;
-import com.tterrag.registrate.providers.RegistrateProvider;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import epicsquid.mysticallib.data.RecipeProvider;
 import epicsquid.mysticallib.registrate.CustomRegistrate;
 import epicsquid.mysticallib.registry.ModRegistry;
 import epicsquid.mysticalworld.config.ConfigManager;
-import epicsquid.mysticalworld.events.DamageHandler;
-import epicsquid.mysticalworld.events.EntityHandler;
-import epicsquid.mysticalworld.events.LeafHandler;
 import epicsquid.mysticalworld.events.TooltipHandler;
 import epicsquid.mysticalworld.events.mappings.Remaps;
 import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.setup.ClientSetup;
 import epicsquid.mysticalworld.setup.ModSetup;
-import epicsquid.mysticalworld.setup.ModifyLoot;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -30,10 +23,8 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.server.ServerLifecycleEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -49,13 +40,6 @@ public class MysticalWorld {
     @Override
     public ItemStack createIcon() {
       return new ItemStack(ModItems.CARAPACE.get());
-    }
-  };
-
-  public static final ItemGroup METAL_ITEM_GROUP = new ItemGroup("mysticalworld.metals") {
-    @Override
-    public ItemStack createIcon() {
-      return new ItemStack(ModItems.SILVER_INGOT.get());
     }
   };
 
@@ -78,6 +62,7 @@ public class MysticalWorld {
     ModModifiers.load();
     ModSounds.load();
     ModEffects.load();
+    ModLang.load();
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
       modBus.addListener(ClientSetup::init);
@@ -88,7 +73,6 @@ public class MysticalWorld {
     REGISTRATE.itemGroup(NonNullSupplier.of(() -> ITEM_GROUP));
 
     modBus.addListener(setup::init);
-    modBus.addListener(setup::gatherData);
 
     modBus.addGenericListener(EntityType.class, EventPriority.LOWEST, ModEntities::registerEntities);
     modBus.addGenericListener(Item.class, EventPriority.LOWEST, ModItems::registerItems);

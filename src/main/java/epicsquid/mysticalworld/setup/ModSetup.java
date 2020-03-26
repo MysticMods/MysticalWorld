@@ -6,12 +6,6 @@ import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityStorage;
-import epicsquid.mysticalworld.client.data.MWItemModelProvider;
-import epicsquid.mysticalworld.client.data.MWLangProvider;
-import epicsquid.mysticalworld.data.MWBlockTagsProvider;
-import epicsquid.mysticalworld.data.MWItemTagsProvider;
-import epicsquid.mysticalworld.data.MWLootTableProvider;
-import epicsquid.mysticalworld.data.MWRecipeProvider;
 import epicsquid.mysticalworld.events.*;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.loot.conditions.IsColor;
@@ -20,15 +14,12 @@ import epicsquid.mysticalworld.loot.conditions.IsObsidian;
 import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.potions.PotionRecipes;
 import epicsquid.mysticalworld.world.OreGen;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 
@@ -49,11 +40,11 @@ public class ModSetup {
     OreGen.registerOreGeneration();
     PotionRecipes.registerRecipes();
 
-    try {
+/*    try {
       ModifyWaterCap.modify();
     } catch (IllegalAccessException e) {
       MysticalWorld.LOG.error("Unable to modify water cap", e);
-    }
+    }*/
   }
 
   public void serverStarting(FMLServerStartedEvent event) {
@@ -69,7 +60,7 @@ public class ModSetup {
   }
 
   @SuppressWarnings("Duplicates")
-  public <T extends Event> void registerListeners() {
+  public void registerListeners() {
     MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
     MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);
@@ -82,19 +73,5 @@ public class ModSetup {
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientSetup::registerListeners);
-  }
-
-  public void gatherData(GatherDataEvent event) {
-    DataGenerator gen = event.getGenerator();
-    if (event.includeClient()) {
-      gen.addProvider(new MWItemModelProvider(gen, event.getExistingFileHelper()));
-      gen.addProvider(new MWLangProvider(gen));
-    }
-    if (event.includeServer()) {
-      gen.addProvider(new MWLootTableProvider(gen));
-      gen.addProvider(new MWBlockTagsProvider(gen));
-      gen.addProvider(new MWItemTagsProvider(gen));
-      gen.addProvider(new MWRecipeProvider(gen));
-    }
   }
 }

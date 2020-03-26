@@ -65,33 +65,25 @@ public class MWTags {
   public static class Items extends MWTags {
     public static Tag<Item> SWORDS = compatTag("swords");
     public static Tag<Item> KNIVES = modTag("knives");
-    public static Tag<Item> GEMS = modTag("gems");
+    public static Tag<Item> GEMS = compatTag("gems");
     public static Tag<Item> VEGETABLES = compatTag("vegetables");
     public static Tag<Item> CROPS = compatTag("crops");
     public static Tag<Item> COOKED_VEGETABLES = compatTag("cooked_vegetables");
 
-    public static Tag<Item> AUBERGINE = compatTag("vegetables/aubergine");
-    public static Tag<Item> EGGPLANT = compatTag("vegetables/eggplant");
-
-    public static Tag<Item> CARROT = modTag("vegetables/carrot");
-    public static Tag<Item> BEETROOT = modTag("vegetables/beetroot");
-
-    public static Tag<Item> CROP_AUBERGINE = compatTag("crops/aubergine");
-    public static Tag<Item> CROP_EGGPLANT = compatTag("crops/eggplant");
+    public static Tag<Item> AUBERGINE = compatTag("crops/aubergine");
+    public static Tag<Item> EGGPLANT = compatTag("crops/eggplant");
 
     public static Tag<Item> COPPER_ITEMS = modTag("copper_items");
     public static Tag<Item> LEAD_ITEMS = modTag("lead_items");
     public static Tag<Item> QUICKSILVER_ITEMS = modTag("quicksilver_items");
     public static Tag<Item> SILVER_ITEMS = modTag("silver_items");
     public static Tag<Item> TIN_ITEMS = modTag("tin_items");
-
     public static Tag<Item> AMETHYST_ORE = compatTag("ores/amethyst");
     public static Tag<Item> COPPER_ORE = compatTag("ores/copper");
     public static Tag<Item> LEAD_ORE = compatTag("ores/lead");
     public static Tag<Item> QUICKSILVER_ORE = compatTag("ores/quicksilver");
     public static Tag<Item> SILVER_ORE = compatTag("ores/silver");
     public static Tag<Item> TIN_ORE = compatTag("ores/tin");
-
     public static Tag<Item> AMETHYST_BLOCK = compatTag("storage_blocks/amethyst");
     public static Tag<Item> COPPER_BLOCK = compatTag("storage_blocks/copper");
     public static Tag<Item> LEAD_BLOCK = compatTag("storage_blocks/lead");
@@ -100,21 +92,17 @@ public class MWTags {
     public static Tag<Item> TIN_BLOCK = compatTag("storage_blocks/tin");
     public static Tag<Item> SLIME_BLOCK = compatTag("storage_blocks/slime");
     public static Tag<Item> SLIME = compatTag("slime");
-
     public static Tag<Item> AMETHYST_GEM = compatTag("gems/amethyst");
-
     public static Tag<Item> COPPER_INGOT = compatTag("ingots/copper");
     public static Tag<Item> LEAD_INGOT = compatTag("ingots/lead");
     public static Tag<Item> QUICKSILVER_INGOT = compatTag("ingots/quicksilver");
     public static Tag<Item> SILVER_INGOT = compatTag("ingots/silver");
     public static Tag<Item> TIN_INGOT = compatTag("ingots/tin");
-
     public static Tag<Item> COPPER_NUGGET = compatTag("nuggets/copper");
     public static Tag<Item> LEAD_NUGGET = compatTag("nuggets/lead");
     public static Tag<Item> QUICKSILVER_NUGGET = compatTag("nuggets/quicksilver");
     public static Tag<Item> SILVER_NUGGET = compatTag("nuggets/silver");
     public static Tag<Item> TIN_NUGGET = compatTag("nuggets/tin");
-
     public static Tag<Item> COPPER_DUST = compatTag("dusts/copper");
     public static Tag<Item> LEAD_DUST = compatTag("dusts/lead");
     public static Tag<Item> QUICKSILVER_DUST = compatTag("dusts/quicksilver");
@@ -123,34 +111,13 @@ public class MWTags {
     public static Tag<Item> GOLD_DUST = compatTag("dusts/gold");
     public static Tag<Item> IRON_DUST = compatTag("dusts/iron");
 
-    public static Tag<Item> LOGS = mcTag("logs");
-    public static Tag<Item> PLANKS = mcTag("planks");
-
     public static Tag<Item> SOFT_STONE = modTag("soft_stone");
-    public static Tag<Item> CRACKED_SOFT_STONE = modTag("cracked_soft_stone");
-
-    public static Tag<Item> SMOOTH_OBSIDIAN = modTag("smooth_obsidian");
-    public static Tag<Item> WEATHERED_OBSIDIAN = modTag("weathered_obsidian");
-
-    public static Tag<Item> WOODEN_SLABS = mcTag("wooden_slabs");
-    public static Tag<Item> WOODEN_STAIRS = mcTag("wooden_stairs");
-    public static Tag<Item> WOODEN_DOORS = mcTag("wooden_doors");
-    public static Tag<Item> WOODEN_TRAPDOORS = mcTag("wooden_trapdoors");
-    public static Tag<Item> WOODEN_FENCES = mcTag("wooden_fences");
-
-    public static Tag<Item> SLABS = mcTag("slabs");
-    public static Tag<Item> STAIRS = mcTag("stairs");
-    public static Tag<Item> FENCES = mcTag("fences");
-    public static Tag<Item> WALLS = mcTag("walls");
+    public static Tag<Item> SOFT_OBSIDIAN = modTag("soft_obsidian");
 
     public static Tag<Item> PURPUR = compatTag("purpur");
     public static Tag<Item> NETHER_BRICKS = compatTag("nether_bricks");
     public static Tag<Item> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
     public static Tag<Item> TERRACOTTA = compatTag("terracotta");
-
-    public static Tag<Item> SF_EGGPLANT = simpleFarming("eggplant");
-    public static Tag<Item> SF_CARROT = simpleFarming("carrot");
-    public static Tag<Item> SF_BEETROOT = simpleFarming("beetroot");
 
     static Tag<Item> tag(String modid, String name) {
       return tag(ItemTags.Wrapper::new, modid, name);
@@ -166,10 +133,6 @@ public class MWTags {
 
     static Tag<Item> compatTag(String name) {
       return tag("forge", name);
-    }
-
-    static Tag<Item> simpleFarming(String name) {
-      return tag("simplefarming", name);
     }
   }
 
