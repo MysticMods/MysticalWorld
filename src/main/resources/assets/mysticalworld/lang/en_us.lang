@@ -224,6 +224,8 @@ item.aubergine_seed.name=Aubergine Seed
 item.aubergine.name=Aubergine
 item.cooked_aubergine.name=Cooked Aubergine
 item.stuffed_aubergine.name=Stuffed Aubergine
+item.assorted_seeds.name=Mixed Seeds
+item.cooked_seeds.name=Toasted Seeds
 
 message.squid.cooldown=Give it time to produce more ink!
 
