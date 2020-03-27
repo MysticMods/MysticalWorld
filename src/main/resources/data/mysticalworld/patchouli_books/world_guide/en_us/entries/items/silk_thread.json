@@ -7,7 +7,7 @@
       "type": "crafting",
       "recipe": "mysticalworld:silk_thread",
       "link_recipe": true,
-      "text": "Silk thread can be obtained by processing $(l:items/silk_cocoons)silkworm cocoons$(), although the quantity will vary depending on the method."
+      "text": "Silk thread can be obtained by processing $(l:items/silk_cocoon)silkworm cocoons$(), although the quantity will vary depending on the method."
     },
     {
       "type": "crafting",
