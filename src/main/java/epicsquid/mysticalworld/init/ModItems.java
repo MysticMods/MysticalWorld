@@ -302,32 +302,32 @@ public class ModItems {
   // TODO: More tags
   public static RegistryEntry<DrinkItem> APPLE_CORDIAL = REGISTRATE.item("apple_cordial", DrinkItem::new)
       .properties(o -> o.food(ModFoods.APPLE_CORDIAL))
-      .recipe(RECIPES.cordial(ModItems.APPLE_CORDIAL, Items.APPLE))
+      .recipe(RECIPES.cordial(() -> ModItems.APPLE_CORDIAL, Items.APPLE))
       .register();
 
   public static RegistryEntry<DrinkItem> CACTUS_SYRUP = REGISTRATE.item("cactus_syrup", DrinkItem::new)
       .properties(o -> o.food(ModFoods.CACTUS_SYRUP))
-      .recipe(RECIPES.cordial(ModItems.CACTUS_SYRUP, Items.CACTUS))
+      .recipe(RECIPES.cordial(() -> ModItems.CACTUS_SYRUP, Items.CACTUS))
       .register();
 
   public static RegistryEntry<DrinkItem> DANDELION_CORDIAL = REGISTRATE.item("dandelion_cordial", DrinkItem::new)
       .properties(o -> o.food(ModFoods.DANDELION_CORDIAL))
-      .recipe(RECIPES.cordial(ModItems.DANDELION_CORDIAL, Items.DANDELION))
+      .recipe(RECIPES.cordial(() -> ModItems.DANDELION_CORDIAL, Items.DANDELION))
       .register();
 
   public static RegistryEntry<DrinkItem> LILAC_CORDIAL = REGISTRATE.item("lilac_cordial", DrinkItem::new)
       .properties(o -> o.food(ModFoods.LILAC_CORDIAL))
-      .recipe(RECIPES.cordial(ModItems.LILAC_CORDIAL, Items.LILAC))
+      .recipe(RECIPES.cordial(() -> ModItems.LILAC_CORDIAL, Items.LILAC))
       .register();
 
   public static RegistryEntry<DrinkItem> PEONY_CORDIAL = REGISTRATE.item("peony_cordial", DrinkItem::new)
       .properties(o -> o.food(ModFoods.PEONY_CORDIAL))
-      .recipe(RECIPES.cordial(ModItems.PEONY_CORDIAL, Items.PEONY))
+      .recipe(RECIPES.cordial(() -> ModItems.PEONY_CORDIAL, Items.PEONY))
       .register();
 
   public static RegistryEntry<DrinkItem> ROSE_CORDIAL = REGISTRATE.item("rose_cordial", DrinkItem::new)
       .properties(o -> o.food(ModFoods.ROSE_CORDIAL))
-      .recipe(RECIPES.cordial(ModItems.ROSE_CORDIAL, Items.ROSE_BUSH))
+      .recipe(RECIPES.cordial(() -> ModItems.ROSE_CORDIAL, Items.ROSE_BUSH))
       .register();
 
   public static RegistryEntry<DrinkItem> VINEGAR = REGISTRATE.item("vinegar", DrinkItem::new)
@@ -448,27 +448,27 @@ public class ModItems {
   // Ingots/gems
   public static RegistryEntry<Item> AMETHYST_GEM = REGISTRATE.item(AMETHYST.getInternalName(), Item::new)
       .tag(MWTags.Items.AMETHYST_GEM)
-      .recipe(RECIPES.storage(ModBlocks.AMETHYST_BLOCK, ModItems.AMETHYST_GEM, MWTags.Items.AMETHYST_BLOCK, MWTags.Items.AMETHYST_GEM, MWTags.Items.AMETHYST_ORE, null, null, null))
+      .recipe(RECIPES.storage(() -> ModBlocks.AMETHYST_BLOCK, () -> ModItems.AMETHYST_GEM, MWTags.Items.AMETHYST_BLOCK, MWTags.Items.AMETHYST_GEM, MWTags.Items.AMETHYST_ORE, null, null, null))
       .register();
   public static RegistryEntry<Item> COPPER_INGOT = REGISTRATE.item(COPPER.getInternalName(), Item::new)
       .tag(MWTags.Items.COPPER_INGOT)
-      .recipe(RECIPES.storage(ModBlocks.COPPER_BLOCK, ModItems.COPPER_INGOT, MWTags.Items.COPPER_BLOCK, MWTags.Items.COPPER_INGOT, MWTags.Items.COPPER_ORE, ModItems.COPPER_NUGGET, MWTags.Items.COPPER_NUGGET, MWTags.Items.COPPER_DUST))
+      .recipe(RECIPES.storage(() -> ModBlocks.COPPER_BLOCK, () -> ModItems.COPPER_INGOT, MWTags.Items.COPPER_BLOCK, MWTags.Items.COPPER_INGOT, MWTags.Items.COPPER_ORE, () -> ModItems.COPPER_NUGGET, MWTags.Items.COPPER_NUGGET, MWTags.Items.COPPER_DUST))
       .register();
   public static RegistryEntry<Item> LEAD_INGOT = REGISTRATE.item(LEAD.getInternalName(), Item::new)
       .tag(MWTags.Items.LEAD_INGOT)
-      .recipe(RECIPES.storage(ModBlocks.LEAD_BLOCK, ModItems.LEAD_INGOT, MWTags.Items.LEAD_BLOCK, MWTags.Items.LEAD_INGOT, MWTags.Items.LEAD_ORE, ModItems.LEAD_NUGGET, MWTags.Items.LEAD_NUGGET, MWTags.Items.LEAD_DUST))
+      .recipe(RECIPES.storage(() -> ModBlocks.LEAD_BLOCK, () -> ModItems.LEAD_INGOT, MWTags.Items.LEAD_BLOCK, MWTags.Items.LEAD_INGOT, MWTags.Items.LEAD_ORE, () -> ModItems.LEAD_NUGGET, MWTags.Items.LEAD_NUGGET, MWTags.Items.LEAD_DUST))
       .register();
   public static RegistryEntry<Item> QUICKSILVER_INGOT = REGISTRATE.item(QUICKSILVER.getInternalName(), Item::new)
       .tag(MWTags.Items.QUICKSILVER_INGOT)
-      .recipe(RECIPES.storage(ModBlocks.QUICKSILVER_BLOCK, ModItems.QUICKSILVER_INGOT, MWTags.Items.QUICKSILVER_BLOCK, MWTags.Items.QUICKSILVER_INGOT, MWTags.Items.QUICKSILVER_ORE, ModItems.QUICKSILVER_NUGGET, MWTags.Items.QUICKSILVER_NUGGET, MWTags.Items.QUICKSILVER_DUST))
+      .recipe(RECIPES.storage(() -> ModBlocks.QUICKSILVER_BLOCK, () -> ModItems.QUICKSILVER_INGOT, MWTags.Items.QUICKSILVER_BLOCK, MWTags.Items.QUICKSILVER_INGOT, MWTags.Items.QUICKSILVER_ORE, () -> ModItems.QUICKSILVER_NUGGET, MWTags.Items.QUICKSILVER_NUGGET, MWTags.Items.QUICKSILVER_DUST))
       .register();
   public static RegistryEntry<Item> SILVER_INGOT = REGISTRATE.item(SILVER.getInternalName(), Item::new)
       .tag(MWTags.Items.SILVER_INGOT)
-      .recipe(RECIPES.storage(ModBlocks.SILVER_BLOCK, ModItems.SILVER_INGOT, MWTags.Items.SILVER_BLOCK, MWTags.Items.SILVER_INGOT, MWTags.Items.SILVER_ORE, ModItems.SILVER_NUGGET, MWTags.Items.SILVER_NUGGET, MWTags.Items.SILVER_DUST))
+      .recipe(RECIPES.storage(() -> ModBlocks.SILVER_BLOCK, () -> ModItems.SILVER_INGOT, MWTags.Items.SILVER_BLOCK, MWTags.Items.SILVER_INGOT, MWTags.Items.SILVER_ORE, () -> ModItems.SILVER_NUGGET, MWTags.Items.SILVER_NUGGET, MWTags.Items.SILVER_DUST))
       .register();
   public static RegistryEntry<Item> TIN_INGOT = REGISTRATE.item(TIN.getInternalName(), Item::new)
       .tag(MWTags.Items.TIN_INGOT)
-      .recipe(RECIPES.storage(ModBlocks.TIN_BLOCK, ModItems.TIN_INGOT, MWTags.Items.TIN_BLOCK, MWTags.Items.TIN_INGOT, MWTags.Items.TIN_ORE, ModItems.TIN_NUGGET, MWTags.Items.TIN_NUGGET, MWTags.Items.TIN_DUST))
+      .recipe(RECIPES.storage(() -> ModBlocks.TIN_BLOCK, () -> ModItems.TIN_INGOT, MWTags.Items.TIN_BLOCK, MWTags.Items.TIN_INGOT, MWTags.Items.TIN_ORE, () -> ModItems.TIN_NUGGET, MWTags.Items.TIN_NUGGET, MWTags.Items.TIN_DUST))
       .register();
 
   // Nuggets
@@ -806,9 +806,5 @@ public class ModItems {
       .register();
 
   public static void load() {
-  }
-
-  public static void registerItems(RegistryEvent.Register<Item> event) {
-    ModCompost.init();
   }
 }

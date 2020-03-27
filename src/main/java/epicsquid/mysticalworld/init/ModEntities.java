@@ -109,7 +109,7 @@ public class ModEntities {
   public static void load() {
   }
 
-  public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
+  public static void registerEntities() {
     Set<Biome> biomes = new HashSet<>();
 
     if (ConfigManager.DEER_CONFIG.shouldRegister()) {

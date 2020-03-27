@@ -1,6 +1,8 @@
 package epicsquid.mysticalworld.items;
 
+import com.tterrag.registrate.util.LazySpawnEggItem;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.entity.SilkwormEntity;
 import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -11,9 +13,9 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class SilkwormEgg extends SpawnEggItem {
+public class SilkwormEgg extends LazySpawnEggItem<SilkwormEntity> {
   public SilkwormEgg(Properties builder) {
-    super(ModEntities.SILKWORM.get(), 0, 0, builder);
+    super(ModEntities.SILKWORM, 0, 0, builder);
   }
 
   @Override

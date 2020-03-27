@@ -48,6 +48,8 @@ public class MysticalWorld {
   public static ModSetup setup = new ModSetup();
 
   public MysticalWorld() {
+    REGISTRATE = CustomRegistrate.create(MODID);
+    REGISTRATE.itemGroup(() -> ITEM_GROUP);
     ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
 
@@ -55,8 +57,8 @@ public class MysticalWorld {
 
     // This is literally to ensure that they static declarations are loaded
     // before we attempt to actually register stuff.
-    ModItems.load();
     ModBlocks.load();
+    ModItems.load();
     ModEntities.load();
     ModRecipes.load();
     ModModifiers.load();
@@ -73,9 +75,6 @@ public class MysticalWorld {
     REGISTRATE.itemGroup(NonNullSupplier.of(() -> ITEM_GROUP));
 
     modBus.addListener(setup::init);
-
-    modBus.addGenericListener(EntityType.class, EventPriority.LOWEST, ModEntities::registerEntities);
-    modBus.addGenericListener(Item.class, EventPriority.LOWEST, ModItems::registerItems);
 
     MinecraftForge.EVENT_BUS.addListener(setup::serverStarting);
     MinecraftForge.EVENT_BUS.addListener(setup::serverAboutToStart);

@@ -7,6 +7,8 @@ import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityStorage;
 import epicsquid.mysticalworld.events.*;
+import epicsquid.mysticalworld.init.ModCompost;
+import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.loot.conditions.IsColor;
 import epicsquid.mysticalworld.loot.conditions.IsLava;
@@ -28,6 +30,8 @@ public class ModSetup {
   }
 
   public void init(FMLCommonSetupEvent event) {
+    ModCompost.init();
+    ModEntities.registerEntities();
     Networking.INSTANCE.registerMessages();
     CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
     CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
