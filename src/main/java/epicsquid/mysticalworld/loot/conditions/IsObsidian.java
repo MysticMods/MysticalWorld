@@ -47,5 +47,11 @@ public class IsObsidian implements ILootCondition {
       return new IsObsidian(JSONUtils.getBoolean(json, "inverse", false));
     }
   }
+
+  private static IsObsidian INSTANCE = new IsObsidian(false);
+
+  public static ILootCondition.IBuilder builder() {
+    return () -> INSTANCE;
+  }
 }
 

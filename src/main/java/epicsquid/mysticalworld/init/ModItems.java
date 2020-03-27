@@ -29,7 +29,7 @@ import static epicsquid.mysticalworld.init.ModMaterials.*;
 
 // TODO: Convert to Registrate
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class ModItems {
 
   @FunctionalInterface
@@ -446,27 +446,27 @@ public class ModItems {
       .register();
 
   // Ingots/gems
-  public static RegistryEntry<Item> AMETHYST_GEM = REGISTRATE.item(AMETHYST.getInternalName(), Item::new)
+  public static RegistryEntry<Item> AMETHYST_GEM = REGISTRATE.item(AMETHYST.getInternalName() + "_gem", Item::new)
       .tag(MWTags.Items.AMETHYST_GEM)
       .recipe(RECIPES.storage(() -> ModBlocks.AMETHYST_BLOCK, () -> ModItems.AMETHYST_GEM, MWTags.Items.AMETHYST_BLOCK, MWTags.Items.AMETHYST_GEM, MWTags.Items.AMETHYST_ORE, null, null, null))
       .register();
-  public static RegistryEntry<Item> COPPER_INGOT = REGISTRATE.item(COPPER.getInternalName(), Item::new)
+  public static RegistryEntry<Item> COPPER_INGOT = REGISTRATE.item(COPPER.getIngotName(), Item::new)
       .tag(MWTags.Items.COPPER_INGOT)
       .recipe(RECIPES.storage(() -> ModBlocks.COPPER_BLOCK, () -> ModItems.COPPER_INGOT, MWTags.Items.COPPER_BLOCK, MWTags.Items.COPPER_INGOT, MWTags.Items.COPPER_ORE, () -> ModItems.COPPER_NUGGET, MWTags.Items.COPPER_NUGGET, MWTags.Items.COPPER_DUST))
       .register();
-  public static RegistryEntry<Item> LEAD_INGOT = REGISTRATE.item(LEAD.getInternalName(), Item::new)
+  public static RegistryEntry<Item> LEAD_INGOT = REGISTRATE.item(LEAD.getIngotName(), Item::new)
       .tag(MWTags.Items.LEAD_INGOT)
       .recipe(RECIPES.storage(() -> ModBlocks.LEAD_BLOCK, () -> ModItems.LEAD_INGOT, MWTags.Items.LEAD_BLOCK, MWTags.Items.LEAD_INGOT, MWTags.Items.LEAD_ORE, () -> ModItems.LEAD_NUGGET, MWTags.Items.LEAD_NUGGET, MWTags.Items.LEAD_DUST))
       .register();
-  public static RegistryEntry<Item> QUICKSILVER_INGOT = REGISTRATE.item(QUICKSILVER.getInternalName(), Item::new)
+  public static RegistryEntry<Item> QUICKSILVER_INGOT = REGISTRATE.item(QUICKSILVER.getIngotName(), Item::new)
       .tag(MWTags.Items.QUICKSILVER_INGOT)
       .recipe(RECIPES.storage(() -> ModBlocks.QUICKSILVER_BLOCK, () -> ModItems.QUICKSILVER_INGOT, MWTags.Items.QUICKSILVER_BLOCK, MWTags.Items.QUICKSILVER_INGOT, MWTags.Items.QUICKSILVER_ORE, () -> ModItems.QUICKSILVER_NUGGET, MWTags.Items.QUICKSILVER_NUGGET, MWTags.Items.QUICKSILVER_DUST))
       .register();
-  public static RegistryEntry<Item> SILVER_INGOT = REGISTRATE.item(SILVER.getInternalName(), Item::new)
+  public static RegistryEntry<Item> SILVER_INGOT = REGISTRATE.item(SILVER.getIngotName(), Item::new)
       .tag(MWTags.Items.SILVER_INGOT)
       .recipe(RECIPES.storage(() -> ModBlocks.SILVER_BLOCK, () -> ModItems.SILVER_INGOT, MWTags.Items.SILVER_BLOCK, MWTags.Items.SILVER_INGOT, MWTags.Items.SILVER_ORE, () -> ModItems.SILVER_NUGGET, MWTags.Items.SILVER_NUGGET, MWTags.Items.SILVER_DUST))
       .register();
-  public static RegistryEntry<Item> TIN_INGOT = REGISTRATE.item(TIN.getInternalName(), Item::new)
+  public static RegistryEntry<Item> TIN_INGOT = REGISTRATE.item(TIN.getIngotName(), Item::new)
       .tag(MWTags.Items.TIN_INGOT)
       .recipe(RECIPES.storage(() -> ModBlocks.TIN_BLOCK, () -> ModItems.TIN_INGOT, MWTags.Items.TIN_BLOCK, MWTags.Items.TIN_INGOT, MWTags.Items.TIN_ORE, () -> ModItems.TIN_NUGGET, MWTags.Items.TIN_NUGGET, MWTags.Items.TIN_DUST))
       .register();

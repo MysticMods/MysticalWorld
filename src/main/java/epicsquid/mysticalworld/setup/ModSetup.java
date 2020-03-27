@@ -36,11 +36,6 @@ public class ModSetup {
     CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
     CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
 
-    LootConditionManager.registerCondition(new HasHorns.Serializer());
-    LootConditionManager.registerCondition(new IsColor.Serializer());
-    LootConditionManager.registerCondition(new IsLava.Serializer());
-    LootConditionManager.registerCondition(new IsObsidian.Serializer());
-
     OreGen.registerOreGeneration();
     PotionRecipes.registerRecipes();
 

@@ -47,5 +47,11 @@ public class HasHorns implements ILootCondition {
       return new HasHorns(JSONUtils.getBoolean(json, "inverse", false));
     }
   }
+
+  private static HasHorns INSTANCE = new HasHorns(false);
+
+  public static ILootCondition.IBuilder builder() {
+    return () -> INSTANCE;
+  }
 }
 

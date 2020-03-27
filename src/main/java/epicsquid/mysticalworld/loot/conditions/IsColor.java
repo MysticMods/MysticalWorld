@@ -53,5 +53,9 @@ public class IsColor implements ILootCondition {
       return new IsColor(JSONUtils.getBoolean(json, "inverse", false), JSONUtils.getString(json, "color", "green"));
     }
   }
+
+  public static ILootCondition.IBuilder builder(String variant) {
+    return () -> new IsColor(false, variant);
+  }
 }
 

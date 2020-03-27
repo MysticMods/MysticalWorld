@@ -8,7 +8,6 @@ import com.tterrag.registrate.util.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
-import epicsquid.mysticallib.MysticalLib;
 import epicsquid.mysticallib.block.BaseOreBlock;
 import epicsquid.mysticallib.block.NarrowPostBlock;
 import epicsquid.mysticallib.block.WidePostBlock;
@@ -83,14 +82,14 @@ public class ModBlocks {
   public static <T extends FenceBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> fence(RegistryEntry<Block> parent) {
     return (ctx, p) -> {
       p.fenceBlock(ctx.getEntry(), p.blockTexture(parent.get()));
-      p.fenceInventory(name(ctx.getEntry()), p.blockTexture(parent.get()));
+      p.fenceInventory(name(ctx.getEntry()) + "_inventory", p.blockTexture(parent.get()));
     };
   }
 
   public static <T extends WallBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> wall(RegistryEntry<Block> parent) {
     return (ctx, p) -> {
       p.wallBlock(ctx.getEntry(), p.blockTexture(parent.get()));
-      p.wallInventory(name(ctx.getEntry()), p.blockTexture(parent.get()));
+      p.wallInventory(name(ctx.getEntry()) + "_inventory", p.blockTexture(parent.get()));
     };
   }
 
@@ -99,11 +98,11 @@ public class ModBlocks {
   }
 
   public static <T extends WidePostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> widePost(RegistryEntry<Block> parent) {
-    return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.getBuilder(name(ctx.getEntry())).parent(p.getExistingFile(new ResourceLocation(MysticalLib.MODID, "wide_post"))).texture("wall", p.blockTexture(parent.get()))));
+    return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.getBuilder(name(ctx.getEntry())).parent(p.getExistingFile(new ResourceLocation(MysticalWorld.MODID, "wide_post"))).texture("wall", p.blockTexture(parent.get()))));
   }
 
   public static <T extends NarrowPostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> narrowPost(RegistryEntry<Block> parent) {
-    return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.getBuilder(name(ctx.getEntry())).parent(p.getExistingFile(new ResourceLocation(MysticalLib.MODID, "narrow_post"))).texture("wall", p.blockTexture(parent.get()))));
+    return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.getBuilder(name(ctx.getEntry())).parent(p.getExistingFile(new ResourceLocation(MysticalWorld.MODID, "narrow_post"))).texture("wall", p.blockTexture(parent.get()))));
   }
 
   private static <T extends IForgeRegistryEntry<?>> String name(T block) {
@@ -992,6 +991,8 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .tag(MWTags.Blocks.LEAD_ORE)
       .register();
+
+  public static ResourceLocation RL = new ResourceLocation("mysticalworld:item/copper");
 
   public static RegistryEntry<Block> LEAD_BLOCK = REGISTRATE.block(ModMaterials.LEAD.blockName(), Material.IRON, Block::new)
       .properties(ModMaterials.LEAD.getBlockProps())

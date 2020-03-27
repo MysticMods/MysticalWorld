@@ -47,5 +47,11 @@ public class IsLava implements ILootCondition {
       return new IsLava(JSONUtils.getBoolean(json, "inverse", false));
     }
   }
+
+  private static IsLava INSTANCE = new IsLava(false);
+
+  public static ILootCondition.IBuilder builder() {
+    return () -> INSTANCE;
+  }
 }
 
