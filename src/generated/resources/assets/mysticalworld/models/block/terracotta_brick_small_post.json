@@ -1,0 +1,6 @@
+{
+  "parent": "mysticalworld:block/narrow_post",
+  "textures": {
+    "wall": "mysticalworld:block/terracotta_brick"
+  }
+}

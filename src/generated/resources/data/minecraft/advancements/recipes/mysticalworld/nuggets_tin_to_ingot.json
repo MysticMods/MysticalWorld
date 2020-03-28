@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:nuggets_tin_to_ingot"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_nuggets_tin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:nuggets/tin"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:nuggets_tin_to_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_nuggets_tin",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:ender_pearl_from_unripe_pearls"
+    ]
+  },
+  "criteria": {
+    "has_young_pearl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:young_pearl"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:ender_pearl_from_unripe_pearls"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_young_pearl",
+      "has_the_recipe"
+    ]
+  ]
+}

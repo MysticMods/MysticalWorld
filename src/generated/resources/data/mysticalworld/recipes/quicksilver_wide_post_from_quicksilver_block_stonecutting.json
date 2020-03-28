@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:quicksilver_block"
+  },
+  "result": "mysticalworld:quicksilver_wide_post",
+  "count": 2
+}

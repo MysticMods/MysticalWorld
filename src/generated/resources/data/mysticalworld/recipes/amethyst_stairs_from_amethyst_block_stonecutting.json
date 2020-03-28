@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:amethyst_block"
+  },
+  "result": "mysticalworld:amethyst_stairs",
+  "count": 1
+}

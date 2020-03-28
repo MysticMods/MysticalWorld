@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "forge:ores/lead"
+  },
+  "result": "mysticalworld:lead_ingot",
+  "experience": 0.125,
+  "cookingtime": 200
+}

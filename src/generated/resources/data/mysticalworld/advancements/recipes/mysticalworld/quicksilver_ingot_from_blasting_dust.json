@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:quicksilver_ingot_from_blasting_dust"
+    ]
+  },
+  "criteria": {
+    "has_dusts_quicksilver": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:dusts/quicksilver"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:quicksilver_ingot_from_blasting_dust"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dusts_quicksilver",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:tin_spear"
+    ]
+  },
+  "criteria": {
+    "has_tin_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:tin_sword"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:tin_spear"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tin_sword",
+      "has_the_recipe"
+    ]
+  ]
+}

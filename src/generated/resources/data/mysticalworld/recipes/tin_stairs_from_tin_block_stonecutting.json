@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:tin_block"
+  },
+  "result": "mysticalworld:tin_stairs",
+  "count": 1
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:amethyst_sword"
+    ]
+  },
+  "criteria": {
+    "has_gems_amethyst": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/amethyst"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:amethyst_sword"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gems_amethyst",
+      "has_the_recipe"
+    ]
+  ]
+}

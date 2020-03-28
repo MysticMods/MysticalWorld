@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WLW",
+    "LAL",
+    "WLW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:rotten_flesh"
+    },
+    "A": {
+      "item": "minecraft:apple"
+    },
+    "L": {
+      "tag": "forge:ingots/lead"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:rotten_apple"
+  }
+}

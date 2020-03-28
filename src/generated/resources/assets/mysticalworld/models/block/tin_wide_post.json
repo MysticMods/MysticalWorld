@@ -1,0 +1,6 @@
+{
+  "parent": "mysticalworld:block/wide_post",
+  "textures": {
+    "wall": "mysticalworld:block/tin_block"
+  }
+}

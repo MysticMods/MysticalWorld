@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:storage_blocks_quicksilver_to_9_ingots"
+    ]
+  },
+  "criteria": {
+    "has_block_storage_blocks_quicksilver": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:storage_blocks/quicksilver"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:storage_blocks_quicksilver_to_9_ingots"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_block_storage_blocks_quicksilver",
+      "has_the_recipe"
+    ]
+  ]
+}

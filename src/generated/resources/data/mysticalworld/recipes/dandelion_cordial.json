@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "1S1",
+    "BWB",
+    "BSB"
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:dandelion"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "B": {
+      "item": "minecraft:glass_bottle"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:dandelion_cordial",
+    "count": 4
+  }
+}

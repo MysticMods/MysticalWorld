@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "forge:crops/eggplant"
+  },
+  "result": "mysticalworld:cooked_aubergine",
+  "experience": 0.15,
+  "cookingtime": 200
+}

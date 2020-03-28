@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:lead_ingot_from_smelting_dust"
+    ]
+  },
+  "criteria": {
+    "has_dusts_lead": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:dusts/lead"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:lead_ingot_from_smelting_dust"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dusts_lead",
+      "has_the_recipe"
+    ]
+  ]
+}

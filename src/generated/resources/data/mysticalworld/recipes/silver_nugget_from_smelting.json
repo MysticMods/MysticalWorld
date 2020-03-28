@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "mysticalworld:silver_items"
+  },
+  "result": "mysticalworld:silver_nugget",
+  "experience": 0.15,
+  "cookingtime": 200
+}
