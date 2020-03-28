@@ -59,19 +59,19 @@ public class ModTags {
     }
 
     private void add(Tag<Item> tag, Supplier<? extends IItemProvider>... items) {
-      provider.getBuilder(tag).add(Stream.of(items).map(Supplier::get).map(IItemProvider::asItem).toArray(Item[]::new));
+      provider.getBuilder(tag).add(Stream.of(items).map(Supplier::get).map(IItemProvider::asItem).toArray(Item[]::new)).build(tag.getId());
     }
 
     private void add(Tag<Item> tag, IItemProvider... items) {
-      provider.getBuilder(tag).add(Stream.of(items).map(IItemProvider::asItem).toArray(Item[]::new));
+      provider.getBuilder(tag).add(Stream.of(items).map(IItemProvider::asItem).toArray(Item[]::new)).build(tag.getId());
     }
 
     private void add(Tag<Item> tag, Tag<Item> tag2) {
-      provider.getBuilder(tag).add(tag2);
+      provider.getBuilder(tag).add(tag2).build(tag.getId());
     }
 
     private Additionals<Item> additional(Tag<Item> tag) {
-      return (o) -> provider.getBuilder(tag).add(o);
+      return (o) -> provider.getBuilder(tag).add(o).build(tag.getId());
     }
 
     protected void copy(Tag<Block> from, Tag<Item> to) {
@@ -81,6 +81,8 @@ public class ModTags {
         Tag.ITagEntry<Item> itagentry1 = this.copyEntry(itagentry);
         builder.add(itagentry1);
       }
+
+      builder.build(to.getId());
     }
 
     private Tag.ITagEntry<Item> copyEntry(Tag.ITagEntry<Block> entry) {
@@ -130,13 +132,14 @@ public class ModTags {
       b.additional(Tags.Items.NUGGETS).add(MWTags.Items.COPPER_NUGGET, MWTags.Items.LEAD_NUGGET, MWTags.Items.QUICKSILVER_NUGGET, MWTags.Items.SILVER_NUGGET, MWTags.Items.TIN_NUGGET);
       b.additional(Tags.Items.DUSTS).add(MWTags.Items.COPPER_DUST, MWTags.Items.LEAD_DUST, MWTags.Items.QUICKSILVER_DUST, MWTags.Items.SILVER_DUST, MWTags.Items.TIN_DUST, MWTags.Items.GOLD_DUST, MWTags.Items.IRON_DUST);
 
-      b.add(MWTags.Items.SWORDS, ModItems.AMETHYST_SWORD, ModItems.CACTUS_SWORD, ModItems.COPPER_SWORD, ModItems.LEAD_SWORD, ModItems.QUICKSILVER_SWORD, ModItems.SILVER_SWORD, ModItems.TIN_SWORD);
-      b.add(MWTags.Items.KNIVES, ModItems.AMETHYST_KNIFE, ModItems.CACTUS_KNIFE, ModItems.COPPER_KNIFE, ModItems.DIAMOND_KNIFE, ModItems.GOLD_KNIFE, ModItems.IRON_KNIFE, ModItems.LEAD_KNIFE, ModItems.QUICKSILVER_KNIFE, ModItems.SILVER_KNIFE, ModItems.STONE_KNIFE, ModItems.TIN_KNIFE, ModItems.WOODEN_KNIFE);
-
       b.add(MWTags.Items.GEMS, ModItems.AMETHYST_GEM, () -> Items.DIAMOND);
 
       b.add(MWTags.Items.VEGETABLES, Items.CARROT, Items.BEETROOT);
       b.add(MWTags.Items.COOKED_VEGETABLES, ModItems.COOKED_BEETROOT, ModItems.COOKED_CARROT, () -> Items.BAKED_POTATO);
+
+      b.add(MWTags.Items.SWORDS, ModItems.AMETHYST_SWORD, ModItems.CACTUS_SWORD, ModItems.COPPER_SWORD, ModItems.LEAD_SWORD, ModItems.QUICKSILVER_SWORD, ModItems.SILVER_SWORD, ModItems.TIN_SWORD);
+      b.add(MWTags.Items.KNIVES, ModItems.AMETHYST_KNIFE, ModItems.CACTUS_KNIFE, ModItems.COPPER_KNIFE, ModItems.DIAMOND_KNIFE, ModItems.GOLD_KNIFE, ModItems.IRON_KNIFE, ModItems.LEAD_KNIFE, ModItems.QUICKSILVER_KNIFE, ModItems.SILVER_KNIFE, ModItems.STONE_KNIFE, ModItems.TIN_KNIFE, ModItems.WOODEN_KNIFE);
+
 
       b.add(MWTags.Items.SILVER_ITEMS, ModItems.SILVER_SWORD, ModItems.SILVER_KNIFE, ModItems.SILVER_AXE, ModItems.SILVER_HOE, ModItems.SILVER_PICKAXE, ModItems.SILVER_SHOVEL, ModItems.SILVER_BOOTS, ModItems.SILVER_CHESTPLATE, ModItems.SILVER_HELMET, ModItems.SILVER_LEGGINGS, ModItems.SILVER_SPEAR);
       b.add(MWTags.Items.COPPER_ITEMS, ModItems.COPPER_SWORD, ModItems.COPPER_KNIFE, ModItems.COPPER_AXE, ModItems.COPPER_HOE, ModItems.COPPER_PICKAXE, ModItems.COPPER_SHOVEL, ModItems.COPPER_BOOTS, ModItems.COPPER_CHESTPLATE, ModItems.COPPER_HELMET, ModItems.COPPER_LEGGINGS, ModItems.COPPER_SPEAR);

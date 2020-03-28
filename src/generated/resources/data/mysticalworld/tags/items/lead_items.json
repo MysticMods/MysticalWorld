@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:lead_sword",
+    "mysticalworld:lead_knife",
+    "mysticalworld:lead_axe",
+    "mysticalworld:lead_hoe",
+    "mysticalworld:lead_pickaxe",
+    "mysticalworld:lead_shovel",
+    "mysticalworld:lead_boots",
+    "mysticalworld:lead_chestplate",
+    "mysticalworld:lead_helmet",
+    "mysticalworld:lead_leggings",
+    "mysticalworld:lead_spear"
+  ]
+}

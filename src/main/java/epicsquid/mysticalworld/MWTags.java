@@ -65,7 +65,7 @@ public class MWTags {
   public static class Items extends MWTags {
     public static Tag<Item> SWORDS = compatTag("swords");
     public static Tag<Item> KNIVES = modTag("knives");
-    public static Tag<Item> GEMS = compatTag("gems");
+    public static Tag<Item> GEMS = modTag("gems");
     public static Tag<Item> VEGETABLES = compatTag("vegetables");
     public static Tag<Item> CROPS = compatTag("crops");
     public static Tag<Item> COOKED_VEGETABLES = compatTag("cooked_vegetables");
