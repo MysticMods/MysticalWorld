@@ -56,6 +56,7 @@ public class WorldGeneratorTrees implements IWorldGenerator {
 
       if (Blocks.SAPLING.canPlaceBlockAt(world, pos)) {
         burnTree.generate(world, random, pos);
+        burnTree.reset();
         break;
       }
     }

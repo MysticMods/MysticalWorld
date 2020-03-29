@@ -36,6 +36,15 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
     super(notify);
   }
 
+  @Override
+  protected void setBlockAndNotifyAdequately(World worldIn, BlockPos pos, IBlockState state) {
+    if (worldIn == null) {
+      return;
+    }
+
+    super.setBlockAndNotifyAdequately(worldIn, pos, state);
+  }
+
   /**
    * Generates a list of leaf nodes for the tree, to be populated by generateLeaves.
    */
@@ -271,8 +280,11 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
     this.generateLeaves();
     this.generateTrunk();
     this.generateLeafNodeBases();
-    this.world = null; //Fix vanilla Mem leak, holds latest world
     return true;
+  }
+
+  public void reset () {
+    this.world = null;
   }
 
   public static class FoliageCoordinates extends BlockPos {
