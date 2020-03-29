@@ -22,6 +22,7 @@ item.silk_cocoon.name=Шелковый кокон
 item.spindle.name=Веретено
 item.silkworm_egg.name=Яйцо шелкопряда
 item.cooked_apple.name=Приготовленное яблоко
+item.pearl.name=Блестящая жемчужина
 
 # Ingots
 item.copper_ingot.name=Медный слиток
@@ -180,6 +181,24 @@ tile.charred_pressure_plate.name=Обугленная нажимная плит�
 tile.charred_fence.name=Обугленный забор
 tile.charred_fence_gate.name=Обугленная калитка
 
+# Pearl
+tile.pearl_block.name=Жемчужный блок
+tile.pearl_stairs.name=Жемчужные ступеньки
+tile.pearl_slab.name=Жемчужная плита
+tile.pearl_wall.name=Жемчужная ограда
+tile.pearl_button.name=Жемчужная кнопка
+tile.pearl_pressure_plate.name=Жемчужная нажимная плита
+tile.pearl_fence.name=Жемчужный забор
+tile.pearl_fence_gate.name=Жемчужная калитка
+
+# Thatch
+tile.thatch_stairs.name=Соломенные ступеньки
+tile.thatch_slab.name=Соломенная плита
+tile.thatch_wall.name=Соломенная ограда
+
+# Other Blocks
+tile.thatch.name=Солома
+
 #Solar Infused
 tile.solar_infused_stone.name=Солнечный камень
 tile.solar_infused_stone_stairs.name=Ступеньки из солнечного камня
@@ -205,6 +224,8 @@ item.aubergine_seed.name=Семена баклажана
 item.aubergine.name=Баклажан
 item.cooked_aubergine.name=Приготовленный баклажан
 item.stuffed_aubergine.name=Фаршерованный баклажан
+item.assorted_seeds.name=Смешеные семена
+item.cooked_seeds.name=Жареные семена
 
 message.squid.cooldown=Дайте время, чтобы произвести больше чернил!
 
@@ -217,6 +238,7 @@ mysticalworld.subtitles.entity.fox.eat=Лиса ест
 mysticalworld.subtitles.entity.fox.idle=Лиса тявкает
 mysticalworld.subtitles.entity.fox.sleep=Лиса спит
 mysticalworld.subtitles.entity.fox.sniff=Лиса принюхивается
+mysticalworld.subtitles.entity.fox.spit=Лиса сплёвывает
 mysticalworld.subtitles.entity.sprout.ambient=Росток бродит
 mysticalworld.subtitles.entity.endermini.death=Эндермини умирает
 mysticalworld.subtitles.entity.endermini.hit=Эндермини ранен
