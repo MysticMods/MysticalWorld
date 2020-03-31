@@ -1,10 +1,9 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "farmland",
+    "model": "cube_all",
     "textures": {
-      "dirt": "mysticalworld:blocks/wet_mud_block",
-      "top": "mysticalworld:blocks/wet_mud_block"
+      "all": "mysticalworld:blocks/thatch"
     },
     "uvlock": true
   },
@@ -17,6 +16,10 @@
     ],
     "handlers": [
       {}
-    ]
+    ],
+    "half": {
+      "top": {},
+      "bottom": {}
+    }
   }
 }

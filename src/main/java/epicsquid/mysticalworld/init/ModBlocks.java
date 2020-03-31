@@ -20,18 +20,27 @@ import javax.annotation.Nonnull;
 public class ModBlocks {
 
   // All blocks
-  public static Block thatch;
+  public static Block thatch, thatch_wall, thatch_double_slab, thatch_slab, thatch_stairs;
   public static BlockCropBase aubergine;
   public static Block mud_block, wet_mud_block, mud_brick, wet_mud_brick, charred_log, charred_planks;
   public static Block mud_brick_stair, mud_brick_slab, mud_brick_double_slab, mud_brick_wall, mud_brick_fence, mud_brick_button, mud_brick_pressure_plate, mud_brick_fence_gate;
   public static Block mud_block_stair, mud_block_slab, mud_block_double_slab, mud_block_wall, mud_block_fence, mud_block_button, mud_block_pressure_plate, mud_block_fence_gate;
   public static Block charred_stair, charred_slab, charred_double_slab, charred_wall, charred_fence, charred_button, charred_pressure_plate, charred_fence_gate;
+  public static Block pearl_block, pearl_stair, pearl_slab, pearl_double_slab, pearl_wall, pearl_fence, pearl_button, pearl_pressure_plate, pearl_fence_gate;
 
   /**
    * Register all blocks
    */
   public static void registerBlocks(@Nonnull RegisterContentEvent event) {
     event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch").setCreativeTab(MysticalWorld.tab));
+
+    // Thatch
+    Block[] slabs = new Block[2];
+    LibRegistry.addSlabPair(Material.LEAVES, SoundType.PLANT, 1.7f, "thatch", thatch.getDefaultState(), slabs, MysticalWorld.tab);
+    event.addBlock(thatch_stairs = new BlockStairsBase(thatch.getDefaultState(), SoundType.PLANT, 1.7f, "thatch" + "_stairs")).setCreativeTab(MysticalWorld.tab);
+    event.addBlock(thatch_wall = new BlockWallBase(thatch, SoundType.PLANT, 1.7f, "thatch" + "_wall")).setCreativeTab(MysticalWorld.tab);
+    thatch_slab = slabs[0];
+    thatch_double_slab = slabs[1];
 
     event.addBlock(aubergine = new BlockAubergineCrop("aubergine_crop", EnumPlantType.Crop));
     /*    event.addBlock(poisoned_potato = new BlockPoisonedPotatoCrop("poisoned_potato_crop", EnumPlantType.Crop));*/
@@ -99,6 +108,17 @@ public class ModBlocks {
     mud_brick_button = mud.button;
     event.addBlock(mud_brick_fence = new BlockFenceBase(mud_brick, SoundType.STONE, 2.0f, "mud_brick_fence").setCreativeTab(MysticalWorld.tab));
     event.addBlock(mud_brick_fence_gate = new BlockFenceGateBase(mud_brick, SoundType.STONE, 2.0f, "mud_brick_fence_gate").setCreativeTab(MysticalWorld.tab));
+
+    event.addBlock(pearl_block = new BlockBase(Material.ROCK, SoundType.CLOTH, 3.4f, "pearl_block")).setCreativeTab(MysticalWorld.tab);
+    Variants pearl = variants(event, pearl_block, "pearl", SoundType.CLOTH, Material.ROCK);
+    pearl_slab = pearl.slab;
+    pearl_double_slab = pearl.double_slab;
+    pearl_stair = pearl.stairs;
+    pearl_wall = pearl.wall;
+    pearl_pressure_plate = pearl.pressure_plate;
+    pearl_button = pearl.button;
+    event.addBlock(pearl_fence = new BlockFenceBase(pearl_block, SoundType.CLOTH, 3.0f, "pearl_fence").setCreativeTab(MysticalWorld.tab));
+    event.addBlock(pearl_fence_gate = new BlockFenceGateBase(pearl_block, SoundType.CLOTH, 3.0f, "pearl_fence_gate").setCreativeTab(MysticalWorld.tab));
   }
 
   private static Variants variants(RegisterContentEvent event, Block base, String name, SoundType sound, Material material) {
@@ -110,12 +130,17 @@ public class ModBlocks {
     LibRegistry.addSlabPair(material, sound, 1.7f, name, base.getDefaultState(), slabs, MysticalWorld.tab);
     event.addBlock(stairs = new BlockStairsBase(base.getDefaultState(), sound, 1.7f, name + "_stairs")).setCreativeTab(MysticalWorld.tab);
     event.addBlock(wall = new BlockWallBase(base, sound, 1.7f, name + "_wall")).setCreativeTab(MysticalWorld.tab);
-    if (material.equals(Material.ROCK)) {
-      event.addBlock(button = new BlockButtonStoneBase(base, sound, 1.7f, name + "_button")).setCreativeTab(MysticalWorld.tab);
-      event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.MOBS, sound, 1.7f, name + "_pressure_plate")).setCreativeTab(MysticalWorld.tab);
+    if (name.equals("pearl")) {
+        event.addBlock(button = new BlockButtonStoneBase(base, sound, 1.7f, name + "_button")).setCreativeTab(MysticalWorld.tab);
+        event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.PLAYER, sound, 1.7f, name + "_pressure_plate")).setCreativeTab(MysticalWorld.tab);
     } else {
-      event.addBlock(button = new BlockButtonWoodBase(base, sound, 1.7f, name + "_button")).setCreativeTab(MysticalWorld.tab);
-      event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.ALL, sound, 1.7f, name + "_pressure_plate")).setCreativeTab(MysticalWorld.tab);
+      if (material.equals(Material.ROCK)) {
+        event.addBlock(button = new BlockButtonStoneBase(base, sound, 1.7f, name + "_button")).setCreativeTab(MysticalWorld.tab);
+        event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.MOBS, sound, 1.7f, name + "_pressure_plate")).setCreativeTab(MysticalWorld.tab);
+      } else {
+        event.addBlock(button = new BlockButtonWoodBase(base, sound, 1.7f, name + "_button")).setCreativeTab(MysticalWorld.tab);
+        event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.ALL, sound, 1.7f, name + "_pressure_plate")).setCreativeTab(MysticalWorld.tab);
+      }
     }
     return new Variants(slabs, stairs, wall, button, pressure_plate);
   }

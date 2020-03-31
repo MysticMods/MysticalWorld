@@ -22,6 +22,7 @@ item.silk_cocoon.name=Silk Cocoon
 item.spindle.name=Spindle
 item.silkworm_egg.name=Silkworm Egg
 item.cooked_apple.name=Cooked Apple
+item.pearl.name=Lustrous Pearl
 
 # Ingots
 item.copper_ingot.name=Copper Ingot
@@ -180,6 +181,21 @@ tile.charred_pressure_plate.name=Charred Pressure Plate
 tile.charred_fence.name=Charred Fence
 tile.charred_fence_gate.name=Charred Fence Gate
 
+# Pearl
+tile.pearl_block.name=Pearl Block
+tile.pearl_stairs.name=Pearl Stairs
+tile.pearl_slab.name=Pearl Slab
+tile.pearl_wall.name=Pearl Wall
+tile.pearl_button.name=Pearl Button
+tile.pearl_pressure_plate.name=Pearl Pressure Plate
+tile.pearl_fence.name=Pearl Fence
+tile.pearl_fence_gate.name=Pearl Fence Gate
+
+# Thatch
+tile.thatch_stairs.name=Thatch Stairs
+tile.thatch_slab.name=Thatch Slab
+tile.thatch_wall.name=Thatch Wall
+
 # Other Blocks
 tile.thatch.name=Thatch
 
@@ -208,6 +224,8 @@ item.aubergine_seed.name=Aubergine Seed
 item.aubergine.name=Aubergine
 item.cooked_aubergine.name=Cooked Aubergine
 item.stuffed_aubergine.name=Stuffed Aubergine
+item.assorted_seeds.name=Mixed Seeds
+item.cooked_seeds.name=Toasted Seeds
 
 message.squid.cooldown=Give it time to produce more ink!
 

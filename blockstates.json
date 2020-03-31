@@ -56,14 +56,6 @@
       "base": "mud_brick"
     },
     {
-      "type": "block",
-      "base": "wet_mud_block"
-    },
-    {
-      "type": "block",
-      "base": "wet_mud_brick"
-    },
-    {
       "type": "button",
       "base": "mud_brick"
     },
@@ -150,6 +142,66 @@
     {
       "type": "block",
       "base": "silver_ore"
+    },
+    {
+      "type": "block",
+      "base": "pearl_block"
+    },
+    {
+      "type": "double_slab",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "slab",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "stairs",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "wall",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "fence",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "fence_gate",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "button",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "pressure_plate",
+      "base": "pearl",
+      "texture": "pearl_block"
+    },
+    {
+      "type": "double_slab",
+      "base": "thatch"
+    },
+    {
+      "type": "slab",
+      "base": "thatch"
+    },
+    {
+      "type": "stairs",
+      "base": "thatch"
+    },
+    {
+      "type": "wall",
+      "base": "thatch"
     }
   ]
 }
