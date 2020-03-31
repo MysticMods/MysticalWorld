@@ -71,7 +71,6 @@ dependencies {
         compile project(':MysticalLib')
     }
     
-    deobfCompile "com.azanor:Baubles:${version_baubles}"
     deobfCompile("jeresources:JustEnoughResources-${minecraft_version}:${jer_version}") {
         exclude group: 'mezz.jei'
     }
