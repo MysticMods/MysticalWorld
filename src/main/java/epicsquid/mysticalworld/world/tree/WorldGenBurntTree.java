@@ -10,13 +10,15 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@SuppressWarnings("Duplicates")
+@SuppressWarnings({"Duplicates", "FieldCanBeLocal"})
 public class WorldGenBurntTree extends WorldGenAbstractTree {
   private Random rand;
+  @Nullable
   private World world;
   private BlockPos basePos = BlockPos.ORIGIN;
   private int heightLimit = 12;
@@ -29,8 +31,8 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
   /**
    * Sets the distance limit for how far away the generator will populate leaves from the base leaf node.
    */
-  int leafDistanceLimit = 4;
-  List<FoliageCoordinates> foliageCoords;
+  private int leafDistanceLimit = 4;
+  private List<FoliageCoordinates> foliageCoords;
 
   public WorldGenBurntTree(boolean notify) {
     super(notify);
@@ -95,16 +97,20 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
   }
 
   private void crosSection(BlockPos pos, float p_181631_2_, IBlockState p_181631_3_) {
+    if (this.world == null) {
+      return;
+    }
+
     int i = (int) ((double) p_181631_2_ + 0.618D);
 
     for (int j = -i; j <= i; ++j) {
       for (int k = -i; k <= i; ++k) {
         if (Math.pow((double) Math.abs(j) + 0.5D, 2.0D) + Math.pow((double) Math.abs(k) + 0.5D, 2.0D) <= (double) (p_181631_2_ * p_181631_2_)) {
           BlockPos blockpos = pos.add(j, 0, k);
-          IBlockState state = this.world.getBlockState(blockpos);
+          IBlockState state = world.getBlockState(blockpos);
 
           if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos)) {
-            this.setBlockAndNotifyAdequately(this.world, blockpos, p_181631_3_);
+            this.setBlockAndNotifyAdequately(world, blockpos, p_181631_3_);
             affectedBlocks.add(blockpos);
           }
         }
@@ -151,6 +157,9 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
   }
 
   private void limb(BlockPos p_175937_1_, BlockPos p_175937_2_, Block p_175937_3_) {
+    if (world == null) {
+      return;
+    }
     BlockPos blockpos = p_175937_2_.add(-p_175937_1_.getX(), -p_175937_1_.getY(), -p_175937_1_.getZ());
     int i = this.getGreatestDistance(blockpos);
     float f = (float) blockpos.getX() / (float) i;
@@ -160,7 +169,7 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
     for (int j = 0; j <= i; ++j) {
       BlockPos blockpos1 = p_175937_1_.add((double) (0.5F + (float) j * f), (double) (0.5F + (float) j * f1), (double) (0.5F + (float) j * f2));
       BlockLog.EnumAxis blocklog$enumaxis = this.getLogAxis(p_175937_1_, blockpos1);
-      this.setBlockAndNotifyAdequately(this.world, blockpos1, p_175937_3_.getDefaultState().withProperty(BlockLog.LOG_AXIS, blocklog$enumaxis));
+      this.setBlockAndNotifyAdequately(world, blockpos1, p_175937_3_.getDefaultState().withProperty(BlockLog.LOG_AXIS, blocklog$enumaxis));
       affectedBlocks.add(blockpos1);
     }
   }
@@ -189,7 +198,7 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
     if (k > 0) {
       if (i == k) {
         blocklog$enumaxis = BlockLog.EnumAxis.X;
-      } else if (j == k) {
+      } else {
         blocklog$enumaxis = BlockLog.EnumAxis.Z;
       }
     }
@@ -243,6 +252,9 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
    * (in blocks) before a non-air, non-leaf block is encountered and/or the end is encountered.
    */
   private int checkBlockLine(BlockPos posOne, BlockPos posTwo) {
+    if (world == null) {
+      return-1;
+    }
     BlockPos blockpos = posTwo.add(-posOne.getX(), -posOne.getY(), -posOne.getZ());
     int i = this.getGreatestDistance(blockpos);
     float f = (float) blockpos.getX() / (float) i;
@@ -271,6 +283,10 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
 
   @Override
   public boolean generate(World worldIn, Random rand, BlockPos position) {
+    if (worldIn == null) {
+      return false;
+    }
+
     this.world = worldIn;
     this.basePos = position;
     this.rand = new Random(rand.nextLong());
