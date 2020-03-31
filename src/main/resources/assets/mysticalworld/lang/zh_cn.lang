@@ -22,6 +22,7 @@ item.silk_cocoon.name=蚕茧
 item.spindle.name=纺锤
 item.silkworm_egg.name=蚕卵
 item.cooked_apple.name=熟苹果
+item.pearl.name=闪耀珍珠
 
 # 金属锭
 item.copper_ingot.name=铜锭
@@ -180,8 +181,21 @@ tile.charred_pressure_plate.name=烧焦的压力板
 tile.charred_fence.name=烧焦的栅栏
 tile.charred_fence_gate.name=烧焦的栅栏门
 
-# 其他方块
+# 珍珠
+tile.pearl_block.name=珍珠块
+tile.pearl_stairs.name=珍珠楼梯
+tile.pearl_slab.name=珍珠台阶
+tile.pearl_wall.name=珍珠墙
+tile.pearl_button.name=珍珠按钮
+tile.pearl_pressure_plate.name=珍珠压力板
+tile.pearl_fence.name=珍珠栅栏
+tile.pearl_fence_gate.name=珍珠栅栏门
+
+# 茅草
 tile.thatch.name=茅草
+tile.thatch_stairs.name=茅草楼梯
+tile.thatch_slab.name=茅草台阶
+tile.thatch_wall.name=茅草墙
 
 # 太阳能灌注石
 tile.solar_infused_stone.name=太阳能灌注石
@@ -208,6 +222,8 @@ item.aubergine_seed.name=茄子种子
 item.aubergine.name=茄子
 item.cooked_aubergine.name=烤茄子
 item.stuffed_aubergine.name=酿茄子
+item.assorted_seeds.name=混合种子
+item.cooked_seeds.name=烤种子
 
 message.squid.cooldown=鱿鱼还没有产生出足够的墨水！
 
@@ -280,6 +296,8 @@ forge.biome.tags.void.name=虚空
 forge.biome.tags.default.name=默认
 
 # Patchouli integration
+mysticalworld.guidebook.name=魔幻世界漫游记
+mysticalworld.guidebook.landing_text=这是一个美丽的魔法世界！$(br2)这本书将介绍$(br)$(l)奇妙神秘的魔法事物$()，$(br)给予你必要的引导知识。
 mysticalworld.patchouli.standard_group=常规数量生成。
 mysticalworld.patchouli.groups=%s到%s个一起生成。
 mysticalworld.patchouli.biomes=生成于下列群系：%s
