@@ -446,7 +446,7 @@ public class ModItems {
       .register();
 
   // Ingots/gems
-  public static RegistryEntry<Item> AMETHYST_GEM = REGISTRATE.item(AMETHYST.getInternalName() + "_gem", Item::new)
+  public static RegistryEntry<Item> AMETHYST_GEM = REGISTRATE.item(AMETHYST.getInternalName(), Item::new)
       .tag(MWTags.Items.AMETHYST_GEM)
       .recipe(RECIPES.storage(() -> ModBlocks.AMETHYST_BLOCK, () -> ModItems.AMETHYST_GEM, MWTags.Items.AMETHYST_BLOCK, MWTags.Items.AMETHYST_GEM, MWTags.Items.AMETHYST_ORE, null, null, null))
       .register();
