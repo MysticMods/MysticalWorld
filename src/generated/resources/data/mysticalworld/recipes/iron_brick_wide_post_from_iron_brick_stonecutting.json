@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:iron_brick"
-  },
-  "result": "mysticalworld:iron_brick_wide_post",
-  "count": 2
-}

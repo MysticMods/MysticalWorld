@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:tin_block"
-  },
-  "result": "mysticalworld:tin_slab",
-  "count": 2
-}

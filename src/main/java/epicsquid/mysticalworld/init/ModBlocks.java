@@ -162,7 +162,7 @@ public class ModBlocks {
       .build()
       .blockstate(ModBlocks::simpleBlockState)
       .recipe((ctx, p) ->
-          RECIPES.smelting(ModBlocks.WET_MUD_BLOCK, ModBlocks.MUD_BLOCK, 0.15f, false, p)
+          p.smelting(ModBlocks.WET_MUD_BLOCK, ModBlocks.MUD_BLOCK, 0.15f, p)
       )
       .register();
 
@@ -174,7 +174,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_STAIRS, null, true, p)
+          p.stairs(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_STAIRS, null, true, p)
       )
       .blockstate(stairs(ModBlocks.MUD_BLOCK))
       .register();
@@ -187,7 +187,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_SLAB, null, true, p)
+          p.slab(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_SLAB, null, true, p)
       )
       .blockstate(slab(ModBlocks.MUD_BLOCK))
       .register();
@@ -200,7 +200,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_WALL, true, p)
+          p.wall(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_WALL, p)
       )
       .blockstate(wall(ModBlocks.MUD_BLOCK))
       .register();
@@ -213,7 +213,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.FENCES)
       .recipe((ctx, p) ->
-          RECIPES.fence(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_FENCE, null, p)
+          p.fence(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_FENCE, null, p)
       )
       .blockstate(fence(ModBlocks.MUD_BLOCK))
       .register();
@@ -224,7 +224,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.fenceGate(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_FENCE_GATE, null, p)
+          p.fenceGate(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_FENCE_GATE, null, p)
       )
       .blockstate(gate(ModBlocks.MUD_BLOCK))
       .register();
@@ -271,7 +271,7 @@ public class ModBlocks {
       .build()
       .blockstate(ModBlocks::simpleBlockState)
       .recipe((ctx, p) -> {
-        RECIPES.smelting(ModBlocks.WET_MUD_BRICK, ModBlocks.MUD_BRICK, 0.15f, false, p);
+        p.smelting(ModBlocks.WET_MUD_BRICK, ModBlocks.MUD_BRICK, 0.15f, p);
         RECIPES.twoByTwo(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BRICK, null, p);
         SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(ModBlocks.MUD_BLOCK.get()), ModBlocks.MUD_BRICK.get())
             .addCriterion("has_mud_block", p.hasItem(ModBlocks.MUD_BLOCK.get()))
@@ -287,7 +287,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_STAIRS, null, true, p)
+          p.stairs(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_STAIRS, null, true, p)
       )
       .blockstate(stairs(ModBlocks.MUD_BRICK))
       .register();
@@ -300,7 +300,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_SLAB, null, true, p)
+          p.slab(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_SLAB, null, true, p)
       )
       .blockstate(slab(ModBlocks.MUD_BRICK))
       .register();
@@ -313,7 +313,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_WALL, true, p)
+          p.wall(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_WALL, p)
       )
       .blockstate(wall(ModBlocks.MUD_BRICK))
       .register();
@@ -326,7 +326,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.FENCES)
       .recipe((ctx, p) ->
-          RECIPES.fence(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_FENCE, null, p)
+          p.fence(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_FENCE, null, p)
       )
       .blockstate(fence(ModBlocks.MUD_BRICK))
       .register();
@@ -337,7 +337,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.fenceGate(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_FENCE_GATE, null, p)
+          p.fenceGate(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_FENCE_GATE, null, p)
       )
       .blockstate(gate(ModBlocks.MUD_BRICK))
       .register();
@@ -384,7 +384,7 @@ public class ModBlocks {
       .tag(ItemTags.PLANKS)
       .model(ModBlocks::itemModel)
       .build()
-      .recipe((ctx, p) -> RECIPES.planks(ModBlocks.CHARRED_LOG, ctx::getEntry, p))
+      .recipe((ctx, p) -> p.planks(ModBlocks.CHARRED_LOG, ctx::getEntry, p))
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
@@ -397,7 +397,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_STAIRS, null, true, p)
+          p.stairs(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_STAIRS, null, false, p)
       )
       .blockstate(stairs(ModBlocks.CHARRED_PLANKS))
       .register();
@@ -410,7 +410,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WOODEN_SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SLAB, null, true, p)
+          p.slab(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SLAB, null, false, p)
       )
       .blockstate(slab(ModBlocks.CHARRED_PLANKS))
       .register();
@@ -423,7 +423,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WOODEN_FENCES)
       .recipe((ctx, p) ->
-          RECIPES.fence(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_FENCE, null, p)
+          p.fence(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_FENCE, null, p)
       )
       .blockstate(fence(ModBlocks.CHARRED_PLANKS))
       .register();
@@ -434,7 +434,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.fenceGate(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_FENCE_GATE, null, p)
+          p.fenceGate(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_FENCE_GATE, null, p)
       )
       .blockstate(gate(ModBlocks.CHARRED_PLANKS))
       .register();
@@ -447,7 +447,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_WALL, true, p)
+          p.wall(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_WALL, p)
       )
       .blockstate(wall(ModBlocks.CHARRED_PLANKS))
       .register();
@@ -458,7 +458,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.widePost(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_WIDE_POST, null, true, p)
+          RECIPES.widePost(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_WIDE_POST, null, false, p)
       )
       .blockstate(widePost(ModBlocks.CHARRED_PLANKS))
       .register();
@@ -469,7 +469,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.narrowPost(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SMALL_POST, null, true, p)
+          RECIPES.narrowPost(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SMALL_POST, null, false, p)
       )
       .blockstate(narrowPost(ModBlocks.CHARRED_PLANKS))
       .register();
@@ -483,9 +483,7 @@ public class ModBlocks {
       .build()
       .blockstate(ModBlocks::simpleBlockState)
       .recipe((ctx, p) -> {
-        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.TERRACOTTA), ModBlocks.TERRACOTTA_BRICK.get())
-            .addCriterion("has_stone", p.hasItem(Items.TERRACOTTA))
-            .build(p, "terracotta_bricks_from_terracotta_stonecutting");
+        p.stonecutting(() -> Items.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK, p);
         RECIPES.twoByTwo(() -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK, null, p);
       })
       .register();
@@ -498,7 +496,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_STAIRS, null, true, p)
+          p.stairs(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_STAIRS, null, true, p)
       )
       .blockstate(stairs(ModBlocks.TERRACOTTA_BRICK))
       .register();
@@ -511,7 +509,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_SLAB, null, true, p)
+          p.slab(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_SLAB, null, true, p)
       )
       .blockstate(slab(ModBlocks.TERRACOTTA_BRICK))
       .register();
@@ -524,7 +522,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_WALL, true, p)
+          p.wall(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_WALL, p)
       )
       .blockstate(wall(ModBlocks.TERRACOTTA_BRICK))
       .register();
@@ -537,7 +535,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.FENCES)
       .recipe((ctx, p) ->
-          RECIPES.fence(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_FENCE, null, p)
+          p.fence(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_FENCE, null, p)
       )
       .blockstate(fence(ModBlocks.TERRACOTTA_BRICK))
       .register();
@@ -548,7 +546,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.fenceGate(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_FENCE_GATE, null, p)
+          p.fenceGate(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_FENCE_GATE, null, p)
       )
       .blockstate(gate(ModBlocks.TERRACOTTA_BRICK))
       .register();
@@ -598,7 +596,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_STAIRS, null, true, p)
+          p.stairs(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_STAIRS, null, false, p)
       )
       .blockstate(stairs(ModBlocks.IRON_BRICK))
       .register();
@@ -611,7 +609,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SLAB, null, true, p)
+          p.slab(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SLAB, null, false, p)
       )
       .blockstate(slab(ModBlocks.IRON_BRICK))
       .register();
@@ -624,7 +622,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_WALL, true, p)
+          p.wall(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_WALL, p)
       )
       .blockstate(wall(ModBlocks.IRON_BRICK))
       .register();
@@ -635,7 +633,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.widePost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_WIDE_POST, null, true, p)
+          RECIPES.widePost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_WIDE_POST, null, false, p)
       )
       .blockstate(widePost(ModBlocks.IRON_BRICK))
       .register();
@@ -646,7 +644,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.narrowPost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SMALL_POST, null, true, p)
+          RECIPES.narrowPost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SMALL_POST, null, false, p)
       )
       .blockstate(narrowPost(ModBlocks.IRON_BRICK))
       .register();
@@ -654,6 +652,7 @@ public class ModBlocks {
   // SOFT STONE
 
   private static NonNullUnaryOperator<Block.Properties> SOFT_STONE_PROPS = o -> o.sound(SoundType.STONE).hardnessAndResistance(1f);
+  private static NonNullUnaryOperator<Block.Properties> CRACKED_STONE_PROPS = SOFT_STONE_PROPS;
 
   public static RegistryEntry<Block> SOFT_STONE = REGISTRATE.block("soft_stone", Block::new)
       .properties(SOFT_STONE_PROPS)
@@ -662,10 +661,8 @@ public class ModBlocks {
       .tag(Tags.Items.STONE)
       .build()
       .recipe((ctx, p) -> {
+        p.stonecutting(() -> Items.SMOOTH_STONE, ModBlocks.SOFT_STONE, p);
         RECIPES.twoByTwo(() -> Items.SMOOTH_STONE, ModBlocks.SOFT_STONE, null, p);
-        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.SMOOTH_STONE), ModBlocks.SOFT_STONE.get())
-            .addCriterion("has_stone", p.hasItem(Items.SMOOTH_STONE))
-            .build(p, "soft_stone_from_smooth_stone_stonecutting");
       })
       .tag(Tags.Blocks.STONE)
       .blockstate(ModBlocks::simpleBlockState)
@@ -679,7 +676,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_STAIRS, null, true, p)
+          p.stairs(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_STAIRS, null, true, p)
       )
       .blockstate(stairs(ModBlocks.SOFT_STONE))
       .register();
@@ -692,7 +689,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SLAB, null, true, p)
+          p.slab(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SLAB, null, true, p)
       )
       .blockstate(slab(ModBlocks.SOFT_STONE))
       .register();
@@ -705,7 +702,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_WALL, true, p)
+          p.wall(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_WALL, p)
       )
       .blockstate(wall(ModBlocks.SOFT_STONE))
       .register();
@@ -732,6 +729,81 @@ public class ModBlocks {
       .blockstate(narrowPost(ModBlocks.SOFT_STONE))
       .register();
 
+  // CRACKED STONE
+  public static RegistryEntry<Block> CRACKED_STONE = REGISTRATE.block("cracked_stone", Block::new)
+      .properties(CRACKED_STONE_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(Tags.Items.STONE)
+      .build()
+      .recipe((ctx, p) -> {
+        p.smelting(ModBlocks.SOFT_STONE, ModBlocks.CRACKED_STONE, 0.125f, p);
+      })
+      .tag(Tags.Blocks.STONE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .register();
+
+  public static RegistryEntry<SoftStoneStairs> CRACKED_STONE_STAIRS = REGISTRATE.block("cracked_stone_stairs", Material.ROCK, SoftStoneStairs::new)
+      .properties(CRACKED_STONE_PROPS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.stairs(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.CRACKED_STONE))
+      .register();
+
+  public static RegistryEntry<SlabBlock> CRACKED_STONE_SLAB = REGISTRATE.block("cracked_stone_slab", Material.ROCK, SlabBlock::new)
+      .properties(CRACKED_STONE_PROPS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          p.slab(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.CRACKED_STONE))
+      .register();
+
+  public static RegistryEntry<WallBlock> CRACKED_STONE_WALL = REGISTRATE.block("cracked_stone_wall", Material.ROCK, WallBlock::new)
+      .properties(CRACKED_STONE_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          p.wall(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_WALL, p)
+      )
+      .blockstate(wall(ModBlocks.CRACKED_STONE))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> CRACKED_STONE_WIDE_POST = REGISTRATE.block("cracked_stone_wide_post", Material.ROCK, WidePostBlock::new)
+      .properties(CRACKED_STONE_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.CRACKED_STONE))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> CRACKED_STONE_SMALL_POST = REGISTRATE.block("cracked_stone_small_post", Material.ROCK, NarrowPostBlock::new)
+      .properties(CRACKED_STONE_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.CRACKED_STONE))
+      .register();
+
   // SMOOTH OBSIDIAN
 
   private static NonNullUnaryOperator<Block.Properties> SOFT_OBSIDIAN_PROPS = o -> o.sound(SoundType.STONE).hardnessAndResistance(20f);
@@ -745,10 +817,8 @@ public class ModBlocks {
       .tag(Tags.Blocks.OBSIDIAN)
       .blockstate(ModBlocks::simpleBlockState)
       .recipe((ctx, p) -> {
+        p.stonecutting(() -> Items.OBSIDIAN, ModBlocks.SOFT_OBSIDIAN, p);
         RECIPES.twoByTwo(() -> Items.OBSIDIAN, ModBlocks.SOFT_OBSIDIAN, null, p);
-        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Items.OBSIDIAN), ModBlocks.SOFT_OBSIDIAN.get())
-            .addCriterion("has_obsidian", p.hasItem(Items.OBSIDIAN))
-            .build(p, "soft_obsidian_from_obsidian_stonecutting");
       })
       .register();
 
@@ -760,7 +830,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_STAIRS, null, true, p)
+          p.stairs(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_STAIRS, null, true, p)
       )
       .blockstate(stairs(ModBlocks.SOFT_OBSIDIAN))
       .register();
@@ -773,7 +843,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_SLAB, null, true, p)
+          p.slab(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_SLAB, null, true, p)
       )
       .blockstate(slab(ModBlocks.SOFT_OBSIDIAN))
       .register();
@@ -786,7 +856,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_WALL, true, p)
+          p.wall(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_WALL, p)
       )
       .blockstate(wall(ModBlocks.SOFT_OBSIDIAN))
       .register();
@@ -845,7 +915,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_STAIRS, null, true, p)
+          p.stairs(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_STAIRS, null, false, p)
       )
       .blockstate(stairs(ModBlocks.AMETHYST_BLOCK))
       .register();
@@ -858,7 +928,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_SLAB, null, true, p)
+          p.slab(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_SLAB, null, false, p)
       )
       .blockstate(slab(ModBlocks.AMETHYST_BLOCK))
       .register();
@@ -871,7 +941,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_WALL, true, p)
+          p.wall(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_WALL, p)
       )
       .blockstate(wall(ModBlocks.AMETHYST_BLOCK))
       .register();
@@ -882,7 +952,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.widePost(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_WIDE_POST, null, true, p)
+          RECIPES.widePost(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_WIDE_POST, null, false, p)
       )
       .blockstate(widePost(ModBlocks.AMETHYST_BLOCK))
       .register();
@@ -893,7 +963,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.narrowPost(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_SMALL_POST, null, true, p)
+          RECIPES.narrowPost(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_SMALL_POST, null, false, p)
       )
       .blockstate(narrowPost(ModBlocks.AMETHYST_BLOCK))
       .register();
@@ -927,7 +997,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_STAIRS, null, true, p)
+          p.stairs(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_STAIRS, null, false, p)
       )
       .blockstate(stairs(ModBlocks.COPPER_BLOCK))
       .register();
@@ -940,7 +1010,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_SLAB, null, true, p)
+          p.slab(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_SLAB, null, false, p)
       )
       .blockstate(slab(ModBlocks.COPPER_BLOCK))
       .register();
@@ -953,7 +1023,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_WALL, true, p)
+          p.wall(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_WALL, p)
       )
       .blockstate(wall(ModBlocks.COPPER_BLOCK))
       .register();
@@ -964,7 +1034,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.widePost(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_WIDE_POST, null, true, p)
+          RECIPES.widePost(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_WIDE_POST, null, false, p)
       )
       .blockstate(widePost(ModBlocks.COPPER_BLOCK))
       .register();
@@ -975,7 +1045,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.narrowPost(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_SMALL_POST, null, true, p)
+          RECIPES.narrowPost(ModBlocks.COPPER_BLOCK, ModBlocks.COPPER_SMALL_POST, null, false, p)
       )
       .blockstate(narrowPost(ModBlocks.COPPER_BLOCK))
       .register();
@@ -1012,7 +1082,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_STAIRS, null, true, p)
+          p.stairs(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_STAIRS, null, false, p)
       )
       .blockstate(stairs(ModBlocks.LEAD_BLOCK))
       .register();
@@ -1025,7 +1095,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SLAB, null, true, p)
+          p.slab(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SLAB, null, false, p)
       )
       .blockstate(slab(ModBlocks.LEAD_BLOCK))
       .register();
@@ -1038,7 +1108,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_WALL, true, p)
+          p.wall(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_WALL, p)
       )
       .blockstate(wall(ModBlocks.LEAD_BLOCK))
       .register();
@@ -1049,7 +1119,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.widePost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_WIDE_POST, null, true, p)
+          RECIPES.widePost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_WIDE_POST, null, false, p)
       )
       .blockstate(widePost(ModBlocks.LEAD_BLOCK))
       .register();
@@ -1060,7 +1130,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.narrowPost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SMALL_POST, null, true, p)
+          RECIPES.narrowPost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SMALL_POST, null, false, p)
       )
       .blockstate(narrowPost(ModBlocks.LEAD_BLOCK))
       .register();
@@ -1095,7 +1165,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_STAIRS, null, true, p)
+          p.stairs(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_STAIRS, null, false, p)
       )
       .blockstate(stairs(ModBlocks.QUICKSILVER_BLOCK))
       .register();
@@ -1108,7 +1178,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_SLAB, null, true, p)
+          p.slab(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_SLAB, null, false, p)
       )
       .blockstate(slab(ModBlocks.QUICKSILVER_BLOCK))
       .register();
@@ -1121,7 +1191,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_WALL, true, p)
+          p.wall(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_WALL, p)
       )
       .blockstate(wall(ModBlocks.QUICKSILVER_BLOCK))
       .register();
@@ -1132,7 +1202,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.widePost(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_WIDE_POST, null, true, p)
+          RECIPES.widePost(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_WIDE_POST, null, false, p)
       )
       .blockstate(widePost(ModBlocks.QUICKSILVER_BLOCK))
       .register();
@@ -1143,7 +1213,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.narrowPost(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_SMALL_POST, null, true, p)
+          RECIPES.narrowPost(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_SMALL_POST, null, false, p)
       )
       .blockstate(narrowPost(ModBlocks.QUICKSILVER_BLOCK))
       .register();
@@ -1177,7 +1247,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_STAIRS, null, true, p)
+          p.stairs(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_STAIRS, null, false, p)
       )
       .blockstate(stairs(ModBlocks.SILVER_BLOCK))
       .register();
@@ -1190,7 +1260,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_SLAB, null, true, p)
+          p.slab(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_SLAB, null, false, p)
       )
       .blockstate(slab(ModBlocks.SILVER_BLOCK))
       .register();
@@ -1203,7 +1273,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_WALL, true, p)
+          p.wall(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_WALL, p)
       )
       .blockstate(wall(ModBlocks.SILVER_BLOCK))
       .register();
@@ -1214,7 +1284,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.widePost(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_WIDE_POST, null, true, p)
+          RECIPES.widePost(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_WIDE_POST, null, false, p)
       )
       .blockstate(widePost(ModBlocks.SILVER_BLOCK))
       .register();
@@ -1225,7 +1295,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.narrowPost(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_SMALL_POST, null, true, p)
+          RECIPES.narrowPost(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_SMALL_POST, null, false, p)
       )
       .blockstate(narrowPost(ModBlocks.SILVER_BLOCK))
       .register();
@@ -1260,7 +1330,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.stairs(ModBlocks.TIN_BLOCK, ModBlocks.TIN_STAIRS, null, true, p)
+          p.stairs(ModBlocks.TIN_BLOCK, ModBlocks.TIN_STAIRS, null, false, p)
       )
       .blockstate(stairs(ModBlocks.TIN_BLOCK))
       .register();
@@ -1273,7 +1343,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          RECIPES.slab(ModBlocks.TIN_BLOCK, ModBlocks.TIN_SLAB, null, true, p)
+          p.slab(ModBlocks.TIN_BLOCK, ModBlocks.TIN_SLAB, null, false, p)
       )
       .blockstate(slab(ModBlocks.TIN_BLOCK))
       .register();
@@ -1286,7 +1356,7 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          RECIPES.wall(ModBlocks.TIN_BLOCK, ModBlocks.TIN_WALL, true, p)
+          p.wall(ModBlocks.TIN_BLOCK, ModBlocks.TIN_WALL, p)
       )
       .blockstate(wall(ModBlocks.TIN_BLOCK))
       .register();
@@ -1297,7 +1367,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.widePost(ModBlocks.TIN_BLOCK, ModBlocks.TIN_WIDE_POST, null, true, p)
+          RECIPES.widePost(ModBlocks.TIN_BLOCK, ModBlocks.TIN_WIDE_POST, null, false, p)
       )
       .blockstate(widePost(ModBlocks.TIN_BLOCK))
       .register();
@@ -1308,7 +1378,7 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          RECIPES.narrowPost(ModBlocks.TIN_BLOCK, ModBlocks.TIN_SMALL_POST, null, true, p)
+          RECIPES.narrowPost(ModBlocks.TIN_BLOCK, ModBlocks.TIN_SMALL_POST, null, false, p)
       )
       .blockstate(narrowPost(ModBlocks.TIN_BLOCK))
       .register();

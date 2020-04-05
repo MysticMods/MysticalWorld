@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:copper_block"
-  },
-  "result": "mysticalworld:copper_small_post",
-  "count": 2
-}

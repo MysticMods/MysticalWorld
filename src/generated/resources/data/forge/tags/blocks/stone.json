@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "mysticalworld:soft_stone"
+    "mysticalworld:soft_stone",
+    "mysticalworld:cracked_stone"
   ]
 }

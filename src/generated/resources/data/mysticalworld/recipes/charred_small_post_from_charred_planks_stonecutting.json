@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:charred_planks"
-  },
-  "result": "mysticalworld:charred_small_post",
-  "count": 2
-}
