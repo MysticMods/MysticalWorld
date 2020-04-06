@@ -13,7 +13,7 @@ public class ModRecipes {
 
   public static RegistryEntry<SpecialRecipeSerializer<FlintAndSteelRecipe>> FLINT_SERIALIZER = REGISTRATE.recipeSerializer("flint_and_steel_recipe", () -> new SpecialRecipeSerializer<>(FlintAndSteelRecipe::new)).register();
 
-  public static RegistryEntry<SpecialRecipeSerializer<SpindleRecipe>> SPINDLE_SERIALIZER = REGISTRATE.recipeSerializer("knife_recipe", () -> new SpecialRecipeSerializer<>(SpindleRecipe::new)).register();
+  public static RegistryEntry<SpecialRecipeSerializer<SpindleRecipe>> SPINDLE_SERIALIZER = REGISTRATE.recipeSerializer("spindle_recipe", () -> new SpecialRecipeSerializer<>(SpindleRecipe::new)).register();
 
   public static RegistryEntry<SpecialRecipeSerializer<KnifeHornRecipe>> HORN_SERIALIZER = REGISTRATE.recipeSerializer("knife_horn_recipe", () -> new SpecialRecipeSerializer<>(KnifeHornRecipe::new)).register();
 

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "forge:ores/amethyst"
-  },
-  "result": "mysticalworld:amethyst_gem",
-  "experience": 0.125,
-  "cookingtime": 100
-}

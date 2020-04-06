@@ -42,7 +42,7 @@ public class MysticalWorld {
   public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
     @Override
     public ItemStack createIcon() {
-      return new ItemStack(ModItems.CARAPACE.get());
+      return new ItemStack(ModBlocks.AMETHYST_BLOCK.get());
     }
   };
 

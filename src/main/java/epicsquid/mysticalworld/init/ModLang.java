@@ -7,6 +7,7 @@ import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 public class ModLang {
   static {
     REGISTRATE.addDataGenerator(ProviderType.LANG, (p) -> {
+      p.add("itemGroup.mysticalworld", "Mystical World");
       p.add("mysticalworld.entity.lava_cat", "Lava Cat");
       p.add("mysticalworld.entity.obsidian_cat", "Obsidian Cat");
       p.add("message.dandelion_cordial", "You feel well-rested!");

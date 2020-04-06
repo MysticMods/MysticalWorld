@@ -1,12 +1,13 @@
 {
   "replace": false,
   "values": [
+    "mysticalworld:thatch_slab",
     "mysticalworld:mud_block_slab",
     "mysticalworld:mud_brick_slab",
     "mysticalworld:terracotta_brick_slab",
     "mysticalworld:iron_brick_slab",
     "mysticalworld:soft_stone_slab",
-    "mysticalworld:cracked_stone_slab",
+    "mysticalworld:blackened_stone_slab",
     "mysticalworld:soft_obsidian_slab",
     "mysticalworld:amethyst_slab",
     "mysticalworld:copper_slab",
