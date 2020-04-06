@@ -1,8 +1,8 @@
 package epicsquid.mysticalworld;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import epicsquid.mysticallib.data.RecipeProvider;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.data.RecipeProvider;
 import epicsquid.mysticalworld.events.TooltipHandler;
 import epicsquid.mysticalworld.events.mappings.Remaps;
 import epicsquid.mysticalworld.init.*;

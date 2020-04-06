@@ -37,13 +37,14 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import java.util.Objects;
+import java.util.function.Function;
 
 import static epicsquid.mysticalworld.MysticalWorld.RECIPES;
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
 // TODO: Registrate is DONE for this file
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused", "WeakerAccess", "unchecked"})
 public class ModBlocks {
 
   @SuppressWarnings("unchecked")
@@ -71,37 +72,37 @@ public class ModBlocks {
     return simpleBlockState(new ResourceLocation(MysticalWorld.MODID, parent));
   }
 
-  public static <T extends StairsBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> stairs(RegistryEntry<Block> parent) {
+  public static <T extends StairsBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> stairs(RegistryEntry<? extends Block> parent) {
     return (ctx, p) -> p.stairsBlock(ctx.getEntry(), p.blockTexture(parent.get()));
   }
 
-  public static <T extends SlabBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> slab(RegistryEntry<Block> parent) {
+  public static <T extends SlabBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> slab(RegistryEntry<? extends Block> parent) {
     return (ctx, p) -> p.slabBlock(ctx.getEntry(), p.blockTexture(parent.get()), p.blockTexture(parent.get()));
   }
 
-  public static <T extends FenceBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> fence(RegistryEntry<Block> parent) {
+  public static <T extends FenceBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> fence(RegistryEntry<? extends Block> parent) {
     return (ctx, p) -> {
       p.fenceBlock(ctx.getEntry(), p.blockTexture(parent.get()));
       p.fenceInventory(name(ctx.getEntry()) + "_inventory", p.blockTexture(parent.get()));
     };
   }
 
-  public static <T extends WallBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> wall(RegistryEntry<Block> parent) {
+  public static <T extends WallBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> wall(RegistryEntry<? extends Block> parent) {
     return (ctx, p) -> {
       p.wallBlock(ctx.getEntry(), p.blockTexture(parent.get()));
       p.wallInventory(name(ctx.getEntry()) + "_inventory", p.blockTexture(parent.get()));
     };
   }
 
-  public static <T extends FenceGateBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> gate(RegistryEntry<Block> parent) {
+  public static <T extends FenceGateBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> gate(RegistryEntry<? extends Block> parent) {
     return (ctx, p) -> p.fenceGateBlock(ctx.getEntry(), p.blockTexture(parent.get()));
   }
 
-  public static <T extends WidePostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> widePost(RegistryEntry<Block> parent) {
+  public static <T extends WidePostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> widePost(RegistryEntry<? extends Block> parent) {
     return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.getBuilder(name(ctx.getEntry())).parent(p.getExistingFile(new ResourceLocation(MysticalWorld.MODID, "wide_post"))).texture("wall", p.blockTexture(parent.get()))));
   }
 
-  public static <T extends NarrowPostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> narrowPost(RegistryEntry<Block> parent) {
+  public static <T extends NarrowPostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> narrowPost(RegistryEntry<? extends Block> parent) {
     return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.getBuilder(name(ctx.getEntry())).parent(p.getExistingFile(new ResourceLocation(MysticalWorld.MODID, "narrow_post"))).texture("wall", p.blockTexture(parent.get()))));
   }
 
@@ -109,7 +110,13 @@ public class ModBlocks {
     return Objects.requireNonNull(block.getRegistryName()).getPath();
   }
 
-  public static RegistryEntry<ThatchBlock> THATCH = REGISTRATE.block("thatch", ThatchBlock::new)
+  public static NonNullFunction<Block.Properties, StairsBlock> stairsBlock (RegistryEntry<? extends Block> block) {
+    return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b);
+  }
+
+  private static NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.hardnessAndResistance(1f).sound(SoundType.PLANT);
+
+  public static RegistryEntry<ThatchBlock> THATCH = REGISTRATE.block("thatch", Material.WOOD, ThatchBlock::new)
       .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
       .item()
       .model(NonNullBiConsumer.noop())
@@ -125,6 +132,91 @@ public class ModBlocks {
               .addCriterion("has_wheat", p.hasItem(Items.WHEAT))
               .build(p)
       )
+      .register();
+
+  public static RegistryEntry<StairsBlock> THATCH_STAIRS = REGISTRATE.block("thatch_stairs", Material.WOOD, stairsBlock(ModBlocks.THATCH))
+      .properties(THATCH_PROPS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.stairs(ModBlocks.THATCH, ModBlocks.THATCH_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.THATCH))
+      .register();
+
+  public static RegistryEntry<SlabBlock> THATCH_SLAB = REGISTRATE.block("thatch_slab", Material.WOOD, SlabBlock::new)
+      .properties(THATCH_PROPS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          p.slab(ModBlocks.THATCH, ModBlocks.THATCH_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.THATCH))
+      .register();
+
+  public static RegistryEntry<WallBlock> THATCH_WALL = REGISTRATE.block("thatch_wall", Material.WOOD, WallBlock::new)
+      .properties(THATCH_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          p.wall(ModBlocks.THATCH, ModBlocks.THATCH_WALL, p)
+      )
+      .blockstate(wall(ModBlocks.THATCH))
+      .register();
+
+  public static RegistryEntry<FenceBlock> THATCH_FENCE = REGISTRATE.block("thatch_fence", Material.WOOD, FenceBlock::new)
+      .properties(THATCH_PROPS)
+      .item()
+      .tag(ItemTags.WOODEN_FENCES)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WOODEN_FENCES)
+      .recipe((ctx, p) ->
+          p.fence(ModBlocks.THATCH, ModBlocks.THATCH_FENCE, null, p)
+      )
+      .blockstate(fence(ModBlocks.THATCH))
+      .register();
+
+  public static RegistryEntry<FenceGateBlock> THATCH_FENCE_GATE = REGISTRATE.block("thatch_fence_gate", Material.WOOD, FenceGateBlock::new)
+      .properties(THATCH_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.fenceGate(ModBlocks.THATCH, ModBlocks.THATCH_FENCE_GATE, null, p)
+      )
+      .blockstate(gate(ModBlocks.THATCH))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> THATCH_WIDE_POST = REGISTRATE.block("thatch_wide_post", Material.WOOD, WidePostBlock::new)
+      .properties(THATCH_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.THATCH, ModBlocks.THATCH_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.THATCH))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> THATCH_SMALL_POST = REGISTRATE.block("thatch_small_post", Material.WOOD, NarrowPostBlock::new)
+      .properties(THATCH_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.THATCH, ModBlocks.THATCH_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.THATCH))
       .register();
 
   public static RegistryEntry<AubergineCropBlock> AUBERGINE_CROP = REGISTRATE.block("aubergine_crop", AubergineCropBlock::new)
@@ -166,7 +258,7 @@ public class ModBlocks {
       )
       .register();
 
-  public static RegistryEntry<MudBlockStairs> MUD_BLOCK_STAIRS = REGISTRATE.block("mud_block_stairs", Material.ROCK, MudBlockStairs::new)
+  public static RegistryEntry<StairsBlock> MUD_BLOCK_STAIRS = REGISTRATE.block("mud_block_stairs", Material.ROCK, stairsBlock(ModBlocks.MUD_BLOCK))
       .properties(STONE_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -279,7 +371,7 @@ public class ModBlocks {
       })
       .register();
 
-  public static RegistryEntry<MudBrickStairs> MUD_BRICK_STAIRS = REGISTRATE.block("mud_brick_stairs", Material.ROCK, MudBrickStairs::new)
+  public static RegistryEntry<StairsBlock> MUD_BRICK_STAIRS = REGISTRATE.block("mud_brick_stairs", Material.ROCK, stairsBlock(ModBlocks.MUD_BRICK))
       .properties(STONE_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -389,7 +481,7 @@ public class ModBlocks {
       .register();
 
 
-  public static RegistryEntry<CharredStairs> CHARRED_STAIRS = REGISTRATE.block("charred_stairs", Material.WOOD, CharredStairs::new)
+  public static RegistryEntry<StairsBlock> CHARRED_STAIRS = REGISTRATE.block("charred_stairs", Material.WOOD, stairsBlock(ModBlocks.CHARRED_PLANKS))
       .properties(WOOD_PROPS)
       .tag(BlockTags.WOODEN_STAIRS)
       .item()
@@ -488,7 +580,7 @@ public class ModBlocks {
       })
       .register();
 
-  public static RegistryEntry<TerracottaBrickStairs> TERRACOTTA_BRICK_STAIRS = REGISTRATE.block("terracotta_brick_stairs", Material.ROCK, TerracottaBrickStairs::new)
+  public static RegistryEntry<StairsBlock> TERRACOTTA_BRICK_STAIRS = REGISTRATE.block("terracotta_brick_stairs", Material.ROCK, stairsBlock(ModBlocks.TERRACOTTA_BRICK))
       .properties(STONE_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -588,7 +680,7 @@ public class ModBlocks {
       })
       .register();
 
-  public static RegistryEntry<IronBrickStairs> IRON_BRICK_STAIRS = REGISTRATE.block("iron_brick_stairs", Material.IRON, IronBrickStairs::new)
+  public static RegistryEntry<StairsBlock> IRON_BRICK_STAIRS = REGISTRATE.block("iron_brick_stairs", Material.IRON, stairsBlock(ModBlocks.IRON_BRICK))
       .properties(IRON_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -668,7 +760,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<SoftStoneStairs> SOFT_STONE_STAIRS = REGISTRATE.block("soft_stone_stairs", Material.ROCK, SoftStoneStairs::new)
+  public static RegistryEntry<StairsBlock> SOFT_STONE_STAIRS = REGISTRATE.block("soft_stone_stairs", Material.ROCK, stairsBlock(ModBlocks.SOFT_STONE))
       .properties(SOFT_STONE_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -743,7 +835,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<SoftStoneStairs> CRACKED_STONE_STAIRS = REGISTRATE.block("cracked_stone_stairs", Material.ROCK, SoftStoneStairs::new)
+  public static RegistryEntry<StairsBlock> CRACKED_STONE_STAIRS = REGISTRATE.block("cracked_stone_stairs", Material.ROCK, stairsBlock(ModBlocks.CRACKED_STONE))
       .properties(CRACKED_STONE_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -822,7 +914,7 @@ public class ModBlocks {
       })
       .register();
 
-  public static RegistryEntry<SoftObsidianStairs> SOFT_OBSIDIAN_STAIRS = REGISTRATE.block("soft_obsidian_stairs", Material.ROCK, SoftObsidianStairs::new)
+  public static RegistryEntry<StairsBlock> SOFT_OBSIDIAN_STAIRS = REGISTRATE.block("soft_obsidian_stairs", Material.ROCK, stairsBlock(ModBlocks.SOFT_OBSIDIAN))
       .properties(SOFT_OBSIDIAN_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -913,7 +1005,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<AmethystStairs> AMETHYST_STAIRS = REGISTRATE.block("amethyst_stairs", Material.IRON, AmethystStairs::new)
+  public static RegistryEntry<StairsBlock> AMETHYST_STAIRS = REGISTRATE.block("amethyst_stairs", Material.IRON, stairsBlock(ModBlocks.AMETHYST_BLOCK))
       .properties(o -> {
         ModMaterials.AMETHYST.getBlockProps(o);
         return o;
@@ -1016,7 +1108,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<CopperStairs> COPPER_STAIRS = REGISTRATE.block("copper_stairs", Material.IRON, CopperStairs::new)
+  public static RegistryEntry<StairsBlock> COPPER_STAIRS = REGISTRATE.block("copper_stairs", Material.IRON, stairsBlock(ModBlocks.COPPER_BLOCK))
       .properties(o -> {
         ModMaterials.COPPER.getBlockProps(o);
         return o;
@@ -1122,7 +1214,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<LeadStairs> LEAD_STAIRS = REGISTRATE.block("lead_stairs", Material.IRON, LeadStairs::new)
+  public static RegistryEntry<StairsBlock> LEAD_STAIRS = REGISTRATE.block("lead_stairs", Material.IRON, stairsBlock(ModBlocks.LEAD_BLOCK))
       .properties(o -> {
         ModMaterials.LEAD.getBlockProps(o);
         return o;
@@ -1226,7 +1318,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<QuicksilverStairs> QUICKSILVER_STAIRS = REGISTRATE.block("quicksilver_stairs", Material.IRON, QuicksilverStairs::new)
+  public static RegistryEntry<StairsBlock> QUICKSILVER_STAIRS = REGISTRATE.block("quicksilver_stairs", Material.IRON, stairsBlock(ModBlocks.QUICKSILVER_BLOCK))
       .properties(o -> {
         ModMaterials.QUICKSILVER.getBlockProps(o);
         return o;
@@ -1329,7 +1421,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<SilverStairs> SILVER_STAIRS = REGISTRATE.block("silver_stairs", Material.IRON, SilverStairs::new)
+  public static RegistryEntry<StairsBlock> SILVER_STAIRS = REGISTRATE.block("silver_stairs", Material.IRON, stairsBlock(ModBlocks.SILVER_BLOCK))
       .properties(o -> {
         ModMaterials.SILVER.getBlockProps(o);
         return o;
@@ -1433,7 +1525,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<TinStairs> TIN_STAIRS = REGISTRATE.block("tin_stairs", Material.IRON, TinStairs::new)
+  public static RegistryEntry<StairsBlock> TIN_STAIRS = REGISTRATE.block("tin_stairs", Material.IRON, stairsBlock(ModBlocks.TIN_BLOCK))
       .properties(o -> {
         ModMaterials.TIN.getBlockProps(o);
         return o;
