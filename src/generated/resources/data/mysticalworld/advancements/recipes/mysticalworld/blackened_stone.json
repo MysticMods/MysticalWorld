@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "mysticalworld:blackened_stone_from_soft_stone_smelting"
+      "mysticalworld:blackened_stone"
     ]
   },
   "criteria": {
-    "has_soft_stone": {
+    "has_stone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:soft_stone"
+            "tag": "forge:stone"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "mysticalworld:blackened_stone_from_soft_stone_smelting"
+        "recipe": "mysticalworld:blackened_stone"
       }
     }
   },
   "requirements": [
     [
-      "has_soft_stone",
+      "has_stone",
       "has_the_recipe"
     ]
   ]

@@ -827,7 +827,13 @@ public class ModBlocks {
       .tag(Tags.Items.STONE)
       .build()
       .recipe((ctx, p) -> {
-        p.smelting(ModBlocks.SOFT_STONE, ModBlocks.BLACKENED_STONE, 0.125f, p);
+        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 4)
+            .patternLine("AB")
+            .patternLine("BA")
+            .key('A', Tags.Items.STONE)
+            .key('B', Ingredient.fromItems(Items.COAL, Items.CHARCOAL))
+            .addCriterion("has_stone", p.hasItem(Tags.Items.STONE))
+            .build(p);
       })
       .tag(Tags.Blocks.STONE)
       .blockstate(ModBlocks::simpleBlockState)
