@@ -18,7 +18,6 @@ import epicsquid.mysticalworld.blocks.AubergineCropBlock;
 import epicsquid.mysticalworld.blocks.ThatchBlock;
 import epicsquid.mysticalworld.blocks.WetMudBlock;
 import epicsquid.mysticalworld.blocks.WetMudBrick;
-import epicsquid.mysticalworld.blocks.stairs.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -37,7 +36,6 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import java.util.Objects;
-import java.util.function.Function;
 
 import static epicsquid.mysticalworld.MysticalWorld.RECIPES;
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
@@ -110,7 +108,7 @@ public class ModBlocks {
     return Objects.requireNonNull(block.getRegistryName()).getPath();
   }
 
-  public static NonNullFunction<Block.Properties, StairsBlock> stairsBlock (RegistryEntry<? extends Block> block) {
+  public static NonNullFunction<Block.Properties, StairsBlock> stairsBlock(RegistryEntry<? extends Block> block) {
     return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b);
   }
 
