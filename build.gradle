@@ -88,8 +88,7 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'mysticalworld', '--all', '--output', project(':MysticalWorld').file('src/generated/resources/'), '--existing', project(':MysticalWorld').sourceSets.main.resources.srcDirs[0], '--existing', project(':MysticalWorld').sourceSets.main.resources.srcDirs[1]
-
+            args '--mod', 'mysticalworld', '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
 
             mods {
                 mysticalworld {
