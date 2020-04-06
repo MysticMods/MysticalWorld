@@ -2,8 +2,6 @@ package epicsquid.mysticalworld;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import epicsquid.mysticallib.data.RecipeProvider;
-import epicsquid.mysticallib.registrate.CustomRegistrate;
-import epicsquid.mysticallib.registry.ModRegistry;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.events.TooltipHandler;
 import epicsquid.mysticalworld.events.mappings.Remaps;
@@ -12,11 +10,11 @@ import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.loot.conditions.IsColor;
 import epicsquid.mysticalworld.loot.conditions.IsLava;
 import epicsquid.mysticalworld.loot.conditions.IsObsidian;
+import epicsquid.mysticalworld.registrate.CustomRegistrate;
 import epicsquid.mysticalworld.setup.ClientSetup;
 import epicsquid.mysticalworld.setup.ModSetup;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -47,8 +45,6 @@ public class MysticalWorld {
       return new ItemStack(ModItems.CARAPACE.get());
     }
   };
-
-  public static final ModRegistry REGISTRY = new ModRegistry(MODID);
 
   public static ModSetup setup = new ModSetup();
 
@@ -93,8 +89,6 @@ public class MysticalWorld {
     MinecraftForge.EVENT_BUS.addGenericListener(Block.class, Remaps::remapBlockEvent);
     MinecraftForge.EVENT_BUS.addGenericListener(Item.class, Remaps::remapItemEvent);
     MinecraftForge.EVENT_BUS.addGenericListener(EntityType.class, Remaps::remapEntityEvent);
-
-    REGISTRY.registerEventBus(modBus);
 
     setup.registerListeners();
   }

@@ -43,7 +43,7 @@ import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
 // TODO: Registrate is DONE for this file
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class ModBlocks {
 
   @SuppressWarnings("unchecked")
@@ -885,7 +885,7 @@ public class ModBlocks {
 
   // AMETHYST
   public static RegistryEntry<BaseOreBlock> AMETHYST_ORE = REGISTRATE.block(ModMaterials.AMETHYST.oreName(), oreBlock(ModMaterials.AMETHYST))
-      .properties(ModMaterials.AMETHYST.getOreBlockProperties())
+      .properties(o -> { ModMaterials.AMETHYST.getOreBlockProperties(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.AMETHYST_ORE)
@@ -898,7 +898,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<Block> AMETHYST_BLOCK = REGISTRATE.block(ModMaterials.AMETHYST.blockName(), Material.IRON, Block::new)
-      .properties(ModMaterials.AMETHYST.getBlockProps())
+      .properties(o -> { ModMaterials.AMETHYST.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.AMETHYST_BLOCK)
@@ -908,7 +908,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<AmethystStairs> AMETHYST_STAIRS = REGISTRATE.block("amethyst_stairs", Material.IRON, AmethystStairs::new)
-      .properties(ModMaterials.AMETHYST.getBlockProps())
+      .properties(o -> { ModMaterials.AMETHYST.getBlockProps(o); return o; })
       .tag(BlockTags.STAIRS)
       .item()
       .tag(ItemTags.STAIRS)
@@ -921,7 +921,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<SlabBlock> AMETHYST_SLAB = REGISTRATE.block("amethyst_slab", Material.IRON, SlabBlock::new)
-      .properties(ModMaterials.AMETHYST.getBlockProps())
+      .properties(o -> { ModMaterials.AMETHYST.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.SLABS)
       .model(ModBlocks::itemModel)
@@ -934,7 +934,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WallBlock> AMETHYST_WALL = REGISTRATE.block("amethyst_wall", Material.IRON, WallBlock::new)
-      .properties(ModMaterials.AMETHYST.getBlockProps())
+      .properties(o -> { ModMaterials.AMETHYST.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.WALLS)
       .model(ModBlocks::inventoryModel)
@@ -947,7 +947,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WidePostBlock> AMETHYST_WIDE_POST = REGISTRATE.block("amethyst_wide_post", Material.IRON, WidePostBlock::new)
-      .properties(ModMaterials.AMETHYST.getBlockProps())
+      .properties(o -> { ModMaterials.AMETHYST.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -958,7 +958,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<NarrowPostBlock> AMETHYST_SMALL_POST = REGISTRATE.block("amethyst_small_post", Material.IRON, NarrowPostBlock::new)
-      .properties(ModMaterials.AMETHYST.getBlockProps())
+      .properties(o -> { ModMaterials.AMETHYST.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -970,7 +970,7 @@ public class ModBlocks {
 
   // COPPER
   public static RegistryEntry<BaseOreBlock> COPPER_ORE = REGISTRATE.block(ModMaterials.COPPER.oreName(), oreBlock(ModMaterials.COPPER))
-      .properties(ModMaterials.COPPER.getOreBlockProperties())
+      .properties(o -> { ModMaterials.COPPER.getOreBlockProperties(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.COPPER_ORE)
@@ -980,7 +980,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<Block> COPPER_BLOCK = REGISTRATE.block(ModMaterials.COPPER.blockName(), Material.IRON, Block::new)
-      .properties(ModMaterials.COPPER.getBlockProps())
+      .properties(o -> { ModMaterials.COPPER.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.COPPER_BLOCK)
@@ -990,7 +990,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<CopperStairs> COPPER_STAIRS = REGISTRATE.block("copper_stairs", Material.IRON, CopperStairs::new)
-      .properties(ModMaterials.COPPER.getBlockProps())
+      .properties(o -> { ModMaterials.COPPER.getBlockProps(o); return o; })
       .tag(BlockTags.STAIRS)
       .item()
       .tag(ItemTags.STAIRS)
@@ -1003,7 +1003,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<SlabBlock> COPPER_SLAB = REGISTRATE.block("copper_slab", Material.IRON, SlabBlock::new)
-      .properties(ModMaterials.COPPER.getBlockProps())
+      .properties(o -> { ModMaterials.COPPER.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.SLABS)
       .model(ModBlocks::itemModel)
@@ -1016,7 +1016,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WallBlock> COPPER_WALL = REGISTRATE.block("copper_wall", Material.IRON, WallBlock::new)
-      .properties(ModMaterials.COPPER.getBlockProps())
+      .properties(o -> { ModMaterials.COPPER.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.WALLS)
       .model(ModBlocks::inventoryModel)
@@ -1029,7 +1029,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WidePostBlock> COPPER_WIDE_POST = REGISTRATE.block("copper_wide_post", Material.IRON, WidePostBlock::new)
-      .properties(ModMaterials.COPPER.getBlockProps())
+      .properties(o -> { ModMaterials.COPPER.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -1040,7 +1040,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<NarrowPostBlock> COPPER_SMALL_POST = REGISTRATE.block("copper_small_post", Material.IRON, NarrowPostBlock::new)
-      .properties(ModMaterials.COPPER.getBlockProps())
+      .properties(o -> { ModMaterials.COPPER.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -1053,7 +1053,7 @@ public class ModBlocks {
 
   // LEAD
   public static RegistryEntry<BaseOreBlock> LEAD_ORE = REGISTRATE.block(ModMaterials.LEAD.oreName(), oreBlock(ModMaterials.LEAD))
-      .properties(ModMaterials.LEAD.getOreBlockProperties())
+      .properties(o -> { ModMaterials.LEAD.getOreBlockProperties(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.LEAD_ORE)
@@ -1065,7 +1065,7 @@ public class ModBlocks {
   public static ResourceLocation RL = new ResourceLocation("mysticalworld:item/copper");
 
   public static RegistryEntry<Block> LEAD_BLOCK = REGISTRATE.block(ModMaterials.LEAD.blockName(), Material.IRON, Block::new)
-      .properties(ModMaterials.LEAD.getBlockProps())
+      .properties(o -> { ModMaterials.LEAD.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.LEAD_BLOCK)
@@ -1075,7 +1075,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<LeadStairs> LEAD_STAIRS = REGISTRATE.block("lead_stairs", Material.IRON, LeadStairs::new)
-      .properties(ModMaterials.LEAD.getBlockProps())
+      .properties(o -> { ModMaterials.LEAD.getBlockProps(o); return o; })
       .tag(BlockTags.STAIRS)
       .item()
       .tag(ItemTags.STAIRS)
@@ -1088,7 +1088,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<SlabBlock> LEAD_SLAB = REGISTRATE.block("lead_slab", Material.IRON, SlabBlock::new)
-      .properties(ModMaterials.LEAD.getBlockProps())
+      .properties(o -> { ModMaterials.LEAD.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.SLABS)
       .model(ModBlocks::itemModel)
@@ -1101,7 +1101,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WallBlock> LEAD_WALL = REGISTRATE.block("lead_wall", Material.IRON, WallBlock::new)
-      .properties(ModMaterials.LEAD.getBlockProps())
+      .properties(o -> { ModMaterials.LEAD.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.WALLS)
       .model(ModBlocks::inventoryModel)
@@ -1114,7 +1114,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WidePostBlock> LEAD_WIDE_POST = REGISTRATE.block("lead_wide_post", Material.IRON, WidePostBlock::new)
-      .properties(ModMaterials.LEAD.getBlockProps())
+      .properties(o -> { ModMaterials.LEAD.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -1125,7 +1125,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<NarrowPostBlock> LEAD_SMALL_POST = REGISTRATE.block("lead_small_post", Material.IRON, NarrowPostBlock::new)
-      .properties(ModMaterials.LEAD.getBlockProps())
+      .properties(o -> { ModMaterials.LEAD.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -1138,7 +1138,7 @@ public class ModBlocks {
 
   // QUICKSILVER
   public static RegistryEntry<BaseOreBlock> QUICKSILVER_ORE = REGISTRATE.block(ModMaterials.QUICKSILVER.oreName(), oreBlock(ModMaterials.QUICKSILVER))
-      .properties(ModMaterials.QUICKSILVER.getOreBlockProperties())
+      .properties(o -> { ModMaterials.QUICKSILVER.getOreBlockProperties(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.QUICKSILVER_ORE)
@@ -1148,7 +1148,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<Block> QUICKSILVER_BLOCK = REGISTRATE.block(ModMaterials.QUICKSILVER.blockName(), Material.IRON, Block::new)
-      .properties(ModMaterials.QUICKSILVER.getBlockProps())
+      .properties(o -> { ModMaterials.QUICKSILVER.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.QUICKSILVER_BLOCK)
@@ -1158,7 +1158,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<QuicksilverStairs> QUICKSILVER_STAIRS = REGISTRATE.block("quicksilver_stairs", Material.IRON, QuicksilverStairs::new)
-      .properties(ModMaterials.QUICKSILVER.getBlockProps())
+      .properties(o -> { ModMaterials.QUICKSILVER.getBlockProps(o); return o; })
       .tag(BlockTags.STAIRS)
       .item()
       .tag(ItemTags.STAIRS)
@@ -1171,7 +1171,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<SlabBlock> QUICKSILVER_SLAB = REGISTRATE.block("quicksilver_slab", Material.IRON, SlabBlock::new)
-      .properties(ModMaterials.QUICKSILVER.getBlockProps())
+      .properties(o -> { ModMaterials.QUICKSILVER.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.SLABS)
       .model(ModBlocks::itemModel)
@@ -1184,7 +1184,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WallBlock> QUICKSILVER_WALL = REGISTRATE.block("quicksilver_wall", Material.IRON, WallBlock::new)
-      .properties(ModMaterials.QUICKSILVER.getBlockProps())
+      .properties(o -> { ModMaterials.QUICKSILVER.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.WALLS)
       .model(ModBlocks::inventoryModel)
@@ -1197,7 +1197,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WidePostBlock> QUICKSILVER_WIDE_POST = REGISTRATE.block("quicksilver_wide_post", Material.IRON, WidePostBlock::new)
-      .properties(ModMaterials.QUICKSILVER.getBlockProps())
+      .properties(o -> { ModMaterials.QUICKSILVER.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -1208,7 +1208,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<NarrowPostBlock> QUICKSILVER_SMALL_POST = REGISTRATE.block("quicksilver_small_post", Material.IRON, NarrowPostBlock::new)
-      .properties(ModMaterials.QUICKSILVER.getBlockProps())
+      .properties(o -> { ModMaterials.QUICKSILVER.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -1220,7 +1220,7 @@ public class ModBlocks {
 
   // SILVER
   public static RegistryEntry<BaseOreBlock> SILVER_ORE = REGISTRATE.block(ModMaterials.SILVER.oreName(), oreBlock(ModMaterials.SILVER))
-      .properties(ModMaterials.SILVER.getOreBlockProperties())
+      .properties(o -> { ModMaterials.SILVER.getOreBlockProperties(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.SILVER_ORE)
@@ -1230,7 +1230,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<Block> SILVER_BLOCK = REGISTRATE.block(ModMaterials.SILVER.blockName(), Material.IRON, Block::new)
-      .properties(ModMaterials.SILVER.getBlockProps())
+      .properties(o -> { ModMaterials.SILVER.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.SILVER_BLOCK)
@@ -1240,7 +1240,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<SilverStairs> SILVER_STAIRS = REGISTRATE.block("silver_stairs", Material.IRON, SilverStairs::new)
-      .properties(ModMaterials.SILVER.getBlockProps())
+      .properties(o -> { ModMaterials.SILVER.getBlockProps(o); return o; })
       .tag(BlockTags.STAIRS)
       .item()
       .tag(ItemTags.STAIRS)
@@ -1253,7 +1253,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<SlabBlock> SILVER_SLAB = REGISTRATE.block("silver_slab", Material.IRON, SlabBlock::new)
-      .properties(ModMaterials.SILVER.getBlockProps())
+      .properties(o -> { ModMaterials.SILVER.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.SLABS)
       .model(ModBlocks::itemModel)
@@ -1266,7 +1266,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WallBlock> SILVER_WALL = REGISTRATE.block("silver_wall", Material.IRON, WallBlock::new)
-      .properties(ModMaterials.SILVER.getBlockProps())
+      .properties(o -> { ModMaterials.SILVER.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.WALLS)
       .model(ModBlocks::inventoryModel)
@@ -1279,7 +1279,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WidePostBlock> SILVER_WIDE_POST = REGISTRATE.block("silver_wide_post", Material.IRON, WidePostBlock::new)
-      .properties(ModMaterials.SILVER.getBlockProps())
+      .properties(o -> { ModMaterials.SILVER.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -1290,7 +1290,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<NarrowPostBlock> SILVER_SMALL_POST = REGISTRATE.block("silver_small_post", Material.IRON, NarrowPostBlock::new)
-      .properties(ModMaterials.SILVER.getBlockProps())
+      .properties(o -> { ModMaterials.SILVER.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -1303,7 +1303,7 @@ public class ModBlocks {
 
   // TIN
   public static RegistryEntry<BaseOreBlock> TIN_ORE = REGISTRATE.block(ModMaterials.TIN.oreName(), oreBlock(ModMaterials.TIN))
-      .properties(ModMaterials.TIN.getOreBlockProperties())
+      .properties(o -> { ModMaterials.TIN.getOreBlockProperties(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.TIN_ORE)
@@ -1313,7 +1313,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<Block> TIN_BLOCK = REGISTRATE.block(ModMaterials.TIN.blockName(), Material.IRON, Block::new)
-      .properties(ModMaterials.TIN.getBlockProps())
+      .properties(o -> { ModMaterials.TIN.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .tag(MWTags.Items.TIN_BLOCK)
@@ -1323,7 +1323,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<TinStairs> TIN_STAIRS = REGISTRATE.block("tin_stairs", Material.IRON, TinStairs::new)
-      .properties(ModMaterials.TIN.getBlockProps())
+      .properties(o -> { ModMaterials.TIN.getBlockProps(o); return o; })
       .tag(BlockTags.STAIRS)
       .item()
       .tag(ItemTags.STAIRS)
@@ -1336,7 +1336,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<SlabBlock> TIN_SLAB = REGISTRATE.block("tin_slab", Material.IRON, SlabBlock::new)
-      .properties(ModMaterials.TIN.getBlockProps())
+      .properties(o -> { ModMaterials.TIN.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.SLABS)
       .model(ModBlocks::itemModel)
@@ -1349,7 +1349,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WallBlock> TIN_WALL = REGISTRATE.block("tin_wall", Material.IRON, WallBlock::new)
-      .properties(ModMaterials.TIN.getBlockProps())
+      .properties(o -> { ModMaterials.TIN.getBlockProps(o); return o; })
       .item()
       .tag(ItemTags.WALLS)
       .model(ModBlocks::inventoryModel)
@@ -1362,7 +1362,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WidePostBlock> TIN_WIDE_POST = REGISTRATE.block("tin_wide_post", Material.IRON, WidePostBlock::new)
-      .properties(ModMaterials.TIN.getBlockProps())
+      .properties(o -> { ModMaterials.TIN.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -1373,7 +1373,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<NarrowPostBlock> TIN_SMALL_POST = REGISTRATE.block("tin_small_post", Material.IRON, NarrowPostBlock::new)
-      .properties(ModMaterials.TIN.getBlockProps())
+      .properties(o -> { ModMaterials.TIN.getBlockProps(o); return o; })
       .item()
       .model(ModBlocks::itemModel)
       .build()

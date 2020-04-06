@@ -1,31 +1,29 @@
 package epicsquid.mysticalworld.init;
 
+import com.tterrag.registrate.util.RegistryEntry;
 import net.minecraft.util.SoundEvent;
-import net.minecraftforge.fml.RegistryObject;
 
-import static epicsquid.mysticalworld.MysticalWorld.REGISTRY;
-
+import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 // TODO: Convert to Registrate
 
 public class ModSounds {
-  public static final RegistryObject<SoundEvent> ENDERMINI_DEATH = REGISTRY.registerSoundEvent("mob.endermini.death");
-  public static final RegistryObject<SoundEvent> ENDERMINI_HIT = REGISTRY.registerSoundEvent("mob.endermini.hit");
-  public static final RegistryObject<SoundEvent> ENDERMINI_IDLE = REGISTRY.registerSoundEvent("mob.endermini.idle");
-  public static final RegistryObject<SoundEvent> ENDERMINI_PORTAL = REGISTRY.registerSoundEvent("mob.endermini.portal");
-  public static final RegistryObject<SoundEvent> ENDERMINI_SCREAM = REGISTRY.registerSoundEvent("mob.endermini.scream");
-  public static final RegistryObject<SoundEvent> ENDERMINI_STARE = REGISTRY.registerSoundEvent("mob.endermini.stare");
-  public static final RegistryObject<SoundEvent> SPROUT_AMBIENT = REGISTRY.registerSoundEvent("mob.sprout.ambient");
-  public static final RegistryObject<SoundEvent> FOX_AGGRO = REGISTRY.registerSoundEvent("mob.fox.aggro");
-  public static final RegistryObject<SoundEvent> FOX_BARK = REGISTRY.registerSoundEvent("mob.fox.bark");
-  public static final RegistryObject<SoundEvent> FOX_BITE = REGISTRY.registerSoundEvent("mob.fox.bite");
-  public static final RegistryObject<SoundEvent> FOX_DEATH = REGISTRY.registerSoundEvent("mob.fox.death");
-  public static final RegistryObject<SoundEvent> FOX_EAT = REGISTRY.registerSoundEvent("mob.fox.eat");
-  public static final RegistryObject<SoundEvent> FOX_IDLE = REGISTRY.registerSoundEvent("mob.fox.idle");
-  public static final RegistryObject<SoundEvent> FOX_SLEEP = REGISTRY.registerSoundEvent("mob.fox.sleep");
-  public static final RegistryObject<SoundEvent> FOX_SNIFF = REGISTRY.registerSoundEvent("mob.fox.sniff");
-  public static final RegistryObject<SoundEvent> FOX_SPIT = REGISTRY.registerSoundEvent("mob.fox.spit");
+  public static final RegistryEntry<SoundEvent> ENDERMINI_DEATH = REGISTRATE.soundEvent("mob.endermini.death").register();
+  public static final RegistryEntry<SoundEvent> ENDERMINI_HIT = REGISTRATE.soundEvent("mob.endermini.hit").register();
+  public static final RegistryEntry<SoundEvent> ENDERMINI_IDLE = REGISTRATE.soundEvent("mob.endermini.idle").register();
+  public static final RegistryEntry<SoundEvent> ENDERMINI_PORTAL = REGISTRATE.soundEvent("mob.endermini.portal").register();
+  public static final RegistryEntry<SoundEvent> ENDERMINI_SCREAM = REGISTRATE.soundEvent("mob.endermini.scream").register();
+  public static final RegistryEntry<SoundEvent> ENDERMINI_STARE = REGISTRATE.soundEvent("mob.endermini.stare").register();
+  public static final RegistryEntry<SoundEvent> SPROUT_AMBIENT = REGISTRATE.soundEvent("mob.sprout.ambient").register();
+  public static final RegistryEntry<SoundEvent> FOX_AGGRO = REGISTRATE.soundEvent("mob.fox.aggro").register();
+  public static final RegistryEntry<SoundEvent> FOX_BARK = REGISTRATE.soundEvent("mob.fox.bark").register();
+  public static final RegistryEntry<SoundEvent> FOX_BITE = REGISTRATE.soundEvent("mob.fox.bite").register();
+  public static final RegistryEntry<SoundEvent> FOX_DEATH = REGISTRATE.soundEvent("mob.fox.death").register();
+  public static final RegistryEntry<SoundEvent> FOX_EAT = REGISTRATE.soundEvent("mob.fox.eat").register();
+  public static final RegistryEntry<SoundEvent> FOX_IDLE = REGISTRATE.soundEvent("mob.fox.idle").register();
+  public static final RegistryEntry<SoundEvent> FOX_SLEEP = REGISTRATE.soundEvent("mob.fox.sleep").register();
+  public static final RegistryEntry<SoundEvent> FOX_SNIFF = REGISTRATE.soundEvent("mob.fox.sniff").register();
+  public static final RegistryEntry<SoundEvent> FOX_SPIT = REGISTRATE.soundEvent("mob.fox.spit").register();
 
-  public static void load () {
-
+  public static void load() {
   }
 }
