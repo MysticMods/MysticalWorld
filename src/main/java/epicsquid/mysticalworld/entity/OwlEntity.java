@@ -124,7 +124,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
     return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || block instanceof LogBlock || block == Blocks.AIR && worldIn.getLight(blockpos) > 8 && super.canSpawn(worldIn, spawnReasonIn);*/
   }
 
-  public static boolean placement (EntityType<? extends AnimalEntity> p_223316_0_, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random p_223316_4_) {
+  public static boolean placement(EntityType<? extends AnimalEntity> p_223316_0_, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random p_223316_4_) {
     Block block = worldIn.getBlockState(blockpos.down()).getBlock();
     return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || block instanceof LogBlock || block == Blocks.AIR && worldIn.getLight(blockpos) > 8;
   }

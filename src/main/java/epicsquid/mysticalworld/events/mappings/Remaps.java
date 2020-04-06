@@ -38,7 +38,7 @@ public class Remaps {
     }
   }
 
-  private static void remap (String oldName, String newName, RemapType type) {
+  private static void remap(String oldName, String newName, RemapType type) {
     Map<ResourceLocation, ResourceLocation> remapper = type.getMap().get();
     String mapType = type.getName();
     ResourceLocation oldRL = new ResourceLocation(MysticalWorld.MODID, oldName);
@@ -49,19 +49,19 @@ public class Remaps {
     remapper.put(oldRL, newRL);
   }
 
-  public static void remapItem (String o, String n) {
+  public static void remapItem(String o, String n) {
     remap(o, n, RemapType.ITEM);
   }
 
-  public static void remapBlock (String o, String n) {
+  public static void remapBlock(String o, String n) {
     remap(o, n, RemapType.BLOCK);
   }
 
-  public static void remapEntity (String o, String n) {
+  public static void remapEntity(String o, String n) {
     remap(o, n, RemapType.ENTITY);
   }
 
-  public static void remapItemEvent (RegistryEvent.MissingMappings<Item> event) {
+  public static void remapItemEvent(RegistryEvent.MissingMappings<Item> event) {
     for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedItems.get(mapping.key);
       if (remap != null) {
@@ -70,7 +70,7 @@ public class Remaps {
     }
   }
 
-  public static void remapBlockEvent (RegistryEvent.MissingMappings<Block> event) {
+  public static void remapBlockEvent(RegistryEvent.MissingMappings<Block> event) {
     for (RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedBlocks.get(mapping.key);
       if (remap != null) {
@@ -79,7 +79,7 @@ public class Remaps {
     }
   }
 
-  public static void remapEntityEvent (RegistryEvent.MissingMappings<EntityType<?>> event) {
+  public static void remapEntityEvent(RegistryEvent.MissingMappings<EntityType<?>> event) {
     for (RegistryEvent.MissingMappings.Mapping<EntityType<?>> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedEntities.get(mapping.key);
       if (remap != null) {

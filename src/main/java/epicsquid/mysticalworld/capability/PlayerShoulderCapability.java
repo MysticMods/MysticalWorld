@@ -97,7 +97,7 @@ public class PlayerShoulderCapability implements IPlayerShoulderCapability {
 
   @Override
   public void readNBT(CompoundNBT incoming) {
-    CompoundNBT tag = (CompoundNBT) incoming;
+    CompoundNBT tag = incoming;
     if (tag.contains("animalSerialized")) {
       this.animalSerialized = tag.getCompound("animalSerialized");
     }

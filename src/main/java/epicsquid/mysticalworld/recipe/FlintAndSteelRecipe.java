@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.recipe;
 
 import epicsquid.mysticallib.util.Util;
-import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModRecipes;
 import net.minecraft.inventory.CraftingInventory;
@@ -14,7 +13,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.common.Tags;
 
 public class FlintAndSteelRecipe extends SpecialRecipe {
   private static Ingredient LOG_INGREDIENT = null;

@@ -4,7 +4,6 @@ import com.tterrag.registrate.util.RegistryEntry;
 import epicsquid.mysticallib.block.BaseOreBlock;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
 

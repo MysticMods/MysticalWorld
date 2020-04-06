@@ -170,7 +170,7 @@ public class FoxModel extends EntityModel<SilverFoxEntity> {
 
   @Override
   public void setLivingAnimations(SilverFoxEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
-    SilverFoxEntity fox = (SilverFoxEntity) entitylivingbaseIn;
+    SilverFoxEntity fox = entitylivingbaseIn;
 
     this.backL.setRotationPoint(1.0F, 4.0F, 1.5F);
     this.backR.setRotationPoint(-1.0F, 4.0F, 1.5F);

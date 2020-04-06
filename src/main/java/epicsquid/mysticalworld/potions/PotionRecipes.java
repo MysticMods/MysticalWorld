@@ -9,7 +9,7 @@ import net.minecraft.potion.Potions;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 
 public class PotionRecipes {
-  public static void registerRecipes () {
+  public static void registerRecipes() {
     BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.MUNDANE)), Ingredient.fromItems(ModItems.ANTLERS.get()), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LEAPING));
   }
 }

@@ -2,7 +2,6 @@ package epicsquid.mysticalworld.blocks;
 
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.CropsBlock;
-import net.minecraft.client.renderer.tileentity.EnchantmentTableTileEntityRenderer;
 import net.minecraft.util.IItemProvider;
 
 @SuppressWarnings("ConstantConditions")

@@ -330,7 +330,7 @@ public class EnderminiEntity extends CreatureEntity {
       double d0 = vec3d1.length();
       vec3d1 = vec3d1.normalize();
       double d1 = vec3d.dotProduct(vec3d1);
-      return d1 > 1.0D - 0.025D / d0 ? player.canEntityBeSeen(this) : false;
+      return d1 > 1.0D - 0.025D / d0 && player.canEntityBeSeen(this);
     }
   }
 
@@ -412,7 +412,7 @@ public class EnderminiEntity extends CreatureEntity {
           return true;
         }
       } else {
-        return this.nearestTarget != null && this.field_220792_n.canTarget(this.enderman, this.nearestTarget) ? true : super.shouldContinueExecuting();
+        return this.nearestTarget != null && this.field_220792_n.canTarget(this.enderman, this.nearestTarget) || super.shouldContinueExecuting();
       }
     }
 
@@ -484,7 +484,7 @@ public class EnderminiEntity extends CreatureEntity {
       BlockState blockstate2 = this.enderman.getHeldBlockState();
       if (blockstate2 != null && this.func_220836_a(iworld, blockpos, blockstate2, blockstate, blockstate1, blockpos1) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(enderman, new net.minecraftforge.common.util.BlockSnapshot(iworld, blockpos, blockstate1), net.minecraft.util.Direction.UP)) {
         iworld.setBlockState(blockpos, blockstate2, 3);
-        this.enderman.func_195406_b((BlockState) null);
+        this.enderman.func_195406_b(null);
       }
 
     }
@@ -512,7 +512,7 @@ public class EnderminiEntity extends CreatureEntity {
         return false;
       } else {
         double d0 = livingentity.getDistanceSq(this.field_220835_a);
-        return d0 > 256.0D ? false : this.field_220835_a.shouldAttackPlayer((PlayerEntity) livingentity);
+        return !(d0 > 256.0D) && this.field_220835_a.shouldAttackPlayer((PlayerEntity) livingentity);
       }
     }
 

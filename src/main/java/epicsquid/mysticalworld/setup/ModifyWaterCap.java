@@ -13,6 +13,7 @@ import java.util.List;
 
 public class ModifyWaterCap {
   public static Field modifiers = ObfuscationReflectionHelper.findField(Field.class, "modifiers");
+
   static {
     modifiers.setAccessible(true);
   }
@@ -23,7 +24,7 @@ public class ModifyWaterCap {
     field.set(EntityClassification.WATER_CREATURE, 30);
   }
 
-  public static void modifySquid () throws IllegalAccessException {
+  public static void modifySquid() throws IllegalAccessException {
     Field field = ObfuscationReflectionHelper.findField(WeightedRandom.Item.class, "field_76292_a");
     modifiers.setInt(field, field.getModifiers() & ~Modifier.FINAL);
 

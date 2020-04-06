@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
 
 public class SoftObsidianStairs extends StairsBlock {
-  public SoftObsidianStairs (Block.Properties properties) {
+  public SoftObsidianStairs(Block.Properties properties) {
     super(() -> ModBlocks.SOFT_OBSIDIAN.get().getDefaultState(), properties);
   }
 }

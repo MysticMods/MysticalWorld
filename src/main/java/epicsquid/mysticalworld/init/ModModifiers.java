@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.init;
 
 import epicsquid.mysticallib.modifiers.PlayerModifierRegistry;
-import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
 
@@ -29,7 +28,7 @@ public class ModModifiers {
   public static final IAttribute TAUNTING = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.taunting", 0D, 0D, 1D).setDescription("Nearby mods are more attracted to you").setShouldWatch(true));
   public static final IAttribute BLEEDING = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.bleeding", 0D, 0D, 5D).setDescription("Causes mobs struck by it to bleed").setShouldWatch(true)); // POTION */
 
-  public static void load () {
+  public static void load() {
   }
 
   // public static final IAttribute MAX_HEALTH = (new RangedAttribute((IAttribute)null, "generic.maxHealth", 20.0D, Float.MIN_VALUE, 1024.0D)).setDescription("Max Health").setShouldWatch(true);

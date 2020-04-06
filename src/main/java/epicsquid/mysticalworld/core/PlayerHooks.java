@@ -1,11 +1,10 @@
 package epicsquid.mysticalworld.core;
 
-import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.world.World;
 
+@SuppressWarnings("unused")
 public class PlayerHooks {
   public static void spawnShoulderEntities(PlayerEntity player, DataParameter<CompoundNBT> left, DataParameter<CompoundNBT> right) {
     if (player.field_223730_e + 20L < player.world.getGameTime()) {
@@ -21,5 +20,4 @@ public class PlayerHooks {
       }
     }
   }
-
 }

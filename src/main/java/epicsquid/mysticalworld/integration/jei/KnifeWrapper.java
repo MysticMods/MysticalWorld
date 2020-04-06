@@ -1,7 +1,7 @@
 package epicsquid.mysticalworld.integration.jei;
 
-import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.MWTags;
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.recipe.DamagedIngredient;
 import epicsquid.mysticalworld.recipe.KnifeRecipe;

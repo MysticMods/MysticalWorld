@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
 
 public class DeerEntity extends AnimalEntity {
 
-  public static final DataParameter<Boolean> hasHorns = EntityDataManager.<Boolean>createKey(DeerEntity.class, DataSerializers.BOOLEAN);
+  public static final DataParameter<Boolean> hasHorns = EntityDataManager.createKey(DeerEntity.class, DataSerializers.BOOLEAN);
 
   public DeerEntity(EntityType<? extends DeerEntity> type, World world) {
     super(type, world);

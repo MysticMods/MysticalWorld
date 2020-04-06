@@ -4,8 +4,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
 
 import javax.annotation.Nullable;
 
@@ -28,7 +26,7 @@ public interface IPlayerShoulderCapability {
 
   CompoundNBT writeNBT();
 
-  CompoundNBT generateShoulderNBT ();
+  CompoundNBT generateShoulderNBT();
 
   void readNBT(CompoundNBT incoming);
 }

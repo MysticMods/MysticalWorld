@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class SproutEntity extends AnimalEntity {
-  public static final DataParameter<Integer> variant = EntityDataManager.<Integer>createKey(SproutEntity.class, DataSerializers.VARINT);
+  public static final DataParameter<Integer> variant = EntityDataManager.createKey(SproutEntity.class, DataSerializers.VARINT);
 
   public SproutEntity(EntityType<? extends SproutEntity> type, World world) {
     super(type, world);
@@ -96,24 +96,33 @@ public class SproutEntity extends AnimalEntity {
     compound.putInt("variant", getDataManager().get(variant));
   }
 
-  public static int StringToVariant (String color) {
+  public static int StringToVariant(String color) {
     switch (color) {
-      case "tan": return 1;
-      case "red": return 2;
-      case "purple": return 3;
-      case "green": return 0;
+      case "tan":
+        return 1;
+      case "red":
+        return 2;
+      case "purple":
+        return 3;
+      case "green":
+        return 0;
       default:
         return 0;
     }
   }
 
-  public static String VariantToString (int variant) {
+  public static String VariantToString(int variant) {
     switch (variant) {
-      case 0: return "green";
-      case 1: return "tan";
-      case 2: return "red";
-      case 3: return "purple";
-      default: return "INVALID";
+      case 0:
+        return "green";
+      case 1:
+        return "tan";
+      case 2:
+        return "red";
+      case 3:
+        return "purple";
+      default:
+        return "INVALID";
     }
   }
 }

@@ -1,12 +1,9 @@
 package epicsquid.mysticalworld.entity;
 
-import epicsquid.mysticallib.network.PacketHandler;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.RegistryManager;
 import epicsquid.mysticalworld.api.Capabilities;
 import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
-import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.network.ShoulderRide;
@@ -14,14 +11,11 @@ import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.Style;
@@ -29,11 +23,9 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 import javax.annotation.Nonnull;
-import java.security.acl.Owner;
 
 public class BeetleEntity extends TameableEntity {
 
@@ -74,7 +66,7 @@ public class BeetleEntity extends TameableEntity {
 
   @Override
   public boolean processInteract(PlayerEntity player, Hand hand) {
-    if(super.processInteract(player, hand)) {
+    if (super.processInteract(player, hand)) {
       return true;
     }
 

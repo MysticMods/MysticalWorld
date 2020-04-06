@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.entity.model;
 
 import epicsquid.mysticalworld.entity.EnderminiEntity;
-import net.minecraft.client.renderer.entity.model.EndermanModel;
 import net.minecraft.resources.IResourceManager;
 import net.minecraftforge.resource.IResourceType;
 import net.minecraftforge.resource.ISelectiveResourceReloadListener;

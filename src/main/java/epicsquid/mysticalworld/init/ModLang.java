@@ -28,7 +28,7 @@ public class ModLang {
     });
   }
 
-  public static void load () {
+  public static void load() {
 
   }
 }

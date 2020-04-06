@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public interface IModifiable {
-  Map<IAttribute, AttributeModifier> getModifiers ();
+  Map<IAttribute, AttributeModifier> getModifiers();
 
   default AttributeModifier getOrCreateModifier(IAttribute attribute, Supplier<AttributeModifier> supplier) {
     AttributeModifier mod = getModifiers().get(attribute);

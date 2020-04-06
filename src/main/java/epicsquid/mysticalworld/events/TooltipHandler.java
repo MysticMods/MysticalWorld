@@ -13,7 +13,7 @@ import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class TooltipHandler {
-  public static void onTooltip (ItemTooltipEvent event) {
+  public static void onTooltip(ItemTooltipEvent event) {
     ItemStack stack = event.getItemStack();
     Item item = stack.getItem();
     if (item.isFood()) {

@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
 
 public class TinStairs extends StairsBlock {
-  public TinStairs (Block.Properties properties) {
+  public TinStairs(Block.Properties properties) {
     super(() -> ModBlocks.TIN_BLOCK.get().getDefaultState(), properties);
   }
 }

@@ -3,7 +3,6 @@ package epicsquid.mysticalworld.config;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import epicsquid.mysticalworld.init.ModBlocks;
-import epicsquid.mysticalworld.init.ModMaterials;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.nio.file.Path;

@@ -1,10 +1,7 @@
 package epicsquid.mysticalworld.items.silver;
 
 import com.google.common.collect.Multimap;
-import epicsquid.mysticallib.material.MaterialType;
-import epicsquid.mysticalworld.init.ModModifiers;
 import epicsquid.mysticalworld.items.ModifiedAxeItem;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;

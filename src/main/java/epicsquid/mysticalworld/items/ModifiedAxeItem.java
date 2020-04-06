@@ -15,6 +15,7 @@ public abstract class ModifiedAxeItem extends AxeItem implements IModifiable {
   public Map<IAttribute, AttributeModifier> getModifiers() {
     return modifiers;
   }
+
   public ModifiedAxeItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties builder) {
     super(tier, attackDamageIn, attackSpeedIn, builder);
   }

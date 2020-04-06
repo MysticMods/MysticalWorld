@@ -117,7 +117,7 @@ public class StalkGoal extends Goal {
     LivingEntity entitylivingbase = this.attacker.getAttackTarget();
 
     if (entitylivingbase instanceof PlayerEntity && (entitylivingbase.isSpectator() || ((PlayerEntity) entitylivingbase).isCreative())) {
-      this.attacker.setAttackTarget((PlayerEntity) null);
+      this.attacker.setAttackTarget(null);
     }
 
     this.attacker.getNavigator().clearPath();

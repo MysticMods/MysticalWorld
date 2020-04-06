@@ -11,8 +11,6 @@ import net.minecraft.world.storage.loot.LootTables;
 import net.minecraft.world.storage.loot.TableLootEntry;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.Set;
 
@@ -40,7 +38,7 @@ public class LootHandler {
     }
   }
 
-  public static void onLooting (LootingLevelEvent event) {
+  public static void onLooting(LootingLevelEvent event) {
     if (event.getEntityLiving() instanceof PlayerEntity) {
       PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 

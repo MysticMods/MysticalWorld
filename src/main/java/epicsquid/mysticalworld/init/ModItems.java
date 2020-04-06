@@ -20,7 +20,6 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.event.RegistryEvent;
 
 import static epicsquid.mysticallib.material.MaterialType.Type;
 import static epicsquid.mysticalworld.MysticalWorld.RECIPES;
