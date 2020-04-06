@@ -24,9 +24,9 @@ apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
 
 version = "${minecraft_version}-${mod_version}"
-//if (System.getenv('BUILD_NUMBER') != null) {
-//    version = "${minecraft_version}-${mod_version}-" + System.getenv('BUILD_NUMBER')
-//}
+if (System.getenv('BUILD_NUMBER') != null) {
+    version = "${minecraft_version}-${mod_version}-" + System.getenv('BUILD_NUMBER')
+}
 group = 'epicsquid.mysticalworld' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'mysticalworld'
 
@@ -98,12 +98,6 @@ repositories {
     maven {
         name = "JER"
         url = "https://dl.bintray.com/way2muchnoise/dev"
-    }
-    flatDir {
-        dir 'libs'
-    }
-    flatDir {
-        dir "../libs"
     }
 }
 
