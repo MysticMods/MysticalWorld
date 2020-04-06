@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "mysticalworld:block/thatch_slab_top"
+    },
+    "type=bottom": {
+      "model": "mysticalworld:block/thatch_slab"
+    },
+    "type=double": {
+      "model": "mysticalworld:block/thatch"
+    }
+  }
+}

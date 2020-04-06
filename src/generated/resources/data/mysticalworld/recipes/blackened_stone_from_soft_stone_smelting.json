@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "mysticalworld:soft_stone"
+  },
+  "result": "mysticalworld:blackened_stone",
+  "experience": 0.125,
+  "cookingtime": 200
+}

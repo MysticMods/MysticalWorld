@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "side": "mysticalworld:block/blackened_stone",
+    "bottom": "mysticalworld:block/blackened_stone",
+    "top": "mysticalworld:block/blackened_stone"
+  }
+}
