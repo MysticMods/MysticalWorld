@@ -6,10 +6,13 @@ import epicsquid.mysticallib.item.*;
 import epicsquid.mysticallib.material.MaterialType;
 import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.items.GuideItem;
-import epicsquid.mysticalworld.items.NautilusHornBase;
-import epicsquid.mysticalworld.items.SilkwormEgg;
-import epicsquid.mysticalworld.items.UnripePearlItem;
+import epicsquid.mysticalworld.items.*;
+import epicsquid.mysticalworld.items.amethyst.AmethystArmorItem;
+import epicsquid.mysticalworld.items.copper.CopperArmorItem;
+import epicsquid.mysticalworld.items.lead.LeadArmorItem;
+import epicsquid.mysticalworld.items.quicksilver.*;
+import epicsquid.mysticalworld.items.silver.*;
+import epicsquid.mysticalworld.items.tin.TinArmorItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -50,35 +53,35 @@ public class ModItems {
     return (b) -> builder.apply(material.getItemMaterial(), material.getDamage(matType), material.getSpeed(matType), b);
   }
 
-  private static NonNullFunction<Item.Properties, SwordItem> sword(ToolBuilder<SwordItem> builder, MaterialType material) {
+  private static <T extends Item> NonNullFunction<Item.Properties, T> sword(ToolBuilder<T> builder, MaterialType material) {
     return tool(builder, Type.SWORD, material);
   }
 
-  private static NonNullFunction<Item.Properties, SpearItem> spear(ToolBuilder<SpearItem> builder, MaterialType material) {
+  private static <T extends Item> NonNullFunction<Item.Properties, T> spear(ToolBuilder<T> builder, MaterialType material) {
     return tool(builder, Type.SPEAR, material);
   }
 
-  private static NonNullFunction<Item.Properties, PickaxeItem> pickaxe(ToolBuilder<PickaxeItem> builder, MaterialType material) {
+  private static <T extends Item> NonNullFunction<Item.Properties, T> pickaxe(ToolBuilder<T> builder, MaterialType material) {
     return tool(builder, Type.PICKAXE, material);
   }
 
-  private static NonNullFunction<Item.Properties, AxeItem> axe(ToolBuilder<AxeItem> builder, MaterialType material) {
+  private static <T extends Item> NonNullFunction<Item.Properties, T> axe(ToolBuilder<T> builder, MaterialType material) {
     return tool(builder, Type.AXE, material);
   }
 
-  private static NonNullFunction<Item.Properties, ShovelItem> shovel(ToolBuilder<ShovelItem> builder, MaterialType material) {
+  private static <T extends Item> NonNullFunction<Item.Properties, T> shovel(ToolBuilder<T> builder, MaterialType material) {
     return tool(builder, Type.SHOVEL, material);
   }
 
-  private static NonNullFunction<Item.Properties, KnifeItem> knife(ToolBuilder<KnifeItem> builder, MaterialType material) {
+  private static <T extends Item> NonNullFunction<Item.Properties, T> knife(ToolBuilder<T> builder, MaterialType material) {
     return tool(builder, Type.KNIFE, material);
   }
 
-  private static NonNullFunction<Item.Properties, HoeItem> hoe(HoeBuilder<HoeItem> builder, MaterialType material) {
+  private static <T extends Item> NonNullFunction<Item.Properties, T> hoe(HoeBuilder<T> builder, MaterialType material) {
     return (b) -> builder.apply(material.getItemMaterial(), material.getSpeed(Type.HOE), b);
   }
 
-  private static NonNullFunction<Item.Properties, ArmorItem> armor(ArmorBuilder<ArmorItem> builder, MaterialType material, EquipmentSlotType slot) {
+  private static <T extends ArmorItem> NonNullFunction<Item.Properties, T> armor(ArmorBuilder<T> builder, MaterialType material, EquipmentSlotType slot) {
     return (b) -> builder.apply(material.getArmorMaterial(), slot, b);
   }
 
@@ -540,7 +543,7 @@ public class ModItems {
   public static RegistryEntry<SwordItem> AMETHYST_SWORD = REGISTRATE.item(AMETHYST.getInternalName() + "_sword", sword(SwordItem::new, AMETHYST))
       .model((ctx, p) -> p.handheld(ModItems.AMETHYST_SWORD))
       .recipe((ctx, p) -> RECIPES.sword(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_SWORD, null, p)).register();
-  public static RegistryEntry<SpearItem> AMETHYST_SPEAR = REGISTRATE.item(AMETHYST.getInternalName() + "_spear", spear(SpearItem::new, AMETHYST))
+  public static RegistryEntry<ModifiedSpearItem> AMETHYST_SPEAR = REGISTRATE.item(AMETHYST.getInternalName() + "_spear", spear(ModifiedSpearItem::new, AMETHYST))
       .model((ctx, p) -> p.handheld(ModItems.AMETHYST_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(ModItems.AMETHYST_SWORD, ModItems.AMETHYST_SPEAR, null, p)).register();
 
@@ -563,7 +566,7 @@ public class ModItems {
   public static RegistryEntry<SwordItem> CACTUS_SWORD = REGISTRATE.item(CACTUS.getInternalName() + "_sword", sword(SwordItem::new, CACTUS))
       .model((ctx, p) -> p.handheld(ModItems.CACTUS_SWORD))
       .recipe((ctx, p) -> RECIPES.sword(() -> Items.CACTUS, ModItems.CACTUS_SWORD, null, p)).register();
-  public static RegistryEntry<SpearItem> CACTUS_SPEAR = REGISTRATE.item(CACTUS.getInternalName() + "_spear", spear(SpearItem::new, CACTUS))
+  public static RegistryEntry<ModifiedSpearItem> CACTUS_SPEAR = REGISTRATE.item(CACTUS.getInternalName() + "_spear", spear(ModifiedSpearItem::new, CACTUS))
       .model((ctx, p) -> p.handheld(ModItems.CACTUS_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(ModItems.CACTUS_SWORD, ModItems.CACTUS_SPEAR, null, p)).register();
 
@@ -586,7 +589,7 @@ public class ModItems {
   public static RegistryEntry<SwordItem> COPPER_SWORD = REGISTRATE.item(COPPER.getInternalName() + "_sword", sword(SwordItem::new, COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_SWORD))
       .recipe((ctx, p) -> RECIPES.sword(MWTags.Items.COPPER_INGOT, ModItems.COPPER_SWORD, null, p)).register();
-  public static RegistryEntry<SpearItem> COPPER_SPEAR = REGISTRATE.item(COPPER.getInternalName() + "_spear", spear(SpearItem::new, COPPER))
+  public static RegistryEntry<ModifiedSpearItem> COPPER_SPEAR = REGISTRATE.item(COPPER.getInternalName() + "_spear", spear(ModifiedSpearItem::new, COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(ModItems.COPPER_SWORD, ModItems.COPPER_SPEAR, null, p)).register();
 
@@ -609,53 +612,53 @@ public class ModItems {
   public static RegistryEntry<SwordItem> LEAD_SWORD = REGISTRATE.item(LEAD.getInternalName() + "_sword", sword(SwordItem::new, LEAD))
       .model((ctx, p) -> p.handheld(ModItems.LEAD_SWORD))
       .recipe((ctx, p) -> RECIPES.sword(MWTags.Items.LEAD_INGOT, ModItems.LEAD_SWORD, null, p)).register();
-  public static RegistryEntry<SpearItem> LEAD_SPEAR = REGISTRATE.item(LEAD.getInternalName() + "_spear", spear(SpearItem::new, LEAD))
+  public static RegistryEntry<ModifiedSpearItem> LEAD_SPEAR = REGISTRATE.item(LEAD.getInternalName() + "_spear", spear(ModifiedSpearItem::new, LEAD))
       .model((ctx, p) -> p.handheld(ModItems.LEAD_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(ModItems.LEAD_SWORD, ModItems.LEAD_SPEAR, null, p)).register();
 
   // QUICKSILVER
-  public static RegistryEntry<AxeItem> QUICKSILVER_AXE = REGISTRATE.item(QUICKSILVER.getInternalName() + "_axe", axe(AxeItem::new, QUICKSILVER))
+  public static RegistryEntry<QuicksilverAxeItem> QUICKSILVER_AXE = REGISTRATE.item(QUICKSILVER.getInternalName() + "_axe", axe(QuicksilverAxeItem::new, QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_AXE))
       .recipe((ctx, p) -> RECIPES.axe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_AXE, null, p)).register();
-  public static RegistryEntry<HoeItem> QUICKSILVER_HOE = REGISTRATE.item(QUICKSILVER.getInternalName() + "_hoe", hoe(HoeItem::new, QUICKSILVER))
+  public static RegistryEntry<QuicksilverHoeItem> QUICKSILVER_HOE = REGISTRATE.item(QUICKSILVER.getInternalName() + "_hoe", hoe(QuicksilverHoeItem::new, QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_HOE))
       .recipe((ctx, p) -> RECIPES.hoe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HOE, null, p)).register();
-  public static RegistryEntry<KnifeItem> QUICKSILVER_KNIFE = REGISTRATE.item(QUICKSILVER.getInternalName() + "_knife", knife(KnifeItem::new, QUICKSILVER))
+  public static RegistryEntry<QuicksilverKnifeItem> QUICKSILVER_KNIFE = REGISTRATE.item(QUICKSILVER.getInternalName() + "_knife", knife(QuicksilverKnifeItem::new, QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_KNIFE))
       .recipe((ctx, p) -> RECIPES.knife(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_KNIFE, null, p)).register();
-  public static RegistryEntry<PickaxeItem> QUICKSILVER_PICKAXE = REGISTRATE.item(QUICKSILVER.getInternalName() + "_pickaxe", pickaxe(PickaxeItem::new, QUICKSILVER))
+  public static RegistryEntry<QuicksilverPickaxeItem> QUICKSILVER_PICKAXE = REGISTRATE.item(QUICKSILVER.getInternalName() + "_pickaxe", pickaxe(QuicksilverPickaxeItem::new, QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_PICKAXE))
       .recipe((ctx, p) -> RECIPES.pickaxe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_PICKAXE, null, p)).register();
-  public static RegistryEntry<ShovelItem> QUICKSILVER_SHOVEL = REGISTRATE.item(QUICKSILVER.getInternalName() + "_shovel", shovel(ShovelItem::new, QUICKSILVER))
+  public static RegistryEntry<QuicksilverShovelItem> QUICKSILVER_SHOVEL = REGISTRATE.item(QUICKSILVER.getInternalName() + "_shovel", shovel(QuicksilverShovelItem::new, QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SHOVEL))
       .recipe((ctx, p) -> RECIPES.shovel(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SHOVEL, null, p)).register();
-  public static RegistryEntry<SwordItem> QUICKSILVER_SWORD = REGISTRATE.item(QUICKSILVER.getInternalName() + "_sword", sword(SwordItem::new, QUICKSILVER))
+  public static RegistryEntry<QuicksilverSwordItem> QUICKSILVER_SWORD = REGISTRATE.item(QUICKSILVER.getInternalName() + "_sword", sword(QuicksilverSwordItem::new, QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SWORD))
       .recipe((ctx, p) -> RECIPES.sword(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SWORD, null, p)).register();
-  public static RegistryEntry<SpearItem> QUICKSILVER_SPEAR = REGISTRATE.item(QUICKSILVER.getInternalName() + "_spear", spear(SpearItem::new, QUICKSILVER))
+  public static RegistryEntry<QuicksilverSpearItem> QUICKSILVER_SPEAR = REGISTRATE.item(QUICKSILVER.getInternalName() + "_spear", spear(QuicksilverSpearItem::new, QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(ModItems.QUICKSILVER_SWORD, ModItems.QUICKSILVER_SPEAR, null, p)).register();
 
   // SILVER
-  public static RegistryEntry<AxeItem> SILVER_AXE = REGISTRATE.item(SILVER.getInternalName() + "_axe", axe(AxeItem::new, SILVER))
+  public static RegistryEntry<SilverAxeItem> SILVER_AXE = REGISTRATE.item(SILVER.getInternalName() + "_axe", axe(SilverAxeItem::new, SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_AXE))
       .recipe((ctx, p) -> RECIPES.axe(MWTags.Items.SILVER_INGOT, ModItems.SILVER_AXE, null, p)).register();
-  public static RegistryEntry<HoeItem> SILVER_HOE = REGISTRATE.item(SILVER.getInternalName() + "_hoe", hoe(HoeItem::new, SILVER))
+  public static RegistryEntry<SilverHoeItem> SILVER_HOE = REGISTRATE.item(SILVER.getInternalName() + "_hoe", hoe(SilverHoeItem::new, SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_HOE))
       .recipe((ctx, p) -> RECIPES.hoe(MWTags.Items.SILVER_INGOT, ModItems.SILVER_HOE, null, p)).register();
-  public static RegistryEntry<KnifeItem> SILVER_KNIFE = REGISTRATE.item(SILVER.getInternalName() + "_knife", knife(KnifeItem::new, SILVER))
+  public static RegistryEntry<SilverKnifeItem> SILVER_KNIFE = REGISTRATE.item(SILVER.getInternalName() + "_knife", knife(SilverKnifeItem::new, SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_KNIFE))
       .recipe((ctx, p) -> RECIPES.knife(MWTags.Items.SILVER_INGOT, ModItems.SILVER_KNIFE, null, p)).register();
-  public static RegistryEntry<PickaxeItem> SILVER_PICKAXE = REGISTRATE.item(SILVER.getInternalName() + "_pickaxe", pickaxe(PickaxeItem::new, SILVER))
+  public static RegistryEntry<SilverPickaxeItem> SILVER_PICKAXE = REGISTRATE.item(SILVER.getInternalName() + "_pickaxe", pickaxe(SilverPickaxeItem::new, SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_PICKAXE))
       .recipe((ctx, p) -> RECIPES.pickaxe(MWTags.Items.SILVER_INGOT, ModItems.SILVER_PICKAXE, null, p)).register();
-  public static RegistryEntry<ShovelItem> SILVER_SHOVEL = REGISTRATE.item(SILVER.getInternalName() + "_shovel", shovel(ShovelItem::new, SILVER))
+  public static RegistryEntry<SilverShovelItem> SILVER_SHOVEL = REGISTRATE.item(SILVER.getInternalName() + "_shovel", shovel(SilverShovelItem::new, SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_SHOVEL))
       .recipe((ctx, p) -> RECIPES.shovel(MWTags.Items.SILVER_INGOT, ModItems.SILVER_SHOVEL, null, p)).register();
-  public static RegistryEntry<SwordItem> SILVER_SWORD = REGISTRATE.item(SILVER.getInternalName() + "_sword", sword(SwordItem::new, SILVER))
+  public static RegistryEntry<SilverSwordItem> SILVER_SWORD = REGISTRATE.item(SILVER.getInternalName() + "_sword", sword(SilverSwordItem::new, SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_SWORD))
       .recipe((ctx, p) -> RECIPES.sword(MWTags.Items.SILVER_INGOT, ModItems.SILVER_SWORD, null, p)).register();
-  public static RegistryEntry<SpearItem> SILVER_SPEAR = REGISTRATE.item(SILVER.getInternalName() + "_spear", spear(SpearItem::new, SILVER))
+  public static RegistryEntry<SilverSpearItem> SILVER_SPEAR = REGISTRATE.item(SILVER.getInternalName() + "_spear", spear(SilverSpearItem::new, SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(ModItems.SILVER_SWORD, ModItems.SILVER_SPEAR, null, p)).register();
 
@@ -678,7 +681,7 @@ public class ModItems {
   public static RegistryEntry<SwordItem> TIN_SWORD = REGISTRATE.item(TIN.getInternalName() + "_sword", sword(SwordItem::new, TIN))
       .model((ctx, p) -> p.handheld(ModItems.TIN_SWORD))
       .recipe((ctx, p) -> RECIPES.sword(MWTags.Items.TIN_INGOT, ModItems.TIN_SWORD, null, p)).register();
-  public static RegistryEntry<SpearItem> TIN_SPEAR = REGISTRATE.item(TIN.getInternalName() + "_spear", spear(SpearItem::new, TIN))
+  public static RegistryEntry<ModifiedSpearItem> TIN_SPEAR = REGISTRATE.item(TIN.getInternalName() + "_spear", spear(ModifiedSpearItem::new, TIN))
       .model((ctx, p) -> p.handheld(ModItems.TIN_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(ModItems.TIN_SWORD, ModItems.TIN_SPEAR, null, p)).register();
 
@@ -704,103 +707,103 @@ public class ModItems {
       .recipe((ctx, p) -> RECIPES.knife(Tags.Items.INGOTS_IRON, ModItems.IRON_KNIFE, null, p)).register();
 
   // Spears
-  public static RegistryEntry<SpearItem> STONE_SPEAR = REGISTRATE.item(STONE.getInternalName() + "_spear", spear(SpearItem::new, STONE))
+  public static RegistryEntry<ModifiedSpearItem> STONE_SPEAR = REGISTRATE.item(STONE.getInternalName() + "_spear", spear(ModifiedSpearItem::new, STONE))
       .model((ctx, p) -> p.handheld(ModItems.STONE_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(Items.STONE_SWORD, ModItems.STONE_SPEAR, null, p)).register();
-  public static RegistryEntry<SpearItem> WOODEN_SPEAR = REGISTRATE.item(WOODEN.getInternalName() + "_spear", spear(SpearItem::new, WOODEN))
+  public static RegistryEntry<ModifiedSpearItem> WOODEN_SPEAR = REGISTRATE.item(WOODEN.getInternalName() + "_spear", spear(ModifiedSpearItem::new, WOODEN))
       .model((ctx, p) -> p.handheld(ModItems.WOODEN_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(Items.WOODEN_SWORD, ModItems.WOODEN_SPEAR, null, p)).register();
-  public static RegistryEntry<SpearItem> DIAMOND_SPEAR = REGISTRATE.item(DIAMOND.getInternalName() + "_spear", spear(SpearItem::new, DIAMOND))
+  public static RegistryEntry<ModifiedSpearItem> DIAMOND_SPEAR = REGISTRATE.item(DIAMOND.getInternalName() + "_spear", spear(ModifiedSpearItem::new, DIAMOND))
       .model((ctx, p) -> p.handheld(ModItems.DIAMOND_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(Items.DIAMOND_SWORD, ModItems.DIAMOND_SPEAR, null, p)).register();
-  public static RegistryEntry<SpearItem> GOLD_SPEAR = REGISTRATE.item(GOLD.getInternalName() + "_spear", spear(SpearItem::new, GOLD))
+  public static RegistryEntry<ModifiedSpearItem> GOLD_SPEAR = REGISTRATE.item(GOLD.getInternalName() + "_spear", spear(ModifiedSpearItem::new, GOLD))
       .model((ctx, p) -> p.handheld(ModItems.GOLD_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(Items.GOLDEN_SWORD, ModItems.GOLD_SPEAR, null, p)).register();
-  public static RegistryEntry<SpearItem> IRON_SPEAR = REGISTRATE.item(IRON.getInternalName() + "_spear", spear(SpearItem::new, IRON))
+  public static RegistryEntry<ModifiedSpearItem> IRON_SPEAR = REGISTRATE.item(IRON.getInternalName() + "_spear", spear(ModifiedSpearItem::new, IRON))
       .model((ctx, p) -> p.handheld(ModItems.IRON_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(Items.IRON_SWORD, ModItems.IRON_SPEAR, null, p)).register();
 
   // Armors
-  public static RegistryEntry<ArmorItem> AMETHYST_HELMET = REGISTRATE.item(AMETHYST.getInternalName() + "_helmet", armor(ArmorItem::new, AMETHYST, EquipmentSlotType.HEAD))
+  public static RegistryEntry<AmethystArmorItem> AMETHYST_HELMET = REGISTRATE.item(AMETHYST.getInternalName() + "_helmet", armor(AmethystArmorItem::new, AMETHYST, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> RECIPES.helmet(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_HELMET, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> AMETHYST_CHESTPLATE = REGISTRATE.item(AMETHYST.getInternalName() + "_chestplate", armor(ArmorItem::new, AMETHYST, EquipmentSlotType.CHEST))
+  public static RegistryEntry<AmethystArmorItem> AMETHYST_CHESTPLATE = REGISTRATE.item(AMETHYST.getInternalName() + "_chestplate", armor(AmethystArmorItem::new, AMETHYST, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> RECIPES.chest(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> AMETHYST_LEGGINGS = REGISTRATE.item(AMETHYST.getInternalName() + "_leggings", armor(ArmorItem::new, AMETHYST, EquipmentSlotType.LEGS))
+  public static RegistryEntry<AmethystArmorItem> AMETHYST_LEGGINGS = REGISTRATE.item(AMETHYST.getInternalName() + "_leggings", armor(AmethystArmorItem::new, AMETHYST, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> RECIPES.legs(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> AMETHYST_BOOTS = REGISTRATE.item(AMETHYST.getInternalName() + "_boots", armor(ArmorItem::new, AMETHYST, EquipmentSlotType.FEET))
+  public static RegistryEntry<AmethystArmorItem> AMETHYST_BOOTS = REGISTRATE.item(AMETHYST.getInternalName() + "_boots", armor(AmethystArmorItem::new, AMETHYST, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> RECIPES.boots(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_BOOTS, null, p))
       .register();
 
   // COPPER
-  public static RegistryEntry<ArmorItem> COPPER_HELMET = REGISTRATE.item(COPPER.getInternalName() + "_helmet", armor(ArmorItem::new, COPPER, EquipmentSlotType.HEAD))
+  public static RegistryEntry<CopperArmorItem> COPPER_HELMET = REGISTRATE.item(COPPER.getInternalName() + "_helmet", armor(CopperArmorItem::new, COPPER, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> RECIPES.helmet(MWTags.Items.COPPER_INGOT, ModItems.COPPER_HELMET, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> COPPER_CHESTPLATE = REGISTRATE.item(COPPER.getInternalName() + "_chestplate", armor(ArmorItem::new, COPPER, EquipmentSlotType.CHEST))
+  public static RegistryEntry<CopperArmorItem> COPPER_CHESTPLATE = REGISTRATE.item(COPPER.getInternalName() + "_chestplate", armor(CopperArmorItem::new, COPPER, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> RECIPES.chest(MWTags.Items.COPPER_INGOT, ModItems.COPPER_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> COPPER_LEGGINGS = REGISTRATE.item(COPPER.getInternalName() + "_leggings", armor(ArmorItem::new, COPPER, EquipmentSlotType.LEGS))
+  public static RegistryEntry<CopperArmorItem> COPPER_LEGGINGS = REGISTRATE.item(COPPER.getInternalName() + "_leggings", armor(CopperArmorItem::new, COPPER, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> RECIPES.legs(MWTags.Items.COPPER_INGOT, ModItems.COPPER_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> COPPER_BOOTS = REGISTRATE.item(COPPER.getInternalName() + "_boots", armor(ArmorItem::new, COPPER, EquipmentSlotType.FEET))
+  public static RegistryEntry<CopperArmorItem> COPPER_BOOTS = REGISTRATE.item(COPPER.getInternalName() + "_boots", armor(CopperArmorItem::new, COPPER, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> RECIPES.boots(MWTags.Items.COPPER_INGOT, ModItems.COPPER_BOOTS, null, p))
       .register();
 
   // LEAD
-  public static RegistryEntry<ArmorItem> LEAD_HELMET = REGISTRATE.item(LEAD.getInternalName() + "_helmet", armor(ArmorItem::new, LEAD, EquipmentSlotType.HEAD))
+  public static RegistryEntry<LeadArmorItem> LEAD_HELMET = REGISTRATE.item(LEAD.getInternalName() + "_helmet", armor(LeadArmorItem::new, LEAD, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> RECIPES.helmet(MWTags.Items.LEAD_INGOT, ModItems.LEAD_HELMET, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> LEAD_CHESTPLATE = REGISTRATE.item(LEAD.getInternalName() + "_chestplate", armor(ArmorItem::new, LEAD, EquipmentSlotType.CHEST))
+  public static RegistryEntry<LeadArmorItem> LEAD_CHESTPLATE = REGISTRATE.item(LEAD.getInternalName() + "_chestplate", armor(LeadArmorItem::new, LEAD, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> RECIPES.chest(MWTags.Items.LEAD_INGOT, ModItems.LEAD_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> LEAD_LEGGINGS = REGISTRATE.item(LEAD.getInternalName() + "_leggings", armor(ArmorItem::new, LEAD, EquipmentSlotType.LEGS))
+  public static RegistryEntry<LeadArmorItem> LEAD_LEGGINGS = REGISTRATE.item(LEAD.getInternalName() + "_leggings", armor(LeadArmorItem::new, LEAD, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> RECIPES.legs(MWTags.Items.LEAD_INGOT, ModItems.LEAD_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> LEAD_BOOTS = REGISTRATE.item(LEAD.getInternalName() + "_boots", armor(ArmorItem::new, LEAD, EquipmentSlotType.FEET))
+  public static RegistryEntry<LeadArmorItem> LEAD_BOOTS = REGISTRATE.item(LEAD.getInternalName() + "_boots", armor(LeadArmorItem::new, LEAD, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> RECIPES.boots(MWTags.Items.LEAD_INGOT, ModItems.LEAD_BOOTS, null, p))
       .register();
 
   // QUICKSILVER
-  public static RegistryEntry<ArmorItem> QUICKSILVER_HELMET = REGISTRATE.item(QUICKSILVER.getInternalName() + "_helmet", armor(ArmorItem::new, QUICKSILVER, EquipmentSlotType.HEAD))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_HELMET = REGISTRATE.item(QUICKSILVER.getInternalName() + "_helmet", armor(QuicksilverArmorItem::new, QUICKSILVER, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> RECIPES.helmet(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HELMET, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> QUICKSILVER_CHESTPLATE = REGISTRATE.item(QUICKSILVER.getInternalName() + "_chestplate", armor(ArmorItem::new, QUICKSILVER, EquipmentSlotType.CHEST))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_CHESTPLATE = REGISTRATE.item(QUICKSILVER.getInternalName() + "_chestplate", armor(QuicksilverArmorItem::new, QUICKSILVER, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> RECIPES.chest(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> QUICKSILVER_LEGGINGS = REGISTRATE.item(QUICKSILVER.getInternalName() + "_leggings", armor(ArmorItem::new, QUICKSILVER, EquipmentSlotType.LEGS))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_LEGGINGS = REGISTRATE.item(QUICKSILVER.getInternalName() + "_leggings", armor(QuicksilverArmorItem::new, QUICKSILVER, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> RECIPES.legs(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> QUICKSILVER_BOOTS = REGISTRATE.item(QUICKSILVER.getInternalName() + "_boots", armor(ArmorItem::new, QUICKSILVER, EquipmentSlotType.FEET))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_BOOTS = REGISTRATE.item(QUICKSILVER.getInternalName() + "_boots", armor(QuicksilverArmorItem::new, QUICKSILVER, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> RECIPES.boots(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_BOOTS, null, p))
       .register();
 
   // SILVER
-  public static RegistryEntry<ArmorItem> SILVER_HELMET = REGISTRATE.item(SILVER.getInternalName() + "_helmet", armor(ArmorItem::new, SILVER, EquipmentSlotType.HEAD))
+  public static RegistryEntry<SilverArmorItem> SILVER_HELMET = REGISTRATE.item(SILVER.getInternalName() + "_helmet", armor(SilverArmorItem::new, SILVER, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> RECIPES.helmet(MWTags.Items.SILVER_INGOT, ModItems.SILVER_HELMET, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> SILVER_CHESTPLATE = REGISTRATE.item(SILVER.getInternalName() + "_chestplate", armor(ArmorItem::new, SILVER, EquipmentSlotType.CHEST))
+  public static RegistryEntry<SilverArmorItem> SILVER_CHESTPLATE = REGISTRATE.item(SILVER.getInternalName() + "_chestplate", armor(SilverArmorItem::new, SILVER, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> RECIPES.chest(MWTags.Items.SILVER_INGOT, ModItems.SILVER_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> SILVER_LEGGINGS = REGISTRATE.item(SILVER.getInternalName() + "_leggings", armor(ArmorItem::new, SILVER, EquipmentSlotType.LEGS))
+  public static RegistryEntry<SilverArmorItem> SILVER_LEGGINGS = REGISTRATE.item(SILVER.getInternalName() + "_leggings", armor(SilverArmorItem::new, SILVER, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> RECIPES.legs(MWTags.Items.SILVER_INGOT, ModItems.SILVER_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> SILVER_BOOTS = REGISTRATE.item(SILVER.getInternalName() + "_boots", armor(ArmorItem::new, SILVER, EquipmentSlotType.FEET))
+  public static RegistryEntry<SilverArmorItem> SILVER_BOOTS = REGISTRATE.item(SILVER.getInternalName() + "_boots", armor(SilverArmorItem::new, SILVER, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> RECIPES.boots(MWTags.Items.SILVER_INGOT, ModItems.SILVER_BOOTS, null, p))
       .register();
 
   // TIN
-  public static RegistryEntry<ArmorItem> TIN_HELMET = REGISTRATE.item(TIN.getInternalName() + "_helmet", armor(ArmorItem::new, TIN, EquipmentSlotType.HEAD))
+  public static RegistryEntry<TinArmorItem> TIN_HELMET = REGISTRATE.item(TIN.getInternalName() + "_helmet", armor(TinArmorItem::new, TIN, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> RECIPES.helmet(MWTags.Items.TIN_INGOT, ModItems.TIN_HELMET, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> TIN_CHESTPLATE = REGISTRATE.item(TIN.getInternalName() + "_chestplate", armor(ArmorItem::new, TIN, EquipmentSlotType.CHEST))
+  public static RegistryEntry<TinArmorItem> TIN_CHESTPLATE = REGISTRATE.item(TIN.getInternalName() + "_chestplate", armor(TinArmorItem::new, TIN, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> RECIPES.chest(MWTags.Items.TIN_INGOT, ModItems.TIN_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> TIN_LEGGINGS = REGISTRATE.item(TIN.getInternalName() + "_leggings", armor(ArmorItem::new, TIN, EquipmentSlotType.LEGS))
+  public static RegistryEntry<TinArmorItem> TIN_LEGGINGS = REGISTRATE.item(TIN.getInternalName() + "_leggings", armor(TinArmorItem::new, TIN, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> RECIPES.legs(MWTags.Items.TIN_INGOT, ModItems.TIN_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<ArmorItem> TIN_BOOTS = REGISTRATE.item(TIN.getInternalName() + "_boots", armor(ArmorItem::new, TIN, EquipmentSlotType.FEET))
+  public static RegistryEntry<TinArmorItem> TIN_BOOTS = REGISTRATE.item(TIN.getInternalName() + "_boots", armor(TinArmorItem::new, TIN, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> RECIPES.boots(MWTags.Items.TIN_INGOT, ModItems.TIN_BOOTS, null, p))
       .register();
 
