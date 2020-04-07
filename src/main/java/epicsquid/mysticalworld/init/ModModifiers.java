@@ -30,6 +30,4 @@ public class ModModifiers {
 
   public static void load() {
   }
-
-  // public static final IAttribute MAX_HEALTH = (new RangedAttribute((IAttribute)null, "generic.maxHealth", 20.0D, Float.MIN_VALUE, 1024.0D)).setDescription("Max Health").setShouldWatch(true);
 }
