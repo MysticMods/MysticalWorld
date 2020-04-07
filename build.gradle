@@ -195,6 +195,9 @@ publishing {
             artifact apiJar {
             }
 
+            artifact shadowJar {
+            }
+
             pom.withXml {
                 asNode().dependencies.dependency.each {
                     dep -> dep.parent().remove(dep)
