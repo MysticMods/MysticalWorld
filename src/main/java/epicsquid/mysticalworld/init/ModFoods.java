@@ -31,21 +31,21 @@ public class ModFoods {
       .setAlwaysEdible().build();
 
   // Drinks
-  public static final Food APPLE_CORDIAL = (new Food.Builder().hunger(1).saturation(4.5f)).setAlwaysEdible().effect(
-      new EffectInstance(Effects.SPEED, 600, 0, false, false), 1f).build();
-  public static final Food CACTUS_SYRUP = new Food.Builder().hunger(1).saturation(4.5f).setAlwaysEdible().effect(
-      new EffectInstance(Effects.JUMP_BOOST, 600, 0, false, false), 1f).build();
-  public static final Food DANDELION_CORDIAL = new DeferredFood.Builder().hunger(1).saturation(4.5f).setAlwaysEdible().effect(
+  public static final Food APPLE_CORDIAL = (new DeferredFood.Builder().hunger(1).saturation(7.5f)).effect(
+      () -> new EffectInstance(ModEffects.SLOW_REGEN.get(), 1200, 0, false, false), 1f).build();
+  public static final Food CACTUS_SYRUP = new DeferredFood.Builder().hunger(1).saturation(7.5f).effect(
+      () -> new EffectInstance(ModEffects.SLOW_REGEN.get(), 1200, 0, false, false), 1f).build();
+  public static final Food DANDELION_CORDIAL = new DeferredFood.Builder().hunger(1).saturation(7.5f).setAlwaysEdible().effect(
       () -> new EffectInstance(ModEffects.WAKEFUL.get()), 1f).build();
-  public static final Food LILAC_CORDIAL = new Food.Builder().hunger(1).saturation(4.5f).setAlwaysEdible().effect(
-      new EffectInstance(Effects.HEALTH_BOOST, 300, 0, false, false), 1f).build();
-  public static final Food PEONY_CORDIAL = new Food.Builder().hunger(1).saturation(4.5f).setAlwaysEdible().effect(
-      new EffectInstance(Effects.INVISIBILITY, 300, 0, false, false), 1f).build();
-  public static final Food ROSE_CORDIAL = new Food.Builder().hunger(1).saturation(4.5f).setAlwaysEdible().effect(
-      new EffectInstance(Effects.WATER_BREATHING, 600, 0, false, false), 1f).build();
-  public static final Food VINEGAR = new Food.Builder().hunger(1).saturation(4.5f).setAlwaysEdible().effect(
+  public static final Food LILAC_CORDIAL = new DeferredFood.Builder().hunger(1).saturation(7.5f).effect(
+      () -> new EffectInstance(ModEffects.SLOW_REGEN.get(), 1200, 0, false, false), 1f).build();
+  public static final Food PEONY_CORDIAL = new DeferredFood.Builder().hunger(1).saturation(7.5f).effect(
+      () -> new EffectInstance(ModEffects.SLOW_REGEN.get(), 1200, 0, false, false), 1f).build();
+  public static final Food ROSE_CORDIAL = new DeferredFood.Builder().hunger(1).saturation(7.5f).effect(
+      () -> new EffectInstance(ModEffects.SLOW_REGEN.get(), 1200, 0, false, false), 1f).build();
+  public static final Food VINEGAR = new DeferredFood.Builder().hunger(1).saturation(7.5f).effect(
       new EffectInstance(Effects.HUNGER, 300, 0, false, false), 1.0f).build();
-  public static final Food VEGETABLE_JUICE = new DeferredFood.Builder().hunger(1).saturation(4.5f).setAlwaysEdible().effect(
+  public static final Food VEGETABLE_JUICE = new DeferredFood.Builder().hunger(1).saturation(7.5f).effect(
       () -> new EffectInstance(ModEffects.SLOW_REGEN.get(), 1200, 0, false, false), 1f).build();
 
   // Salads
