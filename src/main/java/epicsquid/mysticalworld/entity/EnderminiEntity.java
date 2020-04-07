@@ -141,7 +141,7 @@ public class EnderminiEntity extends CreatureEntity {
       iblockstate = null;
     }
 
-    this.setHeldBlockState(iblockstate);
+    this.setHeldBlock(iblockstate);
   }
 
   @Override
@@ -248,7 +248,7 @@ public class EnderminiEntity extends CreatureEntity {
   /**
    * Sets this endermini's held block state
    */
-  public void setHeldBlockState(@Nullable BlockState state) {
+  public void setHeldBlock(@Nullable BlockState state) {
     this.dataManager.set(CARRIED_BLOCK, Optional.ofNullable(state));
   }
 
