@@ -28,19 +28,9 @@ public class MWJEIPlugin implements IModPlugin {
 
   @Override
   public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration registration) {
-/*    registration.getCraftingCategory().addCategoryExtension(KnifeRecipe.class, KnifeWrapper::new);
-    registration.getCraftingCategory().addCategoryExtension(SpindleRecipe.class, SpindleWrapper::new);
-    registration.getCraftingCategory().addCategoryExtension(FlintAndSteelRecipe.class, FlintAndSteelWrapper::new);
-    registration.getCraftingCategory().addCategoryExtension(KnifeHornRecipe.class, KnifeHornWrapper::new);*/
   }
 
   @Override
   public void registerRecipes(IRecipeRegistration registration) {
-    registration.addRecipes(Arrays.asList(
-/*        new KnifeRecipe(new ResourceLocation(MysticalWorld.MODID, "knife_temp")),
-        new SpindleRecipe(new ResourceLocation(MysticalWorld.MODID, "spindle_temp")),
-        new FlintAndSteelRecipe(new ResourceLocation(MysticalWorld.MODID, "flint_temp")),
-        new KnifeHornRecipe(new ResourceLocation(MysticalWorld.MODID, "horn_temp"))*/
-    ), new ResourceLocation("minecraft", "crafting"));
   }
 }
