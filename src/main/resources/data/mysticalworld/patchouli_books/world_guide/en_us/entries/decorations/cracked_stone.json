@@ -4,10 +4,10 @@
   "category": "decorations",
   "pages": [
     {
-      "type": "crafting",
-      "recipe": "mysticalworld:cracked_stone",
+      "type": "smelting",
+      "recipe": "mysticalworld:cracked_stone_from_soft_stone_smelting",
       "link_recipe": true,
-      "text": "Cooked soft stone in a furnace will fracture it, causing tendril-like cracks across its surface."
+      "text": "Cooking soft stone in a furnace will fracture it, causing tendril-like cracks across its surface."
     },
     {
       "type": "crafting",

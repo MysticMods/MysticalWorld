@@ -863,8 +863,7 @@ public class ModBlocks {
       .tag(Tags.Items.STONE)
       .build()
       .recipe((ctx, p) -> {
-        p.stonecutting(() -> Items.SMOOTH_STONE, ModBlocks.CRACKED_STONE, p);
-        RECIPES.twoByTwo(() -> Items.SMOOTH_STONE, ModBlocks.CRACKED_STONE, null, p);
+        p.smelting(ModBlocks.SOFT_STONE, ModBlocks.CRACKED_STONE, 0.125f, p);
       })
       .tag(Tags.Blocks.STONE)
       .blockstate(ModBlocks::simpleBlockState)
