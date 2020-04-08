@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:nautilus_horn"
+    ]
+  },
+  "criteria": {
+    "has_shell": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:nautilus_shell"
+          }
+        ]
+      }
+    },
+    "has_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "mysticalworld:knives"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:nautilus_horn"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_shell",
+      "has_knife",
+      "has_the_recipe"
+    ]
+  ]
+}
