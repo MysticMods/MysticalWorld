@@ -18,7 +18,7 @@
     },
     {
       "type": "smelting",
-      "recipe": "mysticalworld:aubergine",
+      "recipe": "mysticalworld:cooked_aubergine",
       "title": "Cooked Aubergine",
       "text": "Once cooked and with the seeds removed, further additions can be made to the aubergine to make it even tastier!"
     },

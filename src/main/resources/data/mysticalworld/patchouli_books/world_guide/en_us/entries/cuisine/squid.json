@@ -11,7 +11,7 @@
     },
     {
       "type": "smelting",
-      "recipe": "mysticalworld:raw_squid",
+      "recipe": "mysticalworld:cooked_squid",
       "title": "Calamari",
       "text": "The process of preparing the squid tentacles for cooking results in an ample quantity of calamari, which themselves can be combined with other ingredients for an even more spectacular and mysterious experience!"
     },

@@ -1,0 +1,40 @@
+{
+  "name": "Thatch",
+  "icon": "mysticalworld:thatch",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:thatch",
+      "link_recipe": true,
+      "text": "Thatch can be crafted by combining wheat with hay, and a little goes a long way! In addition to being a square block, it also has sheafs splaying outwards. These are not present on other variants."
+    },
+    {
+      "type": "crafting",
+      "title": "Stairs & Slabs",
+      "link_recipe": true,
+      "recipe": "mysticalworld:thatch_stairs",
+      "recipe2": "mysticalworld:thatch_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "Fences & Gates",
+      "link_recipe": true,
+      "recipe": "mysticalworld:thatch_fence",
+      "recipe2": "mysticalworld:thatch_fence_gate"
+    },
+    {
+      "type": "crafting",
+      "title": "Posts",
+      "link_recipe": true,
+      "recipe": "mysticalworld:thatch_wide_post",
+      "recipe2": "mysticalworld:thatch_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "Walls",
+      "link_recipe": true,
+      "recipe": "mysticalworld:thatch_wall"
+    }
+  ]
+}
