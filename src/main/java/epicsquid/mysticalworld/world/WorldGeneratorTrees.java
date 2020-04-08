@@ -19,8 +19,6 @@ import java.util.Random;
 public class WorldGeneratorTrees implements IWorldGenerator {
   public static List<BiomeDictionary.Type> invalidTypes = new ArrayList<>();
 
-  public WorldGenBurntTree burnTree = new WorldGenBurntTree(false);
-
   @Override
   public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
     // TODO: Move into config
@@ -55,8 +53,8 @@ public class WorldGeneratorTrees implements IWorldGenerator {
       BlockPos pos = new BlockPos(x, y, z);
 
       if (Blocks.SAPLING.canPlaceBlockAt(world, pos)) {
+        WorldGenBurntTree burnTree = new WorldGenBurntTree(false);
         burnTree.generate(world, random, pos);
-        burnTree.reset();
         break;
       }
     }
