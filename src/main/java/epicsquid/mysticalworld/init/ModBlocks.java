@@ -913,8 +913,14 @@ public class ModBlocks {
       .tag(Tags.Blocks.OBSIDIAN)
       .blockstate(ModBlocks::simpleBlockState)
       .recipe((ctx, p) -> {
-        p.stonecutting(() -> Items.OBSIDIAN, ModBlocks.SOFT_OBSIDIAN, p);
-        RECIPES.twoByTwo(() -> Items.OBSIDIAN, ModBlocks.SOFT_OBSIDIAN, null, p);
+        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 4)
+            .patternLine("AB")
+            .patternLine("BA")
+            .key('A', Tags.Items.STONE)
+            .key('B', Tags.Items.OBSIDIAN)
+            .addCriterion("has_stone", p.hasItem(Tags.Items.STONE))
+            .addCriterion("has_obsidian", p.hasItem(Tags.Items.OBSIDIAN))
+            .build(p);
       })
       .register();
 

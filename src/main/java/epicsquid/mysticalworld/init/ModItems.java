@@ -300,39 +300,43 @@ public class ModItems {
           .build(p))
       .register();
 
+  public static NonNullFunction<Item.Properties, TooltipDrinkItem> tooltipDrink (String translationKey) {
+    return (b) -> new TooltipDrinkItem(b, translationKey);
+  }
+
   // Drinkies
   // TODO: More tags
-  public static RegistryEntry<DrinkItem> APPLE_CORDIAL = REGISTRATE.item("apple_cordial", DrinkItem::new)
+  public static RegistryEntry<TooltipDrinkItem> APPLE_CORDIAL = REGISTRATE.item("apple_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
       .properties(o -> o.food(ModFoods.APPLE_CORDIAL))
       .recipe(RECIPES.cordial(() -> ModItems.APPLE_CORDIAL, Items.APPLE))
       .register();
 
-  public static RegistryEntry<DrinkItem> CACTUS_SYRUP = REGISTRATE.item("cactus_syrup", DrinkItem::new)
+  public static RegistryEntry<TooltipDrinkItem> CACTUS_SYRUP = REGISTRATE.item("cactus_syrup", tooltipDrink("mysticalworld.drinks.slow_regen"))
       .properties(o -> o.food(ModFoods.CACTUS_SYRUP))
       .recipe(RECIPES.cordial(() -> ModItems.CACTUS_SYRUP, Items.CACTUS))
       .register();
 
-  public static RegistryEntry<DrinkItem> DANDELION_CORDIAL = REGISTRATE.item("dandelion_cordial", DrinkItem::new)
+  public static RegistryEntry<TooltipDrinkItem> DANDELION_CORDIAL = REGISTRATE.item("dandelion_cordial", tooltipDrink("mysticalworld.drinks.wakefulness"))
       .properties(o -> o.food(ModFoods.DANDELION_CORDIAL))
       .recipe(RECIPES.cordial(() -> ModItems.DANDELION_CORDIAL, Items.DANDELION))
       .register();
 
-  public static RegistryEntry<DrinkItem> LILAC_CORDIAL = REGISTRATE.item("lilac_cordial", DrinkItem::new)
+  public static RegistryEntry<TooltipDrinkItem> LILAC_CORDIAL = REGISTRATE.item("lilac_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
       .properties(o -> o.food(ModFoods.LILAC_CORDIAL))
       .recipe(RECIPES.cordial(() -> ModItems.LILAC_CORDIAL, Items.LILAC))
       .register();
 
-  public static RegistryEntry<DrinkItem> PEONY_CORDIAL = REGISTRATE.item("peony_cordial", DrinkItem::new)
+  public static RegistryEntry<TooltipDrinkItem> PEONY_CORDIAL = REGISTRATE.item("peony_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
       .properties(o -> o.food(ModFoods.PEONY_CORDIAL))
       .recipe(RECIPES.cordial(() -> ModItems.PEONY_CORDIAL, Items.PEONY))
       .register();
 
-  public static RegistryEntry<DrinkItem> ROSE_CORDIAL = REGISTRATE.item("rose_cordial", DrinkItem::new)
+  public static RegistryEntry<TooltipDrinkItem> ROSE_CORDIAL = REGISTRATE.item("rose_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
       .properties(o -> o.food(ModFoods.ROSE_CORDIAL))
       .recipe(RECIPES.cordial(() -> ModItems.ROSE_CORDIAL, Items.ROSE_BUSH))
       .register();
 
-  public static RegistryEntry<DrinkItem> VINEGAR = REGISTRATE.item("vinegar", DrinkItem::new)
+  public static RegistryEntry<TooltipDrinkItem> VINEGAR = REGISTRATE.item("vinegar", tooltipDrink("mysticalworld.drinks.sour"))
       .properties(o -> o.food(ModFoods.VINEGAR))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.VINEGAR.get(), 6)
           .patternLine("BBB")
@@ -344,7 +348,7 @@ public class ModItems {
           .build(p))
       .register();
 
-  public static RegistryEntry<DrinkItem> VEGETABLE_JUICE = REGISTRATE.item("vegetable_juice", DrinkItem::new)
+  public static RegistryEntry<TooltipDrinkItem> VEGETABLE_JUICE = REGISTRATE.item("vegetable_juice", tooltipDrink("mysticalworld.drinks.slow_regen"))
       .properties(o -> o.food(ModFoods.VEGETABLE_JUICE))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.VEGETABLE_JUICE.get(), 4)
           .patternLine("ARC")
@@ -434,7 +438,7 @@ public class ModItems {
           .build(p))
       .register();
 
-  public static RegistryEntry<Item> ROTTEN_APPLE = REGISTRATE.item("rotten_apple", Item::new)
+  public static RegistryEntry<TooltipItem> ROTTEN_APPLE = REGISTRATE.item("rotten_apple", (b) -> new TooltipItem(b, "mysticalworld.food.rotten_apple"))
       .properties(o -> o.rarity(Rarity.RARE))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.ROTTEN_APPLE.get(), 1)
           .patternLine("WLW")
