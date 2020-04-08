@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.integration.jei;
+/*package epicsquid.mysticalworld.integration.jei;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModItems;
@@ -29,4 +29,4 @@ public class SpindleWrapper implements ICraftingCategoryExtension {
   public ResourceLocation getRegistryName() {
     return new ResourceLocation(MysticalWorld.MODID, "spindle_recipe");
   }
-}
+}*/

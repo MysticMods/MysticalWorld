@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.recipe;
+/*package epicsquid.mysticalworld.recipe;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,4 +31,4 @@ public class DamagedIngredient extends Ingredient {
 
     return new DamagedIngredient(itemStream.stream().map(SingleItemList::new));
   }
-}
+}*/

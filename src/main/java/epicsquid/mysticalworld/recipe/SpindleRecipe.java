@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.recipe;
+/*package epicsquid.mysticalworld.recipe;
 
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.init.ModItems;
@@ -100,4 +100,4 @@ public class SpindleRecipe extends SpecialRecipe {
   public IRecipeSerializer<?> getSerializer() {
     return ModRecipes.SPINDLE_SERIALIZER.get();
   }
-}
+}*/

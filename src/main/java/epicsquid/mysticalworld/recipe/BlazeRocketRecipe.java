@@ -21,6 +21,7 @@ public class BlazeRocketRecipe extends SpecialRecipe {
     super(idIn);
   }
 
+  @Override
   public boolean matches(CraftingInventory inv, World worldIn) {
     boolean flag = false;
     int i = 0;
@@ -48,6 +49,7 @@ public class BlazeRocketRecipe extends SpecialRecipe {
     return flag && i >= 1;
   }
 
+  @Override
   public ItemStack getCraftingResult(CraftingInventory inv) {
     ItemStack itemstack = new ItemStack(Items.FIREWORK_ROCKET, 5);
     CompoundNBT compoundnbt = itemstack.getOrCreateChildTag("Fireworks");
@@ -79,6 +81,7 @@ public class BlazeRocketRecipe extends SpecialRecipe {
   /**
    * Used to determine if this recipe can fit in a grid of the given width/height
    */
+  @Override
   public boolean canFit(int width, int height) {
     return width * height >= 2;
   }
@@ -87,10 +90,12 @@ public class BlazeRocketRecipe extends SpecialRecipe {
    * Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one
    * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
    */
+  @Override
   public ItemStack getRecipeOutput() {
     return new ItemStack(Items.FIREWORK_ROCKET);
   }
 
+  @Override
   public IRecipeSerializer<?> getSerializer() {
     return ModRecipes.BLAZE_SERIALIZER.get();
   }

@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.integration.jei;
+/*package epicsquid.mysticalworld.integration.jei;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModBlocks;
@@ -31,4 +31,4 @@ public class FlintAndSteelWrapper implements ICraftingCategoryExtension {
   public ResourceLocation getRegistryName() {
     return new ResourceLocation(MysticalWorld.MODID, "flint_and_steel_recipe");
   }
-}
+}*/

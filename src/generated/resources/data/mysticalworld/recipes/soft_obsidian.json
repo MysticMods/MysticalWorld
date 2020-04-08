@@ -1,12 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XX",
-    "XX"
+    "AB",
+    "BA"
   ],
   "key": {
-    "X": {
-      "item": "minecraft:obsidian"
+    "A": {
+      "tag": "forge:stone"
+    },
+    "B": {
+      "tag": "forge:obsidian"
     }
   },
   "result": {

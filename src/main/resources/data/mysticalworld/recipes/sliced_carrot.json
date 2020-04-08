@@ -1,0 +1,19 @@
+{
+  "type": "mysticalworld:shapeless_damage_recipe",
+  "ingredients": [
+    {
+      "tag": "forge:crops/carrot"
+    },
+    {
+      "tag": "mysticalworld:knives"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:sliced_carrot",
+    "count": 4
+  },
+  "damage_item": {
+    "tag": "mysticalworld:knives"
+  },
+  "damage_amount": 1
+}

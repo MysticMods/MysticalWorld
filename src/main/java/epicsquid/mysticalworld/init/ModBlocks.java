@@ -22,6 +22,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.data.SingleItemRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -465,6 +466,23 @@ public class ModBlocks {
       .tag(ItemTags.LOGS)
       .model(ModBlocks::itemModel)
       .build()
+/*      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 8)
+            .patternLine("LLL")
+            .patternLine("LFL")
+            .patternLine("LLL")
+            .key('L', ItemTags.LOGS)
+            .key('F', Items.FLINT_AND_STEEL)
+            .addCriterion("has_log", p.hasItem(ItemTags.LOGS))
+            .addCriterion("has_flint", p.hasItem(Items.FLINT_AND_STEEL))
+            .build(p, "charred_log_from_8_logs");
+        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
+            .addIngredient(ItemTags.LOGS)
+            .addIngredient(Items.FLINT_AND_STEEL)
+            .addCriterion("has_log", p.hasItem(ItemTags.LOGS))
+            .addCriterion("has_flint", p.hasItem(Items.FLINT_AND_STEEL))
+            .build(p, "charred_log_from_single_log");
+      })*/
       .register();
 
   public static RegistryEntry<Block> CHARRED_PLANKS = REGISTRATE.block("charred_planks", Material.WOOD, Block::new)

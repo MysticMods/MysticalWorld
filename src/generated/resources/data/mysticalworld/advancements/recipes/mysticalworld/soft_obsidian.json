@@ -6,12 +6,22 @@
     ]
   },
   "criteria": {
+    "has_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:stone"
+          }
+        ]
+      }
+    },
     "has_obsidian": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:obsidian"
+            "tag": "forge:obsidian"
           }
         ]
       }
@@ -25,6 +35,7 @@
   },
   "requirements": [
     [
+      "has_stone",
       "has_obsidian",
       "has_the_recipe"
     ]

@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.integration.jei;
+/*package epicsquid.mysticalworld.integration.jei;
 
 import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.MysticalWorld;
@@ -31,4 +31,4 @@ public class KnifeWrapper implements ICraftingCategoryExtension {
   public ResourceLocation getRegistryName() {
     return new ResourceLocation(MysticalWorld.MODID, "knife_recipe");
   }
-}
+}*/

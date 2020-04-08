@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.recipe;
+/*package epicsquid.mysticalworld.recipe;
 
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.init.ModBlocks;
@@ -102,4 +102,4 @@ public class FlintAndSteelRecipe extends SpecialRecipe {
   public IRecipeSerializer<?> getSerializer() {
     return ModRecipes.FLINT_SERIALIZER.get();
   }
-}
+}*/

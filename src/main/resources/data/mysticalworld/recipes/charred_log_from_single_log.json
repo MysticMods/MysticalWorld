@@ -1,0 +1,18 @@
+{
+  "type": "mysticalworld:shapeless_damage_recipe",
+  "ingredients": [
+    {
+      "tag": "minecraft:logs"
+    },
+    {
+      "item": "minecraft:flint_and_steel"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:charred_log"
+  },
+  "damage_item": {
+    "item": "minecraft:flint_and_steel"
+  },
+  "damage_amount": 1
+}

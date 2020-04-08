@@ -13,22 +13,27 @@ public class EmptyRecipe extends SpecialRecipe {
     super(idIn);
   }
 
+  @Override
   public boolean matches(CraftingInventory inv, World worldIn) {
     return false;
   }
 
+  @Override
   public ItemStack getCraftingResult(CraftingInventory inv) {
     return ItemStack.EMPTY;
   }
 
+  @Override
   public boolean canFit(int width, int height) {
     return false;
   }
 
+  @Override
   public ItemStack getRecipeOutput() {
     return ItemStack.EMPTY;
   }
 
+  @Override
   public IRecipeSerializer<?> getSerializer() {
     return ModRecipes.EMPTY_SERIALIZER.get();
   }

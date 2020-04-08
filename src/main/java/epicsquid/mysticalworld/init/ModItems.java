@@ -126,6 +126,14 @@ public class ModItems {
       // KNIFE RECIPE TODO
       .model((ctx, p) -> p.handheld(ModItems.NAUTILUS_HORN))
       .properties(o -> o.maxDamage(32).rarity(Rarity.RARE))
+/*      .recipe((ctx, p) -> {
+        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
+            .addIngredient(Items.NAUTILUS_SHELL)
+            .addIngredient(MWTags.Items.KNIVES)
+            .addCriterion("has_shell", p.hasItem(Items.NAUTILUS_SHELL))
+            .addCriterion("has_knife", p.hasItem(MWTags.Items.KNIVES))
+            .build(p);
+      })*/
       .register();
 
   public static RegistryEntry<NautilusHornBase.GlisteringHorn> GLISTERING_HORN = REGISTRATE.item("glistering_horn", NautilusHornBase.GlisteringHorn::new)
@@ -151,6 +159,20 @@ public class ModItems {
 
   public static RegistryEntry<Item> SILK_THREAD = REGISTRATE.item("silk_thread", Item::new)
       .recipe((ctx, p) -> {
+/*
+        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 8)
+            .addIngredient(ModItems.SILK_COCOON.get())
+            .addIngredient(ModItems.SPINDLE.get())
+            .addCriterion("has_cocoon", p.hasItem(ModItems.SILK_COCOON.get()))
+            .build(p, "silk_thread_from_cocoon_with_spindle");
+*/
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.STRING, 1)
+            .addIngredient(ctx.getEntry())
+            .addIngredient(ctx.getEntry())
+            .addCriterion("has_silk_thread", p.hasItem(ModItems.SILK_THREAD.get()))
+            .build(p, "string_from_two_silk_thread");
+
         // Properly tag Minecraft default recipes
         ShapedRecipeBuilder.shapedRecipe(Items.FISHING_ROD, 1)
             .patternLine("  X")
@@ -260,6 +282,14 @@ public class ModItems {
 
   public static RegistryEntry<FastFoodItem> SLICED_CARROT = REGISTRATE.item("sliced_carrot", FastFoodItem::new)
       .properties(o -> o.food(ModFoods.SLICED_CARROT))
+/*      .recipe((ctx, p) -> {
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.SLICED_CARROT.get(), 4)
+            .addIngredient(Tags.Items.CROPS_CARROT)
+            .addIngredient(MWTags.Items.KNIVES)
+            .addCriterion("has_carrot", p.hasItem(Tags.Items.CROPS_CARROT))
+            .addCriterion("has_knives", p.hasItem(MWTags.Items.KNIVES))
+            .build(p);
+      })*/
       .register();
 
   public static RegistryEntry<Item> COOKED_CARROT = REGISTRATE.item("cooked_carrot", Item::new)

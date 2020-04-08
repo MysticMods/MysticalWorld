@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.recipe;
+/*package epicsquid.mysticalworld.recipe;
 
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MWTags;
@@ -102,4 +102,4 @@ public class KnifeHornRecipe extends SpecialRecipe {
   public IRecipeSerializer<?> getSerializer() {
     return ModRecipes.HORN_SERIALIZER.get();
   }
-}
+}*/

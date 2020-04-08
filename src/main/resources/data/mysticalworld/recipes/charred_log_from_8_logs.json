@@ -1,0 +1,24 @@
+{
+  "type": "mysticalworld:shaped_damage_recipe",
+  "pattern": [
+    "LLL",
+    "LFL",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "tag": "minecraft:logs"
+    },
+    "F": {
+      "item": "minecraft:flint_and_steel"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:charred_log",
+    "count": 8
+  },
+  "damage_item": {
+    "item": "minecraft:flint_and_steel"
+  },
+  "damage_amount": 8
+}
