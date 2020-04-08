@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.world;
 
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.world.tree.WorldGenBurntTree;
 import net.minecraft.init.Blocks;
@@ -54,7 +55,11 @@ public class WorldGeneratorTrees implements IWorldGenerator {
 
       if (Blocks.SAPLING.canPlaceBlockAt(world, pos)) {
         WorldGenBurntTree burnTree = new WorldGenBurntTree(false);
-        burnTree.generate(world, random, pos);
+        try {
+          burnTree.generate(world, random, pos);
+        } catch (NullPointerException e) {
+          MysticalWorld.logger.debug("Failed to create a charred tree at '" + pos.toString() + "' due to a null-pointer:", e);
+        }
         break;
       }
     }
