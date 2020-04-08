@@ -133,6 +133,23 @@ public class ModBlocks {
       )
       .register();
 
+  public static RegistryEntry<Block> SIMPLE_THATCH = REGISTRATE.block("simple_thatch", Material.WOOD, Block::new)
+      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .item()
+      .model((ctx, p) -> p.blockItem(ModBlocks.SIMPLE_THATCH))
+      .build()
+      .recipe((ctx, p) -> {
+        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.SIMPLE_THATCH.get(), 1)
+            .addIngredient(ModBlocks.THATCH.get())
+            .addCriterion("has_thatch", p.hasItem(ModBlocks.THATCH.get()))
+            .build(p, "simple_thatch_from_thatch");
+        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.THATCH.get(), 1)
+            .addIngredient(ModBlocks.SIMPLE_THATCH.get())
+            .addCriterion("has_thatch", p.hasItem(ModBlocks.SIMPLE_THATCH.get()))
+            .build(p, "thatch_from_simple_thatch");
+      })
+      .register();
+
   public static RegistryEntry<StairsBlock> THATCH_STAIRS = REGISTRATE.block("thatch_stairs", Material.WOOD, stairsBlock(ModBlocks.THATCH))
       .properties(THATCH_PROPS)
       .tag(BlockTags.STAIRS)

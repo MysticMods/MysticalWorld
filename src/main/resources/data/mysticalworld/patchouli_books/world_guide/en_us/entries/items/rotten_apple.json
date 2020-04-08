@@ -1,0 +1,13 @@
+{
+  "name": "Rotten Apple",
+  "icon": "mysticalworld:rotten_apple",
+  "category": "items",
+  "pages": [
+    {
+      "type": "recipe",
+      "link_recipe": true,
+      "recipe": "mysticalworld:rotten_apple",
+      "text": "Rotten apples have a chance to zombify villagers."
+    }
+  ]
+}

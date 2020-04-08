@@ -1,0 +1,13 @@
+{
+  "name": "Pelt",
+  "icon": "mysticalworld:pelt",
+  "category": "items",
+  "pages": [
+    {
+      "type": "recipe",
+      "link_recipe": true,
+      "recipe": "mysticalworld:pelt_to_leather",
+      "text": "The pelt of the $(l:creatures/fox)fox$() can be easily converted into leather."
+    }
+  ]
+}

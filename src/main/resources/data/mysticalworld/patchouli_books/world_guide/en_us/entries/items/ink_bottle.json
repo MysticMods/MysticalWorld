@@ -1,0 +1,19 @@
+{
+  "name": "Young Pearls",
+  "icon": "mysticalworld:young_pearl",
+  "category": "items",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:ink_bottle",
+      "text": "These ink bottles can be created by right-clicking a squid with a glass bottle."
+    },
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:black_dye",
+      "text": "Ink bottles can be converted into a quantity of black dye, returning the glass bottle in the process."
+    }
+  ]
+}

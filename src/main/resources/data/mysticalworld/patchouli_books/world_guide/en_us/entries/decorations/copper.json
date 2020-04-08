@@ -1,0 +1,33 @@
+{
+  "name": "Copper Decoration",
+  "icon": "mysticalworld:copper_stairs",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:copper_block",
+      "link_recipe": true,
+      "text": "While mainly serving a purpose as storage, blocks of copper can also be crafted into various decorative elements."
+    },
+    {
+      "type": "crafting",
+      "title": "Stairs & Slabs",
+      "link_recipe": true,
+      "recipe": "mysticalworld:copper_stairs",
+      "recipe2": "mysticalworld:copper_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "Posts",
+      "link_recipe": true,
+      "recipe": "mysticalworld:copper_wide_post",
+      "recipe2": "mysticalworld:copper_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "Walls",
+      "link_recipe": true,
+      "recipe": "mysticalworld:copper_wall"
+    }
+  ]
+}

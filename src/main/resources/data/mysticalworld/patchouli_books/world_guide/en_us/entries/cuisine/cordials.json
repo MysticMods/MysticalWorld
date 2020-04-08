@@ -1,0 +1,30 @@
+{
+  "name": "Cordials",
+  "icon": "mysticalworld:dandelion_cordial",
+  "category": "cuisine",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:dandelion_cordial",
+      "text": "Provides a boost of energy that wards off sleep and phantoms."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:apple_cordial",
+      "recipe2": "mysticalworld:cactus_syrup",
+      "text": "Slowly heals over time."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lilac_cordial",
+      "recipe2": "mysticalworld:peony_cordial",
+      "text": "Slowly heals over time."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:rose_cordial",
+      "recipe2": "mysticalworld:vegetable_juice",
+      "text": "Slowly heals over time."
+    }
+  ]
+}

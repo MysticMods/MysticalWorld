@@ -11,9 +11,8 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:spindle",
-      "recipe2": "mysticalworld:silk_thread_spindle",
-      "text": "Combining the silkworm cocoon with a spindle will produce the best results, although it will consume some of the durability of the spindle."
+      "recipe": "mysticalworld:silk_thread_from_cocoon_with_spindle",
+      "text": "Combining the silkworm cocoon with a $(l:items/spindle)spindle$() will produce the best results, although it will consume some of the durability of the spindle."
     }
   ]
 }

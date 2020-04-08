@@ -17,7 +17,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:knife_recipe",
+      "recipe": "mysticalworld:sliced_carrot",
       "title": "Sliced Carrot",
       "text": "Knives can be used to slice carrots into quickly-eaten snacks!"
     }

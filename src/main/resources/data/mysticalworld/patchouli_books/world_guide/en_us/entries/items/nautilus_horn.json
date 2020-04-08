@@ -1,0 +1,19 @@
+{
+  "name": "Nautilus & Glistering Horn",
+  "icon": "mysticalworld:nautilus_horn",
+  "category": "items",
+  "pages": [
+    {
+      "type": "recipe",
+      "link_recipe": true,
+      "recipe": "mysticalworld:nautilus_horn",
+      "text": "The nautilus horn can be crafted by whittling a shell away with a knife. When blown, it provides a bonus to swim speed."
+    },
+    {
+      "type": "recipe",
+      "link_recipe": true,
+      "recipe": "mysticalworld:glistering_horn",
+      "text": "An upgraded form of the nautilus horn, this provides a longer buff."
+    }
+  ]
+}

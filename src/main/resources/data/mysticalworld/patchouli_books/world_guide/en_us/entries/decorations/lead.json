@@ -1,0 +1,33 @@
+{
+  "name": "Lead Decoration",
+  "icon": "mysticalworld:lead_stairs",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lead_block",
+      "link_recipe": true,
+      "text": "While mainly serving a purpose as storage, blocks of lead can also be crafted into various decorative elements."
+    },
+    {
+      "type": "crafting",
+      "title": "Stairs & Slabs",
+      "link_recipe": true,
+      "recipe": "mysticalworld:lead_stairs",
+      "recipe2": "mysticalworld:lead_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "Posts",
+      "link_recipe": true,
+      "recipe": "mysticalworld:lead_wide_post",
+      "recipe2": "mysticalworld:lead_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "Walls",
+      "link_recipe": true,
+      "recipe": "mysticalworld:lead_wall"
+    }
+  ]
+}

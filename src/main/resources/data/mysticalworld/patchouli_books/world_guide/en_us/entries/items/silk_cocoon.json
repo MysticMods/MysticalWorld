@@ -5,9 +5,9 @@
   "pages": [
     {
       "type": "spotlight",
-      "item": "mysticalworld:silk_cocoon",
+      "item": "mysticalworld:spindle",
       "link_recipe": true,
-      "text": "These cocoons are produced by $(l:creatures/silkworm)silkworms$() after a growing period. The growth process may be sped up by dropping leaves on the ground nearby, which the silkworms will then eat."
+      "text": "These cocoons are produced by $(l:creatures/silkworm)silkworms$() after a growing period. They are primarily used to produce $(l:items/silk_thread)silk thread$()."
     }
   ]
 }

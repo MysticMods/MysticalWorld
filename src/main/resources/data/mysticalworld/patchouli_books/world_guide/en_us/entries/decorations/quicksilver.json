@@ -1,0 +1,33 @@
+{
+  "name": "Quicksilver Decoration",
+  "icon": "mysticalworld:quicksilver_stairs",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:quicksilver_block",
+      "link_recipe": true,
+      "text": "While mainly serving a purpose as storage, blocks of quicksilver can also be crafted into various decorative elements."
+    },
+    {
+      "type": "crafting",
+      "title": "Stairs & Slabs",
+      "link_recipe": true,
+      "recipe": "mysticalworld:quicksilver_stairs",
+      "recipe2": "mysticalworld:quicksilver_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "Posts",
+      "link_recipe": true,
+      "recipe": "mysticalworld:quicksilver_wide_post",
+      "recipe2": "mysticalworld:quicksilver_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "Walls",
+      "link_recipe": true,
+      "recipe": "mysticalworld:quicksilver_wall"
+    }
+  ]
+}

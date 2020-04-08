@@ -1,0 +1,13 @@
+{
+  "name": "Silkworm Egg",
+  "icon": "mysticalworld:silkworm_egg",
+  "category": "items",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:silkworm_egg",
+      "text": "Eggs can rarely be found when breaking leaves, and can be used to create $(l:creatures/silkworm)silkworms$()."
+    }
+  ]
+}
