@@ -1,0 +1,60 @@
+{
+  "name": "Mud Blocks",
+  "icon": "mysticalworld:wet_mud_block",
+  "category": "decoration",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:wet_mud_block",
+      "link_recipe": true,
+      "text": "The bucket of water is not consumed in making these bricks. When placed in the world, they will become difficult terrain, slowing anyone who walks upon them. $(info) All dry variants listed here are available through the stonecutter."
+    },
+    {
+      "flag": "modid:mysticalmachinery",
+      "type": "smelting",
+      "recipe": "mysticalworld:wet_mud_block",
+      "link_recipe": true,
+      "title": "Drying Into Blocks",
+      "text": "In addition to a regular furnace, wet mud can be cooked at a much faster rate in a Kiln. Once dried, they can be used as-is or crafted into additional $(l:decorations/mud_bricks)brick variants$()."
+    },
+    {
+      "flag": "!modid:mysticalmachinery",
+      "type": "smelting",
+      "recipe": "mysticalworld:wet_mud_block",
+      "link_recipe": true,
+      "title": "Drying Into Blocks",
+      "text": "Once dried, they can be used as-is or crafted into additional $(l:decorations/mud_bricks)brick variants$()."
+    },
+    {
+      "type": "crafting",
+      "title": "Stairs & Slabs",
+      "link_recipe": true,
+      "recipe": "mysticalworld:mud_block_stairs",
+      "recipe2": "mysticalworld:mud_block_slab",
+      "text": "Mud blocks, in their dried form, can be crafted into stairs and slabs using the usual pattern."
+    },
+    {
+      "type": "crafting",
+      "title": "Fences & Gates",
+      "link_recipe": true,
+      "recipe": "mysticalworld:mud_block_fence",
+      "recipe2": "mysticalworld:mud_block_fence_gate",
+      "text": "Mud blocks can be crafted into fences in the same way as nether bricks, replacing nether bricks with sticks."
+    },
+    {
+      "type": "crafting",
+      "title": "Posts",
+      "link_recipe": true,
+      "recipe": "mysticalworld:mud_block_wide_post",
+      "recipe2": "mysticalworld:mud_block_small_post",
+      "text": "These posts are similar to individual fence and wall blocks but will not connect."
+    },
+    {
+      "type": "crafting",
+      "title": "Walls",
+      "link_recipe": true,
+      "recipe": "mysticalworld:mud_block_wall",
+      "text": "Walls are crafted in the normal fashion."
+    }
+  ]
+}

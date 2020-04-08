@@ -6,8 +6,15 @@
     {
       "type": "spotlight",
       "link_recipe": true,
-      "item": "mysticalworld:cooked_aubergine",
-      "text": "Aubergine can be harvested from $(l:crops/aubergine)mature aubergine crops$() and used in multiple ways."
+      "item": "mysticalworld:aubergine_seeds",
+      "text": "Aubergine seeds can be found throughout the world, wherever there is grass that can be broken."
+    },
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:aubergine",
+      "text": "When harvested as a mature crop, aubergines are a tasty, delicious snack that can be used in other cuisine!",
+      "title": "Aubergine Crop"
     },
     {
       "type": "smelting",
