@@ -1,0 +1,33 @@
+{
+  "name": "Cracked Stone",
+  "icon": "mysticalworld:cracked_stone",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:cracked_stone",
+      "link_recipe": true,
+      "text": "Cooked soft stone in a furnace will fracture it, causing tendril-like cracks across its surface."
+    },
+    {
+      "type": "crafting",
+      "title": "Stairs & Slabs",
+      "link_recipe": true,
+      "recipe": "mysticalworld:cracked_stone_stairs",
+      "recipe2": "mysticalworld:cracked_stone_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "Posts",
+      "link_recipe": true,
+      "recipe": "mysticalworld:cracked_stone_wide_post",
+      "recipe2": "mysticalworld:cracked_stone_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "Walls",
+      "link_recipe": true,
+      "recipe": "mysticalworld:cracked_stone_wall"
+    }
+  ]
+}

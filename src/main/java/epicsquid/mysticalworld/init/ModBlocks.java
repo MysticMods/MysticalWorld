@@ -778,6 +778,7 @@ public class ModBlocks {
 
   private static NonNullUnaryOperator<Block.Properties> SOFT_STONE_PROPS = o -> o.sound(SoundType.STONE).hardnessAndResistance(1f);
   private static NonNullUnaryOperator<Block.Properties> BLACKENED_STONE_PROPS = SOFT_STONE_PROPS;
+  private static NonNullUnaryOperator<Block.Properties> CRACKED_STONE_PROPS = SOFT_STONE_PROPS;
 
   public static RegistryEntry<Block> SOFT_STONE = REGISTRATE.block("soft_stone", Block::new)
       .properties(SOFT_STONE_PROPS)
@@ -852,6 +853,82 @@ public class ModBlocks {
           RECIPES.narrowPost(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SMALL_POST, null, true, p)
       )
       .blockstate(narrowPost(ModBlocks.SOFT_STONE))
+      .register();
+
+  // CRACKED STONE
+  public static RegistryEntry<Block> CRACKED_STONE = REGISTRATE.block("cracked_stone", Block::new)
+      .properties(CRACKED_STONE_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(Tags.Items.STONE)
+      .build()
+      .recipe((ctx, p) -> {
+        p.stonecutting(() -> Items.SMOOTH_STONE, ModBlocks.CRACKED_STONE, p);
+        RECIPES.twoByTwo(() -> Items.SMOOTH_STONE, ModBlocks.CRACKED_STONE, null, p);
+      })
+      .tag(Tags.Blocks.STONE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .register();
+
+  public static RegistryEntry<StairsBlock> CRACKED_STONE_STAIRS = REGISTRATE.block("cracked_stone_stairs", Material.ROCK, stairsBlock(ModBlocks.CRACKED_STONE))
+      .properties(CRACKED_STONE_PROPS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.stairs(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_STAIRS, null, true, p)
+      )
+      .blockstate(stairs(ModBlocks.CRACKED_STONE))
+      .register();
+
+  public static RegistryEntry<SlabBlock> CRACKED_STONE_SLAB = REGISTRATE.block("cracked_stone_slab", Material.ROCK, SlabBlock::new)
+      .properties(CRACKED_STONE_PROPS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          p.slab(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_SLAB, null, true, p)
+      )
+      .blockstate(slab(ModBlocks.CRACKED_STONE))
+      .register();
+
+  public static RegistryEntry<WallBlock> CRACKED_STONE_WALL = REGISTRATE.block("cracked_stone_wall", Material.ROCK, WallBlock::new)
+      .properties(CRACKED_STONE_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          p.wall(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_WALL, p)
+      )
+      .blockstate(wall(ModBlocks.CRACKED_STONE))
+      .register();
+
+  public static RegistryEntry<WidePostBlock> CRACKED_STONE_WIDE_POST = REGISTRATE.block("cracked_stone_wide_post", Material.ROCK, WidePostBlock::new)
+      .properties(CRACKED_STONE_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.CRACKED_STONE))
+      .register();
+
+  public static RegistryEntry<NarrowPostBlock> CRACKED_STONE_SMALL_POST = REGISTRATE.block("cracked_stone_small_post", Material.ROCK, NarrowPostBlock::new)
+      .properties(CRACKED_STONE_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.CRACKED_STONE, ModBlocks.CRACKED_STONE_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.CRACKED_STONE))
       .register();
 
   // BLACKENED STONE
