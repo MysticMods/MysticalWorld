@@ -17,7 +17,9 @@ import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.storage.loot.*;
@@ -28,7 +30,9 @@ import net.minecraft.world.storage.loot.functions.SetCount;
 import net.minecraft.world.storage.loot.functions.Smelt;
 import net.minecraftforge.common.BiomeDictionary;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
@@ -40,6 +44,8 @@ public class ModEntities {
   private static <E extends Entity> NonNullFunction<Item.Properties, LazySpawnEggItem<E>> spawnEgg(RegistryEntry<EntityType<E>> entity, int color1, int color2) {
     return properties -> new LazySpawnEggItem<>(entity, color1, color2, properties);
   }
+
+  public static List<RegistryEntry<? extends LazySpawnEggItem<?>>> SPAWN_EGGS = new ArrayList<>();
 
   public static RegistryEntry<EntityType<BeetleEntity>> BEETLE = REGISTRATE.entity("beetle", BeetleEntity::new, EntityClassification.CREATURE)
       .properties(o -> o.size(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
@@ -56,8 +62,6 @@ public class ModEntities {
               .rolls(ConstantRange.of(1))
           )
       ))
-      .spawnEgg(0x418594, 0x211D15)
-      .build()
       .register();
 
   public static RegistryEntry<EntityType<DeerEntity>> DEER = REGISTRATE.entity("deer", DeerEntity::new, EntityClassification.CREATURE)
@@ -88,8 +92,6 @@ public class ModEntities {
               )
           )
       )
-      .spawnEgg(0xa18458, 0x5e4d33)
-      .build()
       .properties(o -> o.size(1.0f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
@@ -105,8 +107,6 @@ public class ModEntities {
           )
       )
       .properties(o -> o.size(0.5f, 0.5f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
-      .spawnEgg(0x285234, 0xDBE697)
-      .build()
       .register();
 
   public static RegistryEntry<EntityType<SilverFoxEntity>> SILVER_FOX = REGISTRATE.entity("silver_fox", SilverFoxEntity::new, EntityClassification.CREATURE)
@@ -120,8 +120,6 @@ public class ModEntities {
               )
           )
       )
-      .spawnEgg(0x9e9088, 0xF5E0D3)
-      .build()
       .properties(o -> o.size(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
@@ -167,8 +165,6 @@ public class ModEntities {
               )
           )
       )
-      .spawnEgg(0xe8f442, 0xd11f5a)
-      .build()
       .properties(o -> o.size(0.5f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
@@ -183,8 +179,6 @@ public class ModEntities {
               )
           )
       )
-      .spawnEgg(0xa11e78, 0x650cbe)
-      .build()
       .properties(o -> o.size(0.3f, 1.45f).setTrackingRange(32).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
@@ -205,8 +199,6 @@ public class ModEntities {
               )
           )
       )
-      .spawnEgg(0xde3535, 0xe89613)
-      .build()
       .properties(o -> o.size(0.75f, 0.875f).setTrackingRange(34).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
@@ -222,8 +214,6 @@ public class ModEntities {
           )
       )
       .properties(o -> o.size(0.5f, 0.9f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
-      .spawnEgg(0x8c654a, 0xdec9ba)
-      .build()
       .register();
 
   public static RegistryEntry<EntityType<SilkwormEntity>> SILKWORM = REGISTRATE.entity("silkworm", SilkwormEntity::new, EntityClassification.CREATURE)
@@ -237,10 +227,19 @@ public class ModEntities {
           )
       )
       .properties(o -> o.size(0.8f, 0.6f).setTrackingRange(5).setShouldReceiveVelocityUpdates(false).setUpdateInterval(20))
-      .spawnEgg(0xd1cecd, 0x635e5b)
-      .build()
       .register();
 
+  static {
+    SPAWN_EGGS.add(REGISTRATE.item("beetle_spawn_egg", spawnEgg(ModEntities.BEETLE, 0x418594, 0x211D15)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(REGISTRATE.item("deer_spawn_egg", spawnEgg(ModEntities.DEER, 0xa18458, 0x5e4d33)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(REGISTRATE.item("frog_spawn_egg", spawnEgg(ModEntities.FROG, 0x285234, 0xDBE697)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(REGISTRATE.item("silver_fox_spawn_egg", spawnEgg(ModEntities.SILVER_FOX, 0x9e9088, 0xF5E0D3)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(REGISTRATE.item("sprout_spawn_egg", spawnEgg(ModEntities.SPROUT, 0xe8f442, 0xd11f5a)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(REGISTRATE.item("endermini_spawn_egg", spawnEgg(ModEntities.ENDERMINI, 0xa11e78, 0x650cbe)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(REGISTRATE.item("lava_cat_spawn_egg", spawnEgg(ModEntities.LAVA_CAT, 0xde3535, 0xe89613)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(REGISTRATE.item("owl_spawn_egg", spawnEgg(ModEntities.OWL, 0x8c654a, 0xdec9ba)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(REGISTRATE.item("silkworm_spawn_egg", spawnEgg(ModEntities.SILKWORM, 0xd1cecd, 0x635e5b)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+  }
 
   public static void load() {
   }
