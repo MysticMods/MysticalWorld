@@ -4,7 +4,7 @@
   "category": "items",
   "pages": [
     {
-      "type": "recipe",
+      "type": "crafting",
       "link_recipe": true,
       "recipe": "mysticalworld:blue_dye",
       "text": "A $(l:creatures/beetle)beetle$() carapace can be converted into blue dye."

@@ -4,7 +4,7 @@
   "category": "items",
   "pages": [
     {
-      "type": "recipe",
+      "type": "crafting",
       "link_recipe": true,
       "recipe": "mysticalworld:antlers_to_bonemeal",
       "text": "Antlers can be converted into bone meal."
