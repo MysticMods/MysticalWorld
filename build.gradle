@@ -65,10 +65,12 @@ repositories {
 }
 
 dependencies {
-    if (!project.hasProperty("dev_env")) {
-        compile files('libs/')
-    } else {
+    if (findProject(':MysticalLib') != null) {
         compile project(':MysticalLib')
+    } else {
+        deobfCompile(project.dependencies.create("epicsquid.mysticallib:mysticallib:${mysticallib_version}-${mysticallib_build}") {
+            transitive = false
+        })
     }
     
     deobfCompile "com.azanor:Baubles:${version_baubles}"
