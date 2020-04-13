@@ -31,22 +31,18 @@ minecraft {
 }
 repositories {
     maven {
-        name = 'Patchouli'
-        url = "https://maven.blamejared.com"
-    }
-    maven {
         name = "TehNut"
-        url = "http://tehnut.info/maven"
+        url = "https://tehnut.info/maven"
     }
     maven {
         // location of the maven that hosts JEI files
         name = "Progwml6 maven"
-        url = "http://dvs1.progwml6.com/files/maven"
+        url = "https://dvs1.progwml6.com/files/maven"
     }
     maven {
         // location of a maven mirror for JEI files, as a fallback
         name = "ModMaven"
-        url = "modmaven.k-4u.nl"
+        url = "https://modmaven.k-4u.nl"
     }
     maven {
         name = "JER"
@@ -60,7 +56,7 @@ repositories {
         url = "https://maven.blamejared.com"
     }
     maven {
-        url "http://maven.tterrag.com"
+        url "https://maven.tterrag.com"
     }
 }
 
