@@ -1,0 +1,9 @@
+{
+    "pools": [
+        {
+			"name": "main",
+            "entries": [
+            ]
+        }
+    ]
+}

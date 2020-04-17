@@ -1,8 +1,7 @@
 package epicsquid.mysticalworld.entity.render;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.EntityBeetle;
-import epicsquid.mysticalworld.entity.EntityClam;
+import epicsquid.mysticalworld.entity.EntityLurker;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
@@ -13,22 +12,22 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
-public class RenderClam extends RenderLiving<EntityClam> {
+public class RenderLurker extends RenderLiving<EntityLurker> {
 
-  private RenderClam(@Nonnull RenderManager renderManager, @Nonnull ModelBase m, float f) {
+  private RenderLurker(@Nonnull RenderManager renderManager, @Nonnull ModelBase m, float f) {
     super(renderManager, m, f);
   }
 
   public static class Factory implements IRenderFactory {
     @Override
     @Nonnull
-    public RenderClam createRenderFor(@Nonnull RenderManager manager) {
-      return new RenderClam(manager, ModelHolder.models.get("clam"), 0.5f);
+    public RenderLurker createRenderFor(@Nonnull RenderManager manager) {
+      return new RenderLurker(manager, ModelHolder.models.get("lurker"), 0.5f);
     }
   }
 
   @Override
-  public void renderModel(@Nonnull EntityClam entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+  public void renderModel(@Nonnull EntityLurker entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
     GlStateManager.pushMatrix();
     super.renderModel(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
     GlStateManager.popMatrix();
@@ -36,7 +35,7 @@ public class RenderClam extends RenderLiving<EntityClam> {
 
   @Override
   @Nonnull
-  protected ResourceLocation getEntityTexture(@Nonnull EntityClam entity) {
-    return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/clam.png");
+  protected ResourceLocation getEntityTexture(@Nonnull EntityLurker entity) {
+    return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/lurker.png");
   }
 }
