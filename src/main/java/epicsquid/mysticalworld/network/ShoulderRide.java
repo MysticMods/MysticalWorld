@@ -68,7 +68,7 @@ public class ShoulderRide {
     target.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
       cap.readNBT(message.getTag());
       try {
-        PlayerShoulderCapability.setRightShoulder.invoke(player, cap.generateShoulderNBT());
+        PlayerShoulderCapability.setRightShoulder.invokeExact(player, cap.generateShoulderNBT());
       } catch (Throwable throwable) {
         MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
       }
