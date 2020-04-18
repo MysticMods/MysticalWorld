@@ -29,6 +29,9 @@ public class ShoulderHandler {
     }
 
     if (!world.isRemote && event.getHand() == Hand.MAIN_HAND && player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
+      if (!world.getBlockState(event.getPos()).isAir(world, event.getPos())) {
+        return;
+      }
       LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
       if (laycap.isPresent()) {
         IPlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
