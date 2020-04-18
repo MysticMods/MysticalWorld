@@ -398,7 +398,7 @@ public class ModItems {
       .register();
 
   // Salads
-  public static RegistryEntry<SoupItem> AUBERGINE_SALAD = REGISTRATE.item("aubergine_salad", SoupItem::new)
+  public static RegistryEntry<BowlItem> AUBERGINE_SALAD = REGISTRATE.item("aubergine_salad", BowlItem::new)
       .properties(o -> o.food(ModFoods.AUBERGINE_SALAD))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.AUBERGINE_SALAD.get(), 3)
           .patternLine("AAA")
@@ -412,7 +412,7 @@ public class ModItems {
           .build(p))
       .register();
 
-  public static RegistryEntry<SoupItem> BEETROOT_SALAD = REGISTRATE.item("beetroot_salad", SoupItem::new)
+  public static RegistryEntry<BowlItem> BEETROOT_SALAD = REGISTRATE.item("beetroot_salad", BowlItem::new)
       .properties(o -> o.food(ModFoods.BEETROOT_SALAD))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.BEETROOT_SALAD.get(), 3)
           .patternLine("AAA")
@@ -426,7 +426,7 @@ public class ModItems {
           .build(p))
       .register();
 
-  public static RegistryEntry<SoupItem> CACTUS_DANDELION_SALAD = REGISTRATE.item("cactus_dandelion_salad", SoupItem::new)
+  public static RegistryEntry<BowlItem> CACTUS_DANDELION_SALAD = REGISTRATE.item("cactus_dandelion_salad", BowlItem::new)
       .properties(o -> o.food(ModFoods.CACTUS_DANDELION_SALAD))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.CACTUS_DANDELION_SALAD.get(), 3)
           .patternLine("DCD")
@@ -440,7 +440,7 @@ public class ModItems {
           .build(p))
       .register();
 
-  public static RegistryEntry<SoupItem> DANDELION_CORNFLOWER_SALAD = REGISTRATE.item("dandelion_cornflower_salad", SoupItem::new)
+  public static RegistryEntry<BowlItem> DANDELION_CORNFLOWER_SALAD = REGISTRATE.item("dandelion_cornflower_salad", BowlItem::new)
       .properties(o -> o.food(ModFoods.DANDELION_CORNFLOWER_SALAD))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.DANDELION_CORNFLOWER_SALAD.get(), 3)
           .patternLine("CDC")
@@ -454,7 +454,7 @@ public class ModItems {
           .build(p))
       .register();
 
-  public static RegistryEntry<SoupItem> STEWED_EGGPLANT = REGISTRATE.item("stewed_eggplant", SoupItem::new)
+  public static RegistryEntry<BowlItem> STEWED_EGGPLANT = REGISTRATE.item("stewed_eggplant", BowlItem::new)
       .properties(o -> o.food(ModFoods.STEWED_EGGPLANT))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.STEWED_EGGPLANT.get(), 3)
           .patternLine("AAA")
