@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.world;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.world.tree.WorldGenBurntTree;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -25,6 +26,16 @@ public class WorldGeneratorTrees implements IWorldGenerator {
     // TODO: Move into config
 
     if (world.getWorldType() == WorldType.FLAT) return;
+
+    IntOpenHashSet blacklist = new IntOpenHashSet(ConfigManager.ConfigMysticalWorldBurntTrees.blacklist);
+    IntOpenHashSet whitelist = new IntOpenHashSet(ConfigManager.ConfigMysticalWorldBurntTrees.whitelist);
+
+    int dim = world.provider.getDimension();
+    if (blacklist.contains(dim)) {
+      return;
+    } else if (!whitelist.contains(dim)) {
+      return;
+    }
 
     int xPos = chunkX * 16 + 8;
     int zPos = chunkZ * 16 + 8;

@@ -1,7 +1,9 @@
 package epicsquid.mysticalworld.world;
 
-import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.proxy.CommonProxy;
 import epicsquid.mysticalworld.world.data.DataHelper;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -108,7 +110,23 @@ public class StructureGenerator implements IWorldGenerator {
     // Respect structures being disabled
     if (!world.getWorldInfo().isMapFeaturesEnabled()) return;
 
-    if (world.provider.getDimension() != 0) return;
+    IntOpenHashSet blacklist;
+    IntOpenHashSet whitelist;
+    if (structure.equals(CommonProxy.BARROW)) {
+      blacklist = new IntOpenHashSet(ConfigManager.BarrowSpawnBlacklist);
+      whitelist = new IntOpenHashSet(ConfigManager.BarrowSpawnWhitelist);
+    } else {
+      blacklist = new IntOpenHashSet(ConfigManager.HutSpawnBlacklist);
+      whitelist = new IntOpenHashSet(ConfigManager.HutSpawnWhitelist);
+    }
+
+    int dim = world.provider.getDimension();
+    if (blacklist.contains(dim)) {
+      return;
+    } else if (!whitelist.contains(dim)) {
+      return;
+    }
+
     if (random.nextInt(5) == 0) return;
 
     int cx = chunkX * 16;

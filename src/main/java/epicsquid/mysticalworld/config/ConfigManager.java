@@ -9,21 +9,18 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.Arrays;
-
 @Config(modid = MysticalWorld.MODID)
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class ConfigManager {
   @SubscribeEvent
-  public static void syncConfig(ConfigChangedEvent.OnConfigChangedEvent event)
-  {
+  public static void syncConfig(ConfigChangedEvent.OnConfigChangedEvent event) {
     if (event.getModID().equals(MysticalWorld.MODID)) {
       net.minecraftforge.common.config.ConfigManager.sync(MysticalWorld.MODID, Config.Type.INSTANCE);
       WorldGeneratorTrees.invalidTypes.clear();
     }
   }
 
-  public static int safeInt (int incoming) {
+  public static int safeInt(int incoming) {
     return Math.max(1, incoming);
   }
 
@@ -92,7 +89,7 @@ public class ConfigManager {
   @Config.Comment(("Controls the spawn settings of lava cats"))
   public static ConfigMysticalWorldLavaCat lavaCat = new ConfigMysticalWorldLavaCat();
 
-  public static class ConfigMysticalWorldLavaCat  {
+  public static class ConfigMysticalWorldLavaCat {
     @Config.Comment(("Spawn rate of lava cats"))
     public int rate = 2;
 
@@ -106,7 +103,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"NETHER"};
   }
 
-  public static class ConfigMysticalWorldSprout  {
+  public static class ConfigMysticalWorldSprout {
     @Config.Comment(("Spawn rate of sprouts"))
     public int rate = 2;
 
@@ -120,7 +117,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"JUNGLE", "LUSH", "MAGICAL", "RIVER", "FOREST", "BEACH"};
   }
 
-  public static class ConfigMysticalWorldEndermini  {
+  public static class ConfigMysticalWorldEndermini {
     @Config.Comment(("Spawn rate of enderminis in the End"))
     public int rate = 50;
 
@@ -131,7 +128,7 @@ public class ConfigManager {
     public int max = 1;
   }
 
-  public static class ConfigMysticalWorldDeer  {
+  public static class ConfigMysticalWorldDeer {
     @Config.Comment(("Spawn rate of deer"))
     public int rate = 6;
 
@@ -145,7 +142,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"FOREST", "COLD", "CONIFEROUS", "PLAINS"};
   }
 
-  public static class ConfigMysticalWorldFox  {
+  public static class ConfigMysticalWorldFox {
     @Config.Comment(("Spawn rate of fox"))
     public int rate = 4;
 
@@ -159,7 +156,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"FOREST", "COLD", "CONIFEROUS"};
   }
 
-  public static class ConfigMysticalWorldBeetle  {
+  public static class ConfigMysticalWorldBeetle {
     @Config.Comment(("Spawn rate of beetle"))
     public int rate = 5;
 
@@ -173,7 +170,7 @@ public class ConfigManager {
     public String[] biomes = new String[]{"SWAMP", "JUNGLE", "FOREST", "PLAINS"};
   }
 
-  public static class ConfigMysticalWorldFrog  {
+  public static class ConfigMysticalWorldFrog {
     @Config.Comment(("Spawn rate of frog"))
     public int rate = 6;
 
@@ -225,9 +222,21 @@ public class ConfigManager {
   @Config.RangeInt(min = -1)
   public static int BarrowDistance = 400;
 
+  @Config.Comment(("List of dimensions the barrow structure should spawn in"))
+  public static int[] BarrowSpawnWhitelist = new int[]{0};
+
+  @Config.Comment(("List of dimensions the barrow structure should not spawn in"))
+  public static int[] BarrowSpawnBlacklist = new int[]{};
+
   @Config.Comment(("Mininmum distance between Hut structures. Set to -1 to disable."))
   @Config.RangeInt(min = -1)
   public static int HutDistance = 400;
+
+  @Config.Comment(("List of dimensions the hut structure should spawn in"))
+  public static int[] HutSpawnWhitelist = new int[]{0};
+
+  @Config.Comment(("List of dimensions the hut structure should not spawn in"))
+  public static int[] HutSpawnBlacklist = new int[]{};
 
   @Config.Comment(("Spawn options for burn trees"))
   @Config.Name("Burnt Trees")
@@ -241,12 +250,18 @@ public class ConfigManager {
 
     @Config.Comment("Attempts to spawn a tree per chunk")
     @Config.Name("Spawn attempts")
-    @Config.RangeInt(min=1)
+    @Config.RangeInt(min = 1)
     public int attempts = 80;
 
     @Config.Comment("Excluded biomes types. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|")
     @Config.Name("Excluded biome types")
     public String[] excludedBiomes = new String[]{"VOID", "END", "WATER", "BEACH", "MESA", "MUSHROOM", "NETHER", "OCEAN", "RIVER"};
+
+    @Config.Comment(("List of dimensions the trees should spawn in"))
+    public static int[] whitelist = new int[]{0};
+
+    @Config.Comment(("List of dimensions the trees should not spawn in"))
+    public static int[] blacklist = new int[]{};
   }
 
   @Config.Comment(("Mystical world gold dusts"))
@@ -484,7 +499,7 @@ public class ConfigManager {
     @Config.Ignore
     private IntOpenHashSet spawnDimensions = null;
 
-    public IntOpenHashSet getSpawnDimensions () {
+    public IntOpenHashSet getSpawnDimensions() {
       if (spawnDimensions == null) {
         spawnDimensions = new IntOpenHashSet();
         for (String dim : dimensions) {

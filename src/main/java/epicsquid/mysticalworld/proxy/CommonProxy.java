@@ -31,8 +31,8 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 public class CommonProxy {
-  private static ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");
-  private static ResourceLocation HUT = new ResourceLocation(MysticalWorld.MODID, "hut");
+  public static ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");
+  public static ResourceLocation HUT = new ResourceLocation(MysticalWorld.MODID, "hut");
 
   private StructureGenerator hutGenerator;
   private StructureGenerator barrowGenerator;
