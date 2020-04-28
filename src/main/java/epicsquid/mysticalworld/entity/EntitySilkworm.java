@@ -104,7 +104,7 @@ public class EntitySilkworm extends EntityAnimal {
 
   public void eatLeaves() {
     incLeaves();
-    for (int i = 0; i < 1 + rand.nextInt(3); i++) {
+    for (int i = 0; i < ConfigManager.silkworm.initialGrowth + rand.nextInt(ConfigManager.silkworm.additionalGrowth); i++) {
       grow();
     }
     this.heal(1f);
@@ -265,7 +265,7 @@ public class EntitySilkworm extends EntityAnimal {
     if (size == MAX_SIZE) {
       setSize(0);
       if (isServerWorld()) {
-        int quantity = Math.max(1, Math.min(5, (rand.nextInt(Math.max(getLeavesConsumed() % 8, 1)))));
+        int quantity = Math.max(1, Math.min(ConfigManager.silkworm.maxCocoons, (rand.nextInt(Math.max(getLeavesConsumed() / 4, 1)))));
         this.dropItem(ModItems.silk_cocoon, quantity);
         this.resetLeaves();
         world.playSound(null, posX, posY, posZ, ModSounds.Silkworm.PLOP, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() - 0.5f);

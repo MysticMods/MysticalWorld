@@ -129,6 +129,10 @@
     },
     {
       "type": "block",
+      "base": "quartz_ore"
+    },
+    {
+      "type": "block",
       "base": "copper_block"
     },
     {
