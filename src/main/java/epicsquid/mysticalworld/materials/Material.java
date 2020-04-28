@@ -178,43 +178,4 @@ public abstract class Material implements IMaterial {
 
   @Override
   public abstract void initOreDictionary();
-    /*for (Material metal : values()) {
-
-      } else if (metal.isEnabled() && metal == Material.silver) {
-        if (ConfigManager.silver.enableIngots) {
-          OreDictionary.registerOre("ingot" + metal.getOredictNameSuffix(), metal.getItem());
-        }
-        if (ConfigManager.silver.enableNuggets) {
-          OreDictionary.registerOre("nugget" + metal.getOredictNameSuffix(), metal.getNugget());
-        }
-        if (metal.hasGrindables()) {
-          if (ConfigManager.silver.enableDusts) {
-            OreDictionary.registerOre("dust" + metal.getOredictNameSuffix(), metal.getDust());
-          }
-          if (ConfigManager.silver.enableTinyDusts) {
-            OreDictionary.registerOre("dustTiny" + metal.getOredictNameSuffix(), metal.getDustTiny());
-          }
-        }
-        if (ConfigManager.silver.enableBlocks) {
-          OreDictionary.registerOre("block" + metal.getOredictNameSuffix(), metal.getBlock());
-        }
-        if (metal.hasOre() && ConfigManager.silver.enableOres) {
-          OreDictionary.registerOre("ore" + metal.getOredictNameSuffix(), metal.getOre());
-        }
-      }
-    }
-
-    if (ConfigManager.gold.enableDusts) {
-      OreDictionary.registerOre("dustGold", ModItems.gold_dust);
-    }
-    if (ConfigManager.gold.enableTinyDusts) {
-      OreDictionary.registerOre("dustTinyGold", ModItems.gold_dust_tiny);
-    }
-    if (ConfigManager.iron.enableDusts) {
-      OreDictionary.registerOre("dustIron", ModItems.iron_dust);
-    }
-    if (ConfigManager.iron.enableTinyDusts) {
-      OreDictionary.registerOre("dustTinyIron", ModItems.iron_dust_tiny);
-    }
-  }*/
 }

@@ -100,54 +100,6 @@
     },
     {
       "type": "item",
-      "base": "iron_emerald_charm"
-    },
-    {
-      "type": "item",
-      "base": "iron_diamond_charm"
-    },
-    {
-      "type": "item",
-      "base": "iron_amethyst_charm"
-    },
-    {
-      "type": "item",
-      "base": "silver_emerald_charm"
-    },
-    {
-      "type": "item",
-      "base": "silver_diamond_charm"
-    },
-    {
-      "type": "item",
-      "base": "silver_amethyst_charm"
-    },
-    {
-      "type": "item",
-      "base": "copper_emerald_charm"
-    },
-    {
-      "type": "item",
-      "base": "copper_diamond_charm"
-    },
-    {
-      "type": "item",
-      "base": "copper_amethyst_charm"
-    },
-    {
-      "type": "item",
-      "base": "gold_emerald_charm"
-    },
-    {
-      "type": "item",
-      "base": "gold_diamond_charm"
-    },
-    {
-      "type": "item",
-      "base": "gold_amethyst_charm"
-    },
-    {
-      "type": "item",
       "base": "earthworm"
     },
     {
@@ -244,7 +196,35 @@
     },
     {
       "type": "item",
-      "base": "cooked_apple"
+      "base": "silver_helmet"
+    },
+    {
+      "type": "item",
+      "base": "silver_chestplate"
+    },
+    {
+      "type": "item",
+      "base": "silver_leggings"
+    },
+    {
+      "type": "item",
+      "base": "silver_boots"
+    },
+    {
+      "type": "item",
+      "base": "copper_helmet"
+    },
+    {
+      "type": "item",
+      "base": "copper_chestplate"
+    },
+    {
+      "type": "item",
+      "base": "copper_leggings"
+    },
+    {
+      "type": "item",
+      "base": "copper_boots"
     }
   ]
 }

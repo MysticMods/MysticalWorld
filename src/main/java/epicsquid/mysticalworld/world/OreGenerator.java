@@ -23,9 +23,24 @@ public class OreGenerator implements IOreGenerator {
     }
   }
 
+  private void generateGraniteOre(String oreName, @Nonnull IBlockState ore, @Nonnull World world, @Nonnull Random random, int x, int z, int minY, int maxY, int size, int numberToGenerate) {
+    for (int i = 0; i < numberToGenerate; i++) {
+      BlockPos pos = new BlockPos(x * 16 + random.nextInt(16), random.nextInt(maxY - minY) + minY, z * 16 + random.nextInt(16));
+      WorldGenMinableGraniteDebug generator = new WorldGenMinableGraniteDebug(oreName, ore, size, numberToGenerate);
+      generator.generate(world, random, pos);
+    }
+  }
+
   @Override
   public void generate(@Nonnull Random random, int chunkX, int chunkZ, @Nonnull World world, @Nonnull IChunkGenerator chunkGenerator, @Nonnull IChunkProvider chunkProvider) {
     if (ConfigManager.oreGen.getSpawnDimensions().contains(world.provider.getDimension())) {
+      if (ConfigManager.quartz.enableQuartz) {
+        if (ConfigManager.quartz.enableGraniteOres) {
+          generateGraniteOre(Materials.quartz.getOredictNameSuffix(), Objects.requireNonNull(Materials.quartz.getOre()).getDefaultState(), world, random, chunkX, chunkZ, ConfigManager.oreGen.quartzMinY, ConfigManager.oreGen.quartzMaxY, ConfigManager.oreGen.quartzVeinSize, ConfigManager.oreGen.quartzPerChunk);
+        } else if (ConfigManager.quartz.enableStoneOres) {
+          generateOre(Materials.quartz.getOredictNameSuffix(), Objects.requireNonNull(Materials.quartz.getOre()).getDefaultState(), world, random, chunkX, chunkZ, ConfigManager.oreGen.quartzMinY, ConfigManager.oreGen.quartzMaxY, ConfigManager.oreGen.quartzVeinSize, ConfigManager.oreGen.quartzPerChunk);
+        }
+      }
       if (ConfigManager.copper.enableCopper && ConfigManager.copper.enableOres) {
         generateOre(Materials.copper.getOredictNameSuffix(), Objects.requireNonNull(Materials.copper.getOre()).getDefaultState(), world, random, chunkX, chunkZ, ConfigManager.oreGen.copperMinY, ConfigManager.oreGen.copperMaxY, ConfigManager.oreGen.copperVeinSize, ConfigManager.oreGen.copperPerChunk);
       }

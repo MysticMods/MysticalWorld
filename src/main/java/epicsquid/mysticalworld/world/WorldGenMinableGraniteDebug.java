@@ -11,42 +11,40 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
-public class WorldGenMinableDebug extends WorldGenerator {
+public class WorldGenMinableGraniteDebug extends WorldGenerator {
   private final IBlockState oreBlock;
   private final int numberOfBlocks;
   private final Predicate<IBlockState> predicate;
   private final String oreName;
+  private final int tries;
 
-  private final Predicate<IBlockState> granite = (o) -> o != null && o.getBlock() == Blocks.STONE && o.getValue(BlockStone.VARIANT) == BlockStone.EnumType.GRANITE;
-
-  public WorldGenMinableDebug(String oreName, IBlockState state, int blockCount) {
+  public WorldGenMinableGraniteDebug(String oreName, IBlockState state, int blockCount, int tries) {
     this.oreBlock = state;
     this.numberOfBlocks = blockCount;
-    Predicate<IBlockState> stone = (o) -> o != null && o.getBlock() == Blocks.STONE && o.getValue(BlockStone.VARIANT).isNatural();
-    this.predicate = stone;
+    this.predicate = (o) -> o != null && o.getBlock() == Blocks.STONE && o.getValue(BlockStone.VARIANT) == BlockStone.EnumType.GRANITE;
     this.oreName = oreName;
+    this.tries = tries;
   }
 
   @Override
   public boolean generate(World worldIn, Random rand, BlockPos position) {
     int generatedCount = 0;
     float f = rand.nextFloat() * (float) Math.PI;
-    double d0 = (double) ((float) (position.getX() + 8) + MathHelper.sin(f) * (float) this.numberOfBlocks / 8.0F);
-    double d1 = (double) ((float) (position.getX() + 8) - MathHelper.sin(f) * (float) this.numberOfBlocks / 8.0F);
-    double d2 = (double) ((float) (position.getZ() + 8) + MathHelper.cos(f) * (float) this.numberOfBlocks / 8.0F);
-    double d3 = (double) ((float) (position.getZ() + 8) - MathHelper.cos(f) * (float) this.numberOfBlocks / 8.0F);
+    double d0 = (double) ((float) (position.getX() + 8) + MathHelper.sin(f) * (float) this.tries / 8.0F);
+    double d1 = (double) ((float) (position.getX() + 8) - MathHelper.sin(f) * (float) this.tries / 8.0F);
+    double d2 = (double) ((float) (position.getZ() + 8) + MathHelper.cos(f) * (float) this.tries / 8.0F);
+    double d3 = (double) ((float) (position.getZ() + 8) - MathHelper.cos(f) * (float) this.tries / 8.0F);
     double d4 = (double) (position.getY() + rand.nextInt(3) - 2);
     double d5 = (double) (position.getY() + rand.nextInt(3) - 2);
 
-    for (int i = 0; i < this.numberOfBlocks; ++i) {
-      float f1 = (float) i / (float) this.numberOfBlocks;
+    outer: for (int i = 0; i < this.tries; ++i) {
+      float f1 = (float) i / (float) this.tries;
       double d6 = d0 + (d1 - d0) * (double) f1;
       double d7 = d4 + (d5 - d4) * (double) f1;
       double d8 = d2 + (d3 - d2) * (double) f1;
-      double d9 = rand.nextDouble() * (double) this.numberOfBlocks / 16.0D;
+      double d9 = rand.nextDouble() * (double) this.tries / 16.0D;
       double d10 = (double) (MathHelper.sin((float) Math.PI * f1) + 1.0F) * d9 + 1.0D;
       double d11 = (double) (MathHelper.sin((float) Math.PI * f1) + 1.0F) * d9 + 1.0D;
       int j = MathHelper.floor(d6 - d10 / 2.0D);
@@ -74,6 +72,9 @@ public class WorldGenMinableDebug extends WorldGenerator {
                   if (state.getBlock().isReplaceableOreGen(state, worldIn, blockpos, this.predicate)) {
                     worldIn.setBlockState(blockpos, this.oreBlock, 2);
                     generatedCount++;
+                    if (generatedCount >= this.numberOfBlocks || rand.nextInt(generatedCount) != 0) {
+                      break outer;
+                    }
                   }
                 }
               }
@@ -99,6 +100,6 @@ public class WorldGenMinableDebug extends WorldGenerator {
       }
     }
 
-    return true;
+    return generatedCount > 0;
   }
 }

@@ -133,6 +133,10 @@
     },
     {
       "type": "block",
+      "base": "granite_quartz_ore"
+    },
+    {
+      "type": "block",
       "base": "copper_block"
     },
     {

@@ -318,6 +318,9 @@ public class ConfigManager {
   @Config.Comment(("Mystical world silver options"))
   public static ConfigMysticalWorldSilver silver = new ConfigMysticalWorldSilver();
 
+  @Config.Comment(("Mystical World quartz options"))
+  public static ConfigMysticalWorldQurtz quartz = new ConfigMysticalWorldQurtz();
+
   public static class ConfigMysticalWorldCopper {
     @Config.Comment(("Enable Copper"))
     public boolean enableCopper = true;
@@ -364,7 +367,31 @@ public class ConfigManager {
     public boolean enableNuggets = true;
   }
 
-  @Config.Comment("Tool/Weapon Enablind")
+  public static class ConfigMysticalWorldQurtz {
+    @Config.Comment(("Enable quartz generation in the overworld"))
+    public boolean enableQuartz = true;
+
+    @Config.Comment(("Enable Overworld Ores for Quartz (replaces granite)"))
+    public boolean enableGraniteOres = true;
+
+    @Config.Comment(("Enable Overworld Ores for Quartz (replaces stone, requires granite ores to be disabled in order to generate)"))
+    public boolean enableStoneOres = false;
+  }
+
+  @Config.Comment("Armor/Weapon Enabling")
+  public static ConfigMysticalWorldArmorEnable armorEnable = new ConfigMysticalWorldArmorEnable();
+
+  public static class ConfigMysticalWorldArmorEnable {
+    @Config.Comment("Set to false to disable silver armor recipes entirely")
+    @Config.Name("Enable silver armors")
+    public boolean enableSilver = true;
+
+    @Config.Comment("Set to false to disable copper armor recipes entirely")
+    @Config.Name("Enable copper armors")
+    public boolean enableCopper = true;
+  }
+
+  @Config.Comment("Tool/Weapon Enabling")
   public static ConfigMysticalWorldToolEnable toolEnable = new ConfigMysticalWorldToolEnable();
 
   public static class ConfigMysticalWorldToolEnable {
@@ -494,6 +521,10 @@ public class ConfigManager {
     @Config.Comment("Enable the debugging of Silver Ore")
     @Config.Name("Debug Silver Ore")
     public boolean debugSilver = false;
+
+    @Config.Comment("Enable the debugging of Quartz Ore")
+    @Config.Name("Debug Quartz Ore")
+    public boolean debugQuartz = false;
   }
 
   @Config.Comment(("Controls ore generation for Mystical World Ores."))
@@ -560,5 +591,19 @@ public class ConfigManager {
     @Config.Comment(("The lowest a silver of vein can generate."))
     @RangeInt(min = 0, max = 255)
     public int silverMinY = 0;
+
+    @Config.Comment(("The amount of quartz veins to generate per chunk. Set to 0 to disable. Value balanced against vanilla granite spawning. Decrease if using stone ore instead of granite or have large quantities of granite spawning."))
+    public int quartzPerChunk = 60;
+
+    @Config.Comment(("The maximum size of a quartz ore vein. Adjust as per quartzPerChunk."))
+    public int quartzVeinSize = 5;
+
+    @Config.Comment(("The highest a quartz ore vein can generate."))
+    @RangeInt(min = 0, max = 255)
+    public int quartzMaxY = 78;
+
+    @Config.Comment(("The lowest a quartz of vein can generate."))
+    @RangeInt(min = 0, max = 255)
+    public int quartzMinY = 0;
   }
 }

@@ -1,20 +1,22 @@
 package epicsquid.mysticalworld.init;
 
+import epicsquid.mysticallib.MysticalLib;
 import epicsquid.mysticallib.event.RegisterContentEvent;
-import epicsquid.mysticallib.item.ItemBase;
-import epicsquid.mysticallib.item.ItemFoodBase;
-import epicsquid.mysticallib.item.ItemKnifeBase;
-import epicsquid.mysticallib.item.ItemSeedBase;
+import epicsquid.mysticallib.item.*;
 import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticallib.util.MirrorHelper;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.integration.roots.Knives;
+import epicsquid.mysticalworld.item.ItemCopperArmor;
 import epicsquid.mysticalworld.item.ItemSilkwormEgg;
+import epicsquid.mysticalworld.item.ItemSilverArmor;
 import epicsquid.mysticalworld.item.ItemUnripePearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
@@ -33,6 +35,9 @@ public class ModItems {
 
   public static Item amethyst_knife, copper_knife, silver_knife;
 
+  public static Item copper_helmet, copper_chestplate, copper_leggings, copper_boots;
+  public static Item silver_helmet, silver_chestplate, silver_leggings, silver_boots;
+
   public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, raw_squid, cooked_squid, epic_squid, unripe_pearl;
 
   public static Item silk_cocoon, silk_thread, spindle, silkworm_egg;
@@ -42,16 +47,31 @@ public class ModItems {
   public static Item pearl;
 
 
+  public static ItemArmor.ArmorMaterial copperArmor = EnumHelper.addArmorMaterial("mysticalworld:copper", MysticalWorld.MODID + ":copper", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+  public static ItemArmor.ArmorMaterial silverArmor = EnumHelper.addArmorMaterial("mysticalworld:silver", MysticalWorld.MODID + ":gold", 25, new int[]{2, 5, 6, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F);
+
   /**
    * Register all items
    */
   public static void registerItems(@Nonnull RegisterContentEvent event) {
+
+
     Item.ToolMaterial copper = EnumHelper.addToolMaterial("mysticalworld:copper", 2, 200, 4.0f, 2.0f, 7);
     Item.ToolMaterial silver = EnumHelper.addToolMaterial("mysticalworld:silver", 2, 175, 6.0f, 2.5f, 18);
     Item.ToolMaterial amethyst = EnumHelper.addToolMaterial("mysticalworld:amethyst", 3, 1561, 8.0f, 3.0f, 12);
-    MaterialTypes.addMaterial("mysticalworld:copper", copper, 2.5f, -1.5f);
-    MaterialTypes.addMaterial("mysticalworld:silver", silver, 2.5f, -1.0f);
-    MaterialTypes.addMaterial("mysticalworld:amethyst", amethyst, 3f, -1.0f);
+    MaterialTypes.addMaterial("mysticalworld:copper", copper, copperArmor, 2.5f, -1.5f);
+    MaterialTypes.addMaterial("mysticalworld:silver", silver, silverArmor, 2.5f, -1.0f);
+    MaterialTypes.addMaterial("mysticalworld:amethyst", amethyst, null, 3f, -1.0f);
+
+    event.addItem(copper_helmet = new ItemCopperArmor("copper_helmet", EntityEquipmentSlot.HEAD).setCreativeTab(MysticalWorld.tab));
+    event.addItem(copper_chestplate = new ItemCopperArmor("copper_chestplate", EntityEquipmentSlot.CHEST).setCreativeTab(MysticalWorld.tab));
+    event.addItem(copper_leggings = new ItemCopperArmor("copper_leggings", EntityEquipmentSlot.LEGS).setCreativeTab(MysticalWorld.tab));
+    event.addItem(copper_boots = new ItemCopperArmor("copper_boots", EntityEquipmentSlot.FEET).setCreativeTab(MysticalWorld.tab));
+
+    event.addItem(silver_helmet = new ItemSilverArmor("silver_helmet", EntityEquipmentSlot.HEAD).setCreativeTab(MysticalWorld.tab));
+    event.addItem(silver_chestplate = new ItemSilverArmor("silver_chestplate", EntityEquipmentSlot.CHEST).setCreativeTab(MysticalWorld.tab));
+    event.addItem(silver_leggings = new ItemSilverArmor("silver_leggings", EntityEquipmentSlot.LEGS).setCreativeTab(MysticalWorld.tab));
+    event.addItem(silver_boots = new ItemSilverArmor("silver_boots", EntityEquipmentSlot.FEET).setCreativeTab(MysticalWorld.tab));
 
     // Mob Drops
     event.addItem(carapace = new ItemBase("carapace").setCreativeTab(MysticalWorld.tab));
