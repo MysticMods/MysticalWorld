@@ -593,10 +593,10 @@ public class ConfigManager {
     public int silverMinY = 0;
 
     @Config.Comment(("The amount of quartz veins to generate per chunk. Set to 0 to disable. Value balanced against vanilla granite spawning. Decrease if using stone ore instead of granite or have large quantities of granite spawning."))
-    public int quartzPerChunk = 60;
+    public int quartzPerChunk = 30;
 
     @Config.Comment(("The maximum size of a quartz ore vein. Adjust as per quartzPerChunk."))
-    public int quartzVeinSize = 5;
+    public int quartzVeinSize = 3;
 
     @Config.Comment(("The highest a quartz ore vein can generate."))
     @RangeInt(min = 0, max = 255)
