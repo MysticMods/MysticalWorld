@@ -68,6 +68,9 @@ public class ConfigManager {
 
     @Config.Comment(("Enable the spawning of Lava Cats"))
     public boolean spawnLavaCat = true;
+
+    @Config.Comment(("Enable the spawning of Hell Sprouts"))
+    public boolean spawnHellSprout = true;
   }
 
   @Config.Comment(("Controls the spawn settings of Deer"))
@@ -88,6 +91,25 @@ public class ConfigManager {
   public static ConfigMysticalWorldSilkworm silkworm = new ConfigMysticalWorldSilkworm();
   @Config.Comment(("Controls the spawn settings of lava cats"))
   public static ConfigMysticalWorldLavaCat lavaCat = new ConfigMysticalWorldLavaCat();
+  @Config.Comment(("Controls the spawn settings of hell sprouts"))
+  public static ConfigMysticalWorldHellSprout hellSprout = new ConfigMysticalWorldHellSprout();
+
+  public static class ConfigMysticalWorldHellSprout {
+    @Config.Comment(("Spawn rate of hell sprouts"))
+    public int rate = 8;
+
+    @Config.Comment(("Min number of sprouts to spawn in a group"))
+    public int min = 1;
+
+    @Config.Comment(("Maximum number of sprouts to spawn in a group"))
+    public int max = 3;
+
+    @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
+    public String[] biomes = new String[]{"NETHER"};
+
+    @Config.Comment(("Chance (1 in X) for hell sprouts to plant netherwart while on eligible soils"))
+    public int plantChance = 100;
+  }
 
   public static class ConfigMysticalWorldLavaCat {
     @Config.Comment(("Spawn rate of lava cats"))

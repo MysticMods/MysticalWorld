@@ -1,10 +1,9 @@
 package epicsquid.mysticalworld.entity.render;
 
-import epicsquid.mysticalworld.entity.EntityBeetle;
 import epicsquid.mysticalworld.entity.EntitySprout;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -21,26 +20,26 @@ public class RenderSprout extends RenderLiving<EntitySprout> {
   @Override
   protected ResourceLocation getEntityTexture(EntitySprout entity) {
     switch (entity.getDataManager().get(EntitySprout.variant)) {
-      case 0: {
+      case 0:
         return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");
-      }
-      case 1: {
+      case 1:
         return new ResourceLocation("mysticalworld:textures/entity/sprout_tan.png");
-      }
-      case 2: {
+      case 2:
         return new ResourceLocation("mysticalworld:textures/entity/sprout_red.png");
-      }
-      case 3: {
+      case 3:
         return new ResourceLocation("mysticalworld:textures/entity/sprout_purple.png");
-      }
-      default: {
+      case 4:
+        return new ResourceLocation("mysticalworld:textures/entity/sprout_hell.png");
+      default:
         return new ResourceLocation("mysticalworld:textures/entity/sprout_green.png");
-      }
     }
   }
 
   @Override
   public void renderModel(@Nonnull EntitySprout entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+    if (entity.getVariant() == 4) {
+      OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
+    }
     super.renderModel(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
   }
 

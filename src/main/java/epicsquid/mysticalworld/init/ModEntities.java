@@ -32,8 +32,12 @@ public class ModEntities {
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityBeetle.class, new RenderBeetle.Factory());
     LibRegistry.registerEntity(EntitySprout.class, 0xe8f442, 0xd11f5a);
-    if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(EntitySprout.class, new RenderSprout.Factory());
+    LibRegistry.registerEntity(EntityHellSprout.class, 0x8b0000, 0xfc5e03);
+    if (MysticalWorld.proxy instanceof ClientProxy) {
+      RenderSprout.Factory factory = new RenderSprout.Factory();
+      LibRegistry.registerEntityRenderer(EntitySprout.class, factory);
+      LibRegistry.registerEntityRenderer(EntityHellSprout.class, factory);
+    }
     LibRegistry.registerEntity(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityDeer.class, new RenderDeer.Factory());
@@ -58,7 +62,7 @@ public class ModEntities {
   }
 
   public static void registerLootTables () {
-    Stream.of(EntityFox.LOOT_TABLE, EntityFrog.LOOT_TABLE, EntityBeetle.LOOT_TABLE, EntitySprout.LOOT_TABLE_GREEN, EntitySprout.LOOT_TABLE_PURPLE, EntitySprout.LOOT_TABLE_RED, EntitySprout.LOOT_TABLE_TAN, EntityEndermini.LOOT_TABLE, EntityDeer.LOOT_TABLE, EntityOwl.LOOT_TABLE, EntityLavaCat.LOOT_TABLE, EntitySilkworm.LOOT_TABLE, EntityClam.LOOT_TABLE).forEach(LootTableList::register);
+    Stream.of(EntityFox.LOOT_TABLE, EntityFrog.LOOT_TABLE, EntityBeetle.LOOT_TABLE, EntitySprout.LOOT_TABLE_GREEN, EntitySprout.LOOT_TABLE_PURPLE, EntitySprout.LOOT_TABLE_RED, EntitySprout.LOOT_TABLE_TAN, EntityEndermini.LOOT_TABLE, EntityDeer.LOOT_TABLE, EntityOwl.LOOT_TABLE, EntityLavaCat.LOOT_TABLE, EntitySilkworm.LOOT_TABLE, EntityClam.LOOT_TABLE, EntitySprout.LOOT_TABLE_HELL).forEach(LootTableList::register);
   }
 
   public static void registerMobSpawn() {
@@ -126,6 +130,16 @@ public class ModEntities {
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
       EntityRegistry.addSpawn(EntityOwl.class, ConfigManager.owl.rate, ConfigManager.owl.min, ConfigManager.owl.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+    }
+
+    biomes.clear();
+
+    if (ConfigManager.mobs.spawnHellSprout) {
+      for (String biomeName : ConfigManager.hellSprout.biomes) {
+        Type type = Type.getType(biomeName);
+        biomes.addAll(BiomeDictionary.getBiomes(type));
+      }
+      EntityRegistry.addSpawn(EntityHellSprout.class, ConfigManager.hellSprout.rate, ConfigManager.hellSprout.min, ConfigManager.hellSprout.max, EnumCreatureType.MONSTER, biomes.toArray(new Biome[0]));
     }
 
     biomes.clear();
