@@ -3,7 +3,6 @@ package epicsquid.mysticalworld;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.data.RecipeProvider;
-import epicsquid.mysticalworld.events.TooltipHandler;
 import epicsquid.mysticalworld.events.mappings.Remaps;
 import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
@@ -12,7 +11,7 @@ import epicsquid.mysticalworld.loot.conditions.IsLava;
 import epicsquid.mysticalworld.loot.conditions.IsObsidian;
 import epicsquid.mysticalworld.registrate.CustomRegistrate;
 import epicsquid.mysticalworld.setup.ClientSetup;
-import epicsquid.mysticalworld.setup.ModSetup;
+import epicsquid.mysticalworld.setup.CommonSetup;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -46,7 +45,7 @@ public class MysticalWorld {
     }
   };
 
-  public static ModSetup setup = new ModSetup();
+  public static CommonSetup setup = new CommonSetup();
 
   public MysticalWorld() {
     REGISTRATE = CustomRegistrate.create(MODID);
@@ -72,6 +71,7 @@ public class MysticalWorld {
     ModEffects.load();
     ModLang.load();
     ModTags.load();
+    ModFeatures.load();
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
       modBus.addListener(ClientSetup::init);
@@ -82,6 +82,7 @@ public class MysticalWorld {
     REGISTRATE.itemGroup(NonNullSupplier.of(() -> ITEM_GROUP));
 
     modBus.addListener(setup::init);
+    modBus.addListener(setup::loadComplete);
 
     MinecraftForge.EVENT_BUS.addListener(setup::serverStarting);
     MinecraftForge.EVENT_BUS.addListener(setup::serverAboutToStart);

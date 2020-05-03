@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.config;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import epicsquid.mysticalworld.init.ModBlocks;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.nio.file.Path;
@@ -26,6 +27,7 @@ public class ConfigManager {
   public static MobConfig LAVA_CAT_CONFIG;
   public static MobConfig OWL_CONFIG;
   public static SilkwormConfig SILKWORM_CONFIG;
+  public static FeatureConfig DEAD_TREE_CONFIG;
 
 
   static {
@@ -34,6 +36,10 @@ public class ConfigManager {
     COMMON_BUILDER.pop();
     COMMON_BUILDER.comment("Mob Spawn Configuration").push("mob_spawns");
     registerMobConfigs();
+    COMMON_BUILDER.pop();
+    COMMON_BUILDER.comment("Feature Spawn Configuration").push("feature_spawns");
+    DEAD_TREE_CONFIG = new FeatureConfig("dead_tree", 0.04, Arrays.asList("SAVANNA", "DEAD", "FOREST", "SANDY", "WASTELAND"));
+    DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
     COMMON_BUILDER.pop();
 
     COMMON_CONFIG = COMMON_BUILDER.build();

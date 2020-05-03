@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.registrate;
 
+import com.mojang.datafixers.Dynamic;
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
@@ -13,8 +14,11 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class CustomRegistrate extends AbstractRegistrate<CustomRegistrate> {
@@ -76,6 +80,23 @@ public class CustomRegistrate extends AbstractRegistrate<CustomRegistrate> {
 
   public <T extends Container, P> ContainerBuilder<T, P> containerType(P parent, String name, ContainerType.IFactory<T> factory) {
     return entry(name, callback -> new ContainerBuilder<>(this, parent, name, callback, factory));
+  }
+
+  // Features
+  public <FC extends IFeatureConfig, T extends Feature<FC>> FeatureBuilder<FC, T, CustomRegistrate> feature(String name, FeatureBuilder.IFactory<FC, T> factory, Function<Dynamic<?>, FC> config, boolean doBlockNotify) {
+    return feature(this, name, factory, config, doBlockNotify);
+  }
+
+  public <FC extends IFeatureConfig, T extends Feature<FC>> FeatureBuilder<FC, T, CustomRegistrate> feature(FeatureBuilder.IFactory<FC, T> factory, Function<Dynamic<?>, FC> config, boolean doBlockNotify) {
+    return feature(this, factory, config, doBlockNotify);
+  }
+
+  public <FC extends IFeatureConfig, T extends Feature<FC>, P> FeatureBuilder<FC, T, P> feature(P parent, FeatureBuilder.IFactory<FC, T> factory, Function<Dynamic<?>, FC> config, boolean doBlockNotify)  {
+    return feature(parent, currentName(), factory, config, doBlockNotify);
+  }
+
+  public <FC extends IFeatureConfig, T extends Feature<FC>, P> FeatureBuilder<FC, T, P> feature(P parent, String name, FeatureBuilder.IFactory<FC, T> factory, Function<Dynamic<?>, FC> config, boolean doBlockNotify) {
+    return entry(name, callback -> new FeatureBuilder<>(this, parent, name, callback, config, doBlockNotify, factory));
   }
 
   public SoundEventBuilder<SoundEvent, CustomRegistrate> soundEvent() {

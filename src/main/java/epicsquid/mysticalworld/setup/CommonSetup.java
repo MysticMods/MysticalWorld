@@ -11,6 +11,7 @@ import epicsquid.mysticalworld.events.*;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModCompost;
 import epicsquid.mysticalworld.init.ModEntities;
+import epicsquid.mysticalworld.init.ModFeatures;
 import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.potions.PotionRecipes;
 import epicsquid.mysticalworld.world.OreGen;
@@ -22,14 +23,15 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 
 import java.util.Arrays;
 import java.util.Set;
 
-public class ModSetup {
-  public ModSetup() {
+public class CommonSetup {
+  public CommonSetup() {
   }
 
   public void init(FMLCommonSetupEvent event) {
@@ -59,12 +61,16 @@ public class ModSetup {
 
   }
 
+  public void loadComplete (FMLLoadCompleteEvent event) {
+    ModFeatures.loadComplete();
+  }
+
   public void serverStarting(FMLServerStartedEvent event) {
-    try {
+/*    try {
       ModifyWaterCap.modifySquid();
     } catch (IllegalAccessException e) {
       MysticalWorld.LOG.error("Unable to modify squid spawn cap", e);
-    }
+    }*/
   }
 
   public void serverAboutToStart(FMLServerAboutToStartEvent event) {
