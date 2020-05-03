@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "mysticalworld:slime_puddle"
+  },
+  "variants": {
+    "normal": [
+        { },
+        { "y": 90 },
+        { "y": 180 },
+        { "y": 270 }
+    ],
+    "inventory": [
+      {}
+    ],
+    "handlers": [
+      {}
+    ]
+  }
+}
