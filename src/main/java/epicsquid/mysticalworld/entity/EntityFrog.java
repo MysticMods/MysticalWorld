@@ -4,7 +4,11 @@ import javax.annotation.Nonnull;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModSounds;
+import net.minecraft.block.BlockDynamicLiquid;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -26,6 +30,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.IFluidBlock;
 
 public class EntityFrog extends EntityAnimal {
   public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/frog");
@@ -82,7 +87,7 @@ public class EntityFrog extends EntityAnimal {
 
   @Override
   public boolean isBreedingItem(@Nonnull ItemStack stack) {
-    return stack.getItem() == Item.getItemFromBlock(Blocks.BROWN_MUSHROOM);
+    return stack.getItem() == Item.getItemFromBlock(Blocks.BROWN_MUSHROOM) || stack.getItem() == Item.getItemFromBlock(Blocks.RED_MUSHROOM);
   }
 
   @Override
@@ -117,9 +122,13 @@ public class EntityFrog extends EntityAnimal {
 
     if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextSlime <= 0 && shouldDropSlime())
     {
+      IBlockState state = world.getBlockState(getPosition());
+      if (ModBlocks.slime_puddle.canPlaceBlockAt(world, getPosition()) && (world.isAirBlock(getPosition()) || (state.getBlock().isReplaceable(world, getPosition())) && !(state.getBlock() instanceof BlockLiquid) && !(state.getBlock() instanceof IFluidBlock)))
+      {
         this.playSound(ModSounds.Frog.SLIME, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-        this.dropItem(Items.SLIME_BALL, 1);
+        world.setBlockState(getPosition(), ModBlocks.slime_puddle.getDefaultState());
         this.timeUntilNextSlime = this.rand.nextInt(getSlimeTime()) + getSlimeTime();
+      }
     }
   }
 
