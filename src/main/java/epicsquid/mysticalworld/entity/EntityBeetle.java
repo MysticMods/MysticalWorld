@@ -1,30 +1,28 @@
 package epicsquid.mysticalworld.entity;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.mysticallib.network.PacketHandler;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
-import epicsquid.mysticalworld.entity.ai.EntityAIHopOnOwnersShoulder;
 import epicsquid.mysticalworld.network.MessagePlayerShoulderUpdate;
-import ibxm.Player;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityShoulderRiding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemFood;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class EntityBeetle extends EntityShoulderRiding {
-  public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID,  "entity/beetle");
+  public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/beetle");
 
   public EntityBeetle(@Nonnull World worldIn) {
     super(worldIn);
@@ -99,6 +97,15 @@ public class EntityBeetle extends EntityShoulderRiding {
           this.navigator.clearPath();
           this.setAttackTarget(null);
         }
+      } else if (this.isOwner(player) && !itemstack.isEmpty()) {
+        boolean flag = this.handleEating(player, itemstack);
+        if (flag) {
+          if (!player.capabilities.isCreativeMode) {
+            itemstack.shrink(1);
+          }
+        }
+
+        return flag;
       }
     } else if (itemstack.getItem() == Items.MELON_SEEDS) {
       if (!player.capabilities.isCreativeMode) {
@@ -122,6 +129,35 @@ public class EntityBeetle extends EntityShoulderRiding {
     }
 
     return super.processInteract(player, hand);
+  }
+
+  protected boolean handleEating(EntityPlayer player, ItemStack stack) {
+    boolean flag = false;
+    float f = 0.0F;
+    int i = 0;
+    Item item = stack.getItem();
+
+    if (item == Items.MELON || item == Items.MELON_SEEDS) {
+      f = 2.0F;
+      i = 20;
+    }
+
+    if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
+      this.heal(f);
+      flag = true;
+    }
+
+    if (this.isChild() && i > 0) {
+      this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, 0.0D, 0.0D, 0.0D);
+
+      if (!this.world.isRemote) {
+        this.addGrowth(i);
+      }
+
+      flag = true;
+    }
+
+    return flag;
   }
 
   @Override

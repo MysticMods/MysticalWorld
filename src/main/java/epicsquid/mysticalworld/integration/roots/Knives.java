@@ -15,7 +15,7 @@ public class Knives {
     Class<?> knife;
 
     try {
-      knife = Class.forName("epicsquid.roots.item.ItemMageKnife");
+      knife = Class.forName("epicsquid.roots.item.ItemDruidKnife");
     } catch (ClassNotFoundException e) {
       return false;
     }
