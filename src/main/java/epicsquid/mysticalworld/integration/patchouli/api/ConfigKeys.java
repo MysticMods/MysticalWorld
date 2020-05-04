@@ -24,6 +24,7 @@ public class ConfigKeys {
     PatchouliAPI.instance.setConfigFlag("roots:amethyst", ConfigManager.amethyst.enableAmethyst);
     PatchouliAPI.instance.setConfigFlag("roots:copper", ConfigManager.copper.enableCopper);
     PatchouliAPI.instance.setConfigFlag("roots:silver", ConfigManager.silver.enableSilver);
+    PatchouliAPI.instance.setConfigFlag("roots:quartz", ConfigManager.quartz.enableGraniteOres || ConfigManager.quartz.enableStoneOres);
 
     // Tools
     PatchouliAPI.instance.setConfigFlag("roots:amethystAxe", ConfigManager.toolEnable.amethystTools.amethystAxe);
