@@ -15,8 +15,7 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.PotionTypes;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -24,7 +23,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.potion.PotionType;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
@@ -218,6 +216,15 @@ public class EntityLavaCat extends EntityOcelot {
     if (this.isTamed()) {
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
         this.aiSit.setSitting(!this.isSitting());
+      } else if (this.isOwner(player) && !itemstack.isEmpty()) {
+        boolean flag = this.handleEating(player, itemstack);
+        if (flag) {
+          if (!player.capabilities.isCreativeMode) {
+            itemstack.shrink(1);
+          }
+        }
+
+        return flag;
       }
     } else if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == Items.BLAZE_ROD && player.getDistanceSq(this) < 9.0D) {
       if (!player.capabilities.isCreativeMode) {
@@ -240,6 +247,41 @@ public class EntityLavaCat extends EntityOcelot {
     }
 
     return super.processInteract(player, hand);
+  }
+
+  protected boolean handleEating(EntityPlayer player, ItemStack stack) {
+    boolean flag = false;
+    float f = 0.0F;
+    int i = 0;
+    Item item = stack.getItem();
+
+    if (item == Items.BLAZE_POWDER) {
+      f = 2.0F;
+      i = 20;
+    } else if (item == Items.MAGMA_CREAM) {
+      f = 4.0f;
+      i = 40;
+    } else if (item == Items.BLAZE_ROD) {
+      f = 8.0f;
+      i = 80;
+    }
+
+    if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
+      this.heal(f);
+      flag = true;
+    }
+
+    if (this.isChild() && i > 0) {
+      this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, 0.0D, 0.0D, 0.0D);
+
+      if (!this.world.isRemote) {
+        this.addGrowth(i);
+      }
+
+      flag = true;
+    }
+
+    return flag;
   }
 
   @Override
