@@ -13,7 +13,7 @@
     {
       "type": "entity",
       "name": "Hell Sprout",
-      "entity": "mysticalworld:entity_sprout_hell",
+      "entity": "mysticalworld:entity_hell_sprout",
       "scale": 1,
       "offset": 0,
       "text": ""

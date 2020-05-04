@@ -21,6 +21,7 @@ public class StandardDrops {
     DROPS.put("owl", Arrays.asList(new ItemStack(Items.FEATHER)));
     DROPS.put("lava_cat", Arrays.asList(new ItemStack(Blocks.OBSIDIAN), new ItemStack(Blocks.COBBLESTONE)));
     DROPS.put("silkworm", Arrays.asList(new ItemStack(ModItems.silkworm_egg)));
+    DROPS.put("hell_sprout", Arrays.asList(new ItemStack(Items.NETHER_WART)));
   }
 
   public static List<ItemStack> getDrops (String name) {

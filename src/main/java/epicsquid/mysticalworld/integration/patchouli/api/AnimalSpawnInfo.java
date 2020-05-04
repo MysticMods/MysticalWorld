@@ -50,6 +50,8 @@ public class AnimalSpawnInfo implements IComponentProcessor {
       case "lava_cat":
         this.animal = ConfigManager.lavaCat;
         break;
+      case "hell_sprout":
+        this.animal = ConfigManager.hellSprout;
       default:
         this.animal = null;
         break;
