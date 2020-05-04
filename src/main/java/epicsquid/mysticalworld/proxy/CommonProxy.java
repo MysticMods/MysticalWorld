@@ -21,6 +21,8 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Enchantments;
+import net.minecraft.init.PotionTypes;
+import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.fml.common.Loader;
@@ -77,6 +79,9 @@ public class CommonProxy {
 
     GameRegistry.registerWorldGenerator(treeGenerator = new WorldGeneratorTrees(), 400);
     ConfigKeys.init();
+
+    // Leaping potions!
+    PotionHelper.addMix(PotionTypes.LEAPING, ModItems.antlers, PotionTypes.MUNDANE);
   }
 
   public void postInit(FMLPostInitializationEvent event) {
