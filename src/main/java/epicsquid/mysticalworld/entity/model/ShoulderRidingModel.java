@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.entity.model;
+/*package epicsquid.mysticalworld.entity.model;
 
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.entity.Entity;
@@ -15,4 +15,4 @@ public abstract class ShoulderRidingModel<T extends Entity> extends EntityModel<
   public abstract void render(float scale);
 
   public abstract ResourceLocation getTexture();
-}
+}*/

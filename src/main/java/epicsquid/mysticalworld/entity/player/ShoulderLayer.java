@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.entity.player;
+/*package epicsquid.mysticalworld.entity.player;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import epicsquid.mysticalworld.api.Capabilities;
@@ -53,7 +53,7 @@ public class ShoulderLayer<T extends PlayerEntity> extends LayerRenderer<T, Play
   private void renderModel(T player, float limbSwing, float limbSwingAmount, float partialTicks, float netHeadYaw, float headPitch, float scaleIn, ShoulderRidingModel<?> model) {
     GlStateManager.pushMatrix();
     // These values may be specific to Beetles so move them into the model
-    GlStateManager.translatef(0.375F /*: -0.4F*/, player.shouldRenderSneaking() ? -0.3F : -0.5F, 0.0F);
+    GlStateManager.translatef(0.375F *//*: -0.4F*//*, player.shouldRenderSneaking() ? -0.3F : -0.5F, 0.0F);
     GlStateManager.scalef(0.35f, 0.35f, 0.35f);
     this.bindTexture(model.getTexture());
     model.renderOnShoulder(limbSwing, limbSwingAmount, netHeadYaw, headPitch, scaleIn, player.ticksExisted);
@@ -64,4 +64,4 @@ public class ShoulderLayer<T extends PlayerEntity> extends LayerRenderer<T, Play
   public boolean shouldCombineTextures() {
     return false;
   }
-}
+}*/

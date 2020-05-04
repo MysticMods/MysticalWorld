@@ -4,7 +4,6 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import epicsquid.mysticallib.data.IIngredientProvider;
 import epicsquid.mysticallib.item.DrinkItem;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -203,7 +202,7 @@ public class RecipeProvider {
 
   // Two by Two using Two items
 
-  public <T extends IIngredientProvider, V extends IItemProvider & IForgeRegistryEntry<?>> void twoTwoByTwo(T source1, T source2, Supplier<? extends V> result, @Nullable String group, int count, Consumer<IFinishedRecipe> consumer) {
+/*  public <T extends IIngredientProvider, V extends IItemProvider & IForgeRegistryEntry<?>> void twoTwoByTwo(T source1, T source2, Supplier<? extends V> result, @Nullable String group, int count, Consumer<IFinishedRecipe> consumer) {
     ShapedRecipeBuilder.shapedRecipe(result.get(), count)
         .patternLine("XY")
         .patternLine("YX")
@@ -217,7 +216,7 @@ public class RecipeProvider {
 
   public <T extends IIngredientProvider, V extends IItemProvider & IForgeRegistryEntry<?>> void twoTwoByTwo(T source1, T source2, Supplier<? extends V> result, @Nullable String group, Consumer<IFinishedRecipe> consumer) {
     twoTwoByTwo(source1, source2, result, group, 4, consumer);
-  }
+  }*/
 
   public <T extends IItemProvider & IForgeRegistryEntry<?>> void stairs(Supplier<? extends T> source, Supplier<? extends T> result, @Nullable String group, boolean stone, Consumer<IFinishedRecipe> consumer) {
     ShapedRecipeBuilder.shapedRecipe(result.get(), 4)
@@ -606,7 +605,7 @@ public class RecipeProvider {
    * Creates a new {@link InventoryChangeTrigger} that checks for a player having a certain amount of an item.
    */
   public InventoryChangeTrigger.Instance hasItem(MinMaxBounds.IntBound amount, IItemProvider itemIn) {
-    return this.hasItem(ItemPredicate.Builder.create().item(itemIn).count(amount).build());
+    return this.hasItem(ItemPredicate.Builder.create().item(itemIn).build());
   }
 
   /**

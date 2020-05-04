@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.entity.model;
+/*package epicsquid.mysticalworld.entity.model;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -7,4 +7,4 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public enum ModelState {
   NORMAL,
   SHOULDER
-}
+}*/

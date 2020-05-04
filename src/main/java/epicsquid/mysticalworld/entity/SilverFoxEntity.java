@@ -69,7 +69,7 @@ public class SilverFoxEntity extends TameableEntity {
     goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.CHICKEN), false));
     goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
     goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
-    goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
+    goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
     goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
     goalSelector.addGoal(7, new BreedGoal(this, 1.0D));
     goalSelector.addGoal(7, new LookRandomlyGoal(this));

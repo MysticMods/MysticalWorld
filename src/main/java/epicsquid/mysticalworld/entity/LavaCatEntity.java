@@ -54,7 +54,7 @@ public class LavaCatEntity extends TameableEntity {
     goalSelector.addGoal(1, new SwimGoal(this));
     goalSelector.addGoal(2, this.sitGoal);
     goalSelector.addGoal(3, this.aiTempt);
-    goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.0D, 10.0F, 5.0F));
+    goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.0D, 10.0F, 5.0F, false));
     goalSelector.addGoal(7, new LeapAtTargetGoal(this, 0.3F));
     goalSelector.addGoal(8, new OcelotAttackGoal(this));
     goalSelector.addGoal(9, new BreedGoal(this, 0.8D));
@@ -110,9 +110,10 @@ public class LavaCatEntity extends TameableEntity {
     this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
   }
 
-  @Override
+  // TODO: Fix fall damage
+/*  @Override
   public void fall(float distance, float damageMultiplier) {
-  }
+  }*/
 
   @Override
   @Nullable

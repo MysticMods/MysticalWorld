@@ -7,6 +7,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.IFlyingAnimal;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,7 +36,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
 
   public OwlEntity(EntityType<? extends TameableEntity> type, World worldIn) {
     super(type, worldIn);
-    this.moveController = new FlyingMovementController(this);
+    this.moveController = new FlyingMovementController(this, 15, false);
   }
 
   @Override
@@ -129,9 +130,10 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
     return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || block instanceof LogBlock || block == Blocks.AIR && worldIn.getLight(blockpos) > 8;
   }
 
-  @Override
+  // TODO: Fix fall damage
+/*  @Override
   public void fall(float distance, float damageMultiplier) {
-  }
+  }*/
 
   @Override
   protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {

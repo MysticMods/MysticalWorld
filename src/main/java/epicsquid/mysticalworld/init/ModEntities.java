@@ -216,7 +216,7 @@ public class ModEntities {
       .properties(o -> o.size(0.5f, 0.9f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
-  public static RegistryEntry<EntityType<SilkwormEntity>> SILKWORM = REGISTRATE.entity("silkworm", SilkwormEntity::new, EntityClassification.CREATURE)
+/*  public static RegistryEntry<EntityType<SilkwormEntity>> SILKWORM = REGISTRATE.entity("silkworm", SilkwormEntity::new, EntityClassification.CREATURE)
       .loot((p, e) -> p.registerLootTable(e, LootTable.builder()
               .addLootPool(LootPool.builder()
                   .addEntry(ItemLootEntry.builder(ModItems.SILKWORM_EGG.get())
@@ -227,7 +227,7 @@ public class ModEntities {
           )
       )
       .properties(o -> o.size(0.8f, 0.6f).setTrackingRange(5).setShouldReceiveVelocityUpdates(false).setUpdateInterval(20))
-      .register();
+      .register();*/
 
   static {
     SPAWN_EGGS.add(REGISTRATE.item("beetle_spawn_egg", spawnEgg(ModEntities.BEETLE, 0x418594, 0x211D15)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
@@ -238,7 +238,7 @@ public class ModEntities {
     SPAWN_EGGS.add(REGISTRATE.item("endermini_spawn_egg", spawnEgg(ModEntities.ENDERMINI, 0xa11e78, 0x650cbe)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
     SPAWN_EGGS.add(REGISTRATE.item("lava_cat_spawn_egg", spawnEgg(ModEntities.LAVA_CAT, 0xde3535, 0xe89613)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
     SPAWN_EGGS.add(REGISTRATE.item("owl_spawn_egg", spawnEgg(ModEntities.OWL, 0x8c654a, 0xdec9ba)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(REGISTRATE.item("silkworm_spawn_egg", spawnEgg(ModEntities.SILKWORM, 0xd1cecd, 0x635e5b)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+/*    SPAWN_EGGS.add(REGISTRATE.item("silkworm_spawn_egg", spawnEgg(ModEntities.SILKWORM, 0xd1cecd, 0x635e5b)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());*/
   }
 
   public static void load() {

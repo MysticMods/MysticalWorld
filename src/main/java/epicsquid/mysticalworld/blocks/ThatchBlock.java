@@ -1,9 +1,6 @@
 package epicsquid.mysticalworld.blocks;
 
 import epicsquid.mysticallib.block.AbstractWaterloggedBlock;
-import net.minecraft.util.BlockRenderLayer;
-
-import javax.annotation.Nonnull;
 
 public class ThatchBlock extends AbstractWaterloggedBlock {
   public ThatchBlock(Properties props) {
@@ -11,9 +8,10 @@ public class ThatchBlock extends AbstractWaterloggedBlock {
     this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED, false));
   }
 
-  @Nonnull
+  // TODO: Move this to client setup
+/*  @Nonnull
   @Override
   public BlockRenderLayer getRenderLayer() {
     return BlockRenderLayer.CUTOUT;
-  }
+  }*/
 }

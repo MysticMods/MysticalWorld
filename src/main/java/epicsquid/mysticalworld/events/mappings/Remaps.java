@@ -92,6 +92,5 @@ public class Remaps {
   // Actual remaps go here
   //
   static {
-    remapItem("young_pearl", "young_pearl");
   }
 }

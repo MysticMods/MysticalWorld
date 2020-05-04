@@ -1,117 +1,67 @@
 package epicsquid.mysticalworld.entity.model;
 
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.google.common.collect.ImmutableList;
 import epicsquid.mysticalworld.entity.LavaCatEntity;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.client.renderer.entity.model.AgeableModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class LavaCatModel extends EntityModel<LavaCatEntity> {
-  /**
-   * The back left leg model for the Ocelot.
-   */
-  public final RendererModel ocelotBackLeftLeg;
-  /**
-   * The back right leg model for the Ocelot.
-   */
-  public final RendererModel ocelotBackRightLeg;
-  /**
-   * The front left leg model for the Ocelot.
-   */
-  public final RendererModel ocelotFrontLeftLeg;
-  /**
-   * The front right leg model for the Ocelot.
-   */
-  public final RendererModel ocelotFrontRightLeg;
-  /**
-   * The tail model for the Ocelot.
-   */
-  public final RendererModel ocelotTail;
-  /**
-   * The second part of tail model for the Ocelot.
-   */
-  public final RendererModel ocelotTail2;
-  /**
-   * The head model for the Ocelot.
-   */
-  public final RendererModel ocelotHead;
-  /**
-   * The body model for the Ocelot.
-   */
-  public final RendererModel ocelotBody;
+public class LavaCatModel extends AgeableModel<LavaCatEntity> {
+  public final ModelRenderer ocelotBackLeftLeg;
+  public final ModelRenderer ocelotBackRightLeg;
+  public final ModelRenderer ocelotFrontLeftLeg;
+  public final ModelRenderer ocelotFrontRightLeg;
+  public final ModelRenderer ocelotTail;
+  public final ModelRenderer ocelotTail2;
+  public final ModelRenderer ocelotHead;
+  public final ModelRenderer ocelotBody;
   private int state = 1;
 
   public LavaCatModel() {
-    this.ocelotHead = new RendererModel(this, "head");
+    this.ocelotHead = new ModelRenderer(this);
     this.ocelotHead.func_217178_a("main", -2.5F, -2.0F, -3.0F, 5, 4, 5, 0, 0, 0);
     this.ocelotHead.func_217178_a("nose", -1.5F, 0.0F, -4.0F, 3, 2, 2, 0, 0, 24);
     this.ocelotHead.func_217178_a("ear1", -2.0F, -3.0F, 0.0F, 1, 1, 2, 0, 0, 10);
     this.ocelotHead.func_217178_a("ear2", 1.0F, -3.0F, 0.0F, 1, 1, 2, 0, 6, 10);
     this.ocelotHead.setRotationPoint(0.0F, 15.0F, -9.0F);
-    this.ocelotBody = new RendererModel(this, 20, 0);
-    this.ocelotBody.addBox(-2.0F, 3.0F, -8.0F, 4, 16, 6, 0);
+    this.ocelotBody = new ModelRenderer(this, 20, 0);
+    this.ocelotBody.addCuboid(-2.0F, 3.0F, -8.0F, 4, 16, 6, 0);
     this.ocelotBody.setRotationPoint(0.0F, 12.0F, -10.0F);
-    this.ocelotTail = new RendererModel(this, 0, 15);
-    this.ocelotTail.addBox(-0.5F, 0.0F, 0.0F, 1, 8, 1, 0);
+    this.ocelotTail = new ModelRenderer(this, 0, 15);
+    this.ocelotTail.addCuboid(-0.5F, 0.0F, 0.0F, 1, 8, 1, 0);
     this.ocelotTail.rotateAngleX = 0.9F;
     this.ocelotTail.setRotationPoint(0.0F, 15.0F, 8.0F);
-    this.ocelotTail2 = new RendererModel(this, 4, 15);
-    this.ocelotTail2.addBox(-0.5F, 0.0F, 0.0F, 1, 8, 1, 0);
+    this.ocelotTail2 = new ModelRenderer(this, 4, 15);
+    this.ocelotTail2.addCuboid(-0.5F, 0.0F, 0.0F, 1, 8, 1, 0);
     this.ocelotTail2.setRotationPoint(0.0F, 20.0F, 14.0F);
-    this.ocelotBackLeftLeg = new RendererModel(this, 8, 13);
-    this.ocelotBackLeftLeg.addBox(-1.0F, 0.0F, 1.0F, 2, 6, 2, 0);
+    this.ocelotBackLeftLeg = new ModelRenderer(this, 8, 13);
+    this.ocelotBackLeftLeg.addCuboid(-1.0F, 0.0F, 1.0F, 2, 6, 2, 0);
     this.ocelotBackLeftLeg.setRotationPoint(1.1F, 18.0F, 5.0F);
-    this.ocelotBackRightLeg = new RendererModel(this, 8, 13);
-    this.ocelotBackRightLeg.addBox(-1.0F, 0.0F, 1.0F, 2, 6, 2, 0);
+    this.ocelotBackRightLeg = new ModelRenderer(this, 8, 13);
+    this.ocelotBackRightLeg.addCuboid(-1.0F, 0.0F, 1.0F, 2, 6, 2, 0);
     this.ocelotBackRightLeg.setRotationPoint(-1.1F, 18.0F, 5.0F);
-    this.ocelotFrontLeftLeg = new RendererModel(this, 40, 0);
-    this.ocelotFrontLeftLeg.addBox(-1.0F, 0.0F, 0.0F, 2, 10, 2, 0);
+    this.ocelotFrontLeftLeg = new ModelRenderer(this, 40, 0);
+    this.ocelotFrontLeftLeg.addCuboid(-1.0F, 0.0F, 0.0F, 2, 10, 2, 0);
     this.ocelotFrontLeftLeg.setRotationPoint(1.2F, 14.1F, -5.0F);
-    this.ocelotFrontRightLeg = new RendererModel(this, 40, 0);
-    this.ocelotFrontRightLeg.addBox(-1.0F, 0.0F, 0.0F, 2, 10, 2, 0);
+    this.ocelotFrontRightLeg = new ModelRenderer(this, 40, 0);
+    this.ocelotFrontRightLeg.addCuboid(-1.0F, 0.0F, 0.0F, 2, 10, 2, 0);
     this.ocelotFrontRightLeg.setRotationPoint(-1.2F, 14.1F, -5.0F);
   }
 
-  /**
-   * Sets the models various rotation angles then renders the model.
-   */
   @Override
-  public void render(LavaCatEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-    this.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-
-    if (this.isChild) {
-      float f = 2.0F;
-      GlStateManager.pushMatrix();
-      GlStateManager.scalef(0.75F, 0.75F, 0.75F);
-      GlStateManager.translatef(0.0F, 10.0F * scale, 4.0F * scale);
-      this.ocelotHead.render(scale);
-      GlStateManager.popMatrix();
-      GlStateManager.pushMatrix();
-      GlStateManager.scalef(0.5F, 0.5F, 0.5F);
-      GlStateManager.translatef(0.0F, 24.0F * scale, 0.0F);
-      this.ocelotBody.render(scale);
-      this.ocelotBackLeftLeg.render(scale);
-      this.ocelotBackRightLeg.render(scale);
-      this.ocelotFrontLeftLeg.render(scale);
-      this.ocelotFrontRightLeg.render(scale);
-      this.ocelotTail.render(scale);
-      this.ocelotTail2.render(scale);
-      GlStateManager.popMatrix();
-    } else {
-      this.ocelotHead.render(scale);
-      this.ocelotBody.render(scale);
-      this.ocelotTail.render(scale);
-      this.ocelotTail2.render(scale);
-      this.ocelotBackLeftLeg.render(scale);
-      this.ocelotBackRightLeg.render(scale);
-      this.ocelotFrontLeftLeg.render(scale);
-      this.ocelotFrontRightLeg.render(scale);
-    }
+  protected Iterable<ModelRenderer> getHeadParts() {
+    return ImmutableList.of(this.ocelotHead);
   }
+
+  @Override
+  protected Iterable<ModelRenderer> getBodyParts() {
+    return ImmutableList.of(this.ocelotBody, this.ocelotBackLeftLeg, this.ocelotBackRightLeg, this.ocelotFrontLeftLeg, this.ocelotFrontRightLeg, this.ocelotTail, this.ocelotTail2);
+  }
+
 
   /**
    * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
@@ -119,7 +69,7 @@ public class LavaCatModel extends EntityModel<LavaCatEntity> {
    * "far" arms and legs can swing at most.
    */
   @Override
-  public void setRotationAngles(LavaCatEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+  public void setAngles(LavaCatEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     this.ocelotHead.rotateAngleX = headPitch * 0.017453292F;
     this.ocelotHead.rotateAngleY = netHeadYaw * 0.017453292F;
 

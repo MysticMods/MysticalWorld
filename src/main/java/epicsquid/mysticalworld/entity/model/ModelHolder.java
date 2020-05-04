@@ -17,7 +17,6 @@ public class ModelHolder implements ISelectiveResourceReloadListener {
   public static SproutModel sproutModel;
   public static EnderminiModel<EnderminiEntity> enderminiModel;
   public static LavaCatModel lavaCatModel;
-  public static SilkwormModel silkwormModel;
   public static OwlModel owlModel;
 
   public static void init() {
@@ -28,7 +27,6 @@ public class ModelHolder implements ISelectiveResourceReloadListener {
     sproutModel = new SproutModel();
     enderminiModel = new EnderminiModel<>();
     lavaCatModel = new LavaCatModel();
-    silkwormModel = new SilkwormModel();
     owlModel = new OwlModel();
   }
 

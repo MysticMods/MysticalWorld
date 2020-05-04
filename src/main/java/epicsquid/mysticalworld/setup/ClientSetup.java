@@ -3,11 +3,9 @@ package epicsquid.mysticalworld.setup;
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import com.tterrag.registrate.util.RegistryEntry;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.*;
+import epicsquid.mysticalworld.entity.AdditionalHeads;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import epicsquid.mysticalworld.entity.model.heads.*;
-import epicsquid.mysticalworld.entity.player.ShoulderLayer;
-import epicsquid.mysticalworld.entity.render.*;
 import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.block.SkullBlock;
 import net.minecraft.client.Minecraft;
@@ -16,7 +14,6 @@ import net.minecraft.client.renderer.entity.model.GenericHeadModel;
 import net.minecraft.client.renderer.tileentity.SkullTileEntityRenderer;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -27,7 +24,8 @@ public class ClientSetup {
     ((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new ModelHolder());
     ModelHolder.init();
 
-    RenderingRegistry.registerEntityRenderingHandler(BeetleEntity.class, new BeetleRenderer.Factory());
+    // TODO: Fix this
+/*    RenderingRegistry.registerEntityRenderingHandler(BeetleEntity.class, new BeetleRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(SilverFoxEntity.class, new FoxRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(FrogEntity.class, new FrogRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(SproutEntity.class, new SproutRenderer.Factory());
@@ -35,9 +33,8 @@ public class ClientSetup {
     RenderingRegistry.registerEntityRenderingHandler(EnderminiEntity.class, new EnderminiRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(OwlEntity.class, new OwlRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(LavaCatEntity.class, new LavaCatRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(SilkwormEntity.class, new SilkwormRenderer.Factory());
 
-    Minecraft.getInstance().getRenderManager().getSkinMap().values().forEach(o -> o.addLayer(new ShoulderLayer<>(o)));
+    Minecraft.getInstance().getRenderManager().getSkinMap().values().forEach(o -> o.addLayer(new ShoulderLayer<>(o)));*/
 
     ItemColors c = Minecraft.getInstance().getItemColors();
     for (RegistryEntry<? extends LazySpawnEggItem<?>> egg : ModEntities.SPAWN_EGGS) {
@@ -53,9 +50,9 @@ public class ClientSetup {
       skullModels.put(AdditionalHeads.HUSK, genericheadmodel);
       skullModels.put(AdditionalHeads.STRAY, new LayeredHeadModel(new ResourceLocation("minecraft", "textures/entity/skeleton/stray_overlay.png"), 0, 0, 64, 32));
       skullModels.put(AdditionalHeads.DROWNED, new LayeredHeadModel(new ResourceLocation("minecraft", "textures/entity/zombie/drowned_outer_layer.png"), 0, 0, 64, 64));
-      skullModels.put(AdditionalHeads.WITCH, new WitchHeadModel());
+      //skullModels.put(AdditionalHeads.WITCH, new WitchHeadModel());
       skullModels.put(AdditionalHeads.PILLAGER, illagerHeadModel);
-      skullModels.put(AdditionalHeads.ENDERMAN, new EndermanHeadModel());
+      //skullModels.put(AdditionalHeads.ENDERMAN, new EndermanHeadModel());
       skullModels.put(AdditionalHeads.VILLAGER, new VillagerHeadModel(64, 64, 0));
       skullModels.put(AdditionalHeads.ZOMBIE_VILLAGER, new ZombieVillagerHeadModel());
     } else {
@@ -74,6 +71,8 @@ public class ClientSetup {
       skullSkins.put(AdditionalHeads.VILLAGER, new ResourceLocation("minecraft", "textures/entity/villager/villager.png"));
       skullSkins.put(AdditionalHeads.ZOMBIE_VILLAGER, new ResourceLocation("minecraft", "textures/entity/zombie_villager/zombie_villager.png"));
     }
+
+    // TODO: Cutout, etc, blocks
   }
 
   public static void registerListeners() {

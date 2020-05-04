@@ -60,11 +60,6 @@ public class ModSetup {
   }
 
   public void serverStarting(FMLServerStartedEvent event) {
-    try {
-      ModifyWaterCap.modifySquid();
-    } catch (IllegalAccessException e) {
-      MysticalWorld.LOG.error("Unable to modify squid spawn cap", e);
-    }
   }
 
   public void serverAboutToStart(FMLServerAboutToStartEvent event) {
