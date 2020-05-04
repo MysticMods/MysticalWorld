@@ -15,13 +15,13 @@
       "entity": "mysticalworld:entity_silkworm",
       "scale": 1.5,
       "offset": -0.3,
-      "text": "You can drop leaves near them to speed the process up."
+      "text": "You can manually feed them leaves by right-clicking to speed the process up."
     },
     {
       "type": "spotlight",
       "item": "minecraft:leaves",
       "flag": "roots:silkworm_leaves",
-      "text": "Silkworms do not spawn naturally, nor can they be bred, but can be hatched from eggs (with a chance of success).$(br2)Eggs can be found by breaking leaves in the same way you would to get saplings."
+      "text": "Leaves fed to a silkworm increase the number of silk cocoons dropped as well as speeding up the process.$(br2)Silkworms do not spawn naturally, nor can they be bred, but can be hatched from eggs (with a chance of success).$(br2)Eggs can be found by breaking leaves in the same way you would to get saplings."
     }
   ]
 }
