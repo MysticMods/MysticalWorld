@@ -1,5 +1,5 @@
 {
-  "name": "Sprout",
+  "name": "Hell Sprout",
   "icon": "minecraft:nether_wart",
   "category": "creatures",
   "pages": [
@@ -8,7 +8,7 @@
       "animal": "hell_sprout",
       "breed": "Breed: with cooked aubergines.",
       "tame": "Taming: not tameable.",
-      "blurb": "Found peacefully wandering the nether, occasionally plant nether wart."
+      "blurb": "Found peacefully wandering the nether, occasionally planting nether wart."
     },
     {
       "type": "entity",

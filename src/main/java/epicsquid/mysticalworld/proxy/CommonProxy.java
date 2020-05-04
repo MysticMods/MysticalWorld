@@ -81,7 +81,7 @@ public class CommonProxy {
     ConfigKeys.init();
 
     // Leaping potions!
-    PotionHelper.addMix(PotionTypes.LEAPING, ModItems.antlers, PotionTypes.MUNDANE);
+    PotionHelper.addMix(PotionTypes.AWKWARD, ModItems.antlers, PotionTypes.LEAPING);
   }
 
   public void postInit(FMLPostInitializationEvent event) {
