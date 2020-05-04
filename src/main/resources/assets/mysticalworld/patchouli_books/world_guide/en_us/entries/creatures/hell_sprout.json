@@ -1,0 +1,22 @@
+{
+  "name": "Sprout",
+  "icon": "minecraft:nether_wart",
+  "category": "creatures",
+  "pages": [
+    {
+      "type": "animal_spawn_info",
+      "animal": "hell_sprout",
+      "breed": "Breed: with cooked aubergines.",
+      "tame": "Taming: not tameable.",
+      "blurb": "Found peacefully wandering the nether, occasionally plant nether wart."
+    },
+    {
+      "type": "entity",
+      "name": "Hell Sprout",
+      "entity": "mysticalworld:entity_sprout_hell",
+      "scale": 1,
+      "offset": 0,
+      "text": ""
+    }
+  ]
+}

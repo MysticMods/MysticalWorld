@@ -201,6 +201,10 @@ tile.thatch_wall.name=Thatch Wall
 # Slime
 tile.slime_puddle.name=Puddle of Slime
 
+# Ore
+tile.granite_quartz_ore.name=Quartz Ore
+tile.quartz_ore.name=Quartz Ore
+
 #Solar Infused
 tile.solar_infused_stone.name=Solar Infused Stone
 tile.solar_infused_stone_stairs.name=Solar Infused Stone Stairs

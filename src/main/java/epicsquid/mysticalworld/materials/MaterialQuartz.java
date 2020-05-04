@@ -6,6 +6,7 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -51,8 +52,8 @@ public class MaterialQuartz extends Material {
 
   @Override
   public void initMaterial(@Nonnull RegisterContentEvent event) {
-    event.addBlock(stoneOre = (BlockOreBase) new BlockOreBase(net.minecraft.block.material.Material.ROCK, SoundType.STONE, getHardness(), name() + "_ore", null, getLevel(), getMinXP(), getMaxXP()).setCreativeTab(MysticalWorld.tab));
-    event.addBlock(graniteOre = (BlockOreBase) new BlockOreBase(net.minecraft.block.material.Material.ROCK, SoundType.STONE, getHardness(), "granite_" + name() + "_ore", null, getLevel(), getMinXP(), getMaxXP()).setCreativeTab(MysticalWorld.tab));
+    event.addBlock(stoneOre = (BlockOreBase) new BlockOreBase(net.minecraft.block.material.Material.ROCK, SoundType.STONE, getHardness(), name() + "_ore", Items.QUARTZ, getLevel(), getMinXP(), getMaxXP()).setCreativeTab(MysticalWorld.tab));
+    event.addBlock(graniteOre = (BlockOreBase) new BlockOreBase(net.minecraft.block.material.Material.ROCK, SoundType.STONE, getHardness(), "granite_" + name() + "_ore", Items.QUARTZ, getLevel(), getMinXP(), getMaxXP()).setCreativeTab(MysticalWorld.tab));
     if (ConfigManager.quartz.enableGraniteOres) {
       setOre(graniteOre);
     } else {
