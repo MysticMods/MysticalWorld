@@ -4,6 +4,18 @@
   "models": [
     {
       "type": "item",
+      "base": "tannins"
+    },
+    {
+      "type": "item",
+      "base": "wasp_attractant"
+    },
+    {
+      "type": "item",
+      "base": "gall_apple"
+    },
+    {
+      "type": "item",
       "base": "assorted_seeds"
     },
     {

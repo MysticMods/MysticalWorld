@@ -1,16 +1,11 @@
 package epicsquid.mysticalworld.init;
 
-import epicsquid.mysticallib.MysticalLib;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.item.*;
 import epicsquid.mysticallib.material.MaterialTypes;
-import epicsquid.mysticallib.util.MirrorHelper;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.integration.roots.Knives;
-import epicsquid.mysticalworld.item.ItemCopperArmor;
-import epicsquid.mysticalworld.item.ItemSilkwormEgg;
-import epicsquid.mysticalworld.item.ItemSilverArmor;
-import epicsquid.mysticalworld.item.ItemUnripePearl;
+import epicsquid.mysticalworld.item.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -19,7 +14,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
@@ -44,7 +38,7 @@ public class ModItems {
 
   public static Item seeds, cooked_seeds;
 
-  public static Item pearl;
+  public static Item pearl, gall_apple, wasp_attractant, tannins;
 
 
   public static ItemArmor.ArmorMaterial copperArmor = EnumHelper.addArmorMaterial("mysticalworld:copper", MysticalWorld.MODID + ":copper", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
@@ -54,8 +48,6 @@ public class ModItems {
    * Register all items
    */
   public static void registerItems(@Nonnull RegisterContentEvent event) {
-
-
     Item.ToolMaterial copper = EnumHelper.addToolMaterial("mysticalworld:copper", 2, 200, 4.0f, 2.0f, 7);
     Item.ToolMaterial silver = EnumHelper.addToolMaterial("mysticalworld:silver", 2, 175, 6.0f, 2.5f, 18);
     Item.ToolMaterial amethyst = EnumHelper.addToolMaterial("mysticalworld:amethyst", 3, 1561, 8.0f, 3.0f, 12);
@@ -144,6 +136,9 @@ public class ModItems {
     event.addItem(silk_thread = new ItemBase("silk_thread").setCreativeTab(MysticalWorld.tab));
     event.addItem(spindle = new ItemBase("spindle").setCreativeTab(MysticalWorld.tab).setMaxStackSize(1).setMaxDamage(64));
     event.addItem(silkworm_egg = new ItemSilkwormEgg("silkworm_egg").setCreativeTab(MysticalWorld.tab));
+    event.addItem(gall_apple = new ItemBase("gall_apple").setCreativeTab(MysticalWorld.tab));
+    event.addItem(wasp_attractant = new ItemWaspAttractant("wasp_attractant").setCreativeTab(MysticalWorld.tab));
+    event.addItem(tannins = new ItemBase("tannins").setCreativeTab(MysticalWorld.tab).setContainerItem(Items.GLASS_BOTTLE));
 
     registerSeedDrops();
   }

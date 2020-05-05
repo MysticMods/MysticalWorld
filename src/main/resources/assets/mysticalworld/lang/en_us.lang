@@ -24,6 +24,9 @@ item.spindle.name=Spindle
 item.silkworm_egg.name=Silkworm Egg
 item.cooked_apple.name=Cooked Apple
 item.pearl.name=Lustrous Pearl
+item.gall_apple.name=Gall Apple
+item.wasp_attractant.name=Wasp Attractant
+item.tannins.name=Tannins
 
 # Ingots
 item.copper_ingot.name=Copper Ingot
