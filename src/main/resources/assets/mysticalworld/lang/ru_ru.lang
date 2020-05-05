@@ -10,6 +10,7 @@ entity.entity_owl.name=Сова
 entity.entity_silkworm.name=Шелкопряд
 entity.entity_lava_cat.name=Лавовый кот
 entity.entity_obsidian_cat.name=Обсидиановый кот
+entity.entity_hell_sprout.name=Адский росток
 
 item.carapace.name=Панцирь
 item.pelt.name=Шкура
@@ -192,12 +193,17 @@ tile.pearl_fence.name=Жемчужный забор
 tile.pearl_fence_gate.name=Жемчужная калитка
 
 # Thatch
+tile.thatch.name=Солома
 tile.thatch_stairs.name=Соломенные ступеньки
 tile.thatch_slab.name=Соломенная плита
 tile.thatch_wall.name=Соломенная ограда
 
-# Other Blocks
-tile.thatch.name=Солома
+# Slime
+tile.slime_puddle.name=Лужа слизи
+
+# Ore
+tile.granite_quartz_ore.name=Кварцевая руда
+tile.quartz_ore.name=Кварцевая руда
 
 #Solar Infused
 tile.solar_infused_stone.name=Солнечный камень
@@ -298,6 +304,7 @@ forge.biome.tags.end.name=Край
 forge.biome.tags.default.name=По умолчанию
 
 # Patchouli integration
+mysticalworld.guidebook.landing_text=Это очень загадочный мир! Эта книга даст вам некоторое представление о многих таинственных и мистических вещах, с которыми Вы можете столкнуться.
 mysticalworld.patchouli.standard_group=Стандартные размеры группы.
 mysticalworld.patchouli.groups=Группы по %s-%s.
 mysticalworld.patchouli.biomes=Биомы с меткой: %s
