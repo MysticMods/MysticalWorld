@@ -28,8 +28,10 @@ public class ShoulderHandler {
       return;
     }
 
+    BlockPos pos = event.getPos().up();
+
     if (!world.isRemote && event.getHand() == Hand.MAIN_HAND && player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
-      if (!world.getBlockState(event.getPos()).isAir(world, event.getPos())) {
+      if (!world.getBlockState(pos).isAir(world, pos)) {
         return;
       }
       LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
@@ -41,8 +43,7 @@ public class ShoulderHandler {
             Entity animal = type.create(world);
             if (animal != null) {
               animal.read(cap.getAnimalSerialized());
-              BlockPos pos = event.getPos();
-              animal.setPosition(pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5);
+              animal.setPosition(pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5);
               world.addEntity(animal);
               player.swingArm(Hand.MAIN_HAND);
               cap.drop();
