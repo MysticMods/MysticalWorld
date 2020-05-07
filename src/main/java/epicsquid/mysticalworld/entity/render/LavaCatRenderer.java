@@ -29,7 +29,7 @@ public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel> {
 
   @Nullable
   @Override
-  protected ResourceLocation getEntityTexture(LavaCatEntity entity) {
+  public ResourceLocation getEntityTexture(LavaCatEntity entity) {
     return OBSIDIAN_KITTY;
   }
 

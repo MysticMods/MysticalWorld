@@ -15,7 +15,7 @@ public class SproutRenderer extends MobRenderer<SproutEntity, SproutModel> {
   }
 
   @Override
-  protected ResourceLocation getEntityTexture(SproutEntity entity) {
+  public ResourceLocation getEntityTexture(SproutEntity entity) {
     switch (entity.getDataManager().get(SproutEntity.variant)) {
       case 1: {
         return new ResourceLocation("mysticalworld:textures/entity/sprout_tan.png");

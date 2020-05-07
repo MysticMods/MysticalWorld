@@ -1,10 +1,12 @@
 package epicsquid.mysticalworld.entity.render;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.BeetleEntity;
 import epicsquid.mysticalworld.entity.model.BeetleModel;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -28,22 +30,22 @@ public class BeetleRenderer extends MobRenderer<BeetleEntity, BeetleModel> {
   }
 
   @Override
-  public void renderModel(@Nonnull BeetleEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-    GlStateManager.pushMatrix();
-    if ((entity).getGrowingAge() < 0) {
-      GlStateManager.scaled(0.3, 0.3, 0.3);
-      GlStateManager.translated(0, 3.5, 0);
+  public void render(BeetleEntity entity, float yaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light)  {
+    matrix.push();
+    if (entity.getGrowingAge() < 0) {
+      matrix.scale(0.3f, 0.3f, 0.3f);
+      matrix.translate(0, 3.5, 0);
     } else {
-      GlStateManager.scaled(0.45, 0.45, 0.45);
-      GlStateManager.translated(0, 1.85, 0);
+      matrix.scale(0.45f, 0.45f, 0.45f);
+      matrix.translate(0, 1.85, 0);
     }
-    super.renderModel(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-    GlStateManager.popMatrix();
+    super.render(entity, yaw, partialTicks, matrix, buffer, light);
+    matrix.pop();
   }
 
   @Override
   @Nonnull
-  protected ResourceLocation getEntityTexture(@Nonnull BeetleEntity entity) {
+  public ResourceLocation getEntityTexture(@Nonnull BeetleEntity entity) {
     return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/beetle_blue.png");
   }
 }

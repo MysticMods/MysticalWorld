@@ -1,10 +1,13 @@
 package epicsquid.mysticalworld.entity.render;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.entity.FrogEntity;
 import epicsquid.mysticalworld.entity.OwlEntity;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import epicsquid.mysticalworld.entity.model.OwlModel;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -28,20 +31,20 @@ public class OwlRenderer extends MobRenderer<OwlEntity, OwlModel> {
   }
 
   @Override
-  public void renderModel(@Nonnull OwlEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-    GlStateManager.pushMatrix();
-    if ((entity).getGrowingAge() < 0) {
-      GlStateManager.scaled(0.5, 0.5, 0.5);
-      GlStateManager.translated(0, 1.5, 0);
+  public void render(OwlEntity entity, float yaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light)  {
+    matrix.push();
+    if (entity.getGrowingAge() < 0) {
+      matrix.scale(0.5f, 0.5f, 0.5f);
+      matrix.translate(0, 1.5, 0);
     }
-    GlStateManager.translated(0, -0.0625, 0);
-    super.renderModel(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-    GlStateManager.popMatrix();
+    matrix.translate(0, -0.0625, 0);
+    super.render(entity, yaw, partialTicks, matrix, buffer, light);
+    matrix.pop();
   }
 
   @Override
   @Nonnull
-  protected ResourceLocation getEntityTexture(@Nonnull OwlEntity entity) {
+  public ResourceLocation getEntityTexture(@Nonnull OwlEntity entity) {
     return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/owl.png");
   }
 }

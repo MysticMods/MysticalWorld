@@ -20,9 +20,8 @@ public class DeerRenderer extends MobRenderer<DeerEntity, DeerModel> {
 
   @Override
   @Nonnull
-  protected ResourceLocation getEntityTexture(@Nonnull DeerEntity entity) {
+  public ResourceLocation getEntityTexture(@Nonnull DeerEntity entity) {
     if (entity.getEntityId() % 20 == 0) {
-      GL11.glGetInteger(GL11.GL_BLEND);
       return new ResourceLocation("mysticalworld:textures/entity/rudolph.png");
     }
     return new ResourceLocation("mysticalworld:textures/entity/deer.png");
