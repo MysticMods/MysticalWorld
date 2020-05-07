@@ -150,7 +150,7 @@ public class ModItems {
       .model((ctx, p) -> p.withExistingParent(p.name(ModItems.GLISTERING_HORN), "item/handheld").texture("layer0", p.itemTexture(ModItems.NAUTILUS_HORN)))
       .register();
 
-  public static RegistryEntry<SilkwormEgg> SILKWORM_EGG = REGISTRATE.item("silkworm_egg", SilkwormEgg::new).register();
+/*  public static RegistryEntry<SilkwormEgg> SILKWORM_EGG = REGISTRATE.item("silkworm_egg", SilkwormEgg::new).register();*/
 
   public static RegistryEntry<Item> SILK_COCOON = REGISTRATE.item("silk_cocoon", Item::new)
       .recipe((ctx, p) -> RECIPES.singleItem(ModItems.SILK_COCOON, ModItems.SILK_THREAD, 1, 3, p))

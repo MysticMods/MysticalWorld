@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.entity.ai;
+/*package epicsquid.mysticalworld.entity.ai;
 
 import epicsquid.mysticalworld.entity.SilkwormEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -129,4 +129,4 @@ public class ConsumeLeavesGoal extends Goal {
   private double getAttackReachSqr(ItemEntity attackTarget) {
     return (double) (this.attacker.getWidth() * this.attacker.getWidth() + attackTarget.getWidth());
   }
-}
+}*/

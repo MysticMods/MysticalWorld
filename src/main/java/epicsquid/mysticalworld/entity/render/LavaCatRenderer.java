@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.entity.render;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.LavaCatEntity;
@@ -34,10 +35,9 @@ public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel> {
   }
 
   @Override
-  protected void preRenderCallback(LavaCatEntity entitylivingbaseIn, float partialTickTime) {
-    super.preRenderCallback(entitylivingbaseIn, partialTickTime);
-
-    GlStateManager.scalef(1.2F, 1.2F, 1.2F);
+  protected void scale(LavaCatEntity p_225620_1_, MatrixStack matrix, float p_225620_3_) {
+    matrix.scale(1.2f, 1.2f, 1.2f);
+    super.scale(p_225620_1_, matrix, p_225620_3_);
   }
 
   public static class Factory implements IRenderFactory<LavaCatEntity> {

@@ -1,12 +1,18 @@
 package epicsquid.mysticalworld.world;
 
+import epicsquid.mysticallib.world.DimensionalOreFeature;
 import epicsquid.mysticallib.world.OreGenerator;
 import epicsquid.mysticallib.world.OreProperties;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.config.OreConfig;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.OreFeature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +25,10 @@ public class OreGen {
       generators.add(
           new OreGenerator(
               new OreProperties(
-                  () -> new OreFeatureConfig(
+                  () -> new DimensionalOreFeature(Feature.ORE.configure(new OreFeatureConfig(
                       OreFeatureConfig.FillerBlockType.NATURAL_STONE,
                       ore.getOre().getDefaultState(),
-                      ore.getChance()),
+                      ore.getChance())), DimensionType.OVERWORLD),
                   new CountRangeConfig(
                       ore.getSize(),
                       ore.getMinY(),

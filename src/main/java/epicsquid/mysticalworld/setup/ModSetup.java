@@ -68,7 +68,7 @@ public class ModSetup {
 
   @SuppressWarnings("Duplicates")
   public void registerListeners() {
-    MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
+/*    MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);*/
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
     MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);
     MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onDeath);

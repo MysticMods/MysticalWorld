@@ -31,7 +31,7 @@ public class RecipeProvider {
     this.modid = modid;
   }
 
-  public <T extends Item, B extends Block> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> storage(Supplier<RegistryEntry<B>> block, Supplier<RegistryEntry<T>> ingot, Tag<Item> blockTag, Tag<Item> ingotTag, @Nullable Tag<Item> oreTag, @Nullable Supplier<RegistryEntry<T>> nugget, @Nullable Tag<Item> nuggetTag, @Nullable Tag<Item> dustTag) {
+  public <T extends Item> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> storage(Supplier<RegistryEntry<Block>> block, Supplier<RegistryEntry<Item>> ingot, Tag<Item> blockTag, Tag<Item> ingotTag, @Nullable Tag<Item> oreTag, @Nullable Supplier<RegistryEntry<Item>> nugget, @Nullable Tag<Item> nuggetTag, @Nullable Tag<Item> dustTag) {
     return (ctx, p) -> {
 
       // Ingot to block

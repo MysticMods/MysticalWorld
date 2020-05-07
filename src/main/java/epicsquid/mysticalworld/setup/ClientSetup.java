@@ -3,9 +3,10 @@ package epicsquid.mysticalworld.setup;
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import com.tterrag.registrate.util.RegistryEntry;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.AdditionalHeads;
+import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import epicsquid.mysticalworld.entity.model.heads.*;
+import epicsquid.mysticalworld.entity.render.*;
 import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.block.SkullBlock;
 import net.minecraft.client.Minecraft;
@@ -14,6 +15,7 @@ import net.minecraft.client.renderer.entity.model.GenericHeadModel;
 import net.minecraft.client.renderer.tileentity.SkullTileEntityRenderer;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -25,16 +27,14 @@ public class ClientSetup {
     ModelHolder.init();
 
     // TODO: Fix this
-/*    RenderingRegistry.registerEntityRenderingHandler(BeetleEntity.class, new BeetleRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(SilverFoxEntity.class, new FoxRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(FrogEntity.class, new FrogRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(SproutEntity.class, new SproutRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(EnderminiEntity.class, new EnderminiRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(OwlEntity.class, new OwlRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(LavaCatEntity.class, new LavaCatRenderer.Factory());
-
-    Minecraft.getInstance().getRenderManager().getSkinMap().values().forEach(o -> o.addLayer(new ShoulderLayer<>(o)));*/
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.BEETLE.get(), new BeetleRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.SILVER_FOX.get(), new FoxRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.FROG.get(), new FrogRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.SPROUT.get(), new SproutRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.DEER.get(), new DeerRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENDERMINI.get(), new EnderminiRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.OWL.get(), new OwlRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.LAVA_CAT.get(), new LavaCatRenderer.Factory());
 
     ItemColors c = Minecraft.getInstance().getItemColors();
     for (RegistryEntry<? extends LazySpawnEggItem<?>> egg : ModEntities.SPAWN_EGGS) {

@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.entity.ai;
+/*package epicsquid.mysticalworld.entity.ai;
 
 import epicsquid.mysticalworld.entity.SilkwormEntity;
 import epicsquid.mysticalworld.events.LeafHandler;
@@ -117,4 +117,4 @@ public class TargetLeavesGoal extends Goal {
     this.targetUnseenTicks = 0;
     super.startExecuting();
   }
-}
+}*/

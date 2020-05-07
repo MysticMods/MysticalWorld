@@ -55,15 +55,15 @@ public class GuideItem extends Item {
     ItemStack stack = playerIn.getHeldItem(handIn);
     Book book = getBook();
     if (book == null) {
-      return ActionResult.newResult(ActionResultType.FAIL, stack);
+      return ActionResult.fail(stack);
     } else {
       if (playerIn instanceof ServerPlayerEntity) {
-        NetworkHandler.sendToPlayer(new MessageOpenBookGui(book.resourceLoc.toString()), (ServerPlayerEntity) playerIn);
+        NetworkHandler.sendToPlayer(new MessageOpenBookGui(book.id, null), (ServerPlayerEntity) playerIn);
         SoundEvent sfx = PatchouliSounds.getSound(book.openSound, PatchouliSounds.book_open);
         worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, sfx, SoundCategory.PLAYERS, 1.0F, (float) (0.7D + Math.random() * 0.4D));
       }
 
-      return ActionResult.newResult(ActionResultType.SUCCESS, stack);
+      return ActionResult.success(stack);
     }
   }
 }

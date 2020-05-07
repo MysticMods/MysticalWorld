@@ -1,24 +1,25 @@
 package epicsquid.mysticalworld.entity.render;
 
-import com.mojang.blaze3d.platform.GLX;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.EnderminiEntity;
 import epicsquid.mysticalworld.entity.model.EnderminiModel;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.AbstractEyesLayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import java.util.Random;
@@ -34,31 +35,30 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
   }
 
   @Override
-  protected void renderModel(EnderminiEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-    GlStateManager.pushMatrix();
-    GlStateManager.scaled(0.4, 0.4, 0.4);
-    GlStateManager.translated(0, 2.2, 0);
-    super.renderModel(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-    GlStateManager.popMatrix();
+  public Vec3d getPositionOffset(EnderminiEntity p_225627_1_, float p_225627_2_) {
+    if (p_225627_1_.isScreaming()) {
+      double d0 = 0.02D;
+      return new Vec3d(this.rnd.nextGaussian() * 0.02D, 0.0D, this.rnd.nextGaussian() * 0.02D);
+    } else {
+      return super.getPositionOffset(p_225627_1_, p_225627_2_);
+    }
   }
 
   @Override
-  public void doRender(EnderminiEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
-    BlockState blockstate = entity.getHeldBlockState();
+  public void render(EnderminiEntity p_225623_1_, float p_225623_2_, float p_225623_3_, MatrixStack stack, IRenderTypeBuffer p_225623_5_, int p_225623_6_) {
+    BlockState blockstate = p_225623_1_.getHeldBlockState();
     EnderminiModel<EnderminiEntity> endermanmodel = this.getEntityModel();
     endermanmodel.isCarrying = blockstate != null;
-    endermanmodel.isAttacking = entity.isScreaming();
-    if (entity.isScreaming()) {
-      double d0 = 0.02D;
-      x += this.rnd.nextGaussian() * 0.02D;
-      z += this.rnd.nextGaussian() * 0.02D;
-    }
-
-    super.doRender(entity, x, y, z, entityYaw, partialTicks);
+    endermanmodel.isAttacking = p_225623_1_.isScreaming();
+    stack.push();
+    stack.scale(0.4f, 0.4f, 0.4f);
+    stack.translate(0, 2.2, 0);
+    super.render(p_225623_1_, p_225623_2_, p_225623_3_, stack, p_225623_5_, p_225623_6_);
+    stack.pop();
   }
 
   @Override
-  protected ResourceLocation getEntityTexture(EnderminiEntity entity) {
+  public ResourceLocation getEntityTexture(EnderminiEntity entity) {
     return ENDERMINI_TEXTURES;
   }
 
@@ -74,85 +74,37 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
     }
   }
 
-  @OnlyIn(Dist.CLIENT)
-  public class HeldBlockLayer extends LayerRenderer<EnderminiEntity, EnderminiModel<EnderminiEntity>> {
+  public static class HeldBlockLayer extends LayerRenderer<EnderminiEntity, EnderminiModel<EnderminiEntity>> {
     public HeldBlockLayer(IEntityRenderer<EnderminiEntity, EnderminiModel<EnderminiEntity>> p_i50949_1_) {
       super(p_i50949_1_);
     }
 
     @Override
-    public void render(EnderminiEntity entityIn, float p_212842_2_, float p_212842_3_, float p_212842_4_, float p_212842_5_, float p_212842_6_, float p_212842_7_, float p_212842_8_) {
-      BlockState blockstate = entityIn.getHeldBlockState();
+    public void render(MatrixStack p_225628_1_, IRenderTypeBuffer p_225628_2_, int p_225628_3_, EnderminiEntity p_225628_4_, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
+      BlockState blockstate = p_225628_4_.getHeldBlockState();
       if (blockstate != null) {
-        GlStateManager.pushMatrix();
-        GlStateManager.scaled(0.4, 0.4, 0.4);
-        GlStateManager.translated(0, 2.2, 0);
-        GlStateManager.enableRescaleNormal();
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(0.0F, 0.6875F, -0.75F);
-        GlStateManager.rotatef(20.0F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.rotatef(45.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.translatef(0.25F, 0.1875F, 0.25F);
-        float f = 0.5F;
-        GlStateManager.scalef(-0.5F, -0.5F, 0.5F);
-        int i = entityIn.getBrightnessForRender();
-        int j = i % 65536;
-        int k = i / 65536;
-        GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float) j, (float) k);
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
-        Minecraft.getInstance().getBlockRendererDispatcher().renderBlockBrightness(blockstate, 1.0F);
-        GlStateManager.popMatrix();
-        GlStateManager.disableRescaleNormal();
-        GlStateManager.popMatrix();
+        p_225628_1_.push();
+        p_225628_1_.translate(0.0D, 0.6875D, -0.75D);
+        p_225628_1_.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(20.0F));
+        p_225628_1_.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(45.0F));
+        p_225628_1_.translate(0.25D, 0.1875D, 0.25D);
+        p_225628_1_.scale(-0.5F, -0.5F, 0.5F);
+        p_225628_1_.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(90.0F));
+        Minecraft.getInstance().getBlockRendererDispatcher().renderBlockAsEntity(blockstate, p_225628_1_, p_225628_2_, p_225628_3_, OverlayTexture.DEFAULT_UV);
+        p_225628_1_.pop();
       }
-    }
-
-    @Override
-    public boolean shouldCombineTextures() {
-      return false;
     }
   }
 
-  @OnlyIn(Dist.CLIENT)
-  public static class EnderminiEyesLayer<T extends LivingEntity> extends LayerRenderer<T, EnderminiModel<T>> {
-    private static final ResourceLocation RES_ENDERMAN_EYES = new ResourceLocation("textures/entity/enderman/enderman_eyes.png");
+  public static class EnderminiEyesLayer<T extends LivingEntity> extends AbstractEyesLayer<T, EnderminiModel<T>> {
+    private static final RenderType SKIN = RenderType.getEyes(new ResourceLocation("textures/entity/enderman/enderman_eyes.png"));
 
     public EnderminiEyesLayer(IEntityRenderer<T, EnderminiModel<T>> p_i50939_1_) {
       super(p_i50939_1_);
     }
 
-    @Override
-    public void render(T entityIn, float p_212842_2_, float p_212842_3_, float p_212842_4_, float p_212842_5_, float p_212842_6_, float p_212842_7_, float p_212842_8_) {
-      this.bindTexture(RES_ENDERMAN_EYES);
-      GlStateManager.pushMatrix();
-      GlStateManager.scaled(0.4, 0.4, 0.4);
-      GlStateManager.translated(0, 2.2, 0);
-      GlStateManager.enableBlend();
-      GlStateManager.disableAlphaTest();
-      GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
-      GlStateManager.disableLighting();
-      GlStateManager.depthMask(!entityIn.isInvisible());
-      int i = 61680;
-      int j = 61680;
-      int k = 0;
-      GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, 61680.0F, 0.0F);
-      GlStateManager.enableLighting();
-      GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-      GameRenderer gamerenderer = Minecraft.getInstance().gameRenderer;
-      gamerenderer.setupFogColor(true);
-      this.getEntityModel().render(entityIn, p_212842_2_, p_212842_3_, p_212842_5_, p_212842_6_, p_212842_7_, p_212842_8_);
-      gamerenderer.setupFogColor(false);
-      this.func_215334_a(entityIn);
-      GlStateManager.depthMask(true);
-      GlStateManager.disableBlend();
-      GlStateManager.enableAlphaTest();
-      GlStateManager.popMatrix();
-    }
-
-    @Override
-    public boolean shouldCombineTextures() {
-      return false;
+    public RenderType getEyesTexture() {
+      return SKIN;
     }
   }
 }

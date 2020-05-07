@@ -18,4 +18,12 @@ public class EffectBuilder<T extends Effect, P> extends AbstractBuilder<Effect, 
   protected T createEntry() {
     return factory.get();
   }
+
+  public EffectBuilder<T, P> defaultLang() {
+    return this.lang(Effect::getName);
+  }
+
+  public EffectBuilder<T, P> lang(String name) {
+    return this.lang(Effect::getName, name);
+  }
 }
