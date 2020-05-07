@@ -1,6 +1,8 @@
 package epicsquid.mysticalworld.entity.model;
 
+import com.google.common.collect.ImmutableList;
 import epicsquid.mysticalworld.entity.FrogEntity;
+import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
@@ -10,7 +12,7 @@ import javax.annotation.Nonnull;
  * FrogModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class FrogModel extends EntityModel<FrogEntity> {
+public class FrogModel extends AgeableModel<FrogEntity> {
 
   private ModelRenderer body;
   private ModelRenderer backR;
@@ -57,13 +59,21 @@ public class FrogModel extends EntityModel<FrogEntity> {
   }
 
   @Override
-  public void render(@Nonnull FrogEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-    float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
+  protected Iterable<ModelRenderer> getHeadParts() {
+    return ImmutableList.of(head);
+  }
+
+  @Override
+  protected Iterable<ModelRenderer> getBodyParts() {
+    return ImmutableList.of(frontL, backL, frontR, backR, body);
+  }
+
+  @Override
+  public void setAngles(@Nonnull FrogEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     this.backL.rotateAngleX = -0.6981317007977318F + 1.5f * entity.getOffGround(ageInTicks - (int) ageInTicks);
     this.backR.rotateAngleX = -0.6981317007977318F + 1.5f * entity.getOffGround(ageInTicks - (int) ageInTicks);
     this.head.rotateAngleX = headPitch * 0.017453292F;
     this.head.rotateAngleY = netHeadYaw * 0.017453292F;
-    this.body.render(scaleFactor);
   }
 
   /**

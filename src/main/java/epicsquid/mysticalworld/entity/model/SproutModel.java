@@ -1,18 +1,17 @@
 package epicsquid.mysticalworld.entity.model;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.google.common.collect.ImmutableList;
 import epicsquid.mysticalworld.entity.SproutEntity;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.entity.model.ModelRenderer;
+import net.minecraft.client.renderer.entity.model.AgeableModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.Vec3d;
 
-public class SproutModel extends EntityModel<SproutEntity> {
-  //fields
-  ModelRenderer head;
-  ModelRenderer legL;
-  ModelRenderer legR;
-  ModelRenderer leafTop;
-  ModelRenderer leafBottom;
+public class SproutModel extends AgeableModel<SproutEntity> {
+  private ModelRenderer head;
+  private ModelRenderer legL;
+  private ModelRenderer legR;
+  private ModelRenderer leafTop;
+  private ModelRenderer leafBottom;
 
   public SproutModel() {
     textureWidth = 32;
@@ -51,19 +50,20 @@ public class SproutModel extends EntityModel<SproutEntity> {
   }
 
   @Override
-  public void render(SproutEntity entity, float f, float f1, float age, float f3, float f4, float f5) {
-    GlStateManager.pushMatrix();
+  protected Iterable<ModelRenderer> getHeadParts() {
+    return ImmutableList.of(head, leafTop, leafBottom);
+  }
+
+  @Override
+  protected Iterable<ModelRenderer> getBodyParts() {
+    return ImmutableList.of(legL, legR);
+  }
+
+  @Override
+  public void setAngles(SproutEntity entity, float f, float f1, float age, float f3, float f4) {
     float speed = (float) Math.min(0.25f, ((new Vec3d(entity.getMotion().x, 0, entity.getMotion().z)).length() * 4.0f));
-    super.render(entity, f, f1, age, f3, f4, f5);
-    setRotationAngles(entity, f, f1, age, f3, f4, f5);
-    head.render(f5);
     legL.rotateAngleX = -(float) Math.toRadians(speed * 240f * (float) Math.sin(Math.toRadians(age % 360) * 24F));
-    legL.render(f5);
     legR.rotateAngleX = (float) Math.toRadians(speed * 240f * (float) Math.sin(Math.toRadians(age % 360) * 24F));
-    legR.render(f5);
-    leafTop.render(f5);
-    leafBottom.render(f5);
-    GlStateManager.popMatrix();
   }
 
   private void setRotation(ModelRenderer model, float x, float y, float z) {

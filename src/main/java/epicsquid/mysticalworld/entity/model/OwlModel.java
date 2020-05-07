@@ -1,13 +1,13 @@
 package epicsquid.mysticalworld.entity.model;
 
+import com.google.common.collect.ImmutableList;
 import epicsquid.mysticalworld.entity.OwlEntity;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.entity.model.ModelRenderer;
-import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraft.client.renderer.entity.model.AgeableModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class OwlModel extends EntityModel<OwlEntity> {
+public class OwlModel extends AgeableModel<OwlEntity> {
   private final ModelRenderer body;
   private final ModelRenderer footR;
   private final ModelRenderer footL;
@@ -27,76 +27,81 @@ public class OwlModel extends EntityModel<OwlEntity> {
 
     body = new ModelRenderer(this);
     body.setRotationPoint(0.0F, 24.0F, 0.0F);
-    body.cubeList.add(new ModelBox(body, 0, 0, -4.0F, -13.0F, -4.0F, 8, 9, 8, 0.0F, false));
+    body.setTextureOffset(0, 0).addCuboid(-4.0F, -13.0F, -4.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
 
     footR = new ModelRenderer(this);
     footR.setRotationPoint(-1.5F, -4.0F, -0.5F);
     body.addChild(footR);
-    footR.cubeList.add(new ModelBox(footR, 0, 43, -1.5F, 0.0F, -1.5F, 3, 2, 3, 0.0F, false));
-    footR.cubeList.add(new ModelBox(footR, 26, 48, -1.0F, 2.0F, 0.5F, 2, 2, 0, 0.0F, false));
-    footR.cubeList.add(new ModelBox(footR, 0, 48, -1.0F, 4.0F, -1.5F, 2, 0, 2, 0.0F, false));
+    footR.setTextureOffset(0, 43).addCuboid(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F, 0.0F, false);
+    footR.setTextureOffset(26, 48).addCuboid(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F, 0.0F, false);
+    footR.setTextureOffset(0, 48).addCuboid(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F, 0.0F, false);
 
     footL = new ModelRenderer(this);
     footL.setRotationPoint(1.5F, -4.0F, -0.5F);
     body.addChild(footL);
-    footL.cubeList.add(new ModelBox(footL, 12, 43, -1.5F, 0.0F, -1.5F, 3, 2, 3, 0.0F, false));
-    footL.cubeList.add(new ModelBox(footL, 22, 48, -1.0F, 2.0F, 0.5F, 2, 2, 0, 0.0F, false));
-    footL.cubeList.add(new ModelBox(footL, 8, 48, -1.0F, 4.0F, -1.5F, 2, 0, 2, 0.0F, false));
+    footL.setTextureOffset(12, 43).addCuboid(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F, 0.0F, false);
+    footL.setTextureOffset(22, 48).addCuboid(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F, 0.0F, false);
+    footL.setTextureOffset(8, 48).addCuboid(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F, 0.0F, false);
 
     wingR1 = new ModelRenderer(this);
     wingR1.setRotationPoint(-4.0F, -13.0F, -1.0F);
     body.addChild(wingR1);
-    wingR1.cubeList.add(new ModelBox(wingR1, 16, 17, -1.0F, 0.0F, -2.0F, 1, 7, 7, 0.0F, false));
+    wingR1.setTextureOffset(16, 17).addCuboid(-1.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F, 0.0F, false);
 
     wingR2 = new ModelRenderer(this);
     wingR2.setRotationPoint(-1.0F, 7.0F, -2.0F);
-    setRotationAngle(wingR2, 0.1745F, 0.0349F, -0.1745F);
     wingR1.addChild(wingR2);
-    wingR2.cubeList.add(new ModelBox(wingR2, 14, 31, -0.0F, 0.0F, 0.0F, 1, 6, 6, 0.0F, false));
+    setRotationAngle(wingR2, 0.1745F, 0.0349F, -0.1745F);
+    wingR2.setTextureOffset(14, 31).addCuboid(0.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F, 0.0F, false);
 
     wingL1 = new ModelRenderer(this);
     wingL1.setRotationPoint(4.0F, -13.0F, -1.0F);
     body.addChild(wingL1);
-    wingL1.cubeList.add(new ModelBox(wingL1, 0, 17, 0.0F, 0.0F, -2.0F, 1, 7, 7, 0.0F, false));
+    wingL1.setTextureOffset(0, 17).addCuboid(0.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F, 0.0F, false);
 
     wingL2 = new ModelRenderer(this);
     wingL2.setRotationPoint(1.0F, 7.0F, -2.0F);
-    setRotationAngle(wingL2, 0.1745F, -0.0349F, 0.1745F);
     wingL1.addChild(wingL2);
-    wingL2.cubeList.add(new ModelBox(wingL2, 0, 31, -1.0F, 0.0F, 0.0F, 1, 6, 6, 0.0F, false));
+    setRotationAngle(wingL2, 0.1745F, -0.0349F, 0.1745F);
+    wingL2.setTextureOffset(0, 31).addCuboid(-1.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F, 0.0F, false);
 
     tail = new ModelRenderer(this);
     tail.setRotationPoint(0.0F, -5.0F, 4.0F);
-    setRotationAngle(tail, 0.5236F, 0.0F, 0.0F);
     body.addChild(tail);
-    tail.cubeList.add(new ModelBox(tail, 28, 31, -3.0F, 0.0F, -2.0F, 6, 4, 2, 0.0F, false));
+    setRotationAngle(tail, 0.5236F, 0.0F, 0.0F);
+    tail.setTextureOffset(28, 31).addCuboid(-3.0F, 0.0F, -2.0F, 6.0F, 4.0F, 2.0F, 0.0F, false);
 
     head = new ModelRenderer(this);
     head.setRotationPoint(0.0F, -13.0F, 0.0F);
     body.addChild(head);
-    head.cubeList.add(new ModelBox(head, 32, 0, -3.5F, -6.0F, -3.5F, 7, 6, 7, 0.0F, false));
-    head.cubeList.add(new ModelBox(head, 16, 48, -1.0F, -3.0F, -4.5F, 2, 2, 1, 0.0F, false));
+    head.setTextureOffset(32, 0).addCuboid(-3.5F, -6.0F, -3.5F, 7.0F, 6.0F, 7.0F, 0.0F, false);
+    head.setTextureOffset(16, 48).addCuboid(-1.0F, -3.0F, -4.5F, 2.0F, 2.0F, 1.0F, 0.0F, false);
 
     tuftR = new ModelRenderer(this);
     tuftR.setRotationPoint(-2.0F, -6.0F, -3.0F);
-    setRotationAngle(tuftR, 0.4363F, -0.3491F, 0.0F);
     head.addChild(tuftR);
-    tuftR.cubeList.add(new ModelBox(tuftR, 24, 43, -2.0F, 0.0F, 0.0F, 2, 0, 4, 0.0F, false));
+    setRotationAngle(tuftR, 0.4363F, -0.3491F, 0.0F);
+    tuftR.setTextureOffset(24, 43).addCuboid(-2.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F, 0.0F, false);
 
     tuftL = new ModelRenderer(this);
     tuftL.setRotationPoint(2.0F, -6.0F, -3.0F);
-    setRotationAngle(tuftL, 0.4363F, 0.3491F, 0.0F);
     head.addChild(tuftL);
-    tuftL.cubeList.add(new ModelBox(tuftL, 36, 43, 0.0F, 0.0F, 0.0F, 2, 0, 4, 0.0F, false));
+    setRotationAngle(tuftL, 0.4363F, 0.3491F, 0.0F);
+    tuftL.setTextureOffset(36, 43).addCuboid(0.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F, 0.0F, false);
   }
 
   @Override
-  public void render(OwlEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-    body.render(f5);
+  protected Iterable<ModelRenderer> getHeadParts() {
+    return ImmutableList.of(head, tuftL, tuftR);
   }
 
   @Override
-  public void setRotationAngles(OwlEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+  protected Iterable<ModelRenderer> getBodyParts() {
+    return ImmutableList.of(body, footR, footL, wingR1, wingR2, wingL1, wingL2, tail);
+  }
+
+  @Override
+  public void setAngles(OwlEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     this.head.rotateAngleX = headPitch * 0.017453292F;
     this.head.rotateAngleY = netHeadYaw * 0.017453292F;
     this.head.rotateAngleZ = 0.0F;

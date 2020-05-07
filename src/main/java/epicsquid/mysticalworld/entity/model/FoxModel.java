@@ -1,6 +1,8 @@
 package epicsquid.mysticalworld.entity.model;
 
+import com.google.common.collect.ImmutableList;
 import epicsquid.mysticalworld.entity.SilverFoxEntity;
+import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
@@ -10,7 +12,7 @@ import javax.annotation.Nonnull;
  * FoxModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class FoxModel extends EntityModel<SilverFoxEntity> {
+public class FoxModel extends AgeableModel<SilverFoxEntity> {
 
   private ModelRenderer body1;
   private ModelRenderer frontL;
@@ -104,18 +106,22 @@ public class FoxModel extends EntityModel<SilverFoxEntity> {
     this.tail1.addChild(this.tail2);
   }
 
+  @Override
+  protected Iterable<ModelRenderer> getBodyParts() {
+    return ImmutableList.of(body1, tail1, tail2, tail3, tail4, body2, frontL, frontR, backL, backR);
+  }
+
+  @Override
+  protected Iterable<ModelRenderer> getHeadParts() {
+    return ImmutableList.of(head, neck, earR, snout, earL);
+  }
+
   private float getBobble(float deg, float ageInTicks) {
     return (float) Math.sin(ageInTicks * 0.03125f * (Math.PI * 2.0f) + Math.toRadians(deg));
   }
 
   @Override
-  public void render(@Nonnull SilverFoxEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-    this.setRotationAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-    this.body1.render(scaleFactor);
-  }
-
-  @Override
-  public void setRotationAngles(SilverFoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+  public void setAngles(SilverFoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
     float cos = (float) Math.cos(ageInTicks * 0.0625f * (Math.PI * 2.0f));
     if (state == 0) {
