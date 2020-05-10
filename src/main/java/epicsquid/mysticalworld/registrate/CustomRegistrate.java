@@ -30,20 +30,20 @@ public class CustomRegistrate extends AbstractRegistrate<CustomRegistrate> {
     return new CustomRegistrate(modid).registerEventListeners(FMLJavaModLoadingContext.get().getModEventBus());
   }
 
-  public <T extends Effect> EffectBuilder<T, CustomRegistrate> effect(Supplier<? extends T> factory) {
+  public <T extends Effect> EffectBuilder<T, CustomRegistrate> effect(Supplier<T> factory) {
     return effect(this, factory);
   }
 
-  public <T extends Effect> EffectBuilder<T, CustomRegistrate> effect(String name, Supplier<? extends T> factory) {
+  public <T extends Effect> EffectBuilder<T, CustomRegistrate> effect(String name, Supplier<T> factory) {
     return effect(this, name, factory);
   }
 
-  public <T extends Effect, P> EffectBuilder<T, P> effect(P parent, Supplier<? extends T> factory) {
+  public <T extends Effect, P> EffectBuilder<T, P> effect(P parent, Supplier<T> factory) {
     return effect(parent, currentName(), factory);
   }
 
-  public <T extends Effect, P> EffectBuilder<T, P> effect(P parent, String name, Supplier<? extends T> factory) {
-    return entry(name, callback -> new EffectBuilder<>(this, parent, name, callback, factory));
+  public <T extends Effect, P> EffectBuilder<T, P> effect(P parent, String name, Supplier<T> factory) {
+    return entry(name, callback -> EffectBuilder.create(this, parent, name, callback, factory));
   }
 
   // Serializers

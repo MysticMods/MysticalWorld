@@ -137,6 +137,8 @@
   "block.mysticalworld.zombie_pigman_head": "Zombie Pigman Head",
   "block.mysticalworld.zombie_villager_head": "Zombie Villager Head",
   "drowned_wall_head": "Drowned Wall Head",
+  "effect.mysticalworld.slow_regeneration": "Slow Regeneration",
+  "effect.mysticalworld.wakeful": "Wakeful",
   "entity.mysticalworld.beetle": "Beetle",
   "entity.mysticalworld.deer": "Deer",
   "entity.mysticalworld.endermini": "Endermini",

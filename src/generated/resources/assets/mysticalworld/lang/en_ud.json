@@ -137,6 +137,8 @@
   "block.mysticalworld.zombie_pigman_head": "p\u0250\u01DDH u\u0250\u026Fb\u0131\u0500 \u01DD\u0131q\u026FoZ",
   "block.mysticalworld.zombie_villager_head": "p\u0250\u01DDH \u0279\u01DDb\u0250\u05DF\u05DF\u0131\u039B \u01DD\u0131q\u026FoZ",
   "drowned_wall_head": "p\u0250\u01DDH \u05DF\u05DF\u0250M p\u01DDu\u028Do\u0279\u15E1",
+  "effect.mysticalworld.slow_regeneration": "uo\u0131\u0287\u0250\u0279\u01DDu\u01DDb\u01DD\u1D1A \u028Do\u05DFS",
+  "effect.mysticalworld.wakeful": "\u05DFn\u025F\u01DD\u029E\u0250M",
   "entity.mysticalworld.beetle": "\u01DD\u05DF\u0287\u01DD\u01DD\u15FA",
   "entity.mysticalworld.deer": "\u0279\u01DD\u01DD\u15E1",
   "entity.mysticalworld.endermini": "\u0131u\u0131\u026F\u0279\u01DDpu\u018E",
