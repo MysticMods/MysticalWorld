@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.entity.model;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import epicsquid.mysticalworld.entity.SilverFoxEntity;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.entity.model.EntityModel;
@@ -106,14 +107,16 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
     this.tail1.addChild(this.tail2);
   }
 
-  @Override
-  protected Iterable<ModelRenderer> getBodyParts() {
-    return ImmutableList.of(body1, tail1, tail2, tail3, tail4, body2, frontL, frontR, backL, backR);
-  }
-
+  @Nonnull
   @Override
   protected Iterable<ModelRenderer> getHeadParts() {
-    return ImmutableList.of(head, neck, earR, snout, earL);
+    return ImmutableSet.of();
+  }
+
+  @Nonnull
+  @Override
+  protected Iterable<ModelRenderer> getBodyParts() {
+    return ImmutableSet.of(body1);
   }
 
   private float getBobble(float deg, float ageInTicks) {
@@ -121,7 +124,7 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
   }
 
   @Override
-  public void setAngles(SilverFoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+  public void setAngles(@Nonnull SilverFoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
     float cos = (float) Math.cos(ageInTicks * 0.0625f * (Math.PI * 2.0f));
     if (state == 0) {
@@ -175,7 +178,7 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
   }
 
   @Override
-  public void setLivingAnimations(SilverFoxEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
+  public void setLivingAnimations(@Nonnull SilverFoxEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
     SilverFoxEntity fox = entitylivingbaseIn;
 
     this.backL.setRotationPoint(1.0F, 4.0F, 1.5F);

@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.entity.model;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import epicsquid.mysticalworld.entity.FrogEntity;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.entity.model.EntityModel;
@@ -58,14 +59,16 @@ public class FrogModel extends AgeableModel<FrogEntity> {
     this.body.addChild(this.frontR);
   }
 
+  @Nonnull
   @Override
   protected Iterable<ModelRenderer> getHeadParts() {
-    return ImmutableList.of(head);
+    return ImmutableSet.of();
   }
 
+  @Nonnull
   @Override
   protected Iterable<ModelRenderer> getBodyParts() {
-    return ImmutableList.of(frontL, backL, frontR, backR, body);
+    return ImmutableSet.of(body);
   }
 
   @Override

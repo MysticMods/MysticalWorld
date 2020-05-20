@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld.entity.model;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import epicsquid.mysticalworld.entity.BeetleEntity;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -102,14 +102,16 @@ public class BeetleModel extends AgeableModel<BeetleEntity> {
     this.antennaL1.addChild(this.antennaR2_1);
   }
 
+  @Nonnull
   @Override
   protected Iterable<ModelRenderer> getHeadParts() {
-    return ImmutableList.of(head, antennaR1, antennaL1, antennaR2, antennaR2_1);
+    return ImmutableSet.of();
   }
 
+  @Nonnull
   @Override
   protected Iterable<ModelRenderer> getBodyParts() {
-    return ImmutableList.of(body, wingL, wingR, legL1, legL2, legL3, legR1, legR2, legR3);
+    return ImmutableSet.of(body);
   }
 
   private float getSwing(float deg, float ageInTicks) {

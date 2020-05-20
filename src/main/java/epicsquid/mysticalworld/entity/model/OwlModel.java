@@ -1,11 +1,15 @@
 package epicsquid.mysticalworld.entity.model;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import epicsquid.mysticalworld.entity.OwlEntity;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nonnull;
 
 public class OwlModel extends AgeableModel<OwlEntity> {
   private final ModelRenderer body;
@@ -90,14 +94,16 @@ public class OwlModel extends AgeableModel<OwlEntity> {
     tuftL.setTextureOffset(36, 43).addCuboid(0.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F, 0.0F, false);
   }
 
+  @Nonnull
   @Override
   protected Iterable<ModelRenderer> getHeadParts() {
-    return ImmutableList.of(head, tuftL, tuftR);
+    return ImmutableSet.of();
   }
 
+  @Nonnull
   @Override
   protected Iterable<ModelRenderer> getBodyParts() {
-    return ImmutableList.of(body, footR, footL, wingR1, wingR2, wingL1, wingL2, tail);
+    return ImmutableSet.of(body);
   }
 
   @Override

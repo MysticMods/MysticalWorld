@@ -9,6 +9,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class LavaCatModel extends AgeableModel<LavaCatEntity> {
   public final ModelRenderer ocelotBackLeftLeg;
@@ -69,7 +71,7 @@ public class LavaCatModel extends AgeableModel<LavaCatEntity> {
    * "far" arms and legs can swing at most.
    */
   @Override
-  public void setAngles(LavaCatEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+  public void setAngles(@Nonnull LavaCatEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     this.ocelotHead.rotateAngleX = headPitch * 0.017453292F;
     this.ocelotHead.rotateAngleY = netHeadYaw * 0.017453292F;
 
