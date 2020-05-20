@@ -22,6 +22,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiModel<EnderminiEntity>> {
@@ -34,6 +35,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
     this.addLayer(new HeldBlockLayer(this));
   }
 
+  @Nonnull
   @Override
   public Vec3d getPositionOffset(EnderminiEntity p_225627_1_, float p_225627_2_) {
     if (p_225627_1_.isScreaming()) {
@@ -52,16 +54,17 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
     endermanmodel.isAttacking = p_225623_1_.isScreaming();
     stack.push();
     stack.scale(0.4f, 0.4f, 0.4f);
-    stack.translate(0, 2.2, 0);
     super.render(p_225623_1_, p_225623_2_, p_225623_3_, stack, p_225623_5_, p_225623_6_);
     stack.pop();
   }
 
+  @Nonnull
   @Override
-  public ResourceLocation getEntityTexture(EnderminiEntity entity) {
+  public ResourceLocation getEntityTexture(@Nonnull EnderminiEntity entity) {
     return ENDERMINI_TEXTURES;
   }
 
+  @Nonnull
   @Override
   public EnderminiModel<EnderminiEntity> getEntityModel() {
     return ModelHolder.enderminiModel;
@@ -80,7 +83,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
     }
 
     @Override
-    public void render(MatrixStack p_225628_1_, IRenderTypeBuffer p_225628_2_, int p_225628_3_, EnderminiEntity p_225628_4_, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
+    public void render(@Nonnull MatrixStack p_225628_1_, @Nonnull IRenderTypeBuffer p_225628_2_, int p_225628_3_, EnderminiEntity p_225628_4_, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
       BlockState blockstate = p_225628_4_.getHeldBlockState();
       if (blockstate != null) {
         p_225628_1_.push();
@@ -103,6 +106,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
       super(p_i50939_1_);
     }
 
+    @Nonnull
     public RenderType getEyesTexture() {
       return SKIN;
     }

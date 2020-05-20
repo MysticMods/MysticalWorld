@@ -30,14 +30,12 @@ public class BeetleRenderer extends MobRenderer<BeetleEntity, BeetleModel> {
   }
 
   @Override
-  public void render(BeetleEntity entity, float yaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light)  {
+  public void render(BeetleEntity entity, float yaw, float partialTicks, MatrixStack matrix, @Nonnull IRenderTypeBuffer buffer, int light)  {
     matrix.push();
     if (entity.getGrowingAge() < 0) {
       matrix.scale(0.3f, 0.3f, 0.3f);
-      matrix.translate(0, 3.5, 0);
     } else {
       matrix.scale(0.45f, 0.45f, 0.45f);
-      matrix.translate(0, 1.85, 0);
     }
     super.render(entity, yaw, partialTicks, matrix, buffer, light);
     matrix.pop();

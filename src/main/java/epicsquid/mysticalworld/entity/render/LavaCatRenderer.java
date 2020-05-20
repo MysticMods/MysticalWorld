@@ -28,14 +28,14 @@ public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel> {
     this.addLayer(new LayerEyes(this));
   }
 
-  @Nullable
+  @Nonnull
   @Override
-  public ResourceLocation getEntityTexture(LavaCatEntity entity) {
+  public ResourceLocation getEntityTexture(@Nonnull LavaCatEntity entity) {
     return OBSIDIAN_KITTY;
   }
 
   @Override
-  protected void scale(LavaCatEntity p_225620_1_, MatrixStack matrix, float p_225620_3_) {
+  protected void scale(@Nonnull LavaCatEntity p_225620_1_, MatrixStack matrix, float p_225620_3_) {
     matrix.scale(1.2f, 1.2f, 1.2f);
     super.scale(p_225620_1_, matrix, p_225620_3_);
   }
