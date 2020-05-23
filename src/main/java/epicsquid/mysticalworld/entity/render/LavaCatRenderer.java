@@ -35,9 +35,9 @@ public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel> {
   }
 
   @Override
-  protected void scale(@Nonnull LavaCatEntity p_225620_1_, MatrixStack matrix, float p_225620_3_) {
+  protected void preRenderCallback(@Nonnull LavaCatEntity p_225620_1_, MatrixStack matrix, float p_225620_3_) {
     matrix.scale(1.2f, 1.2f, 1.2f);
-    super.scale(p_225620_1_, matrix, p_225620_3_);
+    super.preRenderCallback(p_225620_1_, matrix, p_225620_3_);
   }
 
   public static class Factory implements IRenderFactory<LavaCatEntity> {

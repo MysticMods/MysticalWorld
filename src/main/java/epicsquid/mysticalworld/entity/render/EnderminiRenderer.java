@@ -20,6 +20,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.client.model.data.EmptyModelData;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
@@ -37,12 +38,12 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
 
   @Nonnull
   @Override
-  public Vec3d getPositionOffset(EnderminiEntity p_225627_1_, float p_225627_2_) {
+  public Vec3d getRenderOffset(EnderminiEntity p_225627_1_, float p_225627_2_) {
     if (p_225627_1_.isScreaming()) {
       double d0 = 0.02D;
       return new Vec3d(this.rnd.nextGaussian() * 0.02D, 0.0D, this.rnd.nextGaussian() * 0.02D);
     } else {
-      return super.getPositionOffset(p_225627_1_, p_225627_2_);
+      return super.getRenderOffset(p_225627_1_, p_225627_2_);
     }
   }
 
@@ -88,12 +89,12 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
       if (blockstate != null) {
         p_225628_1_.push();
         p_225628_1_.translate(0.0D, 0.6875D, -0.75D);
-        p_225628_1_.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(20.0F));
-        p_225628_1_.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(45.0F));
+        p_225628_1_.rotate(Vector3f.XP.rotationDegrees(20.0F));
+        p_225628_1_.rotate(Vector3f.YP.rotationDegrees(45.0F));
         p_225628_1_.translate(0.25D, 0.1875D, 0.25D);
         p_225628_1_.scale(-0.5F, -0.5F, 0.5F);
-        p_225628_1_.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(90.0F));
-        Minecraft.getInstance().getBlockRendererDispatcher().renderBlockAsEntity(blockstate, p_225628_1_, p_225628_2_, p_225628_3_, OverlayTexture.DEFAULT_UV);
+        p_225628_1_.rotate(Vector3f.YP.rotationDegrees(90.0F));
+        Minecraft.getInstance().getBlockRendererDispatcher().renderBlock(blockstate, p_225628_1_, p_225628_2_, p_225628_3_, OverlayTexture.NO_OVERLAY, EmptyModelData.INSTANCE);
         p_225628_1_.pop();
       }
     }
@@ -106,8 +107,8 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
       super(p_i50939_1_);
     }
 
-    @Nonnull
-    public RenderType getEyesTexture() {
+    @Override
+    public RenderType getRenderType() {
       return SKIN;
     }
   }

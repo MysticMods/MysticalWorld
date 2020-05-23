@@ -55,7 +55,7 @@ public class GuideItem extends Item {
     ItemStack stack = playerIn.getHeldItem(handIn);
     Book book = getBook();
     if (book == null) {
-      return ActionResult.fail(stack);
+      return ActionResult.resultFail(stack);
     } else {
       if (playerIn instanceof ServerPlayerEntity) {
         NetworkHandler.sendToPlayer(new MessageOpenBookGui(book.id, null), (ServerPlayerEntity) playerIn);
@@ -63,7 +63,7 @@ public class GuideItem extends Item {
         worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, sfx, SoundCategory.PLAYERS, 1.0F, (float) (0.7D + Math.random() * 0.4D));
       }
 
-      return ActionResult.success(stack);
+      return ActionResult.resultSuccess(stack);
     }
   }
 }

@@ -244,7 +244,7 @@ public class ModBlocks {
           registerLootTable(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
               droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), BlockStateProperty.
                   builder(ModBlocks.AUBERGINE_CROP.get()).
-                  func_227567_a_(StatePropertiesPredicate.Builder.create().exactMatch(CropsBlock.AGE, 7)))))
+                  fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7)))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 

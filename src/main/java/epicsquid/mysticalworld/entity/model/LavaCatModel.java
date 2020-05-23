@@ -25,32 +25,32 @@ public class LavaCatModel extends AgeableModel<LavaCatEntity> {
 
   public LavaCatModel() {
     this.ocelotHead = new ModelRenderer(this);
-    this.ocelotHead.func_217178_a("main", -2.5F, -2.0F, -3.0F, 5, 4, 5, 0, 0, 0);
-    this.ocelotHead.func_217178_a("nose", -1.5F, 0.0F, -4.0F, 3, 2, 2, 0, 0, 24);
-    this.ocelotHead.func_217178_a("ear1", -2.0F, -3.0F, 0.0F, 1, 1, 2, 0, 0, 10);
-    this.ocelotHead.func_217178_a("ear2", 1.0F, -3.0F, 0.0F, 1, 1, 2, 0, 6, 10);
+    this.ocelotHead.addBox("main", -2.5F, -2.0F, -3.0F, 5, 4, 5, 0, 0, 0);
+    this.ocelotHead.addBox("nose", -1.5F, 0.0F, -4.0F, 3, 2, 2, 0, 0, 24);
+    this.ocelotHead.addBox("ear1", -2.0F, -3.0F, 0.0F, 1, 1, 2, 0, 0, 10);
+    this.ocelotHead.addBox("ear2", 1.0F, -3.0F, 0.0F, 1, 1, 2, 0, 6, 10);
     this.ocelotHead.setRotationPoint(0.0F, 15.0F, -9.0F);
     this.ocelotBody = new ModelRenderer(this, 20, 0);
-    this.ocelotBody.addCuboid(-2.0F, 3.0F, -8.0F, 4, 16, 6, 0);
+    this.ocelotBody.addBox(-2.0F, 3.0F, -8.0F, 4, 16, 6, 0);
     this.ocelotBody.setRotationPoint(0.0F, 12.0F, -10.0F);
     this.ocelotTail = new ModelRenderer(this, 0, 15);
-    this.ocelotTail.addCuboid(-0.5F, 0.0F, 0.0F, 1, 8, 1, 0);
+    this.ocelotTail.addBox(-0.5F, 0.0F, 0.0F, 1, 8, 1, 0);
     this.ocelotTail.rotateAngleX = 0.9F;
     this.ocelotTail.setRotationPoint(0.0F, 15.0F, 8.0F);
     this.ocelotTail2 = new ModelRenderer(this, 4, 15);
-    this.ocelotTail2.addCuboid(-0.5F, 0.0F, 0.0F, 1, 8, 1, 0);
+    this.ocelotTail2.addBox(-0.5F, 0.0F, 0.0F, 1, 8, 1, 0);
     this.ocelotTail2.setRotationPoint(0.0F, 20.0F, 14.0F);
     this.ocelotBackLeftLeg = new ModelRenderer(this, 8, 13);
-    this.ocelotBackLeftLeg.addCuboid(-1.0F, 0.0F, 1.0F, 2, 6, 2, 0);
+    this.ocelotBackLeftLeg.addBox(-1.0F, 0.0F, 1.0F, 2, 6, 2, 0);
     this.ocelotBackLeftLeg.setRotationPoint(1.1F, 18.0F, 5.0F);
     this.ocelotBackRightLeg = new ModelRenderer(this, 8, 13);
-    this.ocelotBackRightLeg.addCuboid(-1.0F, 0.0F, 1.0F, 2, 6, 2, 0);
+    this.ocelotBackRightLeg.addBox(-1.0F, 0.0F, 1.0F, 2, 6, 2, 0);
     this.ocelotBackRightLeg.setRotationPoint(-1.1F, 18.0F, 5.0F);
     this.ocelotFrontLeftLeg = new ModelRenderer(this, 40, 0);
-    this.ocelotFrontLeftLeg.addCuboid(-1.0F, 0.0F, 0.0F, 2, 10, 2, 0);
+    this.ocelotFrontLeftLeg.addBox(-1.0F, 0.0F, 0.0F, 2, 10, 2, 0);
     this.ocelotFrontLeftLeg.setRotationPoint(1.2F, 14.1F, -5.0F);
     this.ocelotFrontRightLeg = new ModelRenderer(this, 40, 0);
-    this.ocelotFrontRightLeg.addCuboid(-1.0F, 0.0F, 0.0F, 2, 10, 2, 0);
+    this.ocelotFrontRightLeg.addBox(-1.0F, 0.0F, 0.0F, 2, 10, 2, 0);
     this.ocelotFrontRightLeg.setRotationPoint(-1.2F, 14.1F, -5.0F);
   }
 
@@ -71,7 +71,7 @@ public class LavaCatModel extends AgeableModel<LavaCatEntity> {
    * "far" arms and legs can swing at most.
    */
   @Override
-  public void setAngles(@Nonnull LavaCatEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+  public void setRotationAngles(@Nonnull LavaCatEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     this.ocelotHead.rotateAngleX = headPitch * 0.017453292F;
     this.ocelotHead.rotateAngleY = netHeadYaw * 0.017453292F;
 

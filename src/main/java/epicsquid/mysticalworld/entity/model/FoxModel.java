@@ -38,58 +38,58 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
     this.backL = new ModelRenderer(this, 0, 16);
     this.backL.mirror = true;
     this.backL.setRotationPoint(1.0F, 4.0F, 1.5F);
-    this.backL.addCuboid(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
+    this.backL.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
     this.tail4 = new ModelRenderer(this, 8, 18);
     this.tail4.setRotationPoint(0.0F, 3.5F, 0.0F);
-    this.tail4.addCuboid(-1.0F, 0.0F, -1.0F, 2, 2, 2, 0.0F);
+    this.tail4.addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2, 0.0F);
     this.setRotateAngle(tail4, 0.39269908169872414F, 0.0F, 0.0F);
     this.body1 = new ModelRenderer(this, 12, 8);
     this.body1.setRotationPoint(0.0F, 15.5F, -2.0F);
-    this.body1.addCuboid(-2.5F, 0.0F, 0.0F, 5, 4, 5, 0.0F);
+    this.body1.addBox(-2.5F, 0.0F, 0.0F, 5, 4, 5, 0.0F);
     this.backR = new ModelRenderer(this, 0, 16);
     this.backR.setRotationPoint(-1.0F, 4.0F, 1.5F);
-    this.backR.addCuboid(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
+    this.backR.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
     this.neck = new ModelRenderer(this, 16, 0);
     this.neck.setRotationPoint(0.0F, 1.5F, 2.0F);
-    this.neck.addCuboid(-2.0F, -2.0F, -4.0F, 4, 4, 4, 0.0F);
+    this.neck.addBox(-2.0F, -2.0F, -4.0F, 4, 4, 4, 0.0F);
     this.setRotateAngle(neck, -0.2617993877991494F, 0.0F, 0.0F);
     this.earR = new ModelRenderer(this, 0, 12);
     this.earR.setRotationPoint(-1.5F, -1.0F, -1.0F);
-    this.earR.addCuboid(-1.0F, -3.0F, -0.5F, 2, 3, 1, 0.0F);
+    this.earR.addBox(-1.0F, -3.0F, -0.5F, 2, 3, 1, 0.0F);
     this.setRotateAngle(earR, 0.0F, 0.2617993877991494F, -0.5235987755982988F);
     this.tail3 = new ModelRenderer(this, 0, 24);
     this.tail3.setRotationPoint(0.0F, 3.0F, 0.0F);
-    this.tail3.addCuboid(-2.0F, 0.0F, -2.0F, 4, 4, 4, 0.0F);
+    this.tail3.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4, 0.0F);
     this.snout = new ModelRenderer(this, 0, 0);
     this.snout.setRotationPoint(0.0F, 0.0F, -3.0F);
-    this.snout.addCuboid(-1.5F, 0.0F, -3.0F, 3, 2, 3, 0.0F);
+    this.snout.addBox(-1.5F, 0.0F, -3.0F, 3, 2, 3, 0.0F);
     this.setRotateAngle(snout, 0.17453292519943295F, 0.0F, 0.0F);
     this.head = new ModelRenderer(this, 0, 5);
     this.head.setRotationPoint(0.0F, 0.0F, -4.0F);
-    this.head.addCuboid(-2.5F, -2.0F, -3.0F, 5, 4, 3, 0.0F);
+    this.head.addBox(-2.5F, -2.0F, -3.0F, 5, 4, 3, 0.0F);
     this.setRotateAngle(head, 0.2617993877991494F, 0.0F, 0.0F);
     this.tail1 = new ModelRenderer(this, 12, 0);
     this.tail1.setRotationPoint(0.0F, 1.0F, 2.5F);
-    this.tail1.addCuboid(-1.0F, 0.0F, -1.0F, 2, 2, 2, 0.0F);
+    this.tail1.addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2, 0.0F);
     this.setRotateAngle(tail1, 1.1780972450961724F, 0.0F, 0.0F);
     this.earL = new ModelRenderer(this, 0, 12);
     this.earL.mirror = true;
     this.earL.setRotationPoint(1.5F, -1.0F, -1.0F);
-    this.earL.addCuboid(-1.0F, -3.0F, -0.5F, 2, 3, 1, 0.0F);
+    this.earL.addBox(-1.0F, -3.0F, -0.5F, 2, 3, 1, 0.0F);
     this.setRotateAngle(earL, 0.0F, -0.2617993877991494F, 0.5235987755982988F);
     this.frontL = new ModelRenderer(this, 0, 16);
     this.frontL.mirror = true;
     this.frontL.setRotationPoint(1.0F, 4.0F, 1.0F);
-    this.frontL.addCuboid(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
+    this.frontL.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
     this.body2 = new ModelRenderer(this, 16, 17);
     this.body2.setRotationPoint(0.0F, 0.0F, 5.0F);
-    this.body2.addCuboid(-2.0F, 0.0F, 0.0F, 4, 4, 3, 0.0F);
+    this.body2.addBox(-2.0F, 0.0F, 0.0F, 4, 4, 3, 0.0F);
     this.frontR = new ModelRenderer(this, 0, 16);
     this.frontR.setRotationPoint(-1.0F, 4.0F, 1.0F);
-    this.frontR.addCuboid(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
+    this.frontR.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
     this.tail2 = new ModelRenderer(this, 16, 24);
     this.tail2.setRotationPoint(0.0F, 1.5F, 0.0F);
-    this.tail2.addCuboid(-1.5F, 0.0F, -1.5F, 3, 3, 3, 0.0F);
+    this.tail2.addBox(-1.5F, 0.0F, -1.5F, 3, 3, 3, 0.0F);
     this.setRotateAngle(tail2, -0.39269908169872414F, 0.0F, 0.0F);
     this.body2.addChild(this.backL);
     this.tail3.addChild(this.tail4);
@@ -124,7 +124,7 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
   }
 
   @Override
-  public void setAngles(@Nonnull SilverFoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+  public void setRotationAngles(@Nonnull SilverFoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
     float cos = (float) Math.cos(ageInTicks * 0.0625f * (Math.PI * 2.0f));
     if (state == 0) {

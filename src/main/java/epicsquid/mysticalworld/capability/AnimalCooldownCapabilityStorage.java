@@ -12,7 +12,7 @@ public class AnimalCooldownCapabilityStorage implements Capability.IStorage<Anim
   @Nullable
   @Override
   public INBT writeNBT(Capability<AnimalCooldownCapability> capability, AnimalCooldownCapability instance, Direction side) {
-    return LongNBT.of(instance.getCooldown());
+    return LongNBT.valueOf(instance.getCooldown());
   }
 
   @Override

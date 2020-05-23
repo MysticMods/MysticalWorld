@@ -18,31 +18,31 @@ public class SproutModel extends AgeableModel<SproutEntity> {
     textureHeight = 32;
 
     head = new ModelRenderer(this, 12, 0);
-    head.addCuboid(-2.5F, 0F, -2.5F, 5, 5, 5);
+    head.addBox(-2.5F, 0F, -2.5F, 5, 5, 5);
     head.setRotationPoint(0F, 11F, 0F);
     head.setTextureSize(32, 32);
     head.mirror = true;
     setRotation(head, 0F, 0F, 0F);
     legL = new ModelRenderer(this, 0, 0);
-    legL.addCuboid(-1F, 0F, -1F, 2, 8, 2);
+    legL.addBox(-1F, 0F, -1F, 2, 8, 2);
     legL.setRotationPoint(1.5F, 16F, 0F);
     legL.setTextureSize(32, 32);
     legL.mirror = true;
     setRotation(legL, 0F, 0F, 0F);
     legR = new ModelRenderer(this, 0, 0);
-    legR.addCuboid(-1F, 0F, -1F, 2, 8, 2);
+    legR.addBox(-1F, 0F, -1F, 2, 8, 2);
     legR.setRotationPoint(-1.5F, 16F, 0F);
     legR.setTextureSize(32, 32);
     legR.mirror = true;
     setRotation(legR, 0F, 0F, 0F);
     leafTop = new ModelRenderer(this, 8, 0);
-    leafTop.addCuboid(-0.5F, 0F, -0.5F, 1, 2, 1);
+    leafTop.addBox(-0.5F, 0F, -0.5F, 1, 2, 1);
     leafTop.setRotationPoint(0F, 9F, -1F);
     leafTop.setTextureSize(32, 32);
     leafTop.mirror = true;
     setRotation(leafTop, 0F, 0F, 0F);
     leafBottom = new ModelRenderer(this, 0, 10);
-    leafBottom.addCuboid(-1.5F, -0.5F, -0.5F, 3, 4, 1);
+    leafBottom.addBox(-1.5F, -0.5F, -0.5F, 3, 4, 1);
     leafBottom.setRotationPoint(0F, 9F, -1F);
     leafBottom.setTextureSize(32, 32);
     leafBottom.mirror = true;
@@ -60,7 +60,7 @@ public class SproutModel extends AgeableModel<SproutEntity> {
   }
 
   @Override
-  public void setAngles(SproutEntity entity, float f, float f1, float age, float f3, float f4) {
+  public void setRotationAngles(SproutEntity entity, float f, float f1, float age, float f3, float f4) {
     float speed = (float) Math.min(0.25f, ((new Vec3d(entity.getMotion().x, 0, entity.getMotion().z)).length() * 4.0f));
     legL.rotateAngleX = -(float) Math.toRadians(speed * 240f * (float) Math.sin(Math.toRadians(age % 360) * 24F));
     legR.rotateAngleX = (float) Math.toRadians(speed * 240f * (float) Math.sin(Math.toRadians(age % 360) * 24F));
