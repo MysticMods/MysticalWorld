@@ -39,7 +39,7 @@ minecraft {
     // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'snapshot', version: "${mcp_mappings}"
+    mappings channel: 'stable', version: "${mcp_mappings}"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -141,6 +141,10 @@ dependencies {
     def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
     implementation fg.deobf(registrate)
     shade registrate
+
+    def noobutil = "noobanidus.libs:noobutil:${minecraft_version}-${noobutil_version}"
+    implementation fg.deobf(noobutil)
+    shade noobutil
 }
 
 sourceSets.main.resources {
@@ -164,6 +168,7 @@ jar {
 shadowJar {
     configurations = [project.configurations.shade]
     relocate 'com.tterrag.registrate', 'epicsquid.mysticalworld.repack.registrate'
+    relocate 'noobanidus.libs.noobutil', 'noobanids.libs.repack_grindr.noobutil'
     classifier ''
 }
 

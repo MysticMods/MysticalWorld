@@ -9,7 +9,6 @@ import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.loot.conditions.IsColor;
 import epicsquid.mysticalworld.loot.conditions.IsLava;
 import epicsquid.mysticalworld.loot.conditions.IsObsidian;
-import epicsquid.mysticalworld.registrate.CustomRegistrate;
 import epicsquid.mysticalworld.setup.ClientSetup;
 import epicsquid.mysticalworld.setup.CommonSetup;
 import net.minecraft.block.Block;
@@ -27,6 +26,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
+import noobanidus.libs.noobutil.registrate.CustomRegistrate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
