@@ -19,14 +19,12 @@ import javax.annotation.Nonnull;
 
 @OnlyIn(Dist.CLIENT)
 public class LayerEyes extends AbstractEyesLayer<LavaCatEntity, LavaCatModel> {
-  private static final RenderType LAVA_EYES_TEXTURE = RenderType.getEyes(new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_eyes.png"));
-  private static final RenderType OBSIDIAN_EYES_TEXTURE = RenderType.getEyes(new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_obsidian_eyes.png"));
+  private static final RenderType LAVA_EYES_TEXTURE = RenderType.getEntityCutout(new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_eyes.png"));
+  private static final RenderType OBSIDIAN_EYES_TEXTURE = RenderType.getEntityCutout(new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_obsidian_eyes.png"));
 
   public LayerEyes(IEntityRenderer<LavaCatEntity, LavaCatModel> entityRendererIn) {
     super(entityRendererIn);
   }
-
-
 
   @Override
   public void render(@Nonnull MatrixStack p_225628_1_, @Nonnull IRenderTypeBuffer p_225628_2_, int p_225628_3_, LavaCatEntity p_225628_4_, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
@@ -36,7 +34,7 @@ public class LayerEyes extends AbstractEyesLayer<LavaCatEntity, LavaCatModel> {
     } else {
       ivertexbuilder = p_225628_2_.getBuffer(OBSIDIAN_EYES_TEXTURE);
     }
-    // TODO: this.getEntityModel().render(p_225628_1_, ivertexbuilder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+    this.getEntityModel().render(p_225628_1_, ivertexbuilder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
   }
 
   @Override
