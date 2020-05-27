@@ -8,7 +8,6 @@ import epicsquid.mysticalworld.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -21,7 +20,7 @@ public class ModBlocks {
   // All blocks
   public static Block thatch, thatch_wall, thatch_double_slab, thatch_slab, thatch_stairs;
   public static BlockCropBase aubergine;
-  public static Block oak_apple;
+  public static Block gall_apple;
   public static Block mud_block, wet_mud_block, mud_brick, wet_mud_brick, charred_log, charred_planks;
   public static Block mud_brick_stair, mud_brick_slab, mud_brick_double_slab, mud_brick_wall, mud_brick_fence, mud_brick_button, mud_brick_pressure_plate, mud_brick_fence_gate;
   public static Block mud_block_stair, mud_block_slab, mud_block_double_slab, mud_block_wall, mud_block_fence, mud_block_button, mud_block_pressure_plate, mud_block_fence_gate;
@@ -44,8 +43,7 @@ public class ModBlocks {
     thatch_double_slab = slabs[1];
 
     event.addBlock(aubergine = new BlockAubergineCrop("aubergine_crop", EnumPlantType.Crop));
-    event.addBlock(oak_apple = new BlockOakApple("oak_apple_crop"));
-    /*    event.addBlock(poisoned_potato = new BlockPoisonedPotatoCrop("poisoned_potato_crop", EnumPlantType.Crop));*/
+    event.addBlock(gall_apple = new BlockOakApple("gall_apple_crop"));
     event.addBlock(charred_log = new BlockLogBase("charred_log") {
       @Override
       public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {

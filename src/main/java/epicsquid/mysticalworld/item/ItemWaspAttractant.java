@@ -42,7 +42,7 @@ public class ItemWaspAttractant extends ItemBase {
         pos = pos.offset(facing);
 
         if (worldIn.isAirBlock(pos)) {
-          IBlockState iblockstate1 = ModBlocks.oak_apple.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
+          IBlockState iblockstate1 = ModBlocks.gall_apple.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
           worldIn.setBlockState(pos, iblockstate1, 10);
 
           if (!player.capabilities.isCreativeMode) {

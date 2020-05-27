@@ -33,25 +33,25 @@ public class BlockOakApple extends BlockBase implements IGrowable {
   public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
   public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-  protected static final AxisAlignedBB[] OAK_APPLE_NORTH_AABB = new AxisAlignedBB[]{
+  protected static final AxisAlignedBB[] gall_apple_NORTH_AABB = new AxisAlignedBB[]{
       new AxisAlignedBB(0.4375, 0.4375, 0, 0.5625, 0.5625, 0.0625), //0.6, 0.6, 0.0625),
       new AxisAlignedBB(0.4375, 0.4375, 0, 0.5625, 0.5625, 0.125), //0.6, 0.6, 0.125),
       new AxisAlignedBB(0.40625, 0.40625, 0, 0.59375, 0.59375, 0.125),
       new AxisAlignedBB(0.40625, 0.40625, 0, 0.59375, 0.59375, 0.1875)
   };
-  protected static final AxisAlignedBB[] OAK_APPLE_SOUTH_AABB = new AxisAlignedBB[]{
+  protected static final AxisAlignedBB[] gall_apple_SOUTH_AABB = new AxisAlignedBB[]{
       new AxisAlignedBB(0.4375, 0.4375, 0.9375, 0.5625, 0.5625, 1),
       new AxisAlignedBB(0.4375, 0.4375, 0.875, 0.5625, 0.5625, 1),
       new AxisAlignedBB(0.40625, 0.40625, 0.875, 0.59375, 0.59375, 1),
       new AxisAlignedBB(0.40625, 0.40625, 0.8125, 0.59375, 0.59375, 1)
   };
-  protected static final AxisAlignedBB[] OAK_APPLE_WEST_AABB = new AxisAlignedBB[]{
+  protected static final AxisAlignedBB[] gall_apple_WEST_AABB = new AxisAlignedBB[]{
       new AxisAlignedBB(0, 0.4375, 0.4375, 0.0625, 0.5625, 0.5625),
       new AxisAlignedBB(0, 0.4375, 0.4375, 0.125, 0.5625, 0.5625),
       new AxisAlignedBB(0, 0.40625, 0.40625, 0.125, 0.59375, 0.59375),
       new AxisAlignedBB(0, 0.40625, 0.40625, 0.1875, 0.59375, 0.59375)
   };
-  protected static final AxisAlignedBB[] OAK_APPLE_EAST_AABB = new AxisAlignedBB[]{
+  protected static final AxisAlignedBB[] gall_apple_EAST_AABB = new AxisAlignedBB[]{
       new AxisAlignedBB(0.9375, 0.4375, 0.4375, 1, 0.5625, 0.5625),
       new AxisAlignedBB(0.875, 0.4375, 0.4375, 1, 0.5625, 0.5625),
       new AxisAlignedBB(0.875, 0.40625, 0.40625, 1, 0.59375, 0.59375),
@@ -102,14 +102,14 @@ public class BlockOakApple extends BlockBase implements IGrowable {
 
     switch (state.getValue(FACING)) {
       case SOUTH:
-        return OAK_APPLE_SOUTH_AABB[i];
+        return gall_apple_SOUTH_AABB[i];
       case NORTH:
       default:
-        return OAK_APPLE_NORTH_AABB[i];
+        return gall_apple_NORTH_AABB[i];
       case WEST:
-        return OAK_APPLE_WEST_AABB[i];
+        return gall_apple_WEST_AABB[i];
       case EAST:
-        return OAK_APPLE_EAST_AABB[i];
+        return gall_apple_EAST_AABB[i];
     }
   }
 

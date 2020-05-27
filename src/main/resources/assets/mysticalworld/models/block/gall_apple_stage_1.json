@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"2": "mysticalworld:blocks/oak_apple",
+		"2": "mysticalworld:blocks/gall_apple",
 		"particle": "blocks/log_big_oak"
 	},
 	"elements": [
