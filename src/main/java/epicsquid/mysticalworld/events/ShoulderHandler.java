@@ -86,7 +86,6 @@ public class ShoulderHandler {
               } catch (Throwable throwable) {
                 MysticalWorld.LOG.error("Unable to unset player having a shoulder entity", throwable);
               }
-              event.setCanceled(true);
               ShoulderRide message = new ShoulderRide(player, cap);
               Networking.send(PacketDistributor.ALL.noArg(), message);
             }
