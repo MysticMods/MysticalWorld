@@ -158,6 +158,7 @@ public class DeadTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
 
   }
 
+  @Override
   public boolean place(Set<BlockPos> changedBlocks, IWorldGenerationReader worldIn, Random rand, BlockPos position, MutableBoundingBox boundsIn) {
     Random random = new Random(rand.nextLong());
     int i = this.checkLocation(changedBlocks, worldIn, position, 5 + random.nextInt(12), boundsIn);

@@ -31,7 +31,9 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.BlockStateProperty;
+import net.minecraft.world.storage.loot.functions.SetCount;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.Tags;
@@ -236,12 +238,19 @@ public class ModBlocks {
       .blockstate(narrowPost(ModBlocks.THATCH))
       .register();
 
-  public static RegistryEntry<AubergineCropBlock> AUBERGINE_CROP = REGISTRATE.block("aubergine_crop", AubergineCropBlock::new)
-      .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
+  public static RegistryEntry<AubergineCropBlock> AUBERGINE_CROP = REGISTRATE.block("aubergine_crop", Material.PLANTS, AubergineCropBlock::new)
+      .properties(o -> o.doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
       .loot((p, t) -> p.
           registerLootTable(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
               droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), BlockStateProperty.
                   builder(ModBlocks.AUBERGINE_CROP.get()).with(CropsBlock.AGE, 7))))
+      .blockstate(NonNullBiConsumer.noop())
+      .register();
+
+  public static RegistryEntry<GallAppleCropBlock> GALL_APPLE_CROP = REGISTRATE.block("gall_apple_crop", Material.PLANTS, GallAppleCropBlock::new)
+      .properties(o -> o.doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
+      .loot((p, t) -> p.registerLootTable(
+          ModBlocks.GALL_APPLE_CROP.get(), LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(Items.AIR /* TANNINS */).acceptFunction(SetCount.builder(ConstantRange.of(2)).acceptCondition(BlockStateProperty.builder(ModBlocks.GALL_APPLE_CROP.get()).with(CocoaBlock.AGE, 3)))))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 

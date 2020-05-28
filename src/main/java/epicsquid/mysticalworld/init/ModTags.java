@@ -112,6 +112,14 @@ public class ModTags {
       ItemBuilder b = new ItemBuilder(p);
       b.additional(Tags.Items.ORES).add(MWTags.Items.AMETHYST_ORE, MWTags.Items.COPPER_ORE, MWTags.Items.LEAD_ORE, MWTags.Items.QUICKSILVER_ORE, MWTags.Items.SILVER_ORE, MWTags.Items.TIN_ORE);
 
+      b.add(MWTags.Items.SWEETS, Items.SUGAR, Items.APPLE, Items.COOKIE, Items.MELON_SLICE, Items.CAKE, Items.PUMPKIN_PIE, Items.BEETROOT);
+      b.add(MWTags.Items.FISH, Items.COD, Items.SALMON, Items.TROPICAL_FISH, ModItems.RAW_SQUID.get());
+      b.add(MWTags.Items.COOKED_FISH, Items.COOKED_COD, Items.COOKED_SALMON, ModItems.COOKED_SQUID.get());
+      b.add(MWTags.Items.MEAT, Items.BEEF, Items.MUTTON, Items.RABBIT, Items.PORKCHOP, Items.CHICKEN, ModItems.VENISON.get());
+      b.add(MWTags.Items.COOKED_MEAT, Items.COOKED_BEEF, Items.COOKED_CHICKEN, Items.COOKED_MUTTON, Items.COOKED_PORKCHOP, Items.COOKED_RABBIT, ModItems.COOKED_VENISON.get());
+      b.additional(MWTags.Items.PROTEIN).add(MWTags.Items.FISH, MWTags.Items.COOKED_FISH, MWTags.Items.MEAT, MWTags.Items.COOKED_MEAT);
+      b.add(MWTags.Items.PROTEIN, Items.EGG, Items.ROTTEN_FLESH);
+
       b.add(MWTags.Items.AUBERGINE, ModItems.AUBERGINE);
       b.add(MWTags.Items.EGGPLANT, MWTags.Items.AUBERGINE);
 

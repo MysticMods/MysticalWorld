@@ -118,6 +118,13 @@ public class MWTags {
     public static Tag<Item> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
     public static Tag<Item> TERRACOTTA = compatTag("terracotta");
 
+    public static Tag<Item> SWEETS = modTag("sweets");
+    public static Tag<Item> FISH = compatTag("fish");
+    public static Tag<Item> COOKED_FISH = compatTag("cooked_fish");
+    public static Tag<Item> MEAT = compatTag("meat");
+    public static Tag<Item> COOKED_MEAT = compatTag("cooked_meat");
+    public static Tag<Item> PROTEIN = compatTag("protein");
+
     static Tag<Item> tag(String modid, String name) {
       return tag(ItemTags.Wrapper::new, modid, name);
     }

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:fish",
+    "#forge:cooked_fish",
+    "#forge:meat",
+    "#forge:cooked_meat",
+    "minecraft:egg",
+    "minecraft:rotten_flesh"
+  ]
+}

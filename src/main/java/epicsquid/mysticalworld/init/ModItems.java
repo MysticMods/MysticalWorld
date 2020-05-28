@@ -276,6 +276,19 @@ public class ModItems {
       .recipe((ctx, p) -> RECIPES.singleItem(ModItems.AUBERGINE, ModItems.AUBERGINE_SEEDS, 1, 1, p))
       .register();
 
+  public static RegistryEntry<BlockNamedItem> WASP_ATTRACTANT = REGISTRATE.item("wasp_attractant", blockNamedItem(ModBlocks.GALL_APPLE_CROP))
+      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 4).addIngredient(Items.BONE_MEAL).addIngredient(MWTags.Items.SWEETS).addIngredient(MWTags.Items.PROTEIN))
+      .register();
+
+  public static RegistryEntry<Item> GALL_APPLE = REGISTRATE.item("gall_apple", Item::new)
+      .register();
+
+  public static RegistryEntry<TanninsItem> TANNINS = REGISTRATE.item("tannins", TanninsItem::new)
+      .recipe((ctx, p) ->
+        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 4).addIngredient(ModItems.GALL_APPLE.get()).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addCriterion("has_tannins", p.hasItem(ModItems.GALL_APPLE.get())).build(p)
+      )
+      .register();
+
   public static RegistryEntry<Item> COOKED_BEETROOT = REGISTRATE.item("cooked_beetroot", Item::new)
       .properties(o -> o.food(ModFoods.COOKED_BEETROOT))
       .register();
