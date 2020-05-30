@@ -277,15 +277,17 @@ public class ModItems {
       .register();
 
   public static RegistryEntry<BlockNamedItem> WASP_ATTRACTANT = REGISTRATE.item("wasp_attractant", blockNamedItem(ModBlocks.GALL_APPLE_CROP))
-      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 4).addIngredient(Items.BONE_MEAL).addIngredient(MWTags.Items.SWEETS).addIngredient(MWTags.Items.PROTEIN))
+      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 4).addIngredient(Items.BONE_MEAL).addIngredient(MWTags.Items.SWEETS).addIngredient(MWTags.Items.PROTEIN).build(p))
       .register();
 
   public static RegistryEntry<Item> GALL_APPLE = REGISTRATE.item("gall_apple", Item::new)
       .register();
 
   public static RegistryEntry<TanninsItem> TANNINS = REGISTRATE.item("tannins", TanninsItem::new)
-      .recipe((ctx, p) ->
-        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 4).addIngredient(ModItems.GALL_APPLE.get()).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addCriterion("has_tannins", p.hasItem(ModItems.GALL_APPLE.get())).build(p)
+      .recipe((ctx, p) -> {
+            ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 4).addIngredient(ModItems.GALL_APPLE.get()).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addCriterion("has_tannins", p.hasItem(ModItems.GALL_APPLE.get())).build(p);
+            ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER, 3).addIngredient(ModItems.TANNINS.get()).addIngredient(Items.ROTTEN_FLESH).addIngredient(Items.ROTTEN_FLESH).addIngredient(Items.ROTTEN_FLESH).build(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_via_tannins"));
+          }
       )
       .register();
 
@@ -294,15 +296,7 @@ public class ModItems {
       .register();
 
   public static RegistryEntry<FastFoodItem> SLICED_CARROT = REGISTRATE.item("sliced_carrot", FastFoodItem::new)
-      .properties(o -> o.food(ModFoods.SLICED_CARROT))
-/*      .recipe((ctx, p) -> {
-        ShapelessRecipeBuilder.shapelessRecipe(ModItems.SLICED_CARROT.get(), 4)
-            .addIngredient(Tags.Items.CROPS_CARROT)
-            .addIngredient(MWTags.Items.KNIVES)
-            .addCriterion("has_carrot", p.hasItem(Tags.Items.CROPS_CARROT))
-            .addCriterion("has_knives", p.hasItem(MWTags.Items.KNIVES))
-            .build(p);
-      })*/
+      .properties(o -> o.food(ModFoods.SLICED_CARROT)) // 88, 57
       .register();
 
   public static RegistryEntry<Item> COOKED_CARROT = REGISTRATE.item("cooked_carrot", Item::new)

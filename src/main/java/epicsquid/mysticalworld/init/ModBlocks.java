@@ -250,7 +250,7 @@ public class ModBlocks {
   public static RegistryEntry<GallAppleCropBlock> GALL_APPLE_CROP = REGISTRATE.block("gall_apple_crop", Material.PLANTS, GallAppleCropBlock::new)
       .properties(o -> o.doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
       .loot((p, t) -> p.registerLootTable(
-          ModBlocks.GALL_APPLE_CROP.get(), LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(Items.AIR /* TANNINS */).acceptFunction(SetCount.builder(ConstantRange.of(2)).acceptCondition(BlockStateProperty.builder(ModBlocks.GALL_APPLE_CROP.get()).with(CocoaBlock.AGE, 3)))))))
+          ModBlocks.GALL_APPLE_CROP.get(), LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(ModItems.GALL_APPLE.get()).acceptFunction(SetCount.builder(ConstantRange.of(2)).acceptCondition(BlockStateProperty.builder(ModBlocks.GALL_APPLE_CROP.get()).with(GallAppleCropBlock.AGE, 3)))))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 

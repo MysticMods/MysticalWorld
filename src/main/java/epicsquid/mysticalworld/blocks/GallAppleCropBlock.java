@@ -8,6 +8,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -15,38 +16,25 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import noobanidus.libs.noobutil.util.VoxelUtil;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public class GallAppleCropBlock extends HorizontalBlock implements IGrowable {
   public static final IntegerProperty AGE = BlockStateProperties.AGE_0_3;
 
-  protected static final VoxelShape[] NORTH_AABB = new VoxelShape[]{
-      Block.makeCuboidShape(0.4375, 0.4375, 0, 0.5625, 0.5625, 0.0625),
-      Block.makeCuboidShape(0.4375, 0.4375, 0, 0.5625, 0.5625, 0.125),
-      Block.makeCuboidShape(0.40625, 0.40625, 0, 0.59375, 0.59375, 0.125),
-      Block.makeCuboidShape(0.40625, 0.40625, 0, 0.59375, 0.59375, 0.1875)
-  };
-  protected static final VoxelShape[] SOUTH_AABB = new VoxelShape[]{
-      Block.makeCuboidShape(0.4375, 0.4375, 0.9375, 0.5625, 0.5625, 1),
-      Block.makeCuboidShape(0.4375, 0.4375, 0.875, 0.5625, 0.5625, 1),
-      Block.makeCuboidShape(0.40625, 0.40625, 0.875, 0.59375, 0.59375, 1),
-      Block.makeCuboidShape(0.40625, 0.40625, 0.8125, 0.59375, 0.59375, 1)
-  };
-  protected static final VoxelShape[] WEST_AABB = new VoxelShape[]{
-      Block.makeCuboidShape(0, 0.4375, 0.4375, 0.0625, 0.5625, 0.5625),
-      Block.makeCuboidShape(0, 0.4375, 0.4375, 0.125, 0.5625, 0.5625),
-      Block.makeCuboidShape(0, 0.40625, 0.40625, 0.125, 0.59375, 0.59375),
-      Block.makeCuboidShape(0, 0.40625, 0.40625, 0.1875, 0.59375, 0.59375)
-  };
-  protected static final VoxelShape[] EAST_AABB = new VoxelShape[]{
-      Block.makeCuboidShape(0.9375, 0.4375, 0.4375, 1, 0.5625, 0.5625),
-      Block.makeCuboidShape(0.875, 0.4375, 0.4375, 1, 0.5625, 0.5625),
-      Block.makeCuboidShape(0.875, 0.40625, 0.40625, 1, 0.59375, 0.59375),
-      Block.makeCuboidShape(0.8125, 0.40625, 0.40625, 1, 0.59375, 0.59375)
-  };
+  public static List<VoxelShape> SOUTH = Arrays.asList(Block.makeCuboidShape(7, 7, 15,9, 9, 16), Block.makeCuboidShape(7, 7, 14,9, 9, 16), Block.makeCuboidShape(6.5, 6.5, 14,9.5, 9.5, 16), Block.makeCuboidShape(6.5, 6.5, 13,9.5, 9.5, 16));
+
+  public static List<VoxelShape> NORTH = SOUTH.stream().map(o -> VoxelUtil.rotate(o, Rotation.CLOCKWISE_180)).collect(Collectors.toList());
+
+  public static List<VoxelShape> EAST = NORTH.stream().map(o -> VoxelUtil.rotate(o, Rotation.CLOCKWISE_90)).collect(Collectors.toList());
+
+  public static List<VoxelShape> WEST = NORTH.stream().map(o -> VoxelUtil.rotate(o, Rotation.COUNTERCLOCKWISE_90)).collect(Collectors.toList());
 
   public GallAppleCropBlock(Properties builder) {
     super(builder);
@@ -73,14 +61,14 @@ public class GallAppleCropBlock extends HorizontalBlock implements IGrowable {
     int i = state.get(AGE);
     switch (state.get(HORIZONTAL_FACING)) {
       case SOUTH:
-        return SOUTH_AABB[i];
+        return SOUTH.get(i);
       case NORTH:
       default:
-        return NORTH_AABB[i];
+        return NORTH.get(i);
       case WEST:
-        return WEST_AABB[i];
+        return WEST.get(i);
       case EAST:
-        return EAST_AABB[i];
+        return EAST.get(i);
     }
   }
 

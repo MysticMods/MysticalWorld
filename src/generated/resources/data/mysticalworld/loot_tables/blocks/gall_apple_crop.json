@@ -14,14 +14,14 @@
                   "condition": "minecraft:block_state_property",
                   "block": "mysticalworld:gall_apple_crop",
                   "properties": {
-                    "age": "2"
+                    "age": "3"
                   }
                 }
               ],
               "count": 2
             }
           ],
-          "name": "minecraft:air"
+          "name": "mysticalworld:gall_apple"
         }
       ]
     }
