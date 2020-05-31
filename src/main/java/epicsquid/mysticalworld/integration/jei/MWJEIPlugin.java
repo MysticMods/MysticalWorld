@@ -26,8 +26,6 @@ public class MWJEIPlugin implements IModPlugin {
 
   private GallAppleCropCategory gallAppleCropCategory;
 
-  private WaspAttractantCategory waspAttractantCategory;
-
   @Override
   public ResourceLocation getPluginUid() {
     return UID;
@@ -39,18 +37,10 @@ public class MWJEIPlugin implements IModPlugin {
     IGuiHelper guiHelper = helpers.getGuiHelper();
     gallAppleCropCategory = new GallAppleCropCategory(guiHelper);
     registration.addRecipeCategories(gallAppleCropCategory);
-    waspAttractantCategory = new WaspAttractantCategory(guiHelper);
-    registration.addRecipeCategories(waspAttractantCategory);
   }
 
   @Override
   public void registerRecipes(IRecipeRegistration registration) {
     registration.addRecipes(Collections.singletonList(GallAppleCropCategory.INSTANCE), GallAppleCropCategory.UID);
-    registration.addRecipes(Collections.singletonList(WaspAttractantCategory.INSTANCE), WaspAttractantCategory.UID);
-  }
-
-  @Override
-  public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-    registration.addRecipeCatalyst(new ItemStack(ModItems.WASP_ATTRACTANT.get()), WaspAttractantCategory.UID);
   }
 }

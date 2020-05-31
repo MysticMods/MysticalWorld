@@ -277,7 +277,7 @@ public class ModItems {
       .register();
 
   public static RegistryEntry<BlockNamedItem> WASP_ATTRACTANT = REGISTRATE.item("wasp_attractant", blockNamedItem(ModBlocks.GALL_APPLE_CROP))
-      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 4).addIngredient(Items.BONE_MEAL).addIngredient(MWTags.Items.SWEETS).addIngredient(MWTags.Items.PROTEIN).build(p))
+      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 4).addIngredient(Items.BONE_MEAL).addIngredient(MWTags.Items.SWEETS).addIngredient(MWTags.Items.PROTEIN).addCriterion("bone_meal", p.hasItem(Items.BONE_MEAL)).build(p))
       .register();
 
   public static RegistryEntry<Item> GALL_APPLE = REGISTRATE.item("gall_apple", Item::new)
@@ -286,7 +286,7 @@ public class ModItems {
   public static RegistryEntry<TanninsItem> TANNINS = REGISTRATE.item("tannins", TanninsItem::new)
       .recipe((ctx, p) -> {
             ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 4).addIngredient(ModItems.GALL_APPLE.get()).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addIngredient(Items.GLASS_BOTTLE).addCriterion("has_tannins", p.hasItem(ModItems.GALL_APPLE.get())).build(p);
-            ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER, 3).addIngredient(ModItems.TANNINS.get()).addIngredient(Items.ROTTEN_FLESH).addIngredient(Items.ROTTEN_FLESH).addIngredient(Items.ROTTEN_FLESH).build(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_via_tannins"));
+            ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER, 3).addIngredient(ModItems.TANNINS.get()).addIngredient(Items.ROTTEN_FLESH).addIngredient(Items.ROTTEN_FLESH).addIngredient(Items.ROTTEN_FLESH).addCriterion("has_tannins", p.hasItem(ModItems.TANNINS.get())).build(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_via_tannins"));
           }
       )
       .register();

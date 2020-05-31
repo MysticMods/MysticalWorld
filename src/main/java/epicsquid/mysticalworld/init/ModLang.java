@@ -12,6 +12,7 @@ public class ModLang {
       p.add("mysticalworld.drinks.wakefulness", "Perks you up, night or day! Shoos those scary phantoms away!");
       p.add("mysticalworld.drinks.sour", "Sour and awful to drink! Leaves you hungry.");
       p.add("mysticalworld.food.rotten_apple", "Has a chance to corrupt innocent villagers.");
+      p.add("mysticalworld.jei.gall_apple_crop", "Gall Apple Growth");
       p.add("mysticalworld.entity.lava_cat", "Lava Cat");
       p.add("mysticalworld.entity.obsidian_cat", "Obsidian Cat");
       p.add("message.dandelion_cordial", "You feel well-rested!");
