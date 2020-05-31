@@ -19,6 +19,33 @@
                 }
               ],
               "count": 2
+            },
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "mysticalworld:gall_apple_crop",
+                  "properties": {
+                    "age": "2"
+                  }
+                },
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "mysticalworld:gall_apple_crop",
+                  "properties": {
+                    "age": "1"
+                  }
+                },
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "mysticalworld:gall_apple_crop",
+                  "properties": {
+                    "age": "0"
+                  }
+                }
+              ],
+              "count": 0
             }
           ],
           "name": "mysticalworld:gall_apple"
