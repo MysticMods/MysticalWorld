@@ -155,6 +155,8 @@ public class ModItems {
     OreDictionary.registerOre("stairWood", ModBlocks.charred_stair);
     OreDictionary.registerOre("fenceWood", ModBlocks.charred_fence);
 
+    OreDictionary.registerOre("snowball", Items.SNOWBALL);
+
     // Harvestcraft & VFP compat
 
     OreDictionary.registerOre("cropAubergine", ModItems.aubergine);
