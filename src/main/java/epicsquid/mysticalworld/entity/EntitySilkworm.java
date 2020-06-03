@@ -11,14 +11,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -69,11 +68,10 @@ public class EntitySilkworm extends EntityAnimal {
   @Override
   protected void initEntityAI() {
     this.tasks.addTask(1, new EntityAISwimming(this));
-    //this.tasks.addTask(2, new EntityAIConsumeLeaves(this, 1.1d, false));
-    //this.tasks.addTask(3, new EntityAIWander(this, 0.5d));
-    //this.tasks.addTask(3, new EntityAITempt(this, 0.9d, false, LeafHandler.getLeafItems()));
+    this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
+    this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
     this.tasks.addTask(8, new EntityAILookIdle(this));
-    //this.targetTasks.addTask(0, new EntityAITargetLeaves(this));
+    this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<>(this, EntitySilkworm.class, false));
   }
 
   @Override
@@ -81,7 +79,6 @@ public class EntitySilkworm extends EntityAnimal {
     super.entityInit();
     this.dataManager.register(SIZE, 0);
     this.dataManager.register(LEAVES_CONSUMED, 0);
-
   }
 
   public int getLeavesConsumed() {
@@ -100,6 +97,15 @@ public class EntitySilkworm extends EntityAnimal {
 
   private boolean shouldPlaySound() {
     return (ticksExisted - lastTickPlayed) > 8;
+  }
+
+  @Override
+  public boolean attackEntityAsMob(Entity entityIn) {
+    super.attackEntityAsMob(entityIn);
+    if (entityIn instanceof EntitySilkworm) {
+      return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), Integer.MAX_VALUE);
+    }
+    return false;
   }
 
   public void eatLeaves() {
@@ -227,16 +233,12 @@ public class EntitySilkworm extends EntityAnimal {
     if (ret == null) return;
     distance = ret[0];
     damageMultiplier = ret[1];
-    // This just handles riding entities
-    // super.fall(distance, damageMultiplier);
     PotionEffect potioneffect = this.getActivePotionEffect(MobEffects.JUMP_BOOST);
     float f = potioneffect == null ? 0.0F : (float) (potioneffect.getAmplifier() + 1);
     int i = MathHelper.ceil((distance - 3.0F - f) * damageMultiplier);
 
     if (i > 0) {
       this.playSound(this.getFallSound(i), 1.0F, 1.0F);
-      // They take no fall damage
-      // this.attackEntityFrom(DamageSource.FALL, (float) i);
       int j = MathHelper.floor(this.posX);
       int k = MathHelper.floor(this.posY - 0.2);
       int l = MathHelper.floor(this.posZ);
