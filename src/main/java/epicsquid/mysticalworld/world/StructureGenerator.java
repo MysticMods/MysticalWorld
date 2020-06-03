@@ -34,6 +34,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 
 public class StructureGenerator implements IWorldGenerator {
@@ -42,12 +43,14 @@ public class StructureGenerator implements IWorldGenerator {
   private final int maxDistance;
   private final Supplier<Class<? extends Entity>> entity;
   private static ResourceLocation loot = new ResourceLocation("minecraft", "chests/simple_dungeon");
+  private final AtomicBoolean generating = new AtomicBoolean();
 
   public StructureGenerator(ResourceLocation structure, int descent, Supplier<Class<? extends Entity>> entity, int maxDistance) {
     this.structure = structure;
     this.descent = descent;
     this.entity = entity;
     this.maxDistance = maxDistance * maxDistance;
+    this.generating.set(false);
   }
 
   private BlockPos testPlacement(int[] heightmap, BlockPos size, int x, int z, int deviation) {
@@ -141,6 +144,12 @@ public class StructureGenerator implements IWorldGenerator {
     if (serverProvider.isInsideStructure(world, "Mansion", zxPos)) return;
     if (serverProvider.isInsideStructure(world, "Stronghold", zxPos)) return;
 
+    if (generating.get()) {
+      return;
+    }
+
+    generating.set(true);
+
     MinecraftServer minecraftserver = world.getMinecraftServer();
     TemplateManager templatemanager = world.getSaveHandler().getStructureTemplateManager();
     Template template = templatemanager.getTemplate(minecraftserver, structure);
@@ -153,15 +162,20 @@ public class StructureGenerator implements IWorldGenerator {
     BlockPos pos = testPlacement(heightMap, size, 16, 0);
 
     if (pos == null) {
+      generating.set(false);
       return;
     }
 
     pos = pos.add(zxPos.getX(), 0, zxPos.getZ());
     if (!DataHelper.testBlockPos(structure, pos, maxDistance, world)) {
+      generating.set(false);
       return;
     }
 
-    if (!testForLiquids(world, pos, size)) return;
+    if (!testForLiquids(world, pos, size)) {
+      generating.set(false);
+      return;
+    }
 
     PlacementSettings placementsettings = new PlacementSettings();
 
@@ -180,7 +194,10 @@ public class StructureGenerator implements IWorldGenerator {
     pos = Template.transformedBlockPos(placementsettings, pos).down(descent);
 
     // Don't place structures if it would result in breaking through bedrock
-    if (pos.getY() <= 0) return;
+    if (pos.getY() <= 0) {
+      generating.set(false);
+      return;
+    }
 
     template.addBlocksToWorld(world, pos, placementsettings, 16);
 
@@ -221,5 +238,7 @@ public class StructureGenerator implements IWorldGenerator {
         }
       }
     });
+
+    generating.set(false);
   }
 }
