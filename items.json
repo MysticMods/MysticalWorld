@@ -4,6 +4,14 @@
   "models": [
     {
       "type": "item",
+      "base": "antler_hat"
+    },
+    {
+      "type": "item",
+      "base": "beetle_mask"
+    },
+    {
+      "type": "item",
       "base": "tannins"
     },
     {

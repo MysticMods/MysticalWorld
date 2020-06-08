@@ -1,16 +1,21 @@
 package epicsquid.mysticalworld.item;
 
 import epicsquid.mysticallib.model.IModeledObject;
+import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.model.armor.ModelDeerHat;
+import epicsquid.mysticalworld.entity.EntityDeer;
+import epicsquid.mysticalworld.entity.model.armor.ModelAntlerHat;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,16 +36,50 @@ public class ItemAntlerHat extends ItemArmor implements IModeledObject {
     ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "handler"));
   }
 
+  @Override
+  public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+    if (player.getHealth() < player.getMaxHealth() && Util.rand.nextInt(80) == 0 && !world.isRemote) {
+      BlockPos pos;
+      BlockPos playerPos = player.getPosition();
+      int tries = 100;
+      while (true) {
+        tries--;
+        if (tries <= 0) {
+          return;
+        }
+        pos = playerPos.add(Util.rand.nextInt(4) - 4, 0, Util.rand.nextInt(4) - 4);
+        if (!world.isAirBlock(pos)) {
+          continue;
+        }
+        while (world.isAirBlock(pos.down())) {
+          pos = pos.down();
+        }
+        if (player.getDistanceSq(pos) > 64) {
+          continue;
+        }
+
+        break;
+      }
+      EntityDeer spiritDeer = new EntityDeer(world);
+      spiritDeer.getDataManager().set(EntityDeer.spirit, true);
+      spiritDeer.getDataManager().setDirty(EntityDeer.spirit);
+      spiritDeer.setAttackTarget(player);
+      spiritDeer.setDropItemsWhenDead(false);
+      spiritDeer.setPositionAndRotation(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, player.rotationYaw, player.rotationPitch);
+      world.spawnEntity(spiritDeer);
+    }
+  }
+
   @Nullable
   @Override
   public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-    return MysticalWorld.MODID + ":textures/model/armor/deer_hat.png";
+    return MysticalWorld.MODID + ":textures/model/armor/antler_hat.png";
   }
 
   @Nullable
   @Override
   @SideOnly(Side.CLIENT)
   public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-    return ModelDeerHat.instance;
+    return ModelAntlerHat.instance;
   }
 }

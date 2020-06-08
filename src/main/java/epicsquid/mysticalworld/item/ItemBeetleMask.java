@@ -3,7 +3,6 @@ package epicsquid.mysticalworld.item;
 import epicsquid.mysticallib.model.IModeledObject;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.model.armor.ModelBeetleMask;
-import epicsquid.mysticalworld.entity.model.armor.ModelDeerHat;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;

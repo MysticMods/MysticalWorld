@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.entity;
 import javax.annotation.Nonnull;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.entity.ai.EntityAIHealTarget;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowParent;
@@ -20,13 +21,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class EntityDeer extends EntityAnimal {
   public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/deer");
 
-  public static final DataParameter<Boolean> hasHorns = EntityDataManager.<Boolean>createKey(EntityDeer.class, DataSerializers.BOOLEAN);
+  public static final DataParameter<Boolean> hasHorns = EntityDataManager.createKey(EntityDeer.class, DataSerializers.BOOLEAN);
+  public static final DataParameter<Boolean> spirit = EntityDataManager.createKey(EntityDeer.class, DataSerializers.BOOLEAN);
 
   public EntityDeer(@Nonnull World world) {
     super(world);
@@ -38,6 +41,7 @@ public class EntityDeer extends EntityAnimal {
   protected void entityInit() {
     super.entityInit();
     this.getDataManager().register(hasHorns, rand.nextBoolean());
+    this.getDataManager().register(spirit, false);
   }
 
   @Override
@@ -46,6 +50,7 @@ public class EntityDeer extends EntityAnimal {
     this.tasks.addTask(1, new EntityAIPanic(this, 1.5D));
     this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
     this.tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.WHEAT, false));
+    this.tasks.addTask(4, new EntityAIHealTarget(this, 2.5D));
     this.tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
     this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
     this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -56,6 +61,15 @@ public class EntityDeer extends EntityAnimal {
   public void onUpdate() {
     super.onUpdate();
     this.rotationYaw = this.rotationYawHead;
+  }
+
+  @Override
+  public boolean attackEntityFrom(DamageSource source, float amount) {
+    if (getDataManager().get(spirit)) {
+      return false;
+    }
+
+    return super.attackEntityFrom(source, amount);
   }
 
   @Override
@@ -92,11 +106,14 @@ public class EntityDeer extends EntityAnimal {
     super.readEntityFromNBT(compound);
     getDataManager().set(hasHorns, compound.getBoolean("hasHorns"));
     getDataManager().setDirty(hasHorns);
+    getDataManager().set(spirit, compound.getBoolean("spirit"));
+    getDataManager().setDirty(spirit);
   }
 
   @Override
   public void writeEntityToNBT(@Nonnull NBTTagCompound compound) {
     super.writeEntityToNBT(compound);
     compound.setBoolean("hasHorns", getDataManager().get(hasHorns));
+    compound.setBoolean("spirit", getDataManager().get(spirit));
   }
 }

@@ -1,13 +1,11 @@
 package epicsquid.mysticalworld.entity.model.armor;
 
 import epicsquid.mysticallib.client.model.ModelArmorBase;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 
-public class ModelDeerHat extends ModelArmorBase {
-  public static ModelDeerHat instance = new ModelDeerHat();
+public class ModelAntlerHat extends ModelArmorBase {
+  public static ModelAntlerHat instance = new ModelAntlerHat();
 
   public ModelRenderer hat;
   public ModelRenderer horn1;
@@ -20,7 +18,7 @@ public class ModelDeerHat extends ModelArmorBase {
   public ModelRenderer horn6_1;
   public ModelRenderer horn8_1;
 
-  public ModelDeerHat() {
+  public ModelAntlerHat() {
     super(EntityEquipmentSlot.HEAD);
     this.textureWidth = 128;
     this.textureHeight = 64;
