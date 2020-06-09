@@ -4,7 +4,9 @@ import epicsquid.mysticallib.model.IModeledObject;
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.EntityDeer;
+import epicsquid.mysticalworld.entity.EntitySpiritDeer;
 import epicsquid.mysticalworld.entity.model.armor.ModelAntlerHat;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
@@ -13,16 +15,20 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
 public class ItemAntlerHat extends ItemArmor implements IModeledObject {
+  public static DataParameter<Boolean> NO_GRAVITY = ObfuscationReflectionHelper.getPrivateValue(Entity.class, null, "field_189655_aD");
+
   public ItemAntlerHat(ArmorMaterial materialIn, String name) {
     super(materialIn, 0, EntityEquipmentSlot.HEAD);
     setTranslationKey(name);
@@ -51,21 +57,14 @@ public class ItemAntlerHat extends ItemArmor implements IModeledObject {
         if (!world.isAirBlock(pos)) {
           continue;
         }
-        while (world.isAirBlock(pos.down())) {
-          pos = pos.down();
-        }
-        if (player.getDistanceSq(pos) > 64) {
-          continue;
-        }
 
         break;
       }
-      EntityDeer spiritDeer = new EntityDeer(world);
-      spiritDeer.getDataManager().set(EntityDeer.spirit, true);
-      spiritDeer.getDataManager().setDirty(EntityDeer.spirit);
+      EntitySpiritDeer spiritDeer = new EntitySpiritDeer(world);
       spiritDeer.setAttackTarget(player);
       spiritDeer.setDropItemsWhenDead(false);
       spiritDeer.setPositionAndRotation(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, player.rotationYaw, player.rotationPitch);
+      spiritDeer.noClip = true;
       world.spawnEntity(spiritDeer);
     }
   }

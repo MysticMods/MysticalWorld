@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.entity.ai;
 
-import epicsquid.mysticalworld.entity.EntityDeer;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -41,16 +40,12 @@ public class EntityAIHealTarget extends EntityAIBase {
     this.setMutexBits(3);
   }
 
-  private boolean isSpirit() {
-    return this.attacker.getDataManager().get(EntityDeer.spirit);
-  }
-
   /**
    * Returns whether the EntityAIBase should begin execution.
    */
   public boolean shouldExecute() {
     EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
-    if (entitylivingbase == null || !isSpirit()) {
+    if (entitylivingbase == null) {
       return false;
     }
 
@@ -63,7 +58,7 @@ public class EntityAIHealTarget extends EntityAIBase {
   public boolean shouldContinueExecuting() {
     EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
 
-    if (entitylivingbase == null || !isSpirit()) {
+    if (entitylivingbase == null) {
       return false;
     }
 

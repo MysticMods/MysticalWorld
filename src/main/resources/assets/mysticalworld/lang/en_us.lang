@@ -27,6 +27,8 @@ item.pearl.name=Lustrous Pearl
 item.gall_apple.name=Gall Apple
 item.wasp_attractant.name=Wasp Attractant
 item.tannins.name=Tannins
+item.antler_hat.name=Antler Helm
+item.beetle_mask.name=Beetle Mask
 
 # Ingots
 item.copper_ingot.name=Copper Ingot

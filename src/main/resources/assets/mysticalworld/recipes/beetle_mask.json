@@ -1,0 +1,32 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    " C ",
+    "CSC",
+    "WCW"
+    ],
+  "key": {
+    "C": [
+      {
+        "item": "mysticalworld:carapace"
+      }
+    ],
+    "W": [
+        {
+            "type": "forge:ore_dict",
+            "ore": "wool"
+        }
+    ],
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "string"
+      }
+    ]
+  },
+  "result": {
+    "item": "mysticalworld:beetle_mask",
+    "data": 0,
+    "count": 1
+  }
+}

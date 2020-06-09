@@ -41,6 +41,9 @@ public class ModEntities {
     LibRegistry.registerEntity(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityDeer.class, new RenderDeer.Factory());
+    LibRegistry.registerEntity(EntitySpiritDeer.class);
+    if (MysticalWorld.proxy instanceof ClientProxy)
+      LibRegistry.registerEntityRenderer(EntitySpiritDeer.class, new RenderSpiritDeer.Factory());
     LibRegistry.registerEntity(EntityEndermini.class, Util.intColor(161, 30, 120), Util.intColor(101, 12, 190));
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityEndermini.class, new RenderEndermini.Factory());
