@@ -4,7 +4,9 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.pathfinding.Path;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
@@ -121,18 +123,15 @@ public class EntityAIHealTarget extends EntityAIBase {
   }
 
   protected void checkAndHeal(EntityLivingBase enemy, double distToEnemySqr) {
-    double d0 = this.getAttackReachSqr(enemy);
+    double d0 = 1.5;
 
     if (distToEnemySqr <= d0 && this.attackTick <= 0) {
       this.attackTick = 20;
       this.attacker.swingArm(EnumHand.MAIN_HAND);
-      enemy.heal(5.0f);
+      enemy.heal(2.0f);
+      enemy.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 130, 1, false, false));
       this.attacker.setDead();
     }
-  }
-
-  protected double getAttackReachSqr(EntityLivingBase attackTarget) {
-    return (double) (this.attacker.width * 2.0F * this.attacker.width * 2.0F + attackTarget.width);
   }
 }
 

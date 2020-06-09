@@ -31,7 +31,7 @@ public class EntitySpiritDeer extends EntityAnimal {
 
   public EntitySpiritDeer(@Nonnull World world) {
     super(world);
-    setSize(1.0f, 1.0f);
+    setSize(0.8f, 0.8f);
     this.experienceValue = 3;
     this.moveHelper = new EntityFlyHelper(this);
   }
@@ -115,7 +115,6 @@ public class EntitySpiritDeer extends EntityAnimal {
   }
 
   @Override
-  @Nonnull
   public EntityAgeable createChild(@Nonnull EntityAgeable ageable) {
     return null;
   }

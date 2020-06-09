@@ -44,7 +44,7 @@ public class ModItems {
 
   public static ItemArmor.ArmorMaterial copperArmor = EnumHelper.addArmorMaterial("mysticalworld:copper", MysticalWorld.MODID + ":copper", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
   public static ItemArmor.ArmorMaterial silverArmor = EnumHelper.addArmorMaterial("mysticalworld:silver", MysticalWorld.MODID + ":gold", 25, new int[]{2, 5, 6, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F);
-  public static ItemArmor.ArmorMaterial miscArmor = EnumHelper.addArmorMaterial("mysticalworld:misc", MysticalWorld.MODID + ":misc", 15, new int[]{1, 1, 1, 1}, 7, SoundEvents.ITEM_ARMOR_EQIIP_ELYTRA, 0.0f);
+  public static ItemArmor.ArmorMaterial miscArmor = EnumHelper.addArmorMaterial("mysticalworld:misc", MysticalWorld.MODID + ":misc", 15, new int[]{2, 1, 1, 1}, 7, SoundEvents.ITEM_ARMOR_EQIIP_ELYTRA, 0.2f);
 
   /**
    * Register all items

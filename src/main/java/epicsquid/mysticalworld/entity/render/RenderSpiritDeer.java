@@ -5,6 +5,7 @@ import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -36,6 +37,7 @@ public class RenderSpiritDeer extends RenderLiving<EntitySpiritDeer> {
     GlStateManager.color(0.5F, 0.5F, 0.5F, 1.0F);
     GlStateManager.disableLighting();
     GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
+    OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
     Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
     super.doRender(entity, x, y, z, entityYaw, partialTicks);
     Minecraft.getMinecraft().entityRenderer.setupFogColor(false);

@@ -2,8 +2,6 @@ package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
-import epicsquid.mysticalworld.entity.ai.EntityAIConsumeLeaves;
-import epicsquid.mysticalworld.entity.ai.EntityAITargetLeaves;
 import epicsquid.mysticalworld.events.LeafHandler;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModSounds;
@@ -16,12 +14,9 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -42,21 +37,12 @@ public class EntitySilkworm extends EntityAnimal {
   private static final DataParameter<Integer> LEAVES_CONSUMED = EntityDataManager.createKey(EntitySilkworm.class, DataSerializers.VARINT);
   private static final int MAX_SIZE = 120;
 
-  private EntityItem leafTarget;
   private int lastTickPlayed = 0;
 
   public EntitySilkworm(World worldIn) {
     super(worldIn);
     this.experienceValue = 1;
     this.setSize(0.8F, 0.6F);
-  }
-
-  public void setLeafTarget(EntityItem leaf) {
-    this.leafTarget = leaf;
-  }
-
-  public EntityItem getLeafTarget() {
-    return this.leafTarget;
   }
 
   @Nullable
