@@ -34,6 +34,7 @@ public class EntitySpiritDeer extends EntityAnimal {
     setSize(0.8f, 0.8f);
     this.experienceValue = 3;
     this.moveHelper = new EntityFlyHelper(this);
+    this.setDropItemsWhenDead(false);
   }
 
   @Override

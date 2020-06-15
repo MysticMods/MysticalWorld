@@ -98,6 +98,8 @@ public class ItemAntlerHat extends ItemArmor implements IModeledObject {
       spiritDeer.setPositionAndRotation(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, player.rotationYaw, player.rotationPitch);
       spiritDeer.noClip = true;
       world.spawnEntity(spiritDeer);
+      ItemStack head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+      head.damageItem(1, player);
     }
   }
 

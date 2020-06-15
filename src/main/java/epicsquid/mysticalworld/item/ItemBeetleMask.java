@@ -3,6 +3,8 @@ package epicsquid.mysticalworld.item;
 import epicsquid.mysticallib.model.IModeledObject;
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.entity.EntitySpiritBeetle;
+import epicsquid.mysticalworld.entity.EntitySpiritDeer;
 import epicsquid.mysticalworld.entity.model.armor.ModelBeetleMask;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.client.model.ModelBiped;
@@ -17,11 +19,11 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -45,25 +47,47 @@ public class ItemBeetleMask extends ItemArmor implements IModeledObject {
     if (player.world.isRemote) {
       return;
     }
-    ItemStack mask = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-    if (mask.getItem() == ModItems.beetle_mask) {
-      if (Util.rand.nextInt(30) == 0) {
-        player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 160, 1, false, false));
-      }
-    }
-  }
+    Entity entityTarget = event.getTarget();
+    if (!entityTarget.isDead && entityTarget instanceof EntityLivingBase) {
+      EntityLivingBase target = (EntityLivingBase) entityTarget;
+      ItemStack mask = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+      if (mask.getItem() == ModItems.beetle_mask) {
+/*        if (Util.rand.nextInt(40) == 0) {*/
+          World world = player.world;
+          BlockPos playerPos = player.getPosition();
+          if (world.getEntitiesWithinAABB(EntitySpiritDeer.class, ItemAntlerHat.BOX.offset(playerPos)).size() >= 3) {
+            return;
+          }
 
-  @SubscribeEvent
-  public static void onCriticalHit(CriticalHitEvent event) {
-    EntityPlayer player = event.getEntityPlayer();
-    if (player.world.isRemote) {
-      return;
-    }
-    ItemStack mask = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-    if (mask.getItem() == ModItems.beetle_mask && player.getActivePotionEffect(MobEffects.STRENGTH) != null) {
-      event.setResult(Event.Result.ALLOW);
-      mask.damageItem(1, player);
-    }
+          BlockPos pos;
+
+          int tries = 100;
+          while (true) {
+            tries--;
+            if (tries <= 0) {
+              return;
+            }
+            pos = playerPos.add(Util.rand.nextInt(8) - 8, 0, Util.rand.nextInt(8) - 8);
+            if (!world.isAirBlock(pos)) {
+              continue;
+            }
+            if (target.getDistanceSq(pos) < 9) {
+              continue;
+            }
+
+            break;
+          }
+          EntitySpiritBeetle spiritBeetle = new EntitySpiritBeetle(world);
+          spiritBeetle.setAttackTarget(target);
+          spiritBeetle.setDropItemsWhenDead(false);
+          spiritBeetle.setPositionAndRotation(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, player.rotationYaw, player.rotationPitch);
+          spiritBeetle.noClip = true;
+          world.spawnEntity(spiritBeetle);
+          ItemStack head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+          head.damageItem(1, player);
+        }
+      }
+/*    }*/
   }
 
   @Override
