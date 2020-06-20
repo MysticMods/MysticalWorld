@@ -1,7 +1,7 @@
 package epicsquid.mysticalworld.setup;
 
 import com.tterrag.registrate.util.LazySpawnEggItem;
-import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.entity.model.ModelHolder;

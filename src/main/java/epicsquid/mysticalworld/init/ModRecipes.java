@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld.init;
 
-import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.mysticalworld.recipe.*;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;
 

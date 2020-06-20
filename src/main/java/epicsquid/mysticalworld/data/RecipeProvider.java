@@ -2,7 +2,7 @@ package epicsquid.mysticalworld.data;
 
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import epicsquid.mysticallib.item.DrinkItem;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
