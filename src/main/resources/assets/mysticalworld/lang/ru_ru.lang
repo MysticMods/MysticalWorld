@@ -24,6 +24,11 @@ item.spindle.name=Веретено
 item.silkworm_egg.name=Яйцо шелкопряда
 item.cooked_apple.name=Приготовленное яблоко
 item.pearl.name=Блестящая жемчужина
+item.gall_apple.name=Желчное яблоко
+item.wasp_attractant.name=Аттрактант осы
+item.tannins.name=Танины
+item.antler_hat.name=Олений шлем
+item.beetle_mask.name=Жучья маска
 
 # Ingots
 item.copper_ingot.name=Медный слиток
