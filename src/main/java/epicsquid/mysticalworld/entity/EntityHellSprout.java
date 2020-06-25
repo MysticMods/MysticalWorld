@@ -70,6 +70,7 @@ public class EntityHellSprout extends EntitySprout {
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
+    @Override
     public boolean shouldExecute() {
       if (this.sprout.onGround && ticker >= 20) {
         ticker = 0;
@@ -88,6 +89,7 @@ public class EntityHellSprout extends EntitySprout {
     /**
      * Keep ticking a continuous task that has already been started
      */
+    @Override
     public void updateTask() {
       Random random = this.sprout.getRNG();
       World world = this.sprout.world;

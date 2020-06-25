@@ -45,6 +45,7 @@ public class EntityAIHealTarget extends EntityAIBase {
   /**
    * Returns whether the EntityAIBase should begin execution.
    */
+  @Override
   public boolean shouldExecute() {
     EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
     if (entitylivingbase == null) {
@@ -57,6 +58,7 @@ public class EntityAIHealTarget extends EntityAIBase {
   /**
    * Returns whether an in-progress EntityAIBase should continue executing
    */
+  @Override
   public boolean shouldContinueExecuting() {
     EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
 
@@ -76,6 +78,7 @@ public class EntityAIHealTarget extends EntityAIBase {
   /**
    * Execute a one shot task or start executing a continuous task
    */
+  @Override
   public void startExecuting() {
     this.attacker.getNavigator().setPath(this.path, this.speedTowardsTarget);
     this.delayCounter = 0;
@@ -84,6 +87,7 @@ public class EntityAIHealTarget extends EntityAIBase {
   /**
    * Reset the task's internal state. Called when this task is interrupted by another one
    */
+  @Override
   public void resetTask() {
     EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
 
@@ -97,6 +101,7 @@ public class EntityAIHealTarget extends EntityAIBase {
   /**
    * Keep ticking a continuous task that has already been started
    */
+  @Override
   public void updateTask() {
     EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
     this.attacker.getLookHelper().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
