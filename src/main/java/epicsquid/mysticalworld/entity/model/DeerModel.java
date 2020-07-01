@@ -33,9 +33,6 @@ public class DeerModel extends EntityModel<DeerEntity> {
     textureWidth = 64;
     textureHeight = 64;
 
-    textureWidth = 64;
-    textureHeight = 64;
-
     head = new RendererModel(this, 0, 16);
     head.addBox(-2F, 0F, -2.5F, 4, 7, 4);
     head.setRotationPoint(0F, 7F, -6.953333F);

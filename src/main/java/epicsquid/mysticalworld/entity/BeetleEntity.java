@@ -86,7 +86,7 @@ public class BeetleEntity extends TameableEntity {
                 cap.shoulder(this);
                 player.swingArm(Hand.MAIN_HAND);
                 try {
-                  PlayerShoulderCapability.setLeftShoulder.invokeExact((PlayerEntity)player, cap.generateShoulderNBT());
+                  PlayerShoulderCapability.setLeftShoulder.invokeExact((PlayerEntity) player, cap.generateShoulderNBT());
                 } catch (Throwable throwable) {
                   MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
                 }

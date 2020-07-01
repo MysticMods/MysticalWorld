@@ -8,10 +8,10 @@ import net.minecraft.util.math.Vec3d;
 
 public class SproutModel extends EntityModel<SproutEntity> {
   //fields
-  RendererModel head;
-  RendererModel legL;
-  RendererModel legR;
-  RendererModel leafTop;
+  private RendererModel head;
+  private RendererModel legL;
+  private RendererModel legR;
+  private RendererModel leafTop;
   RendererModel leafBottom;
 
   public SproutModel() {

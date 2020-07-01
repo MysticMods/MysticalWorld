@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class GallAppleCropBlock extends HorizontalBlock implements IGrowable {
   public static final IntegerProperty AGE = BlockStateProperties.AGE_0_3;
 
-  public static List<VoxelShape> SOUTH = Arrays.asList(Block.makeCuboidShape(7, 7, 15,9, 9, 16), Block.makeCuboidShape(7, 7, 14,9, 9, 16), Block.makeCuboidShape(6.5, 6.5, 14,9.5, 9.5, 16), Block.makeCuboidShape(6.5, 6.5, 13,9.5, 9.5, 16));
+  public static List<VoxelShape> SOUTH = Arrays.asList(Block.makeCuboidShape(7, 7, 15, 9, 9, 16), Block.makeCuboidShape(7, 7, 14, 9, 9, 16), Block.makeCuboidShape(6.5, 6.5, 14, 9.5, 9.5, 16), Block.makeCuboidShape(6.5, 6.5, 13, 9.5, 9.5, 16));
 
   public static List<VoxelShape> NORTH = SOUTH.stream().map(o -> VoxelUtil.rotate(o, Rotation.CLOCKWISE_180)).collect(Collectors.toList());
 

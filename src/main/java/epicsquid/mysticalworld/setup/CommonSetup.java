@@ -61,7 +61,7 @@ public class CommonSetup {
 
   }
 
-  public void loadComplete (FMLLoadCompleteEvent event) {
+  public void loadComplete(FMLLoadCompleteEvent event) {
     ModFeatures.loadComplete();
   }
 

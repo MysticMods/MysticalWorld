@@ -1,7 +1,10 @@
 package epicsquid.mysticalworld.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import epicsquid.mysticalworld.recipe.*;
+import epicsquid.mysticalworld.recipe.BlazeRocketRecipe;
+import epicsquid.mysticalworld.recipe.EmptyRecipe;
+import epicsquid.mysticalworld.recipe.ShapedDamageRecipe;
+import epicsquid.mysticalworld.recipe.ShapelessDamageRecipe;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;

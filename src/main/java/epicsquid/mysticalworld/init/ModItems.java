@@ -2,7 +2,10 @@ package epicsquid.mysticalworld.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
-import epicsquid.mysticallib.item.*;
+import epicsquid.mysticallib.item.BowlItem;
+import epicsquid.mysticallib.item.EffectItem;
+import epicsquid.mysticallib.item.FastFoodItem;
+import epicsquid.mysticallib.item.KnifeItem;
 import epicsquid.mysticallib.material.MaterialType;
 import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.MysticalWorld;
@@ -337,7 +340,7 @@ public class ModItems {
           .build(p))
       .register();
 
-  public static NonNullFunction<Item.Properties, TooltipDrinkItem> tooltipDrink (String translationKey) {
+  public static NonNullFunction<Item.Properties, TooltipDrinkItem> tooltipDrink(String translationKey) {
     return (b) -> new TooltipDrinkItem(b, translationKey);
   }
 
