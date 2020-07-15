@@ -3,13 +3,16 @@ package epicsquid.mysticalworld.setup;
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.*;
+import epicsquid.mysticalworld.entity.AdditionalHeads;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import epicsquid.mysticalworld.entity.model.heads.*;
 import epicsquid.mysticalworld.entity.render.*;
+import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.block.SkullBlock;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.renderer.entity.model.GenericHeadModel;
 import net.minecraft.client.renderer.tileentity.SkullTileEntityRenderer;
@@ -23,7 +26,12 @@ import java.util.Map;
 
 public class ClientSetup {
   public static void init(FMLClientSetupEvent event) {
-    ((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new ModelHolder());
+    RenderType rendertype = RenderType.getCutoutMipped();
+    RenderTypeLookup.setRenderLayer(ModBlocks.AUBERGINE_CROP.get(), rendertype);
+    RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
+
+
+        ((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new ModelHolder());
     ModelHolder.init();
 
     // TODO: Fix this

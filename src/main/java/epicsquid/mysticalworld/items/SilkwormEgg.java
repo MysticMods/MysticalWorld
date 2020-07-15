@@ -1,4 +1,4 @@
-/*package epicsquid.mysticalworld.items;
+package epicsquid.mysticalworld.items;
 
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import epicsquid.mysticalworld.config.ConfigManager;
@@ -50,4 +50,4 @@ public class SilkwormEgg extends LazySpawnEggItem<SilkwormEntity> {
       return super.onItemRightClick(worldIn, playerIn, handIn);
     }
   }
-}*/
+}
