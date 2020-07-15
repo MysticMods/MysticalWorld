@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld.config;
 
-import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.mysticallib.block.BaseOreBlock;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.ForgeConfigSpec;

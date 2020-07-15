@@ -17,7 +17,6 @@ import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.blocks.*;
 import epicsquid.mysticalworld.entity.AdditionalHeads;
-import epicsquid.mysticalworld.registrate.ExtendedDataIngredient;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;

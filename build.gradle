@@ -141,6 +141,10 @@ dependencies {
     def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
     implementation fg.deobf(registrate)
     shade registrate
+
+    def noobutil = "noobanidus.libs:noobutil:${minecraft_version}-${noobutil_version}"
+    implementation fg.deobf(noobutil)
+    shade noobutil
 }
 
 sourceSets.main.resources {
@@ -164,6 +168,7 @@ jar {
 shadowJar {
     configurations = [project.configurations.shade]
     relocate 'com.tterrag.registrate', 'epicsquid.mysticalworld.repack.registrate'
+     relocate 'noobanidus.libs.noobutil', 'noobanidus.libs.repack_mysticalworld.noobutil'
     classifier ''
 }
 

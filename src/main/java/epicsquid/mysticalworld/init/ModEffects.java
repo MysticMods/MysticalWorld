@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld.init;
 
-import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.mysticalworld.effects.SlowRegenerationEffect;
 import epicsquid.mysticalworld.effects.WakefulEffect;
 

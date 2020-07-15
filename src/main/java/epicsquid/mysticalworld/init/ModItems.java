@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld.init;
 
-import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import epicsquid.mysticallib.item.*;
 import epicsquid.mysticallib.material.MaterialType;
