@@ -1712,7 +1712,7 @@ public class ModBlocks {
       .register();
 
   // HEADS
-  public static RegistryEntry<AdditionalSkullBlock> DROWNED_HEAD = REGISTRATE.block("drowned_head", Material.MISCELLANEOUS, (b) -> new AdditionalSkullBlock(AdditionalHeads.DROWNED, b))
+/*  public static RegistryEntry<AdditionalSkullBlock> DROWNED_HEAD = REGISTRATE.block("drowned_head", Material.MISCELLANEOUS, (b) -> new AdditionalSkullBlock(AdditionalHeads.DROWNED, b))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().getExistingFile(new ResourceLocation("minecraft", "block/soul_sand"))))
       .item((ctx, b) -> new WallOrFloorItem(ctx.getBlock(), ModBlocks.DROWNED_WALL_HEAD.get(), b))
       .model((ctx, p) -> p.withExistingParent(ctx.getName(), new ResourceLocation("minecraft", "item/template_skull")))
@@ -1755,7 +1755,7 @@ public class ModBlocks {
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().getExistingFile(new ResourceLocation("minecraft", "block/soul_sand"))))
       .properties(o -> o.hardnessAndResistance(1.0f).lootFrom(ModBlocks.STRAY_HEAD.get()))
       .lang((o) -> "stray_wall_head")
-      .register();
+      .register();*/
 
 /*  public static RegistryEntry<AdditionalSkullBlock> WITCH_HEAD = REGISTRATE.block("witch_head", Material.MISCELLANEOUS, (b) -> new AdditionalSkullBlock(AdditionalHeads.WITCH, b))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().getExistingFile(new ResourceLocation("minecraft", "block/soul_sand"))))
@@ -1772,7 +1772,7 @@ public class ModBlocks {
       .lang((o) -> "witch_wall_head")
       .register();*/
 
-  public static RegistryEntry<AdditionalSkullBlock> ZOMBIE_PIGMAN_HEAD = REGISTRATE.block("zombie_pigman_head", Material.MISCELLANEOUS, (b) -> new AdditionalSkullBlock(AdditionalHeads.ZOMBIE_PIGMAN, b))
+/*  public static RegistryEntry<AdditionalSkullBlock> ZOMBIE_PIGMAN_HEAD = REGISTRATE.block("zombie_pigman_head", Material.MISCELLANEOUS, (b) -> new AdditionalSkullBlock(AdditionalHeads.ZOMBIE_PIGMAN, b))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().getExistingFile(new ResourceLocation("minecraft", "block/soul_sand"))))
       .item((ctx, b) -> new WallOrFloorItem(ctx.getBlock(), ModBlocks.ZOMBIE_PIGMAN_WALL_HEAD.get(), b))
       .model((ctx, p) -> p.withExistingParent(ctx.getName(), new ResourceLocation("minecraft", "item/template_skull")))
@@ -1785,7 +1785,7 @@ public class ModBlocks {
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().getExistingFile(new ResourceLocation("minecraft", "block/soul_sand"))))
       .properties(o -> o.hardnessAndResistance(1.0f).lootFrom(ModBlocks.ZOMBIE_PIGMAN_HEAD.get()))
       .lang((o) -> "zombie_pigman_wall_head")
-      .register();
+      .register();*/
 
 /*  public static RegistryEntry<AdditionalSkullBlock> PILLAGER_HEAD = REGISTRATE.block("pillager_head", Material.MISCELLANEOUS, (b) -> new AdditionalSkullBlock(AdditionalHeads.PILLAGER, b))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().getExistingFile(new ResourceLocation("minecraft", "block/soul_sand"))))
@@ -1802,7 +1802,7 @@ public class ModBlocks {
       .lang((o) -> "pillager_wall_head")
       .register();*/
 
-  public static RegistryEntry<AdditionalSkullBlock> ZOMBIE_VILLAGER_HEAD = REGISTRATE.block("zombie_villager_head", Material.MISCELLANEOUS, (b) -> new AdditionalSkullBlock(AdditionalHeads.ZOMBIE_VILLAGER, b))
+/*  public static RegistryEntry<AdditionalSkullBlock> ZOMBIE_VILLAGER_HEAD = REGISTRATE.block("zombie_villager_head", Material.MISCELLANEOUS, (b) -> new AdditionalSkullBlock(AdditionalHeads.ZOMBIE_VILLAGER, b))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().getExistingFile(new ResourceLocation("minecraft", "block/soul_sand"))))
       .item((ctx, b) -> new WallOrFloorItem(ctx.getBlock(), ModBlocks.ZOMBIE_VILLAGER_WALL_HEAD.get(), b))
       .model((ctx, p) -> p.withExistingParent(ctx.getName(), new ResourceLocation("minecraft", "item/template_skull")))
@@ -1815,7 +1815,7 @@ public class ModBlocks {
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().getExistingFile(new ResourceLocation("minecraft", "block/soul_sand"))))
       .properties(o -> o.hardnessAndResistance(1.0f).lootFrom(ModBlocks.ZOMBIE_VILLAGER_HEAD.get()))
       .lang((o) -> "zombie_villager_wall_head")
-      .register();
+      .register();*/
 
 /*  public static RegistryEntry<AdditionalSkullBlock> VILLAGER_HEAD = REGISTRATE.block("villager_head", Material.MISCELLANEOUS, (b) -> new AdditionalSkullBlock(AdditionalHeads.VILLAGER, b))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().getExistingFile(new ResourceLocation("minecraft", "block/soul_sand"))))

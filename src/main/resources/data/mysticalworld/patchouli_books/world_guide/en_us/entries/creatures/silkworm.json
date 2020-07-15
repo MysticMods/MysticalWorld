@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "mysticalworld:silkworm_egg",
-      "text": "These will slowly grow over time and produce $(l:items/silk_cocoon)cocoons$().$(br2)They do not spawn in any specific biome, nor can they be bred, but you can hatch them from eggs. See over for egg drop locations."
+      "text": "Silkworms grow slowly over time and produce $(l:items/silk_cocoon)cocoons$().$(br2)This breed is surprisingly hostile and territorial, attacking any other nearby silkworms. $(l:creatures/silkworm#obtain)See over for obtaining them.$()"
     },
     {
       "type": "entity",
@@ -14,13 +14,14 @@
       "entity": "mysticalworld:silkworm",
       "scale": 1.5,
       "offset": -0.3,
-      "text": "You can drop leaves near them to speed the process up."
+      "text": "You can right-click them with leaves to speed up their growth and cause them to drop more."
     },
     {
       "type": "spotlight",
+      "anchor": "obtain",
       "item": "minecraft:leaves",
       "flag": "roots:silkworm_leaves",
-      "text": "Silkworms do not spawn naturally, nor can they be bred, but can be hatched from eggs (with a chance of success).$(br2)Eggs can be found by breaking leaves in the same way you would to get saplings."
+      "text": "Silkworms do not spawn naturally, nor can they be bred, but can be hatched from eggs.$(br2)Eggs can be found by breaking leaves in the same way you would to get saplings."
     }
   ]
 }

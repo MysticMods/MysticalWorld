@@ -14,6 +14,8 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 public class Remaps {
+  public static ResourceLocation IGNORE = new ResourceLocation(MysticalWorld.MODID, "ignore_remap");
+
   public static Map<ResourceLocation, ResourceLocation> remappedItems = new HashMap<>();
   public static Map<ResourceLocation, ResourceLocation> remappedBlocks = new HashMap<>();
   public static Map<ResourceLocation, ResourceLocation> remappedEntities = new HashMap<>();
@@ -36,6 +38,10 @@ public class Remaps {
       this.name = name;
       this.map = map;
     }
+  }
+
+  private static void ignore (String oldName, RemapType type) {
+    remap(oldName, "ignore_remap", type);
   }
 
   private static void remap(String oldName, String newName, RemapType type) {
@@ -64,7 +70,9 @@ public class Remaps {
   public static void remapItemEvent(RegistryEvent.MissingMappings<Item> event) {
     for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedItems.get(mapping.key);
-      if (remap != null) {
+      if (remap != null && remap.equals(IGNORE)) {
+        mapping.ignore();
+      } else if (remap != null) {
         mapping.remap(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(remap)));
       }
     }
@@ -73,7 +81,9 @@ public class Remaps {
   public static void remapBlockEvent(RegistryEvent.MissingMappings<Block> event) {
     for (RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedBlocks.get(mapping.key);
-      if (remap != null) {
+      if (remap != null && remap.equals(IGNORE)) {
+        mapping.ignore();
+      } else if (remap != null) {
         mapping.remap(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(remap)));
       }
     }
@@ -82,7 +92,9 @@ public class Remaps {
   public static void remapEntityEvent(RegistryEvent.MissingMappings<EntityType<?>> event) {
     for (RegistryEvent.MissingMappings.Mapping<EntityType<?>> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedEntities.get(mapping.key);
-      if (remap != null) {
+      if (remap != null && remap.equals(IGNORE)) {
+        mapping.ignore();
+      } else if (remap != null) {
         mapping.remap(Objects.requireNonNull(ForgeRegistries.ENTITIES.getValue(remap)));
       }
     }
@@ -92,5 +104,28 @@ public class Remaps {
   // Actual remaps go here
   //
   static {
+    ignore("drowned_head", RemapType.ITEM);
+    ignore("stray_head", RemapType.ITEM);
+    ignore("husk_head", RemapType.ITEM);
+    ignore("villager_head", RemapType.ITEM);
+    ignore("pillager_head", RemapType.ITEM);
+    ignore("zombie_pigman_head", RemapType.ITEM);
+    ignore("zombie_villager_head", RemapType.ITEM);
+
+    ignore("drowned_head", RemapType.BLOCK);
+    ignore("stray_head", RemapType.BLOCK);
+    ignore("husk_head", RemapType.BLOCK);
+    ignore("villager_head", RemapType.BLOCK);
+    ignore("pillager_head", RemapType.BLOCK);
+    ignore("zombie_pigman_head", RemapType.BLOCK);
+    ignore("zombie_villager_head", RemapType.BLOCK);
+
+    ignore("drowned_wall_head", RemapType.BLOCK);
+    ignore("stray_wall_head", RemapType.BLOCK);
+    ignore("husk_wall_head", RemapType.BLOCK);
+    ignore("villager_wall_head", RemapType.BLOCK);
+    ignore("pillager_wall_head", RemapType.BLOCK);
+    ignore("zombie_pigman_wall_head", RemapType.BLOCK);
+    ignore("zombie_villager_wall_head", RemapType.BLOCK);
   }
 }

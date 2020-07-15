@@ -1,32 +1,23 @@
 package epicsquid.mysticalworld.setup;
 
-import com.google.common.collect.Sets;
-import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityStorage;
 import epicsquid.mysticalworld.events.*;
-import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModCompost;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.potions.PotionRecipes;
 import epicsquid.mysticalworld.world.OreGen;
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
-
-import java.util.Arrays;
-import java.util.Set;
 
 public class ModSetup {
   public ModSetup() {
@@ -48,14 +39,14 @@ public class ModSetup {
       MysticalWorld.LOG.error("Unable to modify water cap", e);
     }*/
 
-    Set<Block> validBlocks = ObfuscationReflectionHelper.getPrivateValue(TileEntityType.class, TileEntityType.SKULL, "field_223046_I");
+/*    Set<Block> validBlocks = ObfuscationReflectionHelper.getPrivateValue(TileEntityType.class, TileEntityType.SKULL, "field_223046_I");
     if (validBlocks != null) {
       Set<Block> newValidBlocks = Sets.newHashSet(validBlocks);
-      newValidBlocks.addAll(Arrays.asList(ModBlocks.DROWNED_HEAD.get(), ModBlocks.DROWNED_WALL_HEAD.get(), ModBlocks.HUSK_HEAD.get(), ModBlocks.HUSK_WALL_HEAD.get(), ModBlocks.STRAY_HEAD.get(), ModBlocks.STRAY_WALL_HEAD.get(), /*ModBlocks.PILLAGER_HEAD.get(), *//*ModBlocks.PILLAGER_WALL_HEAD.get(),*/ /*ModBlocks.WITCH_HEAD.get(), ModBlocks.WITCH_WALL_HEAD.get(), */ModBlocks.ZOMBIE_PIGMAN_HEAD.get(), ModBlocks.ZOMBIE_PIGMAN_WALL_HEAD.get(), /*ModBlocks.ENDERMAN_HEAD.get(), ModBlocks.ENDERMAN_WALL_HEAD.get(), *//*ModBlocks.VILLAGER_HEAD.get(), ModBlocks.VILLAGER_WALL_HEAD.get(),*/ ModBlocks.ZOMBIE_VILLAGER_HEAD.get(), ModBlocks.ZOMBIE_VILLAGER_WALL_HEAD.get()));
+      newValidBlocks.addAll(Arrays.asList(ModBlocks.DROWNED_HEAD.get(), ModBlocks.DROWNED_WALL_HEAD.get(), ModBlocks.HUSK_HEAD.get(), ModBlocks.HUSK_WALL_HEAD.get(), ModBlocks.STRAY_HEAD.get(), ModBlocks.STRAY_WALL_HEAD.get(), *//*ModBlocks.PILLAGER_HEAD.get(), *//**//*ModBlocks.PILLAGER_WALL_HEAD.get(),*//* *//*ModBlocks.WITCH_HEAD.get(), ModBlocks.WITCH_WALL_HEAD.get(), *//*ModBlocks.ZOMBIE_PIGMAN_HEAD.get(), ModBlocks.ZOMBIE_PIGMAN_WALL_HEAD.get(), *//*ModBlocks.ENDERMAN_HEAD.get(), ModBlocks.ENDERMAN_WALL_HEAD.get(), *//**//*ModBlocks.VILLAGER_HEAD.get(), ModBlocks.VILLAGER_WALL_HEAD.get(),*//* ModBlocks.ZOMBIE_VILLAGER_HEAD.get(), ModBlocks.ZOMBIE_VILLAGER_WALL_HEAD.get()));
       ObfuscationReflectionHelper.setPrivateValue(TileEntityType.class, TileEntityType.SKULL, newValidBlocks, "field_223046_I");
     } else {
       MysticalWorld.LOG.error("Unable to replace valid blocks for SkullTileEntity.");
-    }
+    }*/
 
   }
 
