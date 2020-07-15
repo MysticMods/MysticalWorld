@@ -71,6 +71,7 @@ public class MysticalWorld {
     ModEffects.load();
     ModLang.load();
     ModTags.load();
+    ModFeatures.load();
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
       modBus.addListener(ClientSetup::init);

@@ -1,41 +1,41 @@
 package epicsquid.mysticalworld.world;
 
-import epicsquid.mysticallib.world.DimensionalOreFeature;
-import epicsquid.mysticallib.world.OreGenerator;
-import epicsquid.mysticallib.world.OreProperties;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.config.OreConfig;
+import epicsquid.mysticalworld.init.ModFeatures;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.placement.CountRangeConfig;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class OreGen {
-
-  private static List<OreGenerator> generators = new ArrayList<>();
-
-  public static void registerOreGeneration() {
-    ConfigManager.ORE_CONFIG.stream().filter(OreConfig::shouldRegister).forEach(ore -> {
-      generators.add(
-          new OreGenerator(
-              new OreProperties(
-                  () -> new DimensionalOreFeature(Feature.ORE.withConfiguration(new OreFeatureConfig(
-                      OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                      ore.getOre().getDefaultState(),
-                      ore.getChance())), DimensionType.OVERWORLD),
-                  new CountRangeConfig(
-                      ore.getSize(),
-                      ore.getMinY(),
+  private static void addOreGeneration(Biome biome) {
+    for (OreConfig config : ConfigManager.ORE_CONFIG) {
+      biome.addFeature(
+          GenerationStage.Decoration.UNDERGROUND_ORES,
+          Feature.ORE.withConfiguration(
+              new OreFeatureConfig(
+                  OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+                  config.getOre().getDefaultState(),
+                  config.getChance()
+              )
+          ).withPlacement(
+              ModFeatures.DIMENSION_COUNT.get().configure(
+                  new DimensionCountRangeConfig(
+                      config.getSize(),
+                      config.getMinY(),
                       0,
-                      ore.getMaxY() - ore.getMinY())
+                      config.getMaxY() - config.getMinY(),
+                      DimensionType.OVERWORLD)
               )
           )
       );
-    });
+    }
+  }
 
-    generators.forEach(OreGenerator::init);
+  public static void registerOreGeneration() {
+    ForgeRegistries.BIOMES.forEach(OreGen::addOreGeneration);
   }
 }
