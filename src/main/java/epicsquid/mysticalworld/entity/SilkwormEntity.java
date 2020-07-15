@@ -8,10 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -63,9 +60,11 @@ public class SilkwormEntity extends AnimalEntity {
   @Override
   protected void registerGoals() {
     goalSelector.addGoal(1, new SwimGoal(this));
+    goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0d, false));
     goalSelector.addGoal(3, new RandomWalkingGoal(this, 0.5d));
     goalSelector.addGoal(3, new TemptGoal(this, 0.9d, false, Ingredient.fromItems(LeafHandler.getLeafItems().toArray(new Item[0]))));
     goalSelector.addGoal(8, new LookRandomlyGoal(this));
+    targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, SilkwormEntity.class,false));
   }
 
   @Override
@@ -73,7 +72,6 @@ public class SilkwormEntity extends AnimalEntity {
     super.registerData();
     this.dataManager.register(SIZE, 0);
     this.dataManager.register(LEAVES_CONSUMED, 0);
-
   }
 
   public int getLeavesConsumed() {

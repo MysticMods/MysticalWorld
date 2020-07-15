@@ -51,7 +51,7 @@ public class ModSetup {
     Set<Block> validBlocks = ObfuscationReflectionHelper.getPrivateValue(TileEntityType.class, TileEntityType.SKULL, "field_223046_I");
     if (validBlocks != null) {
       Set<Block> newValidBlocks = Sets.newHashSet(validBlocks);
-      newValidBlocks.addAll(Arrays.asList(ModBlocks.DROWNED_HEAD.get(), ModBlocks.DROWNED_WALL_HEAD.get(), ModBlocks.HUSK_HEAD.get(), ModBlocks.HUSK_WALL_HEAD.get(), ModBlocks.STRAY_HEAD.get(), ModBlocks.STRAY_WALL_HEAD.get(), ModBlocks.PILLAGER_HEAD.get(), ModBlocks.PILLAGER_WALL_HEAD.get(), /*ModBlocks.WITCH_HEAD.get(), ModBlocks.WITCH_WALL_HEAD.get(), */ModBlocks.ZOMBIE_PIGMAN_HEAD.get(), ModBlocks.ZOMBIE_PIGMAN_WALL_HEAD.get(), /*ModBlocks.ENDERMAN_HEAD.get(), ModBlocks.ENDERMAN_WALL_HEAD.get(), */ModBlocks.VILLAGER_HEAD.get(), ModBlocks.VILLAGER_WALL_HEAD.get(), ModBlocks.ZOMBIE_VILLAGER_HEAD.get(), ModBlocks.ZOMBIE_VILLAGER_WALL_HEAD.get()));
+      newValidBlocks.addAll(Arrays.asList(ModBlocks.DROWNED_HEAD.get(), ModBlocks.DROWNED_WALL_HEAD.get(), ModBlocks.HUSK_HEAD.get(), ModBlocks.HUSK_WALL_HEAD.get(), ModBlocks.STRAY_HEAD.get(), ModBlocks.STRAY_WALL_HEAD.get(), /*ModBlocks.PILLAGER_HEAD.get(), *//*ModBlocks.PILLAGER_WALL_HEAD.get(),*/ /*ModBlocks.WITCH_HEAD.get(), ModBlocks.WITCH_WALL_HEAD.get(), */ModBlocks.ZOMBIE_PIGMAN_HEAD.get(), ModBlocks.ZOMBIE_PIGMAN_WALL_HEAD.get(), /*ModBlocks.ENDERMAN_HEAD.get(), ModBlocks.ENDERMAN_WALL_HEAD.get(), *//*ModBlocks.VILLAGER_HEAD.get(), ModBlocks.VILLAGER_WALL_HEAD.get(),*/ ModBlocks.ZOMBIE_VILLAGER_HEAD.get(), ModBlocks.ZOMBIE_VILLAGER_WALL_HEAD.get()));
       ObfuscationReflectionHelper.setPrivateValue(TileEntityType.class, TileEntityType.SKULL, newValidBlocks, "field_223046_I");
     } else {
       MysticalWorld.LOG.error("Unable to replace valid blocks for SkullTileEntity.");
@@ -68,7 +68,6 @@ public class ModSetup {
 
   @SuppressWarnings("Duplicates")
   public void registerListeners() {
-/*    MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);*/
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
     MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);
     MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onDeath);
