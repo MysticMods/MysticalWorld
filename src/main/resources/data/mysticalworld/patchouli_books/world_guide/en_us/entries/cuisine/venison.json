@@ -11,7 +11,7 @@
     },
     {
       "type": "smelting",
-      "recipe": "mysticalworld:venison",
+      "recipe": "mysticalworld:cooked_venison",
       "title": "Cooked Venison",
       "text": "Cooked form of the raw meat can also be obtained from deer that were killed while burning or with fire damage."
     }

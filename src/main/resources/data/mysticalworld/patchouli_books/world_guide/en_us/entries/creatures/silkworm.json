@@ -19,8 +19,7 @@
     {
       "type": "spotlight",
       "anchor": "obtain",
-      "item": "minecraft:leaves",
-      "flag": "roots:silkworm_leaves",
+      "item": "minecraft:oak_leaves",
       "text": "Silkworms do not spawn naturally, nor can they be bred, but can be hatched from eggs.$(br2)Eggs can be found by breaking leaves in the same way you would to get saplings."
     }
   ]

@@ -5,8 +5,8 @@
   "pages": [
     {
       "type": "spotlight",
-      "item": "mysticalworld:lead_ore",
-      "text": "Lead is a heavy metal that makes a formidable weapon."
+      "item": "mysticalworld:lead_ingot",
+      "text": "Lead ingots can be crafted into a variety of formidable and strong weapons."
     },
     {
       "type": "crafting",

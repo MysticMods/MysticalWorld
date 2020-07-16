@@ -1,12 +1,12 @@
 {
-  "name": "Cordials",
+  "name": "Vinegar",
   "icon": "mysticalworld:vinegar",
   "category": "cuisine",
   "pages": [
     {
       "type": "crafting",
       "recipe": "mysticalworld:vinegar",
-      "text": "Currently serves no purpose, but does cause hunger."
+      "text": "Causes hunger but serves no other purpose."
     }
   ]
 }

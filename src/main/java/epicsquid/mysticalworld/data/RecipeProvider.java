@@ -5,6 +5,7 @@ import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import epicsquid.mysticallib.item.DrinkItem;
+import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
@@ -31,6 +32,13 @@ public class RecipeProvider {
     this.modid = modid;
   }
 
+  public ResourceLocation rl(String comp) {
+    if (comp.contains(":")) {
+      return new ResourceLocation(MysticalWorld.MODID, comp.split(":")[1]);
+    }
+    return new ResourceLocation(MysticalWorld.MODID, comp);
+  }
+
   public <T extends Item> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> storage(Supplier<RegistryEntry<Block>> block, Supplier<RegistryEntry<Item>> ingot, Tag<Item> blockTag, Tag<Item> ingotTag, @Nullable Tag<Item> oreTag, @Nullable Supplier<RegistryEntry<Item>> nugget, @Nullable Tag<Item> nuggetTag, @Nullable Tag<Item> dustTag) {
     return (ctx, p) -> {
 
@@ -41,12 +49,12 @@ public class RecipeProvider {
           .patternLine("###")
           .key('#', ingotTag)
           .addCriterion("has_at_least_9_" + safeName(ingotTag.getId()), p.hasItem(ingotTag))
-          .build(p, safeName(ingotTag.getId()) + "_to_storage_block");
+          .build(p, rl(safeName(ingotTag.getId()) + "_to_storage_block"));
       // Block to ingot
       ShapelessRecipeBuilder.shapelessRecipe(ingot.get().get(), 9)
           .addIngredient(blockTag)
           .addCriterion("has_block_" + safeName(blockTag.getId()), p.hasItem(blockTag))
-          .build(p, safeName(blockTag.getId()) + "_to_9_ingots");
+          .build(p, rl(safeName(blockTag.getId()) + "_to_9_ingots"));
       if (oreTag != null) {
         // Ore smelting
         ore(oreTag, ingot.get(), 0.125f, p);
@@ -58,11 +66,11 @@ public class RecipeProvider {
             .patternLine("###")
             .key('#', nuggetTag)
             .addCriterion("has_at_least_9_" + safeName(nuggetTag.getId()), p.hasItem(nuggetTag))
-            .build(p, safeName(nuggetTag.getId()) + "_to_ingot");
+            .build(p, rl(safeName(nuggetTag.getId()) + "_to_ingot"));
         ShapelessRecipeBuilder.shapelessRecipe(nugget.get().get(), 9)
             .addIngredient(ingotTag)
             .addCriterion("has_ingot_" + safeName(ingotTag.getId()), p.hasItem(ingotTag))
-            .build(p, safeName(ingotTag.getId()) + "_to_9_nuggets");
+            .build(p, rl(safeName(ingotTag.getId()) + "_to_9_nuggets"));
       }
       if (dustTag != null) {
         dust(dustTag, ingot.get(), 0.125f, p);
@@ -71,13 +79,13 @@ public class RecipeProvider {
   }
 
   public <T extends IItemProvider & IForgeRegistryEntry<?>> void ore(Tag<Item> source, Supplier<T> result, float xp, Consumer<IFinishedRecipe> consumer) {
-    CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(source), result.get(), xp, 200).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_smelting");
-    CookingRecipeBuilder.blastingRecipe(Ingredient.fromTag(source), result.get(), xp, 100).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_blasting");
+    CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(source), result.get(), xp, 200).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, rl(safeId(result.get()) + "_from_smelting"));
+    CookingRecipeBuilder.blastingRecipe(Ingredient.fromTag(source), result.get(), xp, 100).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, rl(safeId(result.get()) + "_from_blasting"));
   }
 
   public <T extends IItemProvider & IForgeRegistryEntry<?>> void dust(Tag<Item> source, Supplier<T> result, float xp, Consumer<IFinishedRecipe> consumer) {
-    CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(source), result.get(), xp, 200).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_smelting_dust");
-    CookingRecipeBuilder.blastingRecipe(Ingredient.fromTag(source), result.get(), xp, 100).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_blasting_dust");
+    CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(source), result.get(), xp, 200).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, rl(safeId(result.get()) + "_from_smelting_dust"));
+    CookingRecipeBuilder.blastingRecipe(Ingredient.fromTag(source), result.get(), xp, 100).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, rl(safeId(result.get()) + "_from_blasting_dust"));
   }
 
   public <T extends IItemProvider & IForgeRegistryEntry<?>> void recycle(Supplier<? extends T> source, Supplier<? extends T> result, float xp, Consumer<IFinishedRecipe> consumer) {
