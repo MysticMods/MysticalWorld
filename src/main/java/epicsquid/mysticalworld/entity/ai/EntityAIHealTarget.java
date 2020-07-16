@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.entity.ai;
 
+import epicsquid.mysticalworld.config.ConfigManager;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -133,8 +134,8 @@ public class EntityAIHealTarget extends EntityAIBase {
     if (distToEnemySqr <= d0 && this.attackTick <= 0) {
       this.attackTick = 20;
       this.attacker.swingArm(EnumHand.MAIN_HAND);
-      enemy.heal(2.0f);
-      enemy.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 130, 1, false, false));
+      enemy.heal(ConfigManager.hats.antlerHealing);
+      enemy.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ConfigManager.hats.antlerRegenDuration, ConfigManager.hats.antlerRegenAmplifier, false, false));
       this.attacker.setDead();
     }
   }

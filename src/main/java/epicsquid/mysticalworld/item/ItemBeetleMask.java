@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.item;
 import epicsquid.mysticallib.model.IModeledObject;
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.EntitySpiritBeetle;
 import epicsquid.mysticalworld.entity.EntitySpiritDeer;
 import epicsquid.mysticalworld.entity.model.armor.ModelBeetleMask;
@@ -12,12 +13,10 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -43,6 +42,10 @@ public class ItemBeetleMask extends ItemArmor implements IModeledObject {
 
   @SubscribeEvent
   public static void onAttackEntity(AttackEntityEvent event) {
+    if (ConfigManager.hats.maskChance == -1) {
+      return;
+    }
+
     EntityPlayer player = event.getEntityPlayer();
     if (player.world.isRemote) {
       return;
@@ -52,7 +55,7 @@ public class ItemBeetleMask extends ItemArmor implements IModeledObject {
       EntityLivingBase target = (EntityLivingBase) entityTarget;
       ItemStack mask = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
       if (mask.getItem() == ModItems.beetle_mask) {
-/*        if (Util.rand.nextInt(40) == 0) {*/
+        if (Util.rand.nextInt(ConfigManager.hats.maskChance) == 0) {
           World world = player.world;
           BlockPos playerPos = player.getPosition();
           if (world.getEntitiesWithinAABB(EntitySpiritDeer.class, ItemAntlerHat.BOX.offset(playerPos)).size() >= 3) {
@@ -84,10 +87,12 @@ public class ItemBeetleMask extends ItemArmor implements IModeledObject {
           spiritBeetle.noClip = true;
           world.spawnEntity(spiritBeetle);
           ItemStack head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-          head.damageItem(1, player);
+          if (ConfigManager.hats.maskDurabilityDamage != -1) {
+            head.damageItem(ConfigManager.hats.maskDurabilityDamage, player);
+          }
         }
       }
-/*    }*/
+    }
   }
 
   @Override

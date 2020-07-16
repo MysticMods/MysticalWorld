@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import epicsquid.mysticallib.model.IModeledObject;
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.EntitySpiritDeer;
 import epicsquid.mysticalworld.entity.model.armor.ModelAntlerHat;
 import epicsquid.mysticalworld.materials.Materials;
@@ -48,8 +49,8 @@ public class ItemAntlerHat extends ItemArmor implements IModeledObject {
   public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack)   {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot, stack);
 
-    if (slot == EntityEquipmentSlot.HEAD) {
-      map.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(Materials.ARMOR_MODIFIERS[slot.getIndex()], "Healthiness", 4f, 0));
+    if (slot == EntityEquipmentSlot.HEAD && ConfigManager.hats.antlerHealthBonus != -1) {
+      map.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(Materials.ARMOR_MODIFIERS[slot.getIndex()], "Healthiness", ConfigManager.hats.antlerHealthBonus, 0));
     }
 
     return map;
@@ -60,11 +61,15 @@ public class ItemAntlerHat extends ItemArmor implements IModeledObject {
     return EnumRarity.RARE;
   }
 
-  public static AxisAlignedBB BOX = new AxisAlignedBB(-8, -8, -8, 8, 8, 8);
+  public static AxisAlignedBB BOX = new AxisAlignedBB(-8, -8, -8, 9, 9, 9);
 
   @Override
   public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-    if (!world.isRemote && player.getHealth() < player.getMaxHealth() && Util.rand.nextInt(50) == 0) {
+    if (ConfigManager.hats.antlerFrequency == -1) {
+      return;
+    }
+
+    if (!world.isRemote && player.getHealth() < (ConfigManager.hats.antlerThreshold == -1 ? player.getMaxHealth() : player.getMaxHealth() - ConfigManager.hats.antlerThreshold) && Util.rand.nextInt(ConfigManager.hats.antlerFrequency) == 0) {
       if (player.getActivePotionEffect(MobEffects.REGENERATION) != null) {
         return;
       }
@@ -99,7 +104,9 @@ public class ItemAntlerHat extends ItemArmor implements IModeledObject {
       spiritDeer.noClip = true;
       world.spawnEntity(spiritDeer);
       ItemStack head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-      head.damageItem(1, player);
+      if (ConfigManager.hats.antlerDamage != -1) {
+        head.damageItem(ConfigManager.hats.antlerDamage, player);
+      }
     }
   }
 

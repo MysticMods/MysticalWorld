@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.ai.EntityAISpiritAttack;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -128,7 +129,7 @@ public class EntitySpiritBeetle extends EntityBeetle {
   @Override
   public boolean attackEntityAsMob(Entity entityIn) {
     DamageSource source = new EntityDamageSource("spirit", this).setDamageBypassesArmor().setMagicDamage();
-    return entityIn.attackEntityFrom(source, 2);
+    return entityIn.attackEntityFrom(source, ConfigManager.hats.maskAttackDamage);
   }
 
   @Override

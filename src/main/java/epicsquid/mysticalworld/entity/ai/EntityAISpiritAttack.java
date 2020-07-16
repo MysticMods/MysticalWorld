@@ -130,7 +130,6 @@ public class EntityAISpiritAttack extends EntityAIBase {
 
   protected void checkAndPerformAttack(EntityLivingBase enemy, double distToEnemySqr) {
     double d0 = this.getAttackReachSqr(enemy);
-    MysticalWorld.logger.info(d0);
 
     if (distToEnemySqr <= d0 && this.attackTick <= 0) {
       this.attackTick = 20;

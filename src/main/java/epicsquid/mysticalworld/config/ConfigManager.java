@@ -24,6 +24,8 @@ public class ConfigManager {
     return Math.max(1, incoming);
   }
 
+
+
   @Config.Comment(("Grant the Patchouli-based Guide Book when first joining the server"))
   public static boolean GiveBook = true;
 
@@ -38,6 +40,41 @@ public class ConfigManager {
 
   @Config.Comment(("Maximum nubmer of pulls for injected loot"))
   public static int InjectMaximum = 1;
+
+  @Config.Comment(("Configuration settings for the Beetle Mask and Antler Hat."))
+  public static ConfigMysticalWorldHats hats = new ConfigMysticalWorldHats();
+
+  public static class ConfigMysticalWorldHats {
+    @Config.Comment("Spawn frequency (1 in X chances per tick while spawn conditions are met, -1 for not at all)")
+    public int antlerFrequency = 50;
+
+    @Config.Comment("How many hearts under maximum health the player needs to be for a deer to spawn (-1 for any value under maximum health")
+    public int antlerThreshold = -1;
+
+    @Config.Comment("How much a Spirit Deer should heal for")
+    public float antlerHealing = 2.0f;
+
+    @Config.Comment("How long a duration Regeneration should be applied for")
+    public int antlerRegenDuration = 130;
+
+    @Config.Comment("What amplifier should be applied to the Regeneration effect (0 = I, 1 = II, etc)")
+    public int antlerRegenAmplifier = 1;
+
+    @Config.Comment("How much of a health bonus wearing the hat should give (-1 for no bonus, 2 for a single heart, 4 for two hearts, etc")
+    public float antlerHealthBonus = 4f;
+
+    @Config.Comment("How much damage to the antler hat spawning a spirit deer causes (-1 for no damage)")
+    public int antlerDamage = 1;
+
+    @Config.Comment("How frequency (1 in X per melee hit) Spirit Beetles should be spawned (-1 for not at all)")
+    public int maskChance = 11;
+
+    @Config.Comment("How much damage Spirit Beetles should do")
+    public int maskAttackDamage = 2;
+
+    @Config.Comment("How much durability damage should be done (-1 for none) per beetle spawned")
+    public int maskDurabilityDamage = 1;
+  }
 
   @Config.Comment(("Controls the spawning of mobs in Mystical World and dependent mods."))
   public static ConfigMysticalWorldMobs mobs = new ConfigMysticalWorldMobs();
