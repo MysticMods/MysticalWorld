@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.integration.patchouli.api;
 
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.config.MobConfig;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.text.WordUtils;
 import vazkii.patchouli.api.IComponentProcessor;
@@ -14,7 +15,7 @@ import java.util.StringJoiner;
 @SuppressWarnings("unused")
 public class AnimalSpawnInfo implements IComponentProcessor {
   private String animalName;
-  private Object animal;
+  private MobConfig animal;
 
   @Override
   public void setup(IVariableProvider<String> iVariableProvider) {
@@ -51,34 +52,6 @@ public class AnimalSpawnInfo implements IComponentProcessor {
     }
   }
 
-  private int getInt(String name) {
-    Field field;
-    try {
-      field = animal.getClass().getField(name);
-    } catch (NoSuchFieldException e) {
-      return 0;
-    }
-    try {
-      return field.getInt(animal);
-    } catch (IllegalAccessException e) {
-      return 0;
-    }
-  }
-
-  private String[] getString(String name) {
-    Field field;
-    try {
-      field = animal.getClass().getField(name);
-    } catch (NoSuchFieldException e) {
-      return new String[]{};
-    }
-    try {
-      return (String[]) field.get(animal);
-    } catch (IllegalAccessException e) {
-      return new String[]{};
-    }
-  }
-
   @Override
   public String process(String s) {
     if (this.animal == null && !animalName.equals("squid")) return null;
@@ -86,7 +59,7 @@ public class AnimalSpawnInfo implements IComponentProcessor {
       if (animalName.equals("squid")) {
         return "Standard group sizes.";
       } else {
-        return String.format("Groups of: %d-%d", getInt("min"), getInt("max"));
+        return String.format("Groups of: %d-%d", animal.getMin(), animal.getMax());
       }
     }
     if (s.startsWith("biomes")) {
@@ -96,7 +69,7 @@ public class AnimalSpawnInfo implements IComponentProcessor {
         return "The End";
       } else {
         StringJoiner joiner = new StringJoiner(", ");
-        for (String biomeName : getString("biomes")) {
+        for (String biomeName : animal.getBiomes()) {
           joiner.add(WordUtils.capitalize(biomeName.toLowerCase()));
         }
         return "Biomes tagged with: " + joiner.toString();
