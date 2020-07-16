@@ -2,27 +2,17 @@ package epicsquid.mysticalworld.setup;
 
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.AdditionalHeads;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
-import epicsquid.mysticalworld.entity.model.heads.*;
 import epicsquid.mysticalworld.entity.render.*;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModEntities;
-import net.minecraft.block.SkullBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.client.renderer.entity.model.GenericHeadModel;
-import net.minecraft.client.renderer.tileentity.SkullTileEntityRenderer;
 import net.minecraft.resources.IReloadableResourceManager;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-
-import java.util.Map;
 
 public class ClientSetup {
   public static void init(FMLClientSetupEvent event) {
@@ -49,7 +39,7 @@ public class ClientSetup {
       c.register((a, layer) -> egg.get().getColor(layer), egg.get());
     }
 
-    Map<SkullBlock.ISkullType, GenericHeadModel> skullModels = ObfuscationReflectionHelper.getPrivateValue(SkullTileEntityRenderer.class, null, "field_199358_e");
+/*    Map<SkullBlock.ISkullType, GenericHeadModel> skullModels = ObfuscationReflectionHelper.getPrivateValue(SkullTileEntityRenderer.class, null, "field_199358_e");
     Map<SkullBlock.ISkullType, ResourceLocation> skullSkins = ObfuscationReflectionHelper.getPrivateValue(SkullTileEntityRenderer.class, null, "field_199357_d");
     if (skullModels != null) {
       GenericHeadModel genericheadmodel = new GenericHeadModel(0, 0, 64, 64);
@@ -78,7 +68,7 @@ public class ClientSetup {
           "textures/entity/enderman/enderman.png"));
       skullSkins.put(AdditionalHeads.VILLAGER, new ResourceLocation("minecraft", "textures/entity/villager/villager.png"));
       skullSkins.put(AdditionalHeads.ZOMBIE_VILLAGER, new ResourceLocation("minecraft", "textures/entity/zombie_villager/zombie_villager.png"));
-    }
+    }*/
 
     // TODO: Cutout, etc, blocks
   }
