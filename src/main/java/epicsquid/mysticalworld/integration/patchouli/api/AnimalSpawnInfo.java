@@ -70,6 +70,7 @@ public class AnimalSpawnInfo implements IComponentProcessor {
       } else {
         StringJoiner joiner = new StringJoiner(", ");
         for (String biomeName : animal.getBiomes()) {
+          // TODO: Localise according to 1.12
           joiner.add(WordUtils.capitalize(biomeName.toLowerCase()));
         }
         return "Biomes tagged with: " + joiner.toString();
