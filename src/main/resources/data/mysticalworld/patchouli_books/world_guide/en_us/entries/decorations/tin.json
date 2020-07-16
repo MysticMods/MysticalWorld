@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "crafting",
-      "recipe": "mysticalworld:tin_block",
+      "recipe": "mysticalworld:ingots_tin_to_storage_block",
       "link_recipe": true,
       "text": "While mainly serving a purpose as storage, blocks of tin can also be crafted into various decorative elements."
     },

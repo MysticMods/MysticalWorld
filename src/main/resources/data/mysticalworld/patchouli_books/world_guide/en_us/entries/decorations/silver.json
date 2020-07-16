@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "crafting",
-      "recipe": "mysticalworld:silver_block",
+      "recipe": "mysticalworld:ingots_silver_to_storage_block",
       "link_recipe": true,
       "text": "While mainly serving a purpose as storage, blocks of silver can also be crafted into various decorative elements."
     },

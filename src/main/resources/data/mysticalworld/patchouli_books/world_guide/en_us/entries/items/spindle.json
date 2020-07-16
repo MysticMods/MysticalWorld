@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "crafting",
-      "item": "mysticalworld:spindle",
+      "recipe": "mysticalworld:spindle",
       "link_recipe": true,
       "text": "This spindle has around 64 uses by default, and can be used to convert silk cocoons into larger quantities than other forms of processing."
     }

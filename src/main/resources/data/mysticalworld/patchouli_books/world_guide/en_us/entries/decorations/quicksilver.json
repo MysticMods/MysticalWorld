@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "crafting",
-      "recipe": "mysticalworld:quicksilver_block",
+      "recipe": "mysticalworld:ingots_quicksilver_to_storage_block",
       "link_recipe": true,
       "text": "While mainly serving a purpose as storage, blocks of quicksilver can also be crafted into various decorative elements."
     },

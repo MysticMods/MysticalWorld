@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "crafting",
-      "recipe": "mysticalworld:copper_block",
+      "recipe": "mysticalworld:ingots_copper_to_storage_block",
       "link_recipe": true,
       "text": "While mainly serving a purpose as storage, blocks of copper can also be crafted into various decorative elements."
     },

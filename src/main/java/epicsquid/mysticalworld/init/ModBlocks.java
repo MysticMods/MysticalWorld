@@ -123,15 +123,24 @@ public class ModBlocks {
       .model(NonNullBiConsumer.noop())
       .build()
       .blockstate(NonNullBiConsumer.noop())
-      .recipe((ctx, p) ->
-          ShapedRecipeBuilder.shapedRecipe(ModBlocks.THATCH.get(), 32)
-              .patternLine("XY")
-              .patternLine("YX")
-              .key('X', Blocks.HAY_BLOCK)
-              .key('Y', Tags.Items.CROPS_WHEAT)
-              .addCriterion("has_hay", p.hasItem(Blocks.HAY_BLOCK))
-              .addCriterion("has_wheat", p.hasItem(Items.WHEAT))
-              .build(p)
+      .recipe((ctx, p) -> {
+            ShapedRecipeBuilder.shapedRecipe(ModBlocks.THATCH.get(), 32)
+                .patternLine("XY")
+                .patternLine("YX")
+                .key('X', Blocks.HAY_BLOCK)
+                .key('Y', Tags.Items.CROPS_WHEAT)
+                .addCriterion("has_hay", p.hasItem(Blocks.HAY_BLOCK))
+                .addCriterion("has_wheat", p.hasItem(Items.WHEAT))
+                .build(p);
+            ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.SIMPLE_THATCH.get(), 1)
+                .addIngredient(ModBlocks.THATCH.get())
+                .addCriterion("has_thatch", p.hasItem(ModBlocks.THATCH.get()))
+                .build(p, RECIPES.rl("simple_thatch_from_thatch"));
+            ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.THATCH.get(), 1)
+                .addIngredient(ModBlocks.SIMPLE_THATCH.get())
+                .addCriterion("has_thatch", p.hasItem(ModBlocks.SIMPLE_THATCH.get()))
+                .build(p, RECIPES.rl("thatch_from_simple_thatch"));
+          }
       )
       .register();
 

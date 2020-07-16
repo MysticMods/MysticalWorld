@@ -11,8 +11,8 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:charred_wood_eight",
-      "recipe2": "mysticalworld:charred_wood"
+      "recipe": "mysticalworld:charred_log_from_8_logs",
+      "recipe2": "mysticalworld:charred_log_from_single_log"
     },
     {
       "type": "crafting",
@@ -32,16 +32,6 @@
       "recipe": "mysticalworld:charred_wall",
       "recipe2": "mysticalworld:charred_fence",
       "link_recipe": true
-    },
-    {
-      "type": "crafting",
-      "link_recipe": true,
-      "recipe": "mysticalworld:charred_button",
-      "recipe2": "mysticalworld:charred_pressure_plate"
-    },
-    {
-      "type": "smelting",
-      "recipe": "mysticalworld:charred_log"
     }
   ]
 }
