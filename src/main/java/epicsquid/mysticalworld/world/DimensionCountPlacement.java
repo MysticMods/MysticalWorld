@@ -19,10 +19,10 @@ public class DimensionCountPlacement extends Placement<DimensionCountRangeConfig
 
   @Override
   public Stream<BlockPos> getPositions(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generatorIn, Random random, DimensionCountRangeConfig configIn, BlockPos pos) {
-    if (configIn.dimensions.contains(worldIn.getDimension().getType())) {
+    if (configIn.dimensions.contains(worldIn.getDimension().getType()) && configIn.count > 0) {
       return getPositions(random, configIn, pos);
     }
-    return null;
+    return Stream.empty();
   }
 
   protected Stream<BlockPos> getPositions(Random random, DimensionCountRangeConfig p_212852_2_, BlockPos pos) {
