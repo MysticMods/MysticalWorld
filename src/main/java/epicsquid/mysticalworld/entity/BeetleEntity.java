@@ -117,10 +117,8 @@ public class BeetleEntity extends TameableEntity {
           this.setTamedBy(player);
           this.navigator.clearPath();
           this.sitGoal.setSitting(true);
-          this.playTameEffect(true);
           this.world.setEntityState(this, (byte) 7);
         } else {
-          this.playTameEffect(false);
           this.world.setEntityState(this, (byte) 6);
         }
       }

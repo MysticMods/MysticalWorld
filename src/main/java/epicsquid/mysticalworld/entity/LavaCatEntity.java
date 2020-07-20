@@ -232,11 +232,9 @@ public class LavaCatEntity extends TameableEntity {
       if (!this.world.isRemote) {
         if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
           this.setTamedBy(player);
-          this.playTameEffect(true);
           this.sitGoal.setSitting(true);
           this.world.setEntityState(this, (byte) 7);
         } else {
-          this.playTameEffect(false);
           this.world.setEntityState(this, (byte) 6);
         }
       }
