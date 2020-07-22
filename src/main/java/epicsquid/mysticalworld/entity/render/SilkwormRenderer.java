@@ -24,15 +24,12 @@ public class SilkwormRenderer extends MobRenderer<SilkwormEntity, SilkwormModel>
   }
 
   @Override
-  public void render(SilkwormEntity entity, float yaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light)  {
-    matrix.push();
+  protected void preRenderCallback(SilkwormEntity entity, MatrixStack matrix, float partialTickTime) {
     float scale = entity.getSize() / 120.0f;
     if (entity.isChild()) {
       scale = -0.2f;
     }
     matrix.scale(0.4f+scale, 0.6f+scale, 1f+scale);
-    super.render(entity, yaw, partialTicks, matrix, buffer, light);
-    matrix.pop();
   }
 
   @Override

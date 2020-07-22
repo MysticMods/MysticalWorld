@@ -263,7 +263,6 @@ public class SilkwormEntity extends AnimalEntity {
 
   @Override
   public boolean attackEntityAsMob(Entity entityIn) {
-    super.attackEntityAsMob(entityIn);
     if (entityIn instanceof SilkwormEntity) {
       return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), Integer.MAX_VALUE);
     }
