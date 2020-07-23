@@ -14,6 +14,7 @@ import epicsquid.mysticalworld.world.OreGen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
@@ -24,14 +25,15 @@ public class ModSetup {
   }
 
   public void init(FMLCommonSetupEvent event) {
-    ModCompost.init();
-    ModEntities.registerEntities();
-    Networking.INSTANCE.registerMessages();
-    CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
-    CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
+    DeferredWorkQueue.runLater(() -> {
+      ModCompost.init();
+      ModEntities.registerEntities();
+      Networking.INSTANCE.registerMessages();
+      CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
+      CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
 
-    OreGen.registerOreGeneration();
-    PotionRecipes.registerRecipes();
+      OreGen.registerOreGeneration();
+      PotionRecipes.registerRecipes();
 
 /*    try {
       ModifyWaterCap.modify();
@@ -47,6 +49,7 @@ public class ModSetup {
     } else {
       MysticalWorld.LOG.error("Unable to replace valid blocks for SkullTileEntity.");
     }*/
+    });
 
   }
 

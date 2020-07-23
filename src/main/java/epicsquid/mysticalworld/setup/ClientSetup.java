@@ -11,33 +11,35 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.resources.IReloadableResourceManager;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ClientSetup {
   public static void init(FMLClientSetupEvent event) {
-    RenderType rendertype = RenderType.getCutoutMipped();
-    RenderTypeLookup.setRenderLayer(ModBlocks.AUBERGINE_CROP.get(), rendertype);
-    RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
+    DeferredWorkQueue.runLater(() -> {
+      RenderType rendertype = RenderType.getCutoutMipped();
+      RenderTypeLookup.setRenderLayer(ModBlocks.AUBERGINE_CROP.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
 
-    ((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new ModelHolder());
-    ModelHolder.init();
+      ((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new ModelHolder());
+      ModelHolder.init();
 
-    // TODO: Fix this
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.BEETLE.get(), new BeetleRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.SILVER_FOX.get(), new FoxRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.FROG.get(), new FrogRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.SPROUT.get(), new SproutRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.DEER.get(), new DeerRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENDERMINI.get(), new EnderminiRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.OWL.get(), new OwlRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.LAVA_CAT.get(), new LavaCatRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.SILKWORM.get(), new SilkwormRenderer.Factory());
+      // TODO: Fix this
+      RenderingRegistry.registerEntityRenderingHandler(ModEntities.BEETLE.get(), new BeetleRenderer.Factory());
+      RenderingRegistry.registerEntityRenderingHandler(ModEntities.SILVER_FOX.get(), new FoxRenderer.Factory());
+      RenderingRegistry.registerEntityRenderingHandler(ModEntities.FROG.get(), new FrogRenderer.Factory());
+      RenderingRegistry.registerEntityRenderingHandler(ModEntities.SPROUT.get(), new SproutRenderer.Factory());
+      RenderingRegistry.registerEntityRenderingHandler(ModEntities.DEER.get(), new DeerRenderer.Factory());
+      RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENDERMINI.get(), new EnderminiRenderer.Factory());
+      RenderingRegistry.registerEntityRenderingHandler(ModEntities.OWL.get(), new OwlRenderer.Factory());
+      RenderingRegistry.registerEntityRenderingHandler(ModEntities.LAVA_CAT.get(), new LavaCatRenderer.Factory());
+      RenderingRegistry.registerEntityRenderingHandler(ModEntities.SILKWORM.get(), new SilkwormRenderer.Factory());
 
-    ItemColors c = Minecraft.getInstance().getItemColors();
-    for (RegistryEntry<? extends LazySpawnEggItem<?>> egg : ModEntities.SPAWN_EGGS) {
-      c.register((a, layer) -> egg.get().getColor(layer), egg.get());
-    }
+      ItemColors c = Minecraft.getInstance().getItemColors();
+      for (RegistryEntry<? extends LazySpawnEggItem<?>> egg : ModEntities.SPAWN_EGGS) {
+        c.register((a, layer) -> egg.get().getColor(layer), egg.get());
+      }
 
 /*    Map<SkullBlock.ISkullType, GenericHeadModel> skullModels = ObfuscationReflectionHelper.getPrivateValue(SkullTileEntityRenderer.class, null, "field_199358_e");
     Map<SkullBlock.ISkullType, ResourceLocation> skullSkins = ObfuscationReflectionHelper.getPrivateValue(SkullTileEntityRenderer.class, null, "field_199357_d");
@@ -69,6 +71,7 @@ public class ClientSetup {
       skullSkins.put(AdditionalHeads.VILLAGER, new ResourceLocation("minecraft", "textures/entity/villager/villager.png"));
       skullSkins.put(AdditionalHeads.ZOMBIE_VILLAGER, new ResourceLocation("minecraft", "textures/entity/zombie_villager/zombie_villager.png"));
     }*/
+    });
 
     // TODO: Cutout, etc, blocks
   }
