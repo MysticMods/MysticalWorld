@@ -60,11 +60,11 @@ public class SilkwormEntity extends AnimalEntity {
   @Override
   protected void registerGoals() {
     goalSelector.addGoal(1, new SwimGoal(this));
-    goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0d, false));
+    goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.5d, false));
     goalSelector.addGoal(3, new RandomWalkingGoal(this, 0.5d));
     goalSelector.addGoal(3, new TemptGoal(this, 0.9d, false, Ingredient.fromItems(LeafHandler.getLeafItems().toArray(new Item[0]))));
     goalSelector.addGoal(8, new LookRandomlyGoal(this));
-    targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, SilkwormEntity.class,false));
+    targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, SilkwormEntity.class, false));
   }
 
   @Override
@@ -264,6 +264,11 @@ public class SilkwormEntity extends AnimalEntity {
   @Override
   public boolean attackEntityAsMob(Entity entityIn) {
     if (entityIn instanceof SilkwormEntity) {
+      SilkwormEntity other = (SilkwormEntity) entityIn;
+      if (other.getSize() > this.getSize()) {
+        return false; // Don't attack things that are bigger than us.
+      }
+
       return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), Integer.MAX_VALUE);
     }
     return false;
