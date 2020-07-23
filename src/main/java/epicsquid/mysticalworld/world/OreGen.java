@@ -13,25 +13,27 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class OreGen {
   private static void addOreGeneration(Biome biome) {
     for (OreConfig config : ConfigManager.ORE_CONFIG) {
-      biome.addFeature(
-          GenerationStage.Decoration.UNDERGROUND_ORES,
-          Feature.ORE.withConfiguration(
-              new OreFeatureConfig(
-                  OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                  config.getOre().getDefaultState(),
-                  config.getChance()
-              )
-          ).withPlacement(
-              ModFeatures.DIMENSION_COUNT.get().configure(
-                  new DimensionCountRangeConfig(
-                      config.getSize(),
-                      config.getMinY(),
-                      0,
-                      config.getMaxY() - config.getMinY(),
-                      DimensionType.OVERWORLD)
-              )
-          )
-      );
+      if (config.getChance() > 0) {
+        biome.addFeature(
+            GenerationStage.Decoration.UNDERGROUND_ORES,
+            Feature.ORE.withConfiguration(
+                new OreFeatureConfig(
+                    OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+                    config.getOre().getDefaultState(),
+                    config.getChance()
+                )
+            ).withPlacement(
+                ModFeatures.DIMENSION_COUNT.get().configure(
+                    new DimensionCountRangeConfig(
+                        config.getSize(),
+                        config.getMinY(),
+                        0,
+                        config.getMaxY() - config.getMinY(),
+                        DimensionType.OVERWORLD)
+                )
+            )
+        );
+      }
     }
   }
 
