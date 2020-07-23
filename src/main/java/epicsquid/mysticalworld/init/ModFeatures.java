@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.world.structures.HutStructure;
 import epicsquid.mysticalworld.world.tree.DeadTreeFeature;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -14,8 +15,8 @@ import net.minecraftforge.common.BiomeDictionary;
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
 public class ModFeatures {
-  public static RegistryEntry<DeadTreeFeature> DEAD_TREE = REGISTRATE.feature("dead_tree", DeadTreeFeature::new, NoFeatureConfig::deserialize, false)
-      .register();
+  public static RegistryEntry<DeadTreeFeature> DEAD_TREE = REGISTRATE.feature("dead_tree", DeadTreeFeature::new, NoFeatureConfig::deserialize, false).register();
+   public static RegistryEntry<HutStructure> HUT = REGISTRATE.feature("hut", HutStructure::new, NoFeatureConfig::deserialize).register();
 
   public static void load() {
   }
