@@ -269,7 +269,11 @@ public class SilkwormEntity extends AnimalEntity {
         return false; // Don't attack things that are bigger than us.
       }
 
-      return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), Integer.MAX_VALUE);
+      boolean result = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), Integer.MAX_VALUE);
+      if (result) {
+        grow();
+      }
+      return result;
     }
     return false;
   }
