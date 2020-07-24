@@ -75,7 +75,8 @@ public class BeetleEntity extends TameableEntity {
     if (this.isTamed()) {
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
         if (itemstack.isEmpty() && player.isSneaking()) {
-          if (!world.isRemote) {
+          // TODO Temporarily disabled
+          if (!world.isRemote && false) {
             // Try some shoulder surfing!
             LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
             if (laycap.isPresent()) {

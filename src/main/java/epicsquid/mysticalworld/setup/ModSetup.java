@@ -65,8 +65,9 @@ public class ModSetup {
   public void registerListeners() {
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
     MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);
-    MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onDeath);
-    MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onRightClickBlock);
+    // TODO: Temporarily disabled
+    //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onDeath);
+    //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onRightClickBlock);
     MinecraftForge.EVENT_BUS.addListener(LootHandler::onLootLoad);
     MinecraftForge.EVENT_BUS.addListener(LootHandler::onLooting);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::attachCapability);

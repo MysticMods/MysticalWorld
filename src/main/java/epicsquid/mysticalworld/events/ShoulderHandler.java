@@ -21,6 +21,7 @@ import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ShoulderHandler {
+  // Temporarily disabled
   public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
     PlayerEntity player = event.getPlayer();
     World world = event.getWorld();
