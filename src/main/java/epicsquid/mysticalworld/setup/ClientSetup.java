@@ -15,6 +15,7 @@ import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+@SuppressWarnings("deprecation")
 public class ClientSetup {
   public static void init(FMLClientSetupEvent event) {
     DeferredWorkQueue.runLater(() -> {

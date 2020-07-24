@@ -2,9 +2,14 @@ package epicsquid.mysticalworld.config;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.mysticallib.block.BaseOreBlock;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.block.Block;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.ForgeConfigSpec;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class OreConfig {
@@ -14,20 +19,23 @@ public class OreConfig {
   private int minY;
   private int maxY;
   private int size;
+  private List<? extends Integer> dimensions;
   private Supplier<RegistryEntry<BaseOreBlock>> ore;
 
   private ForgeConfigSpec.IntValue configChance;
   private ForgeConfigSpec.IntValue configMinY;
   private ForgeConfigSpec.IntValue configMaxY;
   private ForgeConfigSpec.IntValue configSize;
+  private ForgeConfigSpec.ConfigValue<List<? extends Integer>> configDimensions;
 
-  public OreConfig(String name, int chance, int minY, int maxY, int size, Supplier<RegistryEntry<BaseOreBlock>> ore) {
+  public OreConfig(String name, int chance, int minY, int maxY, int size, List<Integer> dimensions, Supplier<RegistryEntry<BaseOreBlock>> ore) {
     this.name = name;
     this.chance = chance;
     this.minY = minY;
     this.maxY = maxY;
     this.size = size;
     this.ore = ore;
+    this.dimensions = dimensions;
   }
 
   public String getName() {
@@ -54,8 +62,12 @@ public class OreConfig {
     return ore.get().get();
   }
 
-  public boolean shouldRegister() {
-    return getChance() > 0;
+  public List<? extends Integer> getDimensions () {
+    return configDimensions.get();
+  }
+
+  public DimensionType[] getDimensionsAsArray () {
+    return (DimensionType[]) configDimensions.get().stream().map(DimensionType::getById).toArray();
   }
 
   public void apply(ForgeConfigSpec.Builder builder) {
@@ -64,6 +76,7 @@ public class OreConfig {
     configSize = builder.comment("Max size of the vein.").defineInRange("veinSize", size, 1, 256);
     configMinY = builder.comment("Number of veins per chunk (set to 0 to disable).").defineInRange("minY", minY, 0, 256);
     configMaxY = builder.comment("Number of veins per chunk (set to 0 to disable).").defineInRange("maxY", maxY, 0, 256);
+    configDimensions = builder.comment("The dimensions that this ore should spawn in as a list (default [0], overworld)").defineList("dimensions", dimensions, (o) -> true);
     builder.pop();
   }
 }
