@@ -8,7 +8,7 @@
       "animal": "beetle",
       "breed": "Breed: with melons.",
       "tame": "Taming: with melon seeds.",
-      "blurb": "Sneak-right-clicking with an empty hand will allow you to place the beetle on your shoulder!"
+      "blurb": "Shoulder-riding is temporarily disabled in 1.15.2! :("
     },
     {
       "type": "entity",
@@ -16,7 +16,7 @@
       "entity": "mysticalworld:beetle",
       "scale": 1.5,
       "offset": -0.3,
-      "text": "Sneak-right-click again with an empty hand to put them down."
+      "text": ""
     }
   ]
 }
