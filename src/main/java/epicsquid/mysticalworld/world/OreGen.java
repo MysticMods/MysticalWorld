@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.world;
 
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.config.OreConfig;
 import epicsquid.mysticalworld.init.ModFeatures;
@@ -18,7 +19,7 @@ public class OreGen {
             GenerationStage.Decoration.UNDERGROUND_ORES,
             Feature.ORE.withConfiguration(
                 new OreFeatureConfig(
-                    OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+                    MysticalWorld.ORE_GEN,
                     config.getOre().getDefaultState(),
                     config.getChance()
                 )

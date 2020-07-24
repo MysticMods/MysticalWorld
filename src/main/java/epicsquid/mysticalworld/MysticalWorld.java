@@ -16,9 +16,11 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -32,6 +34,14 @@ import org.apache.logging.log4j.Logger;
 
 @Mod("mysticalworld")
 public class MysticalWorld {
+  public static OreFeatureConfig.FillerBlockType ORE_GEN = OreFeatureConfig.FillerBlockType.create("mysticalworld", "mysticalworld", o -> OreFeatureConfig.FillerBlockType.NATURAL_STONE.getTargetBlockPredicate().or(OreFeatureConfig.FillerBlockType.NETHERRACK.getTargetBlockPredicate()).or(q -> {
+    if (q == null) {
+      return false;
+    }
+
+    return Tags.Blocks.END_STONES.contains(q.getBlock());
+  }).test(o));
+
   public static final Logger LOG = LogManager.getLogger();
   public static final String MODID = "mysticalworld";
 

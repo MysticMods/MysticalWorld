@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.ForgeConfigSpec;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -67,7 +68,9 @@ public class OreConfig {
   }
 
   public DimensionType[] getDimensionsAsArray () {
-    return (DimensionType[]) configDimensions.get().stream().map(DimensionType::getById).toArray();
+    List<DimensionType> dimensions = new ArrayList<>();
+    configDimensions.get().forEach(o -> dimensions.add(DimensionType.getById(o)));
+    return dimensions.toArray(new DimensionType[0]);
   }
 
   public void apply(ForgeConfigSpec.Builder builder) {
