@@ -4,6 +4,7 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.data.RecipeProvider;
 import epicsquid.mysticalworld.events.LeafHandler;
+import epicsquid.mysticalworld.events.global.GrassHandler;
 import epicsquid.mysticalworld.events.mappings.Remaps;
 import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
@@ -22,6 +23,7 @@ import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -93,6 +95,7 @@ public class MysticalWorld {
     REGISTRATE.itemGroup(NonNullSupplier.of(() -> ITEM_GROUP));
 
     modBus.addListener(setup::init);
+    modBus.addGenericListener(GlobalLootModifierSerializer.class, GrassHandler::registerModifiers);
 
     MinecraftForge.EVENT_BUS.addListener(setup::serverStarting);
     MinecraftForge.EVENT_BUS.addListener(setup::serverAboutToStart);

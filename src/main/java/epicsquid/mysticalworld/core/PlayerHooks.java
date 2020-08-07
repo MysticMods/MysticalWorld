@@ -7,7 +7,7 @@ import net.minecraft.network.datasync.DataParameter;
 @SuppressWarnings("unused")
 public class PlayerHooks {
   public static void spawnShoulderEntities(PlayerEntity player, DataParameter<CompoundNBT> left, DataParameter<CompoundNBT> right) {
-    if (player.field_223730_e + 20L < player.world.getGameTime()) {
+    if (player.timeEntitySatOnShoulder + 20L < player.world.getGameTime()) {
       CompoundNBT leftNBT = player.getLeftShoulderEntity();
       CompoundNBT rightNBT = player.getRightShoulderEntity();
       if (!leftNBT.isEmpty() && !leftNBT.getString("id").equals("mysticalworld:beetle")) {
