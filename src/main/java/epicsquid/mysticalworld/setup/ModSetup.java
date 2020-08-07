@@ -14,6 +14,7 @@ import epicsquid.mysticalworld.world.OreGen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -68,7 +69,7 @@ public class ModSetup {
     // TODO: Temporarily disabled
     //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onDeath);
     //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onRightClickBlock);
-    MinecraftForge.EVENT_BUS.addListener(LootHandler::onLootLoad);
+    MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, true, LootHandler::onLootLoad);
     MinecraftForge.EVENT_BUS.addListener(LootHandler::onLooting);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::attachCapability);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onSquidMilked);

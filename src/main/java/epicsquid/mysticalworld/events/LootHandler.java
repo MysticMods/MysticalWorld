@@ -23,6 +23,9 @@ public class LootHandler {
   private static ResourceLocation squid_table = new ResourceLocation("minecraft", "entities/squid");
 
   public static void onLootLoad(LootTableLoadEvent event) {
+    if (event.isCanceled()) {
+      MysticalWorld.LOG.error("LootTableLoadEvent " + event.getName() + " has been cancelled by another mod!");
+    }
     if (tables.contains(event.getName())) {
       event.getTable().addPool(
           LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(MysticalWorld.MODID, "chests/inject")).weight(1).quality(0)).name("mystical_world_chest_injection").build());
