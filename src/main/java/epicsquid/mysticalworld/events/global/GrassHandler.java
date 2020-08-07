@@ -14,6 +14,9 @@ import net.minecraftforge.event.RegistryEvent;
 import javax.annotation.Nonnull;
 import java.util.List;
 
+// Information for determining how to do the following derived from ImmersiveEngineering from the file:
+// https://github.com/BluSunrize/ImmersiveEngineering/blob/1.15/src/main/java/blusunrize/immersiveengineering/common/util/loot/GrassDrops.java
+// While the code is not specifically copied from that, credit for the solution belongs to the Immersive Engineering team.
 public class GrassHandler {
   public static void registerModifiers (RegistryEvent .Register<GlobalLootModifierSerializer<?>> event) {
     event.getRegistry().register(
