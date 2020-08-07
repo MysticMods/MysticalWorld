@@ -38,7 +38,7 @@ public class LeafHandler {
     return LEAF_BLOCKS;
   }
 
-/*  public static void onBlockDrops(BlockEvent.BreakEvent event) {
+  public static void onBlockDrops(BlockEvent.BreakEvent event) {
     if (ConfigManager.SILKWORM_CONFIG.getLeafDropsEnabled() && !event.getWorld().isRemote()) {
       BlockState state = event.getState();
       if (getLeafBlocks().contains(state.getBlock())) {
@@ -48,5 +48,5 @@ public class LeafHandler {
         }
       }
     }
-  }*/
+  }
 }
