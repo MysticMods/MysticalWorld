@@ -1,0 +1,13 @@
+{
+  "name": "毛皮",
+  "icon": "mysticalworld:pelt",
+  "category": "items",
+  "pages": [
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:pelt_to_leather",
+      "text": "$(l:creatures/fox)狐狸$()的毛皮，可以做皮革。"
+    }
+  ]
+}

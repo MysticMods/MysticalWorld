@@ -4,12 +4,12 @@
   "category": "metals_modifiers",
   "pages": [
     {
-      "title": "Smiting",
+      "title": "惩戒",
       "type": "text",
       "text": "银是天然的猎杀狼人和亡灵的物质，而银制的工具和武器会对您击中的任何亡灵造成额外伤害。"
     },
     {
-      "title": "Blessed",
+      "title": "祝福",
       "type": "text",
       "text": "银质盔甲不仅会在肉体上保护您，也会在精神上祝福您。任何攻击您的不死生物会根据有祝福强化的盔甲部件数量受到反伤。"
     }

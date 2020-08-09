@@ -1,0 +1,62 @@
+{
+  "name": "泥砖块",
+  "icon": "mysticalworld:wet_mud_brick",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:wet_mud_brick",
+      "link_recipe": true,
+      "text": "从$(l:decoration/mud_blocks)湿润的泥块$()合成而来,$(br)这种砖块也会减缓$(br)走在上面时的速度。$(info)$(br)所有列在这里的变种都$(br)可以通过切石机得到。"
+    },
+    {
+      "flag": "modid:mysticalmachinery",
+      "type": "smelting",
+      "recipe": "mysticalworld:mud_brick_from_wet_mud_brick_smelting",
+      "link_recipe": true,
+      "title": "干燥",
+      "text": "除了在原版熔炉当中，$(br)湿润的泥巴可以在$(br)窑当中更快地烧炼。$(br)干燥之后，它们可以合成$(br)其他泥砖建材。"
+    },
+    {
+      "flag": "!modid:mysticalmachinery",
+      "type": "smelting",
+      "recipe": "mysticalworld:mud_brick_from_wet_mud_brick_smelting",
+      "link_recipe": true,
+      "title": "Drying Into Blocks",
+      "text": "干燥之后，它们可以合成$(br)其他泥砖建材。"
+    },
+    {
+      "type": "crafting",
+      "title": "另一种泥砖合成配方",
+      "recipe": "mysticalworld:mud_brick",
+      "text": "除了塑形和加热，$(br)你也可以直接$(br)用$(l:decorations/mud_blocks)泥块$()合成泥砖。"
+    },
+    {
+      "type": "crafting",
+      "title": "楼梯 & 台阶",
+      "link_recipe": true,
+      "recipe": "mysticalworld:mud_brick_stairs",
+      "recipe2": "mysticalworld:mud_brick_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "栅栏 & 栅栏门",
+      "link_recipe": true,
+      "recipe": "mysticalworld:mud_brick_fence",
+      "recipe2": "mysticalworld:mud_brick_fence_gate"
+    },
+    {
+      "type": "crafting",
+      "title": "柱子",
+      "link_recipe": true,
+      "recipe": "mysticalworld:mud_brick_wide_post",
+      "recipe2": "mysticalworld:mud_brick_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "墙",
+      "link_recipe": true,
+      "recipe": "mysticalworld:mud_brick_wall"
+    }
+  ]
+}

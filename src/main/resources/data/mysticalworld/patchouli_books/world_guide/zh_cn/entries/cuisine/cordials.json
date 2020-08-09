@@ -1,0 +1,30 @@
+{
+  "name": "甜酒",
+  "icon": "mysticalworld:dandelion_cordial",
+  "category": "cuisine",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:dandelion_cordial",
+      "text": "让你充满元气，$(br)远离睡意和幻翼。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:apple_cordial",
+      "recipe2": "mysticalworld:cactus_syrup",
+      "text": "随着时间缓慢恢复生命。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:lilac_cordial",
+      "recipe2": "mysticalworld:peony_cordial",
+      "text": "随着时间缓慢恢复生命。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:rose_cordial",
+      "recipe2": "mysticalworld:vegetable_juice",
+      "text": "随着时间缓慢恢复生命。"
+    }
+  ]
+}

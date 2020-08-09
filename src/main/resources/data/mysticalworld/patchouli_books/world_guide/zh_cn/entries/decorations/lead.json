@@ -1,0 +1,33 @@
+{
+  "name": "铅装饰",
+  "icon": "mysticalworld:lead_stairs",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:ingots_lead_to_storage_block",
+      "link_recipe": true,
+      "text": "除了用于压缩存储，$(br)铅块还可以用于$(br)合成其他的装饰方块。"
+    },
+    {
+      "type": "crafting",
+      "title": "楼梯 & 台阶",
+      "link_recipe": true,
+      "recipe": "mysticalworld:lead_stairs",
+      "recipe2": "mysticalworld:lead_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "柱子",
+      "link_recipe": true,
+      "recipe": "mysticalworld:lead_wide_post",
+      "recipe2": "mysticalworld:lead_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "墙",
+      "link_recipe": true,
+      "recipe": "mysticalworld:lead_wall"
+    }
+  ]
+}

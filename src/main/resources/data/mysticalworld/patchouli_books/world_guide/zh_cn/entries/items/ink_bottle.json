@@ -1,0 +1,19 @@
+{
+  "name": "墨水瓶",
+  "icon": "mysticalworld:ink_bottle",
+  "category": "items",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:ink_bottle",
+      "text": "墨水瓶可以通过$(br)用玻璃瓶右键鱿鱼得到。"
+    },
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:black_dye",
+      "text": "墨水瓶可以合成黑色染料，$(br)返回一个玻璃瓶。"
+    }
+  ]
+}

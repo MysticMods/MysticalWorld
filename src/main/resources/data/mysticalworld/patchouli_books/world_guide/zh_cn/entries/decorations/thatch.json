@@ -1,0 +1,47 @@
+{
+  "name": "茅草",
+  "icon": "mysticalworld:thatch",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:thatch",
+      "link_recipe": true,
+      "text": "茅草可以用小麦和$(br)干草块合成得到，$(br)只要一点材料，$(br)就可以做出很多。$(br)它有一些突出的部分。$(br)其他的变种是没有的。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:simple_thatch_from_thatch",
+      "recipe2": "mysticalworld:thatch_from_simple_thatch",
+      "link_recipe": "true",
+      "text": "没有毛刺的茅草$(br)和有毛刺的互换。"
+    },
+    {
+      "type": "crafting",
+      "title": "楼梯 & 台阶",
+      "link_recipe": true,
+      "recipe": "mysticalworld:thatch_stairs",
+      "recipe2": "mysticalworld:thatch_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "栅栏 & 栅栏门",
+      "link_recipe": true,
+      "recipe": "mysticalworld:thatch_fence",
+      "recipe2": "mysticalworld:thatch_fence_gate"
+    },
+    {
+      "type": "crafting",
+      "title": "柱子",
+      "link_recipe": true,
+      "recipe": "mysticalworld:thatch_wide_post",
+      "recipe2": "mysticalworld:thatch_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "墙",
+      "link_recipe": true,
+      "recipe": "mysticalworld:thatch_wall"
+    }
+  ]
+}

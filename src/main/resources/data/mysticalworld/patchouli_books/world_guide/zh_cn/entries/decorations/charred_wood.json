@@ -1,0 +1,37 @@
+{
+  "name": "烧焦的木头",
+  "icon": "mysticalworld:charred_log",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:charred_log",
+      "text": "你会找到这些$(br)可能因为雷击或火烧$(br)而焦黑的原木，可以用于装饰。$(br2)也可以用打火石与原木$(br)合成，不消耗打火石。$(br)或用火焰弹与原木合成，$(br)但火焰弹会被消耗。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:charred_log_from_8_logs",
+      "recipe2": "mysticalworld:charred_log_from_single_log"
+    },
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:charred_planks",
+      "text": "烧焦的原木可以像$(br)普通原木一样拆成木板。"
+    },
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:charred_stairs",
+      "recipe2": "mysticalworld:charred_slab",
+      "text": "木板可以合成$(br)其他装饰材料。"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:charred_wall",
+      "recipe2": "mysticalworld:charred_fence",
+      "link_recipe": true
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "甲壳",
+  "icon": "mysticalworld:carapace",
+  "category": "items",
+  "pages": [
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:blue_dye",
+      "text": "A $(l:creatures/beetle)甲虫$()的甲壳，可以合成蓝色染料。"
+    }
+  ]
+}

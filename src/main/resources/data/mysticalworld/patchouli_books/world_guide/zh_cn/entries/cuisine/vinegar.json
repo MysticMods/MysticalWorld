@@ -1,0 +1,12 @@
+{
+  "name": "醋",
+  "icon": "mysticalworld:vinegar",
+  "category": "cuisine",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:vinegar",
+      "text": "除了引起饥饿，$(br)没有别的用处。"
+    }
+  ]
+}

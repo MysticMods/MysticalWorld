@@ -1,0 +1,33 @@
+{
+  "name": "熏黑石头",
+  "icon": "mysticalworld:blackened_stone",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:blackened_stone",
+      "link_recipe": true,
+      "text": "用炭染黑任意石头，$(br)就可以得到这个$(br)黑色的装饰材料。"
+    },
+    {
+      "type": "crafting",
+      "title": "楼梯 & 台阶",
+      "link_recipe": true,
+      "recipe": "mysticalworld:blackened_stone_stairs",
+      "recipe2": "mysticalworld:blackened_stone_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "柱子",
+      "link_recipe": true,
+      "recipe": "mysticalworld:blackened_stone_wide_post",
+      "recipe2": "mysticalworld:blackened_stone_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "墙",
+      "link_recipe": true,
+      "recipe": "mysticalworld:blackened_stone_wall"
+    }
+  ]
+}

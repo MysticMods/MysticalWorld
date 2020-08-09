@@ -1,0 +1,33 @@
+{
+  "name": "铁砖块",
+  "icon": "mysticalworld:iron_brick",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:iron_brick",
+      "link_recipe": true,
+      "text": "这种用于装饰的方块，$(br)并不需要用铁块来合成。"
+    },
+    {
+      "type": "crafting",
+      "title": "楼梯 & 台阶",
+      "link_recipe": true,
+      "recipe": "mysticalworld:iron_brick_stairs",
+      "recipe2": "mysticalworld:iron_brick_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "柱子",
+      "link_recipe": true,
+      "recipe": "mysticalworld:iron_brick_wide_post",
+      "recipe2": "mysticalworld:iron_brick_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "墙",
+      "link_recipe": true,
+      "recipe": "mysticalworld:iron_brick_wall"
+    }
+  ]
+}

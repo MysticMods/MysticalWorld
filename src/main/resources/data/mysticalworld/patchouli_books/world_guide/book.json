@@ -1,11 +1,11 @@
 {
-  "name": "Encyclopædia Mysticum",
+  "name": "patchouli.mysticalworld.world_guide.name",
   "advancement_namespaces": [
     "mysticalworld"
   ],
   "creative_tab": "mysticalworld",
   "advancements_tab": "mysticalworld",
-  "landing_text": "It's a very mysterious world out there!$(br2)This tome will guide you through strange creatures, delightful cuisine and the mystical treasures that you will come across!",
+  "landing_text": "patchouli.mysticalworld.world_guide.landing_text",
   "book_texture": "mysticalworld:textures/gui/book.png",
   "filler_texture": "mysticalworld:textures/gui/patchouli/book_filler.png",
   "model": "mysticalworld:encyclopedia",

@@ -1,0 +1,13 @@
+{
+  "name": "烂苹果",
+  "icon": "mysticalworld:rotten_apple",
+  "category": "items",
+  "pages": [
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:rotten_apple",
+      "text": "烂苹果有几率使村民变成僵尸。"
+    }
+  ]
+}

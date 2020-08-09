@@ -1,0 +1,13 @@
+{
+  "name": "蚕卵",
+  "icon": "mysticalworld:silkworm_egg",
+  "category": "items",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:silkworm_egg",
+      "text": "破坏树叶有极小几率获得蚕卵，$(br)可以用来生成$(l:creatures/silkworm)蚕$()。"
+    }
+  ]
+}

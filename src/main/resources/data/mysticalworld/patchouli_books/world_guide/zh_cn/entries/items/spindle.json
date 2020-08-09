@@ -1,0 +1,13 @@
+{
+  "name": "纺锤",
+  "icon": "mysticalworld:spindle",
+  "category": "items",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:spindle",
+      "link_recipe": true,
+      "text": "纺锤可以用64次，$(br)可以将蚕茧处理为大量的蚕丝。"
+    }
+  ]
+}

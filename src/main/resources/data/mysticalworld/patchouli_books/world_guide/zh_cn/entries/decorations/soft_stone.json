@@ -1,0 +1,33 @@
+{
+  "name": "软石",
+  "icon": "mysticalworld:soft_stone",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:soft_stone",
+      "link_recipe": true,
+      "text": "一种用于装饰的石头。$(br)它出奇地软，易于塑形。"
+    },
+    {
+      "type": "crafting",
+      "title": "楼梯 & 台阶",
+      "link_recipe": true,
+      "recipe": "mysticalworld:soft_stone_stairs",
+      "recipe2": "mysticalworld:soft_stone_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "柱子",
+      "link_recipe": true,
+      "recipe": "mysticalworld:soft_stone_wide_post",
+      "recipe2": "mysticalworld:soft_stone_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "墙",
+      "link_recipe": true,
+      "recipe": "mysticalworld:soft_stone_wall"
+    }
+  ]
+}

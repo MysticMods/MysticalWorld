@@ -1,0 +1,19 @@
+{
+  "name": "鹦鹉螺之角 & 光辉之角",
+  "icon": "mysticalworld:nautilus_horn",
+  "category": "items",
+  "pages": [
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:nautilus_horn",
+      "text": "用匕首削制鹦鹉螺之角得到。$(br)吹响它可以获得游泳速度的增益。"
+    },
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:glistering_horn",
+      "text": "升级版的鹦鹉螺之角，$(br)效果时间更长些。"
+    }
+  ]
+}

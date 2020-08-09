@@ -1,0 +1,33 @@
+{
+  "name": "软黑曜石",
+  "icon": "mysticalworld:soft_obsidian",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:soft_obsidian",
+      "link_recipe": true,
+      "text": "将坚硬的黑曜石$(br)与软石结合，$(br)得到这种色泽暗淡，$(br)但易于加工的装饰方块。"
+    },
+    {
+      "type": "crafting",
+      "title": "楼梯 & 台阶",
+      "link_recipe": true,
+      "recipe": "mysticalworld:soft_obsidian_stairs",
+      "recipe2": "mysticalworld:soft_obsidian_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "柱子",
+      "link_recipe": true,
+      "recipe": "mysticalworld:soft_obsidian_wide_post",
+      "recipe2": "mysticalworld:soft_obsidian_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "墙",
+      "link_recipe": true,
+      "recipe": "mysticalworld:soft_obsidian_wall"
+    }
+  ]
+}

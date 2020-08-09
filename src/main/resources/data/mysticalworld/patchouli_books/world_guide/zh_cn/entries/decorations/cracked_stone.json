@@ -1,0 +1,33 @@
+{
+  "name": "裂石",
+  "icon": "mysticalworld:cracked_stone",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "smelting",
+      "recipe": "mysticalworld:cracked_stone_from_soft_stone_smelting",
+      "link_recipe": true,
+      "text": "将软石放在熔炉中$(br)加热使其开裂，$(br)创造出其藤蔓一般$(br)的表面裂纹。"
+    },
+    {
+      "type": "crafting",
+      "title": "楼梯 & 台阶",
+      "link_recipe": true,
+      "recipe": "mysticalworld:cracked_stone_stairs",
+      "recipe2": "mysticalworld:cracked_stone_slab"
+    },
+    {
+      "type": "crafting",
+      "title": "柱子",
+      "link_recipe": true,
+      "recipe": "mysticalworld:cracked_stone_wide_post",
+      "recipe2": "mysticalworld:cracked_stone_small_post"
+    },
+    {
+      "type": "crafting",
+      "title": "墙",
+      "link_recipe": true,
+      "recipe": "mysticalworld:cracked_stone_wall"
+    }
+  ]
+}
