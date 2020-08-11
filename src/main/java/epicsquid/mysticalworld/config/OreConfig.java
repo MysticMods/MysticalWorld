@@ -1,11 +1,11 @@
 package epicsquid.mysticalworld.config;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import epicsquid.mysticallib.block.BaseOreBlock;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.block.Block;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.ForgeConfigSpec;
+import noobanidus.libs.noobutil.block.BaseBlocks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class OreConfig {
   private int maxY;
   private int size;
   private List<? extends Integer> dimensions;
-  private Supplier<RegistryEntry<BaseOreBlock>> ore;
+  private Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore;
 
   private ForgeConfigSpec.IntValue configChance;
   private ForgeConfigSpec.IntValue configMinY;
@@ -29,7 +29,7 @@ public class OreConfig {
   private ForgeConfigSpec.IntValue configSize;
   private ForgeConfigSpec.ConfigValue<List<? extends Integer>> configDimensions;
 
-  public OreConfig(String name, int chance, int minY, int maxY, int size, List<Integer> dimensions, Supplier<RegistryEntry<BaseOreBlock>> ore) {
+  public OreConfig(String name, int chance, int minY, int maxY, int size, List<Integer> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
     this.name = name;
     this.chance = chance;
     this.minY = minY;

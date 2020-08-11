@@ -1,13 +1,13 @@
 package epicsquid.mysticalworld.items.silver;
 
 import com.google.common.collect.Multimap;
-import epicsquid.mysticallib.material.MaterialType;
 import epicsquid.mysticalworld.init.ModModifiers;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
+import noobanidus.libs.noobutil.material.MaterialType;
 
 public class SilverArmorItem extends ModifiedArmorItem implements ISilverItem {
   public SilverArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {

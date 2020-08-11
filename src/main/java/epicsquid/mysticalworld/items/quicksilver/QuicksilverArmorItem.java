@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.items.quicksilver;
 
 import com.google.common.collect.Multimap;
-import epicsquid.mysticallib.material.MaterialType;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -12,6 +11,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import noobanidus.libs.noobutil.material.MaterialType;
 
 import java.util.Random;
 

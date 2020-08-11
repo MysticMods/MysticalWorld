@@ -1,11 +1,11 @@
 package epicsquid.mysticalworld.recipe;
 
-import epicsquid.mysticallib.util.Util;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
+import noobanidus.libs.noobutil.util.MathUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public interface IDamageRecipe {
 
       if (damageIngredient.test(current)) {
         current = current.copy();
-        current.attemptDamageItem(damageAmount, Util.rand, null);
+        current.attemptDamageItem(damageAmount, MathUtil.rand, null);
         if (!current.isEmpty()) {
           result.set(i, current);
         }

@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld.capability;
 
-import epicsquid.mysticallib.MysticalLib;
+import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.nbt.LongNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<LongNBT> {
-  public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalLib.MODID, "animal_cooldown_capability");
+  public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalWorld.MODID, "animal_cooldown_capability");
 
   @CapabilityInject(AnimalCooldownCapability.class)
   public static final Capability<AnimalCooldownCapability> ANIMAL_COOLDOWN_CAPABILITY = injected();

@@ -1,9 +1,9 @@
 package epicsquid.mysticalworld.network;
 
-import epicsquid.mysticallib.network.PacketHandler;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.fml.network.PacketDistributor;
+import noobanidus.libs.noobutil.network.PacketHandler;
 
 public class Networking extends PacketHandler {
   public static Networking INSTANCE = new Networking();

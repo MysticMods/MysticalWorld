@@ -4,7 +4,6 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import epicsquid.mysticallib.item.DrinkItem;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -20,6 +19,7 @@ import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import noobanidus.libs.noobutil.item.BaseItems;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
@@ -586,15 +586,15 @@ public class RecipeProvider {
         .build(consumer);
   }
 
-  public <T extends DrinkItem> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> cordial(Supplier<RegistryEntry<T>> cordial, IItemProvider ingredient) {
+  public <T extends BaseItems.DrinkItem> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> cordial(Supplier<RegistryEntry<T>> cordial, IItemProvider ingredient) {
     return cordial(cordial, () -> ingredient);
   }
 
-  public <T extends DrinkItem> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> cordial(Supplier<RegistryEntry<T>> cordial, Supplier<? extends IItemProvider> ingredient) {
+  public <T extends BaseItems.DrinkItem> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> cordial(Supplier<RegistryEntry<T>> cordial, Supplier<? extends IItemProvider> ingredient) {
     return cordial(cordial, ingredient, 4);
   }
 
-  public <T extends DrinkItem> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> cordial(Supplier<RegistryEntry<T>> cordial, Supplier<? extends IItemProvider> ingredient, int amount) {
+  public <T extends BaseItems.DrinkItem> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> cordial(Supplier<RegistryEntry<T>> cordial, Supplier<? extends IItemProvider> ingredient, int amount) {
     return (ctx, p) ->
         ShapedRecipeBuilder.shapedRecipe(cordial.get().get(), amount)
             .patternLine("1S1")

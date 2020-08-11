@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.items.quicksilver;
 
-import epicsquid.mysticallib.item.KnifeItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -9,10 +8,11 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import noobanidus.libs.noobutil.item.BaseItems;
 
 import java.util.Random;
 
-public class QuicksilverKnifeItem extends KnifeItem implements IQuicksilverItem {
+public class QuicksilverKnifeItem extends BaseItems.KnifeItem implements IQuicksilverItem {
 
   private int counter;
   private Random random = new Random();

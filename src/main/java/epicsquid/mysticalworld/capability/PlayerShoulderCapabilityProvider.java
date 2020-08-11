@@ -1,6 +1,6 @@
 package epicsquid.mysticalworld.capability;
 
-import epicsquid.mysticallib.MysticalLib;
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.api.Capabilities;
 import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import net.minecraft.nbt.CompoundNBT;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class PlayerShoulderCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<CompoundNBT> {
-  public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalLib.MODID, "player_shoulder_capability");
+  public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalWorld.MODID, "player_shoulder_capability");
 
   private final IPlayerShoulderCapability instance = Capabilities.SHOULDER_CAPABILITY.getDefaultInstance();
 

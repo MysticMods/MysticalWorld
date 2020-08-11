@@ -58,7 +58,6 @@ public class ApplyBonusModified extends LootFunction {
           i += Serendipity.calculateAdditional(serendipity);
         }
       }
-      /* YUP THAT WAS IT */
       int j = this.field_215877_d.func_216204_a(context.getRandom(), stack.getCount(), i);
       stack.setCount(j);
     }

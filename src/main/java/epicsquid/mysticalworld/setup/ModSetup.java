@@ -20,6 +20,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
+import noobanidus.libs.noobutil.setup.ShadedCommonSetup;
 
 @SuppressWarnings("deprecation")
 public class ModSetup {
@@ -34,6 +35,7 @@ public class ModSetup {
       CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
       CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
 
+      ShadedCommonSetup.init(event);
       OreGen.registerOreGeneration();
       PotionRecipes.registerRecipes();
 

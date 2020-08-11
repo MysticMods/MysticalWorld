@@ -1,8 +1,8 @@
 package epicsquid.mysticalworld.blocks;
 
-import epicsquid.mysticallib.block.AbstractWaterloggedBlock;
+import noobanidus.libs.noobutil.block.WaterloggedBlock;
 
-public class ThatchBlock extends AbstractWaterloggedBlock {
+public class ThatchBlock extends WaterloggedBlock {
   public ThatchBlock(Properties props) {
     super(props);
     this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED, false));

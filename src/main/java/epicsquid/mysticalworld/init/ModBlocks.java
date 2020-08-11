@@ -9,14 +9,12 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
-import epicsquid.mysticallib.block.BaseOreBlock;
-import epicsquid.mysticallib.block.NarrowPostBlock;
-import epicsquid.mysticallib.block.WidePostBlock;
-import epicsquid.mysticallib.material.MaterialType;
 import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.blocks.*;
-import epicsquid.mysticalworld.entity.AdditionalHeads;
+import epicsquid.mysticalworld.blocks.AubergineCropBlock;
+import epicsquid.mysticalworld.blocks.ThatchBlock;
+import epicsquid.mysticalworld.blocks.WetMudBlock;
+import epicsquid.mysticalworld.blocks.WetMudBrick;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -26,8 +24,6 @@ import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.data.SingleItemRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.item.Rarity;
-import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -37,20 +33,20 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import noobanidus.libs.noobutil.block.BaseBlocks;
+import noobanidus.libs.noobutil.material.MaterialType;
 
 import java.util.Objects;
 
 import static epicsquid.mysticalworld.MysticalWorld.RECIPES;
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
-// TODO: Registrate is DONE for this file
-
 @SuppressWarnings({"unused", "WeakerAccess", "unchecked"})
 public class ModBlocks {
 
   @SuppressWarnings("unchecked")
-  public static NonNullFunction<Block.Properties, BaseOreBlock> oreBlock(MaterialType material) {
-    return (o) -> new BaseOreBlock(o, material.getMinXP(), material.getMaxXP());
+  public static NonNullFunction<Block.Properties, BaseBlocks.OreBlock> oreBlock(MaterialType material) {
+    return (o) -> new BaseBlocks.OreBlock(o, material.getMinXP(), material.getMaxXP());
   }
 
   public static <T extends Item> ItemModelBuilder itemModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider p) {
@@ -99,11 +95,11 @@ public class ModBlocks {
     return (ctx, p) -> p.fenceGateBlock(ctx.getEntry(), p.blockTexture(parent.get()));
   }
 
-  public static <T extends WidePostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> widePost(RegistryEntry<? extends Block> parent) {
+  public static <T extends BaseBlocks.WidePostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> widePost(RegistryEntry<? extends Block> parent) {
     return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.models().getBuilder(name(ctx.getEntry())).parent(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "wide_post"))).texture("wall", p.blockTexture(parent.get()))));
   }
 
-  public static <T extends NarrowPostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> narrowPost(RegistryEntry<? extends Block> parent) {
+  public static <T extends BaseBlocks.NarrowPostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> narrowPost(RegistryEntry<? extends Block> parent) {
     return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.models().getBuilder(name(ctx.getEntry())).parent(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "narrow_post"))).texture("wall", p.blockTexture(parent.get()))));
   }
 
@@ -224,7 +220,7 @@ public class ModBlocks {
       .blockstate(gate(ModBlocks.THATCH))
       .register();
 
-  public static RegistryEntry<WidePostBlock> THATCH_WIDE_POST = REGISTRATE.block("thatch_wide_post", Material.WOOD, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> THATCH_WIDE_POST = REGISTRATE.block("thatch_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
       .properties(THATCH_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -235,7 +231,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.THATCH))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> THATCH_SMALL_POST = REGISTRATE.block("thatch_small_post", Material.WOOD, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> THATCH_SMALL_POST = REGISTRATE.block("thatch_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
       .properties(THATCH_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -352,7 +348,7 @@ public class ModBlocks {
       .blockstate(gate(ModBlocks.MUD_BLOCK))
       .register();
 
-  public static RegistryEntry<WidePostBlock> MUD_BLOCK_WIDE_POST = REGISTRATE.block("mud_block_wide_post", Material.ROCK, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> MUD_BLOCK_WIDE_POST = REGISTRATE.block("mud_block_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -363,7 +359,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.MUD_BLOCK))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> MUD_BLOCK_SMALL_POST = REGISTRATE.block("mud_block_small_post", Material.ROCK, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> MUD_BLOCK_SMALL_POST = REGISTRATE.block("mud_block_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -465,7 +461,7 @@ public class ModBlocks {
       .blockstate(gate(ModBlocks.MUD_BRICK))
       .register();
 
-  public static RegistryEntry<WidePostBlock> MUD_BRICK_WIDE_POST = REGISTRATE.block("mud_brick_wide_post", Material.ROCK, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> MUD_BRICK_WIDE_POST = REGISTRATE.block("mud_brick_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -476,7 +472,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.MUD_BRICK))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> MUD_BRICK_SMALL_POST = REGISTRATE.block("mud_brick_small_post", Material.ROCK, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> MUD_BRICK_SMALL_POST = REGISTRATE.block("mud_brick_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -575,7 +571,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.CHARRED_PLANKS))
       .register();
 
-  public static RegistryEntry<WidePostBlock> CHARRED_WIDE_POST = REGISTRATE.block("charred_wide_post", Material.WOOD, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> CHARRED_WIDE_POST = REGISTRATE.block("charred_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
       .properties(WOOD_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -586,7 +582,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.CHARRED_PLANKS))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> CHARRED_SMALL_POST = REGISTRATE.block("charred_small_post", Material.WOOD, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> CHARRED_SMALL_POST = REGISTRATE.block("charred_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
       .properties(WOOD_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -674,7 +670,7 @@ public class ModBlocks {
       .blockstate(gate(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
-  public static RegistryEntry<WidePostBlock> TERRACOTTA_BRICK_WIDE_POST = REGISTRATE.block("terracotta_brick_wide_post", Material.ROCK, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> TERRACOTTA_BRICK_WIDE_POST = REGISTRATE.block("terracotta_brick_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -685,7 +681,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> TERRACOTTA_BRICK_SMALL_POST = REGISTRATE.block("terracotta_brick_small_post", Material.ROCK, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> TERRACOTTA_BRICK_SMALL_POST = REGISTRATE.block("terracotta_brick_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -750,7 +746,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.IRON_BRICK))
       .register();
 
-  public static RegistryEntry<WidePostBlock> IRON_BRICK_WIDE_POST = REGISTRATE.block("iron_brick_wide_post", Material.IRON, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> IRON_BRICK_WIDE_POST = REGISTRATE.block("iron_brick_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
       .properties(IRON_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -761,7 +757,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.IRON_BRICK))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> IRON_BRICK_SMALL_POST = REGISTRATE.block("iron_brick_small_post", Material.IRON, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> IRON_BRICK_SMALL_POST = REGISTRATE.block("iron_brick_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
       .properties(IRON_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -831,7 +827,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.SOFT_STONE))
       .register();
 
-  public static RegistryEntry<WidePostBlock> SOFT_STONE_WIDE_POST = REGISTRATE.block("soft_stone_wide_post", Material.ROCK, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> SOFT_STONE_WIDE_POST = REGISTRATE.block("soft_stone_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
       .properties(SOFT_STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -842,7 +838,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.SOFT_STONE))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> SOFT_STONE_SMALL_POST = REGISTRATE.block("soft_stone_small_post", Material.ROCK, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> SOFT_STONE_SMALL_POST = REGISTRATE.block("soft_stone_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
       .properties(SOFT_STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -906,7 +902,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.CRACKED_STONE))
       .register();
 
-  public static RegistryEntry<WidePostBlock> CRACKED_STONE_WIDE_POST = REGISTRATE.block("cracked_stone_wide_post", Material.ROCK, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> CRACKED_STONE_WIDE_POST = REGISTRATE.block("cracked_stone_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
       .properties(CRACKED_STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -917,7 +913,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.CRACKED_STONE))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> CRACKED_STONE_SMALL_POST = REGISTRATE.block("cracked_stone_small_post", Material.ROCK, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> CRACKED_STONE_SMALL_POST = REGISTRATE.block("cracked_stone_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
       .properties(CRACKED_STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -987,7 +983,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.BLACKENED_STONE))
       .register();
 
-  public static RegistryEntry<WidePostBlock> BLACKENED_STONE_WIDE_POST = REGISTRATE.block("blackened_stone_wide_post", Material.ROCK, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> BLACKENED_STONE_WIDE_POST = REGISTRATE.block("blackened_stone_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
       .properties(BLACKENED_STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -998,7 +994,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.BLACKENED_STONE))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> BLACKENED_STONE_SMALL_POST = REGISTRATE.block("blackened_stone_small_post", Material.ROCK, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> BLACKENED_STONE_SMALL_POST = REGISTRATE.block("blackened_stone_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
       .properties(BLACKENED_STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1072,7 +1068,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<WidePostBlock> SOFT_OBSIDIAN_WIDE_POST = REGISTRATE.block("soft_obsidian_wide_post", Material.ROCK, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> SOFT_OBSIDIAN_WIDE_POST = REGISTRATE.block("soft_obsidian_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1083,7 +1079,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> SOFT_OBSIDIAN_SMALL_POST = REGISTRATE.block("soft_obsidian_small_post", Material.ROCK, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> SOFT_OBSIDIAN_SMALL_POST = REGISTRATE.block("soft_obsidian_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1095,7 +1091,7 @@ public class ModBlocks {
       .register();
 
   // AMETHYST
-  public static RegistryEntry<BaseOreBlock> AMETHYST_ORE = REGISTRATE.block(ModMaterials.AMETHYST.oreName(), oreBlock(ModMaterials.AMETHYST))
+  public static RegistryEntry<BaseBlocks.OreBlock> AMETHYST_ORE = REGISTRATE.block(ModMaterials.AMETHYST.oreName(), oreBlock(ModMaterials.AMETHYST))
       .properties(o -> {
         ModMaterials.AMETHYST.getOreBlockProperties(o);
         return o;
@@ -1172,7 +1168,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.AMETHYST_BLOCK))
       .register();
 
-  public static RegistryEntry<WidePostBlock> AMETHYST_WIDE_POST = REGISTRATE.block("amethyst_wide_post", Material.IRON, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> AMETHYST_WIDE_POST = REGISTRATE.block("amethyst_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.AMETHYST.getBlockProps(o);
         return o;
@@ -1186,7 +1182,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.AMETHYST_BLOCK))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> AMETHYST_SMALL_POST = REGISTRATE.block("amethyst_small_post", Material.IRON, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> AMETHYST_SMALL_POST = REGISTRATE.block("amethyst_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.AMETHYST.getBlockProps(o);
         return o;
@@ -1201,7 +1197,7 @@ public class ModBlocks {
       .register();
 
   // COPPER
-  public static RegistryEntry<BaseOreBlock> COPPER_ORE = REGISTRATE.block(ModMaterials.COPPER.oreName(), oreBlock(ModMaterials.COPPER))
+  public static RegistryEntry<BaseBlocks.OreBlock> COPPER_ORE = REGISTRATE.block(ModMaterials.COPPER.oreName(), oreBlock(ModMaterials.COPPER))
       .properties(o -> {
         ModMaterials.COPPER.getOreBlockProperties(o);
         return o;
@@ -1275,7 +1271,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.COPPER_BLOCK))
       .register();
 
-  public static RegistryEntry<WidePostBlock> COPPER_WIDE_POST = REGISTRATE.block("copper_wide_post", Material.IRON, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> COPPER_WIDE_POST = REGISTRATE.block("copper_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.COPPER.getBlockProps(o);
         return o;
@@ -1289,7 +1285,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.COPPER_BLOCK))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> COPPER_SMALL_POST = REGISTRATE.block("copper_small_post", Material.IRON, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> COPPER_SMALL_POST = REGISTRATE.block("copper_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.COPPER.getBlockProps(o);
         return o;
@@ -1305,7 +1301,7 @@ public class ModBlocks {
 
 
   // LEAD
-  public static RegistryEntry<BaseOreBlock> LEAD_ORE = REGISTRATE.block(ModMaterials.LEAD.oreName(), oreBlock(ModMaterials.LEAD))
+  public static RegistryEntry<BaseBlocks.OreBlock> LEAD_ORE = REGISTRATE.block(ModMaterials.LEAD.oreName(), oreBlock(ModMaterials.LEAD))
       .properties(o -> {
         ModMaterials.LEAD.getOreBlockProperties(o);
         return o;
@@ -1381,7 +1377,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.LEAD_BLOCK))
       .register();
 
-  public static RegistryEntry<WidePostBlock> LEAD_WIDE_POST = REGISTRATE.block("lead_wide_post", Material.IRON, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> LEAD_WIDE_POST = REGISTRATE.block("lead_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.LEAD.getBlockProps(o);
         return o;
@@ -1395,7 +1391,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.LEAD_BLOCK))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> LEAD_SMALL_POST = REGISTRATE.block("lead_small_post", Material.IRON, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> LEAD_SMALL_POST = REGISTRATE.block("lead_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.LEAD.getBlockProps(o);
         return o;
@@ -1411,7 +1407,7 @@ public class ModBlocks {
 
 
   // QUICKSILVER
-  public static RegistryEntry<BaseOreBlock> QUICKSILVER_ORE = REGISTRATE.block(ModMaterials.QUICKSILVER.oreName(), oreBlock(ModMaterials.QUICKSILVER))
+  public static RegistryEntry<BaseBlocks.OreBlock> QUICKSILVER_ORE = REGISTRATE.block(ModMaterials.QUICKSILVER.oreName(), oreBlock(ModMaterials.QUICKSILVER))
       .properties(o -> {
         ModMaterials.QUICKSILVER.getOreBlockProperties(o);
         return o;
@@ -1485,7 +1481,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.QUICKSILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<WidePostBlock> QUICKSILVER_WIDE_POST = REGISTRATE.block("quicksilver_wide_post", Material.IRON, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> QUICKSILVER_WIDE_POST = REGISTRATE.block("quicksilver_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.QUICKSILVER.getBlockProps(o);
         return o;
@@ -1499,7 +1495,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.QUICKSILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> QUICKSILVER_SMALL_POST = REGISTRATE.block("quicksilver_small_post", Material.IRON, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> QUICKSILVER_SMALL_POST = REGISTRATE.block("quicksilver_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.QUICKSILVER.getBlockProps(o);
         return o;
@@ -1514,7 +1510,7 @@ public class ModBlocks {
       .register();
 
   // SILVER
-  public static RegistryEntry<BaseOreBlock> SILVER_ORE = REGISTRATE.block(ModMaterials.SILVER.oreName(), oreBlock(ModMaterials.SILVER))
+  public static RegistryEntry<BaseBlocks.OreBlock> SILVER_ORE = REGISTRATE.block(ModMaterials.SILVER.oreName(), oreBlock(ModMaterials.SILVER))
       .properties(o -> {
         ModMaterials.SILVER.getOreBlockProperties(o);
         return o;
@@ -1588,7 +1584,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.SILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<WidePostBlock> SILVER_WIDE_POST = REGISTRATE.block("silver_wide_post", Material.IRON, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> SILVER_WIDE_POST = REGISTRATE.block("silver_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.SILVER.getBlockProps(o);
         return o;
@@ -1602,7 +1598,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.SILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> SILVER_SMALL_POST = REGISTRATE.block("silver_small_post", Material.IRON, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> SILVER_SMALL_POST = REGISTRATE.block("silver_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.SILVER.getBlockProps(o);
         return o;
@@ -1618,7 +1614,7 @@ public class ModBlocks {
 
 
   // TIN
-  public static RegistryEntry<BaseOreBlock> TIN_ORE = REGISTRATE.block(ModMaterials.TIN.oreName(), oreBlock(ModMaterials.TIN))
+  public static RegistryEntry<BaseBlocks.OreBlock> TIN_ORE = REGISTRATE.block(ModMaterials.TIN.oreName(), oreBlock(ModMaterials.TIN))
       .properties(o -> {
         ModMaterials.TIN.getOreBlockProperties(o);
         return o;
@@ -1692,7 +1688,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.TIN_BLOCK))
       .register();
 
-  public static RegistryEntry<WidePostBlock> TIN_WIDE_POST = REGISTRATE.block("tin_wide_post", Material.IRON, WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> TIN_WIDE_POST = REGISTRATE.block("tin_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.TIN.getBlockProps(o);
         return o;
@@ -1706,7 +1702,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.TIN_BLOCK))
       .register();
 
-  public static RegistryEntry<NarrowPostBlock> TIN_SMALL_POST = REGISTRATE.block("tin_small_post", Material.IRON, NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> TIN_SMALL_POST = REGISTRATE.block("tin_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.TIN.getBlockProps(o);
         return o;

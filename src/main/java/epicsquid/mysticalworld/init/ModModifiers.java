@@ -1,8 +1,8 @@
 package epicsquid.mysticalworld.init;
 
-import epicsquid.mysticallib.modifiers.PlayerModifierRegistry;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
+import noobanidus.libs.noobutil.modifiers.PlayerModifierRegistry;
 
 // TODO: No Registrate conversion
 

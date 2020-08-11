@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.items;
 
-import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -9,6 +8,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import noobanidus.libs.noobutil.util.MathUtil;
 
 public class UnripePearlItem extends Item {
 
@@ -24,9 +24,9 @@ public class UnripePearlItem extends Item {
       int counter = 0;
       boolean flag;
       do {
-        double d0 = player.posX + (Util.rand.nextDouble() - 0.5D) * 64.0D;
-        double d1 = player.posY + (double) (Util.rand.nextInt(64) - 32);
-        double d2 = player.posZ + (Util.rand.nextDouble() - 0.5D) * 64.0D;
+        double d0 = player.posX + (MathUtil.rand.nextDouble() - 0.5D) * 64.0D;
+        double d1 = player.posY + (double) (MathUtil.rand.nextInt(64) - 32);
+        double d2 = player.posZ + (MathUtil.rand.nextDouble() - 0.5D) * 64.0D;
         flag = player.attemptTeleport(d0, d1, d2, false);
         counter++;
       } while (!flag && counter != 15);

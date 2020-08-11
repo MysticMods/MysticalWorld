@@ -14,6 +14,8 @@ import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import noobanidus.libs.noobutil.setup.ShadedClientSetup;
+import noobanidus.libs.noobutil.setup.ShadedCommonSetup;
 
 @SuppressWarnings("deprecation")
 public class ClientSetup {
@@ -23,6 +25,7 @@ public class ClientSetup {
       RenderTypeLookup.setRenderLayer(ModBlocks.AUBERGINE_CROP.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
 
+      ShadedClientSetup.init(event);
       ((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new ModelHolder());
       ModelHolder.init();
 

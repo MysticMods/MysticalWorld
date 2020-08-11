@@ -1,12 +1,12 @@
 package epicsquid.mysticalworld.items.tin;
 
 import com.google.common.collect.Multimap;
-import epicsquid.mysticallib.material.MaterialType;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
+import noobanidus.libs.noobutil.material.MaterialType;
 
 public class TinArmorItem extends ModifiedArmorItem implements ITinItem {
   public TinArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {

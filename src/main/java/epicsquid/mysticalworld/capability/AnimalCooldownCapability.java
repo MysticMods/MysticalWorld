@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.capability;
 
-import epicsquid.mysticallib.capability.EntityCooldownCapability;
+
+import noobanidus.libs.noobutil.capability.EntityCooldownCapability;
 
 public class AnimalCooldownCapability extends EntityCooldownCapability {
 }
