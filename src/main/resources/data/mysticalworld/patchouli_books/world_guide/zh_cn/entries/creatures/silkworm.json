@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "mysticalworld:silkworm_egg",
-      "text": "随着时间流逝，它们会慢慢长大并产出$(l:items/silk_cocoon)蚕茧$()。$(br2)它们不会在任何确定的群系生成，也不能繁殖，但是可以从蚕卵中孵化出来。蚕成熟后蚕茧会像鸡蛋一样掉落。"
+      "text": "蚕会缓慢长大，最终产出$(l:items/silk_cocoon)蚕茧$()。$(br2)长大过程中，蚕极富攻击性，会攻击附近的其他蚕。$(l:creatures/silkworm#obtain)点击了解蚕的获取方法。$()"
     },
     {
       "type": "entity",
@@ -14,7 +14,7 @@
       "entity": "mysticalworld:silkworm",
       "scale": 1.5,
       "offset": -0.3,
-      "text": "你可以把树叶扔在附近加快蚕的生长。"
+      "text": "用树叶右击蚕可以加快蚕的生长和增加它的产出。"
     },
     {
       "type": "spotlight",
