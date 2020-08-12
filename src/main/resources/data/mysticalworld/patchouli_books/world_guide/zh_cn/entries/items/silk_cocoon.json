@@ -7,7 +7,7 @@
       "type": "spotlight",
       "item": "mysticalworld:silk_cocoon",
       "link_recipe": true,
-      "text": "蚕茧是$(l:creatures/silkworm)蚕$()长大以后产生的。把树叶扔在蚕附近喂蚕可以让它长得快。"
+      "text": "蚕茧是$(l:creatures/silkworm)蚕$()长大后掉落的。主要用于制作$(l:items/silk_thread)蚕丝$()。"
     }
   ]
 }
