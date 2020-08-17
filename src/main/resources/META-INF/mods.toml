@@ -50,3 +50,9 @@ A Small set of vanllia-esque features to liven up your world..
     versionRange="[1.15.2]"
     ordering="NONE"
     side="BOTH"
+[[dependencies.mysticalworld]]
+    modId="patchouli"
+    mandatory=true
+    versionRange="[1.15.2-1.2-34,]"
+    ordering="NONE"
+    side="BOTH"
