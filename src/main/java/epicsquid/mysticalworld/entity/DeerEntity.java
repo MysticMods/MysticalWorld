@@ -51,16 +51,6 @@ public class DeerEntity extends AnimalEntity {
     this.rotationYaw = this.rotationYawHead;
   }
 
-//	@Override
-//	public void setScaleForAge(boolean child) {
-//		this.setScale(child ? 0.5f : 1.0f);
-//	}
-
-  @Override
-  public boolean isAIDisabled() {
-    return false;
-  }
-
   @Override
   protected void registerAttributes() {
     super.registerAttributes();

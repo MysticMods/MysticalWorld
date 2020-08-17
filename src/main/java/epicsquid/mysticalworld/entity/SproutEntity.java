@@ -1,10 +1,13 @@
 package epicsquid.mysticalworld.entity;
 
+import epicsquid.mysticalworld.MWTags;
+import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -28,6 +31,11 @@ public class SproutEntity extends AnimalEntity {
   @Nullable
   @Override
   public AgeableEntity createChild(AgeableEntity ageable) {
+    SproutEntity entity = ModEntities.SPROUT.get().create(ageable.world);
+    if (entity != null) {
+      entity.setVariant(entity.getVariant());
+    }
+
     return null;
   }
 
@@ -52,18 +60,23 @@ public class SproutEntity extends AnimalEntity {
     this.getDataManager().register(variant, rand.nextInt(4));
   }
 
+  private void setVariant(int variant) {
+    this.getDataManager().set(SproutEntity.variant, variant);
+  }
+
+  private int getVariant() {
+    return this.getDataManager().get(variant);
+  }
+
   @Override
   protected void registerGoals() {
     goalSelector.addGoal(0, new SwimGoal(this));
     goalSelector.addGoal(1, new PanicGoal(this, 1.5));
+    goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+    goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromTag(MWTags.Items.AUBERGINE), false));
     goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0));
     goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0f));
     goalSelector.addGoal(7, new LookRandomlyGoal(this));
-  }
-
-  @Override
-  public boolean isAIDisabled() {
-    return false;
   }
 
   @Override

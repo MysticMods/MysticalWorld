@@ -81,16 +81,6 @@ public class SilverFoxEntity extends TameableEntity {
     targetSelector.addGoal(4, new NonTamedTargetGoal<ChickenEntity>(this, ChickenEntity.class, false, e -> e instanceof ChickenEntity));
   }
 
-//	@Override
-//	public void setScaleForAge(boolean child) {
-//		this.setScale(child ? 0.5f : 1.0f);
-//	}
-
-  @Override
-  public boolean isAIDisabled() {
-    return false;
-  }
-
   @Override
   protected void registerAttributes() {
     super.registerAttributes();

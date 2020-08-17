@@ -11,6 +11,7 @@ import java.util.function.Predicate;
 public class ModelHolder implements ISelectiveResourceReloadListener {
 
   public static FoxModel foxModel;
+  public static HellSproutModel hellSproutModel;
   public static FrogModel frogModel;
   public static BeetleModel beetleModel;
   public static DeerModel deerModel;
@@ -26,6 +27,7 @@ public class ModelHolder implements ISelectiveResourceReloadListener {
     beetleModel = new BeetleModel();
     deerModel = new DeerModel();
     sproutModel = new SproutModel();
+    hellSproutModel = new HellSproutModel();
     enderminiModel = new EnderminiModel<>();
     lavaCatModel = new LavaCatModel();
     owlModel = new OwlModel();

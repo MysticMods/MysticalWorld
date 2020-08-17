@@ -54,16 +54,6 @@ public class BeetleEntity extends TameableEntity {
     return stack.getItem() == Items.MELON_SLICE;
   }
 
-//	@Override
-//	public void setScaleForAge(boolean child) {
-//		this.setScale(child ? 0.5f : 1.0f);
-//	}
-
-  @Override
-  public boolean isAIDisabled() {
-    return false;
-  }
-
   @Override
   public boolean processInteract(PlayerEntity player, Hand hand) {
     if (super.processInteract(player, hand)) {

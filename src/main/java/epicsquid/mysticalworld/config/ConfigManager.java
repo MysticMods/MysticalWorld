@@ -19,6 +19,7 @@ public class ConfigManager {
   public static List<OreConfig> ORE_CONFIG = new ArrayList<>();
   public static MobConfig DEER_CONFIG;
   public static MobConfig SPROUT_CONFIG;
+  public static HellSproutConfig HELL_SPROUT_CONFIG;
   public static MobConfig BEETLE_CONFIG;
   public static MobConfig SILVER_FOX_CONFIG;
   public static MobConfig FROG_CONFIG;
@@ -54,6 +55,7 @@ public class ConfigManager {
   private static void registerMobConfigs() {
     DEER_CONFIG = new MobConfig("Deer", 6, 2, 4, Arrays.asList("FOREST", "COLD", "CONIFEROUS", "PLAINS"));
     SPROUT_CONFIG = new MobConfig("Sprout", 2, 2, 4, Arrays.asList("JUNGLE", "LUSH", "MAGICAL", "RIVER", "FOREST", "BEACH"));
+    HELL_SPROUT_CONFIG = new HellSproutConfig("Hell Sprout", 8, 1, 3, Collections.singletonList("NETHER"), 100);
     SILVER_FOX_CONFIG = new MobConfig("Silver Fox", 4, 1, 3, Arrays.asList("FOREST", "COLD", "CONIFEROUS"));
     BEETLE_CONFIG = new MobConfig("Beetle", 5, 2, 4, Arrays.asList("SWAMP", "JUNGLE", "FOREST", "PLAINS"));
     FROG_CONFIG = new MobConfig("Frog", 6, 2, 4, Arrays.asList("SWAMP", "JUNGLE", "BEACH", "RIVER"));
@@ -64,6 +66,7 @@ public class ConfigManager {
 
     DEER_CONFIG.apply(COMMON_BUILDER);
     SPROUT_CONFIG.apply(COMMON_BUILDER);
+    HELL_SPROUT_CONFIG.apply(COMMON_BUILDER);
     SILVER_FOX_CONFIG.apply(COMMON_BUILDER);
     BEETLE_CONFIG.apply(COMMON_BUILDER);
     FROG_CONFIG.apply(COMMON_BUILDER);

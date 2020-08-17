@@ -7,16 +7,16 @@ import java.util.List;
 
 public class MobConfig {
 
-  private String name;
-  private int chance;
-  private int min;
-  private int max;
-  private List<String> biomes;
+  protected String name;
+  protected int chance;
+  protected int min;
+  protected int max;
+  protected List<String> biomes;
 
-  private ForgeConfigSpec.IntValue configChance;
-  private ForgeConfigSpec.IntValue configMin;
-  private ForgeConfigSpec.IntValue configMax;
-  private ForgeConfigSpec.ConfigValue<String> configBiomes;
+  protected ForgeConfigSpec.IntValue configChance;
+  protected ForgeConfigSpec.IntValue configMin;
+  protected ForgeConfigSpec.IntValue configMax;
+  protected ForgeConfigSpec.ConfigValue<String> configBiomes;
 
   public MobConfig(String name, int chance, int min, int max, List<String> biomes) {
     this.name = name;
@@ -47,7 +47,11 @@ public class MobConfig {
     return getChance() > 0;
   }
 
-  public void apply(ForgeConfigSpec.Builder builder) {
+  protected void preApply (ForgeConfigSpec.Builder builder) {
+
+  }
+
+  protected void doApply (ForgeConfigSpec.Builder builder) {
     builder.comment(name + " spawn config.").push(name + "_spawn");
     configChance = builder.comment("Chance to spawn (set to 0 to disable).").defineInRange("spawnChance", chance, 0, 256);
     configMin = builder.comment("Min to spawn in a group.").defineInRange("min", min, 0, 256);
@@ -60,6 +64,15 @@ public class MobConfig {
     });
 
     configBiomes = builder.comment("List of biome types to spawn.").define("biomes", sb.toString());
+  }
+
+  protected void postApply (ForgeConfigSpec.Builder builder) {
     builder.pop();
+  }
+
+  public void apply(ForgeConfigSpec.Builder builder) {
+    preApply(builder);
+    doApply(builder);
+    postApply(builder);
   }
 }

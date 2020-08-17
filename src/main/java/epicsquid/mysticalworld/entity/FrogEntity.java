@@ -48,8 +48,7 @@ public class FrogEntity extends AnimalEntity {
     public void startExecuting() {
       float ang = frog.rand.nextFloat() * (float) Math.PI * 2.0f;
       frog.setMotion(new Vec3d(Math.sin(ang) * 0.25, 0.375 + 0.125 * frog.rand.nextFloat(), Math.cos(ang) * 0.25));
-      frog.getLookController().setLookPosition(frog.posX + frog.getMotion().x * 60f, frog.posY, frog.posZ + frog.getMotion().z * 60f, frog.getHorizontalFaceSpeed(),
-          frog.getVerticalFaceSpeed());
+      frog.getLookController().setLookPosition(frog.posX + frog.getMotion().x * 60f, frog.posY, frog.posZ + frog.getMotion().z * 60f, frog.getHorizontalFaceSpeed(), frog.getVerticalFaceSpeed());
     }
   }
 
@@ -90,26 +89,12 @@ public class FrogEntity extends AnimalEntity {
     }
   }
 
-  public int getPersonalTicks() {
-    return ticksExisted + getEntityId();
-  }
-
   public float getOffGround(float pTicks) {
     if (!onGround) {
       return Math.min(1.0f, offGround + pTicks * 0.25f);
     } else {
       return 0f;
     }
-  }
-//
-//	@Override
-//	public void setScaleForAge(boolean child) {
-//		this.setScale(child ? 0.5f : 1.0f);
-//	}
-
-  @Override
-  public boolean isAIDisabled() {
-    return false;
   }
 
   @Override
