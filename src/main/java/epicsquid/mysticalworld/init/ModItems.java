@@ -126,14 +126,6 @@ public class ModItems {
       // KNIFE RECIPE TODO
       .model((ctx, p) -> p.handheld(ModItems.NAUTILUS_HORN))
       .properties(o -> o.maxDamage(32).rarity(Rarity.RARE))
-/*      .recipe((ctx, p) -> {
-        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
-            .addIngredient(Items.NAUTILUS_SHELL)
-            .addIngredient(MWTags.Items.KNIVES)
-            .addCriterion("has_shell", p.hasItem(Items.NAUTILUS_SHELL))
-            .addCriterion("has_knife", p.hasItem(MWTags.Items.KNIVES))
-            .build(p);
-      })*/
       .register();
 
   public static RegistryEntry<NautilusHornBase.GlisteringHorn> GLISTERING_HORN = REGISTRATE.item("glistering_horn", NautilusHornBase.GlisteringHorn::new)
@@ -154,7 +146,6 @@ public class ModItems {
 
   public static RegistryEntry<Item> SILK_COCOON = REGISTRATE.item("silk_cocoon", Item::new)
       .recipe((ctx, p) -> RECIPES.singleItem(ModItems.SILK_COCOON, ModItems.SILK_THREAD, 1, 3, p))
-      // TODO: SPINDLE RECIPE
       .register();
 
   public static RegistryEntry<Item> SILK_THREAD = REGISTRATE.item("silk_thread", Item::new)
@@ -240,6 +231,23 @@ public class ModItems {
             .key('B', Tags.Items.SLIMEBALLS)
             .addCriterion("has_slime", p.hasItem(Tags.Items.SLIMEBALLS))
             .build(p);
+
+        // Book
+        ShapelessRecipeBuilder.shapelessRecipe(Items.BOOK, 1)
+            .addIngredient(Items.PAPER)
+            .addIngredient(Items.PAPER)
+            .addIngredient(Items.PAPER)
+            .addIngredient(Tags.Items.STRING)
+            .addCriterion("has_string", p.hasItem(Tags.Items.STRING))
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "shapeless_book_with_string"));
+
+        ShapedRecipeBuilder.shapedRecipe(Items.BOOK, 1)
+            .patternLine("PP")
+            .patternLine("PS")
+            .key('P', Items.PAPER)
+            .key('S', Tags.Items.STRING)
+            .addCriterion("has_string", p.hasItem(Tags.Items.STRING))
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "shaped_book_with_string"));
       })
       .register();
 
