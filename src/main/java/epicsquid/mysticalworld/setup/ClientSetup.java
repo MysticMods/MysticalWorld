@@ -10,12 +10,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import noobanidus.libs.noobutil.setup.ShadedClientSetup;
-import noobanidus.libs.noobutil.setup.ShadedCommonSetup;
 
 @SuppressWarnings("deprecation")
 public class ClientSetup {
@@ -45,6 +45,9 @@ public class ClientSetup {
       for (RegistryEntry<? extends LazySpawnEggItem<?>> egg : ModEntities.SPAWN_EGGS) {
         c.register((a, layer) -> egg.get().getColor(layer), egg.get());
       }
+
+      SpawnEggItem.EGGS.remove(null);
+      ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.EGGS.put(o.get().getType(null), o.get()));
 
 /*    Map<SkullBlock.ISkullType, GenericHeadModel> skullModels = ObfuscationReflectionHelper.getPrivateValue(SkullTileEntityRenderer.class, null, "field_199358_e");
     Map<SkullBlock.ISkullType, ResourceLocation> skullSkins = ObfuscationReflectionHelper.getPrivateValue(SkullTileEntityRenderer.class, null, "field_199357_d");
