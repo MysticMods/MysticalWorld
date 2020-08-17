@@ -29,18 +29,6 @@ public class FoxRenderer extends MobRenderer<SilverFoxEntity, FoxModel> {
   }
 
   @Override
-  public void render(SilverFoxEntity entity, float yaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light) {
-    matrix.push();
-    if (entity.getGrowingAge() < 0) {
-      matrix.scale(0.5f, 0.5f, 0.5f);
-      matrix.translate(0, 1.5, 0);
-    }
-    matrix.translate(0, -0.0625, 0);
-    super.render(entity, yaw, partialTicks, matrix, buffer, light);
-    matrix.pop();
-  }
-
-  @Override
   @Nonnull
   public ResourceLocation getEntityTexture(@Nonnull SilverFoxEntity entity) {
     return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/fox.png");

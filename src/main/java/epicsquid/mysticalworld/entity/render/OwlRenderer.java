@@ -1,9 +1,7 @@
 package epicsquid.mysticalworld.entity.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.FrogEntity;
 import epicsquid.mysticalworld.entity.OwlEntity;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import epicsquid.mysticalworld.entity.model.OwlModel;
@@ -28,18 +26,6 @@ public class OwlRenderer extends MobRenderer<OwlEntity, OwlModel> {
     public OwlRenderer createRenderFor(@Nonnull EntityRendererManager manager) {
       return new OwlRenderer(manager, ModelHolder.owlModel, 0.25f);
     }
-  }
-
-  @Override
-  public void render(OwlEntity entity, float yaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light)  {
-    matrix.push();
-    if (entity.getGrowingAge() < 0) {
-      matrix.scale(0.5f, 0.5f, 0.5f);
-      matrix.translate(0, 1.5, 0);
-    }
-    matrix.translate(0, -0.0625, 0);
-    super.render(entity, yaw, partialTicks, matrix, buffer, light);
-    matrix.pop();
   }
 
   @Override

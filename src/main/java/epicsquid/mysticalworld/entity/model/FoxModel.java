@@ -33,6 +33,7 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
   private int state = 0;
 
   public FoxModel() {
+    super(true, 5.0f, 2.0f);
     this.textureWidth = 32;
     this.textureHeight = 32;
     this.backL = new ModelRenderer(this, 0, 16);

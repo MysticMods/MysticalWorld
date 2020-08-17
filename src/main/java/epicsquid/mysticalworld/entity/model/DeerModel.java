@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
 import javax.annotation.Nonnull;
+import java.util.Collections;
 
 public class DeerModel extends AgeableModel<DeerEntity> {
 
@@ -30,6 +31,7 @@ public class DeerModel extends AgeableModel<DeerEntity> {
   private ModelRenderer horn8;
 
   public DeerModel() {
+    super(true, 5.0f, 2.0f);
     textureWidth = 64;
     textureHeight = 64;
 
@@ -145,12 +147,12 @@ public class DeerModel extends AgeableModel<DeerEntity> {
 
   @Override
   protected Iterable<ModelRenderer> getHeadParts() {
-    return ImmutableList.of(head);
+    return Collections.emptyList();
   }
 
   @Override
   protected Iterable<ModelRenderer> getBodyParts() {
-    return ImmutableList.of(ear1, ear2, neck, body, tail, legRF, legLF, legLB, legRB, horn1, horn2, horn3, horn4, horn5, horn6, horn7, horn8);
+    return ImmutableList.of(ear1, ear2, neck, body, tail, legRF, legLF, legLB, legRB, horn1, horn2, horn3, horn4, horn5, horn6, horn7, horn8, head);
   }
 
   @Override

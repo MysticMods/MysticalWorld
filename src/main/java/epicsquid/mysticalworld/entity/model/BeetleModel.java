@@ -29,6 +29,7 @@ public class BeetleModel extends AgeableModel<BeetleEntity> {
   private ModelRenderer antennaR2_1;
 
   public BeetleModel() {
+    super(true, 5.0f, 2.0f);
     this.textureWidth = 32;
     this.textureHeight = 32;
     this.legL2 = new ModelRenderer(this, 18, 6);

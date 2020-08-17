@@ -23,6 +23,7 @@ public class FrogModel extends AgeableModel<FrogEntity> {
   private ModelRenderer head;
 
   public FrogModel() {
+    super(true, 5.0f, 2.0f);
     this.textureWidth = 16;
     this.textureHeight = 16;
     this.head = new ModelRenderer(this, 4, 3);

@@ -1,9 +1,7 @@
 package epicsquid.mysticalworld.entity.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.BeetleEntity;
 import epicsquid.mysticalworld.entity.FrogEntity;
 import epicsquid.mysticalworld.entity.model.FrogModel;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
@@ -28,17 +26,6 @@ public class FrogRenderer extends MobRenderer<FrogEntity, FrogModel> {
     public FrogRenderer createRenderFor(@Nonnull EntityRendererManager manager) {
       return new FrogRenderer(manager, ModelHolder.frogModel, 0.125f);
     }
-  }
-
-  @Override
-  public void render(FrogEntity entity, float yaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light)  {
-    matrix.push();
-    if (entity.getGrowingAge() < 0) {
-      matrix.scale(0.5f, 0.5f, 0.5f);
-      matrix.translate(0, 1.5, 0);
-    }
-    super.render(entity, yaw, partialTicks, matrix, buffer, light);
-    matrix.pop();
   }
 
   @Override

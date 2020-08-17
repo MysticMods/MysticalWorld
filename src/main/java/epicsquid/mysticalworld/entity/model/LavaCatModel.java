@@ -24,6 +24,7 @@ public class LavaCatModel extends AgeableModel<LavaCatEntity> {
   private int state = 1;
 
   public LavaCatModel() {
+    super(true, 5.0f, 2.0f);
     this.ocelotHead = new ModelRenderer(this);
     this.ocelotHead.addBox("main", -2.5F, -2.0F, -3.0F, 5, 4, 5, 0, 0, 0);
     this.ocelotHead.addBox("nose", -1.5F, 0.0F, -4.0F, 3, 2, 2, 0, 0, 24);

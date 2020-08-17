@@ -14,6 +14,7 @@ public class SproutModel extends AgeableModel<SproutEntity> {
   private ModelRenderer leafBottom;
 
   public SproutModel() {
+    super(true, 5.0f, 2.0f);
     textureWidth = 32;
     textureHeight = 32;
 

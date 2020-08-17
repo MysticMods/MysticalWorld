@@ -26,6 +26,7 @@ public class OwlModel extends AgeableModel<OwlEntity> {
   private State state = State.STANDING;
 
   public OwlModel() {
+    super(true, 5.0f, 2.0f);
     textureWidth = 64;
     textureHeight = 64;
 
