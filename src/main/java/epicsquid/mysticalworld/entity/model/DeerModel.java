@@ -171,6 +171,15 @@ public class DeerModel extends AgeableModel<DeerEntity> {
       horn6.showModel = false;
       horn7.showModel = false;
       horn8.showModel = false;
+    } else {
+      horn1.showModel = true;
+      horn2.showModel = true;
+      horn3.showModel = true;
+      horn4.showModel = true;
+      horn5.showModel = true;
+      horn6.showModel = true;
+      horn7.showModel = true;
+      horn8.showModel = true;
     }
   }
 
