@@ -32,6 +32,7 @@ public class DimensionCountRangeConfig implements IPlacementConfig {
     this.maximum = maximum;
   }
 
+  @Override
   public <T> Dynamic<T> serialize(DynamicOps<T> ops) {
     return new Dynamic<>(ops, ops.createMap(ImmutableMap.of(ops.createString("dimensions"), ops.createList(dimensions.stream().map(o -> o.serialize(ops))), ops.createString("count"), ops.createInt(this.count), ops.createString("bottom_offset"), ops.createInt(this.bottomOffset), ops.createString("top_offset"), ops.createInt(this.topOffset), ops.createString("maximum"), ops.createInt(this.maximum))));
   }

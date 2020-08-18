@@ -245,6 +245,16 @@ public class ModEntities {
       .properties(o -> o.size(0.8f, 0.6f).setTrackingRange(5).setShouldReceiveVelocityUpdates(false).setUpdateInterval(20))
       .register();
 
+  public static RegistryEntry<EntityType<SpiritDeerEntity>> SPIRIT_DEER = REGISTRATE.entity("spirit_deer", SpiritDeerEntity::new, EntityClassification.CREATURE)
+      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()))
+      .properties(o -> o.size(1.0f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
+   public static RegistryEntry<EntityType<SpiritBeetleEntity>> SPIRIT_BEETLE = REGISTRATE.entity("spirit_beetle", SpiritBeetleEntity::new, EntityClassification.CREATURE)
+      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()))
+      .properties(o -> o.size(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+       .register();
+
   static {
     SPAWN_EGGS.add(REGISTRATE.item("beetle_spawn_egg", spawnEgg(ModEntities.BEETLE, 0x418594, 0x211D15)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
     SPAWN_EGGS.add(REGISTRATE.item("deer_spawn_egg", spawnEgg(ModEntities.DEER, 0xa18458, 0x5e4d33)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());

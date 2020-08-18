@@ -5,7 +5,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.Arrays;
 import java.util.List;
 
-public class MobConfig {
+public class MobConfig implements IConfig {
 
   protected String name;
   protected int chance;
@@ -70,6 +70,7 @@ public class MobConfig {
     builder.pop();
   }
 
+  @Override
   public void apply(ForgeConfigSpec.Builder builder) {
     preApply(builder);
     doApply(builder);

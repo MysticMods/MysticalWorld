@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class OreConfig {
+public class OreConfig implements IConfig {
 
   private String name;
   private int chance;
@@ -73,6 +73,7 @@ public class OreConfig {
     return dimensions.toArray(new DimensionType[0]);
   }
 
+  @Override
   public void apply(ForgeConfigSpec.Builder builder) {
     builder.comment(name + " ore generation.").push(name + "_oregen");
     configChance = builder.comment("Number of veins per chunk (set to 0 to disable).").defineInRange("oreChances", chance, 0, 256);

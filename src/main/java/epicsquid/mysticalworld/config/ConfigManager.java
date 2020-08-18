@@ -27,7 +27,7 @@ public class ConfigManager {
   public static MobConfig LAVA_CAT_CONFIG;
   public static MobConfig OWL_CONFIG;
   public static SilkwormConfig SILKWORM_CONFIG;
-
+  public static HatConfig HAT_CONFIG;
 
   static {
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
@@ -35,6 +35,9 @@ public class ConfigManager {
     COMMON_BUILDER.pop();
     COMMON_BUILDER.comment("Mob Spawn Configuration").push("mob_spawns");
     registerMobConfigs();
+    COMMON_BUILDER.pop();
+    COMMON_BUILDER.comment("Hat Configuration").push("hat_config");
+
     COMMON_BUILDER.pop();
 
     COMMON_CONFIG = COMMON_BUILDER.build();
@@ -63,6 +66,7 @@ public class ConfigManager {
     OWL_CONFIG = new MobConfig("Owl", 9, 1, 3, Arrays.asList("CONIFEROUS", "SPOOKY", "MAGICAL", "FOREST", "MOUNTAIN", "SNOWY"));
     LAVA_CAT_CONFIG = new MobConfig("Lava Cat", 1, 1, 1, Collections.singletonList("NETHER")); // Test
     SILKWORM_CONFIG = new SilkwormConfig(true, 65, 1, 68);
+    HAT_CONFIG = new HatConfig();
 
     DEER_CONFIG.apply(COMMON_BUILDER);
     SPROUT_CONFIG.apply(COMMON_BUILDER);

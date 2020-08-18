@@ -2,7 +2,7 @@ package epicsquid.mysticalworld.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
-public class SilkwormConfig {
+public class SilkwormConfig implements IConfig {
 
   private boolean leafDrops;
   private int leafDropChance;
@@ -37,6 +37,7 @@ public class SilkwormConfig {
     return configGrowthChance.get();
   }
 
+  @Override
   public void apply(ForgeConfigSpec.Builder builder) {
     builder.comment("Silkworm spawn config.").push("silkworm_spawn");
     configLeafDrops = builder.comment("Whether or not silkworm eggs drop from leaves").define("leafDrops", leafDrops);

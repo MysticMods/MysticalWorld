@@ -9,7 +9,6 @@ import javax.annotation.Nonnull;
 import java.util.function.Predicate;
 
 public class ModelHolder implements ISelectiveResourceReloadListener {
-
   public static FoxModel foxModel;
   public static HellSproutModel hellSproutModel;
   public static FrogModel frogModel;
@@ -20,6 +19,8 @@ public class ModelHolder implements ISelectiveResourceReloadListener {
   public static LavaCatModel lavaCatModel;
   public static OwlModel owlModel;
   public static SilkwormModel silkwormModel;
+  public static SpiritBeetleModel spiritBeetleModel;
+  public static SpiritDeerModel spiritDeerModel;
 
   public static void init() {
     foxModel = new FoxModel();
@@ -32,6 +33,8 @@ public class ModelHolder implements ISelectiveResourceReloadListener {
     lavaCatModel = new LavaCatModel();
     owlModel = new OwlModel();
     silkwormModel = new SilkwormModel();
+    spiritBeetleModel = new SpiritBeetleModel();
+    spiritDeerModel = new SpiritDeerModel();
   }
 
   @Override
