@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CWC",
+    "CWC",
+    " S "
+  ],
+  "key": {
+    "C": {
+      "item": "mysticalworld:carapace"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:beetle_mask"
+  }
+}

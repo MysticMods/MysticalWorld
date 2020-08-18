@@ -163,25 +163,6 @@ public class SpiritDeerModel extends AgeableModel<SpiritDeerEntity> {
     legLF.rotateAngleX = -limbSwingAmount * sin;
     legLB.rotateAngleX = limbSwingAmount * sin;
     legRB.rotateAngleX = -limbSwingAmount * sin;
-    if (!entityIn.getDataManager().get(DeerEntity.hasHorns)) {
-      horn1.showModel = false;
-      horn2.showModel = false;
-      horn3.showModel = false;
-      horn4.showModel = false;
-      horn5.showModel = false;
-      horn6.showModel = false;
-      horn7.showModel = false;
-      horn8.showModel = false;
-    } else {
-      horn1.showModel = true;
-      horn2.showModel = true;
-      horn3.showModel = true;
-      horn4.showModel = true;
-      horn5.showModel = true;
-      horn6.showModel = true;
-      horn7.showModel = true;
-      horn8.showModel = true;
-    }
   }
 
   private void setRotation(@Nonnull ModelRenderer model, float x, float y, float z) {

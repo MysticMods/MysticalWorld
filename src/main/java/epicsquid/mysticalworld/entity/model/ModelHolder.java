@@ -1,6 +1,8 @@
 package epicsquid.mysticalworld.entity.model;
 
 import epicsquid.mysticalworld.entity.EnderminiEntity;
+import epicsquid.mysticalworld.entity.model.armor.AntlerHatModel;
+import epicsquid.mysticalworld.entity.model.armor.BeetleMaskModel;
 import net.minecraft.resources.IResourceManager;
 import net.minecraftforge.resource.IResourceType;
 import net.minecraftforge.resource.ISelectiveResourceReloadListener;
@@ -22,6 +24,9 @@ public class ModelHolder implements ISelectiveResourceReloadListener {
   public static SpiritBeetleModel spiritBeetleModel;
   public static SpiritDeerModel spiritDeerModel;
 
+  public static BeetleMaskModel beetleMaskModel;
+  public static AntlerHatModel antlerHatModel;
+
   public static void init() {
     foxModel = new FoxModel();
     frogModel = new FrogModel();
@@ -35,6 +40,8 @@ public class ModelHolder implements ISelectiveResourceReloadListener {
     silkwormModel = new SilkwormModel();
     spiritBeetleModel = new SpiritBeetleModel();
     spiritDeerModel = new SpiritDeerModel();
+    beetleMaskModel = new BeetleMaskModel();
+    antlerHatModel = new AntlerHatModel();
   }
 
   @Override

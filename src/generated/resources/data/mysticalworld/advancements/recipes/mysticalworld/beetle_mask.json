@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:beetle_mask"
+    ]
+  },
+  "criteria": {
+    "has_carapace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:carapace"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:beetle_mask"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_carapace",
+      "has_the_recipe"
+    ]
+  ]
+}

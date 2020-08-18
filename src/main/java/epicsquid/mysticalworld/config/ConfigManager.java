@@ -37,7 +37,7 @@ public class ConfigManager {
     registerMobConfigs();
     COMMON_BUILDER.pop();
     COMMON_BUILDER.comment("Hat Configuration").push("hat_config");
-
+    HAT_CONFIG.apply(COMMON_BUILDER);
     COMMON_BUILDER.pop();
 
     COMMON_CONFIG = COMMON_BUILDER.build();

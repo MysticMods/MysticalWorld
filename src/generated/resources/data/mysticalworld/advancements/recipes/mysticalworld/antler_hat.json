@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:antler_hat"
+    ]
+  },
+  "criteria": {
+    "has_antlers": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:antlers"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:antler_hat"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_antlers",
+      "has_the_recipe"
+    ]
+  ]
+}

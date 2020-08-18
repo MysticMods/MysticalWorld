@@ -4,9 +4,11 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.data.RecipeProvider;
 import epicsquid.mysticalworld.events.LeafHandler;
+import epicsquid.mysticalworld.events.MaskHandler;
 import epicsquid.mysticalworld.events.global.GrassHandler;
 import epicsquid.mysticalworld.events.mappings.Remaps;
 import epicsquid.mysticalworld.init.*;
+import epicsquid.mysticalworld.items.BeetleMaskItem;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.loot.conditions.IsColor;
 import epicsquid.mysticalworld.loot.conditions.IsLava;
@@ -101,6 +103,7 @@ public class MysticalWorld {
     MinecraftForge.EVENT_BUS.addListener(setup::serverStarting);
     MinecraftForge.EVENT_BUS.addListener(setup::serverAboutToStart);
     MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
+    MinecraftForge.EVENT_BUS.addListener(MaskHandler::onAttackEntity);
 
     MinecraftForge.EVENT_BUS.addGenericListener(Block.class, Remaps::remapBlockEvent);
     MinecraftForge.EVENT_BUS.addGenericListener(Item.class, Remaps::remapItemEvent);

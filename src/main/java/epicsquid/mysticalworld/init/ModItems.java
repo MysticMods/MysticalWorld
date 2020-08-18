@@ -142,6 +142,32 @@ public class ModItems {
       .model((ctx, p) -> p.withExistingParent(p.name(ModItems.GLISTERING_HORN), "item/handheld").texture("layer0", p.itemTexture(ModItems.NAUTILUS_HORN)))
       .register();
 
+  public static RegistryEntry<AntlerHatItem> ANTLER_HAT = REGISTRATE.item("antler_hat", AntlerHatItem::new)
+      .properties(o -> o.maxDamage(399).rarity(Rarity.RARE))
+      .recipe((o, p) -> ShapedRecipeBuilder.shapedRecipe(o.getEntry(), 1)
+          .patternLine("AWA")
+          .patternLine("WWW")
+          .patternLine("S S")
+          .key('A', ModItems.ANTLERS.get())
+          .key('W', ItemTags.WOOL)
+          .key('S', Tags.Items.STRING)
+          .addCriterion("has_antlers", p.hasItem(ModItems.ANTLERS.get()))
+          .build(p))
+      .register();
+
+  public static RegistryEntry<BeetleMaskItem> BEETLE_MASK = REGISTRATE.item("beetle_mask", BeetleMaskItem::new)
+      .properties(o -> o.maxDamage(399).rarity(Rarity.RARE))
+      .recipe((o, p) -> ShapedRecipeBuilder.shapedRecipe(o.getEntry(), 1)
+          .patternLine("CWC")
+          .patternLine("CWC")
+          .patternLine(" S ")
+          .key('C', ModItems.CARAPACE.get())
+          .key('W', ItemTags.PLANKS)
+          .key('S', Tags.Items.RODS_WOODEN)
+          .addCriterion("has_carapace", p.hasItem(ModItems.CARAPACE.get()))
+          .build(p))
+      .register();
+
   public static RegistryEntry<SilkwormEgg> SILKWORM_EGG = REGISTRATE.item("silkworm_egg", SilkwormEgg::new).register();
 
   public static RegistryEntry<Item> SILK_COCOON = REGISTRATE.item("silk_cocoon", Item::new)
@@ -337,7 +363,7 @@ public class ModItems {
           .build(p))
       .register();
 
-  public static NonNullFunction<Item.Properties, TooltipDrinkItem> tooltipDrink (String translationKey) {
+  public static NonNullFunction<Item.Properties, TooltipDrinkItem> tooltipDrink(String translationKey) {
     return (b) -> new TooltipDrinkItem(b, translationKey);
   }
 
