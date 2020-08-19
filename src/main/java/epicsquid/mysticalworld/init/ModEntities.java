@@ -74,7 +74,7 @@ public class ModEntities {
   public static void registerMobSpawn() {
     Set<Biome> biomes = new HashSet<>();
 
-    if (ConfigManager.mobs.spawnDeer) {
+    if (ConfigManager.mobs.spawnDeer && ConfigManager.deer.rate > 0) {
       for (String biomeName : ConfigManager.deer.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -84,7 +84,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.mobs.spawnFox) {
+    if (ConfigManager.mobs.spawnFox && ConfigManager.fox.rate > 0) {
       for (String biomeName : ConfigManager.fox.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -94,7 +94,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.mobs.spawnBeetle) {
+    if (ConfigManager.mobs.spawnBeetle & ConfigManager.beetle.rate > 0) {
       for (String biomeName : ConfigManager.beetle.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -104,7 +104,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.mobs.spawnFrog) {
+    if (ConfigManager.mobs.spawnFrog && ConfigManager.frog.rate > 0) {
       for (String biomeName : ConfigManager.frog.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -114,7 +114,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.mobs.spawnSprout) {
+    if (ConfigManager.mobs.spawnSprout && ConfigManager.sprout.rate > 0) {
       for (String biomeName : ConfigManager.sprout.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -124,13 +124,13 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.mobs.spawnEndermini) {
+    if (ConfigManager.mobs.spawnEndermini && ConfigManager.endermini.rate > 0) {
       EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.rate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, BiomeDictionary.getBiomes(Type.END).toArray(new Biome[0]));
     }
 
     biomes.clear();
 
-    if (ConfigManager.mobs.spawnOwl) {
+    if (ConfigManager.mobs.spawnOwl && ConfigManager.owl.rate > 0) {
       for (String biomeName : ConfigManager.owl.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -140,7 +140,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.mobs.spawnHellSprout) {
+    if (ConfigManager.mobs.spawnHellSprout && ConfigManager.hellSprout.rate > 0) {
       for (String biomeName : ConfigManager.hellSprout.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
@@ -150,7 +150,7 @@ public class ModEntities {
 
     biomes.clear();
 
-    if (ConfigManager.mobs.spawnLavaCat) {
+    if (ConfigManager.mobs.spawnLavaCat && ConfigManager.lavaCat.rate > 0) {
       for (String biomeName : ConfigManager.lavaCat.biomes) {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));

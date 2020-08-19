@@ -134,6 +134,10 @@ public class EntitySpiritBeetle extends EntityBeetle {
 
   @Override
   public boolean attackEntityFrom(DamageSource source, float amount) {
+    if (source == DamageSource.OUT_OF_WORLD) {
+      return super.attackEntityFrom(source, amount);
+    }
+
     return false;
   }
 }
