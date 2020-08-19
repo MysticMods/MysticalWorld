@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.entity.ai;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.util.EntityPredicates;
@@ -11,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.EnumSet;
 
-public class SpiritAttackGoal extends Goal {
+public class SpiritAttackGoal extends TargetGoal {
   protected final CreatureEntity attacker;
   protected int attackTick;
   private final double speedTowardsTarget;
@@ -26,6 +27,7 @@ public class SpiritAttackGoal extends Goal {
   private boolean canPenalize = false;
 
   public SpiritAttackGoal(CreatureEntity creature, double speedIn, boolean useLongMemory) {
+    super(creature, false, false);
     this.attacker = creature;
     this.speedTowardsTarget = speedIn;
     this.longMemory = useLongMemory;

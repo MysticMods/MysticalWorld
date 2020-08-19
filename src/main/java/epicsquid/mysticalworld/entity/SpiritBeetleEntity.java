@@ -13,17 +13,19 @@ import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.IFlyingAnimal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class SpiritBeetleEntity extends AnimalEntity {
+public class SpiritBeetleEntity extends AnimalEntity implements IFlyingAnimal {
   public SpiritBeetleEntity(EntityType<? extends SpiritBeetleEntity> type, World worldIn) {
     super(type, worldIn);
     this.experienceValue = 3;
@@ -31,8 +33,18 @@ public class SpiritBeetleEntity extends AnimalEntity {
   }
 
   @Override
+  public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn) {
+    return worldIn.getBlockState(pos).isAir(world, pos) ? 10.0F : 0.0F;
+  }
+
+  @Override
   protected PathNavigator createNavigator(World worldIn) {
-    FlyingPathNavigator pathnavigateflying = new FlyingPathNavigator(this, worldIn);
+    FlyingPathNavigator pathnavigateflying = new FlyingPathNavigator(this, worldIn) {
+      @Override
+      public boolean canEntityStandOnPos(BlockPos pos) {
+        return true;
+      }
+    };
     pathnavigateflying.setCanOpenDoors(false);
     pathnavigateflying.setCanEnterDoors(true);
     return pathnavigateflying;

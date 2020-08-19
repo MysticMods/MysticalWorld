@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.entity.model;
 import com.google.common.collect.ImmutableList;
 import epicsquid.mysticalworld.entity.DeerEntity;
 import epicsquid.mysticalworld.entity.SpiritDeerEntity;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
@@ -32,7 +33,7 @@ public class SpiritDeerModel extends AgeableModel<SpiritDeerEntity> {
   private ModelRenderer horn8;
 
   public SpiritDeerModel() {
-    super(true, 5.0f, 2.0f);
+    super((rl) -> RenderType.getEnergySwirl(rl, 0, 0), true, 5.0f, 2.0f, 2.0F, 2.0F, 24.0F);
     textureWidth = 64;
     textureHeight = 64;
 
