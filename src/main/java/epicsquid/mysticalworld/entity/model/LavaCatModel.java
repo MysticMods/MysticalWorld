@@ -57,12 +57,12 @@ public class LavaCatModel extends AgeableModel<LavaCatEntity> {
 
   @Override
   protected Iterable<ModelRenderer> getHeadParts() {
-    return ImmutableList.of(this.ocelotHead);
+    return ImmutableList.of();
   }
 
   @Override
   protected Iterable<ModelRenderer> getBodyParts() {
-    return ImmutableList.of(this.ocelotBody, this.ocelotBackLeftLeg, this.ocelotBackRightLeg, this.ocelotFrontLeftLeg, this.ocelotFrontRightLeg, this.ocelotTail, this.ocelotTail2);
+    return ImmutableList.of(this.ocelotBody, this.ocelotBackLeftLeg, this.ocelotBackRightLeg, this.ocelotFrontLeftLeg, this.ocelotFrontRightLeg, this.ocelotTail, this.ocelotTail2, this.ocelotHead);
   }
 
 

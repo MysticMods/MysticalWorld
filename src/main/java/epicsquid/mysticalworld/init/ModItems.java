@@ -11,6 +11,7 @@ import epicsquid.mysticalworld.items.lead.LeadArmorItem;
 import epicsquid.mysticalworld.items.quicksilver.*;
 import epicsquid.mysticalworld.items.silver.*;
 import epicsquid.mysticalworld.items.tin.TinArmorItem;
+import epicsquid.mysticalworld.recipe.ingredients.SeedBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -296,6 +297,7 @@ public class ModItems {
         RECIPES.food(ModItems.VENISON, ModItems.COOKED_VENISON, 0.15f, p);
         RECIPES.food(Tags.Items.CROPS_CARROT, ModItems.COOKED_CARROT, 0.15f, p);
         RECIPES.food(Tags.Items.CROPS_BEETROOT, ModItems.COOKED_BEETROOT, 0.15f, p);
+        RECIPES.food(ModItems.ASSORTED_SEEDS, ModItems.COOKED_SEEDS, 0.05f, p);
         RECIPES.food(MWTags.Items.EGGPLANT, ModItems.COOKED_AUBERGINE, 0.15f, p);
         RECIPES.food(ModItems.RAW_SQUID, ModItems.COOKED_SQUID, 0.15f, p);
       })
@@ -307,6 +309,13 @@ public class ModItems {
 
   public static RegistryEntry<BlockNamedItem> AUBERGINE_SEEDS = REGISTRATE.item("aubergine_seeds", blockNamedItem(ModBlocks.AUBERGINE_CROP))
       .recipe((ctx, p) -> RECIPES.singleItem(ModItems.AUBERGINE, ModItems.AUBERGINE_SEEDS, 1, 1, p))
+      .register();
+
+  public static RegistryEntry<Item> ASSORTED_SEEDS = REGISTRATE.item("assorted_seeds", Item::new)
+      .register();
+
+  public static RegistryEntry<BaseItems.FastFoodItem> COOKED_SEEDS = REGISTRATE.item("cooked_seeds", BaseItems.FastFoodItem::new)
+      .properties(o -> o.food(ModFoods.COOKED_SEEDS))
       .register();
 
   public static RegistryEntry<Item> COOKED_BEETROOT = REGISTRATE.item("cooked_beetroot", Item::new)

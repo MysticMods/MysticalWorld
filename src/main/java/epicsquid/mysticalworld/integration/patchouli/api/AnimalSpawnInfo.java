@@ -42,7 +42,7 @@ public class AnimalSpawnInfo implements IComponentProcessor {
       case "endermini":
         this.animal = ConfigManager.ENDERMINI_CONFIG;
         break;
-      case "lavacat":
+      case "lava_cat":
         this.animal = ConfigManager.LAVA_CAT_CONFIG;
         break;
       case "owl":

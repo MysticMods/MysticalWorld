@@ -40,20 +40,16 @@ public class LavaCatEntity extends TameableEntity {
   private static final UUID OBSIDIAN_SPEED_DEBUFF_ID = UUID.fromString("f58f95e9-fb51-4604-a66d-89433c9dd8a5");
   private static final AttributeModifier OBSIDIAN_SPEED_DEBUFF = (new AttributeModifier(OBSIDIAN_SPEED_DEBUFF_ID, "Speed debuff for being obsidian", -0.05D, AttributeModifier.Operation.MULTIPLY_TOTAL)).setSaved(false);
 
-  private TemptGoal aiTempt;
-
   public LavaCatEntity(EntityType<? extends TameableEntity> type, World worldIn) {
     super(type, worldIn);
-    // this.setSize(0.75F, 0.875F);
   }
 
   @Override
   protected void registerGoals() {
     this.sitGoal = new SitGoal(this);
-    this.aiTempt = new TemptGoal(this, 0.6D, Ingredient.fromItems(Items.BLAZE_ROD), true);
     goalSelector.addGoal(1, new SwimGoal(this));
     goalSelector.addGoal(2, this.sitGoal);
-    goalSelector.addGoal(3, this.aiTempt);
+    goalSelector.addGoal(3, new TemptGoal(this, 0.6D, Ingredient.fromItems(Items.BLAZE_ROD), false));
     goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.0D, 10.0F, 5.0F, false));
     goalSelector.addGoal(7, new LeapAtTargetGoal(this, 0.3F));
     goalSelector.addGoal(8, new OcelotAttackGoal(this));
@@ -224,7 +220,7 @@ public class LavaCatEntity extends TameableEntity {
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
         this.sitGoal.setSitting(!this.isSitting());
       }
-    } else if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == Items.BLAZE_ROD && player.getDistanceSq(this) < 9.0D) {
+    } else if (itemstack.getItem() == Items.BLAZE_ROD && player.getDistanceSq(this) < 9.0D) {
       if (!player.isCreative()) {
         itemstack.shrink(1);
       }
@@ -260,7 +256,7 @@ public class LavaCatEntity extends TameableEntity {
 
   @Override
   public boolean isBreedingItem(ItemStack stack) {
-    return stack.getItem() == net.minecraft.item.Items.BLAZE_ROD;
+    return stack.getItem() == net.minecraft.item.Items.BLAZE_POWDER;
   }
 
   @Override

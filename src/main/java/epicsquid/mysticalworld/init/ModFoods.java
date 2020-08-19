@@ -18,6 +18,7 @@ public class ModFoods {
   public static final Food STUFFED_AUBERGINE = (new Food.Builder().hunger(10).saturation(0.8f)).build();
   public static final Food RAW_SQUID = (new Food.Builder().hunger(1).saturation(0.3f)).meat().build();
   public static final Food COOKED_SQUID = (new Food.Builder().hunger(3).saturation(0.8f)).meat().build();
+  public static final Food COOKED_SEEDS = (new Food.Builder().hunger(1).saturation(0.4f)).fastToEat().build();
   public static final Food EPIC_SQUID = (new Food.Builder().hunger(20).saturation(1.0f)).meat()
       .effect(() -> new EffectInstance(Effects.REGENERATION, 600, 1), 1.0f)
       .effect(() -> new EffectInstance(Effects.NIGHT_VISION, 3000), 1.0f)

@@ -27,6 +27,8 @@ public class ModRecipes {
 
   public static RegistryEntry<SpecialRecipeSerializer<EmptyRecipe>> EMPTY_SERIALIZER = REGISTRATE.recipeSerializer("empty_recipe", () -> new SpecialRecipeSerializer<>(EmptyRecipe::new)).register();
 
+  public static RegistryEntry<AssortedSeedsRecipe.Serializer> SEED_SERIALIZER = REGISTRATE.recipeSerializer(AssortedSeedsRecipe.SEEDS_RECIPE.getPath(), AssortedSeedsRecipe.Serializer::new).register();
+
   public static void load() {
 
   }
