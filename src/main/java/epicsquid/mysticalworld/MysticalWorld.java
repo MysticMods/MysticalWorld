@@ -110,5 +110,7 @@ public class MysticalWorld {
     MinecraftForge.EVENT_BUS.addGenericListener(EntityType.class, Remaps::remapEntityEvent);
 
     setup.registerListeners();
+
+    modBus.addListener(ConfigManager.HAT_CONFIG::onConfigReload);
   }
 }

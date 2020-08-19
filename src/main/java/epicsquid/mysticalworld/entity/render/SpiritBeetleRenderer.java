@@ -2,9 +2,7 @@ package epicsquid.mysticalworld.entity.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.BeetleEntity;
 import epicsquid.mysticalworld.entity.SpiritBeetleEntity;
-import epicsquid.mysticalworld.entity.model.BeetleModel;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import epicsquid.mysticalworld.entity.model.SpiritBeetleModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -34,9 +32,11 @@ public class SpiritBeetleRenderer extends MobRenderer<SpiritBeetleEntity, Spirit
     matrix.scale(0.45f, 0.45f, 0.45f);
   }
 
+  private static final ResourceLocation TEXTURE = new ResourceLocation(MysticalWorld.MODID + ":textures/entity/beetle_blue.png");
+
   @Override
   @Nonnull
   public ResourceLocation getEntityTexture(@Nonnull SpiritBeetleEntity entity) {
-    return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/beetle_blue.png");
+    return TEXTURE;
   }
 }

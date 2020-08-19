@@ -74,7 +74,7 @@ public class AntlerHatItem extends ModifiedArmorItem {
         if (tries <= 0) {
           return;
         }
-        pos = playerPos.add(world.rand.nextInt(8) - 8, 0, world.rand.nextInt(8) - 8);
+        pos = playerPos.add(world.rand.nextInt(8) - 4, 0, world.rand.nextInt(8) - 4);
         if (!world.isAirBlock(pos)) {
           continue;
         }

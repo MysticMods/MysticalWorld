@@ -40,7 +40,9 @@ public interface IDamageRecipe {
 
       if (damageIngredient.test(current)) {
         current = current.copy();
-        current.attemptDamageItem(damageAmount, MathUtil.rand, null);
+        if (current.attemptDamageItem(damageAmount, MathUtil.rand, null)) {
+          current.setCount(0);
+        }
         if (!current.isEmpty()) {
           result.set(i, current);
         }

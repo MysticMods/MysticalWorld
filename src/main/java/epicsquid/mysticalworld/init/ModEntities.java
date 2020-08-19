@@ -265,7 +265,7 @@ public class ModEntities {
     SPAWN_EGGS.add(REGISTRATE.item("lava_cat_spawn_egg", spawnEgg(ModEntities.LAVA_CAT, 0xde3535, 0xe89613)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
     SPAWN_EGGS.add(REGISTRATE.item("owl_spawn_egg", spawnEgg(ModEntities.OWL, 0x8c654a, 0xdec9ba)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
     SPAWN_EGGS.add(REGISTRATE.item("silkworm_spawn_egg", spawnEgg(ModEntities.SILKWORM, 0xd1cecd, 0x635e5b)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(REGISTRATE.item("hell_sprout_spawn_egg", spawnEgg(ModEntities.HELL_SPROUT, 0xe8f442, 0x8a0303)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(REGISTRATE.item("hell_sprout_spawn_egg", spawnEgg(ModEntities.HELL_SPROUT, 0x8a0303, 0xe8f442)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
   }
 
   public static void load() {
@@ -354,9 +354,6 @@ public class ModEntities {
       for (String biomeName : ConfigManager.LAVA_CAT_CONFIG.getBiomes()) {
         biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
       }
-      // For hell biomes they have to spawn as monsters
-      // or at least they had to in 1.12...
-      // TODO
       biomes.forEach(biome -> biome.getSpawns(EntityClassification.MONSTER).add(
           new Biome.SpawnListEntry(LAVA_CAT.get(), ConfigManager.LAVA_CAT_CONFIG.getChance(), ConfigManager.LAVA_CAT_CONFIG.getMin(),
               ConfigManager.LAVA_CAT_CONFIG.getMax())));

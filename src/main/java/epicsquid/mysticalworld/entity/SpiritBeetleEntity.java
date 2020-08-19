@@ -52,7 +52,7 @@ public class SpiritBeetleEntity extends AnimalEntity implements IFlyingAnimal {
 
   @Override
   protected void registerGoals() {
-    goalSelector.addGoal(4, new SpiritAttackGoal(this, 1, true));
+    goalSelector.addGoal(4, new SpiritAttackGoal(this, 1.8, true));
     goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
     goalSelector.addGoal(7, new LookRandomlyGoal(this));
   }
@@ -80,7 +80,7 @@ public class SpiritBeetleEntity extends AnimalEntity implements IFlyingAnimal {
     getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
     getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
     getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-    getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(0.4000000059604645D);
+    getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(0.6000000059604645D);
   }
 
   @Override

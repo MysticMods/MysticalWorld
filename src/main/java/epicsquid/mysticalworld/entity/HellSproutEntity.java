@@ -15,6 +15,7 @@ import net.minecraft.item.DirectionalPlaceContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -34,6 +35,16 @@ public class HellSproutEntity extends AnimalEntity {
     super(type, world);
 //		setSize(0.5f, 1.0f);
     this.experienceValue = 3;
+  }
+
+  @Override
+  public void livingTick() {
+    if (this.world.isRemote) {
+      if (rand.nextInt(7) == 0) {
+        this.world.addParticle((rand.nextInt(3) == 0 ? ParticleTypes.SMOKE : ParticleTypes.FLAME), this.posX + (this.rand.nextDouble() - 0.5D) * 0.5, this.posY + 0.3 + (this.rand.nextDouble() - 0.5D) * 0.5, this.posZ + (this.rand.nextDouble() - 0.5D) * 0.3, 0, 0, 0);
+      }
+    }
+    super.livingTick();
   }
 
   @Nullable
@@ -97,6 +108,9 @@ public class HellSproutEntity extends AnimalEntity {
 
     @Override
     public boolean shouldExecute() {
+      if (isChild()) {
+        return false;
+      }
       if (onGround && ticker >= 20) {
         ticker = 0;
         if (ConfigManager.HELL_SPROUT_CONFIG.getGrowChance() == 0) {

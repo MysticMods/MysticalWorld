@@ -2,13 +2,14 @@ package epicsquid.mysticalworld.entity.model;
 
 import com.google.common.collect.ImmutableSet;
 import epicsquid.mysticalworld.entity.SpiritBeetleEntity;
+import epicsquid.mysticalworld.entity.render.layers.AdditionalRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
 import javax.annotation.Nonnull;
 
-public class SpiritBeetleModel extends AgeableModel<SpiritBeetleEntity> {
+public class SpiritBeetleModel extends GlowingModel<SpiritBeetleEntity> {
   private ModelRenderer body;
   private ModelRenderer wingL;
   private ModelRenderer wingR;
@@ -25,7 +26,7 @@ public class SpiritBeetleModel extends AgeableModel<SpiritBeetleEntity> {
   private ModelRenderer antennaR2_1;
 
   public SpiritBeetleModel() {
-    super((rl) -> RenderType.getEnergySwirl(rl, 0, 0), true, 5.0f, 2.0f, 2.0F, 2.0F, 24.0F);
+    super(AdditionalRenderTypes::getSpiritEntity, true, 5.0f, 2.0f, 2.0F, 2.0F, 24.0F);
     this.textureWidth = 32;
     this.textureHeight = 32;
     this.legL2 = new ModelRenderer(this, 18, 6);

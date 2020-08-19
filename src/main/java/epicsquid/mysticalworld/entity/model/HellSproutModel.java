@@ -53,12 +53,12 @@ public class HellSproutModel extends AgeableModel<HellSproutEntity> {
 
   @Override
   protected Iterable<ModelRenderer> getHeadParts() {
-    return ImmutableList.of(head, leafTop, leafBottom);
+    return ImmutableList.of();
   }
 
   @Override
   protected Iterable<ModelRenderer> getBodyParts() {
-    return ImmutableList.of(legL, legR);
+    return ImmutableList.of(head, leafTop, leafBottom, legL, legR);
   }
 
   @Override

@@ -33,7 +33,7 @@ public class MaskHandler {
       if (mask.getItem() == ModItems.BEETLE_MASK.get()) {
         if (world.rand.nextInt(ConfigManager.HAT_CONFIG.getMaskChance()) == 0) {
           BlockPos playerPos = player.getPosition();
-          if (world.getEntitiesWithinAABB(SpiritBeetleEntity.class, AntlerHatItem.BOX.offset(playerPos)).size() >= 3) {
+          if (world.getEntitiesWithinAABB(SpiritBeetleEntity.class, AntlerHatItem.BOX.offset(playerPos)).size() >= 5) {
             return;
           }
 
@@ -45,11 +45,11 @@ public class MaskHandler {
             if (tries <= 0) {
               return;
             }
-            pos = playerPos.add(world.rand.nextInt(8) - 8, 0, world.rand.nextInt(8) - 8);
+            pos = playerPos.add(world.rand.nextInt(4) - 2, 0, world.rand.nextInt(4) - 2);
             if (!world.isAirBlock(pos)) {
               continue;
             }
-            if (player.getDistanceSq(pos.getX(), pos.getY(), pos.getZ()) < 9) {
+            if (player.getDistanceSq(pos.getX(), pos.getY(), pos.getZ()) < 5) {
               continue;
             }
 
@@ -62,9 +62,11 @@ public class MaskHandler {
             spiritBeetle.noClip = true;
             world.addEntity(spiritBeetle);
             if (ConfigManager.HAT_CONFIG.getMaskDurabilityDamage() != -1) {
-              mask.damageItem(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> {
-                breaker.sendBreakAnimation(EquipmentSlotType.HEAD);
-              });
+              if (world.rand.nextInt(4) == 1) {
+                mask.damageItem(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> {
+                  breaker.sendBreakAnimation(EquipmentSlotType.HEAD);
+                });
+              }
             }
           }
         }

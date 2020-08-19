@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.config.ModConfig;
 
 public class HatConfig implements IConfig {
   protected ForgeConfigSpec.IntValue configAntlerFrequency;
@@ -21,9 +22,20 @@ public class HatConfig implements IConfig {
   public int antlerRegenAmplifier = 1;
   public float antlerHealthBonus = 4f;
   public int antlerDamage = 1;
-  public int maskChance = 11;
-  public int maskAttackDamage = 2;
+  public int maskChance = 4;
+  public int maskAttackDamage = 1;
   public int maskDurabilityDamage = 1;
+
+  public int cachedAntlerFrequency = -999;
+  public int cachedAntlerThreshold = -999;
+  public float cachedAntlerHealing = -999;
+  public int cachedAntlerRegenDuration = -999;
+  public int cachedAntlerRegenAmplifier = -999;
+  public float cachedAntlerHealthBonus = -999;
+  public int cachedAntlerDamage = -999;
+  public int cachedMaskChance = -999;
+  public int cachedMaskAttackDamage = -999;
+  public int cachedMaskDurabilityDamage = -999;
 
   @Override
   public void apply(ForgeConfigSpec.Builder builder) {
@@ -40,42 +52,86 @@ public class HatConfig implements IConfig {
   }
 
   public int getAntlerFrequency() {
-    return configAntlerFrequency.get();
+    if (cachedAntlerFrequency == -999) {
+      cachedAntlerFrequency = configAntlerFrequency.get();
+    }
+
+    return cachedAntlerFrequency;
   }
 
   public int getAntlerThreshold() {
-    return configAntlerThreshold.get();
+    if (cachedAntlerThreshold == -999) {
+      cachedAntlerThreshold = configAntlerThreshold.get();
+    }
+    return cachedAntlerThreshold;
   }
 
   public float getAntlerHealing() {
-    return (float) (double) configAntlerHealing.get();
+    if (cachedAntlerHealing == -999) {
+      cachedAntlerHealing = (float) (double) configAntlerHealing.get();
+    }
+    return cachedAntlerHealing;
   }
 
   public int getAntlerRegenDuration() {
-    return configAntlerRegenDuration.get();
+    if (cachedAntlerRegenDuration == -999) {
+      cachedAntlerRegenDuration = configAntlerRegenDuration.get();
+    }
+    return cachedAntlerRegenDuration;
   }
 
   public int getAntlerRegenAmplifier() {
-    return configAntlerRegenAmplifier.get();
+    if (cachedAntlerRegenAmplifier == -999) {
+      cachedAntlerRegenAmplifier = configAntlerRegenAmplifier.get();
+    }
+    return cachedAntlerRegenAmplifier;
   }
 
   public float getAntlerHealthBonus() {
-    return (float) (double) configAntlerHealthBonus.get();
+    if (cachedAntlerHealthBonus == -999) {
+      cachedAntlerHealthBonus = (float) (double) configAntlerHealthBonus.get();
+    }
+    return cachedAntlerHealthBonus;
   }
 
   public int getAntlerDamage() {
-    return configAntlerDamage.get();
+    if (cachedAntlerDamage == -999) {
+      cachedAntlerDamage = configAntlerDamage.get();
+    }
+    return cachedAntlerDamage;
   }
 
   public int getMaskChance() {
-    return configMaskChance.get();
+    if (cachedMaskChance == -999) {
+      cachedMaskChance = configMaskChance.get();
+    }
+    return cachedMaskChance;
   }
 
   public int getMaskAttackDamage() {
-    return configMaskDamage.get();
+    if (cachedMaskAttackDamage == -999) {
+      cachedMaskAttackDamage = configMaskDamage.get();
+    }
+    return cachedMaskAttackDamage;
   }
 
   public int getMaskDurabilityDamage() {
-    return configMaskDurability.get();
+    if (cachedMaskDurabilityDamage == -999) {
+      cachedMaskDurabilityDamage = configMaskDurability.get();
+    }
+    return cachedMaskDurabilityDamage;
+  }
+
+  public void onConfigReload(ModConfig.ModConfigEvent event) {
+    cachedAntlerFrequency = -999;
+    cachedAntlerThreshold = -999;
+    cachedAntlerHealing = -999;
+    cachedAntlerRegenDuration = -999;
+    cachedAntlerRegenAmplifier = -999;
+    cachedAntlerHealthBonus = -999;
+    cachedAntlerDamage = -999;
+    cachedMaskChance = -999;
+    cachedMaskAttackDamage = -999;
+    cachedMaskDurabilityDamage = -999;
   }
 }
