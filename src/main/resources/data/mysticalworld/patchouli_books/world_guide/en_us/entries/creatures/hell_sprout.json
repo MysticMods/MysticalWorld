@@ -1,0 +1,22 @@
+{
+  "name": "Hell Sprout",
+  "icon": "minecraft:magma_cream",
+  "category": "creatures",
+  "pages": [
+    {
+      "type": "animal_spawn_info",
+      "animal": "hell_sprout",
+      "breed": "Breed: cooked aubergine.",
+      "tame": "Taming: not tameable.",
+      "blurb": "These hot little vegetables learned to survive in hell!"
+    },
+    {
+      "type": "entity",
+      "name": "Sprout",
+      "entity": "mysticalworld:hell_sprout",
+      "scale": 1,
+      "offset": 0,
+      "text": "They enjoy hell-gardening and plant nether wart crops on soul sand."
+    }
+  ]
+}

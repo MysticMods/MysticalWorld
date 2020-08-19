@@ -21,6 +21,7 @@ public class StandardDrops {
     DROPS.put("silkworm", Arrays.asList(new ResourceLocation("mysticalworld", "silkworm_egg")));
     DROPS.put("silver_fox", Arrays.asList(new ResourceLocation("mysticalworld", "pelt")));
     DROPS.put("sprout", Arrays.asList(new ResourceLocation("minecraft", "melon_slice"), new ResourceLocation("mysticalworld", "aubergine"), new ResourceLocation("minecraft", "beetroot"), new ResourceLocation("minecraft", "potato")));
+    DROPS.put("hell_sprout", Arrays.asList(new ResourceLocation("minecraft", "nether_wart")));
     DROPS.put("squid", Arrays.asList(new ResourceLocation("mysticalworld", "raw_squid")));
   }
 
