@@ -14,6 +14,7 @@ public class HatConfig implements IConfig {
   protected ForgeConfigSpec.IntValue configMaskChance;
   protected ForgeConfigSpec.IntValue configMaskDamage;
   protected ForgeConfigSpec.IntValue configMaskDurability;
+  protected ForgeConfigSpec.DoubleValue configMaskDamageBonus;
 
   public int antlerFrequency = 50;
   public int antlerThreshold = -1;
@@ -25,6 +26,7 @@ public class HatConfig implements IConfig {
   public int maskChance = 4;
   public int maskAttackDamage = 1;
   public int maskDurabilityDamage = 1;
+  public double maskBonusDamage = 0.3;
 
   public int cachedAntlerFrequency = -999;
   public int cachedAntlerThreshold = -999;
@@ -36,6 +38,7 @@ public class HatConfig implements IConfig {
   public int cachedMaskChance = -999;
   public int cachedMaskAttackDamage = -999;
   public int cachedMaskDurabilityDamage = -999;
+  public double cachedMaskBonusDamage = -999;
 
   @Override
   public void apply(ForgeConfigSpec.Builder builder) {
@@ -49,6 +52,7 @@ public class HatConfig implements IConfig {
     configMaskChance = builder.comment("How frequency (1 in X per melee hit) Spirit Beetles should be spawned (-1 for not at all)").defineInRange("mask_chance", maskChance, -1, Integer.MAX_VALUE);
     configMaskDamage = builder.comment("How much damage Spirit Beetles should do").defineInRange("mask_damage", maskAttackDamage, 1, Integer.MAX_VALUE);
     configMaskDurability = builder.comment("How much durability damage should be done (-1 for none) per beetle spawned").defineInRange("mask_durability", maskDurabilityDamage, -1, Integer.MAX_VALUE);
+    configMaskDamageBonus = builder.comment("How much of a damage to bonus should be provided by the mask (-1 for none)").defineInRange("mask_bonus_damage", maskBonusDamage, -1, Double.MAX_VALUE);
   }
 
   public int getAntlerFrequency() {
@@ -122,6 +126,13 @@ public class HatConfig implements IConfig {
     return cachedMaskDurabilityDamage;
   }
 
+  public double getMaskBonusDamage() {
+    if (cachedMaskBonusDamage == -999) {
+      cachedMaskBonusDamage = configMaskDamageBonus.get();
+    }
+    return cachedMaskBonusDamage;
+  }
+
   public void onConfigReload(ModConfig.ModConfigEvent event) {
     cachedAntlerFrequency = -999;
     cachedAntlerThreshold = -999;
@@ -133,5 +144,6 @@ public class HatConfig implements IConfig {
     cachedMaskChance = -999;
     cachedMaskAttackDamage = -999;
     cachedMaskDurabilityDamage = -999;
+    cachedMaskBonusDamage = -999;
   }
 }

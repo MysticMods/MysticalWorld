@@ -35,8 +35,8 @@ public class BeetleMaskItem extends ModifiedArmorItem {
   public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
 
-    if (equipmentSlot == EquipmentSlotType.MAINHAND) {
-      map.put(SharedMonsterAttributes.MAX_HEALTH.getName(), this.getOrCreateModifier(SharedMonsterAttributes.MAX_HEALTH, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Antler Health Boost", ConfigManager.HAT_CONFIG.getAntlerHealthBonus(), AttributeModifier.Operation.ADDITION)));
+    if (equipmentSlot == EquipmentSlotType.HEAD && ConfigManager.HAT_CONFIG.getMaskBonusDamage() != -1) {
+      map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), this.getOrCreateModifier(SharedMonsterAttributes.ATTACK_DAMAGE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Beetle Mask Damage Bonus", ConfigManager.HAT_CONFIG.getMaskBonusDamage(), AttributeModifier.Operation.MULTIPLY_TOTAL)));
     }
 
     return map;

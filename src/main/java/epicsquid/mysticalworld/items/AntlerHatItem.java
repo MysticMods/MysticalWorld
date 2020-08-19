@@ -41,7 +41,7 @@ public class AntlerHatItem extends ModifiedArmorItem {
   public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
 
-    if (equipmentSlot == EquipmentSlotType.MAINHAND) {
+    if (equipmentSlot == EquipmentSlotType.HEAD && ConfigManager.HAT_CONFIG.getAntlerHealthBonus() != -1) {
       map.put(SharedMonsterAttributes.MAX_HEALTH.getName(), this.getOrCreateModifier(SharedMonsterAttributes.MAX_HEALTH, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Antler Health Boost", ConfigManager.HAT_CONFIG.getAntlerHealthBonus(), AttributeModifier.Operation.ADDITION)));
     }
 
