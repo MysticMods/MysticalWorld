@@ -22,6 +22,8 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import noobanidus.libs.noobutil.material.MaterialType;
 
 import javax.annotation.Nullable;
@@ -109,6 +111,7 @@ public class AntlerHatItem extends ModifiedArmorItem {
   @SuppressWarnings("unchecked")
   @Nullable
   @Override
+  @OnlyIn(Dist.CLIENT)
   public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
     return (A) ModelHolder.antlerHatModel;
   }
