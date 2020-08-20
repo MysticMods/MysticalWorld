@@ -2,11 +2,14 @@ package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.init.ModEntities;
+import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -91,6 +94,12 @@ public class SproutEntity extends AnimalEntity {
   public ResourceLocation getLootTable() {
     return new ResourceLocation("mysticalworld:entities/sprout");
   }
+
+  @Override
+  public boolean isBreedingItem(ItemStack stack) {
+    return stack.getItem() == ModItems.AUBERGINE.get();
+  }
+
 
   @Override
   public float getStandingEyeHeight(Pose pose, EntitySize size) {
