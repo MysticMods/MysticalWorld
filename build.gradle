@@ -173,7 +173,13 @@ task apiJar(type: Jar) {
     classifier = 'api'
 }
 
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
 build.dependsOn apiJar
+build.dependsOn deobfJar
 
 publishing {
     publications {
