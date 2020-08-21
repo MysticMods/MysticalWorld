@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.recipe;
 
 import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;

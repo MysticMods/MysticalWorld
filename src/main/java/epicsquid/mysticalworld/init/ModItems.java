@@ -11,7 +11,6 @@ import epicsquid.mysticalworld.items.lead.LeadArmorItem;
 import epicsquid.mysticalworld.items.quicksilver.*;
 import epicsquid.mysticalworld.items.silver.*;
 import epicsquid.mysticalworld.items.tin.TinArmorItem;
-import epicsquid.mysticalworld.recipe.ingredients.SeedBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.ShapedRecipeBuilder;

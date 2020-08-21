@@ -1,15 +1,12 @@
 package epicsquid.mysticalworld.config;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.block.Block;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.ForgeConfigSpec;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -63,11 +60,11 @@ public class OreConfig implements IConfig {
     return ore.get().get();
   }
 
-  public List<? extends Integer> getDimensions () {
+  public List<? extends Integer> getDimensions() {
     return configDimensions.get();
   }
 
-  public DimensionType[] getDimensionsAsArray () {
+  public DimensionType[] getDimensionsAsArray() {
     List<DimensionType> dimensions = new ArrayList<>();
     configDimensions.get().forEach(o -> dimensions.add(DimensionType.getById(o)));
     return dimensions.toArray(new DimensionType[0]);

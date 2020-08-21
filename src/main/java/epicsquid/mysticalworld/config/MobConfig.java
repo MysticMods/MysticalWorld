@@ -47,11 +47,11 @@ public class MobConfig implements IConfig {
     return getChance() > 0;
   }
 
-  protected void preApply (ForgeConfigSpec.Builder builder) {
+  protected void preApply(ForgeConfigSpec.Builder builder) {
 
   }
 
-  protected void doApply (ForgeConfigSpec.Builder builder) {
+  protected void doApply(ForgeConfigSpec.Builder builder) {
     builder.comment(name + " spawn config.").push(name + "_spawn");
     configChance = builder.comment("Chance to spawn (set to 0 to disable).").defineInRange("spawnChance", chance, 0, 256);
     configMin = builder.comment("Min to spawn in a group.").defineInRange("min", min, 0, 256);
@@ -66,7 +66,7 @@ public class MobConfig implements IConfig {
     configBiomes = builder.comment("List of biome types to spawn.").define("biomes", sb.toString());
   }
 
-  protected void postApply (ForgeConfigSpec.Builder builder) {
+  protected void postApply(ForgeConfigSpec.Builder builder) {
     builder.pop();
   }
 

@@ -15,7 +15,7 @@ public class AdditionalRenderTypes extends RenderType {
     return makeType("fullbright_entity", DefaultVertexFormats.ENTITY, 7, 256, false, true, State.getBuilder().texture(new TextureState(p_228636_0_, false, false)).texturing(new OffsetTexturingState(p_228636_1_, p_228636_2_)).fog(NO_FOG).diffuseLighting(DIFFUSE_LIGHTING_DISABLED).alpha(DEFAULT_ALPHA).cull(CULL_DISABLED).lightmap(LIGHTMAP_ENABLED).transparency(RenderState.NO_TRANSPARENCY).overlay(OVERLAY_DISABLED).build(false));
   }
 
-  public static RenderType getSpiritEntity (ResourceLocation p_228636_0_) {
+  public static RenderType getSpiritEntity(ResourceLocation p_228636_0_) {
     return makeType("spirit_entity", DefaultVertexFormats.ENTITY, 7, 256, false, true, State.getBuilder().texture(new TextureState(p_228636_0_, false, false)).fog(NO_FOG).diffuseLighting(DIFFUSE_LIGHTING_DISABLED).alpha(DEFAULT_ALPHA).cull(CULL_DISABLED).lightmap(LIGHTMAP_ENABLED).transparency(RenderState.ADDITIVE_TRANSPARENCY).overlay(OVERLAY_DISABLED).build(false));
   }
 }

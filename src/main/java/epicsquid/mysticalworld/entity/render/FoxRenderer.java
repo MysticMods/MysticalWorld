@@ -1,11 +1,9 @@
 package epicsquid.mysticalworld.entity.render;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.SilverFoxEntity;
 import epicsquid.mysticalworld.entity.model.FoxModel;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;

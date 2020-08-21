@@ -3,8 +3,6 @@ package epicsquid.mysticalworld.entity.model;
 import com.google.common.collect.ImmutableSet;
 import epicsquid.mysticalworld.entity.SpiritBeetleEntity;
 import epicsquid.mysticalworld.entity.render.layers.AdditionalRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
 import javax.annotation.Nonnull;

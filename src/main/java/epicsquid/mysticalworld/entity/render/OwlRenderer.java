@@ -1,11 +1,9 @@
 package epicsquid.mysticalworld.entity.render;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.OwlEntity;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import epicsquid.mysticalworld.entity.model.OwlModel;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;

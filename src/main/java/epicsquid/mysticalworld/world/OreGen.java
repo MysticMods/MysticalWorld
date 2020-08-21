@@ -5,7 +5,6 @@ import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.config.OreConfig;
 import epicsquid.mysticalworld.init.ModFeatures;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;

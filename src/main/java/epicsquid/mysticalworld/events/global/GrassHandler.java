@@ -18,7 +18,7 @@ import java.util.List;
 // https://github.com/BluSunrize/ImmersiveEngineering/blob/1.15/src/main/java/blusunrize/immersiveengineering/common/util/loot/GrassDrops.java
 // While the code is not specifically copied from that, credit for the solution belongs to the Immersive Engineering team.
 public class GrassHandler {
-  public static void registerModifiers (RegistryEvent .Register<GlobalLootModifierSerializer<?>> event) {
+  public static void registerModifiers(RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
     event.getRegistry().register(
         new GrassDropSerializer().setRegistryName(MysticalWorld.MODID, "aubergine_seed_drops")
     );

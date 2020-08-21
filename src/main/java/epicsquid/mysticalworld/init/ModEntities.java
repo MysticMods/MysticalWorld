@@ -19,7 +19,6 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
@@ -30,7 +29,6 @@ import net.minecraft.world.storage.loot.functions.LootingEnchantBonus;
 import net.minecraft.world.storage.loot.functions.SetCount;
 import net.minecraft.world.storage.loot.functions.Smelt;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.event.RegistryEvent;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -250,10 +248,10 @@ public class ModEntities {
       .properties(o -> o.size(1.0f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
-   public static RegistryEntry<EntityType<SpiritBeetleEntity>> SPIRIT_BEETLE = REGISTRATE.entity("spirit_beetle", SpiritBeetleEntity::new, EntityClassification.CREATURE)
+  public static RegistryEntry<EntityType<SpiritBeetleEntity>> SPIRIT_BEETLE = REGISTRATE.entity("spirit_beetle", SpiritBeetleEntity::new, EntityClassification.CREATURE)
       .loot((p, e) -> p.registerLootTable(e, LootTable.builder()))
       .properties(o -> o.size(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
-       .register();
+      .register();
 
   static {
     SPAWN_EGGS.add(REGISTRATE.item("beetle_spawn_egg", spawnEgg(ModEntities.BEETLE, 0x418594, 0x211D15)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());

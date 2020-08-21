@@ -1,12 +1,8 @@
 package epicsquid.mysticalworld.entity.model;
 
 import com.google.common.collect.ImmutableList;
-import epicsquid.mysticalworld.entity.DeerEntity;
 import epicsquid.mysticalworld.entity.SpiritDeerEntity;
 import epicsquid.mysticalworld.entity.render.layers.AdditionalRenderTypes;
-import javafx.scene.effect.Glow;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
 import javax.annotation.Nonnull;

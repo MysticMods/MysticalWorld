@@ -8,8 +8,6 @@ import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.Arrays;
-
 @JeiPlugin
 public class MWJEIPlugin implements IModPlugin {
   private static final ResourceLocation UID = new ResourceLocation(MysticalWorld.MODID, MysticalWorld.MODID);

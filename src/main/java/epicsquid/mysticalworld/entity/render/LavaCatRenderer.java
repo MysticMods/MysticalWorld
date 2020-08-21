@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.entity.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.LavaCatEntity;
 import epicsquid.mysticalworld.entity.model.LavaCatModel;
@@ -16,7 +15,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel> {

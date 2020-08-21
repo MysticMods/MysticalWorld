@@ -5,7 +5,6 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.BeetleEntity;
 import epicsquid.mysticalworld.entity.model.BeetleModel;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;

@@ -40,7 +40,7 @@ public class Remaps {
     }
   }
 
-  private static void ignore (String oldName, RemapType type) {
+  private static void ignore(String oldName, RemapType type) {
     remap(oldName, "ignore_remap", type);
   }
 

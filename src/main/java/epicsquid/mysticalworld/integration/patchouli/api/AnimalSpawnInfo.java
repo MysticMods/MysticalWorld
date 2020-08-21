@@ -8,11 +8,8 @@ import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @SuppressWarnings("unused")
 public class AnimalSpawnInfo implements IComponentProcessor {

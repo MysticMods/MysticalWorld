@@ -2,10 +2,8 @@ package epicsquid.mysticalworld.entity.render;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.HellSproutEntity;
-import epicsquid.mysticalworld.entity.SproutEntity;
 import epicsquid.mysticalworld.entity.model.HellSproutModel;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
-import epicsquid.mysticalworld.entity.model.SproutModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
