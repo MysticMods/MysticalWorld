@@ -1,9 +1,9 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    " C ",
-    "CSC",
-    "WCW"
+    "CWC",
+    "CWC",
+    " S "
     ],
   "key": {
     "C": [
@@ -14,13 +14,13 @@
     "W": [
         {
             "type": "forge:ore_dict",
-            "ore": "wool"
+            "ore": "planksWood"
         }
     ],
     "S": [
       {
         "type": "forge:ore_dict",
-        "ore": "string"
+        "ore": "sticksWood"
       }
     ]
   },

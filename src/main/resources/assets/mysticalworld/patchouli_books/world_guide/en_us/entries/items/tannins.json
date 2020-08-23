@@ -11,7 +11,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:leather_from_rotten_flesh_via_tannins",
+      "recipe": "mysticalworld:leather_from_rotten_flesh",
       "text": "A single vial of tannins is enough to tan three pieces of rotten flesh into leather."
     }
   ]
