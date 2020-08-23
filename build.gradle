@@ -31,8 +31,7 @@ minecraft {
 }
 repositories {
     maven {
-        name = "TehNut"
-        url = "https://tehnut.info/maven"
+        url = "https://maven.tehnut.info"
     }
     maven {
         // location of the maven that hosts JEI files
