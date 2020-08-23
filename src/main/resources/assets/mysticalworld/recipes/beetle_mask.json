@@ -14,13 +14,13 @@
     "W": [
         {
             "type": "forge:ore_dict",
-            "ore": "planksWood"
+            "ore": "plankWood"
         }
     ],
     "S": [
       {
         "type": "forge:ore_dict",
-        "ore": "sticksWood"
+        "ore": "stickWood"
       }
     ]
   },
