@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -30,7 +31,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("NullableProblems")
-@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class ItemBeetleMask extends ItemArmor implements IModeledObject {
   public ItemBeetleMask(ArmorMaterial materialIn, String name) {
     super(materialIn, 0, EntityEquipmentSlot.HEAD);
@@ -38,6 +38,7 @@ public class ItemBeetleMask extends ItemArmor implements IModeledObject {
     setRegistryName(new ResourceLocation(MysticalWorld.MODID, name));
     setMaxDamage(399);
     setCreativeTab(MysticalWorld.tab);
+    MinecraftForge.EVENT_BUS.register(this);
   }
 
   @SubscribeEvent
