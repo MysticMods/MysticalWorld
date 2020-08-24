@@ -237,6 +237,14 @@ item.cooked_aubergine.name=Приготовленный баклажан
 item.stuffed_aubergine.name=Фаршерованный баклажан
 item.assorted_seeds.name=Смешеные семена
 item.cooked_seeds.name=Жареные семена
+item.copper_helmet.name=Медный шлем
+item.copper_chestplate.name=Медный нагрудник
+item.copper_leggings.name=Медные поножи
+item.copper_boots.name=Медные ботинки
+item.silver_helmet.name=Серебряный шлем
+item.silver_chestplate.name=Серебряный нагрудник
+item.silver_leggings.name=Серебряные поножи
+item.silver_boots.name=Серебряные ботинки
 
 message.squid.cooldown=Дайте время, чтобы произвести больше чернил!
 
@@ -313,3 +321,6 @@ mysticalworld.guidebook.landing_text=Это очень загадочный ми
 mysticalworld.patchouli.standard_group=Стандартные размеры группы.
 mysticalworld.patchouli.groups=Группы по %s-%s.
 mysticalworld.patchouli.biomes=Биомы с меткой: %s
+
+# Attributes
+attribute.name.mysticalworld.blessed=Благословенный
