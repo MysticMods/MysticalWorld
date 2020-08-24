@@ -5,6 +5,7 @@ import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityStorage;
 import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.init.ModModifiers;
 import epicsquid.mysticalworld.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -52,6 +53,10 @@ public class MysticalWorld {
       return new ItemStack(ModItems.carapace, 1);
     }
   };
+
+  public MysticalWorld() {
+    ModModifiers.load();
+  }
 
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {

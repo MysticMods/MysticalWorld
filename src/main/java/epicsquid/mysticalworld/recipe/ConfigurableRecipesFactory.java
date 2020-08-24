@@ -34,6 +34,9 @@ public class ConfigurableRecipesFactory implements IConditionFactory {
       case "amethyst": return () -> ConfigManager.toolEnable.enableAmethyst;
       case "silver": return () -> ConfigManager.toolEnable.enableSilver;
 
+      case "copper_armor": return () -> ConfigManager.armorEnable.enableCopper;
+      case "silver_armor": return () -> ConfigManager.armorEnable.enableSilver;
+
       // Tools
       case "copper_axe": return () -> ConfigManager.toolEnable.copperTools.copperAxe;
       case "copper_hoe": return () -> ConfigManager.toolEnable.copperTools.copperHoe;
