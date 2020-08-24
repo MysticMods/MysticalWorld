@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.entity;
 
+import com.google.common.collect.Sets;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.block.state.IBlockState;
@@ -12,6 +13,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -32,14 +34,12 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class EntityLavaCat extends EntityOcelot {
+public class EntityLavaCat extends EntityTameable {
   public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/lava_cat");
 
   private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.createKey(EntityLavaCat.class, DataSerializers.BOOLEAN);
   private static final UUID OBSIDIAN_SPEED_DEBUFF_ID = UUID.fromString("f58f95e9-fb51-4604-a66d-89433c9dd8a5");
   private static final AttributeModifier OBSIDIAN_SPEED_DEBUFF = (new AttributeModifier(OBSIDIAN_SPEED_DEBUFF_ID, "Speed debuff for being obsidian", -0.1D, 0)).setSaved(false);
-
-  private EntityAITempt aiTempt;
 
   public EntityLavaCat(World worldIn) {
     super(worldIn);
@@ -51,7 +51,7 @@ public class EntityLavaCat extends EntityOcelot {
     this.aiSit = new EntityAISit(this);
     this.tasks.addTask(1, new EntityAISwimming(this));
     this.tasks.addTask(2, this.aiSit);
-    this.tasks.addTask(3, new EntityAITempt(this, 0.6D, Items.BLAZE_ROD, false));
+    this.tasks.addTask(3, new EntityAITempt(this, 0.6D, false, Sets.newHashSet(Items.BLAZE_ROD, Items.BLAZE_POWDER)));
     this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
     this.tasks.addTask(7, new EntityAILeapAtTarget(this, 0.3F));
     this.tasks.addTask(8, new EntityAIOcelotAttack(this));
@@ -225,7 +225,7 @@ public class EntityLavaCat extends EntityOcelot {
 
         return flag;
       }
-    } else if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == Items.BLAZE_ROD && player.getDistanceSq(this) < 9.0D) {
+    } else if (itemstack.getItem() == Items.BLAZE_ROD && player.getDistanceSq(this) < 9.0D) {
       if (!player.capabilities.isCreativeMode) {
         itemstack.shrink(1);
       }
@@ -299,34 +299,6 @@ public class EntityLavaCat extends EntityOcelot {
   @Override
   public boolean isBreedingItem(ItemStack stack) {
     return stack.getItem() == Items.BLAZE_POWDER;
-  }
-
-  @Override
-  public boolean canMateWith(EntityAnimal otherAnimal) {
-    if (otherAnimal == this) {
-      return false;
-    } else if (!this.isTamed()) {
-      return false;
-    } else if (!(otherAnimal instanceof EntityLavaCat)) {
-      return false;
-    } else {
-      EntityLavaCat lavacat = (EntityLavaCat) otherAnimal;
-
-      if (!lavacat.isTamed()) {
-        return false;
-      } else {
-        return this.isInLove() && lavacat.isInLove();
-      }
-    }
-  }
-
-  @Override
-  public int getTameSkin() {
-    return 0;
-  }
-
-  @Override
-  public void setTameSkin(int skinId) {
   }
 
   public boolean getIsLava() {
@@ -411,15 +383,6 @@ public class EntityLavaCat extends EntityOcelot {
       this.setLeftHanded(true);
     } else {
       this.setLeftHanded(false);
-    }
-
-    if (this.getTameSkin() == 0 && this.world.rand.nextInt(7) == 0) {
-      for (int i = 0; i < 2; ++i) {
-        EntityLavaCat entitylavacat = new EntityLavaCat(this.world);
-        entitylavacat.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-        entitylavacat.setGrowingAge(-24000);
-        this.world.spawnEntity(entitylavacat);
-      }
     }
 
     return livingdata;

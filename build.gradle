@@ -57,10 +57,12 @@ repositories {
         name = 'Tterrag Maven'
         url "http://maven.tterrag.com"
     }
-
     maven {
         name = 'Curse Maven by WynPrice'
         url = "https://www.cursemaven.com"
+    }
+    maven {
+        url = "https://github.com/TehNut/temporary-maven-thing/tree/master/maven"
     }
 }
 
