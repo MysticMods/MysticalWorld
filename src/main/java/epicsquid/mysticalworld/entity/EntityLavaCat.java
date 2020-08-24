@@ -298,7 +298,7 @@ public class EntityLavaCat extends EntityOcelot {
 
   @Override
   public boolean isBreedingItem(ItemStack stack) {
-    return stack.getItem() == Items.BLAZE_ROD;
+    return stack.getItem() == Items.BLAZE_POWDER;
   }
 
   @Override
