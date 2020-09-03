@@ -12,11 +12,11 @@
     },
     {
       "type": "entity",
-      "name": "狐狸",
+      "name": "银狐",
       "entity": "mysticalworld:silver_fox",
       "scale": 0.8,
       "offset": 0,
-      "text": "野生狐狸是鸡和兔的专业杀手，非常凶猛，但驯服后会变得温顺！"
+      "text": "野生银狐是鸡和兔的专业杀手，非常凶猛，但驯服后会变得温顺！"
     }
   ]
 }
