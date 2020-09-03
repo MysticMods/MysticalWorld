@@ -1,6 +1,6 @@
 {
   "name": "强化",
   "parent": "metals",
-  "description": "每种神秘的金属都有相应的强化能力。它们强化工具、武器和盔甲都有不同的强化效果。",
+  "description": "每种神秘的金属都有相应的强化能力。不论被做成工具、武器或盔甲，它们都能提供对应的强化效果。",
   "icon": "mysticalworld:amethyst"
 }
