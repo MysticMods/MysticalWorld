@@ -6,14 +6,21 @@
     {
       "type": "spotlight",
       "link_recipe": true,
-      "item": "mysticalworld:cooked_aubergine",
-      "text": "茄子可以从$(l:blocks/aubergine)成熟的茄子作物$()中收获，它能以多种方式来使用。"
+      "item": "mysticalworld:aubergine_seeds",
+      "text": "茄子种子可以通过破坏世界各处的草丛来获得。"
+    },
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:aubergine",
+      "text": "从成熟的作物上收割的茄子不仅是美味的零食，也是其他料理的重要食材！",
+      "title": "Aubergine Crop"
     },
     {
       "type": "smelting",
-      "recipe": "mysticalworld:aubergine",
-      "title": "Cooked Aubergine",
-      "text": "烤熟并去籽后，茄子会变得更鲜美！"
+      "recipe": "mysticalworld:cooked_aubergine",
+      "title": "烤茄子",
+      "text": "加入更多的食材，可以让烤熟后去籽的茄子变得更好吃！"
     },
     {
       "type": "crafting",
