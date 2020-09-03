@@ -11,7 +11,8 @@
     },
     {
       "type": "smelting",
-      "recipe": "mysticalworld:venison",
+      "recipe": "mysticalworld:cooked_venison",
+
       "title": "烤鹿肉",
       "text": "可以烤制生鹿肉获得，也可以从被火焰烧死的鹿身上取得。"
     }
