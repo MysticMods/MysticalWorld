@@ -5,7 +5,8 @@
   "pages": [
     {
       "type": "spotlight",
-      "item": "mysticalworld:lead_ore",
+      "item": "mysticalworld:lead_ingot",
+
       "text": "铅是可以制造威力强大的武器的重金属。"
     },
     {
