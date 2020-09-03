@@ -12,7 +12,6 @@
     {
       "type": "crafting",
       "recipe": "mysticalworld:spindle",
-      "recipe2": "mysticalworld:silk_thread_spindle",
       "text": "用纺锤处理蚕茧可以获得最大产出，但这样会消耗一点纺锤的耐久。"
     }
   ]
