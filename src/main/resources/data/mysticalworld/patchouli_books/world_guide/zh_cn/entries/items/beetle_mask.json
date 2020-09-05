@@ -1,0 +1,18 @@
+{
+  "name": "甲虫面具",
+  "icon": "mysticalworld:beetle_mask",
+  "category": "items",
+  "pages": [
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:beetle_mask",
+      "text": "甲壳可以用来制作吓人的面具。"
+    },
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:beetle_mask",
+      "text": "穿戴甲虫面具时，它会召唤幽灵甲虫协助你的战斗。"
+    }
+  ]
+}
