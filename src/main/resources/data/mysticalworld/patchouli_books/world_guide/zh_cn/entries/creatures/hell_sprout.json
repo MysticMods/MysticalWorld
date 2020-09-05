@@ -1,0 +1,22 @@
+{
+  "name": "下界芽精灵",
+  "icon": "minecraft:magma_cream",
+  "category": "creatures",
+  "pages": [
+    {
+      "type": "animal_spawn_info",
+      "animal": "hell_sprout",
+      "breed": "繁殖: 使用烤茄子。",
+      "tame": "驯服: 不可驯服。",
+      "blurb": "这些火热的小蔬菜学会了在下界中生存！"
+    },
+    {
+      "type": "entity",
+      "name": "下界芽精灵",
+      "entity": "mysticalworld:hell_sprout",
+      "scale": 1,
+      "offset": 0,
+      "text": "它们热衷于在下界中耕作，比如将下界疣种植在灵魂沙上。"
+    }
+  ]
+} 
