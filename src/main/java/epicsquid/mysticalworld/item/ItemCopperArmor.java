@@ -23,7 +23,7 @@ public class ItemCopperArmor extends ItemArmorBase {
   public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack)   {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot, stack);
 
-    if (slot == this.getEquipmentSlot()) {
+    if (slot == this.armorType) {
       map.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(Materials.ARMOR_MODIFIERS[slot.getIndex()], "Healthiness", 2, 0));
     }
 

@@ -21,8 +21,8 @@ public class ItemSilverArmor extends ItemArmorBase {
   public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot, stack);
 
-    if (getEquipmentSlot() == slot) {
-      if (getEquipmentSlot() == EntityEquipmentSlot.CHEST || getEquipmentSlot() == EntityEquipmentSlot.LEGS) {
+    if (armorType == slot) {
+      if (armorType == EntityEquipmentSlot.CHEST || armorType == EntityEquipmentSlot.LEGS) {
         map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(Materials.ARMOR_MODIFIERS[slot.getIndex()], "Attack damage multiplier", 0.06f, 2));
       } else {
         map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(Materials.ARMOR_MODIFIERS[slot.getIndex()], "Attack damage multiplier", 0.02f, 2));
