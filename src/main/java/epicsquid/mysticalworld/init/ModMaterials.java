@@ -27,9 +27,9 @@ public class ModMaterials {
   public static final String CARAPACE_NAME = "carapace";
   public static final String ANTLER_NAME = "antler";
 
-  public static MaterialType ANTLER = new MaterialType(ANTLER_NAME).itemMaterial(350, 4.0f, 1.0f, 2, 18).item(() -> ModItems.ANTLERS).armorMaterial(7, new int[]{3, 0, 0, 0}, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 1.0f);
+  public static MaterialType ANTLER = new MaterialType(ANTLER_NAME).item(() -> ModItems.ANTLERS).itemMaterial(350, 4.0f, 1.0f, 2, 18).armorMaterial(7, new int[]{3, 0, 0, 0}, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 1.0f);
 
-  public static MaterialType CARAPACE = new MaterialType(CARAPACE_NAME).itemMaterial(399, 4.0f, 1.0f, 2, 18).item(() -> ModItems.CARAPACE).armorMaterial(7, new int[]{3, 0, 0, 0}, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 1.0f);
+  public static MaterialType CARAPACE = new MaterialType(CARAPACE_NAME).item(() -> ModItems.CARAPACE).itemMaterial(399, 4.0f, 1.0f, 2, 18).armorMaterial(7, new int[]{3, 0, 0, 0}, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 1.0f);
 
   public static MaterialType AMETHYST = new MaterialType(AMETHYST_NAME).itemMaterial(960, 8.0f, 3.0f, 3, 14).item(() -> ModItems.AMETHYST_GEM).block(() -> ModBlocks.AMETHYST_BLOCK).ore(() -> ModBlocks.AMETHYST_ORE).armorMaterial(33, new int[]{3, 6, 8, 3}, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0f).setMinXP(1).setMaxXP(4).setModId(MysticalWorld.MODID).putDamageSpeed(
       WeaponType.AXE, 6.0f, -3.1f,
