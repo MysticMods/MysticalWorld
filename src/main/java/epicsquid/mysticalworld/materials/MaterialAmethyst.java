@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 
 public class MaterialAmethyst extends Material {
   public MaterialAmethyst(@Nonnull String oredictNameSuffix, float hardness, float experience, int level, int minXP, int maxXP, Item.ToolMaterial material, boolean hasTool) {
-    super(oredictNameSuffix, hardness, experience, level, minXP, maxXP, material, hasTool);
+    super(oredictNameSuffix, hardness, experience, level, minXP, maxXP, material, hasTool, "gemAmethyst");
   }
 
   @Override

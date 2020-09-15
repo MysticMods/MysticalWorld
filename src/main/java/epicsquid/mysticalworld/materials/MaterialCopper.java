@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 
 public class MaterialCopper extends Material {
   public MaterialCopper(@Nonnull String oredictNameSuffix, float hardness, float experience, int level, int minXP, int maxXP, Item.ToolMaterial material, boolean hasTool) {
-    super(oredictNameSuffix, hardness, experience, level, minXP, maxXP, material, hasTool);
+    super(oredictNameSuffix, hardness, experience, level, minXP, maxXP, material, hasTool, "ingotCopper");
   }
 
   @Override

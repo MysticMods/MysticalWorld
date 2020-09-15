@@ -6,6 +6,7 @@ import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.integration.roots.Knives;
 import epicsquid.mysticalworld.item.*;
+import epicsquid.mysticalworld.materials.Materials;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -127,9 +128,9 @@ public class ModItems {
     }.setCreativeTab(MysticalWorld.tab));
 
     if (!Loader.isModLoaded("roots") || !Knives.initKnives(event)) {
-      event.addItem(amethyst_knife = new ItemKnifeBase("amethyst_knife", MaterialTypes.material("mysticalworld:amethyst")).setCreativeTab(MysticalWorld.tab));
-      event.addItem(copper_knife = new ItemKnifeBase("copper_knife", MaterialTypes.material("mysticalworld:copper")).setCreativeTab(MysticalWorld.tab));
-      event.addItem(silver_knife = new ItemKnifeBase("silver_knife", MaterialTypes.material("mysticalworld:silver")).setCreativeTab(MysticalWorld.tab));
+      event.addItem(amethyst_knife = new ItemKnifeBase("amethyst_knife", MaterialTypes.material("mysticalworld:amethyst"), Materials.amethyst.getRepairIngredient()).setCreativeTab(MysticalWorld.tab));
+      event.addItem(copper_knife = new ItemKnifeBase("copper_knife", MaterialTypes.material("mysticalworld:copper"), Materials.copper.getRepairIngredient()).setCreativeTab(MysticalWorld.tab));
+      event.addItem(silver_knife = new ItemKnifeBase("silver_knife", MaterialTypes.material("mysticalworld:silver"), Materials.silver.getRepairIngredient()).setCreativeTab(MysticalWorld.tab));
     }
 
     event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.FARMLAND).setCreativeTab(MysticalWorld.tab));

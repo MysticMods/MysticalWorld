@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 
 public class MaterialQuartz extends Material {
   public MaterialQuartz(@Nonnull String oredictNameSuffix, float hardness, float experience, int level, int minXP, int maxXP, Item.ToolMaterial material, boolean hasTool) {
-    super(oredictNameSuffix, hardness, experience, level, minXP, maxXP, material, hasTool);
+    super(oredictNameSuffix, hardness, experience, level, minXP, maxXP, material, hasTool, "");
   }
 
   @Override
