@@ -2,7 +2,6 @@ package epicsquid.mysticalworld;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import epicsquid.mysticalworld.config.ConfigManager;
-import epicsquid.mysticalworld.data.RecipeProvider;
 import epicsquid.mysticalworld.events.LeafHandler;
 import epicsquid.mysticalworld.events.MaskHandler;
 import epicsquid.mysticalworld.events.global.GrassHandler;
@@ -32,6 +31,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
+import noobanidus.libs.noobutil.data.RecipeGenerator;
 import noobanidus.libs.noobutil.registrate.CustomRegistrate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,7 +50,7 @@ public class MysticalWorld {
   public static final String MODID = "mysticalworld";
 
   public static CustomRegistrate REGISTRATE;
-  public static RecipeProvider RECIPES = new RecipeProvider(MODID);
+  public static RecipeGenerator RECIPES = new RecipeGenerator(MODID);
 
   public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
     @Override
@@ -62,8 +62,6 @@ public class MysticalWorld {
   public static ModSetup setup = new ModSetup();
 
   public MysticalWorld() {
-    REGISTRATE = CustomRegistrate.create(MODID);
-    REGISTRATE.itemGroup(() -> ITEM_GROUP);
     ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
 
