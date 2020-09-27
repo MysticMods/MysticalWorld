@@ -11,6 +11,7 @@ import epicsquid.mysticalworld.events.EntityHandler;
 import epicsquid.mysticalworld.events.LootHandler;
 import epicsquid.mysticalworld.init.ModCompost;
 import epicsquid.mysticalworld.init.ModEntities;
+import epicsquid.mysticalworld.init.ModFeatures;
 import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.potions.PotionRecipes;
 import epicsquid.mysticalworld.world.OreGen;
@@ -21,6 +22,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import noobanidus.libs.noobutil.setup.ShadedCommonSetup;
@@ -81,5 +83,9 @@ public class ModSetup {
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);
 
     DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientSetup::registerListeners);
+  }
+
+  public void loadComplete(FMLLoadCompleteEvent event) {
+    ModFeatures.loadComplete();
   }
 }

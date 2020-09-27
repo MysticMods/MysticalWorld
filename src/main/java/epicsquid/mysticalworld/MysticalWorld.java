@@ -96,6 +96,7 @@ public class MysticalWorld {
     REGISTRATE.itemGroup(NonNullSupplier.of(() -> ITEM_GROUP));
 
     modBus.addListener(setup::init);
+    modBus.addListener(setup::loadComplete);
     modBus.addGenericListener(GlobalLootModifierSerializer.class, GrassHandler::registerModifiers);
 
     MinecraftForge.EVENT_BUS.addListener(setup::serverStarting);

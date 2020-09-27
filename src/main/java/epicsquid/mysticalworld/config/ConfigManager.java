@@ -28,6 +28,7 @@ public class ConfigManager {
   public static MobConfig OWL_CONFIG;
   public static SilkwormConfig SILKWORM_CONFIG;
   public static HatConfig HAT_CONFIG;
+  public static FeatureConfig DEAD_TREE_CONFIG;
 
   static {
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
@@ -38,6 +39,10 @@ public class ConfigManager {
     COMMON_BUILDER.pop();
     COMMON_BUILDER.comment("Hat Configuration").push("hat_config");
     HAT_CONFIG.apply(COMMON_BUILDER);
+    COMMON_BUILDER.pop();
+    COMMON_BUILDER.comment("Feature Spawn Configuration").push("feature_spawns");
+    DEAD_TREE_CONFIG = new FeatureConfig("dead_tree", 0.04, Arrays.asList("SAVANNA", "DEAD", "FOREST", "SANDY", "WASTELAND"));
+    DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
     COMMON_BUILDER.pop();
 
     COMMON_CONFIG = COMMON_BUILDER.build();
