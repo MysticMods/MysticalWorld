@@ -69,7 +69,7 @@ public interface IMaterial {
 
   int getMaxXP();
 
-  void initMaterial (@Nonnull RegisterContentEvent event);
+  void initMaterial(@Nonnull RegisterContentEvent event);
 
-  void initOreDictionary ();
+  void initOreDictionary();
 }

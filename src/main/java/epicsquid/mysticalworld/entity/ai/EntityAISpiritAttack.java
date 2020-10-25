@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.entity.ai;
 
-import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -91,7 +90,7 @@ public class EntityAISpiritAttack extends EntityAIBase {
     EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
 
     if (entitylivingbase instanceof EntityPlayer && (((EntityPlayer) entitylivingbase).isSpectator() || ((EntityPlayer) entitylivingbase).isCreative())) {
-      this.attacker.setAttackTarget((EntityLivingBase) null);
+      this.attacker.setAttackTarget(null);
     }
 
     this.attacker.getNavigator().clearPath();

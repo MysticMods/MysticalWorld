@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 @SuppressWarnings("unused")
-@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, value=Side.CLIENT)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, value = Side.CLIENT)
 public class ShoulderRenderer {
   @SideOnly(Side.CLIENT)
   private static double[] playerPosition(EntityPlayer player, float ticks) {
@@ -109,7 +109,7 @@ public class ShoulderRenderer {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         GlStateManager.scale(1, 1, 1);
-        GlStateManager.rotate(-(ePlayer.prevRenderYawOffset + (ePlayer.renderYawOffset - player.prevRenderYawOffset) * ticks), 0 ,1f, 0);
+        GlStateManager.rotate(-(ePlayer.prevRenderYawOffset + (ePlayer.renderYawOffset - player.prevRenderYawOffset) * ticks), 0, 1f, 0);
         GlStateManager.translate(-0.32, 1.37, 0);
 
         if (player.isSneaking()) {

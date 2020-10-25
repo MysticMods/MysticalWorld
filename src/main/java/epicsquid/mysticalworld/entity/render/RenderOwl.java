@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.entity.render;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.EntityFox;
 import epicsquid.mysticalworld.entity.EntityOwl;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.client.model.ModelBase;
@@ -30,7 +29,7 @@ public class RenderOwl extends RenderLiving<EntityOwl> {
 
   @Override
   public void renderModel(@Nonnull EntityOwl entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch,
-      float scaleFactor) {
+                          float scaleFactor) {
     GlStateManager.pushMatrix();
     if ((entity).getGrowingAge() < 0) {
       GlStateManager.scale(0.5, 0.5, 0.5);

@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid= MysticalWorld.MODID)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class PlayerModifierRegistry {
   private static List<IAttribute> attributes = new ArrayList<>();
 

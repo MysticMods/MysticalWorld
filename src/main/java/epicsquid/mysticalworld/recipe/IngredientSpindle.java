@@ -2,7 +2,6 @@ package epicsquid.mysticalworld.recipe;
 
 import com.google.gson.JsonObject;
 import epicsquid.mysticalworld.init.ModItems;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.IIngredientFactory;
@@ -34,13 +33,13 @@ public class IngredientSpindle extends Ingredient {
     return instance;
   }
 
-  public IngredientSpindle(ItemStack ... stacks) {
+  public IngredientSpindle(ItemStack... stacks) {
     super(stacks);
   }
 
   @Override
   public boolean apply(@Nullable ItemStack p_apply_1_) {
-    return p_apply_1_ != null && p_apply_1_.getItem() == ModItems.spindle ;
+    return p_apply_1_ != null && p_apply_1_.getItem() == ModItems.spindle;
   }
 
   public static class Factory implements IIngredientFactory {

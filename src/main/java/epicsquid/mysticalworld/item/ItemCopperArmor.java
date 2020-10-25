@@ -2,11 +2,8 @@ package epicsquid.mysticalworld.item;
 
 import com.google.common.collect.Multimap;
 import epicsquid.mysticallib.item.ItemArmorBase;
-import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.init.ModItems;
-import epicsquid.mysticalworld.materials.Material;
 import epicsquid.mysticalworld.materials.Materials;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -20,7 +17,7 @@ public class ItemCopperArmor extends ItemArmorBase {
   }
 
   @Override
-  public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack)   {
+  public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot, stack);
 
     if (slot == this.armorType) {

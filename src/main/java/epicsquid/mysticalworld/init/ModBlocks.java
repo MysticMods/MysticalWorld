@@ -133,8 +133,8 @@ public class ModBlocks {
     event.addBlock(stairs = new BlockStairsBase(base.getDefaultState(), sound, 1.7f, name + "_stairs")).setCreativeTab(MysticalWorld.tab);
     event.addBlock(wall = new BlockWallBase(base, sound, 1.7f, name + "_wall")).setCreativeTab(MysticalWorld.tab);
     if (name.equals("pearl")) {
-        event.addBlock(button = new BlockButtonStoneBase(base, sound, 1.7f, name + "_button")).setCreativeTab(MysticalWorld.tab);
-        event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.PLAYER, sound, 1.7f, name + "_pressure_plate")).setCreativeTab(MysticalWorld.tab);
+      event.addBlock(button = new BlockButtonStoneBase(base, sound, 1.7f, name + "_button")).setCreativeTab(MysticalWorld.tab);
+      event.addBlock(pressure_plate = new BlockPressurePlateBase(base, BlockPressurePlateBase.PressurePlateType.PLAYER, sound, 1.7f, name + "_pressure_plate")).setCreativeTab(MysticalWorld.tab);
     } else {
       if (material.equals(Material.ROCK)) {
         event.addBlock(button = new BlockButtonStoneBase(base, sound, 1.7f, name + "_button")).setCreativeTab(MysticalWorld.tab);

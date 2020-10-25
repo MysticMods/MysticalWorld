@@ -11,7 +11,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class WorldGenMinableDebug extends WorldGenerator {

@@ -9,10 +9,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
-
 public class ModelOwl extends ModelBase {
   private final ModelRenderer body;
   private final ModelRenderer footR;

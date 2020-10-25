@@ -88,7 +88,7 @@ public class MysticalWorld {
   }
 
   @EventHandler
-  public void serverStarted (FMLServerStartedEvent event) {
+  public void serverStarted(FMLServerStartedEvent event) {
     proxy.serverStarted(event);
   }
 }

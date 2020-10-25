@@ -22,7 +22,7 @@ public class PlayerShoulderCapability {
     return shouldered;
   }
 
-  public ResourceLocation getRegistryName () {
+  public ResourceLocation getRegistryName() {
     return registryName;
   }
 

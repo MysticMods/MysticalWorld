@@ -9,7 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.util.Constants;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,11 +23,11 @@ public class StructureSaveData extends WorldSavedData {
     super(name);
   }
 
-  public StructureSaveData () {
+  public StructureSaveData() {
     super(ID);
   }
 
-  public List<BlockPos> getGeneratorMap (ResourceLocation location) {
+  public List<BlockPos> getGeneratorMap(ResourceLocation location) {
     return generatorMap.computeIfAbsent(location, k -> new ArrayList<>());
   }
 

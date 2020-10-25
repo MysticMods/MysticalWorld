@@ -46,7 +46,7 @@ public class ItemAntlerHat extends ItemArmor implements IModeledObject {
   }
 
   @Override
-  public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack)   {
+  public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
     Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot, stack);
 
     if (slot == EntityEquipmentSlot.HEAD && ConfigManager.hats.antlerHealthBonus != -1) {

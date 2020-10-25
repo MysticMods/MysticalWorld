@@ -1,7 +1,5 @@
 package epicsquid.mysticalworld.entity.render;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.EntityBeetle;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
@@ -11,6 +9,8 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+
+import javax.annotation.Nonnull;
 
 public class RenderBeetle extends RenderLiving<EntityBeetle> {
 
@@ -29,7 +29,7 @@ public class RenderBeetle extends RenderLiving<EntityBeetle> {
 
   @Override
   public void renderModel(@Nonnull EntityBeetle entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch,
-      float scaleFactor) {
+                          float scaleFactor) {
     GlStateManager.pushMatrix();
     if ((entity).getGrowingAge() < 0) {
       GlStateManager.scale(0.3, 0.3, 0.3);

@@ -1,7 +1,10 @@
 package epicsquid.mysticalworld.init;
 
 import epicsquid.mysticallib.event.RegisterContentEvent;
-import epicsquid.mysticallib.item.*;
+import epicsquid.mysticallib.item.ItemBase;
+import epicsquid.mysticallib.item.ItemFoodBase;
+import epicsquid.mysticallib.item.ItemKnifeBase;
+import epicsquid.mysticallib.item.ItemSeedBase;
 import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.integration.roots.Knives;
@@ -13,7 +16,10 @@ import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.*;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -112,12 +118,12 @@ public class ModItems {
     event.addItem(unripe_pearl = new ItemUnripePearl("unripe_pearl").setCreativeTab(MysticalWorld.tab));
 
     event.addItem(pearl = new ItemBase("pearl") {
-          @SuppressWarnings("deprecation")
-          @Override
-          public EnumRarity getRarity(ItemStack stack) {
-            return EnumRarity.UNCOMMON;
-          }
-        }.setCreativeTab(MysticalWorld.tab));
+      @SuppressWarnings("deprecation")
+      @Override
+      public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.UNCOMMON;
+      }
+    }.setCreativeTab(MysticalWorld.tab));
 
     event.addItem(seeds = new ItemBase("assorted_seeds").setCreativeTab(MysticalWorld.tab));
     event.addItem(cooked_seeds = new ItemFoodBase("cooked_seeds", 1, 0.4f, false) {

@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class MappingHandler {
 
   @SubscribeEvent
-  public static void onMissingBlock (RegistryEvent.MissingMappings<Block> event) {
+  public static void onMissingBlock(RegistryEvent.MissingMappings<Block> event) {
     for (RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
       if (mapping.key.getNamespace().equals("mysticalworld")) {
         if (mapping.key.getPath().equals("poisoned_potato_crop")) {
@@ -31,7 +31,7 @@ public class MappingHandler {
   }
 
   @SubscribeEvent
-  public static void onMissingItem (RegistryEvent.MissingMappings<Item> event) {
+  public static void onMissingItem(RegistryEvent.MissingMappings<Item> event) {
     for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
       if (mapping.key.getNamespace().equals("mysticalworld")) {
         switch (mapping.key.getPath()) {

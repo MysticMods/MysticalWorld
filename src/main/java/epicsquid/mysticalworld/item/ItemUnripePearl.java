@@ -4,7 +4,6 @@ import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;

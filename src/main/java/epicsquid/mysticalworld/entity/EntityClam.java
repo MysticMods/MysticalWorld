@@ -3,14 +3,7 @@ package epicsquid.mysticalworld.entity;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -27,7 +20,7 @@ public class EntityClam extends EntityAnimal {
 
   @Override
   protected void initEntityAI() {
-/*    this.tasks.addTask(0, new EntityAISwimming(this));*/
+    /*    this.tasks.addTask(0, new EntityAISwimming(this));*/
   }
 
   @Override

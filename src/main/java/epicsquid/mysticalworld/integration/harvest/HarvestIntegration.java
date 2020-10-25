@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.integration.harvest;
 
 import epicsquid.mysticalworld.init.ModBlocks;
-import net.minecraft.init.Items;
 import tehnut.harvest.BlockStack;
 import tehnut.harvest.Crop;
 import tehnut.harvest.Harvest;

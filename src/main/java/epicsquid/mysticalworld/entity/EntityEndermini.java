@@ -383,7 +383,7 @@ public class EntityEndermini extends EntityCreature {
           return true;
         }
       } else {
-        return this.targetEntity != null && ((EntityPlayer) this.targetEntity).isEntityAlive() ? true : super.shouldContinueExecuting();
+        return this.targetEntity != null && this.targetEntity.isEntityAlive() || super.shouldContinueExecuting();
       }
     }
 
@@ -400,13 +400,13 @@ public class EntityEndermini extends EntityCreature {
         }
       } else {
         if (this.targetEntity != null) {
-          if (this.endermini.shouldFollowPlayer((EntityPlayer) this.targetEntity)) {
-            if (((EntityPlayer) this.targetEntity).getDistanceSq(this.endermini) < 16.0D) {
+          if (this.endermini.shouldFollowPlayer(this.targetEntity)) {
+            if (this.targetEntity.getDistanceSq(this.endermini) < 16.0D) {
               this.endermini.teleportRandomly();
             }
 
             this.teleportTime = 0;
-          } else if (((EntityPlayer) this.targetEntity).getDistanceSq(this.endermini) > 256.0D && this.teleportTime++ >= 30 && this.endermini.teleportToEntity(this.targetEntity)) {
+          } else if (this.targetEntity.getDistanceSq(this.endermini) > 256.0D && this.teleportTime++ >= 30 && this.endermini.teleportToEntity(this.targetEntity)) {
             this.teleportTime = 0;
           }
         }
@@ -454,7 +454,7 @@ public class EntityEndermini extends EntityCreature {
 
       if (iblockstate2 != null && this.canPlaceBlock(world, blockpos, iblockstate2.getBlock(), iblockstate, iblockstate1)) {
         world.setBlockState(blockpos, iblockstate2, 3);
-        this.endermini.setHeldBlockState((IBlockState) null);
+        this.endermini.setHeldBlockState(null);
       }
     }
 

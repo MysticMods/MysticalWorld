@@ -1,36 +1,25 @@
 package epicsquid.mysticalworld.entity;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModSounds;
-import net.minecraft.block.BlockDynamicLiquid;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIFollowParent;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMate;
-import net.minecraft.entity.ai.EntityAIPanic;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.IFluidBlock;
+
+import javax.annotation.Nonnull;
 
 public class EntityFrog extends EntityAnimal {
   public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/frog");
@@ -46,11 +35,11 @@ public class EntityFrog extends EntityAnimal {
     }
   }
 
-  public static int getSlimeTime () {
+  public static int getSlimeTime() {
     return ConfigManager.frog.slimeTime;
   }
 
-  public static boolean shouldDropSlime () {
+  public static boolean shouldDropSlime() {
     return getSlimeTime() != -1;
   }
 
@@ -120,11 +109,9 @@ public class EntityFrog extends EntityAnimal {
   public void onLivingUpdate() {
     super.onLivingUpdate();
 
-    if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextSlime <= 0 && shouldDropSlime())
-    {
+    if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextSlime <= 0 && shouldDropSlime()) {
       IBlockState state = world.getBlockState(getPosition());
-      if (ModBlocks.slime_puddle.canPlaceBlockAt(world, getPosition()) && (world.isAirBlock(getPosition()) || (state.getBlock().isReplaceable(world, getPosition())) && !(state.getBlock() instanceof BlockLiquid) && !(state.getBlock() instanceof IFluidBlock)))
-      {
+      if (ModBlocks.slime_puddle.canPlaceBlockAt(world, getPosition()) && (world.isAirBlock(getPosition()) || (state.getBlock().isReplaceable(world, getPosition())) && !(state.getBlock() instanceof BlockLiquid) && !(state.getBlock() instanceof IFluidBlock))) {
         this.playSound(ModSounds.Frog.SLIME, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
         world.setBlockState(getPosition(), ModBlocks.slime_puddle.getDefaultState());
         this.timeUntilNextSlime = this.rand.nextInt(getSlimeTime()) + getSlimeTime();

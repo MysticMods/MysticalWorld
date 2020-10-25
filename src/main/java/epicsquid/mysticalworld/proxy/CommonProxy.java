@@ -16,11 +16,9 @@ import epicsquid.mysticalworld.loot.conditions.IsObsidian;
 import epicsquid.mysticalworld.world.OreGenerator;
 import epicsquid.mysticalworld.world.StructureGenerator;
 import epicsquid.mysticalworld.world.WorldGeneratorTrees;
-import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.init.Enchantments;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.ResourceLocation;
@@ -28,9 +26,6 @@ import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
 
 public class CommonProxy {
   public static ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");

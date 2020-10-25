@@ -10,19 +10,17 @@ import jeresources.api.IPlantRegistry;
 import jeresources.api.JERPlugin;
 import jeresources.api.conditionals.LightLevel;
 import jeresources.api.drop.PlantDrop;
-import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.BiomeDictionary;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Collections;
 import java.util.stream.Stream;
 
 public class JERIntegration {
   @JERPlugin
   public static IJERAPI JERApi;
 
-  public static String[] getBiomeNames (String[] biomeNames) {
+  public static String[] getBiomeNames(String[] biomeNames) {
     return Stream.of(biomeNames).map(biome -> StringUtils.capitalize(BiomeDictionary.Type.getType(biome).getName().toLowerCase())).toArray(String[]::new);
   }
 

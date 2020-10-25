@@ -1,22 +1,14 @@
 package epicsquid.mysticalworld.materials;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import epicsquid.mysticallib.block.BlockBase;
 import epicsquid.mysticallib.event.RegisterContentEvent;
-import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.mysticallib.types.OneTimeSupplier;
-import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticallib.block.BlockOreBase;
-import epicsquid.mysticalworld.config.ConfigManager;
-import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Used to add the various metals and metal components used in Mystical World and sub mods
@@ -183,7 +175,7 @@ public abstract class Material implements IMaterial {
   }
 
   @Override
-  public abstract void initMaterial (@Nonnull RegisterContentEvent event);
+  public abstract void initMaterial(@Nonnull RegisterContentEvent event);
 
   @Override
   public abstract void initOreDictionary();

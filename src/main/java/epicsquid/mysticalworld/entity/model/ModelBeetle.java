@@ -1,12 +1,11 @@
 package epicsquid.mysticalworld.entity.model;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.mysticalworld.entity.EntityBeetle;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemFood;
+
+import javax.annotation.Nonnull;
 
 /**
  * ModelBeetle - Elucent

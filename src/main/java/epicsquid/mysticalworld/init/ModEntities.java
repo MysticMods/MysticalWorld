@@ -56,7 +56,7 @@ public class ModEntities {
     LibRegistry.registerEntity(EntityLavaCat.class, 0xde3535, 0xe89613);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityLavaCat.class, new RenderLavaCat.Factory());
-    LibRegistry.registerEntity(EntitySilkworm.class, 0xd1cecd, 0x635e5b );
+    LibRegistry.registerEntity(EntitySilkworm.class, 0xd1cecd, 0x635e5b);
     if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntityClam.class, new RenderClam.Factory());
     LibRegistry.registerEntity(EntityClam.class, 0xfffdd0, 0xfadadd);
@@ -67,7 +67,7 @@ public class ModEntities {
       LibRegistry.registerEntityRenderer(EntitySilkworm.class, new RenderSilkworm.Factory());
   }
 
-  public static void registerLootTables () {
+  public static void registerLootTables() {
     Stream.of(EntityFox.LOOT_TABLE, EntityFrog.LOOT_TABLE, EntityBeetle.LOOT_TABLE, EntitySprout.LOOT_TABLE_GREEN, EntitySprout.LOOT_TABLE_PURPLE, EntitySprout.LOOT_TABLE_RED, EntitySprout.LOOT_TABLE_TAN, EntityEndermini.LOOT_TABLE, EntityDeer.LOOT_TABLE, EntityOwl.LOOT_TABLE, EntityLavaCat.LOOT_TABLE, EntitySilkworm.LOOT_TABLE, EntityClam.LOOT_TABLE, EntitySprout.LOOT_TABLE_HELL).forEach(LootTableList::register);
   }
 

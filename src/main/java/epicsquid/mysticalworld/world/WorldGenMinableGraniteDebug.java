@@ -39,7 +39,8 @@ public class WorldGenMinableGraniteDebug extends WorldGenerator {
     double d4 = (double) (position.getY() + rand.nextInt(3) - 2);
     double d5 = (double) (position.getY() + rand.nextInt(3) - 2);
 
-    outer: for (int i = 0; i < this.tries; ++i) {
+    outer:
+    for (int i = 0; i < this.tries; ++i) {
       float f1 = (float) i / (float) this.tries;
       double d6 = d0 + (d1 - d0) * (double) f1;
       double d7 = d4 + (d5 - d4) * (double) f1;

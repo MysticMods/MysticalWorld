@@ -3,8 +3,6 @@ package epicsquid.mysticalworld.integration.patchouli.api;
 import epicsquid.mysticalworld.config.ConfigManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
-import org.apache.commons.lang3.text.WordUtils;
-import scala.annotation.meta.field;
 import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
 import vazkii.patchouli.common.util.ItemStackUtil;

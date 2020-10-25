@@ -253,7 +253,7 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
    */
   private int checkBlockLine(BlockPos posOne, BlockPos posTwo) {
     if (world == null) {
-      return-1;
+      return -1;
     }
     BlockPos blockpos = posTwo.add(-posOne.getX(), -posOne.getY(), -posOne.getZ());
     int i = this.getGreatestDistance(blockpos);
@@ -299,7 +299,7 @@ public class WorldGenBurntTree extends WorldGenAbstractTree {
     return true;
   }
 
-  public void reset () {
+  public void reset() {
     this.world = null;
   }
 

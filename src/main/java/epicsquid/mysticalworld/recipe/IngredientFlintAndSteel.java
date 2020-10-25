@@ -33,7 +33,7 @@ public class IngredientFlintAndSteel extends Ingredient {
     return instance;
   }
 
-  public IngredientFlintAndSteel(ItemStack ... stacks) {
+  public IngredientFlintAndSteel(ItemStack... stacks) {
     super(stacks);
   }
 

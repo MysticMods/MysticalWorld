@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.entity.render;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.EntityBeetle;
 import epicsquid.mysticalworld.entity.EntityClam;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.client.model.ModelBase;

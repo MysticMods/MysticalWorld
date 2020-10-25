@@ -2,9 +2,7 @@ package epicsquid.mysticalworld.entity.render;
 
 import epicsquid.mysticalworld.entity.EntityDeer;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

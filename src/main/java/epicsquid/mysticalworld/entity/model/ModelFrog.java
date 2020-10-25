@@ -1,11 +1,11 @@
 package epicsquid.mysticalworld.entity.model;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.mysticalworld.entity.EntityFrog;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+
+import javax.annotation.Nonnull;
 
 /**
  * ModelFrog - Elucent

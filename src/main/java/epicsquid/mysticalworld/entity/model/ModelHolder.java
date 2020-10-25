@@ -1,16 +1,15 @@
 package epicsquid.mysticalworld.entity.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelEnderman;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("deprecation")
 public class ModelHolder implements IResourceManagerReloadListener {

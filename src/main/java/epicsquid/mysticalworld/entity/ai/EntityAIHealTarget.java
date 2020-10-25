@@ -93,7 +93,7 @@ public class EntityAIHealTarget extends EntityAIBase {
     EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
 
     if (entitylivingbase instanceof EntityPlayer && (((EntityPlayer) entitylivingbase).isSpectator() || ((EntityPlayer) entitylivingbase).isCreative())) {
-      this.attacker.setAttackTarget((EntityLivingBase) null);
+      this.attacker.setAttackTarget(null);
     }
 
     this.attacker.getNavigator().clearPath();

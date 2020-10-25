@@ -1,7 +1,5 @@
 package epicsquid.mysticalworld.entity.render;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.EntityFrog;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
@@ -11,6 +9,8 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+
+import javax.annotation.Nonnull;
 
 public class RenderFrog extends RenderLiving<EntityFrog> {
 
@@ -29,7 +29,7 @@ public class RenderFrog extends RenderLiving<EntityFrog> {
 
   @Override
   public void renderModel(@Nonnull EntityFrog entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch,
-      float scaleFactor) {
+                          float scaleFactor) {
     GlStateManager.pushMatrix();
     if ((entity).getGrowingAge() < 0) {
       GlStateManager.scale(0.5, 0.5, 0.5);

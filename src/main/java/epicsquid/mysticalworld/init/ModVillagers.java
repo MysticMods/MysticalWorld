@@ -9,11 +9,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 
-@Mod.EventBusSubscriber(modid= MysticalWorld.MODID)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 @SuppressWarnings("unused")
 public class ModVillagers {
   @SubscribeEvent
-  public static void onProfessionRegister (RegistryEvent.Register<VillagerProfession> event) {
+  public static void onProfessionRegister(RegistryEvent.Register<VillagerProfession> event) {
     // leatherworker
     VillagerProfession butcherProf = event.getRegistry().getValue(new ResourceLocation("minecraft:butcher"));
     assert butcherProf != null;
