@@ -609,10 +609,10 @@ public class ConfigManager {
     }
 
     @Config.Comment(("The amount of copper veins to generate per chunk. Set to 0 to disable."))
-    public int copperPerChunk = 6;
+    public int copperPerChunk = 4;
 
     @Config.Comment(("The maximum size of a copper ore vein."))
-    public int copperVeinSize = 12;
+    public int copperVeinSize = 8;
 
     @Config.Comment(("The highest a copper ore vein can generate."))
     @RangeInt(min = 0, max = 255)
@@ -620,7 +620,7 @@ public class ConfigManager {
 
     @Config.Comment(("The lowest a copper of vein can generate."))
     @RangeInt(min = 0, max = 255)
-    public int copperMinY = 0;
+    public int copperMinY = 30;
 
     @Config.Comment(("The amount of amethyst veins to generate per chunk. Set to 0 to disable."))
     public int amethystPerChunk = 2;
@@ -640,7 +640,7 @@ public class ConfigManager {
     public int silverPerChunk = 4;
 
     @Config.Comment(("The maximum size of a silver ore vein."))
-    public int silverVeinSize = 8;
+    public int silverVeinSize = 6;
 
     @Config.Comment(("The highest a silver ore vein can generate."))
     @RangeInt(min = 0, max = 255)
@@ -651,10 +651,10 @@ public class ConfigManager {
     public int silverMinY = 0;
 
     @Config.Comment(("The amount of quartz veins to generate per chunk. Set to 0 to disable. Value balanced against vanilla granite spawning. Decrease if using stone ore instead of granite or have large quantities of granite spawning."))
-    public int quartzPerChunk = 30;
+    public int quartzPerChunk = 20;
 
     @Config.Comment(("The maximum size of a quartz ore vein. Adjust as per quartzPerChunk."))
-    public int quartzVeinSize = 3;
+    public int quartzVeinSize = 2;
 
     @Config.Comment(("The highest a quartz ore vein can generate."))
     @RangeInt(min = 0, max = 255)
@@ -662,6 +662,6 @@ public class ConfigManager {
 
     @Config.Comment(("The lowest a quartz of vein can generate."))
     @RangeInt(min = 0, max = 255)
-    public int quartzMinY = 0;
+    public int quartzMinY = 30;
   }
 }
