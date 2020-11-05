@@ -34,9 +34,8 @@ public class ModEntities {
     LibRegistry.registerEntity(EntitySprout.class, 0xe8f442, 0xd11f5a);
     LibRegistry.registerEntity(EntityHellSprout.class, 0x8b0000, 0xfc5e03);
     if (MysticalWorld.proxy instanceof ClientProxy) {
-      RenderSprout.Factory factory = new RenderSprout.Factory();
-      LibRegistry.registerEntityRenderer(EntitySprout.class, factory);
-      LibRegistry.registerEntityRenderer(EntityHellSprout.class, factory);
+      LibRegistry.registerEntityRenderer(EntitySprout.class, new RenderSprout.Factory());
+      LibRegistry.registerEntityRenderer(EntityHellSprout.class, new RenderHellSprout.Factory());
     }
     LibRegistry.registerEntity(EntityDeer.class, Util.intColor(161, 132, 88), Util.intColor(94, 77, 51));
     if (MysticalWorld.proxy instanceof ClientProxy)
