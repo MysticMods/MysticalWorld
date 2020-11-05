@@ -4,34 +4,40 @@ import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class EntityHellSprout extends EntitySprout {
+  public static final ResourceLocation LOOT_TABLE_HELL = new ResourceLocation("mysticalworld:entity/sprout_hell");
+
   public EntityHellSprout(World world) {
     super(world);
     this.isImmuneToFire = true;
+    this.hell = true;
   }
 
+  @Nullable
   @Override
-  protected void entityInit() {
-    super.entityInit();
-    this.getDataManager().set(variant, 0);
-    this.getDataManager().setDirty(variant);
+  public EntityAgeable createChild(EntityAgeable ageable) {
+    return new EntityHellSprout(ageable.world);
   }
 
   @Override
   protected void initEntityAI() {
     super.initEntityAI();
-    this.tasks.addTask(3, new EntityAITempt(this, 1.25D, ModItems.cooked_aubergine, false));
     this.tasks.addTask(3, new AIPlantNetherwart(this));
   }
 
@@ -107,5 +113,10 @@ public class EntityHellSprout extends EntitySprout {
       }
       return down.getBlock().canSustainPlant(down, world, pos.down(), EnumFacing.UP, (BlockNetherWart) Blocks.NETHER_WART);
     }
+  }
+
+  @Override
+  public ResourceLocation getLootTable() {
+    return LOOT_TABLE_HELL;
   }
 }

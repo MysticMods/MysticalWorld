@@ -24,9 +24,10 @@ public class EntitySprout extends EntityAnimal {
   public static final ResourceLocation LOOT_TABLE_TAN = new ResourceLocation("mysticalworld:entity/sprout_tan");
   public static final ResourceLocation LOOT_TABLE_RED = new ResourceLocation("mysticalworld:entity/sprout_red");
   public static final ResourceLocation LOOT_TABLE_PURPLE = new ResourceLocation("mysticalworld:entity/sprout_purple");
-  public static final ResourceLocation LOOT_TABLE_HELL = new ResourceLocation("mysticalworld:entity/sprout_hell");
 
   public static final DataParameter<Integer> variant = EntityDataManager.createKey(EntitySprout.class, DataSerializers.VARINT);
+
+  protected boolean hell = false;
 
   public EntitySprout(World world) {
     super(world);
@@ -42,7 +43,7 @@ public class EntitySprout extends EntityAnimal {
 
   @Override
   public boolean isBreedingItem(@Nonnull ItemStack stack) {
-    return stack.getItem() == ModItems.aubergine;
+    return this.hell ? stack.getItem() == ModItems.cooked_aubergine : stack.getItem() == ModItems.aubergine;
   }
 
   @Override
@@ -63,8 +64,10 @@ public class EntitySprout extends EntityAnimal {
   @Override
   protected void entityInit() {
     super.entityInit();
-    // Hell Sprouts aren't spawned in this fashion
-    this.getDataManager().register(variant, rand.nextInt(4));
+    if (!this.hell) {
+      // Hell Sprouts aren't spawned in this fashion
+      this.getDataManager().register(variant, rand.nextInt(4));
+    }
   }
 
   @Override
@@ -72,9 +75,7 @@ public class EntitySprout extends EntityAnimal {
     this.tasks.addTask(0, new EntityAISwimming(this));
     this.tasks.addTask(1, new EntityAIPanic(this, 1.5D));
     this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-    if (getVariant() != 4) {
-      this.tasks.addTask(3, new EntityAITempt(this, 1.25D, ModItems.aubergine, false));
-    }
+    this.tasks.addTask(3, new EntityAITempt(this, 1.25D, this.hell ? ModItems.cooked_aubergine : ModItems.aubergine, false));
     this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
     this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
     this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -89,12 +90,16 @@ public class EntitySprout extends EntityAnimal {
   }
 
   public int getVariant() {
+    if (this.hell) {
+      return -1;
+    }
     return getDataManager().get(EntitySprout.variant);
   }
 
   @Override
   public ResourceLocation getLootTable() {
     switch (getVariant()) {
+      default:
       case 0:
         return LOOT_TABLE_GREEN;
       case 1:
@@ -103,11 +108,6 @@ public class EntitySprout extends EntityAnimal {
         return LOOT_TABLE_RED;
       case 3:
         return LOOT_TABLE_PURPLE;
-      case 4:
-        return LOOT_TABLE_HELL;
-      default: {
-        return LOOT_TABLE_GREEN;
-      }
     }
   }
 
@@ -119,13 +119,17 @@ public class EntitySprout extends EntityAnimal {
   @Override
   public void readEntityFromNBT(NBTTagCompound compound) {
     super.readEntityFromNBT(compound);
-    getDataManager().set(variant, compound.getInteger("variant"));
-    getDataManager().setDirty(variant);
+    if (!this.hell && compound.hasKey("variant")) {
+      getDataManager().set(variant, compound.getInteger("variant"));
+      getDataManager().setDirty(variant);
+    }
   }
 
   @Override
   public void writeEntityToNBT(NBTTagCompound compound) {
     super.writeEntityToNBT(compound);
-    compound.setInteger("variant", getDataManager().get(variant));
+    if (!this.hell) {
+      compound.setInteger("variant", getDataManager().get(variant));
+    }
   }
 }

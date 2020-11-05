@@ -67,7 +67,7 @@ public class ModEntities {
   }
 
   public static void registerLootTables() {
-    Stream.of(EntityFox.LOOT_TABLE, EntityFrog.LOOT_TABLE, EntityBeetle.LOOT_TABLE, EntitySprout.LOOT_TABLE_GREEN, EntitySprout.LOOT_TABLE_PURPLE, EntitySprout.LOOT_TABLE_RED, EntitySprout.LOOT_TABLE_TAN, EntityEndermini.LOOT_TABLE, EntityDeer.LOOT_TABLE, EntityOwl.LOOT_TABLE, EntityLavaCat.LOOT_TABLE, EntitySilkworm.LOOT_TABLE, EntityClam.LOOT_TABLE, EntitySprout.LOOT_TABLE_HELL).forEach(LootTableList::register);
+    Stream.of(EntityFox.LOOT_TABLE, EntityFrog.LOOT_TABLE, EntityBeetle.LOOT_TABLE, EntitySprout.LOOT_TABLE_GREEN, EntitySprout.LOOT_TABLE_PURPLE, EntitySprout.LOOT_TABLE_RED, EntitySprout.LOOT_TABLE_TAN, EntityEndermini.LOOT_TABLE, EntityDeer.LOOT_TABLE, EntityOwl.LOOT_TABLE, EntityLavaCat.LOOT_TABLE, EntitySilkworm.LOOT_TABLE, EntityClam.LOOT_TABLE, EntityHellSprout.LOOT_TABLE_HELL).forEach(LootTableList::register);
   }
 
   public static void registerMobSpawn() {
