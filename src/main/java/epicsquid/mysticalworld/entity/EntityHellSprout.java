@@ -24,7 +24,7 @@ public class EntityHellSprout extends EntitySprout {
   @Override
   protected void entityInit() {
     super.entityInit();
-    this.getDataManager().set(variant, 4);
+    this.getDataManager().set(variant, 0);
     this.getDataManager().setDirty(variant);
   }
 
