@@ -42,9 +42,6 @@ public class CommonProxy {
 
   public void init(FMLInitializationEvent event) {
     ModItems.registerOredict();
-    if (Loader.isModLoaded("jeresources")) {
-      JERIntegration.init();
-    }
     if (Loader.isModLoaded("endercore")) {
       EndercoreHarvest.init();
     }
