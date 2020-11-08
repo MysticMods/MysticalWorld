@@ -1,5 +1,7 @@
 {
   "directory": "src\\main\\resources\\assets\\mysticalworld\\blockstates",
+  "blocks": "src\\main\\resources\\assets\\mysticalworld\\models\\block",
+  "items": "src\\main\\resources\\assets\\mysticalworld\\models\\item",
   "texture_base": "mysticalworld:blocks/",
   "models": [
     {
