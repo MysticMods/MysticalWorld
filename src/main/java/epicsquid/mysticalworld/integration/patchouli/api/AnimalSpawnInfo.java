@@ -7,7 +7,6 @@ import org.apache.commons.lang3.text.WordUtils;
 import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariable;
 import vazkii.patchouli.api.IVariableProvider;
-import vazkii.patchouli.common.util.ItemStackUtil;
 
 import java.util.List;
 import java.util.StringJoiner;

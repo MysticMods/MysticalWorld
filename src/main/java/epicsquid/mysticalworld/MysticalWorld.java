@@ -7,6 +7,7 @@ import epicsquid.mysticalworld.events.MaskHandler;
 import epicsquid.mysticalworld.events.global.GrassHandler;
 import epicsquid.mysticalworld.events.mappings.Remaps;
 import epicsquid.mysticalworld.init.*;
+import epicsquid.mysticalworld.setup.ClientInit;
 import epicsquid.mysticalworld.setup.ClientSetup;
 import epicsquid.mysticalworld.setup.ModSetup;
 import net.minecraft.block.Block;
@@ -76,11 +77,7 @@ public class MysticalWorld {
     ModTags.load();
     ModFeatures.load();
 
-    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-      modBus.addListener(ClientSetup::init);
-      //MinecraftForge.EVENT_BUS.addListener(TooltipHandler::onTooltip);
-    });
-
+    DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientInit::init);
 
     modBus.addListener(setup::init);
     modBus.addListener(setup::loadComplete);

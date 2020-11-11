@@ -13,6 +13,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+@SuppressWarnings("ConstantConditions")
 public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<LongNBT> {
   public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalWorld.MODID, "animal_cooldown_capability");
 

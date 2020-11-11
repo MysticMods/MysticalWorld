@@ -49,7 +49,8 @@ public class QuicksilverShovelItem extends ShovelItem implements IQuicksilverIte
   public ActionResultType onItemUse(ItemUseContext context) {
     World world = context.getWorld();
     BlockPos blockpos = context.getPos();
-    if (context.getFace() != Direction.DOWN && world.getBlockState(blockpos.up()).isAir(world, blockpos.up())) {
+    BlockState upState = world.getBlockState(blockpos.up());
+    if (context.getFace() != Direction.DOWN && upState.getBlock().isAir(upState, world, blockpos.up())) {
       BlockState blockstate = SHOVEL_LOOKUP.get(world.getBlockState(blockpos).getBlock());
       if (blockstate != null) {
         PlayerEntity playerentity = context.getPlayer();

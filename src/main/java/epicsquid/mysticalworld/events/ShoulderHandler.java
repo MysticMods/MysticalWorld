@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.events;
+/*package epicsquid.mysticalworld.events;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.api.Capabilities;
@@ -95,4 +95,4 @@ public class ShoulderHandler {
       }
     }
   }
-}
+}*/

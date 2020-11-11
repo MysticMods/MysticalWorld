@@ -50,6 +50,7 @@ public class QuicksilverHoeItem extends HoeItem implements IQuicksilverItem {
   public ActionResultType onItemUse(ItemUseContext context) {
     World world = context.getWorld();
     BlockPos blockpos = context.getPos();
+    // TODO: Fix this
     int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(context);
     if (hook != 0) return hook > 0 ? ActionResultType.SUCCESS : ActionResultType.FAIL;
     if (context.getFace() != Direction.DOWN && world.isAirBlock(blockpos.up())) {
