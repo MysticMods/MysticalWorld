@@ -46,7 +46,7 @@ public class GuideItem extends Item {
     super.addInformation(stack, worldIn, tooltip, flagIn);
     Book book = getBook();
     if (book != null && book.contents != null) {
-      tooltip.add((new StringTextComponent(book.contents.getSubtitle())).applyTextStyle(TextFormatting.GRAY));
+      tooltip.add(book.getSubtitle().mergeStyle(TextFormatting.GRAY));
     }
   }
 
@@ -60,7 +60,7 @@ public class GuideItem extends Item {
       if (playerIn instanceof ServerPlayerEntity) {
         NetworkHandler.sendToPlayer(new MessageOpenBookGui(book.id, null), (ServerPlayerEntity) playerIn);
         SoundEvent sfx = PatchouliSounds.getSound(book.openSound, PatchouliSounds.book_open);
-        worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, sfx, SoundCategory.PLAYERS, 1.0F, (float) (0.7D + Math.random() * 0.4D));
+        worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), sfx, SoundCategory.PLAYERS, 1.0F, (float) (0.7D + Math.random() * 0.4D));
       }
 
       return ActionResult.resultSuccess(stack);

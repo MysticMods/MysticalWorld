@@ -26,11 +26,12 @@ public class EntityHandler {
     }
 
     if (player.world.rand.nextInt(3) == 0) {
-      VillagerEntity villagerentity = (VillagerEntity) entity;
+      // TODO: Recopy this
+/*      VillagerEntity villagerentity = (VillagerEntity) entity;
       ZombieVillagerEntity zombievillagerentity = EntityType.ZOMBIE_VILLAGER.create(player.world);
       zombievillagerentity.copyLocationAndAnglesFrom(villagerentity);
       villagerentity.remove();
-      zombievillagerentity.onInitialSpawn(player.world, player.world.getDifficultyForLocation(new BlockPos(zombievillagerentity)), SpawnReason.CONVERSION, null, null);
+      zombievillagerentity.onInitialSpawn(player.world, player.world.getDifficultyForLocation(zombievillagerentity.getPosition()), SpawnReason.CONVERSION, null, null);
       zombievillagerentity.setVillagerData(villagerentity.getVillagerData());
       zombievillagerentity.setGossips(villagerentity.getGossip().serialize(NBTDynamicOps.INSTANCE).getValue());
       zombievillagerentity.setOffers(villagerentity.getOffers().write());
@@ -43,7 +44,7 @@ public class EntityHandler {
       }
 
       player.world.addEntity(zombievillagerentity);
-      player.world.playEvent(null, 1026, new BlockPos(player), 0);
+      player.world.playEvent(null, 1026, new BlockPos(player), 0);*/
     }
 
     if (!player.abilities.isCreativeMode) {

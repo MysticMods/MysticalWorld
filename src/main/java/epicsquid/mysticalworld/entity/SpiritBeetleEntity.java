@@ -36,7 +36,8 @@ public class SpiritBeetleEntity extends AnimalEntity implements IFlyingAnimal {
 
   @Override
   public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn) {
-    return worldIn.getBlockState(pos).isAir(world, pos) ? 10.0F : 0.0F;
+    BlockState state = worldIn.getBlockState(pos);
+    return state.getBlock().isAir(state, worldIn, pos) ? 10.0f : 0f;
   }
 
   @Override

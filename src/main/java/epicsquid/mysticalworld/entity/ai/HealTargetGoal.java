@@ -77,12 +77,12 @@ public class HealTargetGoal extends TargetGoal {
     LivingEntity entitylivingbase = this.attacker.getAttackTarget();
     if (entitylivingbase != null) {
       this.attacker.getLookController().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
-      double d0 = this.attacker.getDistanceSq(entitylivingbase.posX, entitylivingbase.getBoundingBox().minY, entitylivingbase.posZ);
+      double d0 = this.attacker.getDistanceSq(entitylivingbase.getPosX(), entitylivingbase.getBoundingBox().minY, entitylivingbase.getPosZ());
       --this.delayCounter;
 
-      this.targetX = entitylivingbase.posX;
+      this.targetX = entitylivingbase.getPosX();
       this.targetY = entitylivingbase.getBoundingBox().minY;
-      this.targetZ = entitylivingbase.posZ;
+      this.targetZ = entitylivingbase.getPosZ();
       this.delayCounter = 4 + this.attacker.getRNG().nextInt(7);
 
       if (d0 > 1024.0D) {

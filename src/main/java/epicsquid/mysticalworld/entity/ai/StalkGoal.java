@@ -75,7 +75,7 @@ public class StalkGoal extends Goal {
         return true;
       } else {
         return this.getAttackReachSqr(entitylivingbase) >= this.attacker
-            .getDistanceSq(entitylivingbase.posX, entitylivingbase.getBoundingBox().minY, entitylivingbase.posZ);
+            .getDistanceSq(entitylivingbase.getPosX(), entitylivingbase.getBoundingBox().minY, entitylivingbase.getPosZ());
       }
     }
   }
@@ -93,7 +93,7 @@ public class StalkGoal extends Goal {
       return false;
     } else if (!this.longMemory) {
       return !this.attacker.getNavigator().noPath();
-    } else if (!this.attacker.isWithinHomeDistanceFromPosition(new BlockPos(entitylivingbase))) {
+    } else if (!this.attacker.isWithinHomeDistanceFromPosition(entitylivingbase.getPosition())) {
       return false;
     } else {
       return !(entitylivingbase instanceof PlayerEntity) || !entitylivingbase.isSpectator() && !((PlayerEntity) entitylivingbase).isCreative();
@@ -131,15 +131,15 @@ public class StalkGoal extends Goal {
     super.tick();
     LivingEntity entitylivingbase = this.attacker.getAttackTarget();
     this.attacker.getLookController().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
-    double d0 = this.attacker.getDistanceSq(entitylivingbase.posX, entitylivingbase.getBoundingBox().minY, entitylivingbase.posZ);
+    double d0 = this.attacker.getDistanceSq(entitylivingbase.getPosX(), entitylivingbase.getBoundingBox().minY, entitylivingbase.getPosZ());
     --this.delayCounter;
 
     if ((this.longMemory || this.attacker.getEntitySenses().canSee(entitylivingbase)) && this.delayCounter <= 0 && (
         this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D || entitylivingbase.getDistanceSq(this.targetX, this.targetY, this.targetZ) >= 1.0D
             || this.attacker.getRNG().nextFloat() < 0.05F)) {
-      this.targetX = entitylivingbase.posX;
+      this.targetX = entitylivingbase.getPosX();
       this.targetY = entitylivingbase.getBoundingBox().minY;
-      this.targetZ = entitylivingbase.posZ;
+      this.targetZ = entitylivingbase.getPosZ();
       this.delayCounter = 4 + this.attacker.getRNG().nextInt(7);
 
       if (this.canPenalize) {

@@ -18,6 +18,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.Color;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -76,13 +77,13 @@ public class CapabilityHandler {
           event.getTarget().getCapability(AnimalCooldownCapabilityProvider.ANIMAL_COOLDOWN_CAPABILITY).ifPresent(cap -> {
             if (cap.canHarvest()) {
               cap.setCooldown(20 * 15);
-              event.getWorld().playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_COW_MILK, SoundCategory.PLAYERS, 0.5F, event.getWorld().rand.nextFloat() * 0.25F + 0.6F, true);
+              event.getWorld().playSound(player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_COW_MILK, SoundCategory.PLAYERS, 0.5F, event.getWorld().rand.nextFloat() * 0.25F + 0.6F, true);
               if (!player.isCreative()) {
                 heldItem.shrink(1);
               }
               player.inventory.addItemStackToInventory(new ItemStack(ModItems.INK_BOTTLE.get()));
             } else {
-              player.sendStatusMessage(new TranslationTextComponent("message.squid.cooldown").setStyle(new Style().setColor(TextFormatting.BLUE).setBold(true)), true);
+              player.sendStatusMessage(new TranslationTextComponent("message.squid.cooldown").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.BLUE)).setBold(true)), true);
             }
           });
         }
