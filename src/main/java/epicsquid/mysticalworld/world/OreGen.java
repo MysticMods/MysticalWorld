@@ -29,7 +29,7 @@ public class OreGen {
                         config.getMinY(),
                         0,
                         config.getMaxY() - config.getMinY(),
-                        config.getDimensionsAsArray())
+                        config.getDimensions())
                 )
             )
         );

@@ -3,14 +3,15 @@ package epicsquid.mysticalworld.loot.conditions;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.DeerEntity;
+import epicsquid.mysticalworld.init.ModLoot;
 import net.minecraft.entity.Entity;
+import net.minecraft.loot.ILootSerializer;
+import net.minecraft.loot.LootConditionType;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
+import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootParameters;
-import net.minecraft.world.storage.loot.conditions.ILootCondition;
 
 public class HasHorns implements ILootCondition {
   private final boolean inverse;
@@ -32,13 +33,15 @@ public class HasHorns implements ILootCondition {
     return flag == !this.inverse;
   }
 
-  public static class Serializer extends ILootCondition.AbstractSerializer<HasHorns> {
-    public Serializer() {
-      super(new ResourceLocation(MysticalWorld.MODID, "has_horns"), HasHorns.class);
-    }
+  @Override
+  public LootConditionType func_230419_b_() {
+    return ModLoot.HAS_HORNS;
+  }
 
+  public static class Serializer implements ILootSerializer<HasHorns> {
     @Override
     public void serialize(JsonObject json, HasHorns value, JsonSerializationContext context) {
+
       json.addProperty("inverse", value.inverse);
     }
 
@@ -48,10 +51,10 @@ public class HasHorns implements ILootCondition {
     }
   }
 
-  private static HasHorns INSTANCE = new HasHorns(false);
+/*  private static HasHorns INSTANCE = new HasHorns(false);
 
   public static ILootCondition.IBuilder builder() {
     return () -> INSTANCE;
-  }
+  }*/
 }
 

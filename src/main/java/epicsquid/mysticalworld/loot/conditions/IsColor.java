@@ -5,12 +5,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.SproutEntity;
+import epicsquid.mysticalworld.init.ModLoot;
 import net.minecraft.entity.Entity;
+import net.minecraft.loot.ILootSerializer;
+import net.minecraft.loot.LootConditionType;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
+import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootParameters;
-import net.minecraft.world.storage.loot.conditions.ILootCondition;
 
 public class IsColor implements ILootCondition {
   private final boolean inverse;
@@ -37,11 +40,12 @@ public class IsColor implements ILootCondition {
     return flag == !this.inverse;
   }
 
-  public static class Serializer extends AbstractSerializer<IsColor> {
-    public Serializer() {
-      super(new ResourceLocation(MysticalWorld.MODID, "is_color"), IsColor.class);
-    }
+  @Override
+  public LootConditionType func_230419_b_() {
+    return ModLoot.IS_COLOR;
+  }
 
+  public static class Serializer implements ILootSerializer<IsColor> {
     @Override
     public void serialize(JsonObject json, IsColor value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);
@@ -54,8 +58,8 @@ public class IsColor implements ILootCondition {
     }
   }
 
-  public static ILootCondition.IBuilder builder(String variant) {
+/*  public static ILootCondition.IBuilder builder(String variant) {
     return () -> new IsColor(false, variant);
-  }
+  }*/
 }
 

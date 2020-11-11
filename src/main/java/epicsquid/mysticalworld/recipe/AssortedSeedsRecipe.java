@@ -15,11 +15,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
-import noobanidus.libs.noobutil.types.ItemStackStore;
+import noobanidus.libs.noobutil.types.LazyItemStack;
 
 public class AssortedSeedsRecipe extends ShapelessRecipe {
   public static ResourceLocation SEEDS_RECIPE = new ResourceLocation(MysticalWorld.MODID, "assorted_seeds");
-  public static ItemStackStore RESULT = new ItemStackStore(ModItems.ASSORTED_SEEDS, 4);
+  public static LazyItemStack RESULT = new LazyItemStack(ModItems.ASSORTED_SEEDS, 4);
 
   public AssortedSeedsRecipe() {
     super(SEEDS_RECIPE, "", RESULT.get(), NonNullList.withSize(4, SeedBuilder.get()));

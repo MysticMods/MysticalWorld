@@ -5,12 +5,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.LavaCatEntity;
+import epicsquid.mysticalworld.init.ModLoot;
 import net.minecraft.entity.Entity;
+import net.minecraft.loot.ILootSerializer;
+import net.minecraft.loot.LootConditionType;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
+import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootParameters;
-import net.minecraft.world.storage.loot.conditions.ILootCondition;
 
 public class IsObsidian implements ILootCondition {
   private final boolean inverse;
@@ -32,11 +35,12 @@ public class IsObsidian implements ILootCondition {
     return flag == !this.inverse;
   }
 
-  public static class Serializer extends ILootCondition.AbstractSerializer<IsObsidian> {
-    public Serializer() {
-      super(new ResourceLocation(MysticalWorld.MODID, "is_obsidian"), IsObsidian.class);
-    }
+  @Override
+  public LootConditionType func_230419_b_() {
+    return ModLoot.IS_OBSIDIAN;
+  }
 
+  public static class Serializer implements ILootSerializer<IsObsidian> {
     @Override
     public void serialize(JsonObject json, IsObsidian value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);
@@ -48,10 +52,10 @@ public class IsObsidian implements ILootCondition {
     }
   }
 
-  private static IsObsidian INSTANCE = new IsObsidian(false);
+/*  private static IsObsidian INSTANCE = new IsObsidian(false);
 
   public static ILootCondition.IBuilder builder() {
     return () -> INSTANCE;
-  }
+  }*/
 }
 
