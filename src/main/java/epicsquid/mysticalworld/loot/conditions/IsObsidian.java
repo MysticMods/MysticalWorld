@@ -52,10 +52,10 @@ public class IsObsidian implements ILootCondition {
     }
   }
 
-/*  private static IsObsidian INSTANCE = new IsObsidian(false);
+  private static IsObsidian INSTANCE = new IsObsidian(false);
 
   public static ILootCondition.IBuilder builder() {
     return () -> INSTANCE;
-  }*/
+  }
 }
 

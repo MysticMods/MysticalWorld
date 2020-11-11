@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import epicsquid.mysticalworld.entity.HellSproutEntity;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.util.math.vector.Vector3d;
 
 
 public class HellSproutModel extends AgeableModel<HellSproutEntity> {

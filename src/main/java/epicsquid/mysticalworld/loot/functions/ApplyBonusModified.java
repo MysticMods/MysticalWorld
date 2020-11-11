@@ -1,3 +1,4 @@
+/*
 package epicsquid.mysticalworld.loot.functions;
 
 import com.google.common.collect.ImmutableSet;
@@ -12,7 +13,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.ai.attributes.AttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
@@ -50,11 +51,13 @@ public class ApplyBonusModified extends LootFunction {
     ItemStack itemstack = context.get(LootParameters.TOOL);
     if (itemstack != null) {
       int i = EnchantmentHelper.getEnchantmentLevel(this.enchantment, itemstack);
-      /* THIS IS THE ONLY CHANGE TO THIS CLASS */
+      */
+/* THIS IS THE ONLY CHANGE TO THIS CLASS *//*
+
       if (this.enchantment == Enchantments.FORTUNE) {
         Entity entity = context.get(LootParameters.THIS_ENTITY);
         if (entity instanceof PlayerEntity) {
-          IAttributeInstance serendipity = ((PlayerEntity) entity).getAttribute(ModModifiers.SERENDIPITY);
+          AttributeInstance serendipity = ((PlayerEntity) entity).getAttribute(ModModifiers.SERENDIPITY);
           i += Serendipity.calculateAdditional(serendipity);
         }
       }
@@ -252,4 +255,5 @@ public class ApplyBonusModified extends LootFunction {
     }
   }
 }
+*/
 

@@ -7,8 +7,10 @@ import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.data.TagsProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
@@ -24,7 +26,7 @@ import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 public class ModTags {
   @FunctionalInterface
   private interface Additionals<T> {
-    void add(Tag<T>... tags);
+    void add(ITag.INamedTag<T>... tags);
   }
 
   private static class BlockBuilder {
@@ -34,20 +36,20 @@ public class ModTags {
       this.provider = provider;
     }
 
-    private void add(Tag<Block> tag, Supplier<? extends Block>... items) {
-      provider.getBuilder(tag).add(Stream.of(items).map(Supplier::get).toArray(Block[]::new));
+    private void add(ITag.INamedTag<Block> tag, Supplier<? extends Block>... items) {
+      provider.getOrCreateBuilder(tag).add(Stream.of(items).map(Supplier::get).toArray(Block[]::new));
     }
 
-    private void add(Tag<Block> tag, Block... items) {
-      provider.getBuilder(tag).add(items);
+    private void add(ITag.INamedTag<Block> tag, Block... items) {
+      provider.getOrCreateBuilder(tag).add(items);
     }
 
-    private void add(Tag<Block> tag, Tag<Block> tag2) {
-      provider.getBuilder(tag).add(tag2);
+    private void add(ITag.INamedTag<Block> tag, ITag.INamedTag<Block> tag2) {
+      provider.getOrCreateBuilder(tag).addTags(tag2);
     }
 
-    private Additionals<Block> additional(Tag<Block> tag) {
-      return (o) -> provider.getBuilder(tag).add(o);
+    private Additionals<Block> additional(ITag.INamedTag<Block> tag) {
+      return (o) -> provider.getOrCreateBuilder(tag).addTags(o);
     }
   }
 
@@ -58,51 +60,27 @@ public class ModTags {
       this.provider = provider;
     }
 
-    private void add(Tag<Item> tag, Supplier<? extends IItemProvider>... items) {
-      provider.getBuilder(tag).add(Stream.of(items).map(Supplier::get).map(IItemProvider::asItem).toArray(Item[]::new)).build(tag.getId());
+    private void add(ITag.INamedTag<Item> tag, Supplier<? extends IItemProvider>... items) {
+      provider.getOrCreateBuilder(tag).add(Stream.of(items).map(Supplier::get).map(IItemProvider::asItem).toArray(Item[]::new));
     }
 
-    private void add(Tag<Item> tag, IItemProvider... items) {
-      provider.getBuilder(tag).add(Stream.of(items).map(IItemProvider::asItem).toArray(Item[]::new)).build(tag.getId());
+    private void add(ITag.INamedTag<Item> tag, IItemProvider... items) {
+      provider.getOrCreateBuilder(tag).add(Stream.of(items).map(IItemProvider::asItem).toArray(Item[]::new));
     }
 
-    private void add(Tag<Item> tag, Tag<Item> tag2) {
-      provider.getBuilder(tag).add(tag2).build(tag.getId());
+    private void add(ITag.INamedTag<Item> tag, ITag.INamedTag<Item> tag2) {
+      provider.getOrCreateBuilder(tag).addTags(tag2);
     }
 
-    private Additionals<Item> additional(Tag<Item> tag) {
-      return (o) -> provider.getBuilder(tag).add(o).build(tag.getId());
+    private Additionals<Item> additional(ITag.INamedTag<Item> tag) {
+      return (o) -> provider.getOrCreateBuilder(tag).addTags(o);
     }
 
-    protected void copy(Tag<Block> from, Tag<Item> to) {
-      Tag.Builder<Item> builder = provider.getBuilder(to);
+    protected void copy(ITag.INamedTag<Block> from, ITag.INamedTag<Item> to) {
+      TagsProvider.Builder<Item> builder = provider.getOrCreateBuilder(to);
 
-      for (Tag.ITagEntry<Block> itagentry : from.getEntries()) {
-        Tag.ITagEntry<Item> itagentry1 = this.copyEntry(itagentry);
-        builder.add(itagentry1);
-      }
-
-      builder.build(to.getId());
-    }
-
-    private Tag.ITagEntry<Item> copyEntry(Tag.ITagEntry<Block> entry) {
-      if (entry instanceof Tag.TagEntry) {
-        return new Tag.TagEntry<>(((Tag.TagEntry) entry).getSerializedId());
-      } else if (entry instanceof Tag.ListEntry) {
-        List<Item> list = Lists.newArrayList();
-
-        for (Block block : ((Tag.ListEntry<Block>) entry).getTaggedItems()) {
-          Item item = block.asItem();
-          if (item == Items.AIR) {
-            MysticalWorld.LOG.warn("Itemless block copied to item tag: {}", ForgeRegistries.BLOCKS.getKey(block));
-          } else {
-            list.add(item);
-          }
-        }
-
-        return new Tag.ListEntry<>(list);
-      } else {
-        throw new UnsupportedOperationException("Unknown tag entry " + entry);
+      for (Block block : from.getAllElements()) {
+        builder.add(block.asItem());
       }
     }
   }

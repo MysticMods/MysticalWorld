@@ -8,9 +8,9 @@ import epicsquid.mysticalworld.init.ModMaterials;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttribute;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -26,16 +26,16 @@ public class BeetleMaskItem extends ModifiedArmorItem {
   }
 
   @Override
-  public Map<IAttribute, AttributeModifier> getModifiers() {
+  public Map<Attribute, AttributeModifier> getModifiers() {
     return super.getModifiers();
   }
 
   @Override
-  public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-    Multimap<String, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
+  public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
+    Multimap<Attribute, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
 
     if (equipmentSlot == EquipmentSlotType.HEAD && ConfigManager.HAT_CONFIG.getMaskBonusDamage() != -1) {
-      map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), this.getOrCreateModifier(SharedMonsterAttributes.ATTACK_DAMAGE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Beetle Mask Damage Bonus", ConfigManager.HAT_CONFIG.getMaskBonusDamage(), AttributeModifier.Operation.MULTIPLY_TOTAL)));
+      map.put(Attributes.ATTACK_DAMAGE, this.getOrCreateModifier(Attributes.ATTACK_DAMAGE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Beetle Mask Damage Bonus", ConfigManager.HAT_CONFIG.getMaskBonusDamage(), AttributeModifier.Operation.MULTIPLY_TOTAL)));
     }
 
     return map;

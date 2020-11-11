@@ -272,7 +272,7 @@ public class ModEntities {
   public static void registerEntities() {
     Set<Biome> biomes = new HashSet<>();
 
-    if (ConfigManager.DEER_CONFIG.shouldRegister()) {
+/*    if (ConfigManager.DEER_CONFIG.shouldRegister()) {
       for (String biomeName : ConfigManager.DEER_CONFIG.getBiomes()) {
         biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
       }
@@ -366,7 +366,7 @@ public class ModEntities {
               ConfigManager.HELL_SPROUT_CONFIG.getMax())));
     }
 
-    biomes.clear();
+    biomes.clear();*/
 
     EntitySpawnPlacementRegistry.register(DEER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
         AnimalEntity::canAnimalSpawn);

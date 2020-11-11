@@ -6,11 +6,9 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.ForgeConfigSpec;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -73,12 +71,6 @@ public class OreConfig implements IConfig {
     }
 
     return storedDimension;
-  }
-
-  public DimensionType[] getDimensionsAsArray() {
-    List<DimensionType> dimensions = new ArrayList<>();
-    configDimensions.get().forEach(o -> dimensions.add(DimensionType.getById(o)));
-    return dimensions.toArray(new DimensionType[0]);
   }
 
   @Override

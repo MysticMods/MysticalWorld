@@ -11,7 +11,7 @@ import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class OreGen {
-  private static void addOreGeneration(Biome biome) {
+/*  private static void addOreGeneration(Biome biome) {
     for (OreConfig config : ConfigManager.ORE_CONFIG) {
       if (config.getChance() > 0) {
         biome.addFeature(
@@ -39,5 +39,5 @@ public class OreGen {
 
   public static void registerOreGeneration() {
     ForgeRegistries.BIOMES.forEach(OreGen::addOreGeneration);
-  }
+  }*/
 }

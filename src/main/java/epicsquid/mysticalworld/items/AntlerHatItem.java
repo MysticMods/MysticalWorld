@@ -10,9 +10,9 @@ import epicsquid.mysticalworld.init.ModMaterials;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttribute;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -33,16 +33,16 @@ public class AntlerHatItem extends ModifiedArmorItem {
   }
 
   @Override
-  public Map<IAttribute, AttributeModifier> getModifiers() {
+  public Map<Attribute, AttributeModifier> getModifiers() {
     return super.getModifiers();
   }
 
   @Override
-  public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-    Multimap<String, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
+  public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
+    Multimap<Attribute, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
 
     if (equipmentSlot == EquipmentSlotType.HEAD && ConfigManager.HAT_CONFIG.getAntlerHealthBonus() != -1) {
-      map.put(SharedMonsterAttributes.MAX_HEALTH.getName(), this.getOrCreateModifier(SharedMonsterAttributes.MAX_HEALTH, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Antler Health Boost", ConfigManager.HAT_CONFIG.getAntlerHealthBonus(), AttributeModifier.Operation.ADDITION)));
+      map.put(Attributes.MAX_HEALTH, this.getOrCreateModifier(Attributes.MAX_HEALTH, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Antler Health Boost", ConfigManager.HAT_CONFIG.getAntlerHealthBonus(), AttributeModifier.Operation.ADDITION)));
     }
 
     return map;

@@ -9,9 +9,8 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
@@ -29,9 +28,9 @@ public class LeafHandler {
 
   public static Set<Block> getLeafBlocks() {
     if (LEAF_BLOCKS == null) {
-      Tag<Item> leaf_items = new ItemTags.Wrapper(new ResourceLocation("minecraft", "leaves"));
+      ITag.INamedTag<Item> leaf_items = ItemTags.LEAVES;
       LEAF_ITEMS = Sets.newHashSet(leaf_items.getAllElements());
-      Tag<Block> leaf_blocks = new BlockTags.Wrapper(new ResourceLocation("minecraft", "leaves"));
+      ITag.INamedTag<Block> leaf_blocks = BlockTags.LEAVES;
       LEAF_BLOCKS = Sets.newHashSet(leaf_blocks.getAllElements());
     }
 

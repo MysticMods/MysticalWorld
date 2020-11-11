@@ -4,13 +4,14 @@ import com.google.common.collect.Multimap;
 import epicsquid.mysticalworld.items.ModifiedArmorItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeMod;
 import noobanidus.libs.noobutil.material.MaterialType;
 
 import java.util.Random;
@@ -33,8 +34,8 @@ public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksil
   }
 
   @Override
-  public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-    Multimap<String, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
+  public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
+    Multimap<Attribute, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
 
     if (this.slot == equipmentSlot) {
       float val = 0.05f;
@@ -42,8 +43,8 @@ public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksil
         val = 0.1f;
       }
       final float val2 = val;
-      map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), getOrCreateModifier(SharedMonsterAttributes.MOVEMENT_SPEED, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Movement speed", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
-      map.put(PlayerEntity.SWIM_SPEED.getName(), getOrCreateModifier(PlayerEntity.SWIM_SPEED, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Movement speed", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
+      map.put(Attributes.MOVEMENT_SPEED, getOrCreateModifier(Attributes.MOVEMENT_SPEED, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Movement speed", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
+      map.put(ForgeMod.SWIM_SPEED.get(), getOrCreateModifier(ForgeMod.SWIM_SPEED.get(), () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Movement speed", val2, AttributeModifier.Operation.MULTIPLY_BASE)));
     }
 
     return map;

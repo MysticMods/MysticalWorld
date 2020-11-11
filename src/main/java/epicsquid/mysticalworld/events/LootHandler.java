@@ -5,11 +5,11 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModModifiers;
 import epicsquid.mysticalworld.loot.Serendipity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.TableLootEntry;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootPool;
-import net.minecraft.world.storage.loot.LootTables;
-import net.minecraft.world.storage.loot.TableLootEntry;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
 
@@ -38,7 +38,7 @@ public class LootHandler {
 
       int looting = event.getLootingLevel();
 
-      event.setLootingLevel(looting + Serendipity.calculateAdditional(player.getAttribute(ModModifiers.SERENDIPITY)));
+/*      event.setLootingLevel(looting + Serendipity.calculateAdditional(player.getAttribute(ModModifiers.SERENDIPITY.get())));*/
     }
   }
 }

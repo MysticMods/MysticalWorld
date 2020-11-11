@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.items;
 
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
@@ -9,10 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class ModifiedArmorItem extends ArmorItem implements IModifiable {
-  protected Map<IAttribute, AttributeModifier> modifiers = new HashMap<>();
+  protected Map<Attribute, AttributeModifier> modifiers = new HashMap<>();
 
   @Override
-  public Map<IAttribute, AttributeModifier> getModifiers() {
+  public Map<Attribute, AttributeModifier> getModifiers() {
     return modifiers;
   }
 

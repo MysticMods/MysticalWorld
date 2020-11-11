@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.setup;
+/*package epicsquid.mysticalworld.setup;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.loot.functions.ApplyBonusModified;
@@ -31,4 +31,4 @@ public class ModifyLoot {
       applied = true;
     }
   }
-}
+}*/

@@ -41,7 +41,7 @@ public class ModSetup {
       CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
 
       ShadedCommonSetup.init(event);
-      OreGen.registerOreGeneration();
+/*      OreGen.registerOreGeneration();*/
       PotionRecipes.registerRecipes();
 
 /*    try {
@@ -66,7 +66,7 @@ public class ModSetup {
   }
 
   public void serverAboutToStart(FMLServerAboutToStartEvent event) {
-    ModifyLoot.modify();
+/*    ModifyLoot.modify();*/
   }
 
   @SuppressWarnings("Duplicates")
@@ -86,6 +86,6 @@ public class ModSetup {
   }
 
   public void loadComplete(FMLLoadCompleteEvent event) {
-    ModFeatures.loadComplete();
+/*    ModFeatures.loadComplete();*/
   }
 }

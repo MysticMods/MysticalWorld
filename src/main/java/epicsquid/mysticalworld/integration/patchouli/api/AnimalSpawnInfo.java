@@ -5,6 +5,7 @@ import epicsquid.mysticalworld.config.MobConfig;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.text.WordUtils;
 import vazkii.patchouli.api.IComponentProcessor;
+import vazkii.patchouli.api.IVariable;
 import vazkii.patchouli.api.IVariableProvider;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
@@ -17,8 +18,8 @@ public class AnimalSpawnInfo implements IComponentProcessor {
   private MobConfig animal;
 
   @Override
-  public void setup(IVariableProvider<String> iVariableProvider) {
-    String name = iVariableProvider.get("animal");
+  public void setup(IVariableProvider iVariableProvider) {
+    String name = iVariableProvider.get("animal").asString();
     this.animalName = name;
     switch (name) {
       case "deer":
@@ -55,42 +56,42 @@ public class AnimalSpawnInfo implements IComponentProcessor {
   }
 
   @Override
-  public String process(String s) {
+  public IVariable process(String s) {
     if (this.animal == null && !animalName.equals("squid")) return null;
     if (s.startsWith("groupSize")) {
       if (animalName.equals("squid")) {
-        return "Standard group sizes.";
+        return IVariable.wrap("Standard group sizes.");
       } else {
-        return String.format("Groups of: %d-%d", animal.getMin(), animal.getMax());
+        return IVariable.wrap(String.format("Groups of: %d-%d", animal.getMin(), animal.getMax()));
       }
     }
     if (s.startsWith("biomes")) {
       if (animalName.equals("squid")) {
-        return "Default biomes.";
+        return IVariable.wrap("Default biomes.");
       } else if (animalName.equals("endermini")) {
-        return "The End";
+        return IVariable.wrap("The End");
       } else {
         StringJoiner joiner = new StringJoiner(", ");
         for (String biomeName : animal.getBiomes()) {
           // TODO: Localise according to 1.12
           joiner.add(WordUtils.capitalize(biomeName.toLowerCase()));
         }
-        return "Biomes tagged with: " + joiner.toString();
+        return IVariable.wrap("Biomes tagged with: " + joiner.toString());
       }
     }
     if (s.startsWith("title")) {
       if (this.animalName.contains("_")) {
-        return WordUtils.capitalize(this.animalName.replace("_", " "));
+        return IVariable.wrap(WordUtils.capitalize(this.animalName.replace("_", " ")));
       }
-      return WordUtils.capitalize(this.animalName.toLowerCase());
+      return IVariable.wrap(WordUtils.capitalize(this.animalName.toLowerCase()));
     }
     if (s.startsWith("item")) {
       List<ItemStack> drops = StandardDrops.getDrops(animalName);
       int index = Integer.parseInt(s.replace("item", "")) - 1;
       if (index < drops.size()) {
-        return ItemStackUtil.serializeStack(drops.get(index));
+        return IVariable.from(drops.get(index));
       } else {
-        return ItemStackUtil.serializeStack(ItemStack.EMPTY);
+        return IVariable.from(ItemStack.EMPTY);
       }
     }
     return null;

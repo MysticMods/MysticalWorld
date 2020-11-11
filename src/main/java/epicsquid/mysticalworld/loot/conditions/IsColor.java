@@ -58,8 +58,8 @@ public class IsColor implements ILootCondition {
     }
   }
 
-/*  public static ILootCondition.IBuilder builder(String variant) {
+  public static ILootCondition.IBuilder builder(String variant) {
     return () -> new IsColor(false, variant);
-  }*/
+  }
 }
 
