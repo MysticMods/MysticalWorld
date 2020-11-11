@@ -24,9 +24,9 @@ public class UnripePearlItem extends Item {
       int counter = 0;
       boolean flag;
       do {
-        double d0 = player.posX + (MathUtil.rand.nextDouble() - 0.5D) * 64.0D;
-        double d1 = player.posY + (double) (MathUtil.rand.nextInt(64) - 32);
-        double d2 = player.posZ + (MathUtil.rand.nextDouble() - 0.5D) * 64.0D;
+        double d0 = player.getPosX() + (MathUtil.rand.nextDouble() - 0.5D) * 64.0D;
+        double d1 = player.getPosY() + (double) (MathUtil.rand.nextInt(64) - 32);
+        double d2 = player.getPosZ() + (MathUtil.rand.nextDouble() - 0.5D) * 64.0D;
         flag = player.attemptTeleport(d0, d1, d2, false);
         counter++;
       } while (!flag && counter != 15);

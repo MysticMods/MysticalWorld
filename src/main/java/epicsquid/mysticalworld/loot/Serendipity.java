@@ -6,7 +6,7 @@ import noobanidus.libs.noobutil.util.MathUtil;
 
 public class Serendipity {
   public static int calculateAdditional(AttributeModifier serendipity) {
-    int i = 0;
+/*    int i = 0;
     serendipity.setBaseValue(1);
     double val = serendipity.getValue() - 1.0;
     while (val > 0) {
@@ -15,6 +15,7 @@ public class Serendipity {
       }
       val--;
     }
-    return i;
+    return i;*/
+    return 0;
   }
 }

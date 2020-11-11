@@ -26,6 +26,6 @@ public class TooltipItem extends Item {
     super.addInformation(stack, worldIn, tooltip, flagIn);
 
     tooltip.add(new StringTextComponent(""));
-    tooltip.add(new TranslationTextComponent(translationKey).setStyle(new Style().setColor(TextFormatting.YELLOW)));
+    tooltip.add(new TranslationTextComponent(translationKey).setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.YELLOW))));
   }
 }

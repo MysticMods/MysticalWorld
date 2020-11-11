@@ -23,9 +23,10 @@ public class QuicksilverHoeItem extends HoeItem implements IQuicksilverItem {
   private int counter;
   private Random random = new Random();
 
-  public QuicksilverHoeItem(IItemTier tier, float attackSpeed, Properties props) {
-    super(tier, attackSpeed, props);
+  public QuicksilverHoeItem(IItemTier itemTier, int attackDamage, float attackSpeed, Properties properties) {
+    super(itemTier, attackDamage, attackSpeed, properties);
   }
+
 
   @Override
   public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {

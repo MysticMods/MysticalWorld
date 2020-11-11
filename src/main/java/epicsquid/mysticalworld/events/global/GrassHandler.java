@@ -32,10 +32,10 @@ public class GrassHandler {
     }
 
     // TODO
-/*    @Override
+    @Override
     public JsonObject write(GrassDropModifier instance) {
       return null;
-    }*/
+    }
   }
 
   public static class GrassDropModifier extends LootModifier {

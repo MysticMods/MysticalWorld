@@ -41,11 +41,6 @@ public class ModItems {
   }
 
   @FunctionalInterface
-  public interface HoeBuilder<V extends Item> {
-    V apply(IItemTier tier, float attackSpeedIn, Item.Properties builder);
-  }
-
-  @FunctionalInterface
   public interface ArmorBuilder<V extends Item> {
     V apply(IArmorMaterial materialIn, EquipmentSlotType slot, Item.Properties builder);
   }
@@ -78,8 +73,8 @@ public class ModItems {
     return tool(builder, WeaponType.KNIFE, material);
   }
 
-  private static <T extends Item> NonNullFunction<Item.Properties, T> hoe(HoeBuilder<T> builder, MaterialType material) {
-    return (b) -> builder.apply(material.getItemMaterial(), material.getSpeed(WeaponType.HOE), b);
+  private static <T extends Item> NonNullFunction<Item.Properties, T> hoe(ToolBuilder<T> builder, MaterialType material) {
+    return tool(builder, WeaponType.HOE, material);
   }
 
   private static <T extends ArmorItem> NonNullFunction<Item.Properties, T> armor(ArmorBuilder<T> builder, MaterialType material, EquipmentSlotType slot) {
