@@ -124,7 +124,7 @@ dependencies {
     compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
     compile fg.deobf("mezz.jei:jei-${jei_version}")
 
-    def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
+    def registrate = "com.tterrag.registrate:Registrate:${registrate_version}"
     implementation fg.deobf(registrate)
     shade registrate
 

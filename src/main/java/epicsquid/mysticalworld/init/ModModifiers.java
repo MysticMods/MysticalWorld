@@ -1,15 +1,20 @@
 package epicsquid.mysticalworld.init;
 
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
 import noobanidus.libs.noobutil.modifiers.PlayerModifierRegistry;
 
+import java.util.UUID;
+
 // TODO: No Registrate conversion
 
 public class ModModifiers {
-  public static final IAttribute BLESSED = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.blessed", 0D, 0D, 10D).setDescription("Causes undead attackers to be set on fire and take fire damage").setShouldWatch(true));
-  public static final IAttribute SMITE = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.smite", 0D, 0D, 5D).setDescription("Deals additional damage to undead entities").setShouldWatch(true));
-  public static final IAttribute SERENDIPITY = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.serendipity", 1D, 1D, 10D).setDescription("Increases your luck and looting levels").setShouldWatch(true));
+  public static final UUID BLESSED =
+
+  public static final Attribute BLESSED_ATTR = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute("mysticalworld.blessed", 0D, 0D, 10D).setShouldWatch(true));
+  public static final Attribute SMITE_ATTR = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute("mysticalworld.smite", 0D, 0D, 5D).setShouldWatch(true));
+  public static final Attribute SERENDIPITY_ATTR = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute("mysticalworld.serendipity", 1D, 1D, 10D).setShouldWatch(true));
   /*
   public static final IAttribute BOUYANT = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.bouyant", 0D, 0D, 1D).setDescription("While underwater you float without sinking").setShouldWatch(true));
   public static final IAttribute LEADEN = PlayerModifierRegistry.getInstance().registerAttribute(new RangedAttribute(null, "mysticalworld.leaden", 0D, 0D, 1D).setDescription("While underwater, you sink faster").setShouldWatch(true));

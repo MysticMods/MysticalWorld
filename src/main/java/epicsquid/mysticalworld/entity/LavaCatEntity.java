@@ -6,7 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
@@ -25,10 +27,11 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.UUID;
@@ -37,8 +40,8 @@ public class LavaCatEntity extends TameableEntity {
   public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/lava_cat");
 
   private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.createKey(LavaCatEntity.class, DataSerializers.BOOLEAN);
-  private static final UUID OBSIDIAN_SPEED_DEBUFF_ID = UUID.fromString("f58f95e9-fb51-4604-a66d-89433c9dd8a5");
-  private static final AttributeModifier OBSIDIAN_SPEED_DEBUFF = (new AttributeModifier(OBSIDIAN_SPEED_DEBUFF_ID, "Speed debuff for being obsidian", -0.05D, AttributeModifier.Operation.MULTIPLY_TOTAL)).setSaved(false);
+  private static final UUID OBSIDIAN_SPEED_MODIFIER = UUID.fromString("f58f95e9-fb51-4604-a66d-89433c9dd8a5");
+  private static final AttributeModifier OBSIDIAN_SPEED = new AttributeModifier(OBSIDIAN_SPEED_MODIFIER, "Speed debuff for being obsidian", -0.05D, AttributeModifier.Operation.MULTIPLY_TOTAL);
 
   public LavaCatEntity(EntityType<? extends TameableEntity> type, World worldIn) {
     super(type, worldIn);
@@ -46,9 +49,8 @@ public class LavaCatEntity extends TameableEntity {
 
   @Override
   protected void registerGoals() {
-    this.sitGoal = new SitGoal(this);
     goalSelector.addGoal(1, new SwimGoal(this));
-    goalSelector.addGoal(2, this.sitGoal);
+    goalSelector.addGoal(2, new SitGoal(this));
     goalSelector.addGoal(3, new TemptGoal(this, 0.6D, Ingredient.fromItems(Items.BLAZE_ROD), false));
     goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.0D, 10.0F, 5.0F, false));
     goalSelector.addGoal(7, new LeapAtTargetGoal(this, 0.3F));
@@ -98,12 +100,8 @@ public class LavaCatEntity extends TameableEntity {
     return !this.isTamed() && this.ticksExisted > 2400;
   }
 
-  @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-    this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25);
-    this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 20.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25d).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0d);
   }
 
   // TODO: Fix fall damage
@@ -162,9 +160,7 @@ public class LavaCatEntity extends TameableEntity {
     if (this.isInvulnerableTo(source)) {
       return false;
     } else {
-      if (this.sitGoal != null) {
-        this.sitGoal.setSitting(false);
-      }
+      this.func_233687_w_(false);
 
       if (source.isFireDamage()) {
         return false;
@@ -213,12 +209,12 @@ public class LavaCatEntity extends TameableEntity {
   }
 
   @Override
-  public boolean processInteract(PlayerEntity player, Hand hand) {
+  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
     ItemStack itemstack = player.getHeldItem(hand);
 
     if (this.isTamed()) {
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
-        this.sitGoal.setSitting(!this.isSitting());
+        this.func_233687_w_(!this.isSitting());
       }
     } else if (itemstack.getItem() == Items.BLAZE_ROD && player.getDistanceSq(this) < 9.0D) {
       if (!player.isCreative()) {
@@ -228,21 +224,22 @@ public class LavaCatEntity extends TameableEntity {
       if (!this.world.isRemote) {
         if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
           this.setTamedBy(player);
-          this.sitGoal.setSitting(true);
+          this.func_233687_w_(true);
           this.world.setEntityState(this, (byte) 7);
         } else {
           this.world.setEntityState(this, (byte) 6);
         }
       }
 
-      return true;
+      return ActionResultType.SUCCESS;
     }
 
-    return super.processInteract(player, hand);
+    return super.func_230254_b_(player, hand);
   }
 
   @Override
-  public LavaCatEntity createChild(AgeableEntity ageable) {
+  @Nonnull
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     LavaCatEntity lavacat = ModEntities.LAVA_CAT.get().create(ageable.world);
 
     if (this.isTamed()) {
@@ -284,18 +281,13 @@ public class LavaCatEntity extends TameableEntity {
 
   public void setIsLava(boolean val) {
     this.dataManager.set(IS_LAVA, val);
-    IAttributeInstance attr = getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
-    if (val) {
-      attr.removeModifier(OBSIDIAN_SPEED_DEBUFF);
+    ModifiableAttributeInstance instance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+    if (val && instance.getModifier(OBSIDIAN_SPEED_MODIFIER) != null) {
+      instance.removeModifier(OBSIDIAN_SPEED);
     } else {
-      attr.applyModifier(OBSIDIAN_SPEED_DEBUFF);
+      instance.applyNonPersistentModifier(OBSIDIAN_SPEED);
     }
   }
-
-  /*@Override
-  public boolean getCanSpawnHere() {
-    return this.world.rand.nextInt(3) != 0;
-  }*/
 
   @Override
   protected void setupTamedAI() {
@@ -306,7 +298,7 @@ public class LavaCatEntity extends TameableEntity {
     super.tick();
 
     if (getIsLava() && world.isRainingAt(getPosition()) && world.canBlockSeeSky(getPosition()) && rand.nextInt(30) == 0) {
-      world.playSound(null, posX, posY, posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.NEUTRAL, 0.2f, 1.3f);
+      world.playSound(null, getPosX(), getPosY(), getPosZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.NEUTRAL, 0.2f, 1.3f);
     }
 
     if (getIsLava() && inWater) {
@@ -340,20 +332,6 @@ public class LavaCatEntity extends TameableEntity {
         return new TranslationTextComponent("mysticalworld.entity.obsidian_cat");
       }
     }
-  }
-
-  @Override
-  @Nullable
-  public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-    this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextGaussian() * 0.05D, AttributeModifier.Operation.MULTIPLY_BASE));
-
-    if (this.rand.nextFloat() < 0.05F) {
-      this.setLeftHanded(true);
-    } else {
-      this.setLeftHanded(false);
-    }
-
-    return spawnDataIn;
   }
 }
 

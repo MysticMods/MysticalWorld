@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.init;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
+import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -25,10 +26,10 @@ import net.minecraft.data.SingleItemRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.conditions.BlockStateProperty;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.Tags;
@@ -125,16 +126,16 @@ public class ModBlocks {
                 .patternLine("YX")
                 .key('X', Blocks.HAY_BLOCK)
                 .key('Y', Tags.Items.CROPS_WHEAT)
-                .addCriterion("has_hay", p.hasItem(Blocks.HAY_BLOCK))
-                .addCriterion("has_wheat", p.hasItem(Items.WHEAT))
+                .addCriterion("has_hay", RegistrateRecipeProvider.hasItem(Blocks.HAY_BLOCK))
+                .addCriterion("has_wheat", RegistrateRecipeProvider.hasItem(Items.WHEAT))
                 .build(p);
             ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.SIMPLE_THATCH.get(), 1)
                 .addIngredient(ModBlocks.THATCH.get())
-                .addCriterion("has_thatch", p.hasItem(ModBlocks.THATCH.get()))
+                .addCriterion("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.THATCH.get()))
                 .build(p, RECIPES.rl("simple_thatch_from_thatch"));
             ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.THATCH.get(), 1)
                 .addIngredient(ModBlocks.SIMPLE_THATCH.get())
-                .addCriterion("has_thatch", p.hasItem(ModBlocks.SIMPLE_THATCH.get()))
+                .addCriterion("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.SIMPLE_THATCH.get()))
                 .build(p, RECIPES.rl("thatch_from_simple_thatch"));
           }
       )
@@ -148,11 +149,11 @@ public class ModBlocks {
       .recipe((ctx, p) -> {
         ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.SIMPLE_THATCH.get(), 1)
             .addIngredient(ModBlocks.THATCH.get())
-            .addCriterion("has_thatch", p.hasItem(ModBlocks.THATCH.get()))
+            .addCriterion("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.THATCH.get()))
             .build(p, "simple_thatch_from_thatch");
         ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.THATCH.get(), 1)
             .addIngredient(ModBlocks.SIMPLE_THATCH.get())
-            .addCriterion("has_thatch", p.hasItem(ModBlocks.SIMPLE_THATCH.get()))
+            .addCriterion("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.SIMPLE_THATCH.get()))
             .build(p, "thatch_from_simple_thatch");
       })
       .register();
@@ -246,9 +247,7 @@ public class ModBlocks {
       .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
       .loot((p, t) -> p.
           registerLootTable(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
-              droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), BlockStateProperty.
-                  builder(ModBlocks.AUBERGINE_CROP.get()).
-                  fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7)))))
+              droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7)))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
@@ -267,7 +266,7 @@ public class ModBlocks {
               .patternLine("XXX")
               .key('X', Blocks.DIRT)
               .key('W', Items.WATER_BUCKET)
-              .addCriterion("has_dirt", p.hasItem(Blocks.DIRT))
+              .addCriterion("has_dirt", RegistrateRecipeProvider.hasItem(Blocks.DIRT))
               .build(p)
       )
       .register();
@@ -393,7 +392,7 @@ public class ModBlocks {
         p.smelting(DataIngredient.items(ModBlocks.WET_MUD_BRICK), ModBlocks.MUD_BRICK, 0.15f);
         RECIPES.twoByTwo(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BRICK, null, p);
         SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(ModBlocks.MUD_BLOCK.get()), ModBlocks.MUD_BRICK.get())
-            .addCriterion("has_mud_block", p.hasItem(ModBlocks.MUD_BLOCK.get()))
+            .addCriterion("has_mud_block", RegistrateRecipeProvider.hasItem(ModBlocks.MUD_BLOCK.get()))
             .build(p, "mud_bricks_from_mud_blocks_stonecutting");
       })
       .register();
@@ -487,7 +486,8 @@ public class ModBlocks {
 
   private static NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD).hardnessAndResistance(2.0f);
 
-  public static RegistryEntry<LogBlock> CHARRED_LOG = REGISTRATE.log("charred_log", MaterialColor.BROWN_TERRACOTTA)
+
+  public static RegistryEntry<RotatedPillarBlock> CHARRED_LOG = REGISTRATE.log("charred_log")
       .properties(WOOD_PROPS)
       .tag(BlockTags.LOGS)
       .item()
@@ -937,7 +937,7 @@ public class ModBlocks {
             .patternLine("BA")
             .key('A', Tags.Items.STONE)
             .key('B', Ingredient.fromItems(Items.COAL, Items.CHARCOAL))
-            .addCriterion("has_stone", p.hasItem(Tags.Items.STONE))
+            .addCriterion("has_stone", RegistrateRecipeProvider.hasItem(Tags.Items.STONE))
             .build(p);
       })
       .tag(Tags.Blocks.STONE)
@@ -1023,8 +1023,8 @@ public class ModBlocks {
             .patternLine("BA")
             .key('A', Tags.Items.STONE)
             .key('B', Tags.Items.OBSIDIAN)
-            .addCriterion("has_stone", p.hasItem(Tags.Items.STONE))
-            .addCriterion("has_obsidian", p.hasItem(Tags.Items.OBSIDIAN))
+            .addCriterion("has_stone", RegistrateRecipeProvider.hasItem(Tags.Items.STONE))
+            .addCriterion("has_obsidian", RegistrateRecipeProvider.hasItem(Tags.Items.OBSIDIAN))
             .build(p);
       })
       .register();

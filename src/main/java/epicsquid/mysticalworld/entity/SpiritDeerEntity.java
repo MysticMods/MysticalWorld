@@ -4,6 +4,8 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.ai.HealTargetGoal;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -14,9 +16,10 @@ import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
 
@@ -71,25 +74,20 @@ public class SpiritDeerEntity extends AnimalEntity implements IFlyingAnimal {
   public void tick() {
     super.tick();
 
-    Vec3d motion = this.getMotion();
+    Vector3d motion = this.getMotion();
     if (!this.onGround && motion.y < 0.0D) {
       this.setMotion(motion.x, motion.y * 0.6D, motion.z);
     }
     this.rotationYaw = this.rotationYawHead;
   }
 
-  @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
-    getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3d);
-    getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-    getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(0.6d);
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 15.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3d).createMutableAttribute(Attributes.FLYING_SPEED, 0.6d);
   }
 
   @Override
   @Nonnull
-  public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     return null;
   }
 

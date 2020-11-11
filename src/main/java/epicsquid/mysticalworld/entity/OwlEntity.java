@@ -3,7 +3,10 @@ package epicsquid.mysticalworld.entity;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -17,10 +20,12 @@ import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
@@ -47,18 +52,10 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
     goalSelector.addGoal(2, new WaterAvoidingRandomFlyingGoal(this, 1D));
   }
 
-  @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-    this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
-    this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(0.55000000059604645D);
-    this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 6.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d).createMutableAttribute(Attributes.FLYING_SPEED, 0.55d);
   }
 
-  /**
-   * Returns new PathNavigateGround instance
-   */
   @Override
   protected PathNavigator createNavigator(World worldIn) {
     FlyingPathNavigator pathnavigateflying = new FlyingPathNavigator(this, worldIn);
@@ -73,10 +70,6 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
     return this.getHeight() * 0.6F;
   }
 
-  /**
-   * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-   * use this to react to sunlight and start to burn.
-   */
   @Override
   public void tick() {
     super.tick();
@@ -95,7 +88,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
 
     this.flapping = (float) ((double) this.flapping * 0.9D);
 
-    Vec3d motion = this.getMotion();
+    Vector3d motion = this.getMotion();
 
     if (!this.onGround && motion.y < 0.0D) {
       this.setMotion(motion.x, motion.y * 0.6D, motion.z);
@@ -113,20 +106,10 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
     return stack.getItem() == Items.RABBIT;
   }
 
-  @Override
-  public boolean canSpawn(IWorld worldIn, SpawnReason spawnReasonIn) {
-    return super.canSpawn(worldIn, spawnReasonIn);
-    /*int i = MathHelper.floor(this.posX);
-    int j = MathHelper.floor(this.getBoundingBox().minY);
-    int k = MathHelper.floor(this.posZ);
-    BlockPos blockpos = new BlockPos(i, j, k);
-    Block block = worldIn.getBlockState(blockpos.down()).getBlock();
-    return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || block instanceof LogBlock || block == Blocks.AIR && worldIn.getLight(blockpos) > 8 && super.canSpawn(worldIn, spawnReasonIn);*/
-  }
-
   public static boolean placement(EntityType<? extends AnimalEntity> p_223316_0_, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random p_223316_4_) {
-    Block block = worldIn.getBlockState(blockpos.down()).getBlock();
-    return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || block instanceof LogBlock || block == Blocks.AIR && worldIn.getLight(blockpos) > 8;
+    BlockState down = worldIn.getBlockState(blockpos.down());
+    Block block = down.getBlock();
+    return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || (block instanceof RotatedPillarBlock && down.getMaterial() == Material.WOOD) || block == Blocks.AIR && worldIn.getLight(blockpos) > 8;
   }
 
   // TODO: Fix fall damage
@@ -139,8 +122,8 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
   }
 
   @Override
-  @Nullable
-  public AgeableEntity createChild(AgeableEntity ageable) {
+  @Nonnull
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     return ModEntities.OWL.get().create(ageable.world);
   }
 

@@ -38,7 +38,7 @@ import org.apache.logging.log4j.Logger;
 
 @Mod("mysticalworld")
 public class MysticalWorld {
-  public static OreFeatureConfig.FillerBlockType ORE_GEN = OreFeatureConfig.FillerBlockType.create("mysticalworld", "mysticalworld", o -> OreFeatureConfig.FillerBlockType.NATURAL_STONE.getTargetBlockPredicate().or(OreFeatureConfig.FillerBlockType.NETHERRACK.getTargetBlockPredicate()).or(q -> {
+  public static OreFeatureConfig.FillerBlockType ORE_GEN = OreFeatureConfig.FillerBlockType.create("mysticalworld", "mysticalworld", o -> q -> OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD.test(q).or(OreFeatureConfig.FillerBlockType.NETHERRACK.getTargetBlockPredicate()).or(q -> {
     if (q == null) {
       return false;
     }

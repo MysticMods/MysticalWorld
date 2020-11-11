@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import epicsquid.mysticalworld.entity.SproutEntity;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.Vec3d;
+
 
 public class SproutModel extends AgeableModel<SproutEntity> {
   private ModelRenderer head;
@@ -62,7 +62,7 @@ public class SproutModel extends AgeableModel<SproutEntity> {
 
   @Override
   public void setRotationAngles(SproutEntity entity, float f, float f1, float age, float f3, float f4) {
-    float speed = (float) Math.min(0.25f, ((new Vec3d(entity.getMotion().x, 0, entity.getMotion().z)).length() * 4.0f));
+    float speed = (float) Math.min(0.25f, ((new Vector3d(entity.getMotion().x, 0, entity.getMotion().z)).length() * 4.0f));
     legL.rotateAngleX = -(float) Math.toRadians(speed * 240f * (float) Math.sin(Math.toRadians(age % 360) * 24F));
     legR.rotateAngleX = (float) Math.toRadians(speed * 240f * (float) Math.sin(Math.toRadians(age % 360) * 24F));
   }

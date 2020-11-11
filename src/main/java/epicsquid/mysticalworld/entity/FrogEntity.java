@@ -5,7 +5,9 @@ import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,8 +16,9 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
 import java.util.EnumSet;
@@ -25,7 +28,6 @@ public class FrogEntity extends AnimalEntity {
 
   public FrogEntity(EntityType<? extends FrogEntity> type, World worldIn) {
     super(type, worldIn);
-//    setSize(0.5f, 0.5f);
     this.experienceValue = 2;
   }
 
@@ -47,8 +49,8 @@ public class FrogEntity extends AnimalEntity {
     @Override
     public void startExecuting() {
       float ang = frog.rand.nextFloat() * (float) Math.PI * 2.0f;
-      frog.setMotion(new Vec3d(Math.sin(ang) * 0.25, 0.375 + 0.125 * frog.rand.nextFloat(), Math.cos(ang) * 0.25));
-      frog.getLookController().setLookPosition(frog.posX + frog.getMotion().x * 60f, frog.posY, frog.posZ + frog.getMotion().z * 60f, frog.getHorizontalFaceSpeed(), frog.getVerticalFaceSpeed());
+      frog.setMotion(new Vector3d(Math.sin(ang) * 0.25, 0.375 + 0.125 * frog.rand.nextFloat(), Math.cos(ang) * 0.25));
+      frog.getLookController().setLookPosition(frog.getPosX() + frog.getMotion().x * 60f, frog.getPosY(), frog.getPosZ() + frog.getMotion().z * 60f, frog.getHorizontalFaceSpeed(), frog.getVerticalFaceSpeed());
     }
   }
 
@@ -97,17 +99,14 @@ public class FrogEntity extends AnimalEntity {
     }
   }
 
-  @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
-    getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 6.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.5d);
   }
 
   @Override
   @Nonnull
-  public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-    return ModEntities.FROG.get().create(ageable.world);
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
+    return ModEntities.FROG.get().create(world);
   }
 
   @Override

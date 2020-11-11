@@ -8,7 +8,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -21,9 +23,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class SpiritBeetleEntity extends AnimalEntity implements IFlyingAnimal {
   public SpiritBeetleEntity(EntityType<? extends SpiritBeetleEntity> type, World worldIn) {
@@ -74,18 +76,13 @@ public class SpiritBeetleEntity extends AnimalEntity implements IFlyingAnimal {
     }
   }
 
-  @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-    getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
-    getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-    getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(0.6000000059604645D);
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 15.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15d).createMutableAttribute(Attributes.FLYING_SPEED, 0.6d);
   }
 
   @Override
-  @Nullable
-  public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
+  @Nonnull
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     return null;
   }
 

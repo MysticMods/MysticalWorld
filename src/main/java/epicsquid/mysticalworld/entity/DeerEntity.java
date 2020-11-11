@@ -3,6 +3,8 @@ package epicsquid.mysticalworld.entity;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +16,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
 
@@ -23,7 +26,6 @@ public class DeerEntity extends AnimalEntity {
 
   public DeerEntity(EntityType<? extends DeerEntity> type, World world) {
     super(type, world);
-//    setSize(1.0f, 1.0f);
     this.experienceValue = 3;
   }
 
@@ -51,16 +53,13 @@ public class DeerEntity extends AnimalEntity {
     this.rotationYaw = this.rotationYawHead;
   }
 
-  @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
-    getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 15.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d);
   }
 
   @Override
   @Nonnull
-  public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     return ModEntities.DEER.get().create(ageable.world);
   }
 

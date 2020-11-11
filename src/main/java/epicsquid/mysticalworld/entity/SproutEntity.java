@@ -5,6 +5,8 @@ import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.init.ModSounds;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,6 +19,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -26,19 +29,18 @@ public class SproutEntity extends AnimalEntity {
 
   public SproutEntity(EntityType<? extends SproutEntity> type, World world) {
     super(type, world);
-//		setSize(0.5f, 1.0f);
     this.experienceValue = 3;
   }
 
-  @Nullable
   @Override
-  public AgeableEntity createChild(AgeableEntity ageable) {
+  @Nonnull
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     SproutEntity entity = ModEntities.SPROUT.get().create(ageable.world);
     if (entity != null) {
       entity.setVariant(entity.getVariant());
     }
 
-    return null;
+    return entity;
   }
 
   @Override
@@ -81,11 +83,8 @@ public class SproutEntity extends AnimalEntity {
     goalSelector.addGoal(7, new LookRandomlyGoal(this));
   }
 
-  @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-    getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 8.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d);
   }
 
   @Override

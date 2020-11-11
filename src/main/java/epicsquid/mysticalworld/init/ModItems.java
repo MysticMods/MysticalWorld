@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.init;
 
+import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import epicsquid.mysticalworld.MWTags;
@@ -97,7 +98,7 @@ public class ModItems {
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapelessRecipe(ModItems.ENCYCLOPEDIA.get(), 1)
           .addIngredient(Items.BOOK)
           .addIngredient(MWTags.Items.AUBERGINE)
-          .addCriterion("has_aubergine", p.hasItem(MWTags.Items.AUBERGINE))
+          .addCriterion("has_aubergine", RegistrateRecipeProvider.hasItem(MWTags.Items.AUBERGINE))
           .build(p))
       .register();
 
@@ -137,7 +138,7 @@ public class ModItems {
           .patternLine("XXX")
           .key('X', MWTags.Items.SILVER_INGOT)
           .key('H', ModItems.NAUTILUS_HORN.get())
-          .addCriterion("has_horn", p.hasItem(ModItems.NAUTILUS_HORN.get()))
+          .addCriterion("has_horn", RegistrateRecipeProvider.hasItem(ModItems.NAUTILUS_HORN.get()))
           .build(p))
       .model((ctx, p) -> p.withExistingParent(p.name(ModItems.GLISTERING_HORN), "item/handheld").texture("layer0", p.itemTexture(ModItems.NAUTILUS_HORN)))
       .register();
@@ -151,7 +152,7 @@ public class ModItems {
           .key('A', ModItems.ANTLERS.get())
           .key('W', ItemTags.WOOL)
           .key('S', Tags.Items.STRING)
-          .addCriterion("has_antlers", p.hasItem(ModItems.ANTLERS.get()))
+          .addCriterion("has_antlers", RegistrateRecipeProvider.hasItem(ModItems.ANTLERS.get()))
           .build(p))
       .register();
 
@@ -164,7 +165,7 @@ public class ModItems {
           .key('C', ModItems.CARAPACE.get())
           .key('W', ItemTags.PLANKS)
           .key('S', Tags.Items.RODS_WOODEN)
-          .addCriterion("has_carapace", p.hasItem(ModItems.CARAPACE.get()))
+          .addCriterion("has_carapace", RegistrateRecipeProvider.hasItem(ModItems.CARAPACE.get()))
           .build(p))
       .register();
 
@@ -180,13 +181,13 @@ public class ModItems {
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 8)
             .addIngredient(ModItems.SILK_COCOON.get())
             .addIngredient(ModItems.SPINDLE.get())
-            .addCriterion("has_cocoon", p.hasItem(ModItems.SILK_COCOON.get()))
+            .addCriterion("has_cocoon", RegistrateRecipeProvider.hasItem(ModItems.SILK_COCOON.get()))
             .build(p, "silk_thread_from_cocoon_with_spindle");
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.STRING, 1)
             .addIngredient(ctx.getEntry())
             .addIngredient(ctx.getEntry())
-            .addCriterion("has_silk_thread", p.hasItem(ModItems.SILK_THREAD.get()))
+            .addCriterion("has_silk_thread", RegistrateRecipeProvider.hasItem(ModItems.SILK_THREAD.get()))
             .build(p, "string_from_two_silk_thread");
 
         // Properly tag Minecraft default recipes
@@ -196,7 +197,7 @@ public class ModItems {
             .patternLine("X S")
             .key('X', Tags.Items.RODS_WOODEN)
             .key('S', Tags.Items.STRING)
-            .addCriterion("has_string", p.hasItem(Tags.Items.STRING))
+            .addCriterion("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
             .build(p);
 
         ShapedRecipeBuilder.shapedRecipe(Items.SCAFFOLDING, 6)
@@ -205,7 +206,7 @@ public class ModItems {
             .patternLine("X X")
             .key('X', Items.BAMBOO)
             .key('S', Tags.Items.STRING)
-            .addCriterion("has_bamboo", p.hasItem(Items.BAMBOO))
+            .addCriterion("has_bamboo", RegistrateRecipeProvider.hasItem(Items.BAMBOO))
             .build(p);
 
         // String -> wool
@@ -213,7 +214,7 @@ public class ModItems {
             .patternLine("XX")
             .patternLine("XX")
             .key('X', Tags.Items.STRING)
-            .addCriterion("has_string", p.hasItem(Tags.Items.STRING))
+            .addCriterion("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
             .build(p);
 
         // Bow
@@ -223,7 +224,7 @@ public class ModItems {
             .patternLine(" XS")
             .key('X', Tags.Items.RODS_WOODEN)
             .key('S', Tags.Items.STRING)
-            .addCriterion("has_string", p.hasItem(Tags.Items.STRING))
+            .addCriterion("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
             .build(p);
 
         // Loom
@@ -232,7 +233,7 @@ public class ModItems {
             .patternLine("XX")
             .key('X', ItemTags.PLANKS)
             .key('S', Tags.Items.STRING)
-            .addCriterion("has_string", p.hasItem(Tags.Items.STRING))
+            .addCriterion("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
             .build(p);
 
         // Crossbow
@@ -244,8 +245,8 @@ public class ModItems {
             .key('S', Tags.Items.STRING)
             .key('I', Tags.Items.INGOTS_IRON)
             .key('T', Items.TRIPWIRE_HOOK)
-            .addCriterion("has_string", p.hasItem(Tags.Items.STRING))
-            .addCriterion("has_iron", p.hasItem(Tags.Items.INGOTS_IRON))
+            .addCriterion("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
+            .addCriterion("has_iron", RegistrateRecipeProvider.hasItem(Tags.Items.INGOTS_IRON))
             .build(p);
 
         // Lead
@@ -255,7 +256,7 @@ public class ModItems {
             .patternLine("  S")
             .key('S', Tags.Items.STRING)
             .key('B', Tags.Items.SLIMEBALLS)
-            .addCriterion("has_slime", p.hasItem(Tags.Items.SLIMEBALLS))
+            .addCriterion("has_slime", RegistrateRecipeProvider.hasItem(Tags.Items.SLIMEBALLS))
             .build(p);
 
         // Book
@@ -264,7 +265,7 @@ public class ModItems {
             .addIngredient(Items.PAPER)
             .addIngredient(Items.PAPER)
             .addIngredient(Tags.Items.STRING)
-            .addCriterion("has_string", p.hasItem(Tags.Items.STRING))
+            .addCriterion("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
             .build(p, new ResourceLocation(MysticalWorld.MODID, "shapeless_book_with_string"));
 
         ShapedRecipeBuilder.shapedRecipe(Items.BOOK, 1)
@@ -272,7 +273,7 @@ public class ModItems {
             .patternLine("PS")
             .key('P', Items.PAPER)
             .key('S', Tags.Items.STRING)
-            .addCriterion("has_string", p.hasItem(Tags.Items.STRING))
+            .addCriterion("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
             .build(p, new ResourceLocation(MysticalWorld.MODID, "shaped_book_with_string"));
       })
       .register();
@@ -286,7 +287,7 @@ public class ModItems {
           .key('S', net.minecraftforge.common.Tags.Items.RODS_WOODEN)
           .key('X', ItemTags.WOODEN_SLABS)
           .key('T', Items.TRIPWIRE_HOOK)
-          .addCriterion("has_slab", p.hasItem(ItemTags.WOODEN_SLABS))
+          .addCriterion("has_slab", RegistrateRecipeProvider.hasItem(ItemTags.WOODEN_SLABS))
           .build(p))
       .register();
 
@@ -347,7 +348,7 @@ public class ModItems {
 
   public static RegistryEntry<Item> STUFFED_AUBERGINE = REGISTRATE.item("stuffed_aubergine", Item::new)
       .properties(o -> o.food(ModFoods.STUFFED_AUBERGINE))
-      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapelessRecipe(ModItems.STUFFED_AUBERGINE.get(), 1).addIngredient(ModItems.COOKED_AUBERGINE.get()).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.COOKED_VEGETABLES).addCriterion("has_cooked_aubergine", p.hasItem(ModItems.COOKED_AUBERGINE.get())).build(p))
+      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapelessRecipe(ModItems.STUFFED_AUBERGINE.get(), 1).addIngredient(ModItems.COOKED_AUBERGINE.get()).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.VEGETABLES).addIngredient(MWTags.Items.COOKED_VEGETABLES).addCriterion("has_cooked_aubergine", RegistrateRecipeProvider.hasItem(ModItems.COOKED_AUBERGINE.get())).build(p))
       .register();
 
   public static RegistryEntry<Item> RAW_SQUID = REGISTRATE.item("raw_squid", Item::new)
@@ -367,7 +368,7 @@ public class ModItems {
           .key('C', ModItems.COOKED_SQUID.get())
           .key('A', MWTags.Items.GEMS)
           .key('E', net.minecraftforge.common.Tags.Items.GEMS_EMERALD)
-          .addCriterion("has_squid", p.hasItem(ModItems.COOKED_SQUID.get()))
+          .addCriterion("has_squid", RegistrateRecipeProvider.hasItem(ModItems.COOKED_SQUID.get()))
           .build(p))
       .register();
 
@@ -415,7 +416,7 @@ public class ModItems {
           .patternLine("BBB")
           .key('P', Items.SEA_PICKLE)
           .key('B', Items.GLASS_BOTTLE)
-          .addCriterion("has_sea_pickle", p.hasItem(Items.SEA_PICKLE))
+          .addCriterion("has_sea_pickle", RegistrateRecipeProvider.hasItem(Items.SEA_PICKLE))
           .build(p))
       .register();
 
@@ -431,10 +432,10 @@ public class ModItems {
           .key('P', Items.APPLE)
           .key('B', Items.GLASS_BOTTLE)
           .key('W', Items.WATER_BUCKET)
-          .addCriterion("has_aubergine", p.hasItem(MWTags.Items.AUBERGINE))
-          .addCriterion("has_beetroot", p.hasItem(Items.BEETROOT))
-          .addCriterion("has_carrot", p.hasItem(Items.CARROT))
-          .addCriterion("has_apple", p.hasItem(Items.APPLE))
+          .addCriterion("has_aubergine", RegistrateRecipeProvider.hasItem(MWTags.Items.AUBERGINE))
+          .addCriterion("has_beetroot", RegistrateRecipeProvider.hasItem(Items.BEETROOT))
+          .addCriterion("has_carrot", RegistrateRecipeProvider.hasItem(Items.CARROT))
+          .addCriterion("has_apple", RegistrateRecipeProvider.hasItem(Items.APPLE))
           .build(p))
       .register();
 
@@ -448,8 +449,8 @@ public class ModItems {
           .key('A', MWTags.Items.AUBERGINE)
           .key('B', Items.BOWL)
           .key('K', Items.KELP)
-          .addCriterion("has_aubergine", p.hasItem(MWTags.Items.AUBERGINE))
-          .addCriterion("has_kelp", p.hasItem(Items.KELP))
+          .addCriterion("has_aubergine", RegistrateRecipeProvider.hasItem(MWTags.Items.AUBERGINE))
+          .addCriterion("has_kelp", RegistrateRecipeProvider.hasItem(Items.KELP))
           .build(p))
       .register();
 
@@ -462,8 +463,8 @@ public class ModItems {
           .key('A', Items.BEETROOT)
           .key('B', Items.BOWL)
           .key('K', Items.KELP)
-          .addCriterion("has_beetroot", p.hasItem(Items.BEETROOT))
-          .addCriterion("has_kelp", p.hasItem(Items.KELP))
+          .addCriterion("has_beetroot", RegistrateRecipeProvider.hasItem(Items.BEETROOT))
+          .addCriterion("has_kelp", RegistrateRecipeProvider.hasItem(Items.KELP))
           .build(p))
       .register();
 
@@ -476,8 +477,8 @@ public class ModItems {
           .key('D', Items.DANDELION)
           .key('C', Items.CACTUS)
           .key('B', Items.BOWL)
-          .addCriterion("has_dandelion", p.hasItem(Items.DANDELION))
-          .addCriterion("has_cactus", p.hasItem(Items.CACTUS))
+          .addCriterion("has_dandelion", RegistrateRecipeProvider.hasItem(Items.DANDELION))
+          .addCriterion("has_cactus", RegistrateRecipeProvider.hasItem(Items.CACTUS))
           .build(p))
       .register();
 
@@ -490,8 +491,8 @@ public class ModItems {
           .key('D', Items.DANDELION)
           .key('C', Items.CORNFLOWER)
           .key('B', Items.BOWL)
-          .addCriterion("has_dandelion", p.hasItem(Items.DANDELION))
-          .addCriterion("has_cornflower", p.hasItem(Items.CORNFLOWER))
+          .addCriterion("has_dandelion", RegistrateRecipeProvider.hasItem(Items.DANDELION))
+          .addCriterion("has_cornflower", RegistrateRecipeProvider.hasItem(Items.CORNFLOWER))
           .build(p))
       .register();
 
@@ -505,7 +506,7 @@ public class ModItems {
           .key('B', Items.BOWL)
           .key('L', Items.ALLIUM)
           .key('M', Ingredient.fromItems(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM))
-          .addCriterion("has_cooked_aubergine", p.hasItem(ModItems.COOKED_AUBERGINE.get()))
+          .addCriterion("has_cooked_aubergine", RegistrateRecipeProvider.hasItem(ModItems.COOKED_AUBERGINE.get()))
           .build(p))
       .register();
 
@@ -518,7 +519,7 @@ public class ModItems {
           .key('W', Items.ROTTEN_FLESH)
           .key('A', Items.APPLE)
           .key('L', MWTags.Items.LEAD_INGOT)
-          .addCriterion("has_apple", p.hasItem(Items.APPLE))
+          .addCriterion("has_apple", RegistrateRecipeProvider.hasItem(Items.APPLE))
           .build(p))
       .register();
 

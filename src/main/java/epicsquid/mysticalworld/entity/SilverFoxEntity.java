@@ -3,7 +3,12 @@ package epicsquid.mysticalworld.entity;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModSounds;
-import net.minecraft.entity.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.GhastEntity;
@@ -21,11 +26,9 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -38,7 +41,6 @@ public class SilverFoxEntity extends TameableEntity {
 
   public SilverFoxEntity(EntityType<? extends SilverFoxEntity> type, World worldIn) {
     super(type, worldIn);
-//    setSize(0.75f, 0.75f);
     setTamed(false);
     this.experienceValue = 5;
   }
@@ -62,11 +64,10 @@ public class SilverFoxEntity extends TameableEntity {
 
   @Override
   protected void registerGoals() {
-    this.sitGoal = new SitGoal(this);
     this.sleepGoal = new SleepGoal(this);
     goalSelector.addGoal(0, new SwimGoal(this));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-    goalSelector.addGoal(2, this.sitGoal);
+    goalSelector.addGoal(2, new SitGoal(this));
     goalSelector.addGoal(2, this.sleepGoal);
     goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.CHICKEN), false));
     goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
@@ -83,18 +84,8 @@ public class SilverFoxEntity extends TameableEntity {
     targetSelector.addGoal(4, new NonTamedTargetGoal<>(this, AnimalEntity.class, false, e -> e instanceof ChickenEntity || e instanceof RabbitEntity));
   }
 
-  @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    if (this.isTamed()) {
-      getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
-      getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-      getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5D);
-    } else {
-      getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-      getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
-      getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2D);
-    }
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 10.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3d).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2d);
   }
 
   @Override
@@ -181,9 +172,7 @@ public class SilverFoxEntity extends TameableEntity {
         setSleeping(false);
       }
 
-      if (sitGoal != null) {
-        sitGoal.setSitting(false);
-      }
+      this.func_233687_w_(false);
 
       if (entity != null && !(entity instanceof PlayerEntity) && !(entity instanceof ArrowEntity)) {
         amount = (amount + 1.0F) / 2.0F;
@@ -195,7 +184,7 @@ public class SilverFoxEntity extends TameableEntity {
 
   @Override
   public boolean attackEntityAsMob(Entity entityIn) {
-    boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+    boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) getAttributeValue(Attributes.ATTACK_DAMAGE)));
 
     if (flag) {
       applyEnchantments(this, entityIn);
@@ -208,16 +197,18 @@ public class SilverFoxEntity extends TameableEntity {
   @Override
   public void setTamed(boolean tamed) {
     super.setTamed(tamed);
-
     if (tamed) {
-      getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+      this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0D);
+      this.setHealth(20.0F);
     } else {
-      getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+      this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10.0D);
     }
+
+    this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(5.0D);
   }
 
   @Override
-  public boolean processInteract(PlayerEntity player, Hand hand) {
+  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
     ItemStack stack = player.getHeldItem(hand);
 
     if (isTamed()) {
@@ -229,13 +220,13 @@ public class SilverFoxEntity extends TameableEntity {
             }
 
             heal((float) stack.getItem().getFood().getHealing());
-            return true;
+            return ActionResultType.SUCCESS;
           }
         }
       }
 
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(stack)) {
-        this.sitGoal.setSitting(!this.isSitting());
+        this.func_233687_w_(!this.isSitting());
         this.isJumping = false;
         this.navigator.clearPath();
         this.setAttackTarget(null);
@@ -250,18 +241,17 @@ public class SilverFoxEntity extends TameableEntity {
           this.setTamedBy(player);
           this.navigator.clearPath();
           this.setAttackTarget(null);
-          this.sitGoal.setSitting(true);
+          this.func_233687_w_(true);
           this.setHealth(20.0F);
           this.world.setEntityState(this, (byte) 7);
         } else {
           this.world.setEntityState(this, (byte) 6);
         }
       }
-
-      return true;
+      return ActionResultType.SUCCESS;
     }
 
-    return super.processInteract(player, hand);
+    return super.func_230254_b_(player, hand);
   }
 
   public boolean isAngry() {
@@ -321,7 +311,7 @@ public class SilverFoxEntity extends TameableEntity {
 
   @Override
   @Nonnull
-  public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     return ModEntities.SILVER_FOX.get().create(ageable.world);
   }
 

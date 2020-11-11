@@ -8,6 +8,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -25,8 +27,9 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
 public class SilkwormEntity extends AnimalEntity {
   public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/silkworm");
@@ -51,9 +54,9 @@ public class SilkwormEntity extends AnimalEntity {
     return this.leafTarget;
   }
 
-  @Nullable
   @Override
-  public AgeableEntity createChild(AgeableEntity ageable) {
+  @Nonnull
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     return null;
   }
 
@@ -97,7 +100,7 @@ public class SilkwormEntity extends AnimalEntity {
     }
     this.heal(1f);
     if (shouldPlaySound()) {
-      world.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_LLAMA_EAT, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() * 0.02f);
+      world.playSound(null, getPosX(), getPosY(), getPosZ(), SoundEvents.ENTITY_LLAMA_EAT, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() * 0.02f);
       lastTickPlayed = ticksExisted;
     }
   }
@@ -121,7 +124,7 @@ public class SilkwormEntity extends AnimalEntity {
   }
 
   @Override
-  public boolean processInteract(PlayerEntity player, Hand hand) {
+  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
     if (!player.world.isRemote) {
       ItemStack itemstack = player.getHeldItem(hand);
 
@@ -131,11 +134,11 @@ public class SilkwormEntity extends AnimalEntity {
         }
         eatLeaves();
 
-        return true;
+        return ActionResultType.SUCCESS;
       }
     }
 
-    return super.processInteract(player, hand);
+    return super.func_230254_b_(player, hand);
   }
 
   @Override
@@ -143,11 +146,8 @@ public class SilkwormEntity extends AnimalEntity {
     return 0.1F;
   }
 
-  @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-    this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 10.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15d);
   }
 
   // TODO: prevent crop trampling
@@ -221,9 +221,9 @@ public class SilkwormEntity extends AnimalEntity {
       this.playSound(this.getFallSound(i), 1.0F, 1.0F);
       // They take no fall damage
       // this.attackEntityFrom(DamageSource.FALL, (float) i);
-      int j = MathHelper.floor(this.posX);
-      int k = MathHelper.floor(this.posY - 0.2);
-      int l = MathHelper.floor(this.posZ);
+      int j = MathHelper.floor(this.getPosX());
+      int k = MathHelper.floor(this.getPosY() - 0.2);
+      int l = MathHelper.floor(this.getPosZ());
       BlockState iblockstate = this.world.getBlockState(new BlockPos(j, k, l));
 
       if (iblockstate.getMaterial() != Material.AIR) {
@@ -254,7 +254,7 @@ public class SilkwormEntity extends AnimalEntity {
         int quantity = Math.max(1, Math.min(5, (rand.nextInt(Math.max(getLeavesConsumed() % 8, 1)))));
         this.entityDropItem(ModItems.SILK_COCOON.get(), quantity);
         this.resetLeaves();
-        world.playSound(null, posX, posY, posZ, net.minecraft.util.SoundEvents.ENTITY_CHICKEN_EGG, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() - 0.5f);
+        world.playSound(null, getPosX(), getPosY(), getPosZ(), net.minecraft.util.SoundEvents.ENTITY_CHICKEN_EGG, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() - 0.5f);
       }
     } else {
       incSize();

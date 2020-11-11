@@ -19,7 +19,7 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.Vec3d;
+
 import net.minecraftforge.client.model.data.EmptyModelData;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
@@ -38,10 +38,10 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
 
   @Nonnull
   @Override
-  public Vec3d getRenderOffset(EnderminiEntity p_225627_1_, float p_225627_2_) {
+  public Vector3d getRenderOffset(EnderminiEntity p_225627_1_, float p_225627_2_) {
     if (p_225627_1_.isScreaming()) {
       double d0 = 0.02D;
-      return new Vec3d(this.rnd.nextGaussian() * 0.02D, 0.0D, this.rnd.nextGaussian() * 0.02D);
+      return new Vector3d(this.rnd.nextGaussian() * 0.02D, 0.0D, this.rnd.nextGaussian() * 0.02D);
     } else {
       return super.getRenderOffset(p_225627_1_, p_225627_2_);
     }

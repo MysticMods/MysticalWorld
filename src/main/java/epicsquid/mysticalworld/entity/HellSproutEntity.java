@@ -8,6 +8,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NetherWartBlock;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,6 +23,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 
@@ -41,15 +44,15 @@ public class HellSproutEntity extends AnimalEntity {
   public void livingTick() {
     if (this.world.isRemote) {
       if (rand.nextInt(7) == 0) {
-        this.world.addParticle((rand.nextInt(3) == 0 ? ParticleTypes.SMOKE : ParticleTypes.FLAME), this.posX + (this.rand.nextDouble() - 0.5D) * 0.5, this.posY + 0.3 + (this.rand.nextDouble() - 0.5D) * 0.5, this.posZ + (this.rand.nextDouble() - 0.5D) * 0.3, 0, 0, 0);
+        this.world.addParticle((rand.nextInt(3) == 0 ? ParticleTypes.SMOKE : ParticleTypes.FLAME), this.getPosX() + (this.rand.nextDouble() - 0.5D) * 0.5, this.getPosY() + 0.3 + (this.rand.nextDouble() - 0.5D) * 0.5, this.getPosZ() + (this.rand.nextDouble() - 0.5D) * 0.3, 0, 0, 0);
       }
     }
     super.livingTick();
   }
 
-  @Nullable
   @Override
-  public AgeableEntity createChild(AgeableEntity ageable) {
+  @Nonnull
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     return ModEntities.HELL_SPROUT.get().create(ageable.world);
   }
 
@@ -85,11 +88,8 @@ public class HellSproutEntity extends AnimalEntity {
     return stack.getItem() == ModItems.COOKED_AUBERGINE.get();
   }
 
-  @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-    getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 8.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d);
   }
 
   @Override
@@ -116,7 +116,7 @@ public class HellSproutEntity extends AnimalEntity {
         if (ConfigManager.HELL_SPROUT_CONFIG.getGrowChance() == 0) {
           return false;
         }
-        BlockPos pos = new BlockPos(posX, Math.round(posY), posZ);
+        BlockPos pos = new BlockPos(getPosX(), Math.round(getPosY()), getPosZ());
         BlockState state = world.getBlockState(pos);
         BlockState state2 = world.getBlockState(pos.down());
         if (canPlaceBlock(world, pos, state, state2)) {
@@ -131,10 +131,10 @@ public class HellSproutEntity extends AnimalEntity {
     @Override
     public void startExecuting() {
       Random random = getRNG();
-      BlockPos pos = new BlockPos(posX, Math.round(posY), posZ);
+      BlockPos pos = new BlockPos(getPosX(), Math.round(getPosY()), getPosZ());
       BlockState netherCrop = Blocks.NETHER_WART.getDefaultState().with(NetherWartBlock.AGE, random.nextInt(3) + random.nextInt(5) == 0 ? 1 : 0);
 
-      if (!ForgeEventFactory.onBlockPlace(HellSproutEntity.this, new BlockSnapshot(world, pos, netherCrop), Direction.UP)) {
+      if (!ForgeEventFactory.onBlockPlace(HellSproutEntity.this, BlockSnapshot.create(world.getDimensionKey(), world, pos), Direction.UP)) {
         world.setBlockState(pos, netherCrop, 3);
       }
     }

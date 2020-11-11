@@ -1,29 +1,23 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.api.Capabilities;
-import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
-import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.init.ModEntities;
-import epicsquid.mysticalworld.network.Networking;
-import epicsquid.mysticalworld.network.ShoulderRide;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
 
@@ -31,17 +25,15 @@ public class BeetleEntity extends TameableEntity {
 
   public BeetleEntity(EntityType<? extends BeetleEntity> type, World worldIn) {
     super(type, worldIn);
-//    setSize(0.75f, 0.75f);
     this.experienceValue = 3;
   }
 
   @Override
   protected void registerGoals() {
-    this.sitGoal = new SitGoal(this);
     goalSelector.addGoal(0, new SwimGoal(this));
     goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-    goalSelector.addGoal(2, this.sitGoal);
+    goalSelector.addGoal(2, new SitGoal(this));
     goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.MELON_SLICE), false));
     goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
     goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
@@ -55,9 +47,10 @@ public class BeetleEntity extends TameableEntity {
   }
 
   @Override
-  public boolean processInteract(PlayerEntity player, Hand hand) {
-    if (super.processInteract(player, hand)) {
-      return true;
+  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
+    ActionResultType type = super.func_230254_b_(player, hand);
+    if (type != ActionResultType.PASS) {
+      return type;
     }
 
     ItemStack itemstack = player.getHeldItem(hand);
@@ -66,7 +59,7 @@ public class BeetleEntity extends TameableEntity {
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
         if (itemstack.isEmpty() && player.isSneaking()) {
           // TODO Temporarily disabled
-          if (!world.isRemote && false) {
+/*          if (!world.isRemote && false) {
             // Try some shoulder surfing!
             LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
             if (laycap.isPresent()) {
@@ -89,10 +82,10 @@ public class BeetleEntity extends TameableEntity {
               } else {
                 player.sendStatusMessage(new TranslationTextComponent("message.shoulder.occupied").setStyle(new Style().setColor(TextFormatting.GREEN).setBold(true)), true);
               }
-            }
-          }
+            }*/
+          //}
         } else {
-          this.sitGoal.setSitting(!this.isSitting());
+          this.func_233687_w_(!this.isSitting());
           this.isJumping = false;
           this.navigator.clearPath();
           this.setAttackTarget(null);
@@ -107,28 +100,26 @@ public class BeetleEntity extends TameableEntity {
         if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
           this.setTamedBy(player);
           this.navigator.clearPath();
-          this.sitGoal.setSitting(true);
+          this.func_233687_w_(true);
           this.world.setEntityState(this, (byte) 7);
         } else {
           this.world.setEntityState(this, (byte) 6);
         }
       }
 
-      return true;
+      return ActionResultType.SUCCESS;
     }
 
-    return false;
+    return ActionResultType.PASS;
+  }
+
+  public static AttributeModifierMap.MutableAttribute attributes() {
+    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 10.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15d);
   }
 
   @Override
-  protected void registerAttributes() {
-    super.registerAttributes();
-    getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-    getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
-  }
-
-  @Override
-  public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
+  @Nonnull
+  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     return ModEntities.BEETLE.get().create(ageable.world);
   }
 
