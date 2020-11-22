@@ -3,6 +3,9 @@ package epicsquid.mysticalworld.config;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import epicsquid.mysticalworld.init.ModBlocks;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.nio.file.Path;
@@ -28,7 +31,7 @@ public class ConfigManager {
   public static MobConfig OWL_CONFIG;
   public static SilkwormConfig SILKWORM_CONFIG;
   public static HatConfig HAT_CONFIG;
-  public static FeatureConfig DEAD_TREE_CONFIG;
+  public static TreeConfig DEAD_TREE_CONFIG;
 
   static {
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
@@ -41,7 +44,7 @@ public class ConfigManager {
     HAT_CONFIG.apply(COMMON_BUILDER);
     COMMON_BUILDER.pop();
     COMMON_BUILDER.comment("Feature Spawn Configuration").push("feature_spawns");
-    DEAD_TREE_CONFIG = new FeatureConfig("dead_tree", 0.04, Arrays.asList("SAVANNA", "DEAD", "FOREST", "SANDY", "WASTELAND"));
+    DEAD_TREE_CONFIG = new TreeConfig(0.04, Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.WASTELAND));
     DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
     COMMON_BUILDER.pop();
 
@@ -49,13 +52,13 @@ public class ConfigManager {
   }
 
   private static void registerOreGeneration() {
-    List<Integer> defaultDimensions = Collections.singletonList(0);
-/*    ORE_CONFIG.add(new OreConfig("Copper", 8, 32, 76, 12, defaultDimensions, () -> ModBlocks.COPPER_ORE));
+    List<RegistryKey<World>> defaultDimensions = Collections.singletonList(World.OVERWORLD);
+    ORE_CONFIG.add(new OreConfig("Copper", 8, 32, 76, 12, defaultDimensions, () -> ModBlocks.COPPER_ORE));
     ORE_CONFIG.add(new OreConfig("Tin", 8, 24, 64, 8, defaultDimensions, () -> ModBlocks.TIN_ORE));
     ORE_CONFIG.add(new OreConfig("Silver", 4, 0, 24, 8, defaultDimensions, () -> ModBlocks.SILVER_ORE));
     ORE_CONFIG.add(new OreConfig("Lead", 4, 8, 32, 8, defaultDimensions, () -> ModBlocks.LEAD_ORE));
     ORE_CONFIG.add(new OreConfig("Quicksilver", 3, 0, 16, 4, defaultDimensions, () -> ModBlocks.QUICKSILVER_ORE));
-    ORE_CONFIG.add(new OreConfig("Amethyst", 4, 0, 24, 3, defaultDimensions, () -> ModBlocks.AMETHYST_ORE));*/
+    ORE_CONFIG.add(new OreConfig("Amethyst", 4, 0, 24, 3, defaultDimensions, () -> ModBlocks.AMETHYST_ORE));
 
     ORE_CONFIG.forEach(ore -> ore.apply(COMMON_BUILDER));
   }
