@@ -20,7 +20,7 @@ import noobanidus.libs.noobutil.setup.ShadedClientSetup;
 @SuppressWarnings("deprecation")
 public class ClientSetup {
   public static void init(FMLClientSetupEvent event) {
-    DeferredWorkQueue.runLater(() -> {
+    event.enqueueWork(() -> {
       RenderType rendertype = RenderType.getCutoutMipped();
       RenderTypeLookup.setRenderLayer(ModBlocks.AUBERGINE_CROP.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);

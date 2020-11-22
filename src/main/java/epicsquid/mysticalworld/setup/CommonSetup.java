@@ -31,7 +31,7 @@ public class CommonSetup {
   }
 
   public void init(FMLCommonSetupEvent event) {
-    DeferredWorkQueue.runLater(() -> {
+    event.enqueueWork(() -> {
       ModCompost.init();
       ModEntities.registerEntities();
       Networking.INSTANCE.registerMessages();
