@@ -73,6 +73,7 @@ public class FrogEntity extends AnimalEntity {
     goalSelector.addGoal(2, new BreedGoal(this, 0.75D));
     goalSelector.addGoal(3, new TemptGoal(this, 0.75D, Ingredient.fromItems(Blocks.BROWN_MUSHROOM), false));
     goalSelector.addGoal(4, new FollowParentGoal(this, 0.75D));
+    goalSelector.addGoal(4, new GoalFrogJump(this));
     goalSelector.addGoal(5, new RandomWalkingGoal(this, 0.5D));
     goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
     goalSelector.addGoal(7, new LookRandomlyGoal(this));
