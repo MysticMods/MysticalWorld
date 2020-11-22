@@ -8,8 +8,7 @@ import epicsquid.mysticalworld.events.global.GrassHandler;
 import epicsquid.mysticalworld.events.mappings.Remaps;
 import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.setup.ClientInit;
-import epicsquid.mysticalworld.setup.ClientSetup;
-import epicsquid.mysticalworld.setup.ModSetup;
+import epicsquid.mysticalworld.setup.CommonSetup;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -52,7 +51,7 @@ public class MysticalWorld {
     }
   };
 
-  public static ModSetup setup = new ModSetup();
+  public static CommonSetup setup = new CommonSetup();
 
   public MysticalWorld() {
     ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);

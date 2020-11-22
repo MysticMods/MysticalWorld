@@ -61,10 +61,12 @@ public class AssortedSeedsRecipe extends ShapelessRecipe {
   }
 
   public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<AssortedSeedsRecipe> {
+    @Override
     public AssortedSeedsRecipe read(ResourceLocation recipeId, JsonObject json) {
       return new AssortedSeedsRecipe();
     }
 
+    @Override
     public AssortedSeedsRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
       String s = buffer.readString(32767);
       int i = buffer.readVarInt();
@@ -72,6 +74,7 @@ public class AssortedSeedsRecipe extends ShapelessRecipe {
       return new AssortedSeedsRecipe();
     }
 
+    @Override
     public void write(PacketBuffer buffer, AssortedSeedsRecipe recipe) {
       buffer.writeString("seeds");
       buffer.writeVarInt(0);

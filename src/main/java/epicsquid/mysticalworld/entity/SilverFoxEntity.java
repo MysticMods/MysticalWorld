@@ -278,6 +278,7 @@ public class SilverFoxEntity extends TameableEntity {
     }
   }
 
+  @Override
   public void setSleeping(boolean sleeping) {
     this.dataManager.set(SLEEPING, sleeping);
   }

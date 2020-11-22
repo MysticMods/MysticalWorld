@@ -1,9 +1,16 @@
 package epicsquid.mysticalworld.config;
 
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MobConfig implements IConfig {
 
@@ -38,9 +45,9 @@ public class MobConfig implements IConfig {
     return configMax.get();
   }
 
-  public List<String> getBiomes() {
+  public List<BiomeDictionary.Type> getBiomes() {
     String values = configBiomes.get();
-    return Arrays.asList(values.split(","));
+    return Stream.of(values.split(",")).map(o -> BiomeDictionary.Type.getType(o)).collect(Collectors.toList());
   }
 
   public boolean shouldRegister() {
