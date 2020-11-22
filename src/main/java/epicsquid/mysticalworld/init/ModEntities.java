@@ -3,7 +3,6 @@ package epicsquid.mysticalworld.init;
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
-import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.loot.conditions.IsColor;
@@ -28,7 +27,6 @@ import net.minecraft.loot.functions.Smelt;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.*;
 

@@ -1,9 +1,11 @@
 package epicsquid.mysticalworld.world;
 
 import com.mojang.serialization.Codec;
+import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.WorldDecoratingHelper;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -14,13 +16,9 @@ public class DimensionCountPlacement extends Placement<DimensionCountRangeConfig
     super(codec);
   }
 
-  // TODO: Dimensional blacklisting?
-/*  public Stream<BlockPos> getPositions(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generatorIn, Random random, DimensionCountRangeConfig configIn, BlockPos pos) {
-    if (configIn.dimensions.contains(worldIn.getDimension().getType()) && configIn.count > 0) {
-      return getPositions(random, configIn, pos);
-    }
-    return Stream.empty();
-  }*/
+  public static DimensionCountPlacement create () {
+    return new DimensionCountPlacement(DimensionCountRangeConfig.CODEC);
+  }
 
   protected Stream<BlockPos> getPositions(Random random, DimensionCountRangeConfig p_212852_2_, BlockPos pos) {
     return IntStream.range(0, p_212852_2_.count).mapToObj((p_227453_3_) -> {
@@ -33,6 +31,16 @@ public class DimensionCountPlacement extends Placement<DimensionCountRangeConfig
 
   @Override
   public Stream<BlockPos> getPositions(WorldDecoratingHelper helper, Random rand, DimensionCountRangeConfig config, BlockPos pos) {
-    return getPositions(rand, config, pos);
+    if (helper.field_242889_a instanceof ServerWorld) {
+      ServerWorld world = (ServerWorld) helper.field_242889_a;
+      if (config.dimensions.contains(world.getDimensionKey())) {
+        return getPositions(rand, config, pos);
+      } else {
+        return Stream.empty();
+      }
+    } else {
+      MysticalWorld.LOG.debug("WorldDecoratingHelper's ISeedWorld not an instance of ServerWorld");
+      return getPositions(rand, config, pos);
+    }
   }
 }

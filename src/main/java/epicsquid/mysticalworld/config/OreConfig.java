@@ -10,6 +10,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -63,11 +64,11 @@ public class OreConfig implements IConfig {
     return ore.get().get();
   }
 
-  public static List<RegistryKey<World>> storedDimension = null;
+  public static Set<RegistryKey<World>> storedDimension = null;
 
-  public List<RegistryKey<World>> getDimensions() {
+  public Set<RegistryKey<World>> getDimensions() {
     if (storedDimension == null) {
-      storedDimension = configDimensions.get().stream().map(o -> RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(o))).collect(Collectors.toList());
+      storedDimension = configDimensions.get().stream().map(o -> RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(o))).collect(Collectors.toSet());
     }
 
     return storedDimension;
