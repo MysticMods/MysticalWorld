@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "mysticalworld:lead_items"
-  },
-  "result": "mysticalworld:lead_nugget",
-  "experience": 0.15,
-  "cookingtime": 200
-}

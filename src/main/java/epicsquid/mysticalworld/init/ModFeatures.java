@@ -4,10 +4,12 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.config.OreConfig;
-import epicsquid.mysticalworld.world.DimensionCountPlacement;
-import epicsquid.mysticalworld.world.DimensionCountRangeConfig;
-import epicsquid.mysticalworld.world.OreGenTest;
-import epicsquid.mysticalworld.world.SupplierBlockStateProvider;
+import epicsquid.mysticalworld.world.feature.SupplierOreFeature;
+import epicsquid.mysticalworld.world.feature.SupplierOreFeatureConfig;
+import epicsquid.mysticalworld.world.placement.DimensionCountPlacement;
+import epicsquid.mysticalworld.world.placement.DimensionCountRangeConfig;
+import epicsquid.mysticalworld.world.test.OreGenTest;
+import epicsquid.mysticalworld.world.provider.SupplierBlockStateProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -23,6 +25,7 @@ import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
 import java.util.ArrayList;
@@ -34,6 +37,8 @@ import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 public class ModFeatures {
   public static IRuleTestType<OreGenTest> ORE_GEN = IRuleTestType.func_237129_a_("ore_gen", OreGenTest.CODEC);
 
+  public static RegistryEntry<SupplierOreFeature> SUPPLIER_ORE = REGISTRATE.simple("supplier_ore_feature", Feature.class, () -> new SupplierOreFeature(SupplierOreFeatureConfig.CODEC));
+
   private static RegistryEntry<DimensionCountPlacement> DIMENSION_COUNT_PLACEMENT = REGISTRATE.simple("dimension_count_placement", Placement.class, () -> new DimensionCountPlacement(DimensionCountRangeConfig.CODEC));
   public static RegistryEntry<BlockStateProviderType<SupplierBlockStateProvider>> SUPPLIER_STATE_PROVIDER = REGISTRATE.simple("supplier_state_provider", BlockStateProviderType.class, () -> new BlockStateProviderType<>(SupplierBlockStateProvider.CODEC));
 
@@ -41,11 +46,11 @@ public class ModFeatures {
 
   private static List<ConfiguredFeature<?, ?>> ORE_FEATURES = new ArrayList<>();
 
-  private static void generateFeatures() {
+  public static void generateFeatures() {
     for (OreConfig config : ConfigManager.ORE_CONFIG) {
       if (config.getChance() > 0) {
         ConfiguredFeature<?, ?> feat;
-        ORE_FEATURES.add(feat = Feature.ORE.withConfiguration(new OreFeatureConfig(OreGenTest.INSTANCE, config.getOre().getDefaultState(), config.getChance())
+        ORE_FEATURES.add(feat = SUPPLIER_ORE.get().withConfiguration(new SupplierOreFeatureConfig(OreGenTest.INSTANCE, config.getOreKey(), config.getChance())
         ).withPlacement(
             ModFeatures.DIMENSION_COUNT_PLACEMENT.get().configure(new DimensionCountRangeConfig(config.getSize(), config.getMinY(), 0, config.getMaxY() - config.getMinY(), config.getDimensions())
             )
@@ -57,7 +62,6 @@ public class ModFeatures {
   }
 
   public static void load() {
-    generateFeatures();
   }
 
   public static void onBiomeLoad(BiomeLoadingEvent event) {
@@ -68,5 +72,9 @@ public class ModFeatures {
     if (type != null && (ConfigManager.DEAD_TREE_CONFIG.getBiomes().contains(type) || ConfigManager.DEAD_TREE_CONFIG.getBiomes().isEmpty())) {
       event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> CHARRED_TREE);
     }
+  }
+
+  public static void onFeatureRegistration (RegistryEvent.Register<Feature<?>> event) {
+    generateFeatures();
   }
 }

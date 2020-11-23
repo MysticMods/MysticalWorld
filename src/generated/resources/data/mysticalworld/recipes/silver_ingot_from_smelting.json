@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:ores/silver"
-  },
-  "result": "mysticalworld:silver_ingot",
-  "experience": 0.125,
-  "cookingtime": 200
-}

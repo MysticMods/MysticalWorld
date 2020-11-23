@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:thatch"
-  },
-  "result": "mysticalworld:thatch_small_post",
-  "count": 2
-}

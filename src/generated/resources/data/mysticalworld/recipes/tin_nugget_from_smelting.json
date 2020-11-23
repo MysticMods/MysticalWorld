@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "mysticalworld:tin_items"
-  },
-  "result": "mysticalworld:tin_nugget",
-  "experience": 0.15,
-  "cookingtime": 200
-}

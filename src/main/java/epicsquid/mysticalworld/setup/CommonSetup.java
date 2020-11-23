@@ -14,6 +14,7 @@ import epicsquid.mysticalworld.init.ModCompost;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.potions.PotionRecipes;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -72,7 +73,7 @@ public class CommonSetup {
     //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onRightClickBlock);
     MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, true, LootHandler::onLootLoad);
     MinecraftForge.EVENT_BUS.addListener(LootHandler::onLooting);
-    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::attachCapability);
+    MinecraftForge.EVENT_BUS.addGenericListener(Entity.class, CapabilityHandler::attachCapability);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onSquidMilked);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);
   }

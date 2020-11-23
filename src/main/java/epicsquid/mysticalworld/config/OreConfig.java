@@ -64,6 +64,10 @@ public class OreConfig implements IConfig {
     return ore.get().get();
   }
 
+  public ResourceLocation getOreKey () {
+    return ore.get().getId();
+  }
+
   public static Set<RegistryKey<World>> storedDimension = null;
 
   public Set<RegistryKey<World>> getDimensions() {

@@ -5,6 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeTagHandler;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Function;
 
@@ -49,16 +51,12 @@ public class MWTags {
     public static INamedTag<Block> SILVER_STORAGE = compatTag("storage_blocks/silver");
     public static INamedTag<Block> TIN_STORAGE = compatTag("storage_blocks/tin");
 
-    static INamedTag<Block> tag(String modid, String name) {
-      return BlockTags.makeWrapperTag(new ResourceLocation(modid, name).toString());
-    }
-
     static INamedTag<Block> modTag(String name) {
-      return tag(MysticalWorld.MODID, name);
+      return ForgeTagHandler.makeWrapperTag(ForgeRegistries.BLOCKS, new ResourceLocation(MysticalWorld.MODID, name));
     }
 
     static INamedTag<Block> compatTag(String name) {
-      return tag("forge", name);
+      return ForgeTagHandler.makeWrapperTag(ForgeRegistries.BLOCKS, new ResourceLocation("forge", name));
     }
   }
 

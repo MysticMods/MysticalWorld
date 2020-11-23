@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:blackened_stone"
-  },
-  "result": "mysticalworld:blackened_stone_stairs",
-  "count": 1
-}

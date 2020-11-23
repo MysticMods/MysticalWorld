@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:blackened_stone"
-  },
-  "result": "mysticalworld:blackened_stone_wall",
-  "count": 1
-}

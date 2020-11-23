@@ -1,8 +1,0 @@
-{
-  "parent": "block/inner_stairs",
-  "textures": {
-    "side": "mysticalworld:block/copper_block",
-    "bottom": "mysticalworld:block/copper_block",
-    "top": "mysticalworld:block/copper_block"
-  }
-}

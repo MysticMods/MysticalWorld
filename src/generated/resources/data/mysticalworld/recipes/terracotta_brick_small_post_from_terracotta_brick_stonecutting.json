@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:terracotta_brick"
-  },
-  "result": "mysticalworld:terracotta_brick_small_post",
-  "count": 2
-}
