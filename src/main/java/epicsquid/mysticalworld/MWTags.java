@@ -117,32 +117,12 @@ public class MWTags {
     public static INamedTag<Item> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
     public static INamedTag<Item> TERRACOTTA = compatTag("terracotta");
 
-    static INamedTag<Item> tag(String modid, String name) {
-      return ItemTags.makeWrapperTag(new ResourceLocation(modid, name).toString());
-    }
-
     static INamedTag<Item> modTag(String name) {
-      return tag(MysticalWorld.MODID, name);
-    }
-
-    static INamedTag<Item> mcTag(String name) {
-      return tag("minecraft", name);
+      return ForgeTagHandler.makeWrapperTag(ForgeRegistries.ITEMS, new ResourceLocation(MysticalWorld.MODID, name));
     }
 
     static INamedTag<Item> compatTag(String name) {
-      return tag("forge", name);
+      return ForgeTagHandler.makeWrapperTag(ForgeRegistries.ITEMS, new ResourceLocation("forge", name));
     }
-  }
-
-  static <T extends INamedTag<?>> T tag(Function<ResourceLocation, T> creator, String modid, String name) {
-    return creator.apply(new ResourceLocation(modid, name));
-  }
-
-  static <T extends INamedTag<?>> T modTag(Function<ResourceLocation, T> creator, String name) {
-    return tag(creator, MysticalWorld.MODID, name);
-  }
-
-  static <T extends INamedTag<?>> T compatTag(Function<ResourceLocation, T> creator, String name) {
-    return tag(creator, "forge", name);
   }
 }
