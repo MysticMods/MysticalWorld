@@ -14,24 +14,6 @@ import static net.minecraft.tags.ITag.INamedTag;
 
 public class MWTags {
   public static class Blocks extends MWTags {
-    public static INamedTag<Block> LOGS = modTag("logs");
-    public static INamedTag<Block> PLANKS = modTag("planks");
-
-    public static INamedTag<Block> SOFT_STONE = modTag("soft_stone");
-    public static INamedTag<Block> CRACKED_SOFT_STONE = modTag("cracked_stone");
-
-    public static INamedTag<Block> SMOOTH_OBSIDIAN = modTag("smooth_obsidian");
-    public static INamedTag<Block> WEATHERED_OBSIDIAN = modTag("weathered_obsidian");
-
-    public static INamedTag<Block> WOODEN_SLABS = modTag("wooden_slabs");
-    public static INamedTag<Block> WOODEN_STAIRS = modTag("wooden_stairs");
-    public static INamedTag<Block> WOODEN_FENCES = modTag("wooden_fences");
-
-    public static INamedTag<Block> SLABS = modTag("slabs");
-    public static INamedTag<Block> STAIRS = modTag("stairs");
-    public static INamedTag<Block> FENCES = modTag("fences");
-    public static INamedTag<Block> WALLS = modTag("walls");
-
     public static INamedTag<Block> PURPUR = compatTag("purpur");
     public static INamedTag<Block> NETHER_BRICKS = compatTag("nether_bricks");
     public static INamedTag<Block> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
@@ -65,7 +47,7 @@ public class MWTags {
     public static INamedTag<Item> KNIVES = modTag("knives");
     public static INamedTag<Item> GEMS = modTag("gems");
     public static INamedTag<Item> VEGETABLES = compatTag("vegetables");
-    public static INamedTag<Item> CROPS = compatTag("crops");
+/*    public static INamedTag<Item> CROPS = compatTag("crops");*/
     public static INamedTag<Item> COOKED_VEGETABLES = compatTag("cooked_vegetables");
 
     public static INamedTag<Item> AUBERGINE = compatTag("crops/aubergine");
@@ -110,7 +92,7 @@ public class MWTags {
     public static INamedTag<Item> IRON_DUST = compatTag("dusts/iron");
 
     public static INamedTag<Item> SOFT_STONE = modTag("soft_stone");
-    public static INamedTag<Item> SOFT_OBSIDIAN = modTag("soft_obsidian");
+/*    public static INamedTag<Item> SOFT_OBSIDIAN = modTag("soft_obsidian");*/
 
     public static INamedTag<Item> PURPUR = compatTag("purpur");
     public static INamedTag<Item> NETHER_BRICKS = compatTag("nether_bricks");

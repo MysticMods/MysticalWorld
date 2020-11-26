@@ -75,14 +75,6 @@ public class ModTags {
     private Additionals<Item> additional(ITag.INamedTag<Item> tag) {
       return (o) -> provider.getOrCreateBuilder(tag).addTags(o);
     }
-
-    protected void copy(ITag.INamedTag<Block> from, ITag.INamedTag<Item> to) {
-      TagsProvider.Builder<Item> builder = provider.getOrCreateBuilder(to);
-
-      for (Block block : from.getAllElements()) {
-        builder.add(block.asItem());
-      }
-    }
   }
 
   static {
@@ -125,10 +117,10 @@ public class ModTags {
       b.add(MWTags.Items.TIN_ITEMS, ModItems.TIN_SWORD, ModItems.TIN_KNIFE, ModItems.TIN_AXE, ModItems.TIN_HOE, ModItems.TIN_PICKAXE, ModItems.TIN_SHOVEL, ModItems.TIN_BOOTS, ModItems.TIN_CHESTPLATE, ModItems.TIN_HELMET, ModItems.TIN_LEGGINGS, ModItems.TIN_SPEAR);
       b.add(MWTags.Items.LEAD_ITEMS, ModItems.LEAD_SWORD, ModItems.LEAD_KNIFE, ModItems.LEAD_AXE, ModItems.LEAD_HOE, ModItems.LEAD_PICKAXE, ModItems.LEAD_SHOVEL, ModItems.LEAD_BOOTS, ModItems.LEAD_CHESTPLATE, ModItems.LEAD_HELMET, ModItems.LEAD_LEGGINGS, ModItems.LEAD_SPEAR);
 
-      b.copy(MWTags.Blocks.PURPUR, MWTags.Items.PURPUR);
-      b.copy(MWTags.Blocks.NETHER_BRICKS, MWTags.Items.NETHER_BRICKS);
-      b.copy(MWTags.Blocks.RED_NETHER_BRICKS, MWTags.Items.RED_NETHER_BRICKS);
-      b.copy(MWTags.Blocks.TERRACOTTA, MWTags.Items.TERRACOTTA);
+      p.copy(MWTags.Blocks.PURPUR, MWTags.Items.PURPUR);
+      p.copy(MWTags.Blocks.NETHER_BRICKS, MWTags.Items.NETHER_BRICKS);
+      p.copy(MWTags.Blocks.RED_NETHER_BRICKS, MWTags.Items.RED_NETHER_BRICKS);
+      p.copy(MWTags.Blocks.TERRACOTTA, MWTags.Items.TERRACOTTA);
     });
 
     REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, p -> {
