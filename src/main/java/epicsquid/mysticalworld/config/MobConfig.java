@@ -55,9 +55,9 @@ public class MobConfig implements IConfig {
     return configMax.get();
   }
 
-  public List<BiomeDictionary.Type> getBiomes() {
+  public List<Biome.Category> getBiomes() {
     String values = configBiomes.get();
-    return Stream.of(values.split(",")).map(o -> BiomeDictionary.Type.getType(o)).collect(Collectors.toList());
+    return Stream.of(values.split(",")).map(Biome.Category::byName).collect(Collectors.toList());
   }
 
   public boolean shouldRegister() {

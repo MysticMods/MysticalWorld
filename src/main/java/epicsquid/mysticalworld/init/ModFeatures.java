@@ -86,5 +86,6 @@ public class ModFeatures {
         }
       }
     }
+    ModEntities.registerEntity(event);
   }
 }
