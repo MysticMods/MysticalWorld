@@ -40,7 +40,6 @@ public class CommonSetup {
       CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
 
       ShadedCommonSetup.init(event);
-      /*      OreGen.registerOreGeneration();*/
       PotionRecipes.registerRecipes();
 
       GlobalEntityTypeAttributes.put(ModEntities.BEETLE.get(), BeetleEntity.attributes().create());

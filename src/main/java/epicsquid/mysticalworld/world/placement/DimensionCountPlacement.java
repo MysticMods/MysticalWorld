@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.world.placement;
 
 import com.mojang.serialization.Codec;
-import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.WorldDecoratingHelper;
 import net.minecraft.world.gen.placement.Placement;
@@ -16,7 +15,7 @@ public class DimensionCountPlacement extends Placement<DimensionCountRangeConfig
     super(codec);
   }
 
-  public static DimensionCountPlacement create () {
+  public static DimensionCountPlacement create() {
     return new DimensionCountPlacement(DimensionCountRangeConfig.CODEC);
   }
 
@@ -31,16 +30,11 @@ public class DimensionCountPlacement extends Placement<DimensionCountRangeConfig
 
   @Override
   public Stream<BlockPos> getPositions(WorldDecoratingHelper helper, Random rand, DimensionCountRangeConfig config, BlockPos pos) {
-    if (helper.field_242889_a instanceof ServerWorld) {
-      ServerWorld world = (ServerWorld) helper.field_242889_a;
-      if (config.dimensions.contains(world.getDimensionKey())) {
-        return getPositions(rand, config, pos);
-      } else {
-        return Stream.empty();
-      }
-    } else {
-      MysticalWorld.LOG.debug("WorldDecoratingHelper's ISeedWorld not an instance of ServerWorld");
+    ServerWorld world = helper.field_242889_a.getWorld();
+    if (config.dimensions.contains(world.getDimensionKey())) {
       return getPositions(rand, config, pos);
+    } else {
+      return Stream.empty();
     }
   }
 }

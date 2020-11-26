@@ -55,7 +55,7 @@ public class ModFeatures {
             ModFeatures.DIMENSION_COUNT_PLACEMENT.get().configure(new DimensionCountRangeConfig(config.getSize(), config.getMinY(), 0, config.getMaxY() - config.getMinY(), config.getDimensions())
             )
         ));
-        Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, config.getName()), feat);
+        Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, config.getName().toLowerCase()), feat);
       }
       Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, "charred_tree"), CHARRED_TREE);
     }
@@ -65,6 +65,9 @@ public class ModFeatures {
   }
 
   public static void onBiomeLoad(BiomeLoadingEvent event) {
+    if (ORE_FEATURES.isEmpty()) {
+      generateFeatures();
+    }
     for (ConfiguredFeature<?, ?> ore : ORE_FEATURES) {
       event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> ore);
     }
@@ -72,6 +75,7 @@ public class ModFeatures {
     if (type != null && (ConfigManager.DEAD_TREE_CONFIG.getBiomes().contains(type) || ConfigManager.DEAD_TREE_CONFIG.getBiomes().isEmpty())) {
       event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> CHARRED_TREE);
     }
+    ModEntities.registerEntity(event);
   }
 
   public static void onFeatureRegistration (RegistryEvent.Register<Feature<?>> event) {

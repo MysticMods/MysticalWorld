@@ -25,12 +25,22 @@ public class MobConfig implements IConfig {
   protected ForgeConfigSpec.IntValue configMax;
   protected ForgeConfigSpec.ConfigValue<String> configBiomes;
 
+  protected boolean mob;
+
   public MobConfig(String name, int chance, int min, int max, List<String> biomes) {
+    this(name, chance, min, max, biomes, false);
+  }
+
+  public MobConfig(String name, int chance, int min, int max, List<String> biomes, boolean mob) {
     this.name = name;
     this.chance = chance;
     this.min = min;
     this.max = max;
     this.biomes = biomes;
+  }
+
+  public boolean isMob() {
+    return mob;
   }
 
   public int getChance() {
@@ -45,9 +55,9 @@ public class MobConfig implements IConfig {
     return configMax.get();
   }
 
-  public List<BiomeDictionary.Type> getBiomes() {
+  public List<Biome.Category> getBiomes() {
     String values = configBiomes.get();
-    return Stream.of(values.split(",")).map(o -> BiomeDictionary.Type.getType(o)).collect(Collectors.toList());
+    return Stream.of(values.split(",")).map(Biome.Category::byName).collect(Collectors.toList());
   }
 
   public boolean shouldRegister() {
@@ -55,7 +65,6 @@ public class MobConfig implements IConfig {
   }
 
   protected void preApply(ForgeConfigSpec.Builder builder) {
-
   }
 
   protected void doApply(ForgeConfigSpec.Builder builder) {

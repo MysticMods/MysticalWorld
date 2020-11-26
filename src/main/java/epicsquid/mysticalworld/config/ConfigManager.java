@@ -44,6 +44,7 @@ public class ConfigManager {
     HAT_CONFIG.apply(COMMON_BUILDER);
     COMMON_BUILDER.pop();
     COMMON_BUILDER.comment("Feature Spawn Configuration").push("feature_spawns");
+    // TODO: Migrate to Biome Category
     DEAD_TREE_CONFIG = new TreeConfig(0.04, Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.WASTELAND));
     DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
     COMMON_BUILDER.pop();
@@ -64,15 +65,15 @@ public class ConfigManager {
   }
 
   private static void registerMobConfigs() {
-    DEER_CONFIG = new MobConfig("Deer", 6, 2, 4, Arrays.asList("FOREST", "COLD", "CONIFEROUS", "PLAINS"));
-    SPROUT_CONFIG = new MobConfig("Sprout", 2, 2, 4, Arrays.asList("JUNGLE", "LUSH", "MAGICAL", "RIVER", "FOREST", "BEACH"));
-    HELL_SPROUT_CONFIG = new HellSproutConfig("Hell Sprout", 8, 1, 3, Collections.singletonList("NETHER"), 100);
-    SILVER_FOX_CONFIG = new MobConfig("Silver Fox", 4, 1, 3, Arrays.asList("FOREST", "COLD", "CONIFEROUS"));
-    BEETLE_CONFIG = new MobConfig("Beetle", 5, 2, 4, Arrays.asList("SWAMP", "JUNGLE", "FOREST", "PLAINS"));
-    FROG_CONFIG = new MobConfig("Frog", 6, 2, 4, Arrays.asList("SWAMP", "JUNGLE", "BEACH", "RIVER"));
-    ENDERMINI_CONFIG = new MobConfig("Endermini", 1, 1, 2, Collections.singletonList("END"));
-    OWL_CONFIG = new MobConfig("Owl", 9, 1, 3, Arrays.asList("CONIFEROUS", "SPOOKY", "MAGICAL", "FOREST", "MOUNTAIN", "SNOWY"));
-    LAVA_CAT_CONFIG = new MobConfig("Lava Cat", 1, 1, 1, Collections.singletonList("NETHER")); // Test
+    DEER_CONFIG = new MobConfig("Deer", 6, 2, 4, Arrays.asList("forest", "icy", "taiga", "plains"));
+    SPROUT_CONFIG = new MobConfig("Sprout", 2, 2, 4, Arrays.asList("jungle", "river", "forest", "beach"));
+    HELL_SPROUT_CONFIG = new HellSproutConfig("Hell Sprout", 8, 1, 3, Collections.singletonList("nether"), 100);
+    SILVER_FOX_CONFIG = new MobConfig("Silver Fox", 4, 1, 3, Arrays.asList("forest", "icy", "taiga"));
+    BEETLE_CONFIG = new MobConfig("Beetle", 5, 2, 4, Arrays.asList("swamp", "jungle", "forest", "plains"));
+    FROG_CONFIG = new MobConfig("Frog", 6, 2, 4, Arrays.asList("swamp", "jungle", "beach", "river"));
+    ENDERMINI_CONFIG = new MobConfig("Endermini", 1, 1, 2, Collections.singletonList("end"));
+    OWL_CONFIG = new MobConfig("Owl", 9, 1, 3, Arrays.asList("taiga", "extreme_hills", "forest", "icy"));
+    LAVA_CAT_CONFIG = new MobConfig("Lava Cat", 1, 1, 1, Collections.singletonList("nether")); // test
     SILKWORM_CONFIG = new SilkwormConfig(true, 65, 1, 68);
     HAT_CONFIG = new HatConfig();
 
