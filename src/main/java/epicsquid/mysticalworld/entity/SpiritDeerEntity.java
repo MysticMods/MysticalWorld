@@ -82,7 +82,7 @@ public class SpiritDeerEntity extends AnimalEntity implements IFlyingAnimal {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 15.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3d).createMutableAttribute(Attributes.FLYING_SPEED, 0.6d);
+    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3d).createMutableAttribute(Attributes.FLYING_SPEED, 0.6d);
   }
 
   @Override

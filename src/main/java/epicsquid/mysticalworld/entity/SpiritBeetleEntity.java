@@ -5,10 +5,7 @@ import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.ai.SpiritAttackGoal;
 import epicsquid.mysticalworld.init.ModDamage;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
@@ -78,7 +75,7 @@ public class SpiritBeetleEntity extends AnimalEntity implements IFlyingAnimal {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 15.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15d).createMutableAttribute(Attributes.FLYING_SPEED, 0.6d);
+    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15d).createMutableAttribute(Attributes.FLYING_SPEED, 0.6d);
   }
 
   @Override

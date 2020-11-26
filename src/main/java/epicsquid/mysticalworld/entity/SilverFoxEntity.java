@@ -3,10 +3,7 @@ package epicsquid.mysticalworld.entity;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModSounds;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -85,7 +82,7 @@ public class SilverFoxEntity extends TameableEntity {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 10.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3d).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2d);
+    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3d).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2d);
   }
 
   @Override

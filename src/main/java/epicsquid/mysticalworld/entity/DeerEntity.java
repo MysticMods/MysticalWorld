@@ -54,7 +54,7 @@ public class DeerEntity extends AnimalEntity {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 15.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d);
+    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d);
   }
 
   @Override

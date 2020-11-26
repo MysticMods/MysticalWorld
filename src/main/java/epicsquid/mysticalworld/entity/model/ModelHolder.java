@@ -10,7 +10,7 @@ import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import javax.annotation.Nonnull;
 import java.util.function.Predicate;
 
-public class ModelHolder implements ISelectiveResourceReloadListener {
+public class ModelHolder {
   public static FoxModel foxModel;
   public static HellSproutModel hellSproutModel;
   public static FrogModel frogModel;
@@ -42,15 +42,5 @@ public class ModelHolder implements ISelectiveResourceReloadListener {
     spiritDeerModel = new SpiritDeerModel();
     beetleMaskModel = new BeetleMaskModel();
     antlerHatModel = new AntlerHatModel();
-  }
-
-  @Override
-  public void onResourceManagerReload(@Nonnull IResourceManager resourceManager) {
-  }
-
-  @Override
-  public void onResourceManagerReload(IResourceManager resourceManager, Predicate<IResourceType> resourcePredicate) {
-    // TODO make this work selectively
-    init();
   }
 }

@@ -84,7 +84,7 @@ public class SproutEntity extends AnimalEntity {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 8.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d);
+    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d);
   }
 
   @Override

@@ -101,7 +101,7 @@ public class LavaCatEntity extends TameableEntity {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 20.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25d).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0d);
+    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25d).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0d);
   }
 
   // TODO: Fix fall damage

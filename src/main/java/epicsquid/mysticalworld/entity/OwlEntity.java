@@ -53,7 +53,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return LivingEntity.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 6.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d).createMutableAttribute(Attributes.FLYING_SPEED, 0.55d);
+    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d).createMutableAttribute(Attributes.FLYING_SPEED, 0.55d);
   }
 
   @Override
