@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:quicksilver_chestplate"
+    ]
+  },
+  "criteria": {
+    "has_ingots_quicksilver": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/quicksilver"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:quicksilver_chestplate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingots_quicksilver",
+      "has_the_recipe"
+    ]
+  ]
+}

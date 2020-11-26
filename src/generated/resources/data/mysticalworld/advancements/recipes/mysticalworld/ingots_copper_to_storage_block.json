@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:ingots_copper_to_storage_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_ingots_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/copper"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:ingots_copper_to_storage_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_ingots_copper",
+      "has_the_recipe"
+    ]
+  ]
+}

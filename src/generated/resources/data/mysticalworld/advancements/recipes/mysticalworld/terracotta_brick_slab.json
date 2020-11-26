@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:terracotta_brick_slab"
+    ]
+  },
+  "criteria": {
+    "has_terracotta_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:terracotta_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:terracotta_brick_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_terracotta_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

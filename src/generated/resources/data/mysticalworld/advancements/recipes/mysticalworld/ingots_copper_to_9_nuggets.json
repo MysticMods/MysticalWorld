@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:ingots_copper_to_9_nuggets"
+    ]
+  },
+  "criteria": {
+    "has_ingot_ingots_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/copper"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:ingots_copper_to_9_nuggets"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingot_ingots_copper",
+      "has_the_recipe"
+    ]
+  ]
+}

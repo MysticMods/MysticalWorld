@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:tin_chestplate"
+    ]
+  },
+  "criteria": {
+    "has_ingots_tin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/tin"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:tin_chestplate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingots_tin",
+      "has_the_recipe"
+    ]
+  ]
+}

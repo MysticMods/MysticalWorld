@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:mud_brick_small_post"
+    ]
+  },
+  "criteria": {
+    "has_mud_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:mud_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:mud_brick_small_post"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mud_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:wood_spear"
+    ]
+  },
+  "criteria": {
+    "has_wooden_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:wooden_sword"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:wood_spear"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wooden_sword",
+      "has_the_recipe"
+    ]
+  ]
+}

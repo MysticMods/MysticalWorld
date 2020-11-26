@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:cooked_seeds"
+    ]
+  },
+  "criteria": {
+    "has_assorted_seeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:assorted_seeds"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:cooked_seeds"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_assorted_seeds",
+      "has_the_recipe"
+    ]
+  ]
+}

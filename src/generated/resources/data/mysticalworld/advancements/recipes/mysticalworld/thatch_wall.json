@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:thatch_wall"
+    ]
+  },
+  "criteria": {
+    "has_thatch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:thatch"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:thatch_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_thatch",
+      "has_the_recipe"
+    ]
+  ]
+}
