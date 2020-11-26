@@ -8,12 +8,14 @@ import epicsquid.mysticalworld.world.feature.SupplierOreFeature;
 import epicsquid.mysticalworld.world.feature.SupplierOreFeatureConfig;
 import epicsquid.mysticalworld.world.placement.DimensionCountPlacement;
 import epicsquid.mysticalworld.world.placement.DimensionCountRangeConfig;
-import epicsquid.mysticalworld.world.test.OreGenTest;
 import epicsquid.mysticalworld.world.provider.SupplierBlockStateProvider;
+import epicsquid.mysticalworld.world.test.OreGenTest;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
@@ -31,6 +33,7 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
+import java.util.Set;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
@@ -57,8 +60,8 @@ public class ModFeatures {
         ));
         Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, config.getName().toLowerCase()), feat);
       }
-      Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, "charred_tree"), CHARRED_TREE);
     }
+    Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, "charred_tree"), CHARRED_TREE);
   }
 
   public static void load() {
@@ -71,14 +74,17 @@ public class ModFeatures {
     for (ConfiguredFeature<?, ?> ore : ORE_FEATURES) {
       event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> ore);
     }
-    BiomeDictionary.Type type = BiomeDictionary.Type.fromVanilla(event.getCategory());
-    if (type != null && (ConfigManager.DEAD_TREE_CONFIG.getBiomes().contains(type) || ConfigManager.DEAD_TREE_CONFIG.getBiomes().isEmpty())) {
-      event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> CHARRED_TREE);
-    }
-    ModEntities.registerEntity(event);
-  }
+    if (event.getName() != null) {
+      RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
+      Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
+      ModEntities.registerEntity(event, types);
 
-  public static void onFeatureRegistration (RegistryEvent.Register<Feature<?>> event) {
-    generateFeatures();
+      for (BiomeDictionary.Type type : types) {
+        if (type != null && (ConfigManager.DEAD_TREE_CONFIG.getBiomes().contains(type) || ConfigManager.DEAD_TREE_CONFIG.getBiomes().isEmpty())) {
+          event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> CHARRED_TREE);
+          break;
+        }
+      }
+    }
   }
 }

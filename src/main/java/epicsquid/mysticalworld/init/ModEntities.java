@@ -37,10 +37,7 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
@@ -287,14 +284,13 @@ public class ModEntities {
     configMap.put(ModEntities.HELL_SPROUT, ConfigManager.HELL_SPROUT_CONFIG);
   }
 
-  public static void registerEntity(BiomeLoadingEvent event) {
+  public static void registerEntity(BiomeLoadingEvent event, Set<BiomeDictionary.Type> types) {
     for (Map.Entry<RegistryEntry<? extends EntityType<?>>, MobConfig> entry : configMap.entrySet()) {
       MobConfig conf = entry.getValue();
       if (conf.shouldRegister()) {
-        RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
-        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
-        types.retainAll(conf.getBiomes());
-        if (!types.isEmpty()) {
+        Set<BiomeDictionary.Type> types2 = new HashSet<>(types);
+        types2.retainAll(conf.getBiomes());
+        if (!types2.isEmpty()) {
           event.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
         }
       }
