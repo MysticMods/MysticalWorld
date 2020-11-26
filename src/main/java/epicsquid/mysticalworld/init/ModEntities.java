@@ -1,8 +1,12 @@
 package epicsquid.mysticalworld.init;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
+import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.config.MobConfig;
 import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.loot.conditions.HasHorns;
 import epicsquid.mysticalworld.loot.conditions.IsColor;
@@ -24,11 +28,19 @@ import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.functions.LootingEnchantBonus;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.loot.functions.Smelt;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
@@ -261,108 +273,38 @@ public class ModEntities {
     SPAWN_EGGS.add(REGISTRATE.item("hell_sprout_spawn_egg", spawnEgg(ModEntities.HELL_SPROUT, 0x8a0303, 0xe8f442)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
   }
 
+  public static BiMap<RegistryEntry<? extends EntityType<?>>, MobConfig> configMap = HashBiMap.create();
+
+  static {
+    configMap.put(ModEntities.BEETLE, ConfigManager.BEETLE_CONFIG);
+    configMap.put(ModEntities.DEER, ConfigManager.DEER_CONFIG);
+    configMap.put(ModEntities.FROG, ConfigManager.FROG_CONFIG);
+    configMap.put(ModEntities.SILVER_FOX, ConfigManager.SILVER_FOX_CONFIG);
+    configMap.put(ModEntities.SPROUT, ConfigManager.SPROUT_CONFIG);
+    configMap.put(ModEntities.ENDERMINI, ConfigManager.ENDERMINI_CONFIG);
+    configMap.put(ModEntities.LAVA_CAT, ConfigManager.LAVA_CAT_CONFIG);
+    configMap.put(ModEntities.OWL, ConfigManager.OWL_CONFIG);
+    configMap.put(ModEntities.HELL_SPROUT, ConfigManager.HELL_SPROUT_CONFIG);
+  }
+
+  public static void registerEntity(BiomeLoadingEvent event) {
+    for (Map.Entry<RegistryEntry<? extends EntityType<?>>, MobConfig> entry : configMap.entrySet()) {
+      MobConfig conf = entry.getValue();
+      if (conf.shouldRegister()) {
+        RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
+        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
+        types.retainAll(conf.getBiomes());
+        if (!types.isEmpty()) {
+          event.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
+        }
+      }
+    }
+  }
+
   public static void load() {
   }
 
-  public static void registerEntities() {
-    Set<Biome> biomes = new HashSet<>();
-
-/*    if (ConfigManager.DEER_CONFIG.shouldRegister()) {
-      for (String biomeName : ConfigManager.DEER_CONFIG.getBiomes()) {
-        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
-      }
-      biomes.forEach(biome -> biome.getSpawns(EntityClassification.CREATURE).add(
-          new Biome.SpawnListEntry(DEER.get(), ConfigManager.DEER_CONFIG.getChance(), ConfigManager.DEER_CONFIG.getMin(),
-              ConfigManager.DEER_CONFIG.getMax())));
-    }
-
-    biomes.clear();
-
-    if (ConfigManager.SPROUT_CONFIG.shouldRegister()) {
-      for (String biomeName : ConfigManager.SPROUT_CONFIG.getBiomes()) {
-        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
-      }
-      biomes.forEach(biome -> biome.getSpawns(EntityClassification.CREATURE).add(
-          new Biome.SpawnListEntry(SPROUT.get(), ConfigManager.SPROUT_CONFIG.getChance(), ConfigManager.SPROUT_CONFIG.getMin(),
-              ConfigManager.SPROUT_CONFIG.getMax())));
-    }
-
-    biomes.clear();
-
-    if (ConfigManager.BEETLE_CONFIG.shouldRegister()) {
-      for (String biomeName : ConfigManager.BEETLE_CONFIG.getBiomes()) {
-        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
-      }
-      biomes.forEach(biome -> biome.getSpawns(EntityClassification.CREATURE).add(
-          new Biome.SpawnListEntry(BEETLE.get(), ConfigManager.BEETLE_CONFIG.getChance(), ConfigManager.BEETLE_CONFIG.getMin(),
-              ConfigManager.BEETLE_CONFIG.getMax())));
-    }
-
-    biomes.clear();
-
-    if (ConfigManager.FROG_CONFIG.shouldRegister()) {
-      for (String biomeName : ConfigManager.FROG_CONFIG.getBiomes()) {
-        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
-      }
-      biomes.forEach(biome -> biome.getSpawns(EntityClassification.CREATURE).add(
-          new Biome.SpawnListEntry(FROG.get(), ConfigManager.FROG_CONFIG.getChance(), ConfigManager.FROG_CONFIG.getMin(),
-              ConfigManager.FROG_CONFIG.getMax())));
-    }
-
-    biomes.clear();
-
-    if (ConfigManager.SILVER_FOX_CONFIG.shouldRegister()) {
-      for (String biomeName : ConfigManager.SILVER_FOX_CONFIG.getBiomes()) {
-        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
-      }
-      biomes.forEach(biome -> biome.getSpawns(EntityClassification.CREATURE).add(
-          new Biome.SpawnListEntry(SILVER_FOX.get(), ConfigManager.SILVER_FOX_CONFIG.getChance(), ConfigManager.SILVER_FOX_CONFIG.getMin(),
-              ConfigManager.SILVER_FOX_CONFIG.getMax())));
-    }
-
-    biomes.clear();
-
-    if (ConfigManager.ENDERMINI_CONFIG.shouldRegister()) {
-      for (String biomeName : ConfigManager.ENDERMINI_CONFIG.getBiomes()) {
-        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
-      }
-      biomes.forEach(biome -> biome.getSpawns(EntityClassification.MONSTER).add(
-          new Biome.SpawnListEntry(ENDERMINI.get(), ConfigManager.ENDERMINI_CONFIG.getChance(), ConfigManager.ENDERMINI_CONFIG.getMin(), ConfigManager.ENDERMINI_CONFIG.getMax())));
-    }
-
-    biomes.clear();
-
-    if (ConfigManager.OWL_CONFIG.shouldRegister()) {
-      for (String biomeName : ConfigManager.OWL_CONFIG.getBiomes()) {
-        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
-      }
-      biomes.forEach(biome -> biome.getSpawns(EntityClassification.CREATURE).add(
-          new Biome.SpawnListEntry(OWL.get(), ConfigManager.OWL_CONFIG.getChance(), ConfigManager.OWL_CONFIG.getMin(),
-              ConfigManager.OWL_CONFIG.getMax())));
-    }
-
-    biomes.clear();
-
-    if (ConfigManager.LAVA_CAT_CONFIG.shouldRegister()) {
-      for (String biomeName : ConfigManager.LAVA_CAT_CONFIG.getBiomes()) {
-        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
-      }
-      biomes.forEach(biome -> biome.getSpawns(EntityClassification.MONSTER).add(
-          new Biome.SpawnListEntry(LAVA_CAT.get(), ConfigManager.LAVA_CAT_CONFIG.getChance(), ConfigManager.LAVA_CAT_CONFIG.getMin(),
-              ConfigManager.LAVA_CAT_CONFIG.getMax())));
-    }
-
-    if (ConfigManager.HELL_SPROUT_CONFIG.shouldRegister()) {
-      for (String biomeName : ConfigManager.HELL_SPROUT_CONFIG.getBiomes()) {
-        biomes.addAll(BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biomeName)));
-      }
-      biomes.forEach(biome -> biome.getSpawns(EntityClassification.MONSTER).add(
-          new Biome.SpawnListEntry(HELL_SPROUT.get(), ConfigManager.HELL_SPROUT_CONFIG.getChance(), ConfigManager.HELL_SPROUT_CONFIG.getMin(),
-              ConfigManager.HELL_SPROUT_CONFIG.getMax())));
-    }
-
-    biomes.clear();*/
-
+  public static void registerEntities () {
     EntitySpawnPlacementRegistry.register(DEER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
         AnimalEntity::canAnimalSpawn);
     EntitySpawnPlacementRegistry.register(FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,

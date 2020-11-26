@@ -3,6 +3,7 @@ package epicsquid.mysticalworld.integration.patchouli.api;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.config.MobConfig;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 import vazkii.patchouli.api.IComponentProcessor;
@@ -74,7 +75,9 @@ public class AnimalSpawnInfo implements IComponentProcessor {
         StringJoiner joiner = new StringJoiner(", ");
         for (BiomeDictionary.Type biomeName : animal.getBiomes()) {
           // TODO: Localise according to 1.12
-          joiner.add(WordUtils.capitalize(biomeName.getName().toLowerCase()));
+          if (biomeName != null) {
+            joiner.add(WordUtils.capitalize(biomeName.getName().toLowerCase()));
+          }
         }
         return IVariable.wrap("Biomes tagged with: " + joiner.toString());
       }
