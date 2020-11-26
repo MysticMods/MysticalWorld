@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AWA",
+    "WWW",
+    "S S"
+  ],
+  "key": {
+    "A": {
+      "item": "mysticalworld:antlers"
+    },
+    "W": {
+      "tag": "minecraft:wool"
+    },
+    "S": {
+      "tag": "forge:string"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:antler_hat"
+  }
+}

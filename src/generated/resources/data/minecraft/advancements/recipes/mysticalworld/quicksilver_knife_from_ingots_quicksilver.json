@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:quicksilver_knife_from_ingots_quicksilver"
+    ]
+  },
+  "criteria": {
+    "has_ingots_quicksilver": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/quicksilver"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:quicksilver_knife_from_ingots_quicksilver"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingots_quicksilver",
+      "has_the_recipe"
+    ]
+  ]
+}

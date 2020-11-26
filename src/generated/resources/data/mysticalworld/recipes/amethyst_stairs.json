@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:amethyst_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:amethyst_stairs",
+    "count": 4
+  }
+}

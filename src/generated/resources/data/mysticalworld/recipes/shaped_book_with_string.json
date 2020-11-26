@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PS"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "S": {
+      "tag": "forge:string"
+    }
+  },
+  "result": {
+    "item": "minecraft:book"
+  }
+}

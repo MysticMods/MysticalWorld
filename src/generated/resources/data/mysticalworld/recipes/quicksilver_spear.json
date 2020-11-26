@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "S",
+    "S"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:quicksilver_sword"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:quicksilver_spear"
+  }
+}

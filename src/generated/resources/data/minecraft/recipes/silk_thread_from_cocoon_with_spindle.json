@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mysticalworld:silk_cocoon"
+    },
+    {
+      "item": "mysticalworld:spindle"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:silk_thread",
+    "count": 8
+  }
+}

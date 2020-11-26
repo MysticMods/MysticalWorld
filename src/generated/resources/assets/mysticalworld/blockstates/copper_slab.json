@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "mysticalworld:block/copper_slab_top"
+    },
+    "type=bottom": {
+      "model": "mysticalworld:block/copper_slab"
+    },
+    "type=double": {
+      "model": "mysticalworld:block/copper_block"
+    }
+  }
+}

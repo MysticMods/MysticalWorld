@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:quicksilver_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:quicksilver_slab",
+    "count": 6
+  }
+}

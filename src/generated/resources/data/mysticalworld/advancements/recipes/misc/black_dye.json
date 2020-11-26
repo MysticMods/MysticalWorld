@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:black_dye"
+    ]
+  },
+  "criteria": {
+    "has_ink_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:ink_bottle"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:black_dye"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ink_bottle",
+      "has_the_recipe"
+    ]
+  ]
+}

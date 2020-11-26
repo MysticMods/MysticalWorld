@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
+  "key": {
+    "W": {
+      "item": "mysticalworld:mud_block"
+    },
+    "#": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:mud_block_fence",
+    "count": 3
+  }
+}

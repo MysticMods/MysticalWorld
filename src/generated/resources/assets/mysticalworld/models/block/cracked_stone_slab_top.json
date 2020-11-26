@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "mysticalworld:block/cracked_stone",
+    "bottom": "mysticalworld:block/cracked_stone",
+    "top": "mysticalworld:block/cracked_stone"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:soft_stone"
+  },
+  "result": "mysticalworld:soft_stone_slab",
+  "count": 2
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:terracotta_brick"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:terracotta_brick_stairs",
+    "count": 4
+  }
+}

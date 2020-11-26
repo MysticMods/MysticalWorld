@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AB",
+    "BA"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:stone"
+    },
+    "B": {
+      "tag": "forge:obsidian"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:soft_obsidian",
+    "count": 4
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "mysticalworld:block/silver_slab_top"
+    },
+    "type=bottom": {
+      "model": "mysticalworld:block/silver_slab"
+    },
+    "type=double": {
+      "model": "mysticalworld:block/silver_block"
+    }
+  }
+}

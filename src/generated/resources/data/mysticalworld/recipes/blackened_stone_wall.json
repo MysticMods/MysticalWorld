@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:blackened_stone"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:blackened_stone_wall",
+    "count": 6
+  }
+}
