@@ -85,7 +85,7 @@ public class ModFeatures {
           break;
         }
       }
+      ModEntities.registerEntity(event, types);
     }
-    ModEntities.registerEntity(event);
   }
 }

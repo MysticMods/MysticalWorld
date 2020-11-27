@@ -37,9 +37,7 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
