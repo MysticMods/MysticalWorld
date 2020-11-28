@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.setup;
 
+import com.google.common.collect.Maps;
 import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
@@ -12,10 +13,16 @@ import epicsquid.mysticalworld.events.EntityHandler;
 import epicsquid.mysticalworld.events.LootHandler;
 import epicsquid.mysticalworld.init.ModCompost;
 import epicsquid.mysticalworld.init.ModEntities;
+import epicsquid.mysticalworld.init.ModModifiers;
 import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.potions.PotionRecipes;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -25,6 +32,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import noobanidus.libs.noobutil.setup.ShadedCommonSetup;
+
+import java.util.HashMap;
 
 @SuppressWarnings("deprecation")
 public class CommonSetup {
@@ -52,15 +61,18 @@ public class CommonSetup {
       GlobalEntityTypeAttributes.put(ModEntities.OWL.get(), OwlEntity.attributes().create());
       GlobalEntityTypeAttributes.put(ModEntities.SILKWORM.get(), SilkwormEntity.attributes().create());
       GlobalEntityTypeAttributes.put(ModEntities.HELL_SPROUT.get(), HellSproutEntity.attributes().create());
-    });
 
+      AttributeModifierMap map = GlobalEntityTypeAttributes.getAttributesForEntity(EntityType.PLAYER);
+      HashMap<Attribute, ModifiableAttributeInstance> attributeMap = new HashMap<>(map.attributeMap);
+      attributeMap.put(ModModifiers.SERENDIPITY.get(), new ModifiableAttributeInstance(ModModifiers.SERENDIPITY.get(), (modifier) -> {}));
+      map.attributeMap = attributeMap;
+    });
   }
 
   public void serverStarting(FMLServerStartedEvent event) {
   }
 
   public void serverAboutToStart(FMLServerAboutToStartEvent event) {
-    /*    ModifyLoot.modify();*/
   }
 
   @SuppressWarnings("Duplicates")
@@ -78,6 +90,6 @@ public class CommonSetup {
   }
 
   public void loadComplete(FMLLoadCompleteEvent event) {
-    /*    ModFeatures.loadComplete();*/
+    ModifyLoot.modify();
   }
 }

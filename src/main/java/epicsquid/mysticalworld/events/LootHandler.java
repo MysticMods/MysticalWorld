@@ -38,7 +38,7 @@ public class LootHandler {
 
       int looting = event.getLootingLevel();
 
-/*      event.setLootingLevel(looting + Serendipity.calculateAdditional(player.getAttribute(ModModifiers.SERENDIPITY.get())));*/
+      event.setLootingLevel(looting + Serendipity.calculateAdditional(player.getAttributeValue(ModModifiers.SERENDIPITY.get())));
     }
   }
 }
