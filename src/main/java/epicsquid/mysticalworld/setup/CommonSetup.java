@@ -61,6 +61,8 @@ public class CommonSetup {
       GlobalEntityTypeAttributes.put(ModEntities.OWL.get(), OwlEntity.attributes().create());
       GlobalEntityTypeAttributes.put(ModEntities.SILKWORM.get(), SilkwormEntity.attributes().create());
       GlobalEntityTypeAttributes.put(ModEntities.HELL_SPROUT.get(), HellSproutEntity.attributes().create());
+      GlobalEntityTypeAttributes.put(ModEntities.SPIRIT_BEETLE.get(), SpiritBeetleEntity.attributes().create());
+      GlobalEntityTypeAttributes.put(ModEntities.SPIRIT_DEER.get(), SpiritDeerEntity.attributes().create());
 
       AttributeModifierMap map = GlobalEntityTypeAttributes.getAttributesForEntity(EntityType.PLAYER);
       HashMap<Attribute, ModifiableAttributeInstance> attributeMap = new HashMap<>(map.attributeMap);
