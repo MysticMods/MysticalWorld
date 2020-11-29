@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.init;
 
 import com.tterrag.registrate.providers.ProviderType;
+import net.minecraft.entity.ai.attributes.RangedAttribute;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
@@ -30,6 +31,10 @@ public class ModLang {
       p.add("advancement.mysticalworld.epic_squid", "Epic Squid!");
       p.add("advancement.mysticalworld.epic_squid.desc", "Partake in some of the delicious, purple-y goodness of Epic Squid.");
       p.add("message.shoulder.occupied", "Your shoulders are otherwise occupied!");
+      p.add("mysticalworld.blessed", "Blessed");
+      p.add("mysticalworld.smite", "Smite");
+      p.add("mysticalworld.serendipity", "Serendipity");
+      p.add("item.minecraft.potion.effect.serendipity", "Serendipity");
     });
   }
 

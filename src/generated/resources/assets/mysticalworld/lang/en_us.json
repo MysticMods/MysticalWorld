@@ -129,6 +129,7 @@
   "block.mysticalworld.tin_wide_post": "Tin Wide Post",
   "block.mysticalworld.wet_mud_block": "Wet Mud Block",
   "block.mysticalworld.wet_mud_brick": "Wet Mud Brick",
+  "effect.mysticalworld.serendipity": "Serendipity",
   "effect.mysticalworld.slow_regeneration": "Slow Regeneration",
   "effect.mysticalworld.wakeful": "Wakeful",
   "entity.mysticalworld.beetle": "Beetle",
@@ -143,6 +144,7 @@
   "entity.mysticalworld.spirit_beetle": "Spirit Beetle",
   "entity.mysticalworld.spirit_deer": "Spirit Deer",
   "entity.mysticalworld.sprout": "Sprout",
+  "item.minecraft.potion.effect.serendipity": "Serendipity",
   "item.mysticalworld.amethyst": "Amethyst",
   "item.mysticalworld.amethyst_axe": "Amethyst Axe",
   "item.mysticalworld.amethyst_boots": "Amethyst Boots",
@@ -300,10 +302,13 @@
   "message.dandelion_cordial": "You feel well-rested!",
   "message.shoulder.occupied": "Your shoulders are otherwise occupied!",
   "message.squid.cooldown": "Give it time to produce more ink!",
+  "mysticalworld.blessed": "Blessed",
   "mysticalworld.drinks.slow_regen": "Gives a burst of revitalizing energy.",
   "mysticalworld.drinks.sour": "Sour and awful to drink! Leaves you hungry.",
   "mysticalworld.drinks.wakefulness": "Perks you up, night or day! Shoos those scary phantoms away!",
   "mysticalworld.entity.lava_cat": "Lava Cat",
   "mysticalworld.entity.obsidian_cat": "Obsidian Cat",
-  "mysticalworld.food.rotten_apple": "Has a chance to corrupt innocent villagers."
+  "mysticalworld.food.rotten_apple": "Has a chance to corrupt innocent villagers.",
+  "mysticalworld.serendipity": "Serendipity",
+  "mysticalworld.smite": "Smite"
 }

@@ -129,6 +129,7 @@
   "block.mysticalworld.tin_wide_post": "\u0287so\u0500 \u01DDp\u0131M u\u0131\u27D8",
   "block.mysticalworld.wet_mud_block": "\u029E\u0254o\u05DF\u15FA pnW \u0287\u01DDM",
   "block.mysticalworld.wet_mud_brick": "\u029E\u0254\u0131\u0279\u15FA pnW \u0287\u01DDM",
+  "effect.mysticalworld.serendipity": "\u028E\u0287\u0131d\u0131pu\u01DD\u0279\u01DDS",
   "effect.mysticalworld.slow_regeneration": "uo\u0131\u0287\u0250\u0279\u01DDu\u01DDb\u01DD\u1D1A \u028Do\u05DFS",
   "effect.mysticalworld.wakeful": "\u05DFn\u025F\u01DD\u029E\u0250M",
   "entity.mysticalworld.beetle": "\u01DD\u05DF\u0287\u01DD\u01DD\u15FA",
@@ -143,6 +144,7 @@
   "entity.mysticalworld.spirit_beetle": "\u01DD\u05DF\u0287\u01DD\u01DD\u15FA \u0287\u0131\u0279\u0131dS",
   "entity.mysticalworld.spirit_deer": "\u0279\u01DD\u01DD\u15E1 \u0287\u0131\u0279\u0131dS",
   "entity.mysticalworld.sprout": "\u0287no\u0279dS",
+  "item.minecraft.potion.effect.serendipity": "\u028E\u0287\u0131d\u0131pu\u01DD\u0279\u01DDS",
   "item.mysticalworld.amethyst": "\u0287s\u028E\u0265\u0287\u01DD\u026F\u2C6F",
   "item.mysticalworld.amethyst_axe": "\u01DDx\u2C6F \u0287s\u028E\u0265\u0287\u01DD\u026F\u2C6F",
   "item.mysticalworld.amethyst_boots": "s\u0287oo\u15FA \u0287s\u028E\u0265\u0287\u01DD\u026F\u2C6F",
@@ -300,10 +302,13 @@
   "message.dandelion_cordial": "\u00A1p\u01DD\u0287s\u01DD\u0279-\u05DF\u05DF\u01DD\u028D \u05DF\u01DD\u01DD\u025F no\u028E",
   "message.shoulder.occupied": "\u00A1p\u01DD\u0131dn\u0254\u0254o \u01DDs\u0131\u028D\u0279\u01DD\u0265\u0287o \u01DD\u0279\u0250 s\u0279\u01DDp\u05DFno\u0265s \u0279no\u028E",
   "message.squid.cooldown": "\u00A1\u029Eu\u0131 \u01DD\u0279o\u026F \u01DD\u0254npo\u0279d o\u0287 \u01DD\u026F\u0131\u0287 \u0287\u0131 \u01DD\u028C\u0131\u2141",
+  "mysticalworld.blessed": "p\u01DDss\u01DD\u05DF\u15FA",
   "mysticalworld.drinks.slow_regen": "\u02D9\u028Eb\u0279\u01DDu\u01DD bu\u0131z\u0131\u05DF\u0250\u0287\u0131\u028C\u01DD\u0279 \u025Fo \u0287s\u0279nq \u0250 s\u01DD\u028C\u0131\u2141",
   "mysticalworld.drinks.sour": "\u02D9\u028E\u0279bun\u0265 no\u028E s\u01DD\u028C\u0250\u01DD\uA780 \u00A1\u029Eu\u0131\u0279p o\u0287 \u05DFn\u025F\u028D\u0250 pu\u0250 \u0279noS",
   "mysticalworld.drinks.wakefulness": "\u00A1\u028E\u0250\u028D\u0250 s\u026Fo\u0287u\u0250\u0265d \u028E\u0279\u0250\u0254s \u01DDso\u0265\u0287 soo\u0265S \u00A1\u028E\u0250p \u0279o \u0287\u0265b\u0131u 'dn no\u028E s\u029E\u0279\u01DD\u0500",
   "mysticalworld.entity.lava_cat": "\u0287\u0250\u0186 \u0250\u028C\u0250\uA780",
   "mysticalworld.entity.obsidian_cat": "\u0287\u0250\u0186 u\u0250\u0131p\u0131sqO",
-  "mysticalworld.food.rotten_apple": "\u02D9s\u0279\u01DDb\u0250\u05DF\u05DF\u0131\u028C \u0287u\u01DD\u0254ouu\u0131 \u0287dn\u0279\u0279o\u0254 o\u0287 \u01DD\u0254u\u0250\u0265\u0254 \u0250 s\u0250H"
+  "mysticalworld.food.rotten_apple": "\u02D9s\u0279\u01DDb\u0250\u05DF\u05DF\u0131\u028C \u0287u\u01DD\u0254ouu\u0131 \u0287dn\u0279\u0279o\u0254 o\u0287 \u01DD\u0254u\u0250\u0265\u0254 \u0250 s\u0250H",
+  "mysticalworld.serendipity": "\u028E\u0287\u0131d\u0131pu\u01DD\u0279\u01DDS",
+  "mysticalworld.smite": "\u01DD\u0287\u0131\u026FS"
 }
