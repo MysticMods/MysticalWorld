@@ -27,6 +27,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
+import noobanidus.libs.noobutil.modifiers.PlayerModifierRegistry;
 import noobanidus.libs.noobutil.registrate.CustomRegistrate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -90,5 +91,9 @@ public class MysticalWorld {
     setup.registerListeners();
 
     modBus.addListener(ConfigManager.HAT_CONFIG::onConfigReload);
+
+    PlayerModifierRegistry.addModifier(ModModifiers.SERENDIPITY);
+    PlayerModifierRegistry.addModifier(ModModifiers.BLESSED);
+    PlayerModifierRegistry.addModifier(ModModifiers.SMITE);
   }
 }
