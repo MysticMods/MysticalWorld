@@ -2,6 +2,9 @@
   "variants": {
     "age=0": {
       "model": "mysticalworld:block/aubergine_7"
+    },
+    "age=1": {
+      "model": "mysticalworld:block/aubergine_7"
     }
   }
 }
