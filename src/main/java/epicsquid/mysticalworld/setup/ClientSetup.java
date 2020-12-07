@@ -35,6 +35,7 @@ public class ClientSetup {
     event.enqueueWork(() -> {
       RenderType rendertype = RenderType.getCutoutMipped();
       RenderTypeLookup.setRenderLayer(ModBlocks.AUBERGINE_CROP.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.WILD_AUBERGINE_CROP.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
 
       ShadedClientSetup.init(event);
