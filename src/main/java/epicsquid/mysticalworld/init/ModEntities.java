@@ -295,6 +295,9 @@ public class ModEntities {
         }
       }
     }
+    if (event.getName().equals(new ResourceLocation("mysticalbiomes", "sprout_plains")) {
+      event.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(ModEntities.SPROUT.get(), 25, 2, 8));
+    }
   }
 
   public static void load() {
