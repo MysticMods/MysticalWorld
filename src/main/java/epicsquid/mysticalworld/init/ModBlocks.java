@@ -12,10 +12,7 @@ import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.blocks.AubergineCropBlock;
-import epicsquid.mysticalworld.blocks.ThatchBlock;
-import epicsquid.mysticalworld.blocks.WetMudBlock;
-import epicsquid.mysticalworld.blocks.WetMudBrick;
+import epicsquid.mysticalworld.blocks.*;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -248,6 +245,12 @@ public class ModBlocks {
       .loot((p, t) -> p.
           registerLootTable(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
               droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7)))))
+      .blockstate(NonNullBiConsumer.noop())
+      .register();
+
+  public static RegistryEntry<WildAubergineCropBlock> WILD_AUBERGINE_CROP = REGISTRATE.block("wild_aubergine_crop", WildAubergineCropBlock::new)
+      .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
+      .loot((p, t) -> p.registerLootTable(ModBlocks.WILD_AUBERGINE_CROP.get(), RegistrateBlockLootTables.droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.AUBERGINE_CROP.get()))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
