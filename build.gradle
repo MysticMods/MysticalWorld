@@ -78,7 +78,6 @@ dependencies {
     deobfCompile("jeresources:JustEnoughResources-${minecraft_version}:${jer_version}") {
         exclude group: 'mezz.jei'
     }
-    compile "curse.maven:simpleharvest:2897811"
     compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}"
 }
 
