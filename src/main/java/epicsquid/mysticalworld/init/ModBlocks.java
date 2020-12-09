@@ -250,7 +250,8 @@ public class ModBlocks {
 
   public static RegistryEntry<WildAubergineCropBlock> WILD_AUBERGINE_CROP = REGISTRATE.block("wild_aubergine_crop", WildAubergineCropBlock::new)
       .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
-      .loot((p, t) -> p.registerLootTable(ModBlocks.WILD_AUBERGINE_CROP.get(), RegistrateBlockLootTables.droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.AUBERGINE_CROP.get()))))
+      .loot((p, t) -> RegistrateBlockLootTables.
+              droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 0))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 

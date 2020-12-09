@@ -295,7 +295,7 @@ public class ModEntities {
         }
       }
     }
-    if (event.getName().getNamespace().equals("mysticalbiomes")) {
+    if (event.getName() != null && event.getName().getNamespace().equals("mysticalbiomes") && event.getName().getPath().contains("sprout")) {
       event.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(ModEntities.SPROUT.get(), 25, 2, 8));
     }
   }
