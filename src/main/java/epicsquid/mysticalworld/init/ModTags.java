@@ -10,6 +10,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.TagsProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
@@ -130,6 +131,7 @@ public class ModTags {
       b.add(MWTags.Blocks.NETHER_BRICKS, Blocks.NETHER_BRICKS);
       b.add(MWTags.Blocks.RED_NETHER_BRICKS, Blocks.RED_NETHER_BRICKS);
       b.add(MWTags.Blocks.TERRACOTTA, Blocks.WHITE_TERRACOTTA, Blocks.ORANGE_TERRACOTTA, Blocks.MAGENTA_TERRACOTTA, Blocks.LIGHT_BLUE_TERRACOTTA, Blocks.YELLOW_TERRACOTTA, Blocks.LIME_TERRACOTTA, Blocks.PINK_TERRACOTTA, Blocks.GRAY_TERRACOTTA, Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.CYAN_TERRACOTTA, Blocks.PURPLE_TERRACOTTA, Blocks.BLUE_TERRACOTTA, Blocks.BROWN_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.BLACK_TERRACOTTA, Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK.get());
+      b.add(BlockTags.BASE_STONE_OVERWORLD, ModBlocks.SOFT_STONE.get());
     });
   }
 
