@@ -18,7 +18,7 @@ public class PetrifiedBushBlock extends DeadBushBlock {
   @Override
   protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
     Block block = state.getBlock();
-    return block.isIn(Tags.Blocks.STONE);
+    return block.isIn(Tags.Blocks.STONE) || block.isIn(Tags.Blocks.GRAVEL);
   }
 
   @Override
