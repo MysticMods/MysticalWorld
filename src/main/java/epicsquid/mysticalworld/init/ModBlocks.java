@@ -58,6 +58,10 @@ public class ModBlocks {
     p.simpleBlock(ctx.getEntry());
   }
 
+  public static <T extends Item> ItemModelBuilder generated(DataGenContext<Item, T> ctx, RegistrateItemModelProvider p) {
+    return p.generated(ctx::getEntry, p.modLoc("block/" + p.name(ctx::getEntry)));
+  }
+
   public static <T extends Block> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> simpleBlockState(ResourceLocation parent) {
     return (ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().getExistingFile(parent));
   }
@@ -112,13 +116,24 @@ public class ModBlocks {
       .properties(o -> o.doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ctx.getEntry())))))
       .item()
-      .defaultModel()
+      .model(ModBlocks::generated)
       .build()
 /*      .loot((p, t) -> {
         p.registerLootTable(Blocks.DEAD_BUSH, (deadBush) -> {
           return p.droppingWithShears(deadBush, p.withExplosionDecay(deadBush, ItemLootEntry.builder(Items.STICK).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F)))));
         }
       })*/
+      .register();
+
+  public static RegistryEntry<PetrifiedTallGrassBlock> PETRIFIED_GRASS = REGISTRATE.block("petrified_grass", Material.TALL_PLANTS, PetrifiedTallGrassBlock::new)
+      .properties(o -> o.doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT))
+      .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ctx.getEntry())))))
+      .item()
+      .model(ModBlocks::generated)
+      .build()
+      .loot((p, t) -> {
+        p.registerLootTable(t, RegistrateBlockLootTables.droppingSeeds(t));
+      })
       .register();
 
   private static NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.hardnessAndResistance(1f).sound(SoundType.PLANT);
