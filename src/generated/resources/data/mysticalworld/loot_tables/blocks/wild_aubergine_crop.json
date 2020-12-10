@@ -12,7 +12,10 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "mysticalworld:aubergine_crop"
+                  "block": "mysticalworld:wild_aubergine_crop",
+                  "properties": {
+                    "age": "0"
+                  }
                 }
               ],
               "name": "mysticalworld:aubergine"
@@ -47,7 +50,10 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "mysticalworld:aubergine_crop"
+          "block": "mysticalworld:wild_aubergine_crop",
+          "properties": {
+            "age": "0"
+          }
         }
       ]
     }

@@ -16,7 +16,6 @@ import epicsquid.mysticalworld.blocks.*;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.data.SingleItemRecipeBuilder;
@@ -108,6 +107,14 @@ public class ModBlocks {
   public static NonNullFunction<Block.Properties, StairsBlock> stairsBlock(RegistryEntry<? extends Block> block) {
     return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b);
   }
+
+  public static RegistryEntry<PetrifiedBushBlock> PETRIFIED_BUSH = REGISTRATE.block("petrified_bush", Material.TALL_PLANTS, PetrifiedBushBlock::new)
+      .properties(o -> o.doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT))
+      .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ctx.getEntry())))))
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .register();
 
   private static NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.hardnessAndResistance(1f).sound(SoundType.PLANT);
 
@@ -244,14 +251,14 @@ public class ModBlocks {
       .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
       .loot((p, t) -> p.
           registerLootTable(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
-              droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7)))))
+              droppingAndBonusWhen(ModBlocks.AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7)))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
   public static RegistryEntry<WildAubergineCropBlock> WILD_AUBERGINE_CROP = REGISTRATE.block("wild_aubergine_crop", WildAubergineCropBlock::new)
       .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
-      .loot((p, t) -> RegistrateBlockLootTables.
-              droppingAndBonusWhen(t, ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 0))))
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.
+          droppingAndBonusWhen(ModBlocks.WILD_AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.WILD_AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(WildAubergineCropBlock.AGE, 0)))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
