@@ -112,8 +112,13 @@ public class ModBlocks {
       .properties(o -> o.doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ctx.getEntry())))))
       .item()
-      .model(ModBlocks::itemModel)
+      .defaultModel()
       .build()
+/*      .loot((p, t) -> {
+        p.registerLootTable(Blocks.DEAD_BUSH, (deadBush) -> {
+          return p.droppingWithShears(deadBush, p.withExplosionDecay(deadBush, ItemLootEntry.builder(Items.STICK).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F)))));
+        }
+      })*/
       .register();
 
   private static NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.hardnessAndResistance(1f).sound(SoundType.PLANT);

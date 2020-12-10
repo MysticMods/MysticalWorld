@@ -16,6 +16,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -33,6 +34,8 @@ import org.apache.logging.log4j.Logger;
 
 @Mod("mysticalworld")
 public class MysticalWorld {
+  public static PlantType STONE_PLANT;
+
   public static final Logger LOG = LogManager.getLogger();
   public static final String MODID = "mysticalworld";
 

@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.setup;
 
 import com.google.common.collect.Maps;
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
@@ -24,6 +25,7 @@ import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.DeferredWorkQueue;
@@ -41,6 +43,8 @@ public class CommonSetup {
   }
 
   public void init(FMLCommonSetupEvent event) {
+    MysticalWorld.STONE_PLANT = PlantType.get("stone");
+
     event.enqueueWork(() -> {
       ModCompost.init();
       ModEntities.registerEntities();
