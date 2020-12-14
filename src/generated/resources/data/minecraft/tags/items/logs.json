@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "mysticalworld:charred_wood",
     "mysticalworld:charred_log"
   ]
 }

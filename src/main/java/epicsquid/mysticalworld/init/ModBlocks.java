@@ -518,9 +518,24 @@ public class ModBlocks {
   private static NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD).hardnessAndResistance(2.0f);
 
 
+  public static RegistryEntry<RotatedPillarBlock> CHARRED_WOOD = REGISTRATE.log("charred_wood")
+      .properties(WOOD_PROPS)
+      .tag(BlockTags.LOGS)
+      .blockstate((ctx, p) -> {
+        p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getEntry().getRegistryName().getPath(), p.blockTexture(ModBlocks.CHARRED_LOG.get())));
+      })
+      .item()
+      .tag(ItemTags.LOGS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .register();
+
   public static RegistryEntry<RotatedPillarBlock> CHARRED_LOG = REGISTRATE.log("charred_log")
       .properties(WOOD_PROPS)
       .tag(BlockTags.LOGS)
+      .blockstate((ctx, p) -> {
+        p.logBlock(ctx.getEntry());
+      })
       .item()
       .tag(ItemTags.LOGS)
       .model(ModBlocks::itemModel)

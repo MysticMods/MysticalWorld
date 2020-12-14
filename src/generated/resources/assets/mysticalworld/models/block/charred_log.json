@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "mysticalworld:block/charred_log"
+    "side": "mysticalworld:block/charred_log",
+    "end": "mysticalworld:block/charred_log_top"
   }
 }
