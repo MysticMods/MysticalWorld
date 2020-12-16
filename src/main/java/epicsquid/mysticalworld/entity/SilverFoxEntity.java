@@ -16,6 +16,7 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -212,12 +213,15 @@ public class SilverFoxEntity extends TameableEntity {
       if (!stack.isEmpty()) {
         if (stack.getItem().isFood() && (stack.getItem() == Items.APPLE || stack.getItem() == Items.GOLDEN_APPLE)) {
           if (dataManager.get(DATA_HEALTH_ID) < 20.0F) {
-            if (!player.isCreative()) {
-              stack.shrink(1);
-            }
+            Food food = stack.getItem().getFood();
+            if (food != null) {
+              heal((float) food.getHealing());
 
-            heal((float) stack.getItem().getFood().getHealing());
-            return ActionResultType.SUCCESS;
+              if (!player.isCreative()) {
+                stack.shrink(1);
+              }
+              return ActionResultType.SUCCESS;
+            }
           }
         }
       }
