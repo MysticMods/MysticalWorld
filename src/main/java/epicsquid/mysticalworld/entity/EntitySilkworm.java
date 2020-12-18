@@ -57,7 +57,9 @@ public class EntitySilkworm extends EntityAnimal {
     this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
     this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
     this.tasks.addTask(8, new EntityAILookIdle(this));
-    this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<>(this, EntitySilkworm.class, false));
+    if (ConfigManager.silkworm.territorial) {
+      this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<>(this, EntitySilkworm.class, false));
+    }
   }
 
   @Override
