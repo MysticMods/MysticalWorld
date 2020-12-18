@@ -35,6 +35,7 @@ public class EntitySilkworm extends EntityAnimal {
 
   private static final DataParameter<Integer> SIZE = EntityDataManager.createKey(EntitySilkworm.class, DataSerializers.VARINT);
   private static final DataParameter<Integer> LEAVES_CONSUMED = EntityDataManager.createKey(EntitySilkworm.class, DataSerializers.VARINT);
+  private static final DataParameter<Integer> LIFETIME = EntityDataManager.createKey(EntitySilkworm.class, DataSerializers.VARINT);
   private static final int MAX_SIZE = 120;
 
   private int lastTickPlayed = 0;
@@ -43,6 +44,7 @@ public class EntitySilkworm extends EntityAnimal {
     super(worldIn);
     this.experienceValue = 1;
     this.setSize(0.8F, 0.6F);
+    this.getDataManager().register(LIFETIME, 0);
   }
 
   @Nullable
@@ -246,6 +248,17 @@ public class EntitySilkworm extends EntityAnimal {
     if (!this.world.isRemote) {
       if (this.rand.nextInt(ConfigManager.safeInt(ConfigManager.silkworm.growthChance)) == 0) {
         grow();
+      }
+      if (this.ticksExisted % 10 == 0) {
+        if (ConfigManager.silkworm.maxLifetime != -1) {
+          int current = this.getDataManager().get(LIFETIME) + 10;
+          if (current > ConfigManager.silkworm.maxLifetime) {
+            this.attackEntityFrom(DamageSource.WITHER, Integer.MAX_VALUE);
+          } else {
+            this.getDataManager().set(LIFETIME, current);
+            this.getDataManager().setDirty(LIFETIME);
+          }
+        }
       }
     }
   }
