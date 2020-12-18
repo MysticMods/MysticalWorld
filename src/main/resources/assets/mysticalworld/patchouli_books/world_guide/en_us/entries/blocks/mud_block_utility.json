@@ -27,7 +27,7 @@
       "recipe": "mysticalworld:mud_block_button",
       "recipe2": "mysticalworld:mud_brick_button",
       "link_recipe": true,
-      "title": "Pressure plates"
+      "title": "Buttons"
     }
   ]
 }
