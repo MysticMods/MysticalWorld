@@ -10,11 +10,11 @@ public class Tools {
   public static void registerTools(@Nonnull RegisterContentEvent event) {
     for (Material material : Materials.getMaterials()) {
       if (material.hasTool()) {
-        event.addItem(new ItemAxeBase(material.getMaterial(), material.name() + "_axe", material.getMaterial().getHarvestLevel(), material.getMaterial().getMaxUses(), material.getRepairIngredient()).setCreativeTab(MysticalWorld.tab).setMaxStackSize(1));
-        event.addItem(new ItemHoeBase(material.getMaterial(), material.name() + "_hoe", material.getMaterial().getHarvestLevel(), material.getMaterial().getMaxUses(), material.getRepairIngredient()).setCreativeTab(MysticalWorld.tab).setMaxStackSize(1));
-        event.addItem(new ItemPickaxeBase(material.getMaterial(), material.name() + "_pickaxe", material.getMaterial().getHarvestLevel(), material.getMaterial().getMaxUses(), material.getRepairIngredient()).setCreativeTab(MysticalWorld.tab).setMaxStackSize(1));
-        event.addItem(new ItemShovelBase(material.getMaterial(), material.name() + "_shovel", material.getMaterial().getHarvestLevel(), material.getMaterial().getMaxUses(), material.getRepairIngredient()).setCreativeTab(MysticalWorld.tab).setMaxStackSize(1));
-        event.addItem(new ItemSwordBase(material.getMaterial(), material.name() + "_sword", material.getMaterial().getMaxUses(), material.getRepairIngredient()).setCreativeTab(MysticalWorld.tab).setMaxStackSize(1));
+        event.addItem(material.setAxe(new ItemAxeBase(material.getMaterial(), material.name() + "_axe", material.getMaterial().getHarvestLevel(), material.getMaterial().getMaxUses(), material.getRepairIngredient()).setCreativeTab(MysticalWorld.tab).setMaxStackSize(1)));
+        event.addItem(material.setHoe(new ItemHoeBase(material.getMaterial(), material.name() + "_hoe", material.getMaterial().getHarvestLevel(), material.getMaterial().getMaxUses(), material.getRepairIngredient()).setCreativeTab(MysticalWorld.tab).setMaxStackSize(1)));
+        event.addItem(material.setPickaxe((new ItemPickaxeBase(material.getMaterial(), material.name() + "_pickaxe", material.getMaterial().getHarvestLevel(), material.getMaterial().getMaxUses(), material.getRepairIngredient()).setCreativeTab(MysticalWorld.tab).setMaxStackSize(1))));
+        event.addItem(material.setShovel(new ItemShovelBase(material.getMaterial(), material.name() + "_shovel", material.getMaterial().getHarvestLevel(), material.getMaterial().getMaxUses(), material.getRepairIngredient()).setCreativeTab(MysticalWorld.tab).setMaxStackSize(1)));
+        event.addItem(material.setSword(new ItemSwordBase(material.getMaterial(), material.name() + "_sword", material.getMaterial().getMaxUses(), material.getRepairIngredient()).setCreativeTab(MysticalWorld.tab).setMaxStackSize(1)));
       }
     }
   }

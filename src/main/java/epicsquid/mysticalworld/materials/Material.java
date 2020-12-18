@@ -4,6 +4,7 @@ import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.types.OneTimeSupplier;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreIngredient;
 
@@ -29,6 +30,12 @@ public abstract class Material implements IMaterial {
   private final Item.ToolMaterial material;
   private boolean hasTool;
   private OneTimeSupplier<Ingredient> repair;
+
+  private Item axe;
+  private Item hoe;
+  private Item pickaxe;
+  private Item shovel;
+  private Item sword;
 
   public Material(@Nonnull String oredictNameSuffix, float hardness, float experience, int level, int minXP, int maxXP, Item.ToolMaterial material, boolean hasTool, String repair) {
     this.oredictNameSuffix = oredictNameSuffix;
@@ -179,4 +186,49 @@ public abstract class Material implements IMaterial {
 
   @Override
   public abstract void initOreDictionary();
+
+  public Item getAxe() {
+    return axe;
+  }
+
+  public Item setAxe(Item axe) {
+    this.axe = axe;
+    return axe;
+  }
+
+  public Item getHoe() {
+    return hoe;
+  }
+
+  public Item setHoe(Item hoe) {
+    this.hoe = hoe;
+    return hoe;
+  }
+
+  public Item getPickaxe() {
+    return pickaxe;
+  }
+
+  public Item setPickaxe(Item pickaxe) {
+    this.pickaxe = pickaxe;
+    return pickaxe;
+  }
+
+  public Item getShovel() {
+    return shovel;
+  }
+
+  public Item setShovel(Item shovel) {
+    this.shovel = shovel;
+    return shovel;
+  }
+
+  public Item getSword() {
+    return sword;
+  }
+
+  public Item setSword(Item sword) {
+    this.sword = sword;
+    return sword;
+  }
 }
