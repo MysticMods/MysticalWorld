@@ -60,9 +60,6 @@ public class ModEntities {
       LibRegistry.registerEntityRenderer(EntityClam.class, new RenderClam.Factory());
     LibRegistry.registerEntity(EntityClam.class, 0xfffdd0, 0xfadadd);
     if (MysticalWorld.proxy instanceof ClientProxy)
-      LibRegistry.registerEntityRenderer(EntityLurker.class, new RenderLurker.Factory());
-    LibRegistry.registerEntity(EntityLurker.class, 0x02075d, 0xffed83);
-    if (MysticalWorld.proxy instanceof ClientProxy)
       LibRegistry.registerEntityRenderer(EntitySilkworm.class, new RenderSilkworm.Factory());
   }
 
