@@ -284,8 +284,8 @@ public class ConfigManager {
     @Config.Comment(("Max number of silk cocoons that can be spawned"))
     public int maxCocoons = 5;
 
-    @Config.Comment(("How long it takes until a silkworm shrivels and dies (-1 to make them immortal, default 15 minecraft days)"))
-    public int maxLifetime = 24000 * 15;
+    @Config.Comment(("How long it takes in ticks until a silkworm shrivels and dies (-1 to make them immortal)"))
+    public int maxLifetime = -1; //24000 * 15;
 
     @Config.Comment(("Whether or not silkworms are territorial and will attack other silkworms"))
     public boolean territorial = true;
