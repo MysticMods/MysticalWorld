@@ -215,6 +215,10 @@ public class LavaCatEntity extends TameableEntity {
     if (this.isTamed()) {
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
         this.func_233687_w_(!this.isSitting());
+        this.isJumping = false;
+        this.navigator.clearPath();
+        this.setAttackTarget(null);
+        return ActionResultType.SUCCESS;
       }
     } else if (itemstack.getItem() == Items.BLAZE_ROD && player.getDistanceSq(this) < 9.0D) {
       if (!player.isCreative()) {

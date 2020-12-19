@@ -4,10 +4,10 @@ import com.mojang.serialization.Codec;
 import epicsquid.mysticalworld.init.ModFeatures;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
-import noobanidus.libs.noobutil.types.AbstractSBSP;
+import noobanidus.libs.noobutil.types.AbstractSupplierBockStateProvider;
 
-public class SupplierBlockStateProvider extends AbstractSBSP {
-  public static final Codec<SupplierBlockStateProvider> CODEC = ResourceLocation.CODEC.fieldOf("key").xmap(SupplierBlockStateProvider::new, (provider) -> provider.key).codec();
+public class SupplierBlockStateProvider extends AbstractSupplierBockStateProvider {
+  public static final Codec<SupplierBlockStateProvider> CODEC = codecBuilder(SupplierBlockStateProvider::new);
 
   public SupplierBlockStateProvider(String namespace, String path) {
     super(namespace, path);

@@ -112,17 +112,25 @@ public class ModBlocks {
     return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b);
   }
 
-  public static RegistryEntry<PetrifiedBushBlock> PETRIFIED_BUSH = REGISTRATE.block("petrified_bush", Material.TALL_PLANTS, PetrifiedBushBlock::new)
+  public static RegistryEntry<PetrifiedFlowerBlock> ROYAL_STONEFLOWER = REGISTRATE.block("royal_stoneflower", Material.PLANTS, PetrifiedFlowerBlock::new)
       .properties(o -> o.doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ctx.getEntry())))))
       .item()
       .model(ModBlocks::generated)
       .build()
-/*      .loot((p, t) -> {
+      .register();
+
+/*  public static RegistryEntry<PetrifiedBushBlock> PETRIFIED_BUSH = REGISTRATE.block("petrified_bush", Material.TALL_PLANTS, PetrifiedBushBlock::new)
+      .properties(o -> o.doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT))
+      .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ctx.getEntry())))))
+      .item()
+      .model(ModBlocks::generated)
+      .build()
+*//*      .loot((p, t) -> {
         p.registerLootTable(Blocks.DEAD_BUSH, (deadBush) -> {
           return p.droppingWithShears(deadBush, p.withExplosionDecay(deadBush, ItemLootEntry.builder(Items.STICK).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F)))));
         }
-      })*/
+      })*//*
       .register();
 
   public static RegistryEntry<PetrifiedTallGrassBlock> PETRIFIED_GRASS = REGISTRATE.block("petrified_grass", Material.TALL_PLANTS, PetrifiedTallGrassBlock::new)
@@ -134,7 +142,7 @@ public class ModBlocks {
       .loot((p, t) -> {
         p.registerLootTable(t, RegistrateBlockLootTables.droppingSeeds(t));
       })
-      .register();
+      .register();*/
 
   private static NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.hardnessAndResistance(1f).sound(SoundType.PLANT);
 

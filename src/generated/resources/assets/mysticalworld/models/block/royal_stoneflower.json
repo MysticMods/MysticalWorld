@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "mysticalworld:block/petrified_grass"
+    "cross": "mysticalworld:block/royal_stoneflower"
   }
 }

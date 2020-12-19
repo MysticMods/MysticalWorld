@@ -123,6 +123,12 @@ public class LavaCatModel extends AgeableModel<LavaCatEntity> {
     this.ocelotBackRightLeg.rotationPointY = 18.0F;
     this.ocelotBackRightLeg.rotationPointZ = 5.0F;
     this.ocelotTail.rotateAngleX = 0.9F;
+    this.ocelotBody.rotateAngleX = 0;
+    this.ocelotTail2.rotateAngleX = 0;
+    this.ocelotFrontLeftLeg.rotateAngleX = 0;
+    this.ocelotFrontRightLeg.rotateAngleX = 0;
+    this.ocelotBackLeftLeg.rotateAngleX = 0;
+    this.ocelotBackRightLeg.rotateAngleX = 0;
 
     if (entityocelot.isSneaking()) {
       ++this.ocelotBody.rotationPointY;
