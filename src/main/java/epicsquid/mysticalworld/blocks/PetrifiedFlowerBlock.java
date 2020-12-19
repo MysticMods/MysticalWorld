@@ -54,7 +54,7 @@ public class PetrifiedFlowerBlock extends FlowerBlock {
     if (!worldIn.isRemote) {
       if (entityIn instanceof LivingEntity) {
         LivingEntity livingentity = (LivingEntity) entityIn;
-        livingentity.addPotionEffect(new EffectInstance(Effects.JUMP_BOOST, 40));
+        livingentity.addPotionEffect(new EffectInstance(Effects.JUMP_BOOST, 20, 2));
       }
     }
   }
