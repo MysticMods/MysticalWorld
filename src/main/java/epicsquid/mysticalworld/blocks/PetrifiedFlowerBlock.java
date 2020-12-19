@@ -30,7 +30,7 @@ public class PetrifiedFlowerBlock extends FlowerBlock {
 
   @Override
   protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-    return state.isIn(Tags.Blocks.STONE) || state.isIn(Blocks.GRAVEL);
+    return state.isIn(Tags.Blocks.STONE) || state.isIn(Blocks.GRAVEL) || state.isIn(Tags.Blocks.ORES);
   }
 
   @Override
