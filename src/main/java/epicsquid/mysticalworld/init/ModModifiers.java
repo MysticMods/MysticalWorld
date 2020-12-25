@@ -16,7 +16,7 @@ public class ModModifiers {
 
   public static final RegistryEntry<Attribute> BLESSED = REGISTRATE.simple("blessed", Attribute.class, () -> new RangedAttribute("mysticalworld.blessed", 0D, 0D, 10D).setShouldWatch(true));
   public static final RegistryEntry<Attribute> SMITE = REGISTRATE.simple("smite", Attribute.class, () -> new RangedAttribute("mysticalworld.smite", 0D, 0D, 5D).setShouldWatch(true));
-  public static final RegistryEntry<Attribute> SERENDIPITY = REGISTRATE.simple("serendipity", Attribute.class, () -> new RangedAttribute("mysticalworld.serendipity", 1D, 1D, 10D).setShouldWatch(true));
+  public static final RegistryEntry<Attribute> SERENDIPITY = REGISTRATE.simple("serendipity", Attribute.class, () -> new RangedAttribute("mysticalworld.serendipity", 0D, 0D, 10D).setShouldWatch(true));
 
   public static void load() {
 
