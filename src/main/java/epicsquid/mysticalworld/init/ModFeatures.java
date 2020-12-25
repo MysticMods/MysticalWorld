@@ -29,10 +29,7 @@ import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.OptionalInt;
-import java.util.Set;
+import java.util.*;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
@@ -52,9 +49,9 @@ public class ModFeatures {
     for (OreConfig config : ConfigManager.ORE_CONFIG) {
       if (config.getChance() > 0) {
         ConfiguredFeature<?, ?> feat;
-        ORE_FEATURES.add(feat = SUPPLIER_ORE.get().withConfiguration(new SupplierOreFeatureConfig(OreGenTest.INSTANCE, config.getOreKey(), config.getChance())
+        ORE_FEATURES.add(feat = SUPPLIER_ORE.get().withConfiguration(new SupplierOreFeatureConfig(OreGenTest.INSTANCE, config.getOreKey(), config.getSize())
         ).withPlacement(
-            ModFeatures.DIMENSION_COUNT_PLACEMENT.get().configure(new DimensionCountRangeConfig(config.getSize(), config.getMinY(), 0, config.getMaxY() - config.getMinY(), config.getDimensions())
+            ModFeatures.DIMENSION_COUNT_PLACEMENT.get().configure(new DimensionCountRangeConfig(config.getChance(), config.getMinY(), 0, config.getMaxY() - config.getMinY(), config.getDimensions())
             )
         ));
         Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, config.getName().toLowerCase()), feat);
