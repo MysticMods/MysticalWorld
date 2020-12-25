@@ -19,28 +19,28 @@ public class MobConfig implements IConfig {
   protected int min;
   protected int max;
   protected List<String> biomes;
+  protected BiomeDictionary.Type restriction;
 
   protected ForgeConfigSpec.IntValue configChance;
   protected ForgeConfigSpec.IntValue configMin;
   protected ForgeConfigSpec.IntValue configMax;
   protected ForgeConfigSpec.ConfigValue<String> configBiomes;
 
-  protected boolean mob;
-
   public MobConfig(String name, int chance, int min, int max, List<String> biomes) {
-    this(name, chance, min, max, biomes, false);
+    this(name, chance, min, max, biomes, BiomeDictionary.Type.OVERWORLD);
   }
 
-  public MobConfig(String name, int chance, int min, int max, List<String> biomes, boolean mob) {
+  public MobConfig(String name, int chance, int min, int max, List<String> biomes, BiomeDictionary.Type restriction) {
     this.name = name;
     this.chance = chance;
     this.min = min;
     this.max = max;
     this.biomes = biomes;
+    this.restriction = restriction;
   }
 
-  public boolean isMob() {
-    return mob;
+  public BiomeDictionary.Type getRestriction() {
+    return restriction;
   }
 
   public int getChance() {

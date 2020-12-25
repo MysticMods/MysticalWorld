@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.config;
 
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public class HellSproutConfig extends MobConfig {
   protected ForgeConfigSpec.IntValue configGrowChance;
 
   public HellSproutConfig(String name, int chance, int min, int max, List<String> biomes, int growChance) {
-    super(name, chance, min, max, biomes);
+    super(name, chance, min, max, biomes, BiomeDictionary.Type.NETHER);
     this.growChance = growChance;
   }
 

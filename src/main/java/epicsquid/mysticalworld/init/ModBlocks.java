@@ -287,7 +287,11 @@ public class ModBlocks {
       .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
       .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.
           droppingAndBonusWhen(ModBlocks.WILD_AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.WILD_AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(WildAubergineCropBlock.AGE, 0)))))
-      .blockstate(NonNullBiConsumer.noop())
+      .blockstate((ctx, p) ->
+        p.getVariantBuilder(ctx.getEntry())
+            .partialState()
+            .addModels(new ConfiguredModel(p.models().crop(ctx.getName(), p.blockTexture(ctx.getEntry()))))
+      )
       .register();
 
   // MUD BLOCK

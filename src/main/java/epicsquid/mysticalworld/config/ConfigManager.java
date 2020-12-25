@@ -67,13 +67,13 @@ public class ConfigManager {
   private static void registerMobConfigs() {
     DEER_CONFIG = new MobConfig("Deer", 6, 2, 4, Arrays.asList("forest", "icy", "taiga", "plains"));
     SPROUT_CONFIG = new MobConfig("Sprout", 2, 2, 4, Arrays.asList("jungle", "river", "forest", "beach"));
-    HELL_SPROUT_CONFIG = new HellSproutConfig("Hell Sprout", 8, 1, 3, Collections.singletonList("nether"), 100);
+    HELL_SPROUT_CONFIG = new HellSproutConfig("Hell Sprout", 2, 1, 1, Collections.singletonList("nether"), 100);
     SILVER_FOX_CONFIG = new MobConfig("Silver Fox", 4, 1, 3, Arrays.asList("forest", "icy", "taiga"));
     BEETLE_CONFIG = new MobConfig("Beetle", 5, 2, 4, Arrays.asList("swamp", "jungle", "forest", "plains"));
     FROG_CONFIG = new MobConfig("Frog", 6, 2, 4, Arrays.asList("swamp", "jungle", "beach", "river"));
-    ENDERMINI_CONFIG = new MobConfig("Endermini", 1, 1, 2, Collections.singletonList("end"));
+    ENDERMINI_CONFIG = new MobConfig("Endermini", 2, 1, 2, Collections.singletonList("end"), BiomeDictionary.Type.END);
     OWL_CONFIG = new MobConfig("Owl", 9, 1, 3, Arrays.asList("taiga", "extreme_hills", "forest", "icy"));
-    LAVA_CAT_CONFIG = new MobConfig("Lava Cat", 1, 1, 1, Collections.singletonList("nether")); // test
+    LAVA_CAT_CONFIG = new MobConfig("Lava Cat", 2, 1, 1, Collections.singletonList("nether"), BiomeDictionary.Type.NETHER); // test
     SILKWORM_CONFIG = new SilkwormConfig(true, 65, 1, 68);
     HAT_CONFIG = new HatConfig();
 
