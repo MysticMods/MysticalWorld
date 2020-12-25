@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -31,13 +32,13 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.UUID;
 
+@SuppressWarnings({"Duplicates", "NullableProblems", "unused"})
 public class LavaCatEntity extends TameableEntity {
-  public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/lava_cat");
+  private static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/lava_cat");
 
   private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.createKey(LavaCatEntity.class, DataSerializers.BOOLEAN);
   private static final UUID OBSIDIAN_SPEED_MODIFIER = UUID.fromString("f58f95e9-fb51-4604-a66d-89433c9dd8a5");
@@ -65,8 +66,7 @@ public class LavaCatEntity extends TameableEntity {
 
   public static boolean placement(EntityType<? extends AnimalEntity> p_223316_0_, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random p_223316_4_) {
     Block block = worldIn.getBlockState(blockpos.down()).getBlock();
-    boolean result = block == Blocks.NETHERRACK || block == Blocks.OBSIDIAN || block == Blocks.MAGMA_BLOCK || block == Blocks.SOUL_SAND || block == Blocks.SOUL_SOIL || block == Blocks.NETHER_BRICKS || block == Blocks.BONE_BLOCK || block == Blocks.NETHER_WART_BLOCK || block == Blocks.NETHER_GOLD_ORE || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_QUARTZ_ORE || block == Blocks.RED_NETHER_BRICKS || block == Blocks.CHISELED_NETHER_BRICKS || block == Blocks.BASALT || block == Blocks.POLISHED_BASALT || block == Blocks.CRACKED_NETHER_BRICKS || block == Blocks.BLACKSTONE || block == Blocks.CHISELED_POLISHED_BLACKSTONE || block == Blocks.GILDED_BLACKSTONE || block == Blocks.POLISHED_BLACKSTONE || block == Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS || block == Blocks.CRIMSON_NYLIUM || block == Blocks.CRIMSON_HYPHAE || block == Blocks.WARPED_WART_BLOCK || block == Blocks.GRAVEL || block == Blocks.GLOWSTONE || block == Blocks.POLISHED_BLACKSTONE_BRICKS || block == Blocks.WARPED_NYLIUM || block == Blocks.SHROOMLIGHT;
-    return result;
+    return block == Blocks.NETHERRACK || block == Blocks.OBSIDIAN || block == Blocks.MAGMA_BLOCK || block == Blocks.SOUL_SAND || block == Blocks.SOUL_SOIL || block == Blocks.NETHER_BRICKS || block == Blocks.BONE_BLOCK || block == Blocks.NETHER_WART_BLOCK || block == Blocks.NETHER_GOLD_ORE || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_QUARTZ_ORE || block == Blocks.RED_NETHER_BRICKS || block == Blocks.CHISELED_NETHER_BRICKS || block == Blocks.BASALT || block == Blocks.POLISHED_BASALT || block == Blocks.CRACKED_NETHER_BRICKS || block == Blocks.BLACKSTONE || block == Blocks.CHISELED_POLISHED_BLACKSTONE || block == Blocks.GILDED_BLACKSTONE || block == Blocks.POLISHED_BLACKSTONE || block == Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS || block == Blocks.CRIMSON_NYLIUM || block == Blocks.CRIMSON_HYPHAE || block == Blocks.WARPED_WART_BLOCK || block == Blocks.GRAVEL || block == Blocks.GLOWSTONE || block == Blocks.POLISHED_BLACKSTONE_BRICKS || block == Blocks.WARPED_NYLIUM || block == Blocks.SHROOMLIGHT;
   }
 
   @Override
@@ -204,12 +204,61 @@ public class LavaCatEntity extends TameableEntity {
   }
 
   @Override
-  @Nullable
   public ResourceLocation getLootTable() {
     return LOOT_TABLE;
   }
 
   @Override
+  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
+    ItemStack itemstack = player.getHeldItem(hand);
+    Item item = itemstack.getItem();
+    if (this.world.isRemote) {
+      boolean flag = this.isOwner(player) || this.isTamed() || item == Items.BLAZE_ROD && !this.isTamed();
+      return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
+    } else {
+      if (this.isTamed()) {
+        if (this.isBreedingItem(itemstack) && this.getHealth() < this.getMaxHealth()) {
+          if (!player.abilities.isCreativeMode) {
+            itemstack.shrink(1);
+          }
+
+          this.heal(2f);
+          return ActionResultType.SUCCESS;
+        }
+
+        ActionResultType actionresulttype = super.func_230254_b_(player, hand);
+        if ((!actionresulttype.isSuccessOrConsume() || this.isChild()) && this.isOwner(player)) {
+          this.func_233687_w_(!this.isSitting());
+          this.isJumping = false;
+          this.navigator.clearPath();
+          this.setAttackTarget(null);
+          return ActionResultType.SUCCESS;
+        }
+
+        return actionresulttype;
+      } else if (item == Items.BLAZE_ROD) {
+        if (!player.abilities.isCreativeMode) {
+          itemstack.shrink(1);
+        }
+
+        if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+          this.setTamedBy(player);
+          this.navigator.clearPath();
+          this.setAttackTarget(null);
+          this.func_233687_w_(true);
+          this.world.setEntityState(this, (byte) 7);
+        } else {
+          this.world.setEntityState(this, (byte) 6);
+        }
+
+        return ActionResultType.SUCCESS;
+      }
+
+      return super.func_230254_b_(player, hand);
+    }
+  }
+
+/*  @Override
   public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
     ItemStack itemstack = player.getHeldItem(hand);
 
@@ -240,14 +289,13 @@ public class LavaCatEntity extends TameableEntity {
     }
 
     return super.func_230254_b_(player, hand);
-  }
+  }*/
 
   @Override
-  @Nonnull
   public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     LavaCatEntity lavacat = ModEntities.LAVA_CAT.get().create(ageable.world);
 
-    if (this.isTamed()) {
+    if (this.isTamed() && lavacat != null) {
       lavacat.setOwnerId(this.getOwnerId());
       lavacat.setTamed(true);
       lavacat.setIsLava(getIsLava());
@@ -287,10 +335,12 @@ public class LavaCatEntity extends TameableEntity {
   public void setIsLava(boolean val) {
     this.dataManager.set(IS_LAVA, val);
     ModifiableAttributeInstance instance = this.getAttribute(Attributes.MOVEMENT_SPEED);
-    if (val && instance.hasModifier(OBSIDIAN_SPEED)) {
-      instance.removeModifier(OBSIDIAN_SPEED);
-    } else if (!instance.hasModifier(OBSIDIAN_SPEED)) {
-      instance.applyNonPersistentModifier(OBSIDIAN_SPEED);
+    if (instance != null) {
+      if (val && instance.hasModifier(OBSIDIAN_SPEED)) {
+        instance.removeModifier(OBSIDIAN_SPEED);
+      } else if (!instance.hasModifier(OBSIDIAN_SPEED)) {
+        instance.applyNonPersistentModifier(OBSIDIAN_SPEED);
+      }
     }
   }
 

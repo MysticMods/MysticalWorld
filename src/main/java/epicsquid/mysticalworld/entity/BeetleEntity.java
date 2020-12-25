@@ -1,7 +1,12 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.api.Capabilities;
+import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
+import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.init.ModEntities;
+import epicsquid.mysticalworld.network.Networking;
+import epicsquid.mysticalworld.network.ShoulderRide;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -11,17 +16,24 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Food;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fml.network.PacketDistributor;
 
 import javax.annotation.Nonnull;
 
+@SuppressWarnings({"NullableProblems", "Duplicates", "ConstantConditions"})
 public class BeetleEntity extends TameableEntity {
 
   public BeetleEntity(EntityType<? extends BeetleEntity> type, World worldIn) {
@@ -49,6 +61,59 @@ public class BeetleEntity extends TameableEntity {
 
   @Override
   public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
+    ItemStack itemstack = player.getHeldItem(hand);
+    Item item = itemstack.getItem();
+    if (this.world.isRemote) {
+      boolean flag = this.isOwner(player) || this.isTamed() || item == Items.MELON_SEEDS && !this.isTamed();
+      return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
+    } else {
+      if (this.isTamed()) {
+        if (this.isBreedingItem(itemstack) && this.getHealth() < this.getMaxHealth()) {
+          if (!player.abilities.isCreativeMode) {
+            itemstack.shrink(1);
+          }
+
+          Food food = item.getFood();
+          if (food != null) {
+            this.heal((float) food.getHealing());
+            return ActionResultType.SUCCESS;
+          }
+        }
+
+        ActionResultType actionresulttype = super.func_230254_b_(player, hand);
+        if ((!actionresulttype.isSuccessOrConsume() || this.isChild()) && this.isOwner(player)) {
+          this.func_233687_w_(!this.isSitting());
+          this.isJumping = false;
+          this.navigator.clearPath();
+          this.setAttackTarget(null);
+          return ActionResultType.SUCCESS;
+        }
+
+        return actionresulttype;
+      } else if (item == Items.MELON_SEEDS) {
+        if (!player.abilities.isCreativeMode) {
+          itemstack.shrink(1);
+        }
+
+        if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+          this.setTamedBy(player);
+          this.navigator.clearPath();
+          this.setAttackTarget(null);
+          this.func_233687_w_(true);
+          this.world.setEntityState(this, (byte) 7);
+        } else {
+          this.world.setEntityState(this, (byte) 6);
+        }
+
+        return ActionResultType.SUCCESS;
+      }
+
+      return super.func_230254_b_(player, hand);
+    }
+  }
+
+/*  @Override
+  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
     ActionResultType type = super.func_230254_b_(player, hand);
     if (type != ActionResultType.PASS) {
       return type;
@@ -60,7 +125,7 @@ public class BeetleEntity extends TameableEntity {
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
         if (itemstack.isEmpty() && player.isSneaking()) {
           // TODO Temporarily disabled
-/*          if (!world.isRemote && false) {
+          if (!world.isRemote && false) {
             // Try some shoulder surfing!
             LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
             if (laycap.isPresent()) {
@@ -83,8 +148,8 @@ public class BeetleEntity extends TameableEntity {
               } else {
                 player.sendStatusMessage(new TranslationTextComponent("message.shoulder.occupied").setStyle(new Style().setColor(TextFormatting.GREEN).setBold(true)), true);
               }
-            }*/
-          //}
+            }
+          }
         } else {
           this.func_233687_w_(!this.isSitting());
           this.isJumping = false;
@@ -112,7 +177,7 @@ public class BeetleEntity extends TameableEntity {
     }
 
     return ActionResultType.PASS;
-  }
+  }*/
 
   public static AttributeModifierMap.MutableAttribute attributes() {
     return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15d);

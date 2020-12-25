@@ -17,6 +17,7 @@ import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.Food;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -32,6 +33,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
+@SuppressWarnings("NullableProblems")
 public class SilverFoxEntity extends TameableEntity {
   private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.FLOAT);
   private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.BOOLEAN);
@@ -207,6 +209,71 @@ public class SilverFoxEntity extends TameableEntity {
 
   @Override
   public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
+    ItemStack itemstack = player.getHeldItem(hand);
+    Item item = itemstack.getItem();
+    if (this.world.isRemote) {
+      boolean flag = this.isOwner(player) || this.isTamed() || item == Items.APPLE && !this.isTamed();
+      return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
+    } else {
+      if (this.isTamed()) {
+        if (this.isBreedingItem(itemstack) && this.getHealth() < this.getMaxHealth()) {
+          if (!player.abilities.isCreativeMode) {
+            itemstack.shrink(1);
+          }
+
+          Food food = item.getFood();
+          if (food != null) {
+            this.heal((float) food.getHealing());
+            return ActionResultType.SUCCESS;
+          }
+        }
+
+        /*            if (!(item instanceof DyeItem)) {*/
+        ActionResultType actionresulttype = super.func_230254_b_(player, hand);
+        if ((!actionresulttype.isSuccessOrConsume() || this.isChild()) && this.isOwner(player)) {
+          this.func_233687_w_(!this.isSitting());
+          this.isJumping = false;
+          this.navigator.clearPath();
+          this.setAttackTarget(null);
+          return ActionResultType.SUCCESS;
+        }
+
+        return actionresulttype;
+        /*            }*/
+
+/*            DyeColor dyecolor = ((DyeItem)item).getDyeColor();
+            if (dyecolor != this.getCollarColor()) {
+               this.setCollarColor(dyecolor);
+               if (!player.abilities.isCreativeMode) {
+                  itemstack.shrink(1);
+               }
+
+               return ActionResultType.SUCCESS;
+            }*/
+      } else if (item == Items.APPLE) {
+        if (!player.abilities.isCreativeMode) {
+          itemstack.shrink(1);
+        }
+
+        if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+          this.setTamedBy(player);
+          this.navigator.clearPath();
+          this.setAttackTarget(null);
+          this.func_233687_w_(true);
+          this.world.setEntityState(this, (byte) 7);
+        } else {
+          this.world.setEntityState(this, (byte) 6);
+        }
+
+        return ActionResultType.SUCCESS;
+      }
+
+      return super.func_230254_b_(player, hand);
+    }
+  }
+
+/*  @Override
+  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
     ItemStack stack = player.getHeldItem(hand);
 
     if (isTamed()) {
@@ -253,7 +320,7 @@ public class SilverFoxEntity extends TameableEntity {
     }
 
     return super.func_230254_b_(player, hand);
-  }
+  }*/
 
   public boolean isAngry() {
     return (this.dataManager.get(TAMED) & 2) != 0;
