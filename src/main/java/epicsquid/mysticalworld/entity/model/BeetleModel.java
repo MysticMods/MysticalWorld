@@ -131,6 +131,7 @@ public class BeetleModel extends AgeableModel<BeetleEntity> {
     this.antennaL1.rotateAngleX = 0.1308996938995747F + getBobble(100, ageInTicks) * 0.2617993877991494F;
     this.wingL.rotateAngleY = 0.17453292519943295F + 0.0872664626F * getBobble(45, ageInTicks);
     this.wingR.rotateAngleY = -0.17453292519943295F - 0.0872664626F * getBobble(160, ageInTicks);
+
 //    if (state != ModelState.SHOULDER) {
     //  }
     if (beetleEntity.isEntitySleeping()) {
@@ -149,13 +150,13 @@ public class BeetleModel extends AgeableModel<BeetleEntity> {
       this.setRotateAngle(legL1, -0.2617993877991494F, 0.0F, -0.2617993877991494F);
       this.setRotateAngle(legL2, 0.0F, 0.0F, -0.2617993877991494F);
       this.setRotateAngle(legL3, 0.2617993877991494F, 0.0F, -0.2617993877991494F);
+      this.legL1.rotateAngleZ = limbSwingAmount * getSwing(0, ageInTicks) - 0.2617993877991494F;
+      this.legL2.rotateAngleZ = limbSwingAmount * getSwing(120, ageInTicks) - 0.2617993877991494F;
+      this.legL3.rotateAngleZ = limbSwingAmount * getSwing(240, ageInTicks) - 0.2617993877991494F;
+      this.legR1.rotateAngleZ = limbSwingAmount * getSwing(180, ageInTicks) + 0.2617993877991494F;
+      this.legR2.rotateAngleZ = limbSwingAmount * getSwing(300, ageInTicks) + 0.2617993877991494F;
+      this.legR3.rotateAngleZ = limbSwingAmount * getSwing(60, ageInTicks) + 0.2617993877991494F;
     }
-    this.legL1.rotateAngleZ = limbSwingAmount * getSwing(0, ageInTicks) - 0.2617993877991494F;
-    this.legL2.rotateAngleZ = limbSwingAmount * getSwing(120, ageInTicks) - 0.2617993877991494F;
-    this.legL3.rotateAngleZ = limbSwingAmount * getSwing(240, ageInTicks) - 0.2617993877991494F;
-    this.legR1.rotateAngleZ = limbSwingAmount * getSwing(180, ageInTicks) + 0.2617993877991494F;
-    this.legR2.rotateAngleZ = limbSwingAmount * getSwing(300, ageInTicks) + 0.2617993877991494F;
-    this.legR3.rotateAngleZ = limbSwingAmount * getSwing(60, ageInTicks) + 0.2617993877991494F;
   }
 
   /**
