@@ -9,6 +9,8 @@ import epicsquid.mysticalworld.world.feature.SupplierOreFeature;
 import epicsquid.mysticalworld.world.feature.SupplierOreFeatureConfig;
 import epicsquid.mysticalworld.world.placement.DimensionCountPlacement;
 import epicsquid.mysticalworld.world.placement.DimensionCountRangeConfig;
+import epicsquid.mysticalworld.world.structures.BarrowStructure;
+import epicsquid.mysticalworld.world.structures.HutStructure;
 import epicsquid.mysticalworld.world.test.OreGenTest;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.RegistryKey;
@@ -21,6 +23,7 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.template.IRuleTestType;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
@@ -29,7 +32,10 @@ import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.OptionalInt;
+import java.util.Set;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
@@ -77,7 +83,28 @@ public class ModFeatures {
 
       for (BiomeDictionary.Type type : types) {
         if (type != null && (ConfigManager.DEAD_TREE_CONFIG.getBiomes().contains(type) || ConfigManager.DEAD_TREE_CONFIG.getBiomes().isEmpty())) {
+          for (BiomeDictionary.Type r : ConfigManager.DEAD_TREE_CONFIG.getBiomeRestrictions()) {
+            if (r == type) {
+              break;
+            }
+          }
           event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> CHARRED_TREE);
+          break;
+        } else if (type != null && (ConfigManager.HUT_CONFIG.getBiomes().contains(type) || ConfigManager.HUT_CONFIG.getBiomes().isEmpty())) {
+          for (BiomeDictionary.Type r : ConfigManager.HUT_CONFIG.getBiomeRestrictions()) {
+            if (r == type) {
+              break;
+            }
+          }
+          event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_HUT);
+          break;
+        } else if (type != null && (ConfigManager.BARROW_CONFIG.getBiomes().contains(type) || ConfigManager.BARROW_CONFIG.getBiomes().isEmpty())) {
+          for (BiomeDictionary.Type r : ConfigManager.BARROW_CONFIG.getBiomeRestrictions()) {
+            if (r == type) {
+              break;
+            }
+          }
+          event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_BARROW);
           break;
         }
       }

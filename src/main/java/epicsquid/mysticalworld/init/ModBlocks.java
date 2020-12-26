@@ -112,7 +112,7 @@ public class ModBlocks {
     return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b);
   }
 
-  public static RegistryEntry<PetrifiedFlowerBlock> ROYAL_STONEFLOWER = REGISTRATE.block("royal_stoneflower", Material.PLANTS, PetrifiedFlowerBlock::new)
+  public static RegistryEntry<PetrifiedFlowerBlock> STONEPETAL = REGISTRATE.block("stonepetal", Material.PLANTS, PetrifiedFlowerBlock::new)
       .properties(o -> o.doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ctx.getEntry())))))
       .item()

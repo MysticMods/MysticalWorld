@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mysticalworld:royal_stoneflower"
+          "name": "mysticalworld:stonepetal"
         }
       ],
       "conditions": [

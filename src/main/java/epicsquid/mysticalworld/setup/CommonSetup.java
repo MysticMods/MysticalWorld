@@ -12,9 +12,7 @@ import epicsquid.mysticalworld.events.CapabilityHandler;
 import epicsquid.mysticalworld.events.DamageHandler;
 import epicsquid.mysticalworld.events.EntityHandler;
 import epicsquid.mysticalworld.events.LootHandler;
-import epicsquid.mysticalworld.init.ModCompost;
-import epicsquid.mysticalworld.init.ModEntities;
-import epicsquid.mysticalworld.init.ModModifiers;
+import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.potions.PotionRecipes;
 import epicsquid.mysticalworld.recipe.ingredients.SeedIngredient;
@@ -49,6 +47,8 @@ public class CommonSetup {
     MysticalWorld.STONE_PLANT = PlantType.get("stone");
 
     event.enqueueWork(() -> {
+      ModStructures.setupStructures();
+      ConfiguredStructures.registerStructures();
       CraftingHelper.register(new ResourceLocation(MysticalWorld.MODID, "seeds"), SeedIngredient.Serializer.INSTANCE);
       ModCompost.init();
       ModEntities.registerEntities();

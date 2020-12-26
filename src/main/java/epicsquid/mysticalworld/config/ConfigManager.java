@@ -32,6 +32,8 @@ public class ConfigManager {
   public static SilkwormConfig SILKWORM_CONFIG;
   public static HatConfig HAT_CONFIG;
   public static TreeConfig DEAD_TREE_CONFIG;
+  public static StructureConfig HUT_CONFIG;
+  public static StructureConfig BARROW_CONFIG;
 
   static {
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
@@ -45,8 +47,12 @@ public class ConfigManager {
     COMMON_BUILDER.pop();
     COMMON_BUILDER.comment("Feature Spawn Configuration").push("feature_spawns");
     // TODO: Migrate to Biome Category
-    DEAD_TREE_CONFIG = new TreeConfig(0.04, Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.WASTELAND));
+    DEAD_TREE_CONFIG = new TreeConfig(0.04, Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.WASTELAND), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END));
     DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
+    HUT_CONFIG = new StructureConfig("hut", Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.PLAINS), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END));
+    HUT_CONFIG.apply(COMMON_BUILDER);
+    BARROW_CONFIG = new StructureConfig("barrow", Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.PLAINS), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END));
+    BARROW_CONFIG.apply(COMMON_BUILDER);
     COMMON_BUILDER.pop();
 
     COMMON_CONFIG = COMMON_BUILDER.build();
