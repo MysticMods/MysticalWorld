@@ -1,3 +1,20 @@
 {
-  "type": "mysticalworld:assorted_seeds"
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["AA",
+    "AA"
+    ],
+  "key": {
+    "A": [
+      {
+        "type": "mysticalworld:seeds"
+      },
+      {
+        "tag": "forge:seeds"
+      }
+    ]
+  },
+  "result": {
+    "item": "mysticalworld:assorted_seeds",
+    "count": 4
+  }
 }

@@ -17,6 +17,7 @@ import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModModifiers;
 import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.potions.PotionRecipes;
+import epicsquid.mysticalworld.recipe.ingredients.SeedIngredient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -24,9 +25,11 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.loot.functions.ApplyBonus;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -46,6 +49,7 @@ public class CommonSetup {
     MysticalWorld.STONE_PLANT = PlantType.get("stone");
 
     event.enqueueWork(() -> {
+      CraftingHelper.register(new ResourceLocation(MysticalWorld.MODID, "seeds"), SeedIngredient.Serializer.INSTANCE);
       ModCompost.init();
       ModEntities.registerEntities();
       Networking.INSTANCE.registerMessages();

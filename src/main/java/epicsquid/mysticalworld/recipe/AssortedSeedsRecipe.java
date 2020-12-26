@@ -1,3 +1,4 @@
+/*
 package epicsquid.mysticalworld.recipe;
 
 import com.google.gson.JsonObject;
@@ -82,4 +83,5 @@ public class AssortedSeedsRecipe extends ShapelessRecipe {
     }
   }
 }
+*/
 
