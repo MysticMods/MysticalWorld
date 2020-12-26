@@ -127,5 +127,7 @@ public class Remaps {
     ignore("pillager_wall_head", RemapType.BLOCK);
     ignore("zombie_pigman_wall_head", RemapType.BLOCK);
     ignore("zombie_villager_wall_head", RemapType.BLOCK);
+
+    ignore("rotten_apple", RemapType.ITEM);
   }
 }

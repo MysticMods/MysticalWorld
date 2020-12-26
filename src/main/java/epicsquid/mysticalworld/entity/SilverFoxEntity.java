@@ -36,8 +36,7 @@ import java.util.EnumSet;
 @SuppressWarnings("NullableProblems")
 public class SilverFoxEntity extends TameableEntity {
   private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.FLOAT);
-  private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.BOOLEAN);
-  private SleepGoal sleepGoal;
+/*  private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.BOOLEAN);*/
 
   public SilverFoxEntity(EntityType<? extends SilverFoxEntity> type, World worldIn) {
     super(type, worldIn);
@@ -64,11 +63,9 @@ public class SilverFoxEntity extends TameableEntity {
 
   @Override
   protected void registerGoals() {
-    this.sleepGoal = new SleepGoal(this);
     goalSelector.addGoal(0, new SwimGoal(this));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
     goalSelector.addGoal(2, new SitGoal(this));
-    goalSelector.addGoal(2, this.sleepGoal);
     goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.CHICKEN), false));
     goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
     goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
@@ -108,7 +105,7 @@ public class SilverFoxEntity extends TameableEntity {
   protected void registerData() {
     super.registerData();
     this.dataManager.register(DATA_HEALTH_ID, this.getHealth());
-    this.dataManager.register(SLEEPING, false);
+/*    this.dataManager.register(SLEEPING, false);*/
   }
 
   @Override
@@ -119,21 +116,11 @@ public class SilverFoxEntity extends TameableEntity {
   @Override
   public void writeAdditional(CompoundNBT compound) {
     super.writeAdditional(compound);
-    compound.putBoolean("Angry", this.isAngry());
-    compound.putBoolean("Sleeping", this.isSleeping());
   }
 
   @Override
   public void readAdditional(CompoundNBT compound) {
     super.readAdditional(compound);
-    this.setAngry(compound.getBoolean("Angry"));
-
-    if (compound.get("Sleeping") != null) {
-      this.setSleeping(compound.getBoolean("Sleeping"));
-      if (this.sleepGoal != null) {
-        this.sleepGoal.setSleeping(this.isSleeping());
-      }
-    }
   }
 
   @Nullable
@@ -141,8 +128,8 @@ public class SilverFoxEntity extends TameableEntity {
   protected SoundEvent getAmbientSound() {
     if (this.isAngry()) {
       return ModSounds.FOX_AGGRO.get();
-    } else if (this.isSleeping()) {
-      return ModSounds.FOX_SLEEP.get();
+/*    } else if (this.isSleeping()) {
+      return ModSounds.FOX_SLEEP.get();*/
     } else {
       return ModSounds.FOX_IDLE.get();
     }
@@ -207,6 +194,7 @@ public class SilverFoxEntity extends TameableEntity {
     this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(5.0D);
   }
 
+  @SuppressWarnings("Duplicates")
   @Override
   public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
     ItemStack itemstack = player.getHeldItem(hand);
@@ -336,7 +324,7 @@ public class SilverFoxEntity extends TameableEntity {
     }
   }
 
-  @Override
+/*  @Override
   public boolean isSleeping() {
     try {
       return (this.dataManager.get(SLEEPING));
@@ -349,7 +337,7 @@ public class SilverFoxEntity extends TameableEntity {
   @Override
   public void setSleeping(boolean sleeping) {
     this.dataManager.set(SLEEPING, sleeping);
-  }
+  }*/
 
   @Override
   public boolean shouldAttackEntity(LivingEntity target, LivingEntity owner) {
@@ -379,7 +367,6 @@ public class SilverFoxEntity extends TameableEntity {
 
 
   @Override
-  @Nonnull
   public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
     return ModEntities.SILVER_FOX.get().create(ageable.world);
   }

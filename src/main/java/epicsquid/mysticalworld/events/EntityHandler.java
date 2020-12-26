@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class EntityHandler {
-  public static void onEntityInteract(PlayerInteractEvent.EntityInteractSpecific event) {
+ /* public static void onEntityInteract(PlayerInteractEvent.EntityInteractSpecific event) {
     Entity entity = event.getTarget();
     if (!(entity instanceof VillagerEntity)) {
       return;
@@ -27,7 +27,7 @@ public class EntityHandler {
 
     if (player.world.rand.nextInt(3) == 0) {
       // TODO: Recopy this
-/*      VillagerEntity villagerentity = (VillagerEntity) entity;
+*//*      VillagerEntity villagerentity = (VillagerEntity) entity;
       ZombieVillagerEntity zombievillagerentity = EntityType.ZOMBIE_VILLAGER.create(player.world);
       zombievillagerentity.copyLocationAndAnglesFrom(villagerentity);
       villagerentity.remove();
@@ -44,11 +44,11 @@ public class EntityHandler {
       }
 
       player.world.addEntity(zombievillagerentity);
-      player.world.playEvent(null, 1026, new BlockPos(player), 0);*/
+      player.world.playEvent(null, 1026, new BlockPos(player), 0);*//*
     }
 
     if (!player.abilities.isCreativeMode) {
       held.shrink(1);
     }
-  }
+  }*/
 }

@@ -133,7 +133,7 @@ public class BeetleModel extends AgeableModel<BeetleEntity> {
     this.wingR.rotateAngleY = -0.17453292519943295F - 0.0872664626F * getBobble(160, ageInTicks);
 //    if (state != ModelState.SHOULDER) {
     //  }
-    if (beetleEntity.isSitting()) {
+    if (beetleEntity.isEntitySleeping()) {
       this.body.setRotationPoint(0.0F, 20.0F, -4.0F);
       this.setRotateAngle(legR1, -0.4619008920774175F, -0.12228424816241118F, 1.2226123587776043F);
       this.setRotateAngle(legR2, 0.0F, 0.0F, 1.1609087739532686F);

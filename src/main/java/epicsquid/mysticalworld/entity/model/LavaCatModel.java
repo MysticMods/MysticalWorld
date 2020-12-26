@@ -130,7 +130,7 @@ public class LavaCatModel extends AgeableModel<LavaCatEntity> {
     this.ocelotBackLeftLeg.rotateAngleX = 0;
     this.ocelotBackRightLeg.rotateAngleX = 0;
 
-    if (entityocelot.isSneaking()) {
+/*    if (entityocelot.isSneaking()) {
       ++this.ocelotBody.rotationPointY;
       this.ocelotHead.rotationPointY += 2.0F;
       ++this.ocelotTail.rotationPointY;
@@ -144,8 +144,8 @@ public class LavaCatModel extends AgeableModel<LavaCatEntity> {
       this.ocelotTail2.rotationPointZ += 2.0F;
       this.ocelotTail.rotateAngleX = ((float) Math.PI / 2F);
       this.ocelotTail2.rotateAngleX = ((float) Math.PI / 2F);
-      this.state = 2;
-    } else if (entityocelot.isSitting()) {
+      this.state = 2;*/
+    if (entityocelot.isEntitySleeping()) {
       this.ocelotBody.rotateAngleX = ((float) Math.PI / 4F);
       this.ocelotBody.rotationPointY += -4.0F;
       this.ocelotBody.rotationPointZ += 5.0F;

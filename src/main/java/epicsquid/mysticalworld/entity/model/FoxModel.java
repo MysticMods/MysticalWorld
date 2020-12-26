@@ -28,7 +28,6 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
   private ModelRenderer snout;
   private ModelRenderer earR;
   private ModelRenderer earL;
-  private int state = 0;
 
   public FoxModel() {
     super(true, 5.0f, 2.0f);
@@ -126,7 +125,7 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
   public void setRotationAngles(@Nonnull SilverFoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
     float cos = (float) Math.cos(ageInTicks * 0.0625f * (Math.PI * 2.0f));
-    if (state == 0) {
+    if (!entityIn.isEntitySleeping()) {
       this.earL.rotateAngleZ = 0.5235987755982988F + getBobble(60, ageInTicks) * 0.0981747703F;
       this.earR.rotateAngleZ = -0.5235987755982988F - getBobble(130, ageInTicks) * 0.0981747703F;
       this.backL.rotateAngleX = limbSwingAmount * sin;
@@ -142,7 +141,7 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
       this.tail4.rotateAngleZ = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(180, ageInTicks);
       this.setRotateAngle(body1, 0F, 0.0F, 0.0F);
       this.setRotateAngle(body2, 0F, 0.0F, 0.0F);
-    } else if (state == 1) { // sitting
+    } else {
       this.setRotateAngle(backL, -0.8196066167365371F, -0.31869712141416456F, 0.0F);
       this.setRotateAngle(backR, -0.8196066167365371F, 0.36425021489121656F, 0.0F);
       this.setRotateAngle(body1, -0.6829473363053812F, 0.0F, 0.0F);
@@ -157,28 +156,11 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
       this.setRotateAngle(tail2, -0.39269908169872414F, 0.0F, 0.08726646259971647F);
       this.setRotateAngle(tail3, 0.0F, 0.0F, 0.06178465552059926F);
       this.setRotateAngle(tail4, 0.39269908169872414F, 0.0F, 0.0F);
-    } else if (state == 2) { // sleeping
-      this.setRotateAngle(earL, 0.5462880558742251F, 0.0F, 0.7740535232594852F);
-      this.setRotateAngle(frontR, -0.6373942428283291F, 0.12636183784438945F, -1.5025539530419183F);
-      this.setRotateAngle(earR, 0.40980330836826856F, 0.2617993877991494F, -0.9560913642424937F);
-      this.setRotateAngle(backR, -1.5025539530419183F, -0.091106186954104F, 0.0F);
-      this.setRotateAngle(backL, -1.5025539530419183F, -0.31869712141416456F, -0.045553093477052F);
-      this.setRotateAngle(tail1, 0.8196066167365371F, 0.091106186954104F, -1.3658946726107624F);
-      this.setRotateAngle(frontL, 0.091106186954104F, 0.0F, -1.4570008595648662F);
-      this.setRotateAngle(body2, -0.091106186954104F, 0.18203784098300857F, 0.0F);
-      this.setRotateAngle(tail3, -0.8651597102135892F, 0.0F, -0.18203784098300857F);
-      this.setRotateAngle(neck, 0.0F, -1.0016444577195458F, 0.091106186954104F);
-      this.setRotateAngle(tail4, -0.36425021489121656F, 0.0F, 0.0F);
-      this.setRotateAngle(body1, 0.017453292519943295F, -0.36425021489121656F, 0.0F);
-      this.setRotateAngle(tail2, -0.9208357133522083F, 0.091106186954104F, 0.091106186954104F);
-      this.setRotateAngle(head, 0.045553093477052F, -0.18203784098300857F, 0.0F);
-      this.setRotateAngle(snout, -0.091106186954104F, 0.0F, 0.0F);
     }
   }
 
   @Override
   public void setLivingAnimations(@Nonnull SilverFoxEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
-    SilverFoxEntity fox = entitylivingbaseIn;
 
     this.backL.setRotationPoint(1.0F, 4.0F, 1.5F);
     this.backR.setRotationPoint(-1.0F, 4.0F, 1.5F);
@@ -195,14 +177,6 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
     this.tail2.setRotationPoint(0.0F, 1.5F, 0.0F);
     this.tail3.setRotationPoint(0.0F, 3.0F, 0.0F);
     this.tail4.setRotationPoint(0.0F, 3.5F, 0.0F);
-
-    if (fox.isSitting()) {
-      state = 1;
-    } else if (fox.isSleeping()) {
-      state = 2;
-    } else {
-      state = 0;
-    }
 
     super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
   }

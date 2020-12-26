@@ -79,7 +79,7 @@ public class CommonSetup {
   @SuppressWarnings("Duplicates")
   public void registerListeners() {
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
-    MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);
+/*    MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);*/
     // TODO: Temporarily disabled
     //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onDeath);
     //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onRightClickBlock);

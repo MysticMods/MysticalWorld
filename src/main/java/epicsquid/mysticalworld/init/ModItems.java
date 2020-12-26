@@ -505,7 +505,7 @@ public class ModItems {
           .build(p))
       .register();
 
-  public static RegistryEntry<TooltipItem> ROTTEN_APPLE = REGISTRATE.item("rotten_apple", (b) -> new TooltipItem(b, "mysticalworld.food.rotten_apple"))
+/*  public static RegistryEntry<TooltipItem> ROTTEN_APPLE = REGISTRATE.item("rotten_apple", (b) -> new TooltipItem(b, "mysticalworld.food.rotten_apple"))
       .properties(o -> o.rarity(Rarity.RARE))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.ROTTEN_APPLE.get(), 1)
           .patternLine("WLW")
@@ -516,7 +516,7 @@ public class ModItems {
           .key('L', MWTags.Items.LEAD_INGOT)
           .addCriterion("has_apple", RegistrateRecipeProvider.hasItem(Items.APPLE))
           .build(p))
-      .register();
+      .register();*/
 
   // Ingots/gems
   public static RegistryEntry<Item> AMETHYST_GEM = REGISTRATE.item(AMETHYST.getInternalName(), Item::new)

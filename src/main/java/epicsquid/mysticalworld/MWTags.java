@@ -99,6 +99,9 @@ public class MWTags {
     public static INamedTag<Item> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
     public static INamedTag<Item> TERRACOTTA = compatTag("terracotta");
 
+    public static INamedTag<Item> FORGE_KNIVES = compatTag("tools/knife");
+    public static INamedTag<Item> SEEDS = compatTag("seeds");
+
     static INamedTag<Item> modTag(String name) {
       return ForgeTagHandler.makeWrapperTag(ForgeRegistries.ITEMS, new ResourceLocation(MysticalWorld.MODID, name));
     }

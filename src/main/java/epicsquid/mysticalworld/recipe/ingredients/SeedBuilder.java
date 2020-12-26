@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.recipe.ingredients;
 
+import epicsquid.mysticalworld.MWTags;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -35,7 +36,8 @@ public class SeedBuilder {
           }
         }
       }
-      SEEDS = Ingredient.fromStacks(matchingStacks.toArray(new ItemStack[0]));
+
+      SEEDS = new AccessibleCompoundIngredient(Ingredient.fromStacks(matchingStacks.toArray(new ItemStack[0])), Ingredient.fromTag(MWTags.Items.SEEDS));
     }
 
     return SEEDS;
