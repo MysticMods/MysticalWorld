@@ -590,9 +590,11 @@ public class ModItems {
       .register();
   public static RegistryEntry<Item> GOLD_DUST = REGISTRATE.item(GOLD.dustName(), Item::new)
       .tag(MWTags.Items.GOLD_DUST)
+      .recipe((ctx, p) -> RECIPES.dust(MWTags.Items.GOLD_DUST, () -> Items.GOLD_INGOT, 0.125f, p))
       .register();
   public static RegistryEntry<Item> IRON_DUST = REGISTRATE.item(IRON.dustName(), Item::new)
       .tag(MWTags.Items.IRON_DUST)
+      .recipe((ctx, p) -> RECIPES.dust(MWTags.Items.IRON_DUST, () -> Items.IRON_INGOT, 0.125f, p))
       .register();
 
   // Amethyst Tools
