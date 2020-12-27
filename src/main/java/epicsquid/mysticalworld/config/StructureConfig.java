@@ -1,16 +1,27 @@
 package epicsquid.mysticalworld.config;
 
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
 import java.util.StringJoiner;
 
-public class StructureConfig extends FeatureConfig {
+public class StructureConfig extends FeatureConfig<StructureConfig> {
   private String name;
   public StructureConfig(String name, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
     super(0, biomeTypes, biomeRestrictions);
     this.name = name;
+  }
+
+  @Override
+  public GenerationStage.Decoration getStage() {
+    return null;
+  }
+
+  @Override
+  public boolean isFeature() {
+    return false;
   }
 
   @Override

@@ -3,14 +3,13 @@ package epicsquid.mysticalworld.init;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.config.FeatureConfig;
 import epicsquid.mysticalworld.config.OreConfig;
 import epicsquid.mysticalworld.world.SupplierBlockStateProvider;
 import epicsquid.mysticalworld.world.feature.SupplierOreFeature;
 import epicsquid.mysticalworld.world.feature.SupplierOreFeatureConfig;
 import epicsquid.mysticalworld.world.placement.DimensionCountPlacement;
 import epicsquid.mysticalworld.world.placement.DimensionCountRangeConfig;
-import epicsquid.mysticalworld.world.structures.BarrowStructure;
-import epicsquid.mysticalworld.world.structures.HutStructure;
 import epicsquid.mysticalworld.world.test.OreGenTest;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.RegistryKey;
@@ -23,7 +22,6 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.template.IRuleTestType;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
@@ -36,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
@@ -47,7 +46,7 @@ public class ModFeatures {
   private static RegistryEntry<DimensionCountPlacement> DIMENSION_COUNT_PLACEMENT = REGISTRATE.simple("dimension_count_placement", Placement.class, () -> new DimensionCountPlacement(DimensionCountRangeConfig.CODEC));
   public static RegistryEntry<BlockStateProviderType<SupplierBlockStateProvider>> SUPPLIER_STATE_PROVIDER = REGISTRATE.simple("supplier_state_provider", BlockStateProviderType.class, () -> new BlockStateProviderType<>(SupplierBlockStateProvider.CODEC));
 
-  private static final ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
+  public static final ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
 
   private static List<ConfiguredFeature<?, ?>> ORE_FEATURES = new ArrayList<>();
 
@@ -69,6 +68,44 @@ public class ModFeatures {
   public static void load() {
   }
 
+  private static boolean tryPlaceFeature(BiomeLoadingEvent event, Set<BiomeDictionary.Type> types, FeatureConfig<?> config) {
+    for (BiomeDictionary.Type rest : config.getBiomeRestrictions()) {
+      if (types.contains(rest)) {
+        return false;
+      }
+    }
+    boolean place = false;
+    if (config.getBiomes().isEmpty()) {
+      place = true;
+    } else {
+      Set<BiomeDictionary.Type> biomeTypes = config.getBiomes();
+      for (BiomeDictionary.Type poss : biomeTypes) {
+        if (types.contains(poss)) {
+          place = true;
+          break;
+        }
+      }
+    }
+    if (!place) {
+      return false;
+    }
+    if (config.isFeature()) {
+      Supplier<ConfiguredFeature<?, ?>> sup = config.getFeature();
+      if (sup == null) {
+        return false;
+      }
+      event.getGeneration().getFeatures(config.getStage()).add(sup);
+      return true;
+    } else {
+      Supplier<StructureFeature<?, ?>> sup = config.getStructure();
+      if (sup == null) {
+        return false;
+      }
+      event.getGeneration().getStructures().add(sup);
+      return true;
+    }
+  }
+
   public static void onBiomeLoad(BiomeLoadingEvent event) {
     if (ORE_FEATURES.isEmpty()) {
       generateFeatures();
@@ -80,35 +117,11 @@ public class ModFeatures {
       RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
       Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
       ModEntities.registerEntity(event, types);
-
-      for (BiomeDictionary.Type type : types) {
-        if (type != null && (ConfigManager.DEAD_TREE_CONFIG.getBiomes().contains(type) || ConfigManager.DEAD_TREE_CONFIG.getBiomes().isEmpty())) {
-          for (BiomeDictionary.Type r : ConfigManager.DEAD_TREE_CONFIG.getBiomeRestrictions()) {
-            if (r == type) {
-              break;
-            }
-          }
-          event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> CHARRED_TREE);
-          break;
-        } else if (type != null && (ConfigManager.HUT_CONFIG.getBiomes().contains(type) || ConfigManager.HUT_CONFIG.getBiomes().isEmpty())) {
-          for (BiomeDictionary.Type r : ConfigManager.HUT_CONFIG.getBiomeRestrictions()) {
-            if (r == type) {
-              break;
-            }
-          }
-          event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_HUT);
-          break;
-        } else if (type != null && (ConfigManager.BARROW_CONFIG.getBiomes().contains(type) || ConfigManager.BARROW_CONFIG.getBiomes().isEmpty())) {
-          for (BiomeDictionary.Type r : ConfigManager.BARROW_CONFIG.getBiomeRestrictions()) {
-            if (r == type) {
-              break;
-            }
-          }
-          event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_BARROW);
-          break;
-        }
-      }
-      ModEntities.registerEntity(event, types);
+      tryPlaceFeature(event, types, ConfigManager.DEAD_TREE_CONFIG);
+      //tryPlaceFeature(event, types, ConfigManager.HUT_CONFIG);
+      //tryPlaceFeature(event, types, ConfigManager.BARROW_CONFIG);
+      event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_HUT);
+      event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_BARROW);
     }
   }
 }

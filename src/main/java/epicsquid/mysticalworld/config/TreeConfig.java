@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.config;
 
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -9,9 +10,14 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class TreeConfig extends FeatureConfig {
+public class TreeConfig extends FeatureConfig<TreeConfig> {
   public TreeConfig(double chance, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
     super(chance, biomeTypes, biomeRestrictions);
+  }
+
+  @Override
+  public GenerationStage.Decoration getStage() {
+    return GenerationStage.Decoration.VEGETAL_DECORATION;
   }
 
   @Override
