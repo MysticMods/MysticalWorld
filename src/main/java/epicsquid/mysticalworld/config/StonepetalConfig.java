@@ -36,7 +36,7 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
   public void apply(ForgeConfigSpec.Builder builder) {
     builder.comment("Stonepetal Patch Generation").push("stone_petal");
     configTries = builder.comment("Number of tries per chunk to try placing stonepetals on stone (set to 0 to disable).").defineInRange("tries", tries, 0, 256);
-    configRepeats = builder.comment("Number of times per chunk to repeat trying to place stonepetals on stone").defineInRange("repeats", repeats, 0, 256);
+    configRepeats = builder.comment("Number of times per chunk to repeat trying to place stonepetals on stone").defineInRange("repeats", repeats, 1, 256);
     StringJoiner sb = new StringJoiner(",");
     biomes.forEach(o -> sb.add(o.getName()));
     configBiomes = builder.comment("List of biome types to spawn (default [" + sb.toString() + "], pass empty list for every biome").define("biomes", sb.toString());
