@@ -6,6 +6,7 @@ import epicsquid.mysticalworld.events.LeafHandler;
 import epicsquid.mysticalworld.events.MaskHandler;
 import epicsquid.mysticalworld.events.global.GrassHandler;
 import epicsquid.mysticalworld.events.mappings.Remaps;
+import epicsquid.mysticalworld.gen.LootTableGenerator;
 import epicsquid.mysticalworld.init.*;
 import epicsquid.mysticalworld.setup.ClientInit;
 import epicsquid.mysticalworld.setup.CommonSetup;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import noobanidus.libs.noobutil.data.RecipeGenerator;
@@ -57,6 +59,7 @@ public class MysticalWorld {
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
 
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+    modBus.addListener(this::onDataGen);
 
     REGISTRATE = CustomRegistrate.create(MODID);
     REGISTRATE.itemGroup(NonNullSupplier.of(() -> ITEM_GROUP));
@@ -90,6 +93,7 @@ public class MysticalWorld {
     MinecraftForge.EVENT_BUS.addGenericListener(Item.class, Remaps::remapItemEvent);
     MinecraftForge.EVENT_BUS.addGenericListener(EntityType.class, Remaps::remapEntityEvent);
     MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModFeatures::onBiomeLoad);
+    MinecraftForge.EVENT_BUS.addListener(ModFeatures::onWorldLoad);
 
     setup.registerListeners();
 
@@ -98,5 +102,11 @@ public class MysticalWorld {
     PlayerModifierRegistry.addModifier(ModModifiers.SERENDIPITY);
     PlayerModifierRegistry.addModifier(ModModifiers.BLESSED);
     PlayerModifierRegistry.addModifier(ModModifiers.SMITE);
+  }
+
+  public void onDataGen (GatherDataEvent event) {
+    if (event.includeServer()) {
+      event.getGenerator().addProvider(new LootTableGenerator(event.getGenerator()));
+    }
   }
 }

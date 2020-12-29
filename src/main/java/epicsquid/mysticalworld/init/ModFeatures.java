@@ -16,24 +16,28 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.template.IRuleTestType;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.world.WorldEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.OptionalInt;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Supplier;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
@@ -102,6 +106,9 @@ public class ModFeatures {
         return false;
       }
       event.getGeneration().getStructures().add(sup);
+      if (config == ConfigManager.HUT_CONFIG) {
+        event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_RUINED_HUT);
+      }
       return true;
     }
   }
@@ -118,10 +125,23 @@ public class ModFeatures {
       Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
       ModEntities.registerEntity(event, types);
       tryPlaceFeature(event, types, ConfigManager.DEAD_TREE_CONFIG);
-      //tryPlaceFeature(event, types, ConfigManager.HUT_CONFIG);
-      //tryPlaceFeature(event, types, ConfigManager.BARROW_CONFIG);
-      event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_HUT);
-      event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_BARROW);
+      tryPlaceFeature(event, types, ConfigManager.HUT_CONFIG);
+      tryPlaceFeature(event, types, ConfigManager.BARROW_CONFIG);
+    }
+  }
+
+  public static void onWorldLoad (final WorldEvent.Load event) {
+    if (event.getWorld() instanceof ServerWorld) {
+      ServerWorld world = (ServerWorld)event.getWorld();
+      if (world.getChunkProvider().getChunkGenerator() instanceof FlatChunkGenerator && world.getDimensionKey().equals(World.OVERWORLD)) {
+        return;
+      }
+
+      Map<Structure<?>, StructureSeparationSettings> temp = new HashMap<>(world.getChunkProvider().generator.func_235957_b_().func_236195_a_());
+      temp.put(ModStructures.BARROW_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.BARROW_STRUCTURE));
+      temp.put(ModStructures.HUT_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.HUT_STRUCTURE));
+      temp.put(ModStructures.RUINED_HUT_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.RUINED_HUT_STRUCTURE));
+      world.getChunkProvider().generator.func_235957_b_().field_236193_d_ = temp;
     }
   }
 }

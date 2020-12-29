@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableMap;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.world.structures.BarrowStructure;
 import epicsquid.mysticalworld.world.structures.HutStructure;
+import epicsquid.mysticalworld.world.structures.RuinedHutStructure;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -24,6 +25,7 @@ public class ModStructures {
 
   public static final Structure<NoFeatureConfig> HUT_STRUCTURE = register("hut", new HutStructure(NoFeatureConfig.field_236558_a_));
   public static final Structure<NoFeatureConfig> BARROW_STRUCTURE = register("barrow", new BarrowStructure(NoFeatureConfig.field_236558_a_));
+  public static final Structure<NoFeatureConfig> RUINED_HUT_STRUCTURE = register("ruined_hut", new RuinedHutStructure(NoFeatureConfig.field_236558_a_));
 
   private static <T extends IFeatureConfig> Structure<T> register(String name, Structure<T> feature) {
     ResourceLocation rl = new ResourceLocation(MysticalWorld.MODID, name);
@@ -38,8 +40,9 @@ public class ModStructures {
   }
 
   public static void setupStructures() {
-    setupStructure(HUT_STRUCTURE, new StructureSeparationSettings(10, 5, 0xf6804c10), true);
-    setupStructure(BARROW_STRUCTURE, new StructureSeparationSettings(10, 5, 0x3679f17f), true);
+    setupStructure(HUT_STRUCTURE, new StructureSeparationSettings(25, 20, 0xf6804c10), true);
+    setupStructure(BARROW_STRUCTURE, new StructureSeparationSettings(50, 45, 0x3679f17f), true);
+    setupStructure(RUINED_HUT_STRUCTURE, new StructureSeparationSettings(30, 20, 0xc455139f), true);
   }
 
   public static <F extends Structure<?>> void setupStructure(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {

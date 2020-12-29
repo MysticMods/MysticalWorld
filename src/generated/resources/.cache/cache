@@ -644,7 +644,7 @@ e216a42b311c46deeb15b6b93b2e5e3a4a5daec3 data/forge/tags/blocks/storage_blocks/c
 abb365f8a958011f0f481575708f3ac62620f9b0 data/forge/tags/blocks/storage_blocks/silver.json
 70365f3dab7784a64eafeba5de12b37e54e46c30 data/forge/tags/blocks/storage_blocks/tin.json
 d2f3aa9101a8438a091f69f799d083fa0d89cb2a data/forge/tags/blocks/terracotta.json
-0328592b08565629ddadcb8081d3c309e11d62a0 data/forge/tags/items/cooked_vegetables.json
+aa2ae269ba6ca862df151f3b508510a7d760acf7 data/forge/tags/items/cooked_vegetables.json
 e5493cf6597b8b4793cf05e409ba4c9ca838a13d data/forge/tags/items/crops/aubergine.json
 4eed7159a447e25b54a5c73afe3bbe7bc6f79eec data/forge/tags/items/crops/eggplant.json
 826f2d13d414562b009d2db4ea95b7d1396a69a6 data/forge/tags/items/dusts.json
@@ -694,7 +694,7 @@ c7d770d5a5a0c47fb54f62c7229f64510bc33440 data/forge/tags/items/storage_blocks/sl
 f49e74d060ab77a01a5e2216e779ec3eb3cd48d9 data/forge/tags/items/swords.json
 d2f3aa9101a8438a091f69f799d083fa0d89cb2a data/forge/tags/items/terracotta.json
 bae0a1528c0498c6312740c062a469dbb0f6909f data/forge/tags/items/tools/knife.json
-8cdc02d2d601fbe77d6b625ac3f861e122989224 data/forge/tags/items/vegetables.json
+809f04f9782e18b386ae84cdadb54dcf414a266c data/forge/tags/items/vegetables.json
 32b8be680724e41926c9fc67ac06076d16b22947 data/minecraft/advancements/recipes/building_blocks/white_wool.json
 3db6e092f91c7afb33b4add37eaa31487b18a858 data/minecraft/advancements/recipes/combat/bow.json
 960267182f6e448669e79ee218998020e691c9ce data/minecraft/advancements/recipes/combat/crossbow.json
@@ -1102,6 +1102,7 @@ a0caf7b19c888315a187b0d43fa33311dc79f683 data/mysticalworld/advancements/recipes
 b1c245f622a284b8bb4acd83d3f9995d4d6d06e6 data/mysticalworld/advancements/recipes/mysticalworld/wet_mud_block.json
 af1f2ec794aee4936e5177afdc3b48b8132fba28 data/mysticalworld/advancements/recipes/mysticalworld/wet_mud_brick.json
 861234036c016721ebdfdf0c68a4375767b568f3 data/mysticalworld/advancements/recipes/mysticalworld/wood_spear.json
+32f607e9b6b956df3445af96668e0927819e8665 data/mysticalworld/loot_tables/barrow.json
 51d6a6f9164cf89fe897175f4664138cef202f8f data/mysticalworld/loot_tables/blocks/amethyst_block.json
 d6e06409cc9e01f2248b5902325605828e872d03 data/mysticalworld/loot_tables/blocks/amethyst_ore.json
 8e7924d707188bb92d8a92b5df9cd1dd728d0a6f data/mysticalworld/loot_tables/blocks/amethyst_slab.json
@@ -1234,6 +1235,7 @@ bd5d7126212b2a24906c5c4db8846f3af15bbcc3 data/mysticalworld/loot_tables/entities
 f0266b86d509baafb030ddb9915394ea06d372cd data/mysticalworld/loot_tables/entities/spirit_beetle.json
 f0266b86d509baafb030ddb9915394ea06d372cd data/mysticalworld/loot_tables/entities/spirit_deer.json
 1c4a400a4c734fe90aced8cf296a5ba69b1a3e3b data/mysticalworld/loot_tables/entities/sprout.json
+27e78cfc958dab5b3cbd4f288cee8c69af319547 data/mysticalworld/loot_tables/hut.json
 25ab935f5f0b05f1a08b9e031afac3d501e5f831 data/mysticalworld/recipes/amethyst_axe.json
 0488c82fb9229e49b32259c184738e0051ecbe6d data/mysticalworld/recipes/amethyst_boots.json
 7645c5ec9354c3950ac87b5c2f4db479361ae6b5 data/mysticalworld/recipes/amethyst_chestplate.json

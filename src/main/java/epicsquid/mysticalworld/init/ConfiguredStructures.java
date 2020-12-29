@@ -18,6 +18,7 @@ public class ConfiguredStructures {
 
   public static StructureFeature<?, ?> CONFIGURED_HUT = register("hut", ModStructures.HUT_STRUCTURE, ModStructures.HUT_STRUCTURE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
   public static StructureFeature<?, ?> CONFIGURED_BARROW = register("barrow", ModStructures.BARROW_STRUCTURE, ModStructures.BARROW_STRUCTURE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+  public static StructureFeature<?, ?> CONFIGURED_RUINED_HUT = register("ruined_hut", ModStructures.RUINED_HUT_STRUCTURE, ModStructures.RUINED_HUT_STRUCTURE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
 
   private static StructureFeature<?, ?> register(String id, @Nullable Structure<?> structure, StructureFeature<?, ?> feature) {
     ResourceLocation rl = new ResourceLocation(MysticalWorld.MODID, id);

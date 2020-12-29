@@ -2,38 +2,32 @@ package epicsquid.mysticalworld.world.structures;
 
 import com.mojang.serialization.Codec;
 import epicsquid.mysticalworld.MysticalWorld;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
+import net.minecraft.util.WeightedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
 import net.minecraft.world.gen.feature.jigsaw.SingleJigsawPiece;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.structure.StructurePiece;
-import net.minecraft.world.gen.feature.template.*;
+import net.minecraft.world.gen.feature.template.TemplateManager;
 import noobanidus.libs.noobutil.world.gen.structure.SimpleStructure;
 
-import javax.annotation.Nullable;
-import java.util.Random;
-
-public class BarrowStructure extends SimpleStructure {
-  public BarrowStructure(Codec<NoFeatureConfig> codec) {
+public class RuinedHutStructure extends SimpleStructure {
+  public RuinedHutStructure(Codec<NoFeatureConfig> codec) {
     super(codec);
   }
 
   @Override
   public IStartFactory<NoFeatureConfig> getStartFactory() {
-    return BarrowStructure.Start::new;
+    return RuinedHutStructure.Start::new;
   }
 
   @Override
@@ -65,7 +59,7 @@ public class BarrowStructure extends SimpleStructure {
       super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
     }
 
-    public static ResourceLocation POOL = new ResourceLocation(MysticalWorld.MODID, "barrow_pool/start_pool");
+    private static ResourceLocation POOL = new ResourceLocation(MysticalWorld.MODID, "hut_ruined_pool/start_pool");
 
     @Override
     protected ResourceLocation getPoolLocation() {
@@ -79,6 +73,8 @@ public class BarrowStructure extends SimpleStructure {
 
     @Override
     protected void modifyStructure(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, Biome biome, NoFeatureConfig noFeatureConfig, BlockPos blockPos) {
+/*      this.components.forEach(p -> p.offset(0, -, 0));
+      this.components.forEach(p -> p.getBoundingBox().minY += 6);*/
     }
   }
 }
