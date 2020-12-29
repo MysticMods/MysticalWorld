@@ -5,22 +5,26 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
-import java.util.Set;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class TreeConfig extends FeatureConfig<TreeConfig> {
-  private double chance;
-  private ForgeConfigSpec.DoubleValue configChance;
+public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
+  private final int repeats;
+  private final int tries;
+  private ForgeConfigSpec.IntValue configRepeats;
+  private ForgeConfigSpec.IntValue configTries;
 
-  public TreeConfig(double chance, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
+  public StonepetalConfig(int repeats, int tries, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
     super(biomeTypes, biomeRestrictions);
-    this.chance = chance;
+    this.tries = tries;
+    this.repeats = repeats;
   }
 
-  public double getChance() {
-    return configChance.get();
+  public int getRepeats() {
+    return configRepeats.get();
+  }
+
+  public int getTries() {
+    return configTries.get();
   }
 
   @Override
@@ -30,8 +34,9 @@ public class TreeConfig extends FeatureConfig<TreeConfig> {
 
   @Override
   public void apply(ForgeConfigSpec.Builder builder) {
-    builder.comment("Charred Tree Generation").push("charred_tree");
-    configChance = builder.comment("Number of charred trees per chunk (set to 0 to disable).").defineInRange("chance", chance, 0, 256);
+    builder.comment("Stonepetal Patch Generation").push("stone_petal");
+    configTries = builder.comment("Number of tries per chunk to try placing stonepetals on stone (set to 0 to disable).").defineInRange("tries", tries, 0, 256);
+    configRepeats = builder.comment("Number of times per chunk to repeat trying to place stonepetals on stone").defineInRange("repeats", repeats, 0, 256);
     StringJoiner sb = new StringJoiner(",");
     biomes.forEach(o -> sb.add(o.getName()));
     configBiomes = builder.comment("List of biome types to spawn (default [" + sb.toString() + "], pass empty list for every biome").define("biomes", sb.toString());

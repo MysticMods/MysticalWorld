@@ -16,19 +16,17 @@ import java.util.stream.Stream;
 public abstract class FeatureConfig<T extends FeatureConfig> implements IConfig {
   // TODO: Caching
 
-  protected double chance;
   protected List<BiomeDictionary.Type> biomes;
   protected List<BiomeDictionary.Type> biomeRestrictions;
 
-  protected ForgeConfigSpec.DoubleValue configChance;
   protected ForgeConfigSpec.ConfigValue<String> configBiomes;
   protected ForgeConfigSpec.ConfigValue<String> configBiomeRestrictions;
 
   protected Supplier<ConfiguredFeature<?, ?>> feature = null;
+  protected Supplier<Supplier<ConfiguredFeature<?, ?>>> supplierFeature = null;
   protected Supplier<StructureFeature<?, ?>> structure = null;
 
-  public FeatureConfig(double chance, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
-    this.chance = chance;
+  public FeatureConfig(List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
     this.biomes = biomeTypes;
     this.biomeRestrictions = biomeRestrictions;
   }
@@ -39,6 +37,11 @@ public abstract class FeatureConfig<T extends FeatureConfig> implements IConfig 
 
   public T setFeature(Supplier<ConfiguredFeature<?, ?>> feature) {
     this.feature = feature;
+    return (T) this;
+  }
+
+  public T setSupplierFeature (Supplier<Supplier<ConfiguredFeature<?, ?>>> feature) {
+    this.supplierFeature = feature;
     return (T) this;
   }
 
@@ -53,6 +56,9 @@ public abstract class FeatureConfig<T extends FeatureConfig> implements IConfig 
 
   @Nullable
   public Supplier<ConfiguredFeature<?, ?>> getFeature() {
+    if (supplierFeature != null) {
+      return supplierFeature.get();
+    }
     return feature;
   }
 
@@ -66,10 +72,6 @@ public abstract class FeatureConfig<T extends FeatureConfig> implements IConfig 
   }
 
   public abstract GenerationStage.Decoration getStage();
-
-  public double getChance() {
-    return configChance.get();
-  }
 
   private Set<BiomeDictionary.Type> storedBiomes = null;
   private Set<BiomeDictionary.Type> storedRestrictions = null;

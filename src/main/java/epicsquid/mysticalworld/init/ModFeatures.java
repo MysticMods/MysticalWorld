@@ -21,6 +21,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
@@ -36,6 +37,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import noobanidus.libs.noobutil.types.LazySupplier;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -52,6 +54,8 @@ public class ModFeatures {
 
   public static final ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
 
+  public static final Supplier<ConfiguredFeature<?, ?>> STONEPETAL_PATCH = new LazySupplier<>(() -> Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.STONEPETAL.get().getDefaultState()), SimpleBlockPlacer.PLACER)).tries(ConfigManager.STONEPETAL_CONFIG.getTries()).build()).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(ConfigManager.STONEPETAL_CONFIG.getRepeats()));
+
   private static List<ConfiguredFeature<?, ?>> ORE_FEATURES = new ArrayList<>();
 
   public static void generateFeatures() {
@@ -67,6 +71,7 @@ public class ModFeatures {
       }
     }
     Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, "charred_tree"), CHARRED_TREE);
+    Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, "stonepetal_patch"), STONEPETAL_PATCH.get());
   }
 
   public static void load() {
@@ -125,14 +130,15 @@ public class ModFeatures {
       Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
       ModEntities.registerEntity(event, types);
       tryPlaceFeature(event, types, ConfigManager.DEAD_TREE_CONFIG);
+      tryPlaceFeature(event, types, ConfigManager.STONEPETAL_CONFIG);
       tryPlaceFeature(event, types, ConfigManager.HUT_CONFIG);
       tryPlaceFeature(event, types, ConfigManager.BARROW_CONFIG);
     }
   }
 
-  public static void onWorldLoad (final WorldEvent.Load event) {
+  public static void onWorldLoad(final WorldEvent.Load event) {
     if (event.getWorld() instanceof ServerWorld) {
-      ServerWorld world = (ServerWorld)event.getWorld();
+      ServerWorld world = (ServerWorld) event.getWorld();
       if (world.getChunkProvider().getChunkGenerator() instanceof FlatChunkGenerator && world.getDimensionKey().equals(World.OVERWORLD)) {
         return;
       }

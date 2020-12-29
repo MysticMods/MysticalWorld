@@ -173,7 +173,7 @@ public class LootTableGenerator extends LootTableProvider {
                       .addEntry(ItemLootEntry.builder(Items.GOLD_INGOT).weight(2).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F))))
                       .addEntry(ItemLootEntry.builder(Items.REDSTONE).weight(8).acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
                       .addEntry(ItemLootEntry.builder(Items.GUNPOWDER).weight(4).acceptFunction(SetCount.builder(RandomValueRange.of(6.0F, 12.0F))))
-                      .addEntry(ItemLootEntry.builder(Items.GLOWSTONE).weight(4).acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 6.0F))))
+                      .addEntry(ItemLootEntry.builder(Items.GLOWSTONE_DUST).weight(4).acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 6.0F))))
                       .addEntry(ItemLootEntry.builder(Items.SPONGE).weight(1))
                       .addEntry(ItemLootEntry.builder(Items.MAGMA_CREAM).weight(3).acceptFunction(SetCount.builder(RandomValueRange.of(4.0F, 9.0F))))
               )

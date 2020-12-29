@@ -40,9 +40,9 @@ public class ModStructures {
   }
 
   public static void setupStructures() {
-    setupStructure(HUT_STRUCTURE, new StructureSeparationSettings(25, 20, 0xf6804c10), true);
-    setupStructure(BARROW_STRUCTURE, new StructureSeparationSettings(50, 45, 0x3679f17f), true);
-    setupStructure(RUINED_HUT_STRUCTURE, new StructureSeparationSettings(30, 20, 0xc455139f), true);
+    setupStructure(HUT_STRUCTURE, new StructureSeparationSettings(45, 20, 0xf6804c10), true);
+    setupStructure(BARROW_STRUCTURE, new StructureSeparationSettings(150, 65, 0x3679f17f), true);
+    setupStructure(RUINED_HUT_STRUCTURE, new StructureSeparationSettings(70, 35, 0xc455139f), true);
   }
 
   public static <F extends Structure<?>> void setupStructure(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {
