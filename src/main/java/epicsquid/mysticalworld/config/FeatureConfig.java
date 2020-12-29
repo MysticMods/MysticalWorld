@@ -71,6 +71,8 @@ public abstract class FeatureConfig<T extends FeatureConfig> implements IConfig 
     return true;
   }
 
+  public abstract boolean shouldSpawn();
+
   public abstract GenerationStage.Decoration getStage();
 
   private Set<BiomeDictionary.Type> storedBiomes = null;

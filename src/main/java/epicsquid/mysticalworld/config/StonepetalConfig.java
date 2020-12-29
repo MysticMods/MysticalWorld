@@ -28,6 +28,11 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
   }
 
   @Override
+  public boolean shouldSpawn() {
+    return getTries() != 0;
+  }
+
+  @Override
   public GenerationStage.Decoration getStage() {
     return GenerationStage.Decoration.VEGETAL_DECORATION;
   }

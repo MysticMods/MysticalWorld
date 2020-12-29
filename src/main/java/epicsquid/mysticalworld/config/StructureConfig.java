@@ -25,6 +25,11 @@ public class StructureConfig extends FeatureConfig<StructureConfig> {
   }
 
   @Override
+  public boolean shouldSpawn() {
+    return true;
+  }
+
+  @Override
   public void apply(ForgeConfigSpec.Builder builder) {
     builder.comment("Structure Generation").push(name);
     StringJoiner sb = new StringJoiner(",");

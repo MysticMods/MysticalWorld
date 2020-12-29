@@ -25,7 +25,7 @@ import java.util.Random;
 @SuppressWarnings("deprecation")
 public class PetrifiedFlowerBlock extends FlowerBlock {
   public PetrifiedFlowerBlock(AbstractBlock.Properties propertiesIn) {
-    super(Effects.JUMP_BOOST, 12, propertiesIn);
+    super(Effects.JUMP_BOOST, 50, propertiesIn);
   }
 
   @Override

@@ -24,6 +24,11 @@ public class TreeConfig extends FeatureConfig<TreeConfig> {
   }
 
   @Override
+  public boolean shouldSpawn() {
+    return getChance() != 0;
+  }
+
+  @Override
   public GenerationStage.Decoration getStage() {
     return GenerationStage.Decoration.VEGETAL_DECORATION;
   }
