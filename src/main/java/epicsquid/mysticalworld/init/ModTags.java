@@ -96,6 +96,7 @@ public class ModTags {
       b.add(Tags.Items.STONE, ModBlocks.SOFT_STONE);
 
       b.add(MWTags.Items.SLIME, Items.SLIME_BALL);
+      b.add(MWTags.Items.STONEPETAL, ModBlocks.STONEPETAL);
 
       b.add(Tags.Items.GEMS, MWTags.Items.AMETHYST_GEM);
 

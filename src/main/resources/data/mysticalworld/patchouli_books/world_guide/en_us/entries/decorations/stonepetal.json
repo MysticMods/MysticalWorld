@@ -1,0 +1,15 @@
+{
+  "name": "Stonepetal",
+  "icon": "mysticalworld:stonepetal",
+  "category": "decorations",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Found growing on patches of stone at high altitudes, this flower provides a significant boost to your jumping ability when you walk over it.$(br2)Additionally, it can be used to craft Jump Boost potions, as well as to craft gray dye."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:gray_dye_from_stonepetal"
+    }
+  ]
+}

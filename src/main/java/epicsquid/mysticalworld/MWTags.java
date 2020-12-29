@@ -50,6 +50,8 @@ public class MWTags {
 /*    public static INamedTag<Item> CROPS = compatTag("crops");*/
     public static INamedTag<Item> COOKED_VEGETABLES = compatTag("cooked_vegetables");
 
+    public static INamedTag<Item> STONEPETAL = modTag("stonepetal");
+
     public static INamedTag<Item> AUBERGINE = compatTag("crops/aubergine");
     public static INamedTag<Item> EGGPLANT = compatTag("crops/eggplant");
 
