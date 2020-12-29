@@ -52,7 +52,7 @@ public class ConfigManager {
     // TODO: Migrate to Biome Category
     DEAD_TREE_CONFIG = new TreeConfig(0.04, Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.WASTELAND), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setFeature(() -> ModFeatures.CHARRED_TREE);
     DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
-    STONEPETAL_CONFIG = new StonepetalConfig(2, 12, Arrays.asList(BiomeDictionary.Type.MOUNTAIN), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setSupplierFeature(() -> ModFeatures.STONEPETAL_PATCH);
+    STONEPETAL_CONFIG = new StonepetalConfig(1, 8, Arrays.asList(BiomeDictionary.Type.MOUNTAIN), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setSupplierFeature(() -> ModFeatures.STONEPETAL_PATCH);
     STONEPETAL_CONFIG.apply(COMMON_BUILDER);
     HUT_CONFIG = new StructureConfig("hut", Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.PLAINS), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setStructure(() -> ConfiguredStructures.CONFIGURED_HUT);
     HUT_CONFIG.apply(COMMON_BUILDER);

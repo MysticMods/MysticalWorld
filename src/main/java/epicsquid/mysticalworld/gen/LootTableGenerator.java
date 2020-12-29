@@ -51,7 +51,7 @@ public class LootTableGenerator extends LootTableProvider {
           LootTable.builder()
               .addLootPool(
                   LootPool.builder()
-                      .rolls(ConstantRange.of(6))
+                      .rolls(RandomValueRange.of(3, 6))
                       .addEntry(ItemLootEntry.builder(Items.GRASS).weight(20).acceptFunction(SetCount.builder(RandomValueRange.of(8.0f, 15.0f))))
                       .addEntry(ItemLootEntry.builder(Items.FERN).weight(20).acceptFunction(SetCount.builder(RandomValueRange.of(8.0F, 15.0F))))
                       .addEntry(ItemLootEntry.builder(Items.PUMPKIN).weight(12).acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 7.0F))))
@@ -80,7 +80,7 @@ public class LootTableGenerator extends LootTableProvider {
               )
               .addLootPool(
                   LootPool.builder()
-                      .rolls(RandomValueRange.of(2, 4))
+                      .rolls(RandomValueRange.of(1, 3))
                       .addEntry(ItemLootEntry.builder(Items.RED_TULIP).weight(12).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F))))
                       .addEntry(ItemLootEntry.builder(Items.ORANGE_TULIP).weight(12).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F))))
                       .addEntry(ItemLootEntry.builder(Items.PINK_TULIP).weight(12).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F))))
@@ -151,7 +151,7 @@ public class LootTableGenerator extends LootTableProvider {
           LootTable.builder()
               .addLootPool(
                   LootPool.builder()
-                      .rolls(ConstantRange.of(6))
+                      .rolls(RandomValueRange.of(2, 5))
                       .addEntry(ItemLootEntry.builder(Items.WATER_BUCKET).weight(10).acceptFunction(SetCount.builder(RandomValueRange.of(1.0f, 3.0f))))
                       .addEntry(ItemLootEntry.builder(Items.CLAY_BALL).weight(20).acceptFunction(SetCount.builder(RandomValueRange.of(8.0F, 15.0F))))
                       .addEntry(ItemLootEntry.builder(Items.LAPIS_LAZULI).weight(12).acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 7.0F))))
@@ -165,7 +165,7 @@ public class LootTableGenerator extends LootTableProvider {
               )
               .addLootPool(
                   LootPool.builder()
-                      .rolls(RandomValueRange.of(1, 3))
+                      .rolls(RandomValueRange.of(1, 2))
                       .addEntry(ItemLootEntry.builder(Items.LAVA_BUCKET).weight(12).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
                       .addEntry(ItemLootEntry.builder(Items.PRISMARINE_CRYSTALS).weight(2).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F))))
                       .addEntry(ItemLootEntry.builder(Items.PRISMARINE_SHARD).weight(2).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F))))
@@ -186,7 +186,7 @@ public class LootTableGenerator extends LootTableProvider {
                       .addEntry(ItemLootEntry.builder(ModItems.BEETLE_MASK.get()).weight(6).acceptFunction(EnchantRandomly.func_215900_c()))
                       .addEntry(ItemLootEntry.builder(Items.OBSIDIAN).weight(5).acceptFunction(SetCount.builder(RandomValueRange.of(2.0f, 7.0f))))
                       .addEntry(ItemLootEntry.builder(Items.NETHER_WART_BLOCK).weight(3).acceptFunction(SetCount.builder(RandomValueRange.of(2.0f, 4.0f))))
-                      .addEntry(ItemLootEntry.builder(Items.PHANTOM_MEMBRANE).weight(2).acceptFunction(SetCount.builder(RandomValueRange.of(1.0f, 4.0f))))
+                      .addEntry(ItemLootEntry.builder(Items.PHANTOM_MEMBRANE).weight(2))
                       .addEntry(ItemLootEntry.builder(ModItems.LEAD_BOOTS.get()).weight(6).acceptFunction(EnchantRandomly.func_215900_c()))
                       .addEntry(ItemLootEntry.builder(ModItems.COPPER_HELMET.get()).weight(8).acceptFunction(EnchantRandomly.func_215900_c()))
                       .addEntry(ItemLootEntry.builder(ModItems.COPPER_CHESTPLATE.get()).weight(12).acceptFunction(EnchantRandomly.func_215900_c()))

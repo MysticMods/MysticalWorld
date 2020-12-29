@@ -2,7 +2,11 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 6,
+      "rolls": {
+        "min": 2.0,
+        "max": 5.0,
+        "type": "minecraft:uniform"
+      },
       "entries": [
         {
           "type": "minecraft:item",
@@ -142,7 +146,7 @@
     {
       "rolls": {
         "min": 1.0,
-        "max": 3.0,
+        "max": 2.0,
         "type": "minecraft:uniform"
       },
       "entries": [
@@ -264,7 +268,7 @@
               }
             }
           ],
-          "name": "minecraft:glowstone"
+          "name": "minecraft:glowstone_dust"
         },
         {
           "type": "minecraft:item",
@@ -376,16 +380,6 @@
         {
           "type": "minecraft:item",
           "weight": 2,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
           "name": "minecraft:phantom_membrane"
         },
         {
