@@ -19,6 +19,7 @@ public class SupplierOreFeature extends Feature<SupplierOreFeatureConfig> {
     super(p_i231976_1_);
   }
 
+  @Override
   public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, SupplierOreFeatureConfig config) {
     float f = rand.nextFloat() * (float) Math.PI;
     float f1 = (float) config.size / 8.0F;
