@@ -37,17 +37,14 @@ public class ApplyBonusModified extends LootFunction {
     this.field_215877_d = p_i51246_3_;
   }
 
-  @Override
   public LootFunctionType getFunctionType() {
     return LootFunctionManager.APPLY_BONUS;
   }
 
-  @Override
   public Set<LootParameter<?>> getRequiredParameters() {
     return ImmutableSet.of(LootParameters.TOOL);
   }
 
-  @Override
   public ItemStack doApply(ItemStack p_215859_1_, LootContext context) {
     ItemStack lvt_3_1_ = context.get(LootParameters.TOOL);
     if (lvt_3_1_ != null) {
@@ -93,7 +90,6 @@ public class ApplyBonusModified extends LootFunction {
     public Serializer() {
     }
 
-    @Override
     public void serialize(JsonObject p_230424_1_, ApplyBonusModified p_230424_2_, JsonSerializationContext p_230424_3_) {
       super.serialize(p_230424_1_, p_230424_2_, p_230424_3_);
       p_230424_1_.addProperty("enchantment", Registry.ENCHANTMENT.getKey(p_230424_2_.enchantment).toString());
@@ -106,7 +102,6 @@ public class ApplyBonusModified extends LootFunction {
 
     }
 
-    @Override
     public ApplyBonusModified deserialize(JsonObject p_186530_1_, JsonDeserializationContext p_186530_2_, ILootCondition[] p_186530_3_) {
       ResourceLocation lvt_4_1_ = new ResourceLocation(JSONUtils.getString(p_186530_1_, "enchantment"));
       Enchantment lvt_5_1_ = Registry.ENCHANTMENT.getOptional(lvt_4_1_).orElseThrow(() -> new JsonParseException("Invalid enchantment id: " + lvt_4_1_));
@@ -133,7 +128,6 @@ public class ApplyBonusModified extends LootFunction {
     private OreDropsFormula() {
     }
 
-    @Override
     public int func_216204_a(Random p_216204_1_, int p_216204_2_, int p_216204_3_) {
       if (p_216204_3_ > 0) {
         int lvt_4_1_ = p_216204_1_.nextInt(p_216204_3_ + 2) - 1;
@@ -147,7 +141,6 @@ public class ApplyBonusModified extends LootFunction {
       }
     }
 
-    @Override
     public void func_216202_a(JsonObject p_216202_1_, JsonSerializationContext p_216202_2_) {
     }
 
@@ -155,7 +148,6 @@ public class ApplyBonusModified extends LootFunction {
       return new ApplyBonusModified.OreDropsFormula();
     }
 
-    @Override
     public ResourceLocation func_216203_a() {
       return field_216206_a;
     }
@@ -169,12 +161,10 @@ public class ApplyBonusModified extends LootFunction {
       this.bonusMultiplier = p_i50981_1_;
     }
 
-    @Override
     public int func_216204_a(Random p_216204_1_, int p_216204_2_, int p_216204_3_) {
       return p_216204_2_ + p_216204_1_.nextInt(this.bonusMultiplier * p_216204_3_ + 1);
     }
 
-    @Override
     public void func_216202_a(JsonObject p_216202_1_, JsonSerializationContext p_216202_2_) {
       p_216202_1_.addProperty("bonusMultiplier", this.bonusMultiplier);
     }
@@ -184,7 +174,6 @@ public class ApplyBonusModified extends LootFunction {
       return new ApplyBonusModified.UniformBonusCountFormula(lvt_2_1_);
     }
 
-    @Override
     public ResourceLocation func_216203_a() {
       return field_216208_a;
     }
@@ -200,7 +189,6 @@ public class ApplyBonusModified extends LootFunction {
       this.probability = p_i50983_2_;
     }
 
-    @Override
     public int func_216204_a(Random p_216204_1_, int p_216204_2_, int p_216204_3_) {
       for (int lvt_4_1_ = 0; lvt_4_1_ < p_216204_3_ + this.extra; ++lvt_4_1_) {
         if (p_216204_1_.nextFloat() < this.probability) {
@@ -211,7 +199,6 @@ public class ApplyBonusModified extends LootFunction {
       return p_216204_2_;
     }
 
-    @Override
     public void func_216202_a(JsonObject p_216202_1_, JsonSerializationContext p_216202_2_) {
       p_216202_1_.addProperty("extra", this.extra);
       p_216202_1_.addProperty("probability", this.probability);
@@ -223,7 +210,6 @@ public class ApplyBonusModified extends LootFunction {
       return new ApplyBonusModified.BinomialWithBonusCountFormula(lvt_2_1_, lvt_3_1_);
     }
 
-    @Override
     public ResourceLocation func_216203_a() {
       return field_216211_a;
     }
