@@ -767,7 +767,9 @@ public class ModItems {
       .recipe((ctx, p) -> RECIPES.knife(Tags.Items.GEMS_DIAMOND, ModItems.DIAMOND_KNIFE, null, p)).register();
   public static RegistryEntry<BaseItems.KnifeItem> GOLD_KNIFE = REGISTRATE.item(GOLD.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, GOLD))
       .model((ctx, p) -> p.handheld(ModItems.GOLD_KNIFE))
-      .recipe((ctx, p) -> RECIPES.knife(Tags.Items.INGOTS_GOLD, ModItems.GOLD_KNIFE, null, p)).register();
+      .recipe((ctx, p) -> RECIPES.knife(Tags.Items.INGOTS_GOLD, ModItems.GOLD_KNIFE, null, p))
+      .tag(ItemTags.PIGLIN_LOVED)
+      .register();
   public static RegistryEntry<BaseItems.KnifeItem> IRON_KNIFE = REGISTRATE.item(IRON.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, IRON))
       .model((ctx, p) -> p.handheld(ModItems.IRON_KNIFE))
       .recipe((ctx, p) -> RECIPES.knife(Tags.Items.INGOTS_IRON, ModItems.IRON_KNIFE, null, p)).register();
@@ -784,7 +786,9 @@ public class ModItems {
       .recipe((ctx, p) -> RECIPES.spear(Items.DIAMOND_SWORD, ModItems.DIAMOND_SPEAR, null, p)).register();
   public static RegistryEntry<ModifiedSpearItem> GOLD_SPEAR = REGISTRATE.item(GOLD.getInternalName() + "_spear", spear(ModifiedSpearItem::new, GOLD))
       .model((ctx, p) -> p.handheld(ModItems.GOLD_SPEAR))
-      .recipe((ctx, p) -> RECIPES.spear(Items.GOLDEN_SWORD, ModItems.GOLD_SPEAR, null, p)).register();
+      .recipe((ctx, p) -> RECIPES.spear(Items.GOLDEN_SWORD, ModItems.GOLD_SPEAR, null, p))
+      .tag(ItemTags.PIGLIN_LOVED)
+      .register();
   public static RegistryEntry<ModifiedSpearItem> IRON_SPEAR = REGISTRATE.item(IRON.getInternalName() + "_spear", spear(ModifiedSpearItem::new, IRON))
       .model((ctx, p) -> p.handheld(ModItems.IRON_SPEAR))
       .recipe((ctx, p) -> RECIPES.spear(Items.IRON_SWORD, ModItems.IRON_SPEAR, null, p)).register();
