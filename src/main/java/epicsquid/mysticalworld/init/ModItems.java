@@ -172,13 +172,6 @@ public class ModItems {
 
   public static RegistryEntry<Item> SILK_THREAD = REGISTRATE.item("silk_thread", Item::new)
       .recipe((ctx, p) -> {
-
-        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 8)
-            .addIngredient(ModItems.SILK_COCOON.get())
-            .addIngredient(ModItems.SPINDLE.get())
-            .addCriterion("has_cocoon", RegistrateRecipeProvider.hasItem(ModItems.SILK_COCOON.get()))
-            .build(p, "silk_thread_from_cocoon_with_spindle");
-
         ShapelessRecipeBuilder.shapelessRecipe(Items.STRING, 1)
             .addIngredient(ctx.getEntry())
             .addIngredient(ctx.getEntry())
