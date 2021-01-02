@@ -753,6 +753,7 @@ f3b9374c835659eb7974ac3d21f50cc878527591 data/minecraft/tags/blocks/wooden_fence
 bd194de68472ea308dbe74bbe110c20ff27a6de3 data/minecraft/tags/blocks/wooden_stairs.json
 975f884e9f6ad435c02c039a6f1dfc31585f9415 data/minecraft/tags/items/fences.json
 714e922d19ea9fe9f65d46e480f1c92bc68e43c8 data/minecraft/tags/items/logs.json
+b1717bde934140725f4580813f76f0fd260b879c data/minecraft/tags/items/piglin_loved.json
 1b54a89ea50740f55aaa43ee4c8c3a01f10da852 data/minecraft/tags/items/planks.json
 22bafaddb034410bf6be71a991e5016d16dceefc data/minecraft/tags/items/slabs.json
 c67b89600a4e2bbf3884a2ed54cdfbfde76da5fe data/minecraft/tags/items/stairs.json
