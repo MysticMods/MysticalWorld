@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "mysticalworld:thatch_slab",
+    "mysticalworld:red_mushroom_slab",
+    "mysticalworld:brown_mushroom_slab",
+    "mysticalworld:mushroom_stem_slab",
+    "mysticalworld:mushroom_inside_slab",
     "mysticalworld:mud_block_slab",
     "mysticalworld:mud_brick_slab",
     "mysticalworld:terracotta_brick_slab",

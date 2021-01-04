@@ -45,13 +45,13 @@ public class SproutEntity extends AnimalEntity {
 
   @Override
   protected float getSoundVolume() {
-    return 0.3f;
+    return 0.2f;
   }
 
   @Nullable
   @Override
   protected SoundEvent getAmbientSound() {
-    if (rand.nextInt(14) == 0) {
+    if (rand.nextInt(45) == 0) {
       return ModSounds.SPROUT_AMBIENT.get();
     }
 

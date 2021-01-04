@@ -1,23 +1,17 @@
 package epicsquid.mysticalworld.init;
 
-import com.google.common.collect.Lists;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import epicsquid.mysticalworld.MWTags;
-import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.TagsProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
-import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -124,6 +118,7 @@ public class ModTags {
       p.copy(MWTags.Blocks.NETHER_BRICKS, MWTags.Items.NETHER_BRICKS);
       p.copy(MWTags.Blocks.RED_NETHER_BRICKS, MWTags.Items.RED_NETHER_BRICKS);
       p.copy(MWTags.Blocks.TERRACOTTA, MWTags.Items.TERRACOTTA);
+      p.copy(MWTags.Blocks.MUSHROOM_BLOCKS, MWTags.Items.MUSHROOM_BLOCKS);
     });
 
     REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, p -> {
@@ -134,6 +129,8 @@ public class ModTags {
       b.add(MWTags.Blocks.RED_NETHER_BRICKS, Blocks.RED_NETHER_BRICKS);
       b.add(MWTags.Blocks.TERRACOTTA, Blocks.WHITE_TERRACOTTA, Blocks.ORANGE_TERRACOTTA, Blocks.MAGENTA_TERRACOTTA, Blocks.LIGHT_BLUE_TERRACOTTA, Blocks.YELLOW_TERRACOTTA, Blocks.LIME_TERRACOTTA, Blocks.PINK_TERRACOTTA, Blocks.GRAY_TERRACOTTA, Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.CYAN_TERRACOTTA, Blocks.PURPLE_TERRACOTTA, Blocks.BLUE_TERRACOTTA, Blocks.BROWN_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.BLACK_TERRACOTTA, Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK.get());
       b.add(BlockTags.BASE_STONE_OVERWORLD, ModBlocks.SOFT_STONE.get());
+      b.add(MWTags.Blocks.MUSHROOM_BLOCKS, Blocks.MUSHROOM_STEM, Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM_BLOCK);
+      b.add(MWTags.Blocks.MUSHROOM_BLOCKS, ModBlocks.MUSHROOM_INSIDE.get());
     });
   }
 

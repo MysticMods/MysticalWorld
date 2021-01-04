@@ -6,6 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeTagHandler;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Function;
@@ -32,6 +33,8 @@ public class MWTags {
     public static INamedTag<Block> QUICKSILVER_STORAGE = compatTag("storage_blocks/quicksilver");
     public static INamedTag<Block> SILVER_STORAGE = compatTag("storage_blocks/silver");
     public static INamedTag<Block> TIN_STORAGE = compatTag("storage_blocks/tin");
+
+    public static INamedTag<Block> MUSHROOM_BLOCKS = compatTag("mushroom_blocks");
 
     static INamedTag<Block> modTag(String name) {
       return ForgeTagHandler.makeWrapperTag(ForgeRegistries.BLOCKS, new ResourceLocation(MysticalWorld.MODID, name));
@@ -100,6 +103,8 @@ public class MWTags {
     public static INamedTag<Item> NETHER_BRICKS = compatTag("nether_bricks");
     public static INamedTag<Item> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
     public static INamedTag<Item> TERRACOTTA = compatTag("terracotta");
+
+    public static INamedTag<Item> MUSHROOM_BLOCKS = compatTag("mushroom_blocks");
 
     public static INamedTag<Item> FORGE_KNIVES = compatTag("tools/knife");
     public static INamedTag<Item> SEEDS = compatTag("seeds");

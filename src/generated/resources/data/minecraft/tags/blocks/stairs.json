@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "mysticalworld:thatch_stairs",
+    "mysticalworld:red_mushroom_stairs",
+    "mysticalworld:brown_mushroom_stairs",
+    "mysticalworld:mushroom_stem_stairs",
+    "mysticalworld:mushroom_inside_stairs",
     "mysticalworld:mud_block_stairs",
     "mysticalworld:mud_brick_stairs",
     "mysticalworld:terracotta_brick_stairs",

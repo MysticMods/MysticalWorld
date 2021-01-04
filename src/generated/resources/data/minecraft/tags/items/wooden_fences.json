@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "mysticalworld:thatch_fence",
+    "mysticalworld:red_mushroom_fence",
+    "mysticalworld:brown_mushroom_fence",
+    "mysticalworld:mushroom_stem_fence",
+    "mysticalworld:mushroom_inside_fence",
     "mysticalworld:charred_fence"
   ]
 }

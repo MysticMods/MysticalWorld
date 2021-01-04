@@ -13,17 +13,16 @@ import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.blocks.*;
-import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.data.SingleItemRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapelessRecipe;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -36,6 +35,7 @@ import noobanidus.libs.noobutil.block.BaseBlocks;
 import noobanidus.libs.noobutil.material.MaterialType;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import static epicsquid.mysticalworld.MysticalWorld.RECIPES;
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
@@ -76,11 +76,26 @@ public class ModBlocks {
     return (ctx, p) -> p.stairsBlock(ctx.getEntry(), p.blockTexture(parent.get()));
   }
 
+  public static <T extends StairsBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> stairs(Supplier<? extends Block> parent) {
+    return (ctx, p) -> p.stairsBlock(ctx.getEntry(), p.blockTexture(parent.get()));
+  }
+
   public static <T extends SlabBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> slab(RegistryEntry<? extends Block> parent) {
     return (ctx, p) -> p.slabBlock(ctx.getEntry(), p.blockTexture(parent.get()), p.blockTexture(parent.get()));
   }
 
+  public static <T extends SlabBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> slab(Supplier<? extends Block> parent) {
+    return (ctx, p) -> p.slabBlock(ctx.getEntry(), p.blockTexture(parent.get()), p.blockTexture(parent.get()));
+  }
+
   public static <T extends FenceBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> fence(RegistryEntry<? extends Block> parent) {
+    return (ctx, p) -> {
+      p.fenceBlock(ctx.getEntry(), p.blockTexture(parent.get()));
+      p.models().fenceInventory(name(ctx.getEntry()) + "_inventory", p.blockTexture(parent.get()));
+    };
+  }
+
+  public static <T extends FenceBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> fence(Supplier<? extends Block> parent) {
     return (ctx, p) -> {
       p.fenceBlock(ctx.getEntry(), p.blockTexture(parent.get()));
       p.models().fenceInventory(name(ctx.getEntry()) + "_inventory", p.blockTexture(parent.get()));
@@ -94,7 +109,18 @@ public class ModBlocks {
     };
   }
 
+  public static <T extends WallBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> wall(Supplier<? extends Block> parent) {
+    return (ctx, p) -> {
+      p.wallBlock(ctx.getEntry(), p.blockTexture(parent.get()));
+      p.models().wallInventory(name(ctx.getEntry()) + "_inventory", p.blockTexture(parent.get()));
+    };
+  }
+
   public static <T extends FenceGateBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> gate(RegistryEntry<? extends Block> parent) {
+    return (ctx, p) -> p.fenceGateBlock(ctx.getEntry(), p.blockTexture(parent.get()));
+  }
+
+  public static <T extends FenceGateBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> gate(Supplier<? extends Block> parent) {
     return (ctx, p) -> p.fenceGateBlock(ctx.getEntry(), p.blockTexture(parent.get()));
   }
 
@@ -102,7 +128,15 @@ public class ModBlocks {
     return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.models().getBuilder(name(ctx.getEntry())).parent(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "wide_post"))).texture("wall", p.blockTexture(parent.get()))));
   }
 
+  public static <T extends BaseBlocks.WidePostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> widePost(Supplier<? extends Block> parent) {
+    return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.models().getBuilder(name(ctx.getEntry())).parent(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "wide_post"))).texture("wall", p.blockTexture(parent.get()))));
+  }
+
   public static <T extends BaseBlocks.NarrowPostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> narrowPost(RegistryEntry<? extends Block> parent) {
+    return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.models().getBuilder(name(ctx.getEntry())).parent(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "narrow_post"))).texture("wall", p.blockTexture(parent.get()))));
+  }
+
+  public static <T extends BaseBlocks.NarrowPostBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> narrowPost(Supplier<? extends Block> parent) {
     return (ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().addModels(new ConfiguredModel(p.models().getBuilder(name(ctx.getEntry())).parent(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "narrow_post"))).texture("wall", p.blockTexture(parent.get()))));
   }
 
@@ -111,6 +145,10 @@ public class ModBlocks {
   }
 
   public static NonNullFunction<Block.Properties, StairsBlock> stairsBlock(RegistryEntry<? extends Block> block) {
+    return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b);
+  }
+
+  public static NonNullFunction<Block.Properties, StairsBlock> stairsBlock(Supplier<? extends Block> block) {
     return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b);
   }
 
@@ -127,6 +165,7 @@ public class ModBlocks {
       .register();
 
   private static NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.hardnessAndResistance(1f).sound(SoundType.PLANT);
+  private static NonNullUnaryOperator<Block.Properties> MUSHROOM_PROPS = (o) -> o.hardnessAndResistance(0.2F).sound(SoundType.WOOD);
 
   public static RegistryEntry<ThatchBlock> THATCH = REGISTRATE.block("thatch", Material.WOOD, ThatchBlock::new)
       .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
@@ -270,10 +309,371 @@ public class ModBlocks {
       .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.
           droppingAndBonusWhen(ModBlocks.WILD_AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.WILD_AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(WildAubergineCropBlock.AGE, 0)))))
       .blockstate((ctx, p) ->
-        p.getVariantBuilder(ctx.getEntry())
-            .partialState()
-            .addModels(new ConfiguredModel(p.models().crop(ctx.getName(), p.blockTexture(ctx.getEntry()))))
+          p.getVariantBuilder(ctx.getEntry())
+              .partialState()
+              .addModels(new ConfiguredModel(p.models().crop(ctx.getName(), p.blockTexture(ctx.getEntry()))))
       )
+      .register();
+
+  // MUSHROOM
+
+  public static RegistryEntry<StairsBlock> RED_MUSHROOM_STAIRS = REGISTRATE.block("red_mushroom_stairs", Material.WOOD, stairsBlock(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .properties(MUSHROOM_PROPS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.stairs(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_STAIRS, null, true)
+      )
+      .blockstate(stairs(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> RED_MUSHROOM_SLAB = REGISTRATE.block("red_mushroom_slab", Material.WOOD, SlabBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          p.slab(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_SLAB, null, true)
+      )
+      .blockstate(slab(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<WallBlock> RED_MUSHROOM_WALL = REGISTRATE.block("red_mushroom_wall", Material.WOOD, WallBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          p.wall(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_WALL)
+      )
+      .blockstate(wall(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<FenceBlock> RED_MUSHROOM_FENCE = REGISTRATE.block("red_mushroom_fence", Material.WOOD, FenceBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.WOODEN_FENCES)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WOODEN_FENCES)
+      .recipe((ctx, p) ->
+          p.fence(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_FENCE, null)
+      )
+      .blockstate(fence(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<FenceGateBlock> RED_MUSHROOM_FENCE_GATE = REGISTRATE.block("red_mushroom_fence_gate", Material.WOOD, FenceGateBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.fenceGate(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_FENCE_GATE, null)
+      )
+      .blockstate(gate(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.WidePostBlock> RED_MUSHROOM_WIDE_POST = REGISTRATE.block("red_mushroom_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(() -> Blocks.RED_MUSHROOM_BLOCK, ModBlocks.RED_MUSHROOM_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> RED_MUSHROOM_SMALL_POST = REGISTRATE.block("red_mushroom_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(() -> Blocks.RED_MUSHROOM_BLOCK, ModBlocks.RED_MUSHROOM_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .register();
+
+  // BROWN
+
+  public static RegistryEntry<StairsBlock> BROWN_MUSHROOM_STAIRS = REGISTRATE.block("brown_mushroom_stairs", Material.WOOD, stairsBlock(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .properties(MUSHROOM_PROPS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.stairs(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_STAIRS, null, true)
+      )
+      .blockstate(stairs(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> BROWN_MUSHROOM_SLAB = REGISTRATE.block("brown_mushroom_slab", Material.WOOD, SlabBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          p.slab(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_SLAB, null, true)
+      )
+      .blockstate(slab(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<WallBlock> BROWN_MUSHROOM_WALL = REGISTRATE.block("brown_mushroom_wall", Material.WOOD, WallBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          p.wall(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_WALL)
+      )
+      .blockstate(wall(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<FenceBlock> BROWN_MUSHROOM_FENCE = REGISTRATE.block("brown_mushroom_fence", Material.WOOD, FenceBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.WOODEN_FENCES)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WOODEN_FENCES)
+      .recipe((ctx, p) ->
+          p.fence(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_FENCE, null)
+      )
+      .blockstate(fence(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<FenceGateBlock> BROWN_MUSHROOM_FENCE_GATE = REGISTRATE.block("brown_mushroom_fence_gate", Material.WOOD, FenceGateBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.fenceGate(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_FENCE_GATE, null)
+      )
+      .blockstate(gate(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.WidePostBlock> BROWN_MUSHROOM_WIDE_POST = REGISTRATE.block("brown_mushroom_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(() -> Blocks.BROWN_MUSHROOM_BLOCK, ModBlocks.BROWN_MUSHROOM_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> BROWN_MUSHROOM_SMALL_POST = REGISTRATE.block("brown_mushroom_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(() -> Blocks.BROWN_MUSHROOM_BLOCK, ModBlocks.BROWN_MUSHROOM_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .register();
+
+  // STEM
+
+  public static RegistryEntry<StairsBlock> MUSHROOM_STEM_STAIRS = REGISTRATE.block("mushroom_stem_stairs", Material.WOOD, stairsBlock(() -> Blocks.MUSHROOM_STEM))
+      .properties(MUSHROOM_PROPS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.stairs(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_STAIRS, null, true)
+      )
+      .blockstate(stairs(() -> Blocks.MUSHROOM_STEM))
+      .register();
+
+  public static RegistryEntry<SlabBlock> MUSHROOM_STEM_SLAB = REGISTRATE.block("mushroom_stem_slab", Material.WOOD, SlabBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          p.slab(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_SLAB, null, true)
+      )
+      .blockstate(slab(() -> Blocks.MUSHROOM_STEM))
+      .register();
+
+  public static RegistryEntry<WallBlock> MUSHROOM_STEM_WALL = REGISTRATE.block("mushroom_stem_wall", Material.WOOD, WallBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          p.wall(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_WALL)
+      )
+      .blockstate(wall(() -> Blocks.MUSHROOM_STEM))
+      .register();
+
+  public static RegistryEntry<FenceBlock> MUSHROOM_STEM_FENCE = REGISTRATE.block("mushroom_stem_fence", Material.WOOD, FenceBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.WOODEN_FENCES)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WOODEN_FENCES)
+      .recipe((ctx, p) ->
+          p.fence(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_FENCE, null)
+      )
+      .blockstate(fence(() -> Blocks.MUSHROOM_STEM))
+      .register();
+
+  public static RegistryEntry<FenceGateBlock> MUSHROOM_STEM_FENCE_GATE = REGISTRATE.block("mushroom_stem_fence_gate", Material.WOOD, FenceGateBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.fenceGate(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_FENCE_GATE, null)
+      )
+      .blockstate(gate(() -> Blocks.MUSHROOM_STEM))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.WidePostBlock> MUSHROOM_STEM_WIDE_POST = REGISTRATE.block("mushroom_stem_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(() -> Blocks.MUSHROOM_STEM, ModBlocks.MUSHROOM_STEM_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(() -> Blocks.MUSHROOM_STEM))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> MUSHROOM_STEM_SMALL_POST = REGISTRATE.block("mushroom_stem_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(() -> Blocks.MUSHROOM_STEM, ModBlocks.MUSHROOM_STEM_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(() -> Blocks.MUSHROOM_STEM))
+      .register();
+
+  // INSIDE
+
+  public static RegistryEntry<Block> MUSHROOM_INSIDE = REGISTRATE.block("mushroom_inside_block", Material.WOOD, Block::new)
+      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .item()
+      .model((ctx, p) -> p.blockItem(ModBlocks.MUSHROOM_INSIDE))
+      .build()
+      .blockstate((ctx, p) -> {
+        p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_block_inside")));
+      })
+      .recipe((ctx, p) -> {
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(MWTags.Items.MUSHROOM_BLOCKS), ctx.getEntry(), 0.125f, 200).addCriterion("has_mushroom", RegistrateRecipeProvider.hasItem(MWTags.Items.MUSHROOM_BLOCKS)).build(p, "mushroom_inside_from_smelting");
+      })
+      .register();
+
+  public static RegistryEntry<StairsBlock> MUSHROOM_INSIDE_STAIRS = REGISTRATE.block("mushroom_inside_stairs", Material.WOOD, stairsBlock(ModBlocks.MUSHROOM_INSIDE))
+      .properties(MUSHROOM_PROPS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.stairs(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_STAIRS, null, true)
+      )
+      .blockstate(stairs(ModBlocks.MUSHROOM_INSIDE))
+      .register();
+
+  public static RegistryEntry<SlabBlock> MUSHROOM_INSIDE_SLAB = REGISTRATE.block("mushroom_inside_slab", Material.WOOD, SlabBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          p.slab(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_SLAB, null, true)
+      )
+      .blockstate(slab(ModBlocks.MUSHROOM_INSIDE))
+      .register();
+
+  public static RegistryEntry<WallBlock> MUSHROOM_INSIDE_WALL = REGISTRATE.block("mushroom_inside_wall", Material.WOOD, WallBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          p.wall(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_WALL)
+      )
+      .blockstate(wall(ModBlocks.MUSHROOM_INSIDE))
+      .register();
+
+  public static RegistryEntry<FenceBlock> MUSHROOM_INSIDE_FENCE = REGISTRATE.block("mushroom_inside_fence", Material.WOOD, FenceBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.WOODEN_FENCES)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WOODEN_FENCES)
+      .recipe((ctx, p) ->
+          p.fence(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_FENCE, null)
+      )
+      .blockstate(fence(ModBlocks.MUSHROOM_INSIDE))
+      .register();
+
+  public static RegistryEntry<FenceGateBlock> MUSHROOM_INSIDE_FENCE_GATE = REGISTRATE.block("mushroom_inside_fence_gate", Material.WOOD, FenceGateBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.fenceGate(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_FENCE_GATE, null)
+      )
+      .blockstate(gate(ModBlocks.MUSHROOM_INSIDE))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.WidePostBlock> MUSHROOM_INSIDE_WIDE_POST = REGISTRATE.block("mushroom_inside_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.MUSHROOM_INSIDE, ModBlocks.MUSHROOM_INSIDE_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.MUSHROOM_INSIDE))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> MUSHROOM_INSIDE_SMALL_POST = REGISTRATE.block("mushroom_inside_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.MUSHROOM_INSIDE, ModBlocks.MUSHROOM_INSIDE_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.MUSHROOM_INSIDE))
       .register();
 
   // MUD BLOCK
