@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:brown_mushroom_wall"
+    ]
+  },
+  "criteria": {
+    "has_brown_mushroom_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:brown_mushroom_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:brown_mushroom_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_brown_mushroom_block",
+      "has_the_recipe"
+    ]
+  ]
+}

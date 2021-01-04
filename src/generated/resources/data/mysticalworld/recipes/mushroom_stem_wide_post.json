@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:mushroom_stem"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:mushroom_stem_wide_post",
+    "count": 6
+  }
+}

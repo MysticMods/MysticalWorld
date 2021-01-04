@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "forge:mushroom_blocks"
+  },
+  "result": "mysticalworld:mushroom_inside_block",
+  "experience": 0.125,
+  "cookingtime": 200
+}

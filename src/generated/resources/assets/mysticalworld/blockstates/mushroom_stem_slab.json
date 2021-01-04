@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "mysticalworld:block/mushroom_stem_slab_top"
+    },
+    "type=bottom": {
+      "model": "mysticalworld:block/mushroom_stem_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/mushroom_stem"
+    }
+  }
+}

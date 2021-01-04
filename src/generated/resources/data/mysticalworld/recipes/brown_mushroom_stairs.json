@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:brown_mushroom_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:brown_mushroom_stairs",
+    "count": 4
+  }
+}

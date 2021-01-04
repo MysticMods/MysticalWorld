@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "mysticalworld:block/brown_mushroom_slab_top"
+    },
+    "type=bottom": {
+      "model": "mysticalworld:block/brown_mushroom_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/brown_mushroom_block"
+    }
+  }
+}

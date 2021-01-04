@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:mushroom_stem_fence_gate"
+    ]
+  },
+  "criteria": {
+    "has_mushroom_stem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:mushroom_stem"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:mushroom_stem_fence_gate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mushroom_stem",
+      "has_the_recipe"
+    ]
+  ]
+}

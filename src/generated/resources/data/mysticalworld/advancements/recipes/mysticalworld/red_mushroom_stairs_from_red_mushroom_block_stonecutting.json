@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:red_mushroom_stairs_from_red_mushroom_block_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_red_mushroom_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:red_mushroom_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:red_mushroom_stairs_from_red_mushroom_block_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_mushroom_block",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:red_mushroom_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:red_mushroom_small_post",
+    "count": 4
+  }
+}
