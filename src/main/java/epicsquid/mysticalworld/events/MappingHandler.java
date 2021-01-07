@@ -3,12 +3,14 @@ package epicsquid.mysticalworld.events;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
 
 @Mod.EventBusSubscriber
 public class MappingHandler {
@@ -25,6 +27,17 @@ public class MappingHandler {
 
         if (mapping.key.getPath().equals("aubergine_crop")) {
           mapping.remap(ModBlocks.aubergine);
+        }
+      }
+    }
+  }
+
+  @SubscribeEvent
+  public static void onMissingEntity(RegistryEvent.MissingMappings<EntityEntry> event) {
+    for (RegistryEvent.MissingMappings.Mapping<EntityEntry> mapping : event.getAllMappings()) {
+      if (mapping.key.getNamespace().equals("mysticalworld")) {
+        if (mapping.key.getPath().equals("entity_lurker")) {
+          mapping.ignore();
         }
       }
     }
