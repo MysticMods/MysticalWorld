@@ -41,32 +41,19 @@ public class CommonSetup {
 
   public void init(FMLCommonSetupEvent event) {
     MysticalWorld.STONE_PLANT = PlantType.get("stone");
+    CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
+    CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
+    Networking.INSTANCE.registerMessages();
 
     event.enqueueWork(() -> {
+      ModEntities.registerEntities();
+      ShadedCommonSetup.init(event);
       ModStructures.setupStructures();
       ConfiguredStructures.registerStructures();
       CraftingHelper.register(new ResourceLocation(MysticalWorld.MODID, "seeds"), SeedIngredient.Serializer.INSTANCE);
       ModCompost.init();
-      ModEntities.registerEntities();
-      Networking.INSTANCE.registerMessages();
-      CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
-      CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
 
-      ShadedCommonSetup.init(event);
       PotionRecipes.registerRecipes();
-
-      GlobalEntityTypeAttributes.put(ModEntities.BEETLE.get(), BeetleEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.DEER.get(), DeerEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.FROG.get(), FrogEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.SILVER_FOX.get(), SilverFoxEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.SPROUT.get(), SproutEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.ENDERMINI.get(), EnderminiEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.LAVA_CAT.get(), LavaCatEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.OWL.get(), OwlEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.SILKWORM.get(), SilkwormEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.HELL_SPROUT.get(), HellSproutEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.SPIRIT_BEETLE.get(), SpiritBeetleEntity.attributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.SPIRIT_DEER.get(), SpiritDeerEntity.attributes().create());
 
       ChickenEntity.TEMPTATION_ITEMS = Ingredient.merge(Arrays.asList(ChickenEntity.TEMPTATION_ITEMS, Ingredient.fromItems(ModItems.AUBERGINE_SEEDS.get())));
 
