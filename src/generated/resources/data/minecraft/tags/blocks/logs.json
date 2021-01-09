@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "mysticalworld:charred_wood",
-    "mysticalworld:charred_log"
+    "mysticalworld:charred_log",
+    "mysticalworld:stripped_charred_wood",
+    "mysticalworld:stripped_charred_log"
   ]
 }

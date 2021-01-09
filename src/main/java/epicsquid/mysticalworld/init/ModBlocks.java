@@ -936,6 +936,30 @@ public class ModBlocks {
       .build()
       .register();
 
+  public static RegistryEntry<RotatedPillarBlock> STRIPPED_CHARRED_WOOD = REGISTRATE.log("stripped_charred_wood")
+      .properties(WOOD_PROPS)
+      .tag(BlockTags.LOGS)
+      .blockstate((ctx, p) -> {
+        p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getEntry().getRegistryName().getPath(), p.blockTexture(ModBlocks.STRIPPED_CHARRED_LOG.get())));
+      })
+      .item()
+      .tag(ItemTags.LOGS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .register();
+
+  public static RegistryEntry<RotatedPillarBlock> STRIPPED_CHARRED_LOG = REGISTRATE.log("stripped_charred_log")
+      .properties(WOOD_PROPS)
+      .tag(BlockTags.LOGS)
+      .blockstate((ctx, p) -> {
+        p.logBlock(ctx.getEntry());
+      })
+      .item()
+      .tag(ItemTags.LOGS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .register();
+
   public static RegistryEntry<Block> CHARRED_PLANKS = REGISTRATE.block("charred_planks", Material.WOOD, Block::new)
       .properties(o -> o.sound(SoundType.WOOD).hardnessAndResistance(2.0f, 3.0f))
       .tag(BlockTags.PLANKS)
