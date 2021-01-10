@@ -912,7 +912,7 @@ public class ModBlocks {
   private static NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD).hardnessAndResistance(2.0f);
 
 
-  public static RegistryEntry<RotatedPillarBlock> CHARRED_WOOD = REGISTRATE.log("charred_wood")
+  public static RegistryEntry<CharredLogBlock> CHARRED_WOOD = REGISTRATE.block("charred_wood", (o) -> new CharredLogBlock(o, true))
       .properties(WOOD_PROPS)
       .tag(BlockTags.LOGS)
       .blockstate((ctx, p) -> {
@@ -922,9 +922,13 @@ public class ModBlocks {
       .tag(ItemTags.LOGS)
       .model(ModBlocks::itemModel)
       .build()
+      .recipe((ctx, p) -> {
+        DataIngredient log = DataIngredient.items(ModBlocks.CHARRED_LOG.get());
+        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 3).addIngredient(log).addIngredient(log).addIngredient(log).addIngredient(log).addCriterion("has_charred_log", RegistrateRecipeProvider.hasItem(ModBlocks.CHARRED_LOG.get())).build(p, new ResourceLocation("mysticalworld", "charred_wood_from_logs"));
+      })
       .register();
 
-  public static RegistryEntry<RotatedPillarBlock> CHARRED_LOG = REGISTRATE.log("charred_log")
+  public static RegistryEntry<CharredLogBlock> CHARRED_LOG = REGISTRATE.block("charred_log", (o) -> new CharredLogBlock(o, false))
       .properties(WOOD_PROPS)
       .tag(BlockTags.LOGS)
       .blockstate((ctx, p) -> {
@@ -946,6 +950,10 @@ public class ModBlocks {
       .tag(ItemTags.LOGS)
       .model(ModBlocks::itemModel)
       .build()
+      .recipe((ctx, p) -> {
+        DataIngredient log = DataIngredient.items(ModBlocks.STRIPPED_CHARRED_LOG.get());
+        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 3).addIngredient(log).addIngredient(log).addIngredient(log).addIngredient(log).addCriterion("has_stripped_charred_log", RegistrateRecipeProvider.hasItem(ModBlocks.STRIPPED_CHARRED_LOG.get())).build(p, new ResourceLocation("mysticalworld", "stripped_charred_wood_from_logs"));
+      })
       .register();
 
   public static RegistryEntry<RotatedPillarBlock> STRIPPED_CHARRED_LOG = REGISTRATE.log("stripped_charred_log")

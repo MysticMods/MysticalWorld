@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:stripped_charred_wood_from_logs"
+    ]
+  },
+  "criteria": {
+    "has_stripped_charred_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:stripped_charred_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:stripped_charred_wood_from_logs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_charred_log",
+      "has_the_recipe"
+    ]
+  ]
+}
