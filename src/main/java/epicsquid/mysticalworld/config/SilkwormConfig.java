@@ -14,6 +14,11 @@ public class SilkwormConfig implements IConfig {
   private ForgeConfigSpec.ConfigValue<Integer> configSuccessChance;
   private ForgeConfigSpec.ConfigValue<Integer> configGrowthChance;
 
+  private int cachedLeaf = -9999;
+  private int cachedDrop = -9999;
+  private int cachedSuccess = -9999;
+  private int cachedGrowth = -9999;
+
   public SilkwormConfig(boolean leafDrops, int leafDropChance, int successChance, int growthChance) {
     this.leafDrops = leafDrops;
     this.leafDropChance = leafDropChance;
@@ -22,19 +27,31 @@ public class SilkwormConfig implements IConfig {
   }
 
   public boolean getLeafDropsEnabled() {
-    return configLeafDrops.get();
+    if (cachedDrop == -9999) {
+      cachedDrop = configLeafDrops.get() ? 1 : 0;
+    }
+    return cachedDrop == 1;
   }
 
   public int getLeafDropChance() {
-    return configLeafDropChance.get();
+    if (cachedLeaf == -9999) {
+      cachedLeaf = configLeafDropChance.get();
+    }
+    return cachedLeaf;
   }
 
   public int getSuccessChance() {
-    return configSuccessChance.get();
+    if (cachedSuccess == -9999) {
+      cachedSuccess = configSuccessChance.get();
+    }
+    return cachedSuccess;
   }
 
   public int getGrowthChance() {
-    return configGrowthChance.get();
+    if (cachedGrowth == -9999) {
+      cachedGrowth = configGrowthChance.get();
+    }
+    return cachedGrowth;
   }
 
   @Override
@@ -45,5 +62,13 @@ public class SilkwormConfig implements IConfig {
     configSuccessChance = builder.comment("Chance for silkworm eggs to spawn a silkworm (1 in X, 1 is guaranteed)").define("successChance", successChance);
     configGrowthChance = builder.comment("Chance per tick for silkworms to grown (1 in X)").define("growthChance", growthChance);
     builder.pop();
+  }
+
+  @Override
+  public void reset() {
+    cachedLeaf = -9999;
+    cachedDrop = -9999;
+    cachedSuccess = -9999;
+    cachedGrowth = -9999;
   }
 }

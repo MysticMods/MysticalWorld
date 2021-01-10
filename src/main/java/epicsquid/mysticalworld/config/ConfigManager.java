@@ -9,6 +9,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.config.ModConfig;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -104,5 +105,9 @@ public class ConfigManager {
     CommentedFileConfig configData = CommentedFileConfig.builder(path).sync().autosave().writingMode(WritingMode.REPLACE).build();
     configData.load();
     spec.setConfig(configData);
+  }
+
+  public static void configReload (ModConfig.ModConfigEvent event) {
+
   }
 }

@@ -30,6 +30,11 @@ public class OreConfig implements IConfig {
   private ForgeConfigSpec.IntValue configSize;
   private ForgeConfigSpec.ConfigValue<List<? extends String>> configDimensions;
 
+  private int cachedChance = -9999;
+  private int cachedMin = -9999;
+  private int cachedMax = -9999;
+  private int cachedSize = -9999;
+
   public OreConfig(String name, int chance, int minY, int maxY, int size, List<RegistryKey<World>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
     this.name = name;
     this.chance = chance;
@@ -45,30 +50,42 @@ public class OreConfig implements IConfig {
   }
 
   public int getChance() {
-    return configChance.get();
+    if (cachedChance == -9999) {
+      cachedChance = configChance.get();
+    }
+    return cachedChance;
   }
 
   public int getMinY() {
-    return configMinY.get();
+    if (cachedMin == -9999) {
+      cachedMin = configMinY.get();
+    }
+    return cachedMin;
   }
 
   public int getMaxY() {
-    return configMaxY.get();
+    if (cachedMax == -9999) {
+      cachedMax = configMaxY.get();
+    }
+    return cachedMax;
   }
 
   public int getSize() {
-    return configSize.get();
+    if (cachedSize == -9999) {
+      cachedSize = configSize.get();
+    }
+    return cachedSize;
   }
 
   public Block getOre() {
     return ore.get().get();
   }
 
-  public ResourceLocation getOreKey () {
+  public ResourceLocation getOreKey() {
     return ore.get().getId();
   }
 
-  public static Set<RegistryKey<World>> storedDimension = null;
+  private Set<RegistryKey<World>> storedDimension = null;
 
   public Set<RegistryKey<World>> getDimensions() {
     if (storedDimension == null) {
@@ -87,5 +104,14 @@ public class OreConfig implements IConfig {
     configMaxY = builder.comment("Number of veins per chunk (set to 0 to disable).").defineInRange("maxY", maxY, 0, 256);
     configDimensions = builder.comment("The dimensions that this ore should spawn in as a list (default [\"minecraft:overworld\"])").defineList("dimensions", dimensions.stream().map(RegistryKey::getLocation).map(ResourceLocation::toString).collect(Collectors.toList()), (o) -> o instanceof String);
     builder.pop();
+  }
+
+  @Override
+  public void reset() {
+    cachedChance = -9999;
+    cachedMin = -9999;
+    cachedMax = -9999;
+    cachedSize = -9999;
+    storedDimension = null;
   }
 }

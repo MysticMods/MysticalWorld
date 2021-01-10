@@ -13,6 +13,9 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
   private ForgeConfigSpec.IntValue configRepeats;
   private ForgeConfigSpec.IntValue configTries;
 
+  private int cachedRepeats = -9999;
+  private int cachedTries = -9999;
+
   public StonepetalConfig(int repeats, int tries, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
     super(biomeTypes, biomeRestrictions);
     this.tries = tries;
@@ -20,11 +23,17 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
   }
 
   public int getRepeats() {
-    return configRepeats.get();
+    if (cachedRepeats == -9999) {
+      cachedRepeats = configRepeats.get();
+    }
+    return cachedRepeats;
   }
 
   public int getTries() {
-    return configTries.get();
+    if (cachedTries == -9999) {
+      cachedTries = configTries.get();
+    }
+    return cachedTries;
   }
 
   @Override
@@ -49,5 +58,12 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
     biomeRestrictions.forEach(biome -> sb2.add(biome.getName()));
     configBiomeRestrictions = builder.comment("Which biome types this tree shouldn't spawn in (default END, NETHER)").define("biomeRestrictions", sb2.toString());
     builder.pop();
+  }
+
+  @Override
+  public void reset() {
+    super.reset();
+    cachedRepeats = -9999;
+    cachedTries = -9999;
   }
 }

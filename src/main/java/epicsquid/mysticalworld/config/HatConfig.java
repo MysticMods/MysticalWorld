@@ -133,7 +133,7 @@ public class HatConfig implements IConfig {
     return cachedMaskBonusDamage;
   }
 
-  public void onConfigReload(ModConfig.ModConfigEvent event) {
+  public void reset () {
     cachedAntlerFrequency = -999;
     cachedAntlerThreshold = -999;
     cachedAntlerHealing = -999;

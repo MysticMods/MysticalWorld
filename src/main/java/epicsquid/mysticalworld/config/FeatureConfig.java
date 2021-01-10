@@ -96,4 +96,10 @@ public abstract class FeatureConfig<T extends FeatureConfig> implements IConfig 
 
   @Override
   public abstract void apply(ForgeConfigSpec.Builder builder);
+
+  @Override
+  public void reset() {
+    storedBiomes = null;
+    storedRestrictions = null;
+  }
 }

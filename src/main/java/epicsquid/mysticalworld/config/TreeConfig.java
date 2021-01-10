@@ -14,13 +14,18 @@ public class TreeConfig extends FeatureConfig<TreeConfig> {
   private double chance;
   private ForgeConfigSpec.DoubleValue configChance;
 
+  private double cachedChance = -9999;
+
   public TreeConfig(double chance, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
     super(biomeTypes, biomeRestrictions);
     this.chance = chance;
   }
 
   public double getChance() {
-    return configChance.get();
+    if (cachedChance == -9999) {
+      cachedChance = configChance.get();
+    }
+    return cachedChance;
   }
 
   @Override
@@ -44,5 +49,11 @@ public class TreeConfig extends FeatureConfig<TreeConfig> {
     biomeRestrictions.forEach(biome -> sb2.add(biome.getName()));
     configBiomeRestrictions = builder.comment("Which biome types this tree shouldn't spawn in (default END, NETHER)").define("biomeRestrictions", sb2.toString());
     builder.pop();
+  }
+
+  @Override
+  public void reset() {
+    super.reset();
+    cachedChance = -9999;
   }
 }

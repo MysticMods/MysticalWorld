@@ -26,6 +26,10 @@ public class MobConfig implements IConfig {
   protected ForgeConfigSpec.IntValue configMax;
   protected ForgeConfigSpec.ConfigValue<String> configBiomes;
 
+  private int cachedChance = -9999;
+  private int cachedMin = -9999;
+  private int cachedMax = -9999;
+
   public MobConfig(String name, int chance, int min, int max, List<String> biomes) {
     this(name, chance, min, max, biomes, BiomeDictionary.Type.OVERWORLD);
   }
@@ -44,20 +48,33 @@ public class MobConfig implements IConfig {
   }
 
   public int getChance() {
-    return configChance.get();
+    if (cachedChance == -9999) {
+      cachedChance = configChance.get();
+    }
+    return cachedChance;
   }
 
   public int getMin() {
-    return configMin.get();
+    if (cachedMin == -9999) {
+      cachedMin = configMin.get();
+  }
+    return cachedMin;
   }
 
   public int getMax() {
-    return configMax.get();
+    if (cachedMax == -9999) {
+      cachedMax = configMax.get();
+    }
+    return cachedMax;
   }
 
+  private List<BiomeDictionary.Type> cachedBiomes = null;
+
   public List<BiomeDictionary.Type> getBiomes() {
-    String values = configBiomes.get();
-    return Stream.of(values.split(",")).map(o -> BiomeDictionary.Type.getType(o)).collect(Collectors.toList());
+    if (cachedBiomes == null) {
+      cachedBiomes = Stream.of(configBiomes.get().split(",")).map(o -> BiomeDictionary.Type.getType(o)).collect(Collectors.toList());
+    }
+    return cachedBiomes;
   }
 
   public boolean shouldRegister() {
@@ -91,5 +108,13 @@ public class MobConfig implements IConfig {
     preApply(builder);
     doApply(builder);
     postApply(builder);
+  }
+
+  @Override
+  public void reset() {
+    cachedBiomes = null;
+    cachedChance = -9999;
+    cachedMin = -9999;
+    cachedMax = -9999;
   }
 }
