@@ -1,4 +1,4 @@
-package epicsquid.mysticalworld.network;
+/*package epicsquid.mysticalworld.network;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -28,4 +28,4 @@ public class Networking extends PacketHandler {
   public static <MSG> void send(PacketDistributor.PacketTarget target, MSG message) {
     INSTANCE.sendInternal(target, message);
   }
-}
+}*/

@@ -6,18 +6,15 @@ import epicsquid.mysticalworld.capability.AnimalCooldownCapability;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityStorage;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityStorage;
-import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.events.CapabilityHandler;
 import epicsquid.mysticalworld.events.DamageHandler;
 import epicsquid.mysticalworld.events.LootHandler;
 import epicsquid.mysticalworld.init.*;
-import epicsquid.mysticalworld.network.Networking;
 import epicsquid.mysticalworld.potions.PotionRecipes;
 import epicsquid.mysticalworld.recipe.ingredients.SeedIngredient;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FireBlock;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -43,7 +40,7 @@ public class CommonSetup {
     MysticalWorld.STONE_PLANT = PlantType.get("stone");
     CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
     CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
-    Networking.INSTANCE.registerMessages();
+    /*    Networking.INSTANCE.registerMessages();*/
 
     event.enqueueWork(() -> {
       ModEntities.registerEntities();
@@ -99,7 +96,7 @@ public class CommonSetup {
     MinecraftForge.EVENT_BUS.addListener(LootHandler::onLooting);
     MinecraftForge.EVENT_BUS.addGenericListener(Entity.class, CapabilityHandler::attachCapability);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onSquidMilked);
-    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);
+/*    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);*/
   }
 
   public void loadComplete(FMLLoadCompleteEvent event) {

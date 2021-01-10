@@ -6,8 +6,6 @@ import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
-import epicsquid.mysticalworld.network.Networking;
-import epicsquid.mysticalworld.network.ShoulderRide;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,7 +27,7 @@ import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class CapabilityHandler {
-  public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+/*  public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
     ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
     player.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
       if (cap.isShouldered()) {
@@ -56,13 +54,13 @@ public class CapabilityHandler {
         }
       });
     }
-  }
+  }*/
 
   public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
     if (event.getObject() instanceof SquidEntity) {
       event.addCapability(AnimalCooldownCapabilityProvider.IDENTIFIER, new AnimalCooldownCapabilityProvider());
-    } else if (event.getObject() instanceof PlayerEntity) {
-      event.addCapability(PlayerShoulderCapabilityProvider.IDENTIFIER, new PlayerShoulderCapabilityProvider());
+/*    } else if (event.getObject() instanceof PlayerEntity) {
+      event.addCapability(PlayerShoulderCapabilityProvider.IDENTIFIER, new PlayerShoulderCapabilityProvider());*/
     }
   }
 
