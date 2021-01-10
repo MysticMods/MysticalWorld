@@ -1,15 +1,9 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.api.Capabilities;
-import epicsquid.mysticalworld.api.IPlayerShoulderCapability;
-import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
 import epicsquid.mysticalworld.init.ModEntities;
-import epicsquid.mysticalworld.network.Networking;
-import epicsquid.mysticalworld.network.ShoulderRide;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -24,12 +18,8 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.network.PacketDistributor;
 
 import javax.annotation.Nonnull;
 
