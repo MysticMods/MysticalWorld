@@ -97,7 +97,7 @@ public class MysticalWorld {
 
     setup.registerListeners();
 
-    modBus.addListener(ConfigManager.HAT_CONFIG::onConfigReload);
+    modBus.addListener(ConfigManager::configReload);
 
     PlayerModifierRegistry.addModifier(ModModifiers.SERENDIPITY);
     PlayerModifierRegistry.addModifier(ModModifiers.BLESSED);

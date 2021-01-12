@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public class OreConfig implements IConfig {
+public class OreConfig extends AbstractConfig {
 
   private String name;
   private int chance;
@@ -36,6 +36,7 @@ public class OreConfig implements IConfig {
   private int cachedSize = -9999;
 
   public OreConfig(String name, int chance, int minY, int maxY, int size, List<RegistryKey<World>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
+    super();
     this.name = name;
     this.chance = chance;
     this.minY = minY;

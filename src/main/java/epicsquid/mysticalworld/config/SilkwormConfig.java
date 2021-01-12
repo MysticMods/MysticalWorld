@@ -2,7 +2,7 @@ package epicsquid.mysticalworld.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
-public class SilkwormConfig implements IConfig {
+public class SilkwormConfig extends AbstractConfig {
 
   private boolean leafDrops;
   private int leafDropChance;
@@ -20,6 +20,7 @@ public class SilkwormConfig implements IConfig {
   private int cachedGrowth = -9999;
 
   public SilkwormConfig(boolean leafDrops, int leafDropChance, int successChance, int growthChance) {
+    super();
     this.leafDrops = leafDrops;
     this.leafDropChance = leafDropChance;
     this.successChance = successChance;

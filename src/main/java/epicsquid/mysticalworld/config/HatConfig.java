@@ -1,9 +1,8 @@
 package epicsquid.mysticalworld.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.config.ModConfig;
 
-public class HatConfig implements IConfig {
+public class HatConfig extends AbstractConfig {
   protected ForgeConfigSpec.IntValue configAntlerFrequency;
   protected ForgeConfigSpec.IntValue configAntlerThreshold;
   protected ForgeConfigSpec.DoubleValue configAntlerHealing;
@@ -39,6 +38,10 @@ public class HatConfig implements IConfig {
   public int cachedMaskAttackDamage = -999;
   public int cachedMaskDurabilityDamage = -999;
   public double cachedMaskBonusDamage = -999;
+
+  public HatConfig() {
+    super();
+  }
 
   @Override
   public void apply(ForgeConfigSpec.Builder builder) {

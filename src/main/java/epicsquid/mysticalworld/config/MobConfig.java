@@ -1,18 +1,13 @@
 package epicsquid.mysticalworld.config;
 
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class MobConfig implements IConfig {
+public class MobConfig extends AbstractConfig {
 
   protected String name;
   protected int chance;
@@ -35,6 +30,7 @@ public class MobConfig implements IConfig {
   }
 
   public MobConfig(String name, int chance, int min, int max, List<String> biomes, BiomeDictionary.Type restriction) {
+    super();
     this.name = name;
     this.chance = chance;
     this.min = min;

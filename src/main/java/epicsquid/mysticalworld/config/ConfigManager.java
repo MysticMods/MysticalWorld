@@ -39,6 +39,8 @@ public class ConfigManager {
   public static StructureConfig HUT_CONFIG;
   public static StructureConfig BARROW_CONFIG;
 
+  public static List<AbstractConfig> CONFIGS = new ArrayList<>();
+
   static {
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
     registerOreGeneration();
@@ -108,6 +110,6 @@ public class ConfigManager {
   }
 
   public static void configReload (ModConfig.ModConfigEvent event) {
-
+    CONFIGS.forEach(AbstractConfig::reset);
   }
 }
