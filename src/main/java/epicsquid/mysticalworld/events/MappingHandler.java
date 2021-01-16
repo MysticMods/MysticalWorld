@@ -22,6 +22,9 @@ public class MappingHandler {
         if (mapping.key.getPath().equals("poisoned_potato_crop")) {
           mapping.remap(Blocks.POTATOES);
         }
+        if (mapping.key.getPath().equals("slime_puddle")) {
+          mapping.remap(ModBlocks.slime_eggs);
+        }
       } else {
         if (!mapping.key.getNamespace().equals("roots")) continue;
 

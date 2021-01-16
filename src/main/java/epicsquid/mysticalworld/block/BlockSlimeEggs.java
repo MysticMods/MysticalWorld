@@ -4,6 +4,7 @@ import epicsquid.mysticallib.block.BlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -23,13 +24,15 @@ import javax.annotation.Nonnull;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class BlockSlimePuddle extends BlockBase {
+public class BlockSlimeEggs extends BlockBase {
   public static AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
+  public static PropertyInteger COUNT = PropertyInteger.create("count", 0, 3);
 
-  public BlockSlimePuddle(@Nonnull Material mat, @Nonnull SoundType type, float hardness, @Nonnull String name) {
+  public BlockSlimeEggs(@Nonnull Material mat, @Nonnull SoundType type, float hardness, @Nonnull String name) {
     super(mat, type, hardness, name);
     this.slipperiness = 0.8F;
     this.useNeighborBrightness = true;
+    this.setDefaultState(this.getDefaultState().withProperty(COUNT, 0));
   }
 
   @Nonnull
@@ -96,6 +99,11 @@ public class BlockSlimePuddle extends BlockBase {
   @Override
   public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
     return true;
+  }
+
+  @Override
+  public int quantityDropped(IBlockState state, int fortune, Random random) {
+    return state.getValue(COUNT) + 1;
   }
 
   @Override

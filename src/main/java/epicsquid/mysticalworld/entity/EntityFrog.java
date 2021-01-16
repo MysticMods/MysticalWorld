@@ -110,10 +110,11 @@ public class EntityFrog extends EntityAnimal {
     super.onLivingUpdate();
 
     if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextSlime <= 0 && shouldDropSlime()) {
+      // TODO: Change this to fill up pre-existing blocks within a radius
       IBlockState state = world.getBlockState(getPosition());
-      if (ModBlocks.slime_puddle.canPlaceBlockAt(world, getPosition()) && (world.isAirBlock(getPosition()) || (state.getBlock().isReplaceable(world, getPosition())) && !(state.getBlock() instanceof BlockLiquid) && !(state.getBlock() instanceof IFluidBlock))) {
+      if (ModBlocks.slime_eggs.canPlaceBlockAt(world, getPosition()) && (world.isAirBlock(getPosition()) || (state.getBlock().isReplaceable(world, getPosition())) && !(state.getBlock() instanceof BlockLiquid) && !(state.getBlock() instanceof IFluidBlock))) {
         this.playSound(ModSounds.Frog.SLIME, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-        world.setBlockState(getPosition(), ModBlocks.slime_puddle.getDefaultState());
+        world.setBlockState(getPosition(), ModBlocks.slime_eggs.getDefaultState());
         this.timeUntilNextSlime = this.rand.nextInt(getSlimeTime()) + getSlimeTime();
       }
     }

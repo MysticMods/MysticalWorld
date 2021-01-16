@@ -26,7 +26,7 @@ public class ModBlocks {
   public static Block mud_block_stair, mud_block_slab, mud_block_double_slab, mud_block_wall, mud_block_fence, mud_block_button, mud_block_pressure_plate, mud_block_fence_gate;
   public static Block charred_stair, charred_slab, charred_double_slab, charred_wall, charred_fence, charred_button, charred_pressure_plate, charred_fence_gate;
   public static Block pearl_block, pearl_stair, pearl_slab, pearl_double_slab, pearl_wall, pearl_fence, pearl_button, pearl_pressure_plate, pearl_fence_gate;
-  public static Block slime_puddle;
+  public static Block slime_eggs;
 
   /**
    * Register all blocks
@@ -120,7 +120,7 @@ public class ModBlocks {
     event.addBlock(pearl_fence = new BlockFenceBase(pearl_block, SoundType.CLOTH, 3.0f, "pearl_fence").setCreativeTab(MysticalWorld.tab));
     event.addBlock(pearl_fence_gate = new BlockFenceGateBase(pearl_block, SoundType.CLOTH, 3.0f, "pearl_fence_gate").setCreativeTab(MysticalWorld.tab));
 
-    event.addBlock(slime_puddle = new BlockSlimePuddle(Material.CLAY, SoundType.SLIME, 0.1f, "slime_puddle").setCreativeTab(MysticalWorld.tab));
+    event.addBlock(slime_eggs = new BlockSlimeEggs(Material.CLAY, SoundType.SLIME, 0.1f, "slime_eggs").setCreativeTab(MysticalWorld.tab));
   }
 
   private static Variants variants(RegisterContentEvent event, Block base, String name, SoundType sound, Material material) {
