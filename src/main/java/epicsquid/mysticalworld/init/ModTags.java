@@ -77,6 +77,8 @@ public class ModTags {
       ItemBuilder b = new ItemBuilder(p);
       b.additional(Tags.Items.ORES).add(MWTags.Items.AMETHYST_ORE, MWTags.Items.COPPER_ORE, MWTags.Items.LEAD_ORE, MWTags.Items.QUICKSILVER_ORE, MWTags.Items.SILVER_ORE, MWTags.Items.TIN_ORE);
 
+      b.add(MWTags.Items.SEEDS, ModItems.AUBERGINE_SEEDS);
+
       b.add(MWTags.Items.AUBERGINE, ModItems.AUBERGINE);
       b.add(MWTags.Items.EGGPLANT, MWTags.Items.AUBERGINE);
 
