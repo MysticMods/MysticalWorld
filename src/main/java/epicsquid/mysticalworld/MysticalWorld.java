@@ -53,8 +53,6 @@ public class MysticalWorld {
     }
   };
 
-  public static CommonSetup setup = new CommonSetup();
-
   public MysticalWorld() {
     ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
@@ -81,12 +79,12 @@ public class MysticalWorld {
 
     DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientInit::init);
 
-    modBus.addListener(setup::init);
-    modBus.addListener(setup::loadComplete);
+    modBus.addListener(CommonSetup::init);
+    modBus.addListener(CommonSetup::loadComplete);
     modBus.addGenericListener(GlobalLootModifierSerializer.class, GrassHandler::registerModifiers);
 
-    MinecraftForge.EVENT_BUS.addListener(setup::serverStarting);
-    MinecraftForge.EVENT_BUS.addListener(setup::serverAboutToStart);
+    MinecraftForge.EVENT_BUS.addListener(CommonSetup::serverStarting);
+    MinecraftForge.EVENT_BUS.addListener(CommonSetup::serverAboutToStart);
     MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
     MinecraftForge.EVENT_BUS.addListener(MaskHandler::onAttackEntity);
 
@@ -96,7 +94,7 @@ public class MysticalWorld {
     MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModFeatures::onBiomeLoad);
     MinecraftForge.EVENT_BUS.addListener(ModFeatures::onWorldLoad);
 
-    setup.registerListeners();
+    CommonSetup.registerListeners();
 
     modBus.addListener(ConfigManager::configReload);
 

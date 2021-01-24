@@ -33,10 +33,7 @@ import java.util.Arrays;
 
 @SuppressWarnings("deprecation")
 public class CommonSetup {
-  public CommonSetup() {
-  }
-
-  public void init(FMLCommonSetupEvent event) {
+  public static void init(FMLCommonSetupEvent event) {
     MysticalWorld.STONE_PLANT = PlantType.get("stone");
     CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
     CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
@@ -79,14 +76,14 @@ public class CommonSetup {
     });
   }
 
-  public void serverStarting(FMLServerStartedEvent event) {
+  public static void serverStarting(FMLServerStartedEvent event) {
   }
 
-  public void serverAboutToStart(FMLServerAboutToStartEvent event) {
+  public static void serverAboutToStart(FMLServerAboutToStartEvent event) {
   }
 
   @SuppressWarnings("Duplicates")
-  public void registerListeners() {
+  public static void registerListeners() {
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
     /*    MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);*/
     // TODO: Temporarily disabled
@@ -99,7 +96,9 @@ public class CommonSetup {
 /*    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);*/
   }
 
-  public void loadComplete(FMLLoadCompleteEvent event) {
-    ModifyLoot.modify();
+  public static void loadComplete(FMLLoadCompleteEvent event) {
+    event.enqueueWork(() -> {
+      ModifyLoot.modify();
+    });
   }
 }
