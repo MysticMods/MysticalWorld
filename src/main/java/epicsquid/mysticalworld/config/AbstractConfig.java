@@ -1,8 +1,9 @@
 package epicsquid.mysticalworld.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
+import noobanidus.libs.noobutil.config.IBaseConfig;
 
-public abstract class AbstractConfig {
+public abstract class AbstractConfig implements IBaseConfig {
   public AbstractConfig() {
     ConfigManager.CONFIGS.add(this);
   }

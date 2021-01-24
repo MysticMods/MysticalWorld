@@ -5,17 +5,16 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 import epicsquid.mysticalworld.init.ConfiguredStructures;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModFeatures;
+import epicsquid.mysticalworld.init.ModMaterials;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
+import noobanidus.libs.noobutil.config.IArmorConfig;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class ConfigManager {
 
@@ -41,6 +40,12 @@ public class ConfigManager {
 
   public static List<AbstractConfig> CONFIGS = new ArrayList<>();
 
+  public static Map<String, ArmorConfig> ARMOR_CONFIGS = new HashMap<>();
+
+  public static IArmorConfig getArmorConfig (String name) {
+    return ARMOR_CONFIGS.get(name);
+  }
+
   static {
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
     registerOreGeneration();
@@ -51,8 +56,20 @@ public class ConfigManager {
     COMMON_BUILDER.comment("Hat Configuration").push("hat_config");
     HAT_CONFIG.apply(COMMON_BUILDER);
     COMMON_BUILDER.pop();
+    COMMON_BUILDER.comment("Armor Configuration").push("armor_config");
+
+    ARMOR_CONFIGS.put(ModMaterials.AMETHYST_NAME, new ArmorConfig(ModMaterials.AMETHYST_NAME, 3, 6, 8, 3, 2.0f));
+    ARMOR_CONFIGS.put(ModMaterials.COPPER_NAME, new ArmorConfig(ModMaterials.COPPER_NAME, 2, 5, 6, 2, 0f));
+    ARMOR_CONFIGS.put(ModMaterials.LEAD_NAME, new ArmorConfig(ModMaterials.LEAD_NAME, 2, 5, 6, 2, 1f));
+    ARMOR_CONFIGS.put(ModMaterials.QUICKSILVER_NAME, new ArmorConfig(ModMaterials.QUICKSILVER_NAME, 1, 3, 5, 2, 0f));
+    ARMOR_CONFIGS.put(ModMaterials.SILVER_NAME, new ArmorConfig(ModMaterials.SILVER_NAME, 1, 3, 5, 2, 0f));
+    ARMOR_CONFIGS.put(ModMaterials.TIN_NAME, new ArmorConfig(ModMaterials.TIN_NAME, 1, 4, 5, 2, 0f));
+    ARMOR_CONFIGS.put(ModMaterials.CARAPACE_NAME, new ArmorConfig(ModMaterials.CARAPACE_NAME, 3, 0, 0, 0, 1f));
+    ARMOR_CONFIGS.put(ModMaterials.ANTLER_NAME, new ArmorConfig(ModMaterials.ANTLER_NAME, 3, 0, 0, 0, 1f));
+    ARMOR_CONFIGS.values().forEach(o -> o.apply(COMMON_BUILDER));
+
+    COMMON_BUILDER.pop();
     COMMON_BUILDER.comment("Feature Spawn Configuration").push("feature_spawns");
-    // TODO: Migrate to Biome Category
     DEAD_TREE_CONFIG = new TreeConfig(0.04, Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.WASTELAND), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setFeature(() -> ModFeatures.CHARRED_TREE);
     DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
     STONEPETAL_CONFIG = new StonepetalConfig(1, 7, Arrays.asList(BiomeDictionary.Type.MOUNTAIN), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setSupplierFeature(() -> ModFeatures.STONEPETAL_PATCH);
@@ -109,7 +126,7 @@ public class ConfigManager {
     spec.setConfig(configData);
   }
 
-  public static void configReload (ModConfig.ModConfigEvent event) {
+  public static void configReload(ModConfig.ModConfigEvent event) {
     CONFIGS.forEach(AbstractConfig::reset);
   }
 }
