@@ -291,7 +291,7 @@ public class ModEntities {
         types2.retainAll(conf.getBiomes());
         if (!types2.isEmpty()) {
           if (conf.getRestriction() == BiomeDictionary.Type.NETHER && event.getCategory() == Biome.Category.NETHER) {
-            event.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
+            event.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
           } else if (conf.getRestriction() == BiomeDictionary.Type.OVERWORLD && event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND) {
             event.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
           } else if (conf.getRestriction() == BiomeDictionary.Type.END && event.getCategory() == Biome.Category.THEEND) {
