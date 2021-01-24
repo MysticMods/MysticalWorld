@@ -54,6 +54,9 @@ public class MappingHandler {
           case "cooked_apple":
             mapping.remap(Items.APPLE);
             break;
+          case "slime_puddle":
+            mapping.remap(Item.getItemFromBlock(ModBlocks.slime_eggs));
+            break;
         }
       } else {
 
