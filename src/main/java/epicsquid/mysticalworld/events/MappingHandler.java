@@ -55,7 +55,7 @@ public class MappingHandler {
             mapping.remap(Items.APPLE);
             break;
           case "slime_puddle":
-            mapping.remap(Item.getItemFromBlock(ModBlocks.slime_eggs));
+            mapping.ignore();
             break;
         }
       } else {

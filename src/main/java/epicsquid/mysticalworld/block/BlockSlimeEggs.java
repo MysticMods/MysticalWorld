@@ -34,6 +34,7 @@ public class BlockSlimeEggs extends BlockBase {
     this.slipperiness = 0.8F;
     this.useNeighborBrightness = true;
     this.setDefaultState(this.getDefaultState().withProperty(COUNT, 0));
+    this.setItemBlock(null);
   }
 
   @Nonnull
