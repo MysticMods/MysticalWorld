@@ -12,7 +12,6 @@ public class AubergineCropBlock extends CropsBlock {
 
   @Override
   protected IItemProvider getSeedsItem() {
-    AbstractBlockState
     return () -> ModItems.AUBERGINE_SEEDS.get();
   }
 }

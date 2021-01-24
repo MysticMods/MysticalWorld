@@ -36,14 +36,11 @@ public class ArmorConfig extends AbstractConfig implements IArmorConfig {
   @Override
   public void apply(ForgeConfigSpec.Builder builder) {
     builder.comment("Configuration for " + this.armor + " armor").push(armor + "_armor");
-    configChest = builder.comment("Armor value for chest piece").defineInRange("chest_armor", 0, Integer.MAX_VALUE, this.defaultChest);
-    configFeet = builder.comment("Armor value for feet piece").defineInRange("feet_armor", 0, Integer.MAX_VALUE, this.defaultFeet);
-    configHead = builder.comment("Armor value for head piece").defineInRange("head_armor", 0, Integer.MAX_VALUE, this.defaultHead);
-    configLegs = builder.comment("Armor value for legs piece").defineInRange("legs_armor", 0, Integer.MAX_VALUE, this.defaultLegs);
-    configToughness = builder.comment("Toughness for armor made of this material").defineInRange("toughness", 0, Double.MAX_VALUE, (double) this.defaultToughness);
-  }
-
-  protected void postApply(ForgeConfigSpec.Builder builder) {
+    configChest = builder.comment("Armor value for chest piece").defineInRange("chest_armor", this.defaultChest,  0, Integer.MAX_VALUE);
+    configFeet = builder.comment("Armor value for feet piece").defineInRange("feet_armor", this.defaultFeet, 0, Integer.MAX_VALUE);
+    configHead = builder.comment("Armor value for head piece").defineInRange("head_armor", this.defaultHead, 0, Integer.MAX_VALUE);
+    configLegs = builder.comment("Armor value for legs piece").defineInRange("legs_armor", this.defaultLegs, 0, Integer.MAX_VALUE);
+    configToughness = builder.comment("Toughness for armor made of this material").defineInRange("toughness", (double) this.defaultToughness, 0, Double.MAX_VALUE);
     builder.pop();
   }
 
