@@ -1562,6 +1562,23 @@ public class ModBlocks {
       .blockstate(narrowPost(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
+  // GRANITE QUARTZ
+  public static RegistryEntry<BaseBlocks.OreBlock> GRANITE_QUARTZ_ORE = REGISTRATE.block("granite_quartz_ore", oreBlock(ModMaterials.QUARTZ))
+      .properties(o -> {
+        ModMaterials.QUARTZ.getOreBlockProperties(o);
+        return o;
+      })
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.QUARTZ_ORE)
+      .build()
+      .tag(MWTags.Blocks.QUARTZ_ORE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .loot((p, t) ->
+          p.registerLootTable(ModBlocks.GRANITE_QUARTZ_ORE.get(), RegistrateBlockLootTables.droppingItemWithFortune(t, Items.QUARTZ))
+      )
+      .register();
+
   // AMETHYST
   public static RegistryEntry<BaseBlocks.OreBlock> AMETHYST_ORE = REGISTRATE.block(ModMaterials.AMETHYST.oreName(), oreBlock(ModMaterials.AMETHYST))
       .properties(o -> {

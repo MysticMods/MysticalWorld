@@ -20,6 +20,7 @@ public class MWTags {
     public static INamedTag<Block> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
     public static INamedTag<Block> TERRACOTTA = compatTag("terracotta");
 
+    public static INamedTag<Block> QUARTZ_ORE = compatTag("ores/quartz");
     public static INamedTag<Block> AMETHYST_ORE = compatTag("ores/amethyst");
     public static INamedTag<Block> COPPER_ORE = compatTag("ores/copper");
     public static INamedTag<Block> LEAD_ORE = compatTag("ores/lead");
@@ -63,6 +64,7 @@ public class MWTags {
     public static INamedTag<Item> QUICKSILVER_ITEMS = modTag("quicksilver_items");
     public static INamedTag<Item> SILVER_ITEMS = modTag("silver_items");
     public static INamedTag<Item> TIN_ITEMS = modTag("tin_items");
+    public static INamedTag<Item> QUARTZ_ORE = compatTag("ores/quartz");
     public static INamedTag<Item> AMETHYST_ORE = compatTag("ores/amethyst");
     public static INamedTag<Item> COPPER_ORE = compatTag("ores/copper");
     public static INamedTag<Item> LEAD_ORE = compatTag("ores/lead");

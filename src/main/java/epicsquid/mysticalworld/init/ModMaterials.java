@@ -5,6 +5,7 @@ import epicsquid.mysticalworld.config.ConfigManager;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemTier;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvents;
 import noobanidus.libs.noobutil.item.WeaponType;
@@ -25,6 +26,9 @@ public class ModMaterials {
   public static final String DIAMOND_NAME = "diamond";
   public static final String CARAPACE_NAME = "carapace";
   public static final String ANTLER_NAME = "antler";
+  public static final String QUARTZ_NAME = "quartz";
+
+  public static MaterialType QUARTZ = new MaterialType(QUARTZ_NAME).itemMaterial(200, 4.0f, 2.0f, 2, 7).item(() -> () -> Items.QUARTZ).ore(() -> ModBlocks.GRANITE_QUARTZ_ORE).setMinXP(1).setMaxXP(4).setModId(MysticalWorld.MODID);
 
   public static MaterialType ANTLER = new MaterialType(ANTLER_NAME).item(() -> ModItems.ANTLERS).itemMaterial(350, 4.0f, 1.0f, 2, 18).armorMaterial(7, new int[]{3, 0, 0, 0}, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 1.0f, 0f).setConfigProvider(ConfigManager::getArmorConfig);
 
