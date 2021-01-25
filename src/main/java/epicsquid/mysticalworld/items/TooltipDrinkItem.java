@@ -14,7 +14,6 @@ import java.util.List;
 public class TooltipDrinkItem extends BaseItems.DrinkItem {
   private String translationKey;
 
-
   public TooltipDrinkItem(Properties properties, String translationKey) {
     super(properties);
     this.translationKey = translationKey;

@@ -105,6 +105,7 @@ public class ModTags {
       b.add(MWTags.Items.VEGETABLES, Items.CARROT, Items.BEETROOT);
       b.add(MWTags.Items.VEGETABLES, ModItems.AUBERGINE);
       b.add(MWTags.Items.COOKED_VEGETABLES, ModItems.COOKED_BEETROOT, ModItems.COOKED_CARROT, () -> Items.BAKED_POTATO, ModItems.COOKED_AUBERGINE);
+      b.add(MWTags.Items.COOKED_SEAFOOD, ModItems.COOKED_SQUID, () -> Items.COOKED_COD, () -> Items.COOKED_SALMON);
 
       b.add(MWTags.Items.SWORDS, ModItems.AMETHYST_SWORD, ModItems.CACTUS_SWORD, ModItems.COPPER_SWORD, ModItems.LEAD_SWORD, ModItems.QUICKSILVER_SWORD, ModItems.SILVER_SWORD, ModItems.TIN_SWORD);
       b.add(MWTags.Items.KNIVES, ModItems.AMETHYST_KNIFE, ModItems.CACTUS_KNIFE, ModItems.COPPER_KNIFE, ModItems.DIAMOND_KNIFE, ModItems.GOLD_KNIFE, ModItems.IRON_KNIFE, ModItems.LEAD_KNIFE, ModItems.QUICKSILVER_KNIFE, ModItems.SILVER_KNIFE, ModItems.STONE_KNIFE, ModItems.TIN_KNIFE, ModItems.WOODEN_KNIFE);

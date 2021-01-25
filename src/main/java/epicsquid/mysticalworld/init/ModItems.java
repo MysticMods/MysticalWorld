@@ -291,6 +291,13 @@ public class ModItems {
       })
       .register();
 
+  public static RegistryEntry<Item> FISH_AND_CHIPS = REGISTRATE.item("fish_and_chips", Item::new)
+      .properties(o -> o.food(ModFoods.FISH_AND_CHIPS))
+      .recipe((ctx, p) ->
+          ShapelessRecipeBuilder.shapelessRecipe(ModItems.FISH_AND_CHIPS.get(), 1).addIngredient(Items.BAKED_POTATO).addIngredient(ModItems.VINEGAR.get()).addIngredient(Ingredient.fromTag(MWTags.Items.COOKED_SEAFOOD)).addCriterion("has_cooked_seafood", RegistrateRecipeProvider.hasItem(MWTags.Items.COOKED_SEAFOOD)).build(p)
+      )
+      .register();
+
   public static RegistryEntry<Item> COOKED_VENISON = REGISTRATE.item("cooked_venison", Item::new)
       .properties(o -> o.food(ModFoods.COOKED_VENISON))
       .register();
@@ -367,37 +374,37 @@ public class ModItems {
   // Drinkies
   // TODO: More tags
   public static RegistryEntry<TooltipDrinkItem> APPLE_CORDIAL = REGISTRATE.item("apple_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.APPLE_CORDIAL))
+      .properties(o -> o.food(ModFoods.APPLE_CORDIAL).containerItem(Items.GLASS_BOTTLE))
       .recipe(RECIPES.cordial(() -> ModItems.APPLE_CORDIAL, Items.APPLE))
       .register();
 
   public static RegistryEntry<TooltipDrinkItem> CACTUS_SYRUP = REGISTRATE.item("cactus_syrup", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.CACTUS_SYRUP))
+      .properties(o -> o.food(ModFoods.CACTUS_SYRUP).containerItem(Items.GLASS_BOTTLE))
       .recipe(RECIPES.cordial(() -> ModItems.CACTUS_SYRUP, Items.CACTUS))
       .register();
 
   public static RegistryEntry<TooltipDrinkItem> DANDELION_CORDIAL = REGISTRATE.item("dandelion_cordial", tooltipDrink("mysticalworld.drinks.wakefulness"))
-      .properties(o -> o.food(ModFoods.DANDELION_CORDIAL))
+      .properties(o -> o.food(ModFoods.DANDELION_CORDIAL).containerItem(Items.GLASS_BOTTLE))
       .recipe(RECIPES.cordial(() -> ModItems.DANDELION_CORDIAL, Items.DANDELION))
       .register();
 
   public static RegistryEntry<TooltipDrinkItem> LILAC_CORDIAL = REGISTRATE.item("lilac_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.LILAC_CORDIAL))
+      .properties(o -> o.food(ModFoods.LILAC_CORDIAL).containerItem(Items.GLASS_BOTTLE))
       .recipe(RECIPES.cordial(() -> ModItems.LILAC_CORDIAL, Items.LILAC))
       .register();
 
   public static RegistryEntry<TooltipDrinkItem> PEONY_CORDIAL = REGISTRATE.item("peony_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.PEONY_CORDIAL))
+      .properties(o -> o.food(ModFoods.PEONY_CORDIAL).containerItem(Items.GLASS_BOTTLE))
       .recipe(RECIPES.cordial(() -> ModItems.PEONY_CORDIAL, Items.PEONY))
       .register();
 
   public static RegistryEntry<TooltipDrinkItem> ROSE_CORDIAL = REGISTRATE.item("rose_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.ROSE_CORDIAL))
+      .properties(o -> o.food(ModFoods.ROSE_CORDIAL).containerItem(Items.GLASS_BOTTLE))
       .recipe(RECIPES.cordial(() -> ModItems.ROSE_CORDIAL, Items.ROSE_BUSH))
       .register();
 
   public static RegistryEntry<TooltipDrinkItem> VINEGAR = REGISTRATE.item("vinegar", tooltipDrink("mysticalworld.drinks.sour"))
-      .properties(o -> o.food(ModFoods.VINEGAR))
+      .properties(o -> o.food(ModFoods.VINEGAR).containerItem(Items.GLASS_BOTTLE))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.VINEGAR.get(), 6)
           .patternLine("BBB")
           .patternLine("PPP")
@@ -409,7 +416,7 @@ public class ModItems {
       .register();
 
   public static RegistryEntry<TooltipDrinkItem> VEGETABLE_JUICE = REGISTRATE.item("vegetable_juice", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.VEGETABLE_JUICE))
+      .properties(o -> o.food(ModFoods.VEGETABLE_JUICE).containerItem(Items.GLASS_BOTTLE))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.VEGETABLE_JUICE.get(), 4)
           .patternLine("ARC")
           .patternLine("BPB")
@@ -429,7 +436,7 @@ public class ModItems {
 
   // Salads
   public static RegistryEntry<BaseItems.BowlItem> AUBERGINE_SALAD = REGISTRATE.item("aubergine_salad", BaseItems.BowlItem::new)
-      .properties(o -> o.food(ModFoods.AUBERGINE_SALAD))
+      .properties(o -> o.food(ModFoods.AUBERGINE_SALAD).containerItem(Items.BOWL))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.AUBERGINE_SALAD.get(), 3)
           .patternLine("AAA")
           .patternLine("KKK")
@@ -443,7 +450,7 @@ public class ModItems {
       .register();
 
   public static RegistryEntry<BaseItems.BowlItem> BEETROOT_SALAD = REGISTRATE.item("beetroot_salad", BaseItems.BowlItem::new)
-      .properties(o -> o.food(ModFoods.BEETROOT_SALAD))
+      .properties(o -> o.food(ModFoods.BEETROOT_SALAD).containerItem(Items.BOWL))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.BEETROOT_SALAD.get(), 3)
           .patternLine("AAA")
           .patternLine("KKK")
@@ -457,7 +464,7 @@ public class ModItems {
       .register();
 
   public static RegistryEntry<BaseItems.BowlItem> CACTUS_DANDELION_SALAD = REGISTRATE.item("cactus_dandelion_salad", BaseItems.BowlItem::new)
-      .properties(o -> o.food(ModFoods.CACTUS_DANDELION_SALAD))
+      .properties(o -> o.food(ModFoods.CACTUS_DANDELION_SALAD).containerItem(Items.BOWL))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.CACTUS_DANDELION_SALAD.get(), 3)
           .patternLine("DCD")
           .patternLine("CDC")
@@ -471,7 +478,7 @@ public class ModItems {
       .register();
 
   public static RegistryEntry<BaseItems.BowlItem> DANDELION_CORNFLOWER_SALAD = REGISTRATE.item("dandelion_cornflower_salad", BaseItems.BowlItem::new)
-      .properties(o -> o.food(ModFoods.DANDELION_CORNFLOWER_SALAD))
+      .properties(o -> o.food(ModFoods.DANDELION_CORNFLOWER_SALAD).containerItem(Items.BOWL))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.DANDELION_CORNFLOWER_SALAD.get(), 3)
           .patternLine("CDC")
           .patternLine("DCD")
@@ -485,7 +492,7 @@ public class ModItems {
       .register();
 
   public static RegistryEntry<BaseItems.BowlItem> STEWED_EGGPLANT = REGISTRATE.item("stewed_eggplant", BaseItems.BowlItem::new)
-      .properties(o -> o.food(ModFoods.STEWED_EGGPLANT))
+      .properties(o -> o.food(ModFoods.STEWED_EGGPLANT).containerItem(Items.BOWL))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.STEWED_EGGPLANT.get(), 3)
           .patternLine("AAA")
           .patternLine("MLM")
@@ -497,19 +504,6 @@ public class ModItems {
           .addCriterion("has_cooked_aubergine", RegistrateRecipeProvider.hasItem(ModItems.COOKED_AUBERGINE.get()))
           .build(p))
       .register();
-
-/*  public static RegistryEntry<TooltipItem> ROTTEN_APPLE = REGISTRATE.item("rotten_apple", (b) -> new TooltipItem(b, "mysticalworld.food.rotten_apple"))
-      .properties(o -> o.rarity(Rarity.RARE))
-      .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ModItems.ROTTEN_APPLE.get(), 1)
-          .patternLine("WLW")
-          .patternLine("LAL")
-          .patternLine("WLW")
-          .key('W', Items.ROTTEN_FLESH)
-          .key('A', Items.APPLE)
-          .key('L', MWTags.Items.LEAD_INGOT)
-          .addCriterion("has_apple", RegistrateRecipeProvider.hasItem(Items.APPLE))
-          .build(p))
-      .register();*/
 
   // Ingots/gems
   public static RegistryEntry<Item> AMETHYST_GEM = REGISTRATE.item(AMETHYST.getInternalName(), Item::new)

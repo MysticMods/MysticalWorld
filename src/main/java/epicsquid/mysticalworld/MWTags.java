@@ -55,6 +55,7 @@ public class MWTags {
     public static INamedTag<Item> VEGETABLES = compatTag("vegetables");
 /*    public static INamedTag<Item> CROPS = compatTag("crops");*/
     public static INamedTag<Item> COOKED_VEGETABLES = compatTag("cooked_vegetables");
+    public static INamedTag<Item> COOKED_SEAFOOD = compatTag("cooked_seafood");
 
     public static INamedTag<Item> STONEPETAL = modTag("stonepetal");
 
