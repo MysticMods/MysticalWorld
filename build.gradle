@@ -154,7 +154,7 @@ dependencies {
     compile 'org.spongepowered:mixin:0.8'
     annotationProcessor 'org.spongepowered:mixin:0.8:processor'
 
-    runtimeOnly fg.deobf("tg:blame:1.7.5")
+/*    runtimeOnly fg.deobf("tg:blame:1.7.5")*/
 }
 
 sourceSets.main.resources {

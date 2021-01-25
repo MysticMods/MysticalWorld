@@ -86,8 +86,6 @@ public class ConfigManager {
     COMMON_CONFIG = COMMON_BUILDER.build();
   }
 
-  private static RuleTest GRANITE_ORE = new TagMatchRuleTest(MWTags.Blocks.BASE_STONE_GRANITE);
-
   private static void registerOreGeneration() {
     List<RegistryKey<World>> defaultDimensions = Collections.singletonList(World.OVERWORLD);
     ORE_CONFIG.add(new OreConfig("Copper", 8, 32, 76, 12, defaultDimensions, () -> ModBlocks.COPPER_ORE));
@@ -96,7 +94,7 @@ public class ConfigManager {
     ORE_CONFIG.add(new OreConfig("Lead", 4, 8, 32, 8, defaultDimensions, () -> ModBlocks.LEAD_ORE));
     ORE_CONFIG.add(new OreConfig("Quicksilver", 3, 0, 16, 4, defaultDimensions, () -> ModBlocks.QUICKSILVER_ORE));
     ORE_CONFIG.add(new OreConfig("Amethyst", 4, 0, 24, 3, defaultDimensions, () -> ModBlocks.AMETHYST_ORE));
-    ORE_CONFIG.add(new OreConfig("Quartz", 13, 24, 76, 4, defaultDimensions, () -> ModBlocks.GRANITE_QUARTZ_ORE, GRANITE_ORE));
+    ORE_CONFIG.add(new OreConfig("Quartz", 13, 24, 76, 4, defaultDimensions, () -> ModBlocks.GRANITE_QUARTZ_ORE, new TagMatchRuleTest(MWTags.Blocks.BASE_STONE_GRANITE)));
 
     ORE_CONFIG.forEach(ore -> ore.apply(COMMON_BUILDER));
   }
