@@ -294,7 +294,7 @@ public class ModItems {
   public static RegistryEntry<Item> FISH_AND_CHIPS = REGISTRATE.item("fish_and_chips", Item::new)
       .properties(o -> o.food(ModFoods.FISH_AND_CHIPS))
       .recipe((ctx, p) ->
-          ShapelessRecipeBuilder.shapelessRecipe(ModItems.FISH_AND_CHIPS.get(), 1).addIngredient(Items.BAKED_POTATO).addIngredient(ModItems.VINEGAR.get()).addIngredient(Ingredient.fromTag(MWTags.Items.COOKED_SEAFOOD)).addCriterion("has_cooked_seafood", RegistrateRecipeProvider.hasItem(MWTags.Items.COOKED_SEAFOOD)).build(p)
+          ShapelessRecipeBuilder.shapelessRecipe(ModItems.FISH_AND_CHIPS.get(), 2).addIngredient(Items.BAKED_POTATO).addIngredient(Items.BAKED_POTATO).addIngredient(ModItems.VINEGAR.get()).addIngredient(Ingredient.fromTag(MWTags.Items.COOKED_SEAFOOD)).addCriterion("has_cooked_seafood", RegistrateRecipeProvider.hasItem(MWTags.Items.COOKED_SEAFOOD)).build(p)
       )
       .register();
 
