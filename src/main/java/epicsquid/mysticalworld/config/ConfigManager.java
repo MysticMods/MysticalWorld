@@ -2,12 +2,15 @@ package epicsquid.mysticalworld.config;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
+import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.init.ConfiguredStructures;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModFeatures;
 import epicsquid.mysticalworld.init.ModMaterials;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
@@ -83,6 +86,8 @@ public class ConfigManager {
     COMMON_CONFIG = COMMON_BUILDER.build();
   }
 
+  private static RuleTest GRANITE_ORE = new TagMatchRuleTest(MWTags.Blocks.BASE_STONE_GRANITE);
+
   private static void registerOreGeneration() {
     List<RegistryKey<World>> defaultDimensions = Collections.singletonList(World.OVERWORLD);
     ORE_CONFIG.add(new OreConfig("Copper", 8, 32, 76, 12, defaultDimensions, () -> ModBlocks.COPPER_ORE));
@@ -91,6 +96,7 @@ public class ConfigManager {
     ORE_CONFIG.add(new OreConfig("Lead", 4, 8, 32, 8, defaultDimensions, () -> ModBlocks.LEAD_ORE));
     ORE_CONFIG.add(new OreConfig("Quicksilver", 3, 0, 16, 4, defaultDimensions, () -> ModBlocks.QUICKSILVER_ORE));
     ORE_CONFIG.add(new OreConfig("Amethyst", 4, 0, 24, 3, defaultDimensions, () -> ModBlocks.AMETHYST_ORE));
+    ORE_CONFIG.add(new OreConfig("Quartz", 13, 24, 76, 4, defaultDimensions, () -> ModBlocks.GRANITE_QUARTZ_ORE, GRANITE_ORE));
 
     ORE_CONFIG.forEach(ore -> ore.apply(COMMON_BUILDER));
   }

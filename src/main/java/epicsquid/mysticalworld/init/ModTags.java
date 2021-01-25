@@ -133,6 +133,7 @@ public class ModTags {
       b.add(BlockTags.BASE_STONE_OVERWORLD, ModBlocks.SOFT_STONE.get());
       b.add(MWTags.Blocks.MUSHROOM_BLOCKS, Blocks.MUSHROOM_STEM, Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM_BLOCK);
       b.add(MWTags.Blocks.MUSHROOM_BLOCKS, ModBlocks.MUSHROOM_INSIDE.get());
+      b.add(MWTags.Blocks.BASE_STONE_GRANITE, Blocks.GRANITE);
     });
   }
 

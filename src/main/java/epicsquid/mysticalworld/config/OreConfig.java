@@ -1,11 +1,13 @@
 package epicsquid.mysticalworld.config;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import epicsquid.mysticalworld.world.test.OreGenTest;
 import net.minecraft.block.Block;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraftforge.common.ForgeConfigSpec;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 
@@ -34,8 +36,13 @@ public class OreConfig extends AbstractConfig {
   private int cachedMin = -9999;
   private int cachedMax = -9999;
   private int cachedSize = -9999;
+  private RuleTest rule;
 
   public OreConfig(String name, int chance, int minY, int maxY, int size, List<RegistryKey<World>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
+    this(name, chance, minY, maxY, size, dimensions, ore, OreGenTest.INSTANCE);
+  }
+
+  public OreConfig(String name, int chance, int minY, int maxY, int size, List<RegistryKey<World>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore, RuleTest test) {
     super();
     this.name = name;
     this.chance = chance;
@@ -44,6 +51,7 @@ public class OreConfig extends AbstractConfig {
     this.size = size;
     this.ore = ore;
     this.dimensions = dimensions;
+    this.rule = test;
   }
 
   public String getName() {
@@ -80,6 +88,10 @@ public class OreConfig extends AbstractConfig {
 
   public Block getOre() {
     return ore.get().get();
+  }
+
+  public RuleTest getRule() {
+    return rule;
   }
 
   public ResourceLocation getOreKey() {

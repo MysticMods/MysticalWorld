@@ -37,6 +37,8 @@ public class MWTags {
 
     public static INamedTag<Block> MUSHROOM_BLOCKS = compatTag("mushroom_blocks");
 
+    public static INamedTag<Block> BASE_STONE_GRANITE = compatTag("base_stone_granite");
+
     static INamedTag<Block> modTag(String name) {
       return ForgeTagHandler.makeWrapperTag(ForgeRegistries.BLOCKS, new ResourceLocation(MysticalWorld.MODID, name));
     }

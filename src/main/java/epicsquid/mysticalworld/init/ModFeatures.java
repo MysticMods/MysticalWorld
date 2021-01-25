@@ -63,7 +63,7 @@ public class ModFeatures {
     for (OreConfig config : ConfigManager.ORE_CONFIG) {
       if (config.getChance() > 0) {
         ConfiguredFeature<?, ?> feat;
-        ORE_FEATURES.add(feat = SUPPLIER_ORE.get().withConfiguration(new SupplierOreFeatureConfig(OreGenTest.INSTANCE, config.getOreKey(), config.getSize())
+        ORE_FEATURES.add(feat = SUPPLIER_ORE.get().withConfiguration(new SupplierOreFeatureConfig(config.getRule(), config.getOreKey(), config.getSize())
         ).withPlacement(
             ModFeatures.DIMENSION_COUNT_PLACEMENT.get().configure(new DimensionCountRangeConfig(config.getChance(), config.getMinY(), 0, config.getMaxY() - config.getMinY(), config.getDimensions())
             )
