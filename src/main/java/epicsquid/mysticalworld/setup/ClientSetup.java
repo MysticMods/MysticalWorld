@@ -36,6 +36,7 @@ public class ClientSetup {
       RenderTypeLookup.setRenderLayer(ModBlocks.WILD_AUBERGINE_CROP.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.STONEPETAL.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_STONEPETAL.get(), rendertype);
 
       ShadedClientSetup.init(event);
 

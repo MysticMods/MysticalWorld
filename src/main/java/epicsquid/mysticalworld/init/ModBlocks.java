@@ -1,9 +1,6 @@
 package epicsquid.mysticalworld.init;
 
-import com.tterrag.registrate.providers.DataGenContext;
-import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
-import com.tterrag.registrate.providers.RegistrateItemModelProvider;
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import com.tterrag.registrate.providers.*;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -165,6 +162,11 @@ public class ModBlocks {
         DataIngredient a = DataIngredient.items(ModBlocks.STONEPETAL.get());
         ShapelessRecipeBuilder.shapelessRecipe(Items.GRAY_DYE, 4).addIngredient(ctx.getEntry()).addCriterion("has_stonepetal", a.getCritereon(p)).build(p, new ResourceLocation(MysticalWorld.MODID, "gray_dye_from_stonepetal"));
       })
+      .register();
+
+  public static RegistryEntry<FlowerPotBlock> POTTED_STONEPETAL = REGISTRATE.block("potted_stonepetal", Material.MISCELLANEOUS, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.STONEPETAL, AbstractBlock.Properties.from(Blocks.OAK_SAPLING)))
+      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/stonepetal")))
+      .loot((ctx, p) -> ctx.registerLootTable(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.STONEPETAL.get())))
       .register();
 
   private static NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.hardnessAndResistance(1f).sound(SoundType.PLANT);

@@ -14,6 +14,7 @@ import epicsquid.mysticalworld.potions.PotionRecipes;
 import epicsquid.mysticalworld.recipe.ingredients.SeedIngredient;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FireBlock;
+import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.item.crafting.Ingredient;
@@ -72,7 +73,7 @@ public class CommonSetup {
       fire.setFireInfo(ModBlocks.CHARRED_WALL.get(), 1, 1);
       fire.setFireInfo(ModBlocks.CHARRED_WIDE_POST.get(), 1, 1);
       fire.setFireInfo(ModBlocks.CHARRED_WOOD.get(), 1, 1);
-
+      ((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(ModBlocks.STONEPETAL.getId(), () -> ModBlocks.POTTED_STONEPETAL.get());
     });
   }
 
