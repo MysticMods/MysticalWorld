@@ -146,7 +146,7 @@ public class OakAppleBlock extends BaseBlocks.CropsBlock {
 
   @Override
   public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
-    return true; //false;
+    return false;
   }
 
   @Override
