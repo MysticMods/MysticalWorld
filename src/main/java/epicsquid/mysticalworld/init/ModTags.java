@@ -117,6 +117,10 @@ public class ModTags {
       b.add(MWTags.Items.TIN_ITEMS, ModItems.TIN_SWORD, ModItems.TIN_KNIFE, ModItems.TIN_AXE, ModItems.TIN_HOE, ModItems.TIN_PICKAXE, ModItems.TIN_SHOVEL, ModItems.TIN_BOOTS, ModItems.TIN_CHESTPLATE, ModItems.TIN_HELMET, ModItems.TIN_LEGGINGS, ModItems.TIN_SPEAR);
       b.add(MWTags.Items.LEAD_ITEMS, ModItems.LEAD_SWORD, ModItems.LEAD_KNIFE, ModItems.LEAD_AXE, ModItems.LEAD_HOE, ModItems.LEAD_PICKAXE, ModItems.LEAD_SHOVEL, ModItems.LEAD_BOOTS, ModItems.LEAD_CHESTPLATE, ModItems.LEAD_HELMET, ModItems.LEAD_LEGGINGS, ModItems.LEAD_SPEAR);
 
+      b.add(MWTags.Items.SUGARS, Items.SUGAR, Items.APPLE, Items.COOKIE, Items.MELON_SLICE, Items.CAKE, Items.PUMPKIN_PIE);
+      b.add(MWTags.Items.PROTEINS, Items.ROTTEN_FLESH, Items.PORKCHOP, Items.BEEF, Items.CHICKEN, Items.TROPICAL_FISH, Items.PUFFERFISH, Items.COD, Items.SALMON, Items.RABBIT, Items.COOKED_RABBIT, Items.COOKED_PORKCHOP, Items.COOKED_MUTTON, Items.MUTTON, Items.COOKED_CHICKEN, Items.COOKED_BEEF, Items.COOKED_COD, Items.COOKED_SALMON, Items.EGG);
+      b.add(MWTags.Items.PROTEINS, ModItems.VENISON, ModItems.COOKED_VENISON, ModItems.RAW_SQUID, ModItems.COOKED_SQUID, ModItems.EPIC_SQUID);
+
       p.copy(MWTags.Blocks.PURPUR, MWTags.Items.PURPUR);
       p.copy(MWTags.Blocks.NETHER_BRICKS, MWTags.Items.NETHER_BRICKS);
       p.copy(MWTags.Blocks.RED_NETHER_BRICKS, MWTags.Items.RED_NETHER_BRICKS);
