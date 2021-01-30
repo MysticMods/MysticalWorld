@@ -21,8 +21,6 @@ public class ModelHolder {
   public static LavaCatModel lavaCatModel;
   public static OwlModel owlModel;
   public static SilkwormModel silkwormModel;
-  public static SpiritBeetleModel spiritBeetleModel;
-  public static SpiritDeerModel spiritDeerModel;
 
   public static BeetleMaskModel beetleMaskModel;
   public static AntlerHatModel antlerHatModel;
@@ -38,8 +36,6 @@ public class ModelHolder {
     lavaCatModel = new LavaCatModel();
     owlModel = new OwlModel();
     silkwormModel = new SilkwormModel();
-    spiritBeetleModel = new SpiritBeetleModel();
-    spiritDeerModel = new SpiritDeerModel();
     beetleMaskModel = new BeetleMaskModel();
     antlerHatModel = new AntlerHatModel();
   }

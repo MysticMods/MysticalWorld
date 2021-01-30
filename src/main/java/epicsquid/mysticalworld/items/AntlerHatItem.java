@@ -3,9 +3,7 @@ package epicsquid.mysticalworld.items;
 import com.google.common.collect.Multimap;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
-import epicsquid.mysticalworld.entity.SpiritDeerEntity;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
-import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModMaterials;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
@@ -16,9 +14,8 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -48,8 +45,6 @@ public class AntlerHatItem extends ModifiedArmorItem {
     return map;
   }
 
-  public static AxisAlignedBB BOX = new AxisAlignedBB(-8, -8, -8, 9, 9, 9);
-
   @Override
   public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
     if (ConfigManager.HAT_CONFIG.getAntlerFrequency() == -1) {
@@ -60,42 +55,14 @@ public class AntlerHatItem extends ModifiedArmorItem {
       if (player.getActivePotionEffect(Effects.REGENERATION) != null) {
         return;
       }
+      player.heal(ConfigManager.HAT_CONFIG.getAntlerHealing());
+      player.addPotionEffect(new EffectInstance(Effects.REGENERATION, ConfigManager.HAT_CONFIG.getAntlerRegenDuration(), ConfigManager.HAT_CONFIG.getAntlerRegenAmplifier()));
 
-      BlockPos playerPos = player.getPosition();
-      if (!world.getEntitiesWithinAABB(SpiritDeerEntity.class, BOX.offset(playerPos)).isEmpty()) {
-        return;
-      }
-
-      BlockPos pos;
-
-      int tries = 100;
-      while (true) {
-        tries--;
-        if (tries <= 0) {
-          return;
-        }
-        pos = playerPos.add(world.rand.nextInt(8) - 4, 0, world.rand.nextInt(8) - 4);
-        if (!world.isAirBlock(pos)) {
-          continue;
-        }
-        if (player.getDistanceSq(pos.getX(), pos.getY(), pos.getZ()) < 9) {
-          continue;
-        }
-
-        break;
-      }
-      SpiritDeerEntity spiritDeer = ModEntities.SPIRIT_DEER.get().create(world);
-      if (spiritDeer != null) {
-        spiritDeer.setAttackTarget(player);
-        spiritDeer.setPositionAndRotation(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, player.rotationYaw, player.rotationPitch);
-        spiritDeer.noClip = true;
-        world.addEntity(spiritDeer);
-        ItemStack head = player.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        if (ConfigManager.HAT_CONFIG.getAntlerDamage() != -1) {
-          head.damageItem(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> {
-            breaker.sendBreakAnimation(EquipmentSlotType.HEAD);
-          });
-        }
+      ItemStack head = player.getItemStackFromSlot(EquipmentSlotType.HEAD);
+      if (ConfigManager.HAT_CONFIG.getAntlerDamage() != -1) {
+        head.damageItem(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> {
+          breaker.sendBreakAnimation(EquipmentSlotType.HEAD);
+        });
       }
     }
   }
@@ -113,6 +80,4 @@ public class AntlerHatItem extends ModifiedArmorItem {
   public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
     return (A) ModelHolder.antlerHatModel;
   }
-
-
 }

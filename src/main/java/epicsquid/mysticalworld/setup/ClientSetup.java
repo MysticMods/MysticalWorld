@@ -29,8 +29,6 @@ public class ClientSetup {
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.LAVA_CAT.get(), new LavaCatRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.SILKWORM.get(), new SilkwormRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.HELL_SPROUT.get(), new HellSproutRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.SPIRIT_DEER.get(), new SpiritDeerRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.SPIRIT_BEETLE.get(), new SpiritBeetleRenderer.Factory());
 
     event.enqueueWork(() -> {
       RenderType rendertype = RenderType.getCutoutMipped();
