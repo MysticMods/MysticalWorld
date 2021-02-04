@@ -38,6 +38,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 import noobanidus.libs.noobutil.types.LazySupplier;
 
 import java.util.*;
@@ -46,6 +47,8 @@ import java.util.function.Supplier;
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
 public class ModFeatures {
+  public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, WorldGenRegistries.CONFIGURED_FEATURE);
+
   public static IRuleTestType<OreGenTest> ORE_GEN = IRuleTestType.func_237129_a_("ore_gen", OreGenTest.CODEC);
 
   public static RegistryEntry<SupplierOreFeature> SUPPLIER_ORE = REGISTRATE.simple("supplier_ore_feature", Feature.class, () -> new SupplierOreFeature(SupplierOreFeatureConfig.CODEC));
@@ -68,11 +71,11 @@ public class ModFeatures {
             ModFeatures.DIMENSION_COUNT_PLACEMENT.get().configure(new DimensionCountRangeConfig(config.getChance(), config.getMinY(), 0, config.getMaxY() - config.getMinY(), config.getDimensions())
             )
         ));
-        Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, config.getName().toLowerCase()), feat);
+        REGISTRY.register(config.getName().toLowerCase(), feat);
       }
     }
-    Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, "charred_tree"), CHARRED_TREE);
-    Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(MysticalWorld.MODID, "stonepetal_patch"), STONEPETAL_PATCH.get());
+    REGISTRY.register("charred_tree", CHARRED_TREE);
+    REGISTRY.register("stonepetal_patch", STONEPETAL_PATCH.get());
   }
 
   public static void load() {
@@ -120,9 +123,6 @@ public class ModFeatures {
   }
 
   public static void onBiomeLoad(BiomeLoadingEvent event) {
-    if (ORE_FEATURES.isEmpty()) {
-      generateFeatures();
-    }
     for (ConfiguredFeature<?, ?> ore : ORE_FEATURES) {
       event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> ore);
     }
