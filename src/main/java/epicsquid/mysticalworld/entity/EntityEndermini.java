@@ -311,8 +311,6 @@ public class EntityEndermini extends EntityCreature {
 
 
   static {
-    CARRIABLE_BLOCKS.add(Blocks.GRASS);
-    CARRIABLE_BLOCKS.add(Blocks.DIRT);
     CARRIABLE_BLOCKS.add(Blocks.SAND);
     CARRIABLE_BLOCKS.add(Blocks.GRAVEL);
     CARRIABLE_BLOCKS.add(Blocks.YELLOW_FLOWER);
