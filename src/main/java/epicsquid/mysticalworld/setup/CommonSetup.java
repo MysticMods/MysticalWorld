@@ -17,6 +17,7 @@ import net.minecraft.block.FireBlock;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -78,6 +79,9 @@ public class CommonSetup {
       ConfiguredStructures.REGISTRY.registration();
       ModFeatures.generateFeatures();
       ModFeatures.REGISTRY.registration();
+
+      SpawnEggItem.EGGS.remove(null);
+      ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.EGGS.put(o.get().getType(null), o.get()));
     });
   }
 

@@ -9,6 +9,8 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import noobanidus.libs.noobutil.material.MaterialType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.util.StackLocatorUtil;
 
 public class SilverArmorItem extends ModifiedArmorItem implements ISilverItem {
   public SilverArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {

@@ -45,9 +45,6 @@ public class ClientSetup {
       for (RegistryEntry<? extends LazySpawnEggItem<?>> egg : ModEntities.SPAWN_EGGS) {
         c.register((a, layer) -> egg.get().getColor(layer), egg.get());
       }
-
-      SpawnEggItem.EGGS.remove(null);
-      ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.EGGS.put(o.get().getType(null), o.get()));
     });
 
     // TODO: Cutout, etc, blocks

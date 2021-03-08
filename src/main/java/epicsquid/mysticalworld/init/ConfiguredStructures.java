@@ -8,6 +8,7 @@ import net.minecraft.world.gen.FlatGenerationSettings;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.template.StructureProcessor;
 import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 
 import javax.annotation.Nullable;
