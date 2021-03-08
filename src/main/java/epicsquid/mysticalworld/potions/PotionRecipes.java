@@ -7,7 +7,6 @@ import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.loot.LootTable;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;

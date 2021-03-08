@@ -2,14 +2,9 @@ package epicsquid.mysticalworld;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeTagHandler;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.function.Function;
 
 import static net.minecraft.tags.ITag.INamedTag;
 
@@ -53,7 +48,7 @@ public class MWTags {
     public static INamedTag<Item> KNIVES = modTag("knives");
     public static INamedTag<Item> GEMS = modTag("gems");
     public static INamedTag<Item> VEGETABLES = compatTag("vegetables");
-/*    public static INamedTag<Item> CROPS = compatTag("crops");*/
+    /*    public static INamedTag<Item> CROPS = compatTag("crops");*/
     public static INamedTag<Item> COOKED_VEGETABLES = compatTag("cooked_vegetables");
     public static INamedTag<Item> COOKED_SEAFOOD = compatTag("cooked_seafood");
 
@@ -102,7 +97,7 @@ public class MWTags {
     public static INamedTag<Item> IRON_DUST = compatTag("dusts/iron");
 
     public static INamedTag<Item> SOFT_STONE = modTag("soft_stone");
-/*    public static INamedTag<Item> SOFT_OBSIDIAN = modTag("soft_obsidian");*/
+    /*    public static INamedTag<Item> SOFT_OBSIDIAN = modTag("soft_obsidian");*/
 
     public static INamedTag<Item> PURPUR = compatTag("purpur");
     public static INamedTag<Item> NETHER_BRICKS = compatTag("nether_bricks");

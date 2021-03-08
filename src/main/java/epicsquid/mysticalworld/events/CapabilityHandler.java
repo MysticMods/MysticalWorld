@@ -1,18 +1,12 @@
 package epicsquid.mysticalworld.events;
 
-import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.api.Capabilities;
 import epicsquid.mysticalworld.capability.AnimalCooldownCapabilityProvider;
-import epicsquid.mysticalworld.capability.PlayerShoulderCapability;
-import epicsquid.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.GlassBottleItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -21,10 +15,7 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.fml.network.PacketDistributor;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class CapabilityHandler {
 /*  public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {

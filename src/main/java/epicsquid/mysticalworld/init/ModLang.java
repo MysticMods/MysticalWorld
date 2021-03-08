@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.init;
 
 import com.tterrag.registrate.providers.ProviderType;
-import net.minecraft.entity.ai.attributes.RangedAttribute;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 

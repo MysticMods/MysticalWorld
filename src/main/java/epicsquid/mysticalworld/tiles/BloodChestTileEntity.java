@@ -45,22 +45,45 @@ import java.util.Random;
 public class BloodChestTileEntity extends TileEntity implements IChestLid, ITickableTileEntity {
   private NonNullList<ItemStack> chestContents = NonNullList.withSize(27, ItemStack.EMPTY);
   *//**
-   * The current angle of the lid (between 0 and 1)
-   *//*
+ * The current angle of the lid (between 0 and 1)
+ * <p>
+ * The angle of the lid last tick
+ * <p>
+ * The number of players currently using this chest
+ * <p>
+ * A counter that is incremented once each tick. Used to determine when to recompute ; this is done every 200 ticks
+ * (but staggered between different chests). However, the new value isn't actually sent to clients when it is
+ * changed.
+ * <p>
+ * Returns the number of slots in the inventory.
+ * <p>
+ * See {@link Block#eventReceived} for more information. This must return true serverside before it is called
+ * clientside.
+ * <p>
+ * Returns the stack in the given slot.
+ * <p>
+ * Removes up to a specified number of items from an inventory slot and returns them in a new stack.
+ * <p>
+ * Removes a stack from the given slot and returns it.
+ * <p>
+ * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+ * <p>
+ * Don't rename this method to canInteractWith due to conflicts with Container
+ *//*
   protected float lidAngle;
   *//**
-   * The angle of the lid last tick
-   *//*
+ * The angle of the lid last tick
+ *//*
   protected float prevLidAngle;
   *//**
-   * The number of players currently using this chest
-   *//*
+ * The number of players currently using this chest
+ *//*
   protected int numPlayersUsing;
   *//**
-   * A counter that is incremented once each tick. Used to determine when to recompute ; this is done every 200 ticks
-   * (but staggered between different chests). However, the new value isn't actually sent to clients when it is
-   * changed.
-   *//*
+ * A counter that is incremented once each tick. Used to determine when to recompute ; this is done every 200 ticks
+ * (but staggered between different chests). However, the new value isn't actually sent to clients when it is
+ * changed.
+ *//*
   private int ticksSinceSync;
   private net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandlerModifiable> chestHandler;
   private LockCode code = LockCode.EMPTY_CODE;
@@ -77,8 +100,8 @@ public class BloodChestTileEntity extends TileEntity implements IChestLid, ITick
   }
 
   *//**
-   * Returns the number of slots in the inventory.
-   *//*
+ * Returns the number of slots in the inventory.
+ *//*
   public int getSizeInventory() {
     return 27;
   }
@@ -164,9 +187,9 @@ public class BloodChestTileEntity extends TileEntity implements IChestLid, ITick
   }
 
   *//**
-   * See {@link Block#eventReceived} for more information. This must return true serverside before it is called
-   * clientside.
-   *//*
+ * See {@link Block#eventReceived} for more information. This must return true serverside before it is called
+ * clientside.
+ *//*
   public boolean receiveClientEvent(int id, int type) {
     if (id == 1) {
       this.numPlayersUsing = type;
@@ -330,16 +353,16 @@ public class BloodChestTileEntity extends TileEntity implements IChestLid, ITick
   }
 
   *//**
-   * Returns the stack in the given slot.
-   *//*
+ * Returns the stack in the given slot.
+ *//*
   public ItemStack getStackInSlot(int index) {
     this.fillWithLoot((PlayerEntity) null);
     return this.getItems().get(index);
   }
 
   *//**
-   * Removes up to a specified number of items from an inventory slot and returns them in a new stack.
-   *//*
+ * Removes up to a specified number of items from an inventory slot and returns them in a new stack.
+ *//*
   public ItemStack decrStackSize(int index, int count) {
     this.fillWithLoot((PlayerEntity) null);
     ItemStack itemstack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
@@ -351,16 +374,16 @@ public class BloodChestTileEntity extends TileEntity implements IChestLid, ITick
   }
 
   *//**
-   * Removes a stack from the given slot and returns it.
-   *//*
+ * Removes a stack from the given slot and returns it.
+ *//*
   public ItemStack removeStackFromSlot(int index) {
     this.fillWithLoot((PlayerEntity) null);
     return ItemStackHelper.getAndRemove(this.getItems(), index);
   }
 
   *//**
-   * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
-   *//*
+ * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+ *//*
   public void setInventorySlotContents(int index, ItemStack stack) {
     this.fillWithLoot((PlayerEntity) null);
     this.getItems().set(index, stack);
@@ -372,8 +395,8 @@ public class BloodChestTileEntity extends TileEntity implements IChestLid, ITick
   }
 
   *//**
-   * Don't rename this method to canInteractWith due to conflicts with Container
-   *//*
+ * Don't rename this method to canInteractWith due to conflicts with Container
+ *//*
   public boolean isUsableByPlayer(PlayerEntity player) {
     if (this.world.getTileEntity(this.pos) != this) {
       return false;

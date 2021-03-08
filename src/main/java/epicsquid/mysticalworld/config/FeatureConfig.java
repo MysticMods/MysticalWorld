@@ -41,7 +41,7 @@ public abstract class FeatureConfig<T extends FeatureConfig> extends AbstractCon
     return (T) this;
   }
 
-  public T setSupplierFeature (Supplier<Supplier<ConfiguredFeature<?, ?>>> feature) {
+  public T setSupplierFeature(Supplier<Supplier<ConfiguredFeature<?, ?>>> feature) {
     this.supplierFeature = feature;
     return (T) this;
   }

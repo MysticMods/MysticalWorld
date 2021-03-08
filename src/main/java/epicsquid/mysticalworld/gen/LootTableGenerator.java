@@ -143,7 +143,6 @@ public class LootTableGenerator extends LootTableProvider {
       );
 
 
-
       // BARROW
 
       consumer.accept(

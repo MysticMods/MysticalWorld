@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.blocks;
 
-import epicsquid.mysticalworld.init.ModEffects;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

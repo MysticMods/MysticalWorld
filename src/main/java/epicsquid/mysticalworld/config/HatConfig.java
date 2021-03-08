@@ -136,7 +136,7 @@ public class HatConfig extends AbstractConfig {
     return cachedMaskBonusDamage;
   }
 
-  public void reset () {
+  public void reset() {
     cachedAntlerFrequency = -999;
     cachedAntlerThreshold = -999;
     cachedAntlerHealing = -999;

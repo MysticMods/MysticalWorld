@@ -6,8 +6,9 @@ import net.minecraft.entity.ai.attributes.RangedAttribute;
 
 import java.util.UUID;
 
-// TODO: No Registrate conversion
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
+
+// TODO: No Registrate conversion
 
 public class ModModifiers {
   public static final UUID BLESSED_MODIFIER = UUID.fromString("fa1a6f2d-c5c0-4a10-8eb8-44ec9f0765ca");

@@ -36,7 +36,7 @@ public class ArmorConfig extends AbstractConfig implements IArmorConfig {
   @Override
   public void apply(ForgeConfigSpec.Builder builder) {
     builder.comment("Configuration for " + this.armor + " armor").push(armor + "_armor");
-    configChest = builder.comment("Armor value for chest piece").defineInRange("chest_armor", this.defaultChest,  0, Integer.MAX_VALUE);
+    configChest = builder.comment("Armor value for chest piece").defineInRange("chest_armor", this.defaultChest, 0, Integer.MAX_VALUE);
     configFeet = builder.comment("Armor value for feet piece").defineInRange("feet_armor", this.defaultFeet, 0, Integer.MAX_VALUE);
     configHead = builder.comment("Armor value for head piece").defineInRange("head_armor", this.defaultHead, 0, Integer.MAX_VALUE);
     configLegs = builder.comment("Armor value for legs piece").defineInRange("legs_armor", this.defaultLegs, 0, Integer.MAX_VALUE);

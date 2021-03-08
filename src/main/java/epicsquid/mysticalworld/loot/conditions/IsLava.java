@@ -3,7 +3,6 @@ package epicsquid.mysticalworld.loot.conditions;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.entity.LavaCatEntity;
 import epicsquid.mysticalworld.init.ModLoot;
 import net.minecraft.entity.Entity;
@@ -13,7 +12,6 @@ import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
 
 public class IsLava implements ILootCondition {
   private final boolean inverse;

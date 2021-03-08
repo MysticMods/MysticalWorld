@@ -1,6 +1,5 @@
 package epicsquid.mysticalworld.items;
 
-import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -8,7 +7,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
-import org.w3c.dom.Attr;
 
 import java.util.HashMap;
 import java.util.Map;

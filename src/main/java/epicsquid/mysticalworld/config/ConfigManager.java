@@ -9,11 +9,9 @@ import epicsquid.mysticalworld.init.ModFeatures;
 import epicsquid.mysticalworld.init.ModMaterials;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.config.ModConfig;
 import noobanidus.libs.noobutil.config.IArmorConfig;
 
@@ -46,7 +44,7 @@ public class ConfigManager {
 
   public static Map<String, ArmorConfig> ARMOR_CONFIGS = new HashMap<>();
 
-  public static IArmorConfig getArmorConfig (String name) {
+  public static IArmorConfig getArmorConfig(String name) {
     return ARMOR_CONFIGS.get(name);
   }
 

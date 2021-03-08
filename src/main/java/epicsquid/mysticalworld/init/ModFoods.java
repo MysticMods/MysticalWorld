@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.init;
 
 import net.minecraft.item.Food;
-import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 

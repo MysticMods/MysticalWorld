@@ -10,5 +10,5 @@ public abstract class AbstractConfig implements IBaseConfig {
 
   public abstract void apply(ForgeConfigSpec.Builder builder);
 
-  public abstract void reset ();
+  public abstract void reset();
 }

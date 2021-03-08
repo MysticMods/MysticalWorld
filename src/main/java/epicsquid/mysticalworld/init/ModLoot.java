@@ -15,7 +15,7 @@ public class ModLoot {
   public static final LootConditionType IS_OBSIDIAN = new LootConditionType(new IsObsidian.Serializer());
   public static final LootConditionType IS_LAVA = new LootConditionType(new IsLava.Serializer());
 
-  public static void load () {
+  public static void load() {
     Registry.register(Registry.LOOT_CONDITION_TYPE, new ResourceLocation(MysticalWorld.MODID, "has_horns"), HAS_HORNS);
     Registry.register(Registry.LOOT_CONDITION_TYPE, new ResourceLocation(MysticalWorld.MODID, "is_color"), IS_COLOR);
     Registry.register(Registry.LOOT_CONDITION_TYPE, new ResourceLocation(MysticalWorld.MODID, "is_lava"), IS_LAVA);

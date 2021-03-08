@@ -14,7 +14,6 @@ import epicsquid.mysticalworld.world.placement.DimensionCountRangeConfig;
 import epicsquid.mysticalworld.world.test.OreGenTest;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;

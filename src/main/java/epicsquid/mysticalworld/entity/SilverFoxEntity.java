@@ -36,7 +36,7 @@ import java.util.EnumSet;
 @SuppressWarnings("NullableProblems")
 public class SilverFoxEntity extends TameableEntity {
   private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.FLOAT);
-/*  private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.BOOLEAN);*/
+  /*  private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.BOOLEAN);*/
 
   public SilverFoxEntity(EntityType<? extends SilverFoxEntity> type, World worldIn) {
     super(type, worldIn);
@@ -105,7 +105,7 @@ public class SilverFoxEntity extends TameableEntity {
   protected void registerData() {
     super.registerData();
     this.dataManager.register(DATA_HEALTH_ID, this.getHealth());
-/*    this.dataManager.register(SLEEPING, false);*/
+    /*    this.dataManager.register(SLEEPING, false);*/
   }
 
   @Override

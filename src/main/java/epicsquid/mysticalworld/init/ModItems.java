@@ -1,11 +1,7 @@
 package epicsquid.mysticalworld.init;
 
-import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.MysticalWorld;
@@ -296,7 +292,7 @@ public class ModItems {
   public static RegistryEntry<Item> TANNIN_VIAL = REGISTRATE.item("tannin_vial", Item::new)
       .properties(o -> o.containerItem(Items.GLASS_BOTTLE))
       .recipe((ctx, p) -> {
-        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 3)
+            ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 3)
                 .addIngredient(ModItems.GALL_APPLE.get())
                 .addIngredient(Items.GLASS_BOTTLE)
                 .addIngredient(Items.GLASS_BOTTLE)
@@ -304,29 +300,29 @@ public class ModItems {
                 .addCriterion("has_gall_apple", RegistrateRecipeProvider.hasItem(ModItems.GALL_APPLE.get()))
                 .build(p, new ResourceLocation(MysticalWorld.MODID, "tannin_vials_from_gall_apples"));
 
-        ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER, 3)
-            .addIngredient(ctx.getEntry())
-            .addIngredient(Items.ROTTEN_FLESH)
-            .addIngredient(Items.ROTTEN_FLESH)
-            .addIngredient(Items.ROTTEN_FLESH)
-            .addCriterion("has_tannins", RegistrateRecipeProvider.hasItem(ctx.getEntry()))
-            .addCriterion("has_rotten_Flesh", RegistrateRecipeProvider.hasItem(Items.ROTTEN_FLESH))
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x3"));
+            ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER, 3)
+                .addIngredient(ctx.getEntry())
+                .addIngredient(Items.ROTTEN_FLESH)
+                .addIngredient(Items.ROTTEN_FLESH)
+                .addIngredient(Items.ROTTEN_FLESH)
+                .addCriterion("has_tannins", RegistrateRecipeProvider.hasItem(ctx.getEntry()))
+                .addCriterion("has_rotten_Flesh", RegistrateRecipeProvider.hasItem(Items.ROTTEN_FLESH))
+                .build(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x3"));
 
-        ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER, 2)
-            .addIngredient(ctx.getEntry())
-            .addIngredient(Items.ROTTEN_FLESH)
-            .addIngredient(Items.ROTTEN_FLESH)
-            .addCriterion("has_tannins", RegistrateRecipeProvider.hasItem(ctx.getEntry()))
-            .addCriterion("has_rotten_Flesh", RegistrateRecipeProvider.hasItem(Items.ROTTEN_FLESH))
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x2"));
+            ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER, 2)
+                .addIngredient(ctx.getEntry())
+                .addIngredient(Items.ROTTEN_FLESH)
+                .addIngredient(Items.ROTTEN_FLESH)
+                .addCriterion("has_tannins", RegistrateRecipeProvider.hasItem(ctx.getEntry()))
+                .addCriterion("has_rotten_Flesh", RegistrateRecipeProvider.hasItem(Items.ROTTEN_FLESH))
+                .build(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x2"));
 
-        ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER, 1)
-            .addIngredient(ctx.getEntry())
-            .addIngredient(Items.ROTTEN_FLESH)
-            .addCriterion("has_tannins", RegistrateRecipeProvider.hasItem(ctx.getEntry()))
-            .addCriterion("has_rotten_Flesh", RegistrateRecipeProvider.hasItem(Items.ROTTEN_FLESH))
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x1"));
+            ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER, 1)
+                .addIngredient(ctx.getEntry())
+                .addIngredient(Items.ROTTEN_FLESH)
+                .addCriterion("has_tannins", RegistrateRecipeProvider.hasItem(ctx.getEntry()))
+                .addCriterion("has_rotten_Flesh", RegistrateRecipeProvider.hasItem(Items.ROTTEN_FLESH))
+                .build(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x1"));
           }
       )
       .lang("Vial of Tannin")

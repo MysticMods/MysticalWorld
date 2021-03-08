@@ -74,7 +74,7 @@ public class CommonSetup {
       fire.setFireInfo(ModBlocks.CHARRED_WALL.get(), 1, 1);
       fire.setFireInfo(ModBlocks.CHARRED_WIDE_POST.get(), 1, 1);
       fire.setFireInfo(ModBlocks.CHARRED_WOOD.get(), 1, 1);
-      ((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(ModBlocks.STONEPETAL.getId(), () -> ModBlocks.POTTED_STONEPETAL.get());
+      ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.STONEPETAL.getId(), () -> ModBlocks.POTTED_STONEPETAL.get());
 
       ConfiguredStructures.REGISTRY.registration();
       ModFeatures.generateFeatures();
@@ -102,7 +102,7 @@ public class CommonSetup {
     MinecraftForge.EVENT_BUS.addListener(LootHandler::onLooting);
     MinecraftForge.EVENT_BUS.addGenericListener(Entity.class, CapabilityHandler::attachCapability);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onSquidMilked);
-/*    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);*/
+    /*    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);*/
   }
 
   public static void loadComplete(FMLLoadCompleteEvent event) {

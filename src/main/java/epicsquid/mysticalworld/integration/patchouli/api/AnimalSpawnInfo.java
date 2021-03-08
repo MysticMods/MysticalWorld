@@ -3,7 +3,6 @@ package epicsquid.mysticalworld.integration.patchouli.api;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.config.MobConfig;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 import vazkii.patchouli.api.IComponentProcessor;

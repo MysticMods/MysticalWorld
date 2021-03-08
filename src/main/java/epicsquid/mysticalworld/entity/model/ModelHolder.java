@@ -3,12 +3,6 @@ package epicsquid.mysticalworld.entity.model;
 import epicsquid.mysticalworld.entity.EnderminiEntity;
 import epicsquid.mysticalworld.entity.model.armor.AntlerHatModel;
 import epicsquid.mysticalworld.entity.model.armor.BeetleMaskModel;
-import net.minecraft.resources.IResourceManager;
-import net.minecraftforge.resource.IResourceType;
-import net.minecraftforge.resource.ISelectiveResourceReloadListener;
-
-import javax.annotation.Nonnull;
-import java.util.function.Predicate;
 
 public class ModelHolder {
   public static FoxModel foxModel;

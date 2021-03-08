@@ -1,17 +1,5 @@
 package epicsquid.mysticalworld.events;
 
-import epicsquid.mysticalworld.init.ModItems;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.monster.ZombieVillagerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTDynamicOps;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-
 public class EntityHandler {
  /* public static void onEntityInteract(PlayerInteractEvent.EntityInteractSpecific event) {
     Entity entity = event.getTarget();

@@ -53,7 +53,7 @@ public class MobConfig extends AbstractConfig {
   public int getMin() {
     if (cachedMin == -9999) {
       cachedMin = configMin.get();
-  }
+    }
     return cachedMin;
   }
 
