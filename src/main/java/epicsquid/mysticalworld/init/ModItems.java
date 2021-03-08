@@ -97,7 +97,7 @@ public class ModItems {
           .build(p))
       .register();
 
-  public static RegistryEntry<DyeItem> CARAPACE = REGISTRATE.item("carapace", dyeItem(DyeColor.BLUE))
+  public static RegistryEntry<Item> CARAPACE = REGISTRATE.item("carapace", Item::new)
       .recipe((ctx, p) -> RECIPES.dye(ModItems.CARAPACE, Items.BLUE_DYE.delegate, 1, 2, p))
       .register();
 
@@ -109,7 +109,7 @@ public class ModItems {
       .recipe((ctx, p) -> RECIPES.singleItemUnfinished(ModItems.ANTLERS, () -> Items.BONE_MEAL, 1, 9).build(p, new ResourceLocation(MysticalWorld.MODID, "antlers_to_bonemeal")))
       .register();
 
-  public static RegistryEntry<DyeItem> INK_BOTTLE = REGISTRATE.item("ink_bottle", dyeItem(DyeColor.BLACK))
+  public static RegistryEntry<Item> INK_BOTTLE = REGISTRATE.item("ink_bottle", Item::new)
       .properties(o -> o.containerItem(Items.GLASS_BOTTLE))
       .recipe((ctx, p) -> RECIPES.dye(ModItems.INK_BOTTLE, Items.BLACK_DYE.delegate, 1, 2, p))
       .register();
