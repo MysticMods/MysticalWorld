@@ -20,6 +20,8 @@
     "mysticalworld:lead_wall",
     "mysticalworld:quicksilver_wall",
     "mysticalworld:silver_wall",
-    "mysticalworld:tin_wall"
+    "mysticalworld:tin_wall",
+    "mysticalworld:pearl_wall",
+    "mysticalworld:pearl_fence"
   ]
 }

@@ -8,7 +8,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
 
@@ -17,11 +16,13 @@ import java.util.stream.Stream;
 
 import static epicsquid.mysticalworld.MysticalWorld.REGISTRATE;
 
+// TODO: IMPROVE THIS A LOT
+
 @SuppressWarnings("unchecked")
 public class ModTags {
   @FunctionalInterface
   private interface Additionals<T> {
-    void add(ITag.INamedTag<T>... tags);
+    void add(Tags.IOptionalNamedTag<T>... tags);
   }
 
   private static class BlockBuilder {
@@ -31,19 +32,19 @@ public class ModTags {
       this.provider = provider;
     }
 
-    private void add(ITag.INamedTag<Block> tag, Supplier<? extends Block>... items) {
+    private void add(Tags.IOptionalNamedTag<Block> tag, Supplier<? extends Block>... items) {
       provider.getOrCreateBuilder(tag).add(Stream.of(items).map(Supplier::get).toArray(Block[]::new));
     }
 
-    private void add(ITag.INamedTag<Block> tag, Block... items) {
+    private void add(Tags.IOptionalNamedTag<Block> tag, Block... items) {
       provider.getOrCreateBuilder(tag).add(items);
     }
 
-    private void add(ITag.INamedTag<Block> tag, ITag.INamedTag<Block> tag2) {
+    private void add(Tags.IOptionalNamedTag<Block> tag, Tags.IOptionalNamedTag<Block> tag2) {
       provider.getOrCreateBuilder(tag).addTags(tag2);
     }
 
-    private Additionals<Block> additional(ITag.INamedTag<Block> tag) {
+    private Additionals<Block> additional(Tags.IOptionalNamedTag<Block> tag) {
       return (o) -> provider.getOrCreateBuilder(tag).addTags(o);
     }
   }
@@ -55,19 +56,19 @@ public class ModTags {
       this.provider = provider;
     }
 
-    private void add(ITag.INamedTag<Item> tag, Supplier<? extends IItemProvider>... items) {
+    private void add(Tags.IOptionalNamedTag<Item> tag, Supplier<? extends IItemProvider>... items) {
       provider.getOrCreateBuilder(tag).add(Stream.of(items).map(Supplier::get).map(IItemProvider::asItem).toArray(Item[]::new));
     }
 
-    private void add(ITag.INamedTag<Item> tag, IItemProvider... items) {
+    private void add(Tags.IOptionalNamedTag<Item> tag, IItemProvider... items) {
       provider.getOrCreateBuilder(tag).add(Stream.of(items).map(IItemProvider::asItem).toArray(Item[]::new));
     }
 
-    private void add(ITag.INamedTag<Item> tag, ITag.INamedTag<Item> tag2) {
+    private void add(Tags.IOptionalNamedTag<Item> tag, Tags.IOptionalNamedTag<Item> tag2) {
       provider.getOrCreateBuilder(tag).addTags(tag2);
     }
 
-    private Additionals<Item> additional(ITag.INamedTag<Item> tag) {
+    private Additionals<Item> additional(Tags.IOptionalNamedTag<Item> tag) {
       return (o) -> provider.getOrCreateBuilder(tag).addTags(o);
     }
   }
@@ -85,8 +86,6 @@ public class ModTags {
       b.add(Tags.Items.STRING, ModItems.SILK_THREAD);
 
       b.add(MWTags.Items.SLIME_BLOCK, Items.SLIME_BLOCK);
-
-      b.additional(Tags.Items.STORAGE_BLOCKS).add(MWTags.Items.AMETHYST_BLOCK, MWTags.Items.COPPER_BLOCK, MWTags.Items.LEAD_BLOCK, MWTags.Items.QUICKSILVER_BLOCK, MWTags.Items.SILVER_BLOCK, MWTags.Items.TIN_BLOCK);
 
       b.add(MWTags.Items.SOFT_STONE, ModBlocks.SOFT_STONE);
       b.add(Tags.Items.STONE, ModBlocks.SOFT_STONE);
@@ -135,10 +134,12 @@ public class ModTags {
       b.add(MWTags.Blocks.NETHER_BRICKS, Blocks.NETHER_BRICKS);
       b.add(MWTags.Blocks.RED_NETHER_BRICKS, Blocks.RED_NETHER_BRICKS);
       b.add(MWTags.Blocks.TERRACOTTA, Blocks.WHITE_TERRACOTTA, Blocks.ORANGE_TERRACOTTA, Blocks.MAGENTA_TERRACOTTA, Blocks.LIGHT_BLUE_TERRACOTTA, Blocks.YELLOW_TERRACOTTA, Blocks.LIME_TERRACOTTA, Blocks.PINK_TERRACOTTA, Blocks.GRAY_TERRACOTTA, Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.CYAN_TERRACOTTA, Blocks.PURPLE_TERRACOTTA, Blocks.BLUE_TERRACOTTA, Blocks.BROWN_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.BLACK_TERRACOTTA, Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK.get());
-      b.add(BlockTags.BASE_STONE_OVERWORLD, ModBlocks.SOFT_STONE.get());
       b.add(MWTags.Blocks.MUSHROOM_BLOCKS, Blocks.MUSHROOM_STEM, Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM_BLOCK);
       b.add(MWTags.Blocks.MUSHROOM_BLOCKS, ModBlocks.MUSHROOM_INSIDE.get());
       b.add(MWTags.Blocks.BASE_STONE_GRANITE, Blocks.GRANITE);
+      b.additional(Tags.Blocks.STORAGE_BLOCKS).add(MWTags.Blocks.AMETHYST_STORAGE, MWTags.Blocks.COPPER_STORAGE, MWTags.Blocks.LEAD_STORAGE, MWTags.Blocks.QUICKSILVER_STORAGE, MWTags.Blocks.SILVER_STORAGE, MWTags.Blocks.TIN_STORAGE, MWTags.Blocks.PEARL_STORAGE);
+
+      p.getOrCreateBuilder(BlockTags.BASE_STONE_OVERWORLD).add(ModBlocks.SOFT_STONE.get());
     });
   }
 

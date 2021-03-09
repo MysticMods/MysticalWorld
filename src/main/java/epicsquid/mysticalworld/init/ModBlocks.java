@@ -2219,6 +2219,94 @@ public class ModBlocks {
       .blockstate(narrowPost(ModBlocks.TIN_BLOCK))
       .register();
 
+  public static NonNullUnaryOperator<Block.Properties> PEARL_PROPS = o -> o.hardnessAndResistance(1.2F, 1.2F).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(1);
+
+  public static RegistryEntry<Block> PEARL_BLOCK = REGISTRATE.block("pearl_block", Material.ROCK, Block::new)
+      .properties(PEARL_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .tag(MWTags.Items.PEARL_BLOCK)
+      .build()
+      .tag(MWTags.Blocks.PEARL_STORAGE)
+      .blockstate(ModBlocks::simpleBlockState)
+      .register();
+
+  public static RegistryEntry<StairsBlock> PEARL_STAIRS = REGISTRATE.block("pearl_stairs", Material.ROCK, stairsBlock(ModBlocks.PEARL_BLOCK))
+      .properties(PEARL_PROPS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.stairs(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_STAIRS, null, true)
+      )
+      .blockstate(stairs(ModBlocks.PEARL_BLOCK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> PEARL_SLAB = REGISTRATE.block("pearl_slab", Material.ROCK, SlabBlock::new)
+      .properties(PEARL_PROPS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          p.slab(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_SLAB, null, true)
+      )
+      .blockstate(slab(ModBlocks.PEARL_BLOCK))
+      .register();
+
+  public static RegistryEntry<WallBlock> PEARL_WALL = REGISTRATE.block("pearl_wall", Material.ROCK, WallBlock::new)
+      .properties(PEARL_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          p.wall(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_WALL)
+      )
+      .blockstate(wall(ModBlocks.PEARL_BLOCK))
+      .register();
+
+  public static RegistryEntry<FenceBlock> PEARL_FENCE = REGISTRATE.block("pearl_fence", Material.ROCK, FenceBlock::new)
+      .properties(PEARL_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) -> {
+            p.fence(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_FENCE, null);
+            p.stonecutting(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_FENCE, 2);
+          }
+      )
+      .blockstate(fence(ModBlocks.PEARL_BLOCK))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.WidePostBlock> PEARL_WIDE_POST = REGISTRATE.block("pearl_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
+      .properties(PEARL_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.widePost(ModBlocks.PEARL_BLOCK, ModBlocks.PEARL_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.PEARL_BLOCK))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> PEARL_SMALL_POST = REGISTRATE.block("pearl_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
+      .properties(PEARL_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          RECIPES.narrowPost(ModBlocks.PEARL_BLOCK, ModBlocks.PEARL_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.PEARL_BLOCK))
+      .register();
+
   public static void load() {
   }
 }

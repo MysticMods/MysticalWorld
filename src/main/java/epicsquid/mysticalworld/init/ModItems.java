@@ -558,6 +558,10 @@ public class ModItems {
       .register();
 
   // Ingots/gems
+  public static RegistryEntry<Item> PEARL_GEM = REGISTRATE.item("lustrous_pearl", Item::new)
+      .tag(MWTags.Items.PEARL_GEM)
+      .recipe(RECIPES.storage(() -> ModBlocks.PEARL_BLOCK, () -> ModItems.PEARL_GEM, MWTags.Items.PEARL_BLOCK, MWTags.Items.PEARL_GEM, null, null, null, null))
+      .register();
   public static RegistryEntry<Item> AMETHYST_GEM = REGISTRATE.item(AMETHYST.getInternalName(), Item::new)
       .tag(MWTags.Items.AMETHYST_GEM)
       .recipe(RECIPES.storage(() -> ModBlocks.AMETHYST_BLOCK, () -> ModItems.AMETHYST_GEM, MWTags.Items.AMETHYST_BLOCK, MWTags.Items.AMETHYST_GEM, MWTags.Items.AMETHYST_ORE, null, null, null))
