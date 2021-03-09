@@ -1,6 +1,7 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.block.BlockSlimeEggs;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.init.ModBlocks;
 import epicsquid.mysticalworld.init.ModSounds;
@@ -16,6 +17,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.IFluidBlock;
 
@@ -105,16 +108,32 @@ public class EntityFrog extends EntityAnimal {
     }
   }
 
+  public static final AxisAlignedBB eggBox = new AxisAlignedBB(-6, -4, -6, 7, 4, 7);
+
   @Override
   public void onLivingUpdate() {
     super.onLivingUpdate();
 
     if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextSlime <= 0 && shouldDropSlime()) {
-      // TODO: Change this to fill up pre-existing blocks within a radius
-      IBlockState state = world.getBlockState(getPosition());
-      if (ModBlocks.slime_eggs.canPlaceBlockAt(world, getPosition()) && (world.isAirBlock(getPosition()) || (state.getBlock().isReplaceable(world, getPosition())) && !(state.getBlock() instanceof BlockLiquid) && !(state.getBlock() instanceof IFluidBlock))) {
+      AxisAlignedBB offset = eggBox.offset(getPosition());
+      boolean changed = false;
+      for (BlockPos.MutableBlockPos pos : BlockPos.getAllInBoxMutable((int) offset.minX, (int) offset.minY, (int) offset.minZ, (int) offset.maxX, (int) offset.maxY, (int) offset.maxZ)) {
+        IBlockState state = world.getBlockState(pos);
+        if (state.getBlock() == ModBlocks.slime_eggs && state.getValue(BlockSlimeEggs.COUNT) < 3) {
+          world.setBlockState(pos, state.withProperty(BlockSlimeEggs.COUNT, state.getValue(BlockSlimeEggs.COUNT) + 1));
+          changed = true;
+          break;
+        }
+      }
+      if (!changed) {
+        IBlockState state = world.getBlockState(getPosition());
+        if (ModBlocks.slime_eggs.canPlaceBlockAt(world, getPosition()) && (world.isAirBlock(getPosition()) || (state.getBlock().isReplaceable(world, getPosition())) && !(state.getBlock() instanceof BlockLiquid) && !(state.getBlock() instanceof IFluidBlock))) {
+          world.setBlockState(getPosition(), ModBlocks.slime_eggs.getDefaultState());
+          changed = true;
+        }
+      }
+      if (changed) {
         this.playSound(ModSounds.Frog.SLIME, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-        world.setBlockState(getPosition(), ModBlocks.slime_eggs.getDefaultState());
         this.timeUntilNextSlime = this.rand.nextInt(getSlimeTime()) + getSlimeTime();
       }
     }

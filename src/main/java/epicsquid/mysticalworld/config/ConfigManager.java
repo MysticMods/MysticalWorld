@@ -239,7 +239,7 @@ public class ConfigManager {
     public int max = 4;
 
     @Config.Comment(("How often slime puddles created; set to -1 to disable slime ball dropping"))
-    public int slimeTime = 8000;
+    public int slimeTime = 10000;
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
     public String[] biomes = new String[]{"SWAMP", "JUNGLE", "BEACH", "RIVER"};
