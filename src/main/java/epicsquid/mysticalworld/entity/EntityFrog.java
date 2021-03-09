@@ -108,7 +108,7 @@ public class EntityFrog extends EntityAnimal {
     }
   }
 
-  public static final AxisAlignedBB eggBox = new AxisAlignedBB(-6, -4, -6, 7, 4, 7);
+  public static final AxisAlignedBB eggBox = new AxisAlignedBB(-12, -4, -12, 13, 4, 13);
 
   @Override
   public void onLivingUpdate() {
