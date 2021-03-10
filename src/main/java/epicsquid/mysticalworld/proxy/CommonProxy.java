@@ -8,7 +8,6 @@ import epicsquid.mysticalworld.init.ModEntities;
 import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.integration.endercore.EndercoreHarvest;
 import epicsquid.mysticalworld.integration.harvest.HarvestIntegration;
-import epicsquid.mysticalworld.integration.jer.JERIntegration;
 import epicsquid.mysticalworld.integration.patchouli.api.ConfigKeys;
 import epicsquid.mysticalworld.loot.conditions.*;
 import epicsquid.mysticalworld.world.OreGenerator;

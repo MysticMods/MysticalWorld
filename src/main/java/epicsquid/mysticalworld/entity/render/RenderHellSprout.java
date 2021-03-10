@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.entity.render;
 
 import epicsquid.mysticalworld.entity.EntityHellSprout;
-import epicsquid.mysticalworld.entity.EntitySprout;
 import epicsquid.mysticalworld.entity.model.ModelHolder;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
