@@ -145,6 +145,9 @@ public class ConfigManager {
     @Config.Comment(("Maximum number of sprouts to spawn in a group"))
     public int max = 3;
 
+    @Config.Comment(("Spawn as monster; set to false to spawn as a creature"))
+    public boolean monster = true;
+
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
     public String[] biomes = new String[]{"NETHER"};
 
@@ -161,6 +164,9 @@ public class ConfigManager {
 
     @Config.Comment(("Maximum number of sprouts to spawn in a group"))
     public int max = 1;
+
+    @Config.Comment(("Spawn as monster; set to false to spawn as a creature"))
+    public boolean monster = true;
 
     @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
     public String[] biomes = new String[]{"NETHER"};

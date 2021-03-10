@@ -144,7 +144,11 @@ public class ModEntities {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
-      EntityRegistry.addSpawn(EntityHellSprout.class, ConfigManager.hellSprout.rate, ConfigManager.hellSprout.min, ConfigManager.hellSprout.max, EnumCreatureType.MONSTER, biomes.toArray(new Biome[0]));
+      if (ConfigManager.hellSprout.monster) {
+        EntityRegistry.addSpawn(EntityHellSprout.class, ConfigManager.hellSprout.rate, ConfigManager.hellSprout.min, ConfigManager.hellSprout.max, EnumCreatureType.MONSTER, biomes.toArray(new Biome[0]));
+      } else {
+        EntityRegistry.addSpawn(EntityHellSprout.class, ConfigManager.hellSprout.rate, ConfigManager.hellSprout.min, ConfigManager.hellSprout.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      }
       EntitySpawnPlacementRegistry.setPlacementType(EntityHellSprout.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
 
@@ -155,7 +159,11 @@ public class ModEntities {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
-      EntityRegistry.addSpawn(EntityLavaCat.class, ConfigManager.lavaCat.rate, ConfigManager.lavaCat.min, ConfigManager.lavaCat.max, EnumCreatureType.MONSTER, biomes.toArray(new Biome[0]));
+      if (ConfigManager.lavaCat.monster) {
+        EntityRegistry.addSpawn(EntityLavaCat.class, ConfigManager.lavaCat.rate, ConfigManager.lavaCat.min, ConfigManager.lavaCat.max, EnumCreatureType.MONSTER, biomes.toArray(new Biome[0]));
+      } else {
+        EntityRegistry.addSpawn(EntityLavaCat.class, ConfigManager.lavaCat.rate, ConfigManager.lavaCat.min, ConfigManager.lavaCat.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      }
       EntitySpawnPlacementRegistry.setPlacementType(EntityLavaCat.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
 
