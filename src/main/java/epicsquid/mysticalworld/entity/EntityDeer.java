@@ -1,7 +1,6 @@
 package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
-import epicsquid.mysticalworld.entity.ai.EntityAIHealTarget;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -40,7 +39,6 @@ public class EntityDeer extends EntityAnimal {
     this.tasks.addTask(1, new EntityAIPanic(this, 1.5D));
     this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
     this.tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.WHEAT, false));
-    this.tasks.addTask(4, new EntityAIHealTarget(this, 2.5D));
     this.tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
     this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
     this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
