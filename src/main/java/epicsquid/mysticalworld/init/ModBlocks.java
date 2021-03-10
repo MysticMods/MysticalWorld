@@ -109,16 +109,16 @@ public class ModBlocks {
     event.addBlock(mud_brick_fence = new BlockFenceBase(mud_brick, SoundType.STONE, 2.0f, "mud_brick_fence").setCreativeTab(MysticalWorld.tab));
     event.addBlock(mud_brick_fence_gate = new BlockFenceGateBase(mud_brick, SoundType.STONE, 2.0f, "mud_brick_fence_gate").setCreativeTab(MysticalWorld.tab));
 
-    event.addBlock(pearl_block = new BlockBase(Material.ROCK, SoundType.CLOTH, 3.4f, "pearl_block")).setCreativeTab(MysticalWorld.tab);
-    Variants pearl = variants(event, pearl_block, "pearl", SoundType.CLOTH, Material.ROCK);
+    event.addBlock(pearl_block = new BlockBase(Material.ROCK, SoundType.STONE, 3.4f, "pearl_block")).setCreativeTab(MysticalWorld.tab);
+    Variants pearl = variants(event, pearl_block, "pearl", SoundType.STONE, Material.ROCK);
     pearl_slab = pearl.slab;
     pearl_double_slab = pearl.double_slab;
     pearl_stair = pearl.stairs;
     pearl_wall = pearl.wall;
     pearl_pressure_plate = pearl.pressure_plate;
     pearl_button = pearl.button;
-    event.addBlock(pearl_fence = new BlockFenceBase(pearl_block, SoundType.CLOTH, 3.0f, "pearl_fence").setCreativeTab(MysticalWorld.tab));
-    event.addBlock(pearl_fence_gate = new BlockFenceGateBase(pearl_block, SoundType.CLOTH, 3.0f, "pearl_fence_gate").setCreativeTab(MysticalWorld.tab));
+    event.addBlock(pearl_fence = new BlockFenceBase(pearl_block, SoundType.STONE, 3.0f, "pearl_fence").setCreativeTab(MysticalWorld.tab));
+    event.addBlock(pearl_fence_gate = new BlockFenceGateBase(pearl_block, SoundType.STONE, 3.0f, "pearl_fence_gate").setCreativeTab(MysticalWorld.tab));
 
     event.addBlock(slime_eggs = new BlockSlimeEggs(Material.CLAY, SoundType.SLIME, 0.1f, "slime_eggs").setCreativeTab(MysticalWorld.tab));
   }
