@@ -11,6 +11,7 @@ entity.entity_silkworm.name=Silkworm
 entity.entity_lava_cat.name=Lava Cat
 entity.entity_obsidian_cat.name=Obsidian Cat
 entity.entity_hell_sprout.name=Hell Sprout
+entity.entity_clam.name=Clam
 
 item.carapace.name=Carapace
 item.pelt.name=Pelt

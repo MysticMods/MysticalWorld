@@ -10,9 +10,7 @@ import epicsquid.mysticalworld.integration.endercore.EndercoreHarvest;
 import epicsquid.mysticalworld.integration.harvest.HarvestIntegration;
 import epicsquid.mysticalworld.integration.jer.JERIntegration;
 import epicsquid.mysticalworld.integration.patchouli.api.ConfigKeys;
-import epicsquid.mysticalworld.loot.conditions.HasHorns;
-import epicsquid.mysticalworld.loot.conditions.IsLava;
-import epicsquid.mysticalworld.loot.conditions.IsObsidian;
+import epicsquid.mysticalworld.loot.conditions.*;
 import epicsquid.mysticalworld.world.OreGenerator;
 import epicsquid.mysticalworld.world.StructureGenerator;
 import epicsquid.mysticalworld.world.WorldGeneratorTrees;
@@ -48,6 +46,8 @@ public class CommonProxy {
     LootConditionManager.registerCondition(new HasHorns.Serializer());
     LootConditionManager.registerCondition(new IsLava.Serializer());
     LootConditionManager.registerCondition(new IsObsidian.Serializer());
+    LootConditionManager.registerCondition(new IsEnder.Serializer());
+    LootConditionManager.registerCondition(new IsMature.Serializer());
     if (ConfigManager.BarrowDistance != -1) {
       GameRegistry.registerWorldGenerator(barrowGenerator = new StructureGenerator(BARROW, 10, () -> {
         switch (Util.rand.nextInt(6)) {

@@ -107,6 +107,9 @@ public class ConfigManager {
 
     @Config.Comment(("Enable the spawning of Hell Sprouts"))
     public boolean spawnHellSprout = true;
+
+    @Config.Comment(("Enable the spawning of Clams"))
+    public boolean spawnClams = true;
   }
 
   @Config.Comment(("Controls the spawn settings of Deer"))
@@ -129,6 +132,8 @@ public class ConfigManager {
   public static ConfigMysticalWorldLavaCat lavaCat = new ConfigMysticalWorldLavaCat();
   @Config.Comment(("Controls the spawn settings of hell sprouts"))
   public static ConfigMysticalWorldHellSprout hellSprout = new ConfigMysticalWorldHellSprout();
+  @Config.Comment(("Controls the spawn settings of clams"))
+  public static ConfigMysticalWorldClam clam = new ConfigMysticalWorldClam();
 
   public static class ConfigMysticalWorldHellSprout {
     @Config.Comment(("Spawn rate of hell sprouts"))
@@ -289,6 +294,29 @@ public class ConfigManager {
 
     @Config.Comment(("Whether or not silkworms are territorial and will attack other silkworms"))
     public boolean territorial = true;
+  }
+
+  public static class ConfigMysticalWorldClam {
+    @Config.Comment(("Spawn rate of clams (set to 0 to disable)"))
+    public int rate = 5;
+
+    @Config.Comment(("Min number of clams to spawn in a group"))
+    public int min = 1;
+
+    @Config.Comment(("Maximum number of clams to spawn in a group"))
+    public int max = 1;
+
+    @Config.Comment(("Biomes to spawn in. List consisting of elements from: |SAVANNA, CONIFEROUS, JUNGLE, SPOOKY, DEAD, LUSH, NETHER, END, MUSHROOM, MAGICAL, RARE, OCEAN, RIVER, WATER, MESA, FOREST, PLAINS, MOUNTAIN, HILLS, SWAMP, SANDY, SNOWY, WASTELAND, BEACH, VOID|"))
+    public String[] biomes = new String[]{"OCEAN", "RIVER", "WATER", "SWAMP", "BEACH"};
+
+    @Config.Comment(("The chance [1 in x] of a clam spawning as an ender clam"))
+    public int ender = 14;
+
+    @Config.Comment(("How long a clam needs to mature for (in ticks)"))
+    public int maturity = 6400;
+
+    @Config.Comment(("The maximum age a clam can be on spawn (in ticks), must be less than maturity"))
+    public int initialAge = 4500;
   }
 
   @Config.Comment(("Minimum distance between Barrow structures. Set to -1 to disable."))

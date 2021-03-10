@@ -1,0 +1,20 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "DDD",
+    "DDD",
+    "DDD"
+    ],
+  "key": {
+    "D": [
+      {
+        "item": "mysticalworld:pearl"
+      }
+    ]
+  },
+  "result": {
+    "item": "mysticalworld:pearl_block",
+    "data": 0,
+    "count": 1
+  }
+}

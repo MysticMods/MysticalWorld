@@ -7,7 +7,10 @@ import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.*;
 import epicsquid.mysticalworld.entity.render.*;
 import epicsquid.mysticalworld.proxy.ClientProxy;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.BiomeDictionary;
@@ -64,7 +67,7 @@ public class ModEntities {
   }
 
   public static void registerLootTables() {
-    Stream.of(EntityFox.LOOT_TABLE, EntityFrog.LOOT_TABLE, EntityBeetle.LOOT_TABLE, EntitySprout.LOOT_TABLE_GREEN, EntitySprout.LOOT_TABLE_PURPLE, EntitySprout.LOOT_TABLE_RED, EntitySprout.LOOT_TABLE_TAN, EntityEndermini.LOOT_TABLE, EntityDeer.LOOT_TABLE, EntityOwl.LOOT_TABLE, EntityLavaCat.LOOT_TABLE, EntitySilkworm.LOOT_TABLE, EntityClam.LOOT_TABLE, EntityHellSprout.LOOT_TABLE_HELL).forEach(LootTableList::register);
+    Stream.of(EntityFox.LOOT_TABLE, EntityFrog.LOOT_TABLE, EntityBeetle.LOOT_TABLE, EntitySprout.LOOT_TABLE_GREEN, EntitySprout.LOOT_TABLE_PURPLE, EntitySprout.LOOT_TABLE_RED, EntitySprout.LOOT_TABLE_TAN, EntityEndermini.LOOT_TABLE, EntityDeer.LOOT_TABLE, EntityOwl.LOOT_TABLE, EntityLavaCat.LOOT_TABLE, EntitySilkworm.LOOT_TABLE, EntityHellSprout.LOOT_TABLE_HELL, EntityClam.LOOT_TABLE).forEach(LootTableList::register);
   }
 
   public static void registerMobSpawn() {
@@ -76,6 +79,7 @@ public class ModEntities {
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
       EntityRegistry.addSpawn(EntityDeer.class, ConfigManager.deer.rate, ConfigManager.deer.min, ConfigManager.deer.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntitySpawnPlacementRegistry.setPlacementType(EntityDeer.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
 
     biomes.clear();
@@ -86,6 +90,7 @@ public class ModEntities {
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
       EntityRegistry.addSpawn(EntityFox.class, ConfigManager.fox.rate, ConfigManager.fox.min, ConfigManager.fox.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntitySpawnPlacementRegistry.setPlacementType(EntityFox.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
 
     biomes.clear();
@@ -96,6 +101,7 @@ public class ModEntities {
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
       EntityRegistry.addSpawn(EntityBeetle.class, ConfigManager.beetle.rate, ConfigManager.beetle.min, ConfigManager.beetle.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntitySpawnPlacementRegistry.setPlacementType(EntityBeetle.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
 
     biomes.clear();
@@ -106,6 +112,7 @@ public class ModEntities {
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
       EntityRegistry.addSpawn(EntityFrog.class, ConfigManager.frog.rate, ConfigManager.frog.min, ConfigManager.frog.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntitySpawnPlacementRegistry.setPlacementType(EntityFrog.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
 
     biomes.clear();
@@ -116,12 +123,14 @@ public class ModEntities {
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
       EntityRegistry.addSpawn(EntitySprout.class, ConfigManager.sprout.rate, ConfigManager.sprout.min, ConfigManager.sprout.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntitySpawnPlacementRegistry.setPlacementType(EntitySprout.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
 
     biomes.clear();
 
     if (ConfigManager.mobs.spawnEndermini && ConfigManager.endermini.rate > 0) {
       EntityRegistry.addSpawn(EntityEndermini.class, ConfigManager.endermini.rate, ConfigManager.endermini.min, ConfigManager.endermini.max, EnumCreatureType.CREATURE, BiomeDictionary.getBiomes(Type.END).toArray(new Biome[0]));
+      EntitySpawnPlacementRegistry.setPlacementType(EntityEndermini.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
 
     biomes.clear();
@@ -132,6 +141,7 @@ public class ModEntities {
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
       EntityRegistry.addSpawn(EntityOwl.class, ConfigManager.owl.rate, ConfigManager.owl.min, ConfigManager.owl.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
+      EntitySpawnPlacementRegistry.setPlacementType(EntityOwl.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
 
     biomes.clear();
@@ -142,6 +152,7 @@ public class ModEntities {
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
       EntityRegistry.addSpawn(EntityHellSprout.class, ConfigManager.hellSprout.rate, ConfigManager.hellSprout.min, ConfigManager.hellSprout.max, EnumCreatureType.MONSTER, biomes.toArray(new Biome[0]));
+      EntitySpawnPlacementRegistry.setPlacementType(EntityHellSprout.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
 
     biomes.clear();
@@ -152,6 +163,18 @@ public class ModEntities {
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
       EntityRegistry.addSpawn(EntityLavaCat.class, ConfigManager.lavaCat.rate, ConfigManager.lavaCat.min, ConfigManager.lavaCat.max, EnumCreatureType.MONSTER, biomes.toArray(new Biome[0]));
+      EntitySpawnPlacementRegistry.setPlacementType(EntityLavaCat.class, EntityLiving.SpawnPlacementType.ON_GROUND);
+    }
+
+    biomes.clear();
+
+    if (ConfigManager.mobs.spawnClams && ConfigManager.clam.rate > 0) {
+      for (String biomeName : ConfigManager.clam.biomes) {
+        Type type = Type.getType(biomeName);
+        biomes.addAll(BiomeDictionary.getBiomes(type));
+      }
+      EntityRegistry.addSpawn(EntityClam.class, ConfigManager.clam.rate, ConfigManager.clam.min, ConfigManager.clam.max, EnumCreatureType.WATER_CREATURE, biomes.toArray(new Biome[0]));
+      EntitySpawnPlacementRegistry.setPlacementType(EntityClam.class, EntityLiving.SpawnPlacementType.IN_WATER);
     }
 
     biomes.clear();
