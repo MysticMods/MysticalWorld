@@ -1,5 +1,6 @@
 package epicsquid.mysticalworld.world;
 
+import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.proxy.CommonProxy;
 import epicsquid.mysticalworld.world.data.DataHelper;
@@ -42,7 +43,7 @@ public class StructureGenerator implements IWorldGenerator {
   private final int descent;
   private final int maxDistance;
   private final Supplier<Class<? extends Entity>> entity;
-  private static ResourceLocation loot = new ResourceLocation("minecraft", "chests/simple_dungeon");
+  private static ResourceLocation loot = new ResourceLocation(MysticalWorld.MODID, "chests/hut");
   private final AtomicBoolean generating = new AtomicBoolean();
 
   public StructureGenerator(ResourceLocation structure, int descent, Supplier<Class<? extends Entity>> entity, int maxDistance) {
@@ -223,19 +224,19 @@ public class StructureGenerator implements IWorldGenerator {
         }
         // Two floor chests
       } else if (s.equals("loot_chest1") || s.equals("loot_chest2") || s.equals("loot_chest3")) {
-        if (!s.equals("loot_chest3") && random.nextBoolean()) {
+/*        if (!s.equals("loot_chest3") && random.nextBoolean()) {
           world.setBlockState(blockPos, cobble, 16);
-        } else {
-          if (world.setBlockState(blockPos, chest, 16)) {
-            TileEntity te = world.getTileEntity(blockPos);
-            IBlockState bs = world.getBlockState(blockPos);
-            if (!(te instanceof TileEntityChest) || bs.getBlock() != Blocks.CHEST) {
-              //MysticalWorld.logger.error("[MysticalWorld] Failed to generate a structure. Are you using Chunk Pregenerator?");
-            } else {
-              ((TileEntityChest) te).setLootTable(loot, world.getSeed() * blockPos.getX() + blockPos.getY() ^ blockPos.getZ());
-            }
+        } else {*/
+        if (world.setBlockState(blockPos, chest, 16)) {
+          TileEntity te = world.getTileEntity(blockPos);
+          IBlockState bs = world.getBlockState(blockPos);
+          if (!(te instanceof TileEntityChest) || bs.getBlock() != Blocks.CHEST) {
+            //MysticalWorld.logger.error("[MysticalWorld] Failed to generate a structure. Are you using Chunk Pregenerator?");
+          } else {
+            ((TileEntityChest) te).setLootTable(loot, world.getSeed() * blockPos.getX() + blockPos.getY() ^ blockPos.getZ());
           }
         }
+        /*        }*/
       }
     });
 

@@ -41,6 +41,12 @@ public class MappingHandler {
         if (mapping.key.getPath().equals("entity_lurker")) {
           mapping.ignore();
         }
+        if (mapping.key.getPath().equals("entity_spirit_deer")) {
+          mapping.ignore();
+        }
+        if (mapping.key.getPath().equals("entity_spirit_beetle")) {
+          mapping.ignore();
+        }
       }
     }
   }

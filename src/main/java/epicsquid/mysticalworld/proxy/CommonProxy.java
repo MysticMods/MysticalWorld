@@ -19,6 +19,7 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
@@ -35,6 +36,7 @@ public class CommonProxy {
   public void preInit(FMLPreInitializationEvent event) {
     GameRegistry.registerWorldGenerator(new OreGenerator(), 1);
     ModEntities.registerLootTables();
+    LootTableList.register(new ResourceLocation(MysticalWorld.MODID, "chests/hut"));
   }
 
   public void init(FMLInitializationEvent event) {
