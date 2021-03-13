@@ -174,7 +174,7 @@ public class ModEntities {
         Type type = Type.getType(biomeName);
         biomes.addAll(BiomeDictionary.getBiomes(type));
       }
-      EntityRegistry.addSpawn(EntityClam.class, ConfigManager.clam.rate, ConfigManager.clam.min, ConfigManager.clam.max, EnumCreatureType.WATER_CREATURE, biomes.toArray(new Biome[0]));
+      EntityRegistry.addSpawn(EntityClam.class, ConfigManager.clam.rate, ConfigManager.clam.min, ConfigManager.clam.max, EnumCreatureType.CREATURE, biomes.toArray(new Biome[0]));
       EntitySpawnPlacementRegistry.setPlacementType(EntityClam.class, EntityLiving.SpawnPlacementType.IN_WATER);
     }
 

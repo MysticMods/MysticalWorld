@@ -304,7 +304,10 @@ public class ConfigManager {
 
   public static class ConfigMysticalWorldClam {
     @Config.Comment(("Spawn rate of clams (set to 0 to disable)"))
-    public int rate = 5;
+    public int rate = 14;
+
+/*    @Config.Comment(("1 in X chance of failing to spawn for additional spawn control (set to -1 to disable"))
+    public int spawn_failure = 4;*/
 
     @Config.Comment(("Min number of clams to spawn in a group"))
     public int min = 1;

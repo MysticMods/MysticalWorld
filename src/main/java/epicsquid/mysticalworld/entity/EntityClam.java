@@ -10,6 +10,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -24,6 +25,7 @@ public class EntityClam extends EntityWaterMob {
     super(world);
     setSize(0.75f, 0.75f);
     this.experienceValue = 3;
+    this.rotationYaw = MathHelper.wrapDegrees(rand.nextFloat());
   }
 
   @Override
@@ -45,10 +47,11 @@ public class EntityClam extends EntityWaterMob {
     this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0);
   }
 
+
+
   @Override
   public void onEntityUpdate() {
     getDataManager().set(age, getDataManager().get(age) + 1);
-
     super.onEntityUpdate();
   }
 
@@ -70,7 +73,7 @@ public class EntityClam extends EntityWaterMob {
 
   @Override
   public boolean getCanSpawnHere() {
-    return this.posY < (double) this.world.getSeaLevel() && super.getCanSpawnHere();
+    return this.posY < (double) this.world.getSeaLevel() && super.getCanSpawnHere()/* && (ConfigManager.clam.spawn_failure >= 0 || rand.nextInt(ConfigManager.clam.spawn_failure) != 0)*/;
   }
 
   @Override
