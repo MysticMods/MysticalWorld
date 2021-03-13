@@ -32,11 +32,12 @@ public class ModSounds {
   }
 
   public static class General {
-    public static SoundEvent SQUID_MILK, UNRIPE_PEARL;
+    public static SoundEvent SQUID_MILK, UNRIPE_PEARL, PEARLEPORTER;
 
     public static void initSounds(@Nonnull RegisterContentEvent event) {
       event.addSound(SQUID_MILK = createSoundEvent("mob.squid.milk"));
       event.addSound(UNRIPE_PEARL = createSoundEvent("item.unripe_pearl.use"));
+      event.addSound(PEARLEPORTER = createSoundEvent("item.pearleporter.use"));
     }
   }
 

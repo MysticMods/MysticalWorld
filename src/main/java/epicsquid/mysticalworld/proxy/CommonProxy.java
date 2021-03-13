@@ -49,6 +49,7 @@ public class CommonProxy {
     LootConditionManager.registerCondition(new IsObsidian.Serializer());
     LootConditionManager.registerCondition(new IsEnder.Serializer());
     LootConditionManager.registerCondition(new IsMature.Serializer());
+    LootConditionManager.registerCondition(new WasRitual.Serializer());
     if (ConfigManager.BarrowDistance != -1) {
       GameRegistry.registerWorldGenerator(barrowGenerator = new StructureGenerator(BARROW, 10, () -> {
         switch (Util.rand.nextInt(6)) {

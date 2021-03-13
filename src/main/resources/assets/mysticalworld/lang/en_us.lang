@@ -30,6 +30,7 @@ item.wasp_attractant.name=Wasp Attractant
 item.tannins.name=Tannins
 item.antler_hat.name=Antler Helm
 item.beetle_mask.name=Beetle Mask
+item.pearleporter.name=Pearleporter
 
 # Ingots
 item.copper_ingot.name=Copper Ingot
@@ -248,6 +249,7 @@ item.silver_leggings.name=Silver Leggings
 item.silver_boots.name=Silver Boots
 
 message.squid.cooldown=Give it time to produce more ink!
+message.pearleporter.immature=This clam is has not yet produced a pearl. Wait until it emits particles!
 
 # Sounds
 mysticalworld.subtitles.entity.fox.aggro=Fox yips
@@ -277,6 +279,7 @@ mysticalworld.subtitles.entity.lava_cat.purreow=Lava Cat purreows
 mysticalworld.subtitles.entity.silkworm.plop=Silkworm plops
 mysticalworld.subtitles.entity.squid.milk=Squid milked
 mysticalworld.subtitles.item.unripe_pearl.use=Unripe Pearl Teleportation
+mysticalworld.subtitles.item.pearleporter.use=Pearleporter Activated
 mysticalworld.subtitles.entity.silkworm.ambient=Silkworm chirps
 mysticalworld.subtitles.entity.silkworm.death=Silkworm dies
 mysticalworld.subtitles.entity.silkworm.hurt=Silkworm hurt
@@ -326,3 +329,6 @@ mysticalworld.patchouli.biomes=Biomes tagged with: %s
 
 # Attributes
 attribute.name.mysticalworld.blessed=Blessed
+
+# Tooltips
+mysticalworld.tooltip.pearleporter=Right-click a mature clam to extract its pearl without killing it.

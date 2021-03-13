@@ -34,7 +34,7 @@ public class ModItems {
   // All mod items
   public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, antlers, venison, cooked_venison, ink_bottle;
 
-  public static Item amethyst_knife, copper_knife, silver_knife;
+  public static Item amethyst_knife, copper_knife, silver_knife, pearleporter;
 
   public static Item copper_helmet, copper_chestplate, copper_leggings, copper_boots;
   public static Item silver_helmet, silver_chestplate, silver_leggings, silver_boots;
@@ -138,6 +138,8 @@ public class ModItems {
       event.addItem(copper_knife = new ItemKnifeBase("copper_knife", MaterialTypes.material("mysticalworld:copper"), Materials.copper.getRepairIngredient()).setCreativeTab(MysticalWorld.tab));
       event.addItem(silver_knife = new ItemKnifeBase("silver_knife", MaterialTypes.material("mysticalworld:silver"), Materials.silver.getRepairIngredient()).setCreativeTab(MysticalWorld.tab));
     }
+
+    event.addItem(pearleporter = new ItemPearleporter("pearleporter")).setCreativeTab(MysticalWorld.tab);
 
     event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.FARMLAND).setCreativeTab(MysticalWorld.tab));
     event.addItem(aubergine = new ItemFoodBase("aubergine", 4, false).setCreativeTab(MysticalWorld.tab));
