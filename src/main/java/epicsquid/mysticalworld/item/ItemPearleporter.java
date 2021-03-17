@@ -4,6 +4,7 @@ import epicsquid.mysticallib.item.ItemShearsBase;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.EntityClam;
 import epicsquid.mysticalworld.init.ModItems;
+import epicsquid.mysticalworld.init.ModSounds;
 import epicsquid.mysticalworld.recipe.Ingredients;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -15,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -71,6 +73,7 @@ public class ItemPearleporter extends ItemShearsBase {
           ItemStack held = player.getHeldItem(hand);
           held.damageItem(1, player);
         }
+        world.playSound(null, player.posX, player.posY, player.posZ, ModSounds.General.PEARLEPORTER, SoundCategory.PLAYERS , 1f, 0.2f);
       } else {
         player.sendStatusMessage(new TextComponentTranslation("message.pearleporter.immature").setStyle(new Style().setColor(TextFormatting.DARK_PURPLE)), true);
       }

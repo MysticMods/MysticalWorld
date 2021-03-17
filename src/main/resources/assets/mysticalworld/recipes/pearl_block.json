@@ -1,9 +1,8 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "DDD",
-    "DDD",
-    "DDD"
+    "DD",
+    "DD"
     ],
   "key": {
     "D": [

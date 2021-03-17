@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.entity;
 
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,6 +27,10 @@ public class EntityClam extends EntityWaterMob {
     setSize(0.75f, 0.75f);
     this.experienceValue = 3;
     this.rotationYaw = MathHelper.wrapDegrees(rand.nextFloat());
+    this.prevRotationYaw = this.rotationYaw;
+    this.setRotationYawHead(this.rotationYaw);
+    this.setRenderYawOffset(this.rotationYaw);
+    this.setRotation(this.rotationYaw, this.rotationPitch);
   }
 
   @Override
@@ -43,16 +48,18 @@ public class EntityClam extends EntityWaterMob {
   @Override
   protected void applyEntityAttributes() {
     super.applyEntityAttributes();
-    this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(45.0D);
+    this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0);
   }
-
-
 
   @Override
   public void onEntityUpdate() {
     getDataManager().set(age, getDataManager().get(age) + 1);
     super.onEntityUpdate();
+    if (this.getHealth() < this.getMaxHealth()) {
+      MysticalWorld.logger.debug("Clam at " + getPosition().toString() + " is dying!");
+      this.heal(2f);
+    }
   }
 
   @Override
@@ -73,7 +80,7 @@ public class EntityClam extends EntityWaterMob {
 
   @Override
   public boolean getCanSpawnHere() {
-    return this.posY < (double) this.world.getSeaLevel() && super.getCanSpawnHere()/* && (ConfigManager.clam.spawn_failure >= 0 || rand.nextInt(ConfigManager.clam.spawn_failure) != 0)*/;
+    return this.posY < (double) this.world.getSeaLevel() && world.getBlockState(getPosition()).getMaterial() == Material.WATER && super.getCanSpawnHere()/* && (ConfigManager.clam.spawn_failure >= 0 || rand.nextInt(ConfigManager.clam.spawn_failure) != 0)*/;
   }
 
   @Override

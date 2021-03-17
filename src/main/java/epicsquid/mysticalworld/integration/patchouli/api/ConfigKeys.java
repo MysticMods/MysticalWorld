@@ -7,6 +7,7 @@ public class ConfigKeys {
   public static void init() {
     // Entities
 
+    PatchouliAPI.instance.setConfigFlag("roots:clam", ConfigManager.mobs.spawnClams);
     PatchouliAPI.instance.setConfigFlag("roots:deer", ConfigManager.mobs.spawnDeer);
     PatchouliAPI.instance.setConfigFlag("roots:fox", ConfigManager.mobs.spawnFox);
     PatchouliAPI.instance.setConfigFlag("roots:beetle", ConfigManager.mobs.spawnBeetle);
