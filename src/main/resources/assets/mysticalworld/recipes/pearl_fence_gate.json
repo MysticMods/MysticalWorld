@@ -3,7 +3,7 @@
   "pattern": [
     "DSD",
     "DSD"
-    ],
+  ],
   "key": {
     "S": [
       {
@@ -11,10 +11,13 @@
       }
     ],
     "D": [
-        {
-            "type": "forge:ore_dict",
-            "ore": "stickWood"
-        }
+      {
+        "type": "forge:ore_dict",
+        "ore": "gemPearl"
+      },
+      {
+        "item": "mysticalworld:pearl"
+      }
     ]
   },
   "result": {

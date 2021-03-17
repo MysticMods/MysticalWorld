@@ -36,8 +36,13 @@
     {
       "type": "crafting",
       "link_recipe": true,
-      "recipe": "mysticalworld:charred_button",
-      "recipe2": "mysticalworld:charred_pressure_plate"
+      "recipe": "mysticalworld:charred_fence_gate",
+      "recipe2": "mysticalworld:charred_button"
+    },
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:charred_pressure_plate"
     },
     {
       "type": "smelting",

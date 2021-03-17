@@ -23,6 +23,12 @@
       "recipe2": "mysticalworld:pearl_fence",
       "link_recipe": true,
       "title": "Walls & Fences"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:pearl_fence_gate",
+      "link_recipe": true,
+      "title": "Fence Gates"
     }
   ]
 }
