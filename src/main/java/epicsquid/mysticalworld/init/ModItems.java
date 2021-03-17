@@ -1,10 +1,7 @@
 package epicsquid.mysticalworld.init;
 
 import epicsquid.mysticallib.event.RegisterContentEvent;
-import epicsquid.mysticallib.item.ItemBase;
-import epicsquid.mysticallib.item.ItemFoodBase;
-import epicsquid.mysticallib.item.ItemKnifeBase;
-import epicsquid.mysticallib.item.ItemSeedBase;
+import epicsquid.mysticallib.item.*;
 import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.integration.roots.Knives;
@@ -39,7 +36,9 @@ public class ModItems {
   public static Item copper_helmet, copper_chestplate, copper_leggings, copper_boots;
   public static Item silver_helmet, silver_chestplate, silver_leggings, silver_boots;
 
-  public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, raw_squid, cooked_squid, epic_squid, unripe_pearl;
+  public static Item aubergine, aubergine_seed, cooked_aubergine, stuffed_aubergine, raw_squid, cooked_squid, epic_squid, beetroot_salad, cactus_dandelion_salad, cooked_beetroot, cooked_carrot, fish_and_chips, aubergine_salad, stewed_eggplant;
+
+  public static Item unripe_pearl;
 
   public static Item silk_cocoon, silk_thread, spindle, silkworm_egg;
 
@@ -114,6 +113,13 @@ public class ModItems {
         }
       }
     }.setAlwaysEdible().setCreativeTab(MysticalWorld.tab));
+    event.addItem(fish_and_chips = new ItemBowlBase("fish_and_chips", 10, 0.8f, false)).setCreativeTab(MysticalWorld.tab);
+    event.addItem(cooked_beetroot = new ItemBowlBase("cooked_beetroot", 4, 0.8f, false)).setCreativeTab(MysticalWorld.tab);
+    event.addItem(cooked_carrot = new ItemBowlBase("cooked_carrot", 4, 0.6f, false)).setCreativeTab(MysticalWorld.tab);
+    event.addItem(beetroot_salad = new ItemBowlBase("beetroot_salad", 2, 0.6f, false)).setCreativeTab(MysticalWorld.tab);
+    event.addItem(cactus_dandelion_salad = new ItemBowlBase("cactus_dandelion_salad", 3, 0.4f, false)).setCreativeTab(MysticalWorld.tab);
+    event.addItem(aubergine_salad = new ItemBowlBase("aubergine_salad", 3, 0.4f, false)).setCreativeTab(MysticalWorld.tab);
+    event.addItem(stewed_eggplant = new ItemBowlBase("stewed_eggplant", 6, 0.8f, false)).setCreativeTab(MysticalWorld.tab);
     event.addItem(ink_bottle = new ItemBase("ink_bottle").setCreativeTab(MysticalWorld.tab).setContainerItem(Items.GLASS_BOTTLE));
     event.addItem(unripe_pearl = new ItemUnripePearl("unripe_pearl").setCreativeTab(MysticalWorld.tab));
 
@@ -124,7 +130,7 @@ public class ModItems {
         return EnumRarity.UNCOMMON;
       }
     }.setCreativeTab(MysticalWorld.tab));
-
+    event.addItem(pearleporter = new ItemPearleporter("pearleporter")).setCreativeTab(MysticalWorld.tab);
     event.addItem(seeds = new ItemBase("assorted_seeds").setCreativeTab(MysticalWorld.tab));
     event.addItem(cooked_seeds = new ItemFoodBase("cooked_seeds", 1, 0.4f, false) {
       @Override
@@ -138,8 +144,6 @@ public class ModItems {
       event.addItem(copper_knife = new ItemKnifeBase("copper_knife", MaterialTypes.material("mysticalworld:copper"), Materials.copper.getRepairIngredient()).setCreativeTab(MysticalWorld.tab));
       event.addItem(silver_knife = new ItemKnifeBase("silver_knife", MaterialTypes.material("mysticalworld:silver"), Materials.silver.getRepairIngredient()).setCreativeTab(MysticalWorld.tab));
     }
-
-    event.addItem(pearleporter = new ItemPearleporter("pearleporter")).setCreativeTab(MysticalWorld.tab);
 
     event.addItem(aubergine_seed = new ItemSeedBase("aubergine_seed", ModBlocks.aubergine, Blocks.FARMLAND).setCreativeTab(MysticalWorld.tab));
     event.addItem(aubergine = new ItemFoodBase("aubergine", 4, false).setCreativeTab(MysticalWorld.tab));

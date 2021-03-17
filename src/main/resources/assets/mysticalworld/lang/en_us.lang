@@ -31,6 +31,14 @@ item.tannins.name=Tannins
 item.antler_hat.name=Antler Helm
 item.beetle_mask.name=Beetle Mask
 item.pearleporter.name=Pearleporter
+item.beetroot_salad.name=Beetroot Salad
+item.cactus_dandelion_salad.name=Cactus Dandelion Salad
+item.cooked_beetroot.name=Cooked Beetroot
+item.cooked_carrot.name=Cooked Carrot
+item.dandelion_cornflower_salad.name=Dandelion Cornflower Salad
+item.fish_and_chips.name=Fish & Chips
+item.stewed_eggplant.name=Stewed Eggplant
+item.aubergine_salad.name=Aubergine Salad
 
 # Ingots
 item.copper_ingot.name=Copper Ingot

@@ -43,5 +43,7 @@ public class ModRecipes {
     GameRegistry.addSmelting(ModBlocks.wet_mud_brick, new ItemStack(ModBlocks.mud_brick), 0.125f);
     GameRegistry.addSmelting(ModBlocks.charred_log, new ItemStack(Items.COAL, 1, 1), 0.15f);
     GameRegistry.addSmelting(ModItems.seeds, new ItemStack(ModItems.cooked_seeds), 0.05f);
+    GameRegistry.addSmelting(Items.CARROT, new ItemStack(ModItems.cooked_carrot), 0.05f);
+    GameRegistry.addSmelting(Items.BEETROOT, new ItemStack(ModItems.cooked_beetroot), 0.05f);
   }
 }
