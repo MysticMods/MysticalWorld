@@ -21,12 +21,10 @@ public class RegistryManager {
     LibRegistry.setActiveMod(MysticalWorld.MODID, MysticalWorld.CONTAINER);
 
     ModBlocks.registerBlocks(event);
-
+    Materials.initMaterials(event);
     ModItems.registerItems(event);
 
     ModSounds.initSounds(event);
-
-    Materials.initMaterials(event);
     Tools.registerTools(event);
 
     ModEntities.registerMobs();

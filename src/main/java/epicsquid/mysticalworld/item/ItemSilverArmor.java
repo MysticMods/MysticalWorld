@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ItemSilverArmor extends ItemArmorBase {
   public ItemSilverArmor(String name, EntityEquipmentSlot equipmentSlotIn) {
-    super(name, ModItems.silverArmor, equipmentSlotIn, new ResourceLocation(MysticalWorld.MODID, "textures/model/armor/silver_layer"));
+    super(name, Materials.silverArmor, equipmentSlotIn, new ResourceLocation(MysticalWorld.MODID, "textures/model/armor/silver_layer"));
   }
 
   @Override

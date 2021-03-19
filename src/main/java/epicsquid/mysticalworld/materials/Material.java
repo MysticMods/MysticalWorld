@@ -2,6 +2,7 @@ package epicsquid.mysticalworld.materials;
 
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.types.OneTimeSupplier;
+import epicsquid.mysticalworld.MysticalWorld;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;

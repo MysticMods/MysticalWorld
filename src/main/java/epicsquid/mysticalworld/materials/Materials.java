@@ -2,7 +2,12 @@ package epicsquid.mysticalworld.materials;
 
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.material.MaterialTypes;
+import epicsquid.mysticalworld.MysticalWorld;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.EnumHelper;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -16,15 +21,27 @@ public class Materials {
   public static Material amethyst;
   public static Material quartz;
 
+  public static ItemArmor.ArmorMaterial copperArmor = EnumHelper.addArmorMaterial("mysticalworld:copper", MysticalWorld.MODID + ":copper", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+  public static ItemArmor.ArmorMaterial silverArmor = EnumHelper.addArmorMaterial("mysticalworld:silver", MysticalWorld.MODID + ":gold", 25, new int[]{2, 5, 6, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F);
+  public static ItemArmor.ArmorMaterial miscArmor = EnumHelper.addArmorMaterial("mysticalworld:misc", MysticalWorld.MODID + ":misc", 15, new int[]{2, 1, 1, 1}, 7, SoundEvents.ITEM_ARMOR_EQIIP_ELYTRA, 0.2f);
+
   public static List<Material> getMaterials() {
     return Arrays.asList(copper, silver, amethyst, quartz);
   }
 
   public static void createMaterials() {
-    copper = new MaterialCopper("Copper", 3.5f, 0.65f, 1, -1, -1, MaterialTypes.material("mysticalworld:copper"), true);
-    silver = new MaterialSilver("Silver", 5f, 0.35f, 2, -1, -1, MaterialTypes.material("mysticalworld:silver"), true);
-    amethyst = new MaterialAmethyst("Amethyst", 3.0f, 0.7f, 2, 3, 7, MaterialTypes.material("mysticalworld:amethyst"), true);
-    quartz = new MaterialQuartz("Quartz", 3.0f, 3.0f, 1, 2, 5, null, false);
+    Item.ToolMaterial copper = EnumHelper.addToolMaterial("mysticalworld:copper", 2, 200, 4.0f, 2.0f, 7);
+    Item.ToolMaterial silver = EnumHelper.addToolMaterial("mysticalworld:silver", 2, 175, 6.0f, 2.5f, 18);
+    Item.ToolMaterial amethyst = EnumHelper.addToolMaterial("mysticalworld:amethyst", 3, 1561, 8.0f, 3.0f, 12);
+    Item.ToolMaterial quartz = EnumHelper.addToolMaterial("mysticalworld:quartz", 0, 99, 1.0f, 1.0f, 1);
+    MaterialTypes.addMaterial("mysticalworld:copper", copper, copperArmor, 2.5f, -1.5f);
+    MaterialTypes.addMaterial("mysticalworld:silver", silver, silverArmor, 2.5f, -1.0f);
+    MaterialTypes.addMaterial("mysticalworld:amethyst", amethyst, null, 3f, -1.0f);
+    MaterialTypes.addMaterial("mysticalworld:quartz", quartz, null, 0f, -1.5f);
+    Materials.copper = new MaterialCopper("Copper", 3.5f, 0.65f, 1, -1, -1, MaterialTypes.material("mysticalworld:copper"), true);
+    Materials.silver = new MaterialSilver("Silver", 5f, 0.35f, 2, -1, -1, MaterialTypes.material("mysticalworld:silver"), true);
+    Materials.amethyst = new MaterialAmethyst("Amethyst", 3.0f, 0.7f, 2, 3, 7, MaterialTypes.material("mysticalworld:amethyst"), true);
+    Materials.quartz = new MaterialQuartz("Quartz", 3.0f, 3.0f, 1, 2, 5, MaterialTypes.material("mysticalworld:quartz"), false);
   }
 
   public static void initMaterials(@Nonnull RegisterContentEvent event) {

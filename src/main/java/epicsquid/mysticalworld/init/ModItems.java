@@ -48,21 +48,10 @@ public class ModItems {
 
   public static Item antler_hat, beetle_mask;
 
-  public static ItemArmor.ArmorMaterial copperArmor = EnumHelper.addArmorMaterial("mysticalworld:copper", MysticalWorld.MODID + ":copper", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
-  public static ItemArmor.ArmorMaterial silverArmor = EnumHelper.addArmorMaterial("mysticalworld:silver", MysticalWorld.MODID + ":gold", 25, new int[]{2, 5, 6, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F);
-  public static ItemArmor.ArmorMaterial miscArmor = EnumHelper.addArmorMaterial("mysticalworld:misc", MysticalWorld.MODID + ":misc", 15, new int[]{2, 1, 1, 1}, 7, SoundEvents.ITEM_ARMOR_EQIIP_ELYTRA, 0.2f);
-
   /**
    * Register all items
    */
   public static void registerItems(@Nonnull RegisterContentEvent event) {
-    Item.ToolMaterial copper = EnumHelper.addToolMaterial("mysticalworld:copper", 2, 200, 4.0f, 2.0f, 7);
-    Item.ToolMaterial silver = EnumHelper.addToolMaterial("mysticalworld:silver", 2, 175, 6.0f, 2.5f, 18);
-    Item.ToolMaterial amethyst = EnumHelper.addToolMaterial("mysticalworld:amethyst", 3, 1561, 8.0f, 3.0f, 12);
-    MaterialTypes.addMaterial("mysticalworld:copper", copper, copperArmor, 2.5f, -1.5f);
-    MaterialTypes.addMaterial("mysticalworld:silver", silver, silverArmor, 2.5f, -1.0f);
-    MaterialTypes.addMaterial("mysticalworld:amethyst", amethyst, null, 3f, -1.0f);
-
     event.addItem(copper_helmet = new ItemCopperArmor("copper_helmet", EntityEquipmentSlot.HEAD).setCreativeTab(MysticalWorld.tab));
     event.addItem(copper_chestplate = new ItemCopperArmor("copper_chestplate", EntityEquipmentSlot.CHEST).setCreativeTab(MysticalWorld.tab));
     event.addItem(copper_leggings = new ItemCopperArmor("copper_leggings", EntityEquipmentSlot.LEGS).setCreativeTab(MysticalWorld.tab));
@@ -73,8 +62,8 @@ public class ModItems {
     event.addItem(silver_leggings = new ItemSilverArmor("silver_leggings", EntityEquipmentSlot.LEGS).setCreativeTab(MysticalWorld.tab));
     event.addItem(silver_boots = new ItemSilverArmor("silver_boots", EntityEquipmentSlot.FEET).setCreativeTab(MysticalWorld.tab));
 
-    event.addItem(antler_hat = new ItemAntlerHat(miscArmor, "antler_hat").setCreativeTab(MysticalWorld.tab));
-    event.addItem(beetle_mask = new ItemBeetleMask(miscArmor, "beetle_mask").setCreativeTab(MysticalWorld.tab));
+    event.addItem(antler_hat = new ItemAntlerHat(Materials.miscArmor, "antler_hat").setCreativeTab(MysticalWorld.tab));
+    event.addItem(beetle_mask = new ItemBeetleMask(Materials.miscArmor, "beetle_mask").setCreativeTab(MysticalWorld.tab));
 
     // Mob Drops
     event.addItem(carapace = new ItemBase("carapace").setCreativeTab(MysticalWorld.tab));

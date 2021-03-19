@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ItemCopperArmor extends ItemArmorBase {
   public ItemCopperArmor(String name, EntityEquipmentSlot equipmentSlotIn) {
-    super(name, ModItems.copperArmor, equipmentSlotIn, new ResourceLocation(MysticalWorld.MODID, "textures/model/armor/copper_layer"));
+    super(name, Materials.copperArmor, equipmentSlotIn, new ResourceLocation(MysticalWorld.MODID, "textures/model/armor/copper_layer"));
   }
 
   @Override
