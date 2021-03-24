@@ -86,4 +86,9 @@ public class ItemBeetleMask extends ItemArmor implements IModeledObject {
   public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
     return ModelBeetleMask.instance;
   }
+
+  @Override
+  public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    return toRepair.getItem() == this && repair.getItem() == ModItems.carapace;
+  }
 }

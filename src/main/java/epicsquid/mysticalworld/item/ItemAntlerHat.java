@@ -6,6 +6,7 @@ import epicsquid.mysticallib.util.Util;
 import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.entity.model.armor.ModelAntlerHat;
+import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.materials.Materials;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -26,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreIngredient;
 
 import javax.annotation.Nullable;
 
@@ -94,5 +96,10 @@ public class ItemAntlerHat extends ItemArmor implements IModeledObject {
   @SideOnly(Side.CLIENT)
   public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
     return ModelAntlerHat.instance;
+  }
+
+  @Override
+  public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    return toRepair.getItem() == this && repair.getItem() == ModItems.antlers;
   }
 }

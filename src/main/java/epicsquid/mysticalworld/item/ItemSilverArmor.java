@@ -10,9 +10,13 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.oredict.OreIngredient;
 
 public class ItemSilverArmor extends ItemArmorBase {
+  public static Ingredient silverIngot = null;
+
   public ItemSilverArmor(String name, EntityEquipmentSlot equipmentSlotIn) {
     super(name, Materials.silverArmor, equipmentSlotIn, new ResourceLocation(MysticalWorld.MODID, "textures/model/armor/silver_layer"));
   }
@@ -32,5 +36,14 @@ public class ItemSilverArmor extends ItemArmorBase {
     }
 
     return map;
+  }
+
+
+  @Override
+  public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    if (silverIngot == null) {
+      silverIngot = new OreIngredient("ingotSilver");
+    }
+    return toRepair.getItem() == this && silverIngot.test(repair);
   }
 }
