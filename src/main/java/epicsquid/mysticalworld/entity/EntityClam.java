@@ -56,10 +56,6 @@ public class EntityClam extends EntityWaterMob {
   public void onEntityUpdate() {
     getDataManager().set(age, getDataManager().get(age) + 1);
     super.onEntityUpdate();
-    if (this.getHealth() < this.getMaxHealth()) {
-      MysticalWorld.logger.debug("Clam at " + getPosition().toString() + " is dying!");
-      this.heal(2f);
-    }
   }
 
   @Override
