@@ -32,7 +32,7 @@ public class ClientSetup {
     event.enqueueWork(() -> {
       RenderType rendertype = RenderType.getCutoutMipped();
       RenderTypeLookup.setRenderLayer(ModBlocks.AUBERGINE_CROP.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.WILD_AUBERGINE_CROP.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.WILD_AUBERGINE.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.STONEPETAL.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_STONEPETAL.get(), rendertype);
@@ -45,7 +45,5 @@ public class ClientSetup {
         c.register((a, layer) -> egg.get().getColor(layer), egg.get());
       }
     });
-
-    // TODO: Cutout, etc, blocks
   }
 }

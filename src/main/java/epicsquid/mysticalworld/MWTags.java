@@ -13,6 +13,9 @@ public class MWTags {
     public static Tags.IOptionalNamedTag<Block> NETHER_BRICKS = compatTag("nether_bricks");
     public static Tags.IOptionalNamedTag<Block> RED_NETHER_BRICKS = compatTag("red_nether_bricks");
     public static Tags.IOptionalNamedTag<Block> TERRACOTTA = compatTag("terracotta");
+    public static Tags.IOptionalNamedTag<Block> CROPS = compatTag("crops");
+    public static Tags.IOptionalNamedTag<Block> AUBERGINE_CROP = compatTag("crops/aubergine");
+    public static Tags.IOptionalNamedTag<Block> EGGPLANT_CROP = compatTag("crops/eggplant");
 
     public static Tags.IOptionalNamedTag<Block> QUARTZ_ORE = compatTag("ores/quartz");
     public static Tags.IOptionalNamedTag<Block> AMETHYST_ORE = compatTag("ores/amethyst");
@@ -47,7 +50,6 @@ public class MWTags {
     public static Tags.IOptionalNamedTag<Item> KNIVES = modTag("knives");
     public static Tags.IOptionalNamedTag<Item> GEMS = modTag("gems");
     public static Tags.IOptionalNamedTag<Item> VEGETABLES = compatTag("vegetables");
-    /*    public static Tags.IOptionalNamedTag<Item> CROPS = compatTag("crops");*/
     public static Tags.IOptionalNamedTag<Item> COOKED_VEGETABLES = compatTag("cooked_vegetables");
     public static Tags.IOptionalNamedTag<Item> COOKED_SEAFOOD = compatTag("cooked_seafood");
 

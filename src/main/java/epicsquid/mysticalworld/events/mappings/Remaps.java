@@ -129,5 +129,6 @@ public class Remaps {
     ignore("zombie_villager_wall_head", RemapType.BLOCK);
 
     ignore("rotten_apple", RemapType.ITEM);
+    remapBlock("wild_aubergine_crop", "wild_aubergine");
   }
 }

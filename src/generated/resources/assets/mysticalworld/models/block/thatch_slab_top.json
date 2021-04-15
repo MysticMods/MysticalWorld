@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab_top",
   "textures": {
-    "side": "mysticalworld:block/thatch",
-    "bottom": "mysticalworld:block/thatch",
-    "top": "mysticalworld:block/thatch"
+    "side": "mysticalworld:block/simple_thatch",
+    "bottom": "mysticalworld:block/simple_thatch",
+    "top": "mysticalworld:block/simple_thatch"
   }
 }

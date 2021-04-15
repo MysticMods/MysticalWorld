@@ -138,6 +138,9 @@ public class ModTags {
       b.add(MWTags.Blocks.MUSHROOM_BLOCKS, ModBlocks.MUSHROOM_INSIDE.get());
       b.add(MWTags.Blocks.BASE_STONE_GRANITE, Blocks.GRANITE);
       b.additional(Tags.Blocks.STORAGE_BLOCKS).add(MWTags.Blocks.AMETHYST_STORAGE, MWTags.Blocks.COPPER_STORAGE, MWTags.Blocks.LEAD_STORAGE, MWTags.Blocks.QUICKSILVER_STORAGE, MWTags.Blocks.SILVER_STORAGE, MWTags.Blocks.TIN_STORAGE, MWTags.Blocks.PEARL_STORAGE);
+      b.add(MWTags.Blocks.CROPS, ModBlocks.AUBERGINE_CROP.get());
+      b.add(MWTags.Blocks.AUBERGINE_CROP, ModBlocks.AUBERGINE_CROP.get());
+      b.add(MWTags.Blocks.EGGPLANT_CROP, ModBlocks.AUBERGINE_CROP.get());
 
       p.getOrCreateBuilder(BlockTags.BASE_STONE_OVERWORLD).add(ModBlocks.SOFT_STONE.get());
     });

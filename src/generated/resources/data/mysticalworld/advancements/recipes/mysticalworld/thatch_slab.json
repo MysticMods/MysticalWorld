@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_thatch": {
+    "has_simple_thatch": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:thatch"
+            "item": "mysticalworld:simple_thatch"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_thatch",
+      "has_simple_thatch",
       "has_the_recipe"
     ]
   ]

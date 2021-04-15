@@ -23,6 +23,7 @@ import net.minecraft.data.SingleItemRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -238,9 +239,9 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          p.slab(DataIngredient.items(ModBlocks.THATCH), ModBlocks.THATCH_SLAB, null, true)
+          p.slab(DataIngredient.items(ModBlocks.SIMPLE_THATCH), ModBlocks.THATCH_SLAB, null, true)
       )
-      .blockstate(slab(ModBlocks.THATCH))
+      .blockstate(slab(ModBlocks.SIMPLE_THATCH))
       .register();
 
   public static RegistryEntry<WallBlock> THATCH_WALL = REGISTRATE.block("thatch_wall", Material.WOOD, WallBlock::new)
@@ -318,10 +319,9 @@ public class ModBlocks {
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
-  public static RegistryEntry<WildAubergineCropBlock> WILD_AUBERGINE_CROP = REGISTRATE.block("wild_aubergine_crop", WildAubergineCropBlock::new)
+  public static RegistryEntry<WildAubergineBlock> WILD_AUBERGINE = REGISTRATE.block("wild_aubergine", WildAubergineBlock::new)
       .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.
-          droppingAndBonusWhen(ModBlocks.WILD_AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.WILD_AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(WildAubergineCropBlock.AGE, 0)))))
+      .loot((p, t) -> p.registerLootTable(t, LootTable.builder().addLootPool(RegistrateBlockLootTables.withSurvivesExplosion(ModItems.AUBERGINE.get(), LootPool.builder().rolls(RandomValueRange.of(1, 3)).addEntry(ItemLootEntry.builder(ModItems.AUBERGINE.get())))).addLootPool(RegistrateBlockLootTables.withSurvivesExplosion(ModItems.AUBERGINE_SEEDS.get(), LootPool.builder().rolls(RandomValueRange.of(1, 2)).addEntry(ItemLootEntry.builder(ModItems.AUBERGINE_SEEDS.get()))))))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry())
               .partialState()
