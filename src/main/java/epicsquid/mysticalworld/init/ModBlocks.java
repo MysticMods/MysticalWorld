@@ -23,7 +23,10 @@ import net.minecraft.data.SingleItemRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.loot.*;
+import net.minecraft.loot.ItemLootEntry;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -241,6 +244,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SIMPLE_THATCH), ModBlocks.THATCH_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.SIMPLE_THATCH))
       .register();
 
@@ -354,6 +358,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(() -> Blocks.RED_MUSHROOM_BLOCK))
       .register();
 
@@ -441,6 +446,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(() -> Blocks.BROWN_MUSHROOM_BLOCK))
       .register();
 
@@ -528,6 +534,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(() -> Blocks.MUSHROOM_STEM))
       .register();
 
@@ -628,6 +635,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.MUSHROOM_INSIDE))
       .register();
 
@@ -746,6 +754,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.MUD_BLOCK))
       .register();
 
@@ -859,6 +868,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.MUD_BRICK))
       .register();
 
@@ -1017,6 +1027,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.CHARRED_PLANKS), ModBlocks.CHARRED_SLAB, null, false)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.CHARRED_PLANKS))
       .register();
 
@@ -1116,6 +1127,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
@@ -1216,6 +1228,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.IRON_BRICK), ModBlocks.IRON_BRICK_SLAB, null, false)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.IRON_BRICK))
       .register();
 
@@ -1297,6 +1310,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SOFT_STONE), ModBlocks.SOFT_STONE_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.SOFT_STONE))
       .register();
 
@@ -1372,6 +1386,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.CRACKED_STONE), ModBlocks.CRACKED_STONE_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.CRACKED_STONE))
       .register();
 
@@ -1453,6 +1468,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.BLACKENED_STONE), ModBlocks.BLACKENED_STONE_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.BLACKENED_STONE))
       .register();
 
@@ -1538,6 +1554,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SOFT_OBSIDIAN), ModBlocks.SOFT_OBSIDIAN_SLAB, null, true)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
@@ -1652,6 +1669,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.AMETHYST_BLOCK), ModBlocks.AMETHYST_SLAB, null, false)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.AMETHYST_BLOCK))
       .register();
 
@@ -1755,6 +1773,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.COPPER_BLOCK), ModBlocks.COPPER_SLAB, null, false)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.COPPER_BLOCK))
       .register();
 
@@ -1861,6 +1880,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.LEAD_BLOCK), ModBlocks.LEAD_SLAB, null, false)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.LEAD_BLOCK))
       .register();
 
@@ -1965,6 +1985,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.QUICKSILVER_BLOCK), ModBlocks.QUICKSILVER_SLAB, null, false)
       )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.QUICKSILVER_BLOCK))
       .register();
 
@@ -2068,6 +2089,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SILVER_BLOCK), ModBlocks.SILVER_SLAB, null, false)
       )
+     .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.SILVER_BLOCK))
       .register();
 
@@ -2172,6 +2194,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.TIN_BLOCK), ModBlocks.TIN_SLAB, null, false)
       )
+     .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.TIN_BLOCK))
       .register();
 
@@ -2254,6 +2277,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_SLAB, null, true)
       )
+     .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.PEARL_BLOCK))
       .register();
 
