@@ -7,7 +7,7 @@
       "model": "mysticalworld:block/brown_mushroom_slab"
     },
     "type=double": {
-      "model": "minecraft:block/brown_mushroom_block"
+      "model": "mysticalworld:block/brown_mushroom_full"
     }
   }
 }

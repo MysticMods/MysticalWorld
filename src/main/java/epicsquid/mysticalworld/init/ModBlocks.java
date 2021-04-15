@@ -89,6 +89,10 @@ public class ModBlocks {
     return (ctx, p) -> p.slabBlock(ctx.getEntry(), p.blockTexture(parent.get()), p.blockTexture(parent.get()));
   }
 
+  public static <T extends SlabBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> slab(RegistryEntry<? extends Block> parent, Supplier<Block> visual) {
+    return (ctx, p) -> p.slabBlock(ctx.getEntry(), p.blockTexture(parent.get()), p.blockTexture(visual.get()));
+  }
+
   public static <T extends SlabBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> slab(Supplier<? extends Block> parent) {
     return (ctx, p) -> p.slabBlock(ctx.getEntry(), p.blockTexture(parent.get()), p.blockTexture(parent.get()));
   }
@@ -333,7 +337,28 @@ public class ModBlocks {
       )
       .register();
 
+
   // MUSHROOM
+  public static RegistryEntry<Block> RED_MUSHROOM_FULL = REGISTRATE.block("red_mushroom_full", Material.WOOD, Block::new)
+      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .blockstate((ctx, p) -> {
+        p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/red_mushroom_block")));
+      })
+      .register();
+
+  public static RegistryEntry<Block> BROWN_MUSHROOM_FULL = REGISTRATE.block("brown_mushroom_full", Material.WOOD, Block::new)
+      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .blockstate((ctx, p) -> {
+        p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/brown_mushroom_block")));
+      })
+      .register();
+
+  public static RegistryEntry<Block> STEM_MUSHROOM_FULL = REGISTRATE.block("stem_mushroom_full", Material.WOOD, Block::new)
+      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .blockstate((ctx, p) -> {
+        p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_stem")));
+      })
+      .register();
 
   public static RegistryEntry<StairsBlock> RED_MUSHROOM_STAIRS = REGISTRATE.block("red_mushroom_stairs", Material.WOOD, stairsBlock(() -> Blocks.RED_MUSHROOM_BLOCK))
       .properties(MUSHROOM_PROPS)
@@ -359,7 +384,7 @@ public class ModBlocks {
           p.slab(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_SLAB, null, true)
       )
       .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
-      .blockstate(slab(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .blockstate(slab(ModBlocks.RED_MUSHROOM_FULL, () -> Blocks.RED_MUSHROOM_BLOCK))
       .register();
 
   public static RegistryEntry<WallBlock> RED_MUSHROOM_WALL = REGISTRATE.block("red_mushroom_wall", Material.WOOD, WallBlock::new)
@@ -447,7 +472,7 @@ public class ModBlocks {
           p.slab(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_SLAB, null, true)
       )
       .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
-      .blockstate(slab(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .blockstate(slab(ModBlocks.BROWN_MUSHROOM_FULL, () -> Blocks.BROWN_MUSHROOM_BLOCK))
       .register();
 
   public static RegistryEntry<WallBlock> BROWN_MUSHROOM_WALL = REGISTRATE.block("brown_mushroom_wall", Material.WOOD, WallBlock::new)
@@ -535,7 +560,7 @@ public class ModBlocks {
           p.slab(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_SLAB, null, true)
       )
       .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
-      .blockstate(slab(() -> Blocks.MUSHROOM_STEM))
+      .blockstate(slab(ModBlocks.STEM_MUSHROOM_FULL, () -> Blocks.MUSHROOM_STEM))
       .register();
 
   public static RegistryEntry<WallBlock> MUSHROOM_STEM_WALL = REGISTRATE.block("mushroom_stem_wall", Material.WOOD, WallBlock::new)

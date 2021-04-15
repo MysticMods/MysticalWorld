@@ -7,7 +7,7 @@
       "model": "mysticalworld:block/red_mushroom_slab"
     },
     "type=double": {
-      "model": "minecraft:block/red_mushroom_block"
+      "model": "mysticalworld:block/red_mushroom_full"
     }
   }
 }
