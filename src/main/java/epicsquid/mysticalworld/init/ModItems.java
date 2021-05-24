@@ -103,7 +103,7 @@ public class ModItems {
       }
     }.setAlwaysEdible().setCreativeTab(MysticalWorld.tab));
     event.addItem(fish_and_chips = new ItemFoodBase("fish_and_chips", 10, 0.8f, false)).setCreativeTab(MysticalWorld.tab);
-    event.addItem(cooked_beetroot = new ItemBowlBase("cooked_beetroot", 4, 0.8f, false)).setCreativeTab(MysticalWorld.tab);
+    event.addItem(cooked_beetroot = new ItemFoodBase("cooked_beetroot", 4, 0.8f, false)).setCreativeTab(MysticalWorld.tab);
     event.addItem(cooked_carrot = new ItemFoodBase("cooked_carrot", 4, 0.6f, false)).setCreativeTab(MysticalWorld.tab);
     event.addItem(beetroot_salad = new ItemBowlBase("beetroot_salad", 2, 0.6f, false)).setCreativeTab(MysticalWorld.tab);
     event.addItem(cactus_dandelion_salad = new ItemBowlBase("cactus_dandelion_salad", 3, 0.4f, false)).setCreativeTab(MysticalWorld.tab);
