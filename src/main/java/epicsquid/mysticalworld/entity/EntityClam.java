@@ -82,7 +82,7 @@ public class EntityClam extends EntityWaterMob {
 
   @Override
   public boolean getCanSpawnHere() {
-    return this.posY < (double) this.world.getSeaLevel() && world.getBlockState(getPosition()).getMaterial() == Material.WATER && super.getCanSpawnHere()/* && (ConfigManager.clam.spawn_failure >= 0 || rand.nextInt(ConfigManager.clam.spawn_failure) != 0)*/;
+    return this.posY < (double) this.world.getSeaLevel() && this.posY < (double)this.world.getSeaLevel() && super.getCanSpawnHere();
   }
 
   @Override
@@ -109,7 +109,7 @@ public class EntityClam extends EntityWaterMob {
   @Override
   public void onLivingUpdate() {
     if (this.world.isRemote) {
-      if (this.dataManager.get(age) >= ConfigManager.clam.maturity) {
+      if (this.dataManager.get(age) >= ConfigManager.clam.maturity && this.ticksExisted % 13 == 0) {
         EnumParticleTypes type = this.dataManager.get(ender) ? EnumParticleTypes.PORTAL : EnumParticleTypes.WATER_BUBBLE;
         for (int i = 0; i < 2; ++i) {
           this.world.spawnParticle(type, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
