@@ -111,7 +111,7 @@ public class EntityClam extends EntityWaterMob {
     if (this.world.isRemote) {
       if (this.dataManager.get(age) >= ConfigManager.clam.maturity && this.ticksExisted % 13 == 0) {
         EnumParticleTypes type = this.dataManager.get(ender) ? EnumParticleTypes.PORTAL : EnumParticleTypes.WATER_BUBBLE;
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < 5; ++i) {
           this.world.spawnParticle(type, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
         }
       }
