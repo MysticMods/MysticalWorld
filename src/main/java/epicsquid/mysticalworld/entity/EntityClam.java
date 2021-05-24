@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -31,6 +32,11 @@ public class EntityClam extends EntityWaterMob {
     this.setRotationYawHead(this.rotationYaw);
     this.setRenderYawOffset(this.rotationYaw);
     this.setRotation(this.rotationYaw, this.rotationPitch);
+  }
+
+  @Override
+  public void addPotionEffect(PotionEffect potioneffectIn) {
+    super.addPotionEffect(potioneffectIn);
   }
 
   @Override

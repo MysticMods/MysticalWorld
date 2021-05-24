@@ -175,6 +175,7 @@ public class EntityFox extends EntityTameable {
 
   @Override
   public boolean attackEntityFrom(DamageSource source, float amount) {
+    MysticalWorld.logger.info(source.toString() + " amount: " + String.format("%.1f", amount));
     if (this.isEntityInvulnerable(source)) {
       return false;
     } else {
