@@ -9,6 +9,7 @@ import epicsquid.mysticalworld.init.ModItems;
 import epicsquid.mysticalworld.integration.endercore.EndercoreHarvest;
 import epicsquid.mysticalworld.integration.harvest.HarvestIntegration;
 import epicsquid.mysticalworld.integration.patchouli.api.ConfigKeys;
+import epicsquid.mysticalworld.integration.thaumcraft.AspectRegistry;
 import epicsquid.mysticalworld.loot.conditions.*;
 import epicsquid.mysticalworld.world.OreGenerator;
 import epicsquid.mysticalworld.world.StructureGenerator;
@@ -21,6 +22,7 @@ import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -37,6 +39,9 @@ public class CommonProxy {
     GameRegistry.registerWorldGenerator(new OreGenerator(), 1);
     ModEntities.registerLootTables();
     LootTableList.register(new ResourceLocation(MysticalWorld.MODID, "chests/hut"));
+    if (Loader.isModLoaded("thaumcraft")) {
+      MinecraftForge.EVENT_BUS.register(AspectRegistry.class);
+    }
   }
 
   public void init(FMLInitializationEvent event) {

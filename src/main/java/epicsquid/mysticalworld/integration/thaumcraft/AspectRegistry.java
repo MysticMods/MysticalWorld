@@ -13,10 +13,8 @@ import thaumcraft.api.aspects.AspectEventProxy;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.AspectRegistryEvent;
 
-@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class AspectRegistry {
   @SubscribeEvent
-  @Optional.Method(modid = "thaumcraft")
   public static void registerAspects(AspectRegistryEvent event) {
     AspectEventProxy proxy = event.register;
     proxy.registerObjectTag(new ItemStack(Materials.amethyst.getItem()), new AspectList().add(Aspect.CRYSTAL, 15).add(Aspect.DESIRE, 15));
