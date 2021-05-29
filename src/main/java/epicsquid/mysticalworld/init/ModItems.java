@@ -199,9 +199,7 @@ public class ModItems {
     OreDictionary.registerOre("listAllveggie", ModItems.aubergine);
     OreDictionary.registerOre("listAllvenisoncooked", ModItems.cooked_venison);
     OreDictionary.registerOre("listAllvenisonraw", ModItems.venison);
-
     OreDictionary.registerOre("string", ModItems.silk_thread);
-    OreDictionary.registerOre("pyreFireStarters", Items.FLINT_AND_STEEL);
   }
 
   private static void registerSeedDrops() {
