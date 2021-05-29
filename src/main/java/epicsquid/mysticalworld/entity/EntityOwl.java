@@ -182,7 +182,7 @@ public class EntityOwl extends EntityShoulderRiding implements EntityFlying {
   }
 
   /**
-   * Gets the pitch of living sounds in living entities.
+   * Gets the pitch of living sounds in living thaumcraft.entities.
    */
   @Override
   protected float getSoundPitch() {
@@ -199,7 +199,7 @@ public class EntityOwl extends EntityShoulderRiding implements EntityFlying {
   }
 
   /**
-   * Returns true if this entity should push and be pushed by other entities when colliding.
+   * Returns true if this entity should push and be pushed by other thaumcraft.entities when colliding.
    */
   @Override
   public boolean canBePushed() {

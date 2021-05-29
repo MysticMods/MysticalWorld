@@ -362,7 +362,7 @@ public class EntityEndermini extends EntityCreature {
     }
 
     /**
-     * Reset the task's internal state. Called when this task is interrupted by another one
+     * Reset the task's thaumcraft.internal state. Called when this task is interrupted by another one
      */
     @Override
     public void resetTask() {

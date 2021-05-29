@@ -41,6 +41,7 @@ minecraft {
     replaceIn "MysticalWorld.java"
 }
 repositories {
+    mavenLocal()
     maven {
         // location of the maven that hosts JEI files
         name = "Progwml6 maven"
@@ -78,9 +79,9 @@ dependencies {
         })
     }
 
-/*    deobfCompile("jeresources:JustEnoughResources-${minecraft_version}:${jer_version}") {
+    compileOnly("jeresources:JustEnoughResources-${minecraft_version}:${jer_version}") {
         exclude group: 'mezz.jei'
-    }*/
+    }
     compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}"
 }
 

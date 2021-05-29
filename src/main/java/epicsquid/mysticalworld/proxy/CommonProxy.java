@@ -79,7 +79,7 @@ public class CommonProxy {
     GameRegistry.registerWorldGenerator(treeGenerator = new WorldGeneratorTrees(), 400);
     ConfigKeys.init();
 
-    // Leaping potions!
+    // Leaping thaumcraft.potions!
     PotionHelper.addMix(PotionTypes.AWKWARD, ModItems.antlers, PotionTypes.LEAPING);
   }
 

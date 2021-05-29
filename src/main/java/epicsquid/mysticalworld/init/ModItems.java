@@ -28,7 +28,7 @@ import javax.annotation.Nonnull;
 
 public class ModItems {
 
-  // All mod items
+  // All mod thaumcraft.items
   public static Item iron_dust, iron_dust_tiny, gold_dust, gold_dust_tiny, carapace, pelt, antlers, venison, cooked_venison, ink_bottle;
 
   public static Item amethyst_knife, copper_knife, silver_knife, pearleporter;
@@ -49,7 +49,7 @@ public class ModItems {
   public static Item antler_hat, beetle_mask;
 
   /**
-   * Register all items
+   * Register all thaumcraft.items
    */
   public static void registerItems(@Nonnull RegisterContentEvent event) {
     event.addItem(copper_helmet = new ItemCopperArmor("copper_helmet", EntityEquipmentSlot.HEAD).setCreativeTab(MysticalWorld.tab));
