@@ -6,6 +6,7 @@ import epicsquid.mysticalworld.MysticalWorld;
 import epicsquid.mysticalworld.config.ConfigManager;
 import epicsquid.mysticalworld.config.FeatureConfig;
 import epicsquid.mysticalworld.config.OreConfig;
+import epicsquid.mysticalworld.mixins.AccessorCodec;
 import epicsquid.mysticalworld.world.SupplierBlockStateProvider;
 import epicsquid.mysticalworld.world.feature.SupplierOreFeature;
 import epicsquid.mysticalworld.world.feature.SupplierOreFeatureConfig;
@@ -14,6 +15,7 @@ import epicsquid.mysticalworld.world.placement.DimensionCountRangeConfig;
 import epicsquid.mysticalworld.world.test.OreGenTest;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;
@@ -40,6 +42,7 @@ import net.minecraftforge.event.world.WorldEvent;
 import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 import noobanidus.libs.noobutil.types.LazySupplier;
 
+import java.lang.invoke.MethodHandle;
 import java.util.*;
 import java.util.function.Supplier;
 
@@ -136,10 +139,17 @@ public class ModFeatures {
     }
   }
 
+  private static MethodHandle GETCODEC_METHOD;
+
   public static void onWorldLoad(final WorldEvent.Load event) {
     if (event.getWorld() instanceof ServerWorld) {
       ServerWorld world = (ServerWorld) event.getWorld();
       if (world.getChunkProvider().getChunkGenerator() instanceof FlatChunkGenerator && world.getDimensionKey().equals(World.OVERWORLD)) {
+        return;
+      }
+
+      ResourceLocation chunkGen = Registry.CHUNK_GENERATOR_CODEC.getKey(((AccessorCodec) world.getChunkProvider().generator).mw_getCodec());
+      if (chunkGen != null && chunkGen.getNamespace().equals("terraforrged")) {
         return;
       }
 

@@ -42,6 +42,7 @@ public class CommonSetup {
     /*    Networking.INSTANCE.registerMessages();*/
 
     event.enqueueWork(() -> {
+      ModLoot.load();
       ModEntities.registerEntities();
       ShadedCommonSetup.init(event);
       ModStructures.setupStructures();

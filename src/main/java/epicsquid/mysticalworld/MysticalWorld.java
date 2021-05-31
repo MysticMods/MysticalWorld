@@ -63,7 +63,6 @@ public class MysticalWorld {
 
     // This is literally to ensure that they static declarations are loaded
     // before we attempt to actually register stuff.
-    ModLoot.load();
     ModBlocks.load();
     ModItems.load();
     ModEntities.load();

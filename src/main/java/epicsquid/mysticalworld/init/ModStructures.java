@@ -7,6 +7,7 @@ import epicsquid.mysticalworld.world.structures.BarrowStructure;
 import epicsquid.mysticalworld.world.structures.HutStructure;
 import epicsquid.mysticalworld.world.structures.RuinedHutStructure;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -16,7 +17,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -53,5 +56,17 @@ public class ModStructures {
     }
 
     DimensionStructuresSettings.field_236191_b_ = ImmutableMap.<Structure<?>, StructureSeparationSettings>builder().putAll(DimensionStructuresSettings.field_236191_b_).put(structure, structureSeparationSettings).build();
+
+    WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {
+      Map<Structure<?>, StructureSeparationSettings> structureMap = settings.getValue().getStructures().func_236195_a_();
+
+      if (structureMap instanceof ImmutableMap) {
+        Map<Structure<?>, StructureSeparationSettings> temp = new HashMap<>(structureMap);
+        temp.put(structure, structureSeparationSettings);
+        settings.getValue().getStructures().field_236193_d_ = temp;
+      } else {
+        structureMap.put(structure, structureSeparationSettings);
+      }
+    });
   }
 }

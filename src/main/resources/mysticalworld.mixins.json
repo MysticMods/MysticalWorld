@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "epicsquid.mysticalworld.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mysticalworld.refmap.json",
+  "mixins": [
+    "AccessorCodec"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}
