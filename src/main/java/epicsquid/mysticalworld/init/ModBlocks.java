@@ -743,7 +743,7 @@ public class ModBlocks {
       )
       .register();
 
-  private static NonNullUnaryOperator<Block.Properties> STONE_PROPS = (o) -> o.sound(SoundType.STONE).hardnessAndResistance(2f);
+  private static NonNullUnaryOperator<Block.Properties> STONE_PROPS = (o) -> o.sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2f);
 
   public static RegistryEntry<Block> MUD_BLOCK = REGISTRATE.block("mud_block", Material.ROCK, Block::new)
       .properties(STONE_PROPS)
@@ -959,7 +959,6 @@ public class ModBlocks {
   // CHARRED STUFF
 
   private static NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD).hardnessAndResistance(2.0f).harvestTool(ToolType.AXE);
-
 
   public static RegistryEntry<CharredLogBlock> CHARRED_WOOD = REGISTRATE.block("charred_wood", (o) -> new CharredLogBlock(o, true))
       .properties(WOOD_PROPS)
@@ -1217,7 +1216,7 @@ public class ModBlocks {
 
   // IRON BRICK
 
-  private static NonNullUnaryOperator<Block.Properties> IRON_PROPS = (o) -> o.sound(SoundType.METAL).hardnessAndResistance(3.2f);
+  private static NonNullUnaryOperator<Block.Properties> IRON_PROPS = (o) -> o.sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.2f);
 
   public static RegistryEntry<Block> IRON_BRICK = REGISTRATE.block("iron_brick", Material.IRON, Block::new)
       .properties(IRON_PROPS)
@@ -1294,7 +1293,7 @@ public class ModBlocks {
 
   // SOFT STONE
 
-  private static NonNullUnaryOperator<Block.Properties> SOFT_STONE_PROPS = o -> o.sound(SoundType.STONE).hardnessAndResistance(1f);
+  private static NonNullUnaryOperator<Block.Properties> SOFT_STONE_PROPS = o -> o.sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(1f);
   private static NonNullUnaryOperator<Block.Properties> BLACKENED_STONE_PROPS = SOFT_STONE_PROPS;
   private static NonNullUnaryOperator<Block.Properties> CRACKED_STONE_PROPS = SOFT_STONE_PROPS;
 
