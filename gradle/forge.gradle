@@ -37,12 +37,14 @@ def loggingLevel = getDefaultString('forge_log_level', 'debug')
 def loggingANSI = getDefaultProperty('forge_log_ansi', true).asBoolean()
 def mappingChannel = getDefaultString('forge_mapping_channel', 'official')
 def mappingVersion = getDefaultString('forge_mapping_version', project.ext.mcVersion)
+def mod_id = getRequiredString('mod_id')
+def minecraft_version = getRequiredString('minecraft_version')
 
 // Mixin Options
 def remapRefmap = getDefaultBoolean('mixin_remap_refmap')
 def remapRefmapFile = getDefaultString('mixin_remap_refmap_file', "${projectDir}/build/createSrgToMcp/output.srg")
 
-archivesBaseName = "${mod_name}-${minecraft_version}"
+archivesBaseName = "${mod_id}-${minecraft_version}"
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {

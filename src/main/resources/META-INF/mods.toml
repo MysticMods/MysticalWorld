@@ -1,29 +1,30 @@
 modLoader="javafml"
 loaderVersion="[35,)"
-issueTrackerURL="https://github.com/MysticMods/MysticalWorld/issues"
-license="https://github.com/MysticMods/MysticalWorld/blob/1.16/LICENSE"
+issueTrackerURL="${modIssues}"
+license="${modLicense}"
 [[mods]]
-modId="mysticalworld"
-version="${file.jarVersion}"
-displayName="Mystical World"
-displayURL="https://minecraft.curseforge.com/projects/mystic-world"
-authors="Noobanidus, mysticmods, Martacus, Davoleo"
+modId="${modId}"
+version="${version}"
+displayName="${modName}"
+displayURL="${modHomepage}"
+credits="${modCredits}"
+authors="${modAuthor}"
 description='''
-A Small set of vanllia-esque features to liven up your world..
+${modDescription}
 '''
-[[dependencies.mysticalworld]]
+[[dependencies.${modId}]]
     modId="forge"
     mandatory=true
     versionRange="[35,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.mysticalworld]]
+[[dependencies.${modId}]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4,)"
+    versionRange="[1.16.5,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.mysticalworld]]
+[[dependencies.${modId}]]
     modId="patchouli"
     mandatory=true
     versionRange="[1.16.2-47,)"

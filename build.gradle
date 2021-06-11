@@ -17,6 +17,7 @@ ext.modChangelog = getOptionalString('mod_changelog')
 ext.modHomepage = getOptionalString('mod_homepage')
 ext.modSource = getOptionalString('mod_source')
 ext.modIssues = getOptionalString('mod_issues')
+ext.modLicense = getOptionalString('mod_license')
 
 // Load Minecraft specific properties
 ext.mcVersion = getRequiredString('minecraft_version')

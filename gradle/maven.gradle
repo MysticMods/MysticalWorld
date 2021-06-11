@@ -3,11 +3,12 @@ apply plugin: 'maven-publish'
 
 def canLoad = true
 
-if (!project.hasProperty('mavenURL')) {
-
-    canLoad = false;
-    project.logger.warn('Skipping maven module. mavenURL property not specified.')
-}
+/*if (!project.hasProperty('mavenURL')) {
+    if (!project.hasProperty('jenkins')) {
+        canLoad = false;
+        project.logger.warn('Skipping maven module. mavenURL property not specified and not running on jenkins.')
+    }
+}*/
 
 if (!(project.hasProperty('group') || project.hasProperty('groupId'))) {
 
@@ -41,16 +42,16 @@ if (canLoad) {
                     classifier 'sources'
                 }
 
-                // Adds the javadocs as an artifact.
+/*                // Adds the javadocs as an artifact.
                 artifact project.javadocJar {
                     classifier 'javadoc'
-                }
+                }*/
             }
         }
 
         repositories {
 
-            maven {
+/*            maven {
 
                 // Sets maven credentials if they are provided. This is generally
                 // only used for external/remote uploads.
@@ -64,7 +65,7 @@ if (canLoad) {
                 }
 
                 url getRequiredString('mavenURL')
-            }
+            }*/
 
             maven {
                 url "file:///" + System.getenv("local_maven")
