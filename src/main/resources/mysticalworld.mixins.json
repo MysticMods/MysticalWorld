@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "epicsquid.mysticalworld.mixins",
+  "package": "mysticmods.mysticalworld.mixins",
   "compatibilityLevel": "JAVA_8",
   "refmap": "mysticalworld.refmap.json",
   "mixins": [

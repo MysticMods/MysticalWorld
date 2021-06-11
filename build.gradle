@@ -32,7 +32,7 @@ version = "${minecraft_version}-${mod_version}"
 if (System.getenv('BUILD_NUMBER') != null) {
     version = "${minecraft_version}-${mod_version}-" + System.getenv('BUILD_NUMBER')
 }
-group = 'epicsquid.mysticalworld' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'mysticmods.mysticalworld' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'mysticalworld'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -178,7 +178,7 @@ jar {
 
 shadowJar {
     configurations = [project.configurations.shade]
-    relocate 'com.tterrag.registrate', 'epicsquid.mysticalworld.repack.registrate'
+    relocate 'com.tterrag.registrate', 'mysticmods.mysticalworld.repack.registrate'
     relocate 'noobanidus.libs.noobutil', 'noobanidus.libs.repack_mysticalworld.noobutil'
     classifier ''
 }
@@ -193,7 +193,7 @@ build.dependsOn reobfShadowJar
 
 task apiJar(type: Jar) {
     from(sourceSets.main.output)
-    include 'epicsquid/mysticalworld/api/**'
+    include 'mysticmods/mysticalworld/api/**'
 
     classifier = 'api'
 }

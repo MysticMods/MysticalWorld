@@ -1,5 +1,5 @@
 {
-  "processor": "epicsquid.mysticalworld.integration.patchouli.api.AnimalSpawnInfo",
+  "processor": "mysticmods.mysticalworld.integration.patchouli.api.AnimalSpawnInfo",
   "components": [
     {
       "type": "header",

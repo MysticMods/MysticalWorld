@@ -7,7 +7,7 @@ modId="mysticalworld"
 version="${file.jarVersion}"
 displayName="Mystical World"
 displayURL="https://minecraft.curseforge.com/projects/mystic-world"
-authors="Noobanidus, EpicSquid, Martacus, Davoleo"
+authors="Noobanidus, mysticmods, Martacus, Davoleo"
 description='''
 A Small set of vanllia-esque features to liven up your world..
 '''
