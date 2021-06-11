@@ -1,0 +1,16 @@
+apply from: 'gradle/property_helper.gradle'
+
+if (project.hasProperty("patchouli_version")) {
+    def patchouli_version = getRequiredString("patchouli_version")
+
+    repositories {
+        maven {
+            name = "Jared"
+            url = "https://maven.blamejared.com"
+        }
+    }
+
+    dependencies {
+        compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+    }
+}

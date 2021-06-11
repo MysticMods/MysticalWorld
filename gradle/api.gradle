@@ -1,0 +1,13 @@
+apply from: 'gradle/property_helper.gradle'
+
+if (project.hasProperty("api")) {
+    def api = getRequiredString("api")
+    task apiJar (type: Jar) {
+        from (sourceSets.main.output)
+        include "${api}"
+
+        classifier = 'api'
+    }
+
+    build.dependsOn apiJar
+}

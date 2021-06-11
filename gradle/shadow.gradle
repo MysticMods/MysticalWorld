@@ -1,0 +1,44 @@
+apply from: 'gradle/property_helper.gradle'
+
+def registrate_version = getRequiredString("registrate_version")
+def noobutil_version = getRequiredString("noobutil_version")
+
+configurations {
+    shade
+}
+
+repositories {
+    maven {
+        name = "Jared"
+        url = "https://maven.blamejared.com"
+    }
+    maven {
+        name = "tterrag"
+        url = "http://maven.tterrag.com"
+    }
+}
+
+dependencies {
+    def registrate = "com.tterrag.registrate:Registrate:${registrate_version}"
+    implementation fg.deobf(registrate)
+    shade registrate
+
+    def noobutil = "noobanidus.libs:noobutil:${noobutil_version}"
+    implementation fg.deobf(noobutil)
+    shade noobutil
+}
+
+shadowJar {
+    shadowJar {
+        configurations = [project.configurations.shade]
+        relocate "com.tterrag.registrate", "${group}.repack.registrate"
+        relocate "noobanidus.libs.noobutil", "${group}.repack.noobutil"
+        classifier ""
+    }
+}
+
+reobf {
+    shadowJar {}
+}
+
+build.dependsOn reobfShadowJar
