@@ -2,6 +2,7 @@ package mysticmods.mysticalworld.events.global;
 
 import com.google.gson.JsonObject;
 import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.init.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
@@ -19,9 +20,11 @@ import java.util.List;
 // While the code is not specifically copied from that, credit for the solution belongs to the Immersive Engineering team.
 public class GrassHandler {
   public static void registerModifiers(RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
-    event.getRegistry().register(
-        new GrassDropSerializer().setRegistryName(MysticalWorld.MODID, "aubergine_seed_drops")
-    );
+    if (ConfigManager.SEED_INJECTION.get()) {
+      event.getRegistry().register(
+          new GrassDropSerializer().setRegistryName(MysticalWorld.MODID, "aubergine_seed_drops")
+      );
+    }
   }
 
   public static class GrassDropSerializer extends GlobalLootModifierSerializer<GrassDropModifier> {
