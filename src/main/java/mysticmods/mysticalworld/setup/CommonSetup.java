@@ -100,11 +100,11 @@ public class CommonSetup {
     // TODO: Temporarily disabled
     //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onDeath);
     //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onRightClickBlock);
+    /*    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);*/
     MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, true, LootHandler::onLootLoad);
     MinecraftForge.EVENT_BUS.addListener(LootHandler::onLooting);
     MinecraftForge.EVENT_BUS.addGenericListener(Entity.class, CapabilityHandler::attachCapability);
     MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onSquidMilked);
-    /*    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);*/
   }
 
   public static void loadComplete(FMLLoadCompleteEvent event) {

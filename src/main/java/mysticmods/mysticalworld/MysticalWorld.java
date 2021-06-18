@@ -80,6 +80,7 @@ public class MysticalWorld {
 
     modBus.addListener(CommonSetup::init);
     modBus.addListener(CommonSetup::loadComplete);
+    modBus.addListener(ModEntities::registerAttributes);
     modBus.addGenericListener(GlobalLootModifierSerializer.class, GrassHandler::registerModifiers);
 
     MinecraftForge.EVENT_BUS.addListener(CommonSetup::serverStarting);

@@ -5,15 +5,14 @@ import com.google.common.collect.HashBiMap;
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
+import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.config.MobConfig;
-import mysticmods.mysticalworld.entity.*;
 import mysticmods.mysticalworld.entity.*;
 import mysticmods.mysticalworld.loot.conditions.HasHorns;
 import mysticmods.mysticalworld.loot.conditions.IsColor;
 import mysticmods.mysticalworld.loot.conditions.IsLava;
 import mysticmods.mysticalworld.loot.conditions.IsObsidian;
-import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.advancements.criterion.EntityFlagsPredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.entity.Entity;
@@ -36,6 +35,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
 import java.util.*;
@@ -312,16 +312,18 @@ public class ModEntities {
     EntitySpawnPlacementRegistry.register(OWL.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING, OwlEntity::placement);
     EntitySpawnPlacementRegistry.register(LAVA_CAT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LavaCatEntity::placement);
     EntitySpawnPlacementRegistry.register(HELL_SPROUT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LavaCatEntity::placement);
+  }
 
-    GlobalEntityTypeAttributes.put(ModEntities.BEETLE.get(), BeetleEntity.attributes().create());
-    GlobalEntityTypeAttributes.put(ModEntities.DEER.get(), DeerEntity.attributes().create());
-    GlobalEntityTypeAttributes.put(ModEntities.FROG.get(), FrogEntity.attributes().create());
-    GlobalEntityTypeAttributes.put(ModEntities.SILVER_FOX.get(), SilverFoxEntity.attributes().create());
-    GlobalEntityTypeAttributes.put(ModEntities.SPROUT.get(), SproutEntity.attributes().create());
-    GlobalEntityTypeAttributes.put(ModEntities.ENDERMINI.get(), EnderminiEntity.attributes().create());
-    GlobalEntityTypeAttributes.put(ModEntities.LAVA_CAT.get(), LavaCatEntity.attributes().create());
-    GlobalEntityTypeAttributes.put(ModEntities.OWL.get(), OwlEntity.attributes().create());
-    GlobalEntityTypeAttributes.put(ModEntities.SILKWORM.get(), SilkwormEntity.attributes().create());
-    GlobalEntityTypeAttributes.put(ModEntities.HELL_SPROUT.get(), HellSproutEntity.attributes().create());
+  public static void registerAttributes(EntityAttributeCreationEvent event) {
+    event.put(ModEntities.BEETLE.get(), BeetleEntity.attributes().create());
+    event.put(ModEntities.DEER.get(), DeerEntity.attributes().create());
+    event.put(ModEntities.FROG.get(), FrogEntity.attributes().create());
+    event.put(ModEntities.SILVER_FOX.get(), SilverFoxEntity.attributes().create());
+    event.put(ModEntities.SPROUT.get(), SproutEntity.attributes().create());
+    event.put(ModEntities.ENDERMINI.get(), EnderminiEntity.attributes().create());
+    event.put(ModEntities.LAVA_CAT.get(), LavaCatEntity.attributes().create());
+    event.put(ModEntities.OWL.get(), OwlEntity.attributes().create());
+    event.put(ModEntities.SILKWORM.get(), SilkwormEntity.attributes().create());
+    event.put(ModEntities.HELL_SPROUT.get(), HellSproutEntity.attributes().create());
   }
 }
