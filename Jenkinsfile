@@ -15,6 +15,9 @@ pipeline {
         }
         stage('Build and Deploy') {
             steps {
+                echo 'Resolving submodules'
+                sh 'git submodule init'
+                sh 'git submodule update'
                 echo 'Building and Deploying to Maven'
                 sh './gradlew build publish'
             }
