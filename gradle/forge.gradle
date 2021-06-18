@@ -61,13 +61,10 @@ minecraft {
     runs {
 
         client {
-
             // Sets the folder the client runs in.
             workingDirectory project.file(clientRunDir)
-
             // Sets the name of the run to include the mod name.
             taskName modName.replaceAll("\\s", "") + 'Client'
-
             // Sets Forge's logging level on the client.
             property 'forge.logging.console.level', loggingLevel
 
@@ -137,6 +134,44 @@ minecraft {
 
                 serverRun {
 
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            // Sets the folder the server runs in.
+            workingDirectory project.file(clientRunDir)
+
+            // Sets the name of the run to include the mod name.
+            taskName modName.replaceAll("\\s", "") + 'Data'
+
+            // Sets Forge's logging level on the server.
+            property 'forge.logging.console.level', loggingLevel
+            environment 'target', 'fmluserdevdata'
+
+            // Tells mixin to remap refmap files to the values used in the
+            // development environment. This allows mods with mixins to be
+            // used as devtime dependencies.
+            if (remapRefmap) {
+                property 'mixin.env.remapRefMap', 'true'
+                property 'mixin.env.refMapRemappingFile', remapRefmapFile
+            }
+
+            // Enables ANSI color codes in the logs.
+            if (loggingANSI) {
+                property 'terminal.ansi', 'true'
+            }
+
+            // Enable mixins on the server.
+            if (project.hasProperty('mixin_id')) {
+                arg "-mixin.config=" + project.findProperty('mixin_id') + ".mixins.json"
+            }
+
+            args '--mod', modId, '--all', '--output', '"' + rootProject.file('src/generated/resources/') + '"', '--existing', '"' + rootProject.file('src/main/resources') + '"'
+
+            mods {
+                dataRun {
                     source sourceSets.main
                 }
             }

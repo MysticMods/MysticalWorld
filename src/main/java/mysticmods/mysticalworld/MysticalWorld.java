@@ -109,6 +109,7 @@ public class MysticalWorld {
 
   public void onDataGen(GatherDataEvent event) {
     if (event.includeServer()) {
+      ModLoot.load();
       event.getGenerator().addProvider(new LootTableGenerator(event.getGenerator()));
     }
   }
