@@ -1,6 +1,7 @@
 package mysticmods.mysticalworld.init;
 
 import com.google.common.collect.Sets;
+import com.mojang.serialization.Codec;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
@@ -20,6 +21,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.Heightmap;
@@ -39,10 +41,14 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 import noobanidus.libs.noobutil.types.LazySupplier;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Supplier;
 
@@ -130,14 +136,16 @@ public class ModFeatures {
       RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
       Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
       ModEntities.registerEntity(event, types);
-      tryPlaceFeature(event, types, ConfigManager.DEAD_TREE_CONFIG);
+      if (!ModList.get().isLoaded("dynamictrees")) {
+        tryPlaceFeature(event, types, ConfigManager.DEAD_TREE_CONFIG);
+      }
       tryPlaceFeature(event, types, ConfigManager.STONEPETAL_CONFIG);
       tryPlaceFeature(event, types, ConfigManager.HUT_CONFIG);
       tryPlaceFeature(event, types, ConfigManager.BARROW_CONFIG);
     }
   }
 
-  private static MethodHandle GETCODEC_METHOD;
+  private static MethodHandle GETCODEC_METHOD = null;
 
   public static void onWorldLoad(final WorldEvent.Load event) {
     if (event.getWorld() instanceof ServerWorld) {
@@ -146,7 +154,25 @@ public class ModFeatures {
         return;
       }
 
-      ResourceLocation chunkGen = Registry.CHUNK_GENERATOR_CODEC.getKey(((AccessorCodec) world.getChunkProvider().generator).mw_getCodec());
+      if (GETCODEC_METHOD == null) {
+        Method codec = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+        MethodHandles.Lookup l = MethodHandles.lookup();
+        try {
+          GETCODEC_METHOD = l.unreflect(codec);
+        } catch (IllegalAccessException e) {
+          MysticalWorld.LOG.error("Unable to unreflect codec getter.", e);
+          return;
+        }
+      }
+
+      ResourceLocation chunkGen = null;
+      try {
+        //noinspection unchecked
+        chunkGen = Registry.CHUNK_GENERATOR_CODEC.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invokeExact(world.getChunkProvider().generator));
+      } catch (Throwable throwable) {
+        MysticalWorld.LOG.error("Unable to look up chunk provider's generator", throwable);
+        return;
+      }
       if (chunkGen != null && chunkGen.getNamespace().equals("terraforrged")) {
         return;
       }

@@ -1,0 +1,7 @@
+{
+  "common_leaves": "mysticalworld:charred",
+  "common_species": "mysticalworld:charred",
+  "primitive_log": "mysticalworld:charred_log",
+  "primitive_stripped_log": "mysticalworld:stripped_charred_log",
+  "max_branch_radius": 4
+}

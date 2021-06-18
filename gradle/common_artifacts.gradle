@@ -12,8 +12,13 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
 }
 
-project.artifacts {
+task deobfJar (type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
 
+project.artifacts {
+    archives deobfJar
     archives sourcesJar
     archives javadocJar
 }

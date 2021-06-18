@@ -1,0 +1,17 @@
+[
+  {
+    "__comment": "Add random charred trees",
+    "select": {
+      "type": "overworld"
+    },
+    "apply": {
+      "species": {
+        "method": "splice_before",
+        "random": {
+          "mysticalworld:charred": 1,
+          "...": 90
+        }
+      }
+    }
+  }
+]

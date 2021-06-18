@@ -1,0 +1,7 @@
+{
+  "loader": "dynamictrees:thick_branch",
+  "textures": {
+    "bark": "mysticalworld:block/stripped_charred_log",
+    "rings": "mysticalworld:block/stripped_charred_log_top"
+  }
+}

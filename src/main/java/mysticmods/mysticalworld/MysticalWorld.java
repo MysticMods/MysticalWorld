@@ -8,7 +8,7 @@ import mysticmods.mysticalworld.events.global.GrassHandler;
 import mysticmods.mysticalworld.events.mappings.Remaps;
 import mysticmods.mysticalworld.gen.LootTableGenerator;
 import mysticmods.mysticalworld.init.*;
-import mysticmods.mysticalworld.init.*;
+import mysticmods.mysticalworld.integration.dynamictrees.DynamicTrees;
 import mysticmods.mysticalworld.setup.ClientInit;
 import mysticmods.mysticalworld.setup.CommonSetup;
 import net.minecraft.block.Block;
@@ -23,6 +23,7 @@ import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -99,6 +100,10 @@ public class MysticalWorld {
     PlayerModifierRegistry.addModifier(ModModifiers.SERENDIPITY);
     PlayerModifierRegistry.addModifier(ModModifiers.BLESSED);
     PlayerModifierRegistry.addModifier(ModModifiers.SMITE);
+
+    if (ModList.get().isLoaded("dynamictrees")) {
+      DynamicTrees.init();
+    }
   }
 
   public void onDataGen(GatherDataEvent event) {
