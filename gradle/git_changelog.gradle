@@ -12,14 +12,12 @@ def gitPrevCommit = System.getenv('GIT_PREVIOUS_COMMIT')
 
 // If a full range is available use that range.
 if (gitCommit && gitPrevCommit) {
-
     project.ext.modChangelog += getExecOutput(['git', 'log', "--pretty=tformat:- %s [(%h)](${gitRepo}/commit/%h)", '' + gitPrevCommit + '..' + gitCommit])
     project.logger.lifecycle("Appened Git changelog with commit ${gitPrevCommit} to ${gitCommit}.")
 }
 
 // If only one commit is available, use the last commit.
 else if (gitCommit) {
-
     project.ext.modChangelog += getExecOutput(['git', 'log', '' + "--pretty=tformat:- %s [(%h)](${gitRepo}/commit/%h)", '-1', '' + gitCommit])
     project.logger.lifecycle("Appened Git changelog with commit ${gitCommit}.")
 }
