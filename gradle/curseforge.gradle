@@ -74,6 +74,7 @@ curseforge {
         project {
 
             id = "${curse_project}"
+            debug = false
             releaseType = getDefaultString('curse_release_type', 'alpha')
             changelog = project.ext.modChangelog
             
