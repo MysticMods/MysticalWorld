@@ -9,7 +9,7 @@
         "method": "splice_before",
         "random": {
           "mysticalworld:charred": 1,
-          "...": 90
+          "...": 20
         }
       }
     }
