@@ -180,10 +180,10 @@ public class ModBlocks {
   private static NonNullUnaryOperator<Block.Properties> MUSHROOM_PROPS = (o) -> o.hardnessAndResistance(0.2F).sound(SoundType.WOOD);
 
   public static RegistryEntry<ThatchBlock> THATCH = MysticalWorld.REGISTRATE.block("thatch", Material.WOOD, ThatchBlock::new)
-      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .properties(o -> o.sound(SoundType.PLANT))
       .item()
-      .model(NonNullBiConsumer.noop())
-      .build()
+        .model(NonNullBiConsumer.noop())
+        .build()
       .blockstate(NonNullBiConsumer.noop())
       .recipe((ctx, p) -> {
             ShapedRecipeBuilder.shapedRecipe(ModBlocks.THATCH.get(), 32)
