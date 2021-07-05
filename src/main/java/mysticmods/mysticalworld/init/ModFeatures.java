@@ -177,11 +177,13 @@ public class ModFeatures {
         return;
       }
 
-      Map<Structure<?>, StructureSeparationSettings> temp = new HashMap<>(world.getChunkProvider().generator.func_235957_b_().func_236195_a_());
-      temp.put(ModStructures.BARROW_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.BARROW_STRUCTURE));
-      temp.put(ModStructures.HUT_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.HUT_STRUCTURE));
-      temp.put(ModStructures.RUINED_HUT_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.RUINED_HUT_STRUCTURE));
-      world.getChunkProvider().generator.func_235957_b_().field_236193_d_ = temp;
+      if (world.getDimensionKey().equals(World.OVERWORLD)) {
+        Map<Structure<?>, StructureSeparationSettings> temp = new HashMap<>(world.getChunkProvider().generator.func_235957_b_().func_236195_a_());
+        temp.put(ModStructures.BARROW_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.BARROW_STRUCTURE));
+        temp.put(ModStructures.HUT_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.HUT_STRUCTURE));
+        temp.put(ModStructures.RUINED_HUT_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.RUINED_HUT_STRUCTURE));
+        world.getChunkProvider().generator.func_235957_b_().field_236193_d_ = temp;
+      }
     }
   }
 }
