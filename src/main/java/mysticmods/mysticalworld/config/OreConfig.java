@@ -32,10 +32,6 @@ public class OreConfig extends AbstractConfig {
   private ForgeConfigSpec.IntValue configSize;
   private ForgeConfigSpec.ConfigValue<List<? extends String>> configDimensions;
 
-  private int cachedChance = -9999;
-  private int cachedMin = -9999;
-  private int cachedMax = -9999;
-  private int cachedSize = -9999;
   private RuleTest rule;
 
   public OreConfig(String name, int chance, int minY, int maxY, int size, List<RegistryKey<World>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
@@ -59,31 +55,19 @@ public class OreConfig extends AbstractConfig {
   }
 
   public int getChance() {
-    if (cachedChance == -9999) {
-      cachedChance = configChance.get();
-    }
-    return cachedChance;
+    return configChance.get();
   }
 
   public int getMinY() {
-    if (cachedMin == -9999) {
-      cachedMin = configMinY.get();
-    }
-    return cachedMin;
+    return configMinY.get();
   }
 
   public int getMaxY() {
-    if (cachedMax == -9999) {
-      cachedMax = configMaxY.get();
-    }
-    return cachedMax;
+    return configMaxY.get();
   }
 
   public int getSize() {
-    if (cachedSize == -9999) {
-      cachedSize = configSize.get();
-    }
-    return cachedSize;
+    return configSize.get();
   }
 
   public Block getOre() {
@@ -121,10 +105,6 @@ public class OreConfig extends AbstractConfig {
 
   @Override
   public void reset() {
-    cachedChance = -9999;
-    cachedMin = -9999;
-    cachedMax = -9999;
-    cachedSize = -9999;
     storedDimension = null;
   }
 }

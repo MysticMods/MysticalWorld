@@ -1,39 +1,39 @@
 package mysticmods.mysticalworld.config;
 
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
+import java.util.Set;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
   private final int repeats;
   private final int tries;
+  private final List<RegistryKey<World>> dimensions;
   private ForgeConfigSpec.IntValue configRepeats;
   private ForgeConfigSpec.IntValue configTries;
+  private ForgeConfigSpec.ConfigValue<List<? extends String>> configDimensions;
 
-  private int cachedRepeats = -9999;
-  private int cachedTries = -9999;
-
-  public StonepetalConfig(int repeats, int tries, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
+  public StonepetalConfig(int repeats, int tries, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions, List<RegistryKey<World>> dimensions) {
     super(biomeTypes, biomeRestrictions);
     this.tries = tries;
     this.repeats = repeats;
+    this.dimensions = dimensions;
   }
 
   public int getRepeats() {
-    if (cachedRepeats == -9999) {
-      cachedRepeats = configRepeats.get();
-    }
-    return cachedRepeats;
+    return configRepeats.get();
   }
 
   public int getTries() {
-    if (cachedTries == -9999) {
-      cachedTries = configTries.get();
-    }
-    return cachedTries;
+    return configTries.get();
   }
 
   @Override
@@ -57,13 +57,23 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
     StringJoiner sb2 = new StringJoiner(",");
     biomeRestrictions.forEach(biome -> sb2.add(biome.getName()));
     configBiomeRestrictions = builder.comment("Which biome types this tree shouldn't spawn in (default END, NETHER)").define("biomeRestrictions", sb2.toString());
+    configDimensions = builder.comment("The dimensions that this feature should spawn in as a list (default [\"minecraft:overworld\"])").defineList("dimensions", dimensions.stream().map(RegistryKey::getLocation).map(ResourceLocation::toString).collect(Collectors.toList()), (o) -> o instanceof String);
     builder.pop();
   }
 
   @Override
   public void reset() {
     super.reset();
-    cachedRepeats = -9999;
-    cachedTries = -9999;
+    this.storedDimension = null;
+  }
+
+  private Set<RegistryKey<World>> storedDimension = null;
+
+  public Set<RegistryKey<World>> getDimensions() {
+    if (storedDimension == null) {
+      storedDimension = configDimensions.get().stream().map(o -> RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(o))).collect(Collectors.toSet());
+    }
+
+    return storedDimension;
   }
 }

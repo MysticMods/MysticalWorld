@@ -11,8 +11,10 @@ import mysticmods.mysticalworld.mixins.AccessorCodec;
 import mysticmods.mysticalworld.world.SupplierBlockStateProvider;
 import mysticmods.mysticalworld.world.feature.SupplierOreFeature;
 import mysticmods.mysticalworld.world.feature.SupplierOreFeatureConfig;
+import mysticmods.mysticalworld.world.placement.DimensionConfig;
 import mysticmods.mysticalworld.world.placement.DimensionCountPlacement;
 import mysticmods.mysticalworld.world.placement.DimensionCountRangeConfig;
+import mysticmods.mysticalworld.world.placement.DimensionPlacement;
 import mysticmods.mysticalworld.world.test.OreGenTest;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.RegistryKey;
@@ -55,18 +57,21 @@ import java.util.function.Supplier;
 public class ModFeatures {
   public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, WorldGenRegistries.CONFIGURED_FEATURE);
 
-  public static IRuleTestType<OreGenTest> ORE_GEN = IRuleTestType.func_237129_a_("ore_gen", OreGenTest.CODEC);
+  public static final IRuleTestType<OreGenTest> ORE_GEN = IRuleTestType.func_237129_a_("ore_gen", OreGenTest.CODEC);
 
-  public static RegistryEntry<SupplierOreFeature> SUPPLIER_ORE = MysticalWorld.REGISTRATE.simple("supplier_ore_feature", Feature.class, () -> new SupplierOreFeature(SupplierOreFeatureConfig.CODEC));
+  public static final RegistryEntry<SupplierOreFeature> SUPPLIER_ORE = MysticalWorld.REGISTRATE.simple("supplier_ore_feature", Feature.class, () -> new SupplierOreFeature(SupplierOreFeatureConfig.CODEC));
 
-  private static RegistryEntry<DimensionCountPlacement> DIMENSION_COUNT_PLACEMENT = MysticalWorld.REGISTRATE.simple("dimension_count_placement", Placement.class, () -> new DimensionCountPlacement(DimensionCountRangeConfig.CODEC));
-  public static RegistryEntry<BlockStateProviderType<SupplierBlockStateProvider>> SUPPLIER_STATE_PROVIDER = MysticalWorld.REGISTRATE.simple("supplier_state_provider", BlockStateProviderType.class, () -> new BlockStateProviderType<>(SupplierBlockStateProvider.CODEC));
+  private static final RegistryEntry<DimensionCountPlacement> DIMENSION_COUNT_PLACEMENT = MysticalWorld.REGISTRATE.simple("dimension_count_placement", Placement.class, () -> new DimensionCountPlacement(DimensionCountRangeConfig.CODEC));
+
+  private static final RegistryEntry<DimensionPlacement> DIMENSION_PLACEMENT = MysticalWorld.REGISTRATE.simple("dimension_placement", Placement.class, () -> new DimensionPlacement(DimensionConfig.CODEC));
+
+  public static final RegistryEntry<BlockStateProviderType<SupplierBlockStateProvider>> SUPPLIER_STATE_PROVIDER = MysticalWorld.REGISTRATE.simple("supplier_state_provider", BlockStateProviderType.class, () -> new BlockStateProviderType<>(SupplierBlockStateProvider.CODEC));
 
   public static final ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
 
   public static final Supplier<ConfiguredFeature<?, ?>> STONEPETAL_PATCH = new LazySupplier<>(() -> Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.STONEPETAL.get().getDefaultState()), SimpleBlockPlacer.PLACER)).tries(ConfigManager.STONEPETAL_CONFIG.getTries()).whitelist(Sets.newHashSet(Blocks.STONE)).build()).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(ConfigManager.STONEPETAL_CONFIG.getRepeats()));
 
-  private static List<ConfiguredFeature<?, ?>> ORE_FEATURES = new ArrayList<>();
+  private static final List<ConfiguredFeature<?, ?>> ORE_FEATURES = new ArrayList<>();
 
   public static void generateFeatures() {
     for (OreConfig config : ConfigManager.ORE_CONFIG) {
@@ -80,8 +85,8 @@ public class ModFeatures {
         REGISTRY.register(config.getName().toLowerCase(), feat);
       }
     }
-    REGISTRY.register("charred_tree", CHARRED_TREE);
-    REGISTRY.register("stonepetal_patch", STONEPETAL_PATCH.get());
+    REGISTRY.register("charred_tree", CHARRED_TREE.withPlacement(ModFeatures.DIMENSION_PLACEMENT.get().configure(new DimensionConfig(ConfigManager.DEAD_TREE_CONFIG.getDimensions()))));
+    REGISTRY.register("stonepetal_patch", STONEPETAL_PATCH.get().withPlacement(ModFeatures.DIMENSION_PLACEMENT.get().configure(new DimensionConfig(ConfigManager.STONEPETAL_CONFIG.getDimensions()))));
   }
 
   public static void load() {
