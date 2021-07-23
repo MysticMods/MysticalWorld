@@ -10,6 +10,7 @@ import epicsquid.mysticalworld.integration.endercore.EndercoreHarvest;
 import epicsquid.mysticalworld.integration.harvest.HarvestIntegration;
 import epicsquid.mysticalworld.integration.patchouli.api.ConfigKeys;
 import epicsquid.mysticalworld.integration.thaumcraft.AspectRegistry;
+import epicsquid.mysticalworld.integration.thaumcraft.ThaumcraftInit;
 import epicsquid.mysticalworld.loot.conditions.*;
 import epicsquid.mysticalworld.world.OreGenerator;
 import epicsquid.mysticalworld.world.StructureGenerator;
@@ -40,7 +41,7 @@ public class CommonProxy {
     ModEntities.registerLootTables();
     LootTableList.register(new ResourceLocation(MysticalWorld.MODID, "chests/hut"));
     if (Loader.isModLoaded("thaumcraft")) {
-      MinecraftForge.EVENT_BUS.register(AspectRegistry.class);
+      ThaumcraftInit.init();
     }
   }
 
