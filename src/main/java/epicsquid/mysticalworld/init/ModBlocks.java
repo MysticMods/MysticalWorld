@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
 
 public class ModBlocks {
 
-  // All thaumcraft.blocks
+  // All blocks
   public static Block thatch, thatch_wall, thatch_double_slab, thatch_slab, thatch_stairs;
   public static BlockCropBase aubergine;
   public static Block gall_apple;
@@ -29,7 +29,7 @@ public class ModBlocks {
   public static Block slime_eggs;
 
   /**
-   * Register all thaumcraft.blocks
+   * Register all blocks
    */
   public static void registerBlocks(@Nonnull RegisterContentEvent event) {
     event.addBlock(thatch = new BlockThatch(Material.LEAVES, SoundType.PLANT, 0.8f, "thatch").setCreativeTab(MysticalWorld.tab));

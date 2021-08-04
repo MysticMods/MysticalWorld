@@ -28,7 +28,7 @@ public class ConfigManager {
   @Config.Comment(("Grant the Patchouli-based Guide Book when first joining the server"))
   public static boolean GiveBook = true;
 
-  @Config.Comment(("Inject some thaumcraft.items from Mystical World into dungeon & other loot chests"))
+  @Config.Comment(("Inject some items from Mystical World into dungeon & other loot chests"))
   public static boolean InjectLoot = true;
 
   @Config.Comment(("Enable squid drops"))
@@ -400,7 +400,7 @@ public class ConfigManager {
     @Config.Comment(("Enabled Amethyst"))
     public boolean enableAmethyst = true;
 
-    @Config.Comment(("Enable thaumcraft.blocks of Amethyst"))
+    @Config.Comment(("Enable blocks of Amethyst"))
     public boolean enableBlocks = true;
 
     @Config.Comment(("Enable gems of Amethyst"))
