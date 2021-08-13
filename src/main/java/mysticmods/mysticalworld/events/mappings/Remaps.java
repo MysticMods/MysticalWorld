@@ -23,8 +23,8 @@ public class Remaps {
   public enum RemapType {
     ITEM("item", () -> remappedItems), BLOCK("block", () -> remappedBlocks), ENTITY("entity", () -> remappedEntities);
 
-    private String name;
-    private Supplier<Map<ResourceLocation, ResourceLocation>> map;
+    private final String name;
+    private final Supplier<Map<ResourceLocation, ResourceLocation>> map;
 
     public String getName() {
       return name;
@@ -130,5 +130,17 @@ public class Remaps {
 
     ignore("rotten_apple", RemapType.ITEM);
     remapBlock("wild_aubergine_crop", "wild_aubergine");
+    remapBlock("cracked_stone", "smooth_stone");
+    remapBlock("cracked_stone_stairs", "smooth_stone_stairs");
+    remapBlock("cracked_stone_slab", "smooth_stone_slab");
+    remapBlock("cracked_stone_wall", "smooth_stone_wall");
+    remapBlock("cracked_stone_wide_post", "smooth_stone_wide_post");
+    remapBlock("cracked_stone_small_post", "smooth_stone_small_post");
+    remapItem("cracked_stone", "smooth_stone");
+    remapItem("cracked_stone_stairs", "smooth_stone_stairs");
+    remapItem("cracked_stone_slab", "smooth_stone_slab");
+    remapItem("cracked_stone_wall", "smooth_stone_wall");
+    remapItem("cracked_stone_wide_post", "smooth_stone_wide_post");
+    remapItem("cracked_stone_small_post", "smooth_stone_small_post");
   }
 }
