@@ -73,7 +73,12 @@ public class Remaps {
       if (remap != null && remap.equals(IGNORE)) {
         mapping.ignore();
       } else if (remap != null) {
-        mapping.remap(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(remap)));
+        Item remapped = ForgeRegistries.ITEMS.getValue(remap);
+        if (remapped == null) {
+          MysticalWorld.LOG.error("Attempted remapping is invalid: " + mapping.key + " is remapped to " + remap + " but that item doesn't exist!");
+        } else {
+          mapping.remap(remapped);
+        }
       }
     }
   }
@@ -84,7 +89,12 @@ public class Remaps {
       if (remap != null && remap.equals(IGNORE)) {
         mapping.ignore();
       } else if (remap != null) {
-        mapping.remap(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(remap)));
+        Block remapped = ForgeRegistries.BLOCKS.getValue(remap);
+        if (remapped == null) {
+          MysticalWorld.LOG.error("Attempted remapping is invalid: " + mapping.key + " is remapped to " + remap + " but that block doesn't exist!");
+        } else {
+          mapping.remap(remapped);
+        }
       }
     }
   }
@@ -95,7 +105,12 @@ public class Remaps {
       if (remap != null && remap.equals(IGNORE)) {
         mapping.ignore();
       } else if (remap != null) {
-        mapping.remap(Objects.requireNonNull(ForgeRegistries.ENTITIES.getValue(remap)));
+        EntityType<?> remapped = ForgeRegistries.ENTITIES.getValue(remap);
+        if (remapped == null) {
+          MysticalWorld.LOG.error("Attempted remapping is invalid: " + mapping.key + " is remapped to " + remap + " but that entity doesn't exist!");
+        } else {
+          mapping.remap(remapped);
+        }
       }
     }
   }
