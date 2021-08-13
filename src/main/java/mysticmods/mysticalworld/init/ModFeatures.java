@@ -67,9 +67,9 @@ public class ModFeatures {
 
   public static final RegistryEntry<BlockStateProviderType<SupplierBlockStateProvider>> SUPPLIER_STATE_PROVIDER = MysticalWorld.REGISTRATE.simple("supplier_state_provider", BlockStateProviderType.class, () -> new BlockStateProviderType<>(SupplierBlockStateProvider.CODEC));
 
-  public static final ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
+  public static ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
 
-  public static final Supplier<ConfiguredFeature<?, ?>> STONEPETAL_PATCH = new LazySupplier<>(() -> Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.STONEPETAL.get().getDefaultState()), SimpleBlockPlacer.PLACER)).tries(ConfigManager.STONEPETAL_CONFIG.getTries()).whitelist(Sets.newHashSet(Blocks.STONE)).build()).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(ConfigManager.STONEPETAL_CONFIG.getRepeats()));
+  public static Supplier<ConfiguredFeature<?, ?>> STONEPETAL_PATCH = new LazySupplier<>(() -> Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.STONEPETAL.get().getDefaultState()), SimpleBlockPlacer.PLACER)).tries(ConfigManager.STONEPETAL_CONFIG.getTries()).whitelist(Sets.newHashSet(Blocks.STONE)).build()).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(ConfigManager.STONEPETAL_CONFIG.getRepeats()));
 
   private static final List<ConfiguredFeature<?, ?>> ORE_FEATURES = new ArrayList<>();
 
@@ -85,8 +85,13 @@ public class ModFeatures {
         REGISTRY.register(config.getName().toLowerCase(), feat);
       }
     }
-    REGISTRY.register("charred_tree", CHARRED_TREE.withPlacement(ModFeatures.DIMENSION_PLACEMENT.get().configure(new DimensionConfig(ConfigManager.DEAD_TREE_CONFIG.getDimensions()))));
-    REGISTRY.register("stonepetal_patch", STONEPETAL_PATCH.get().withPlacement(ModFeatures.DIMENSION_PLACEMENT.get().configure(new DimensionConfig(ConfigManager.STONEPETAL_CONFIG.getDimensions()))));
+    CHARRED_TREE = CHARRED_TREE.withPlacement(ModFeatures.DIMENSION_PLACEMENT.get().configure(new DimensionConfig(ConfigManager.DEAD_TREE_CONFIG.getDimensions())));
+    REGISTRY.register("charred_tree", CHARRED_TREE);
+    ConfigManager.DEAD_TREE_CONFIG.setSupplierFeature(() -> () -> CHARRED_TREE);
+    final ConfiguredFeature<?, ?> stonepetalPatch = STONEPETAL_PATCH.get().withPlacement(ModFeatures.DIMENSION_PLACEMENT.get().configure(new DimensionConfig(ConfigManager.STONEPETAL_CONFIG.getDimensions())));
+    STONEPETAL_PATCH = () -> stonepetalPatch;
+    REGISTRY.register("stonepetal_patch", stonepetalPatch);
+    ConfigManager.STONEPETAL_CONFIG.setSupplierFeature(() -> STONEPETAL_PATCH);
   }
 
   public static void load() {
