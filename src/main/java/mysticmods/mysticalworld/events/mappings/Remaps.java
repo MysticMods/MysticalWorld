@@ -8,6 +8,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
@@ -15,6 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+@Mod.EventBusSubscriber(modid=MysticalWorld.MODID)
 public class Remaps {
   public static ResourceLocation IGNORE = new ResourceLocation(MysticalWorld.MODID, "ignore_remap");
 
@@ -69,6 +72,7 @@ public class Remaps {
     remap(o, n, RemapType.ENTITY);
   }
 
+  @SubscribeEvent
   public static void remapItemEvent(RegistryEvent.MissingMappings<Item> event) {
     for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedItems.get(mapping.key);
@@ -86,6 +90,7 @@ public class Remaps {
     }
   }
 
+  @SubscribeEvent
   public static void remapBlockEvent(RegistryEvent.MissingMappings<Block> event) {
     for (RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedBlocks.get(mapping.key);
@@ -103,6 +108,7 @@ public class Remaps {
     }
   }
 
+  @SubscribeEvent
   public static void remapEntityEvent(RegistryEvent.MissingMappings<EntityType<?>> event) {
     for (RegistryEvent.MissingMappings.Mapping<EntityType<?>> mapping : event.getAllMappings()) {
       ResourceLocation remap = remappedEntities.get(mapping.key);
@@ -150,17 +156,17 @@ public class Remaps {
 
     ignore("rotten_apple", RemapType.ITEM);
     remapBlock("wild_aubergine_crop", "wild_aubergine");
-    remapBlock("cracked_stone", "smooth_stone");
-    remapBlock("cracked_stone_stairs", "smooth_stone_stairs");
-    remapBlock("cracked_stone_slab", "smooth_stone_slab");
-    remapBlock("cracked_stone_wall", "smooth_stone_wall");
-    remapBlock("cracked_stone_wide_post", "smooth_stone_wide_post");
-    remapBlock("cracked_stone_small_post", "smooth_stone_small_post");
-    remapItem("cracked_stone", "smooth_stone");
-    remapItem("cracked_stone_stairs", "smooth_stone_stairs");
-    remapItem("cracked_stone_slab", "smooth_stone_slab");
-    remapItem("cracked_stone_wall", "smooth_stone_wall");
-    remapItem("cracked_stone_wide_post", "smooth_stone_wide_post");
-    remapItem("cracked_stone_small_post", "smooth_stone_small_post");
+    remapBlock("cracked_stone", "soft_stone");
+    remapBlock("cracked_stone_stairs", "soft_stone_stairs");
+    remapBlock("cracked_stone_slab", "soft_stone_slab");
+    remapBlock("cracked_stone_wall", "soft_stone_wall");
+    remapBlock("cracked_stone_wide_post", "soft_stone_wide_post");
+    remapBlock("cracked_stone_small_post", "soft_stone_small_post");
+    remapItem("cracked_stone", "soft_stone");
+    remapItem("cracked_stone_stairs", "soft_stone_stairs");
+    remapItem("cracked_stone_slab", "soft_stone_slab");
+    remapItem("cracked_stone_wall", "soft_stone_wall");
+    remapItem("cracked_stone_wide_post", "soft_stone_wide_post");
+    remapItem("cracked_stone_small_post", "soft_stone_small_post");
   }
 }

@@ -88,9 +88,6 @@ public class MysticalWorld {
     MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
     MinecraftForge.EVENT_BUS.addListener(MaskHandler::onAttackEntity);
 
-    MinecraftForge.EVENT_BUS.addGenericListener(Block.class, Remaps::remapBlockEvent);
-    MinecraftForge.EVENT_BUS.addGenericListener(Item.class, Remaps::remapItemEvent);
-    MinecraftForge.EVENT_BUS.addGenericListener(EntityType.class, Remaps::remapEntityEvent);
     MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModFeatures::onBiomeLoad);
     MinecraftForge.EVENT_BUS.addListener(ModFeatures::onWorldLoad);
 
