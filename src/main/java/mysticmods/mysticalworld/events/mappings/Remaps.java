@@ -2,8 +2,10 @@ package mysticmods.mysticalworld.events.mappings;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -74,10 +76,11 @@ public class Remaps {
         mapping.ignore();
       } else if (remap != null) {
         Item remapped = ForgeRegistries.ITEMS.getValue(remap);
-        if (remapped == null) {
+        if (remapped == null || remapped == Items.AIR) {
           MysticalWorld.LOG.error("Attempted remapping is invalid: " + mapping.key + " is remapped to " + remap + " but that item doesn't exist!");
         } else {
           mapping.remap(remapped);
+          MysticalWorld.LOG.info("Remapped item: " + mapping.key + " to " + remap);
         }
       }
     }
@@ -90,10 +93,11 @@ public class Remaps {
         mapping.ignore();
       } else if (remap != null) {
         Block remapped = ForgeRegistries.BLOCKS.getValue(remap);
-        if (remapped == null) {
+        if (remapped == null || remapped == Blocks.AIR) {
           MysticalWorld.LOG.error("Attempted remapping is invalid: " + mapping.key + " is remapped to " + remap + " but that block doesn't exist!");
         } else {
           mapping.remap(remapped);
+          MysticalWorld.LOG.info("Remapped block: " + mapping.key + " to " + remap);
         }
       }
     }
@@ -110,6 +114,7 @@ public class Remaps {
           MysticalWorld.LOG.error("Attempted remapping is invalid: " + mapping.key + " is remapped to " + remap + " but that entity doesn't exist!");
         } else {
           mapping.remap(remapped);
+          MysticalWorld.LOG.info("Remapped entity: " + mapping.key + " to " + remap);
         }
       }
     }
