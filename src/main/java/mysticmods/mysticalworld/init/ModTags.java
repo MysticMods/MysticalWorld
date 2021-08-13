@@ -130,6 +130,8 @@ public class ModTags {
     REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, p -> {
       BlockBuilder b = new BlockBuilder(p);
 
+      b.additional(Tags.Blocks.ORES).add(MWTags.Blocks.AMETHYST_ORE, MWTags.Blocks.COPPER_ORE, MWTags.Blocks.LEAD_ORE, MWTags.Blocks.QUICKSILVER_ORE, MWTags.Blocks.SILVER_ORE, MWTags.Blocks.TIN_ORE, MWTags.Blocks.QUARTZ_ORE);
+
       b.add(MWTags.Blocks.PURPUR, Blocks.PURPUR_BLOCK, Blocks.PURPUR_PILLAR);
       b.add(MWTags.Blocks.NETHER_BRICKS, Blocks.NETHER_BRICKS);
       b.add(MWTags.Blocks.RED_NETHER_BRICKS, Blocks.RED_NETHER_BRICKS);
