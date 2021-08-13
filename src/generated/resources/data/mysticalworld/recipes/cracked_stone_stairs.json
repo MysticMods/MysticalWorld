@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:cracked_stone"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:cracked_stone_stairs",
+    "count": 4
+  }
+}
