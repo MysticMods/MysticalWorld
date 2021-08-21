@@ -8,6 +8,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
 
@@ -125,6 +126,8 @@ public class ModTags {
       p.copy(MWTags.Blocks.RED_NETHER_BRICKS, MWTags.Items.RED_NETHER_BRICKS);
       p.copy(MWTags.Blocks.TERRACOTTA, MWTags.Items.TERRACOTTA);
       p.copy(MWTags.Blocks.MUSHROOM_BLOCKS, MWTags.Items.MUSHROOM_BLOCKS);
+
+      p.getOrCreateBuilder(ItemTags.BEACON_PAYMENT_ITEMS).add(ModItems.AMETHYST_GEM.get(), ModItems.COPPER_INGOT.get(), ModItems.LEAD_INGOT.get(), ModItems.QUICKSILVER_INGOT.get(), ModItems.SILVER_INGOT.get(), ModItems.TIN_INGOT.get(), ModItems.PEARL_GEM.get());
     });
 
     REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, p -> {
