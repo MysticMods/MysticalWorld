@@ -42,7 +42,7 @@ public class ModMaterials {
       WeaponType.AXE, 5.0f, -3.1f,
       WeaponType.KNIFE, 0f, -1.5f).setConfigProvider(ConfigManager::getArmorConfig);
 
-  public static MaterialType LEAD = new MaterialType(LEAD_NAME).itemMaterial(650, 4.0f, 2.5f, 3, 5).item(() -> ModItems.LEAD_INGOT).nugget(() -> ModItems.LEAD_NUGGET).dust(() -> ModItems.LEAD_DUST).block(() -> ModBlocks.LEAD_BLOCK).ore(() -> ModBlocks.LEAD_ORE).armorMaterial(22, new int[]{2, 5, 6, 2}, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0f, 2f).setModId(MysticalWorld.MODID).putDamageSpeed(
+  public static MaterialType LEAD = new MaterialType(LEAD_NAME).itemMaterial(650, 4.0f, 2.5f, 3, 5).item(() -> ModItems.LEAD_INGOT).nugget(() -> ModItems.LEAD_NUGGET).dust(() -> ModItems.LEAD_DUST).block(() -> ModBlocks.LEAD_BLOCK).ore(() -> ModBlocks.LEAD_ORE).armorMaterial(22, new int[]{2, 5, 6, 2}, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0f, 0f).setModId(MysticalWorld.MODID).putDamageSpeed(
       WeaponType.AXE, 7.0f, -3.1f,
       WeaponType.KNIFE, 0f, -2.1f).setConfigProvider(ConfigManager::getArmorConfig);
 
