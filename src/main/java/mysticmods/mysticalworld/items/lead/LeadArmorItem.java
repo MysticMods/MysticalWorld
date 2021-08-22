@@ -19,9 +19,9 @@ public class LeadArmorItem extends ModifiedArmorItem implements ILeadItem {
     Multimap<Attribute, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
 
     if (this.slot == equipmentSlot) {
-      float val = 0.01f;
+      float val = 0.04f;
       if (slot == EquipmentSlotType.CHEST || slot == EquipmentSlotType.LEGS) {
-        val = 0.02f;
+        val = 0.08f;
       }
       final float val2 = val;
       map.put(Attributes.KNOCKBACK_RESISTANCE, getOrCreateModifier(Attributes.KNOCKBACK_RESISTANCE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Knockback resistance", val2, AttributeModifier.Operation.ADDITION)));
