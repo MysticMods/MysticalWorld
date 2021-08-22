@@ -7,7 +7,6 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.config.FeatureConfig;
 import mysticmods.mysticalworld.config.OreConfig;
-import mysticmods.mysticalworld.mixins.AccessorCodec;
 import mysticmods.mysticalworld.world.SupplierBlockStateProvider;
 import mysticmods.mysticalworld.world.feature.SupplierOreFeature;
 import mysticmods.mysticalworld.world.feature.SupplierOreFeatureConfig;
