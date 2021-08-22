@@ -13,10 +13,10 @@ import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.blocks.*;
-import mysticmods.mysticalworld.blocks.*;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
@@ -83,7 +83,7 @@ public class ModBlocks {
     return (ctx, p) -> p.stairsBlock(ctx.getEntry(), p.blockTexture(parent.get()));
   }
 
-  public static <T extends SlabBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> slab(RegistryEntry<? extends Block> parent) {
+  public static <T extends SlabBlock> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> slab(RegistryEntry<? extends T> parent) {
     return (ctx, p) -> p.slabBlock(ctx.getEntry(), p.blockTexture(parent.get()), p.blockTexture(parent.get()));
   }
 
@@ -152,11 +152,27 @@ public class ModBlocks {
   }
 
   public static NonNullFunction<Block.Properties, StairsBlock> stairsBlock(RegistryEntry<? extends Block> block) {
-    return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b);
+    return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b) {
+      @Override
+      public PushReaction getPushReaction(BlockState p_149656_1_) {
+        if (this == ModBlocks.SOFT_OBSIDIAN_STAIRS.get()) {
+          return PushReaction.BLOCK;
+        }
+        return super.getPushReaction(p_149656_1_);
+      }
+    };
   }
 
   public static NonNullFunction<Block.Properties, StairsBlock> stairsBlock(Supplier<? extends Block> block) {
-    return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b);
+    return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b) {
+      @Override
+      public PushReaction getPushReaction(BlockState p_149656_1_) {
+        if (this == ModBlocks.SOFT_OBSIDIAN_STAIRS.get()) {
+          return PushReaction.BLOCK;
+        }
+        return super.getPushReaction(p_149656_1_);
+      }
+    };
   }
 
   public static RegistryEntry<PetrifiedFlowerBlock> STONEPETAL = MysticalWorld.REGISTRATE.block("stonepetal", Material.PLANTS, PetrifiedFlowerBlock::new)
@@ -182,8 +198,8 @@ public class ModBlocks {
   public static RegistryEntry<ThatchBlock> THATCH = MysticalWorld.REGISTRATE.block("thatch", Material.WOOD, ThatchBlock::new)
       .properties(o -> o.sound(SoundType.PLANT))
       .item()
-        .model(NonNullBiConsumer.noop())
-        .build()
+      .model(NonNullBiConsumer.noop())
+      .build()
       .blockstate(NonNullBiConsumer.noop())
       .recipe((ctx, p) -> {
             ShapedRecipeBuilder.shapedRecipe(ModBlocks.THATCH.get(), 32)
@@ -1454,9 +1470,9 @@ public class ModBlocks {
 
   // SMOOTH OBSIDIAN
 
-  private static NonNullUnaryOperator<Block.Properties> SOFT_OBSIDIAN_PROPS = o -> o.sound(SoundType.STONE).hardnessAndResistance(20f);
+  private static NonNullUnaryOperator<Block.Properties> SOFT_OBSIDIAN_PROPS = o -> o.sound(SoundType.STONE).hardnessAndResistance(25f, 600f);
 
-  public static RegistryEntry<Block> SOFT_OBSIDIAN = MysticalWorld.REGISTRATE.block("soft_obsidian", Block::new)
+  public static RegistryEntry<SoftObsidian.SoftObsidianBlock> SOFT_OBSIDIAN = MysticalWorld.REGISTRATE.block("soft_obsidian", SoftObsidian.SoftObsidianBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .tag(Tags.Items.OBSIDIAN)
@@ -1489,7 +1505,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<SlabBlock> SOFT_OBSIDIAN_SLAB = MysticalWorld.REGISTRATE.block("soft_obsidian_slab", Material.ROCK, SlabBlock::new)
+  public static RegistryEntry<SoftObsidian.SoftObsidianSlabBlock> SOFT_OBSIDIAN_SLAB = MysticalWorld.REGISTRATE.block("soft_obsidian_slab", Material.ROCK, SoftObsidian.SoftObsidianSlabBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .tag(ItemTags.SLABS)
@@ -1503,7 +1519,7 @@ public class ModBlocks {
       .blockstate(slab(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<WallBlock> SOFT_OBSIDIAN_WALL = MysticalWorld.REGISTRATE.block("soft_obsidian_wall", Material.ROCK, WallBlock::new)
+  public static RegistryEntry<SoftObsidian.SoftObsidianWallBlock> SOFT_OBSIDIAN_WALL = MysticalWorld.REGISTRATE.block("soft_obsidian_wall", Material.ROCK, SoftObsidian.SoftObsidianWallBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .tag(ItemTags.WALLS)
@@ -1516,7 +1532,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> SOFT_OBSIDIAN_WIDE_POST = MysticalWorld.REGISTRATE.block("soft_obsidian_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<SoftObsidian.SoftObsidianWidePostBlock> SOFT_OBSIDIAN_WIDE_POST = MysticalWorld.REGISTRATE.block("soft_obsidian_wide_post", Material.ROCK, SoftObsidian.SoftObsidianWidePostBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1527,7 +1543,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> SOFT_OBSIDIAN_SMALL_POST = MysticalWorld.REGISTRATE.block("soft_obsidian_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<SoftObsidian.SoftObsidianNarrowPostBlock> SOFT_OBSIDIAN_SMALL_POST = MysticalWorld.REGISTRATE.block("soft_obsidian_small_post", Material.ROCK, SoftObsidian.SoftObsidianNarrowPostBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -2034,7 +2050,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SILVER_BLOCK), ModBlocks.SILVER_SLAB, null, false)
       )
-     .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.SILVER_BLOCK))
       .register();
 
@@ -2139,7 +2155,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.TIN_BLOCK), ModBlocks.TIN_SLAB, null, false)
       )
-     .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.TIN_BLOCK))
       .register();
 
@@ -2222,7 +2238,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_SLAB, null, true)
       )
-     .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.PEARL_BLOCK))
       .register();
 
