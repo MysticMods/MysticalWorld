@@ -32,6 +32,10 @@ import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.Tags;
@@ -174,6 +178,21 @@ public class ModBlocks {
       }
     };
   }
+
+  public static RegistryEntry<UncannyGravelBlock> UNCANNY_GRAVEL = MysticalWorld.REGISTRATE.block("uncanny_gravel", Material.SAND, UncannyGravelBlock::new).properties(o -> o.hardnessAndResistance(0.6f).sound(SoundType.GROUND))
+      .item()
+      .model((ctx, p) -> p.blockItem(ModBlocks.UNCANNY_GRAVEL))
+      .build()
+      .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 8)
+          .patternLine("GGG")
+          .patternLine("GPG")
+          .patternLine("GGG")
+          .key('G', Tags.Items.GRAVEL)
+          .key('P', Tags.Items.DYES_PURPLE)
+          .addCriterion("has_gravel", RegistrateRecipeProvider.hasItem(Tags.Items.GRAVEL))
+          .build(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_gravel"))
+      )
+      .register();
 
   public static RegistryEntry<PetrifiedFlowerBlock> STONEPETAL = MysticalWorld.REGISTRATE.block("stonepetal", Material.PLANTS, PetrifiedFlowerBlock::new)
       .properties(o -> o.doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT))

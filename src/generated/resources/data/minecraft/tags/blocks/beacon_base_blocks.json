@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:amethyst_block",
+    "mysticalworld:copper_block",
+    "mysticalworld:lead_block",
+    "mysticalworld:quicksilver_block",
+    "mysticalworld:silver_block",
+    "mysticalworld:tin_block",
+    "mysticalworld:pearl_block"
+  ]
+}
