@@ -32,10 +32,6 @@ import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.Tags;
@@ -190,7 +186,25 @@ public class ModBlocks {
           .key('G', Tags.Items.GRAVEL)
           .key('P', Tags.Items.DYES_PURPLE)
           .addCriterion("has_gravel", RegistrateRecipeProvider.hasItem(Tags.Items.GRAVEL))
+          .addCriterion("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_PURPLE))
           .build(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_gravel"))
+      )
+      .register();
+
+  public static RegistryEntry<SandBlock> UNCANNY_SAND = MysticalWorld.REGISTRATE.block("uncanny_sand", Material.SAND, (b) -> new SandBlock(0x6c36e0, b)).properties(o -> o.hardnessAndResistance(0.5f).sound(SoundType.GROUND))
+      .item()
+      .model((ctx, p) -> p.blockItem(ModBlocks.UNCANNY_SAND))
+      .build()
+      .recipe((ctx, p) ->
+          ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 8)
+              .patternLine("GGG")
+              .patternLine("GPG")
+              .patternLine("GGG")
+              .key('G', Tags.Items.SAND)
+              .key('P', Tags.Items.DYES_PURPLE)
+              .addCriterion("has_sand", RegistrateRecipeProvider.hasItem(Tags.Items.SAND))
+              .addCriterion("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_PURPLE))
+              .build(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_sand"))
       )
       .register();
 

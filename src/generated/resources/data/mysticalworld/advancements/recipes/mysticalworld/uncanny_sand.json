@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "mysticalworld:uncanny_gravel"
+      "mysticalworld:uncanny_sand"
     ]
   },
   "criteria": {
-    "has_gravel": {
+    "has_sand": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:gravel"
+            "tag": "forge:sand"
           }
         ]
       }
@@ -29,13 +29,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "mysticalworld:uncanny_gravel"
+        "recipe": "mysticalworld:uncanny_sand"
       }
     }
   },
   "requirements": [
     [
-      "has_gravel",
+      "has_sand",
       "has_purple_dye",
       "has_the_recipe"
     ]
