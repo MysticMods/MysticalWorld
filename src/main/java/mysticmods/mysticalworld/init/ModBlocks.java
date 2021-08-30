@@ -374,9 +374,19 @@ public class ModBlocks {
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
-  public static RegistryEntry<WildAubergineBlock> WILD_AUBERGINE = MysticalWorld.REGISTRATE.block("wild_aubergine", WildAubergineBlock::new)
+  public static RegistryEntry<WildCropBlock> WILD_AUBERGINE = MysticalWorld.REGISTRATE.block("wild_aubergine", WildCropBlock::new)
       .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
       .loot((p, t) -> p.registerLootTable(t, LootTable.builder().addLootPool(RegistrateBlockLootTables.withSurvivesExplosion(ModItems.AUBERGINE.get(), LootPool.builder().rolls(RandomValueRange.of(1, 3)).addEntry(ItemLootEntry.builder(ModItems.AUBERGINE.get())))).addLootPool(RegistrateBlockLootTables.withSurvivesExplosion(ModItems.AUBERGINE_SEEDS.get(), LootPool.builder().rolls(RandomValueRange.of(1, 2)).addEntry(ItemLootEntry.builder(ModItems.AUBERGINE_SEEDS.get()))))))
+      .blockstate((ctx, p) ->
+          p.getVariantBuilder(ctx.getEntry())
+              .partialState()
+              .addModels(new ConfiguredModel(p.models().crop(ctx.getName(), p.blockTexture(ctx.getEntry()))))
+      )
+      .register();
+
+  public static RegistryEntry<WildCropBlock> WILD_WART = MysticalWorld.REGISTRATE.block("wild_wart", WildCropBlock::new)
+      .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
+      .loot((p, t) -> p.registerLootTable(t, LootTable.builder().addLootPool(RegistrateBlockLootTables.withSurvivesExplosion(Items.NETHER_WART, LootPool.builder().rolls(RandomValueRange.of(1, 3)).addEntry(ItemLootEntry.builder(Items.NETHER_WART)))).addLootPool(RegistrateBlockLootTables.withSurvivesExplosion(Items.NETHER_WART, LootPool.builder().rolls(RandomValueRange.of(1, 2)).addEntry(ItemLootEntry.builder(Items.NETHER_WART))))))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry())
               .partialState()

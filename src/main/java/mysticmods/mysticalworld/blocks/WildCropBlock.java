@@ -12,10 +12,10 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class WildAubergineBlock extends BushBlock {
+public class WildCropBlock extends BushBlock {
   private static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
-  public WildAubergineBlock(AbstractBlock.Properties builder) {
+  public WildCropBlock(AbstractBlock.Properties builder) {
     super(builder);
   }
 
