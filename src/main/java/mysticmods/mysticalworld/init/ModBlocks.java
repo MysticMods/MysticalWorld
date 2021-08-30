@@ -36,6 +36,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 import noobanidus.libs.noobutil.material.MaterialType;
@@ -184,9 +185,9 @@ public class ModBlocks {
           .patternLine("GPG")
           .patternLine("GGG")
           .key('G', Tags.Items.GRAVEL)
-          .key('P', Tags.Items.DYES_PURPLE)
+          .key('P', Tags.Items.DYES_CYAN)
           .addCriterion("has_gravel", RegistrateRecipeProvider.hasItem(Tags.Items.GRAVEL))
-          .addCriterion("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_PURPLE))
+          .addCriterion("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_CYAN))
           .build(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_gravel"))
       )
       .register();
@@ -195,17 +196,18 @@ public class ModBlocks {
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.UNCANNY_SAND))
       .build()
-      .recipe((ctx, p) ->
-          ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 8)
-              .patternLine("GGG")
-              .patternLine("GPG")
-              .patternLine("GGG")
-              .key('G', Tags.Items.SAND)
-              .key('P', Tags.Items.DYES_PURPLE)
-              .addCriterion("has_sand", RegistrateRecipeProvider.hasItem(Tags.Items.SAND))
-              .addCriterion("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_PURPLE))
-              .build(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_sand"))
-      )
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 8)
+            .patternLine("GGG")
+            .patternLine("GPG")
+            .patternLine("GGG")
+            .key('G', Tags.Items.SAND)
+            .key('P', Tags.Items.DYES_PURPLE)
+            .addCriterion("has_sand", RegistrateRecipeProvider.hasItem(Tags.Items.SAND))
+            .addCriterion("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_PURPLE))
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_sand"));
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(ModBlocks.UNCANNY_SAND.get()), Items.PURPLE_STAINED_GLASS, 0, 200);
+      })
       .register();
 
   public static RegistryEntry<PetrifiedFlowerBlock> STONEPETAL = MysticalWorld.REGISTRATE.block("stonepetal", Material.PLANTS, PetrifiedFlowerBlock::new)

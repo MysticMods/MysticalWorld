@@ -2,10 +2,14 @@ package mysticmods.mysticalworld;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Potion;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagRegistryManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeTagHandler;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class MWTags {
   public static class Blocks extends MWTags {
@@ -120,6 +124,18 @@ public class MWTags {
 
     static Tags.IOptionalNamedTag<Item> compatTag(String name) {
       return ItemTags.createOptional(new ResourceLocation("forge", name));
+    }
+  }
+
+  public static class Potions extends MWTags {
+    public static Tags.IOptionalNamedTag<Potion> RANDOM_BLACKLIST = compatTag("random_potion_blacklist");
+
+    static Tags.IOptionalNamedTag<Potion> modTag (String name) {
+      return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTION_TYPES, new ResourceLocation(MysticalWorld.MODID, name));
+    }
+
+    static Tags.IOptionalNamedTag<Potion> compatTag (String name) {
+      return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTION_TYPES, new ResourceLocation("forge", "name"));
     }
   }
 }
