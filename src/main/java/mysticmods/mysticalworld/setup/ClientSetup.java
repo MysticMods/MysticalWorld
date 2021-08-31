@@ -38,6 +38,8 @@ public class ClientSetup {
       RenderTypeLookup.setRenderLayer(ModBlocks.STONEPETAL.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_STONEPETAL.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.WILD_WART.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.ANYWHERE_BROWN_MUSHROOM.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.ANYWHERE_RED_MUSHROOM.get(), rendertype);
 
       ShadedClientSetup.init(event);
 
