@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "crafting",
+  "ingredients": [
+    {
+      "item": "mysticalworld:stem_mushroom_full"
+    }
+  ],
+  "result": {
+    "item": "minecraft:mushroom_stem"
+  }
+}

@@ -1,9 +1,6 @@
 package mysticmods.mysticalworld.init;
 
-import com.tterrag.registrate.providers.DataGenContext;
-import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
-import com.tterrag.registrate.providers.RegistrateItemModelProvider;
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import com.tterrag.registrate.providers.*;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -34,9 +31,9 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 import noobanidus.libs.noobutil.material.MaterialType;
@@ -179,7 +176,9 @@ public class ModBlocks {
   public static RegistryEntry<UncannyGravelBlock> UNCANNY_GRAVEL = MysticalWorld.REGISTRATE.block("uncanny_gravel", Material.SAND, UncannyGravelBlock::new).properties(o -> o.hardnessAndResistance(0.6f).sound(SoundType.GROUND))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.UNCANNY_GRAVEL))
+      .tag(Tags.Items.GRAVEL)
       .build()
+      .tag(Tags.Blocks.GRAVEL)
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 8)
           .patternLine("GGG")
           .patternLine("GPG")
@@ -195,7 +194,9 @@ public class ModBlocks {
   public static RegistryEntry<SandBlock> UNCANNY_SAND = MysticalWorld.REGISTRATE.block("uncanny_sand", Material.SAND, (b) -> new SandBlock(0x6c36e0, b)).properties(o -> o.hardnessAndResistance(0.5f).sound(SoundType.GROUND))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.UNCANNY_SAND))
+      .tag(ItemTags.SAND)
       .build()
+      .tag(BlockTags.SAND)
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 8)
             .patternLine("GGG")
@@ -215,7 +216,9 @@ public class ModBlocks {
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ctx.getEntry())))))
       .item()
       .model(ModBlocks::generated)
+      .tag(ItemTags.FLOWERS)
       .build()
+      .tag(BlockTags.FLOWERS)
       .recipe((ctx, p) -> {
         DataIngredient a = DataIngredient.items(ModBlocks.STONEPETAL.get());
         ShapelessRecipeBuilder.shapelessRecipe(Items.GRAY_DYE, 4).addIngredient(ctx.getEntry()).addCriterion("has_stonepetal", a.getCritereon(p)).build(p, new ResourceLocation(MysticalWorld.MODID, "gray_dye_from_stonepetal"));
@@ -228,13 +231,29 @@ public class ModBlocks {
       .loot((ctx, p) -> {
         ctx.registerDropping(p, Blocks.RED_MUSHROOM);
       })
+      .tag(BlockTags.ENDERMAN_HOLDABLE)
       .register();
 
   public static RegistryEntry<AnywhereMushroomBlock> ANYWHERE_BROWN_MUSHROOM = MysticalWorld.REGISTRATE.block("brown_mushroom", Material.PLANTS, AnywhereMushroomBlock::new)
       .properties(o -> o.doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> 1).setNeedsPostProcessing((a, b, c) -> true))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(Blocks.BROWN_MUSHROOM)))))
+      .tag(BlockTags.ENDERMAN_HOLDABLE)
       .loot((ctx, p) -> {
         ctx.registerDropping(p, Blocks.BROWN_MUSHROOM);
+      })
+      .register();
+
+  public static RegistryEntry<AnywhereMushroomBlock> UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("uncanny_mushroom", Material.PLANTS, AnywhereMushroomBlock::new)
+      .properties(o -> o.doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> 6).setNeedsPostProcessing((a, b, c) -> true))
+      .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ModBlocks.UNCANNY_MUSHROOM.get())))))
+      .item()
+      .model(ModBlocks::generated)
+      .tag(Tags.Items.MUSHROOMS)
+      .build()
+      .tag(BlockTags.ENDERMAN_HOLDABLE)
+      .recipe((ctx, p) -> {
+        DataIngredient a = DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM.get());
+        ShapelessRecipeBuilder.shapelessRecipe(Items.PURPLE_DYE, 4).addIngredient(ctx.getEntry()).addCriterion("has_uncanny_mushroom", a.getCritereon(p)).build(p, new ResourceLocation(MysticalWorld.MODID, "purple_dye_from_uncanny_mushroom"));
       })
       .register();
 
@@ -412,6 +431,40 @@ public class ModBlocks {
       )
       .register();
 
+  public static RegistryEntry<HugeMushroomBlock> UNCANNY_MUSHROOM_BLOCK = MysticalWorld.REGISTRATE.block("uncanny_mushroom_block", Material.WOOD, HugeMushroomBlock::new)
+      .properties(o -> o.hardnessAndResistance(0.2F).sound(SoundType.WOOD))
+      .blockstate((ctx, p) -> {
+        ModelFile model = p.models().withExistingParent(ctx.getName(), new ResourceLocation("minecraft", "block/template_single_face")).texture("texture", p.models().modLoc("block/uncanny_mushroom_block"));
+        ModelFile inside = p.models().getExistingFile(new ResourceLocation("minecraft", "block/mushroom_block_inside"));
+
+        p.getMultipartBuilder(ctx.getEntry())
+            .part().modelFile(model).addModel().condition(HugeMushroomBlock.NORTH, true).end()
+            .part().modelFile(model).uvLock(true).rotationY(90).addModel().condition(HugeMushroomBlock.EAST, true).end()
+            .part().modelFile(model).uvLock(true).rotationY(180).addModel().condition(HugeMushroomBlock.SOUTH, true).end()
+            .part().modelFile(model).uvLock(true).rotationY(270).addModel().condition(HugeMushroomBlock.WEST, true).end()
+            .part().modelFile(model).uvLock(true).rotationX(270).addModel().condition(HugeMushroomBlock.UP, true).end()
+            .part().modelFile(model).uvLock(true).rotationX(90).addModel().condition(HugeMushroomBlock.DOWN, true).end()
+            .part().modelFile(inside).addModel().condition(HugeMushroomBlock.NORTH, false).end()
+            .part().modelFile(inside).uvLock(false).rotationY(90).addModel().condition(HugeMushroomBlock.EAST, false).end()
+            .part().modelFile(inside).uvLock(false).rotationY(180).addModel().condition(HugeMushroomBlock.SOUTH, false).end()
+            .part().modelFile(inside).uvLock(false).rotationY(270).addModel().condition(HugeMushroomBlock.WEST, false).end()
+            .part().modelFile(inside).uvLock(false).rotationX(270).addModel().condition(HugeMushroomBlock.UP, false).end()
+            .part().modelFile(inside).uvLock(false).rotationX(90).addModel().condition(HugeMushroomBlock.DOWN, false).end();
+      })
+      .item()
+      .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation(MysticalWorld.MODID, "block/uncanny_mushroom_block")))
+      .build()
+      .register();
+
+  public static RegistryEntry<Block> UNCANNY_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("uncanny_mushroom_full", Material.WOOD, Block::new)
+      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .blockstate((ctx, p) -> {
+        p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), p.blockTexture(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get())));
+      })
+      .item()
+      .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation(MysticalWorld.MODID, "block/uncanny_mushroom_block")))
+      .build()
+      .register();
 
   // MUSHROOM
   public static RegistryEntry<Block> RED_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("red_mushroom_full", Material.WOOD, Block::new)
@@ -419,6 +472,9 @@ public class ModBlocks {
       .blockstate((ctx, p) -> {
         p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/red_mushroom_block")));
       })
+      .item()
+      .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/red_mushroom_block")))
+      .build()
       .register();
 
   public static RegistryEntry<Block> BROWN_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("brown_mushroom_full", Material.WOOD, Block::new)
@@ -426,12 +482,83 @@ public class ModBlocks {
       .blockstate((ctx, p) -> {
         p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/brown_mushroom_block")));
       })
+      .item()
+      .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/brown_mushroom_block")))
+      .build()
       .register();
 
   public static RegistryEntry<Block> STEM_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("stem_mushroom_full", Material.WOOD, Block::new)
       .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
       .blockstate((ctx, p) -> {
         p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_stem")));
+      })
+      .item()
+      .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_stem")))
+      .build()
+      .recipe((ctx, p) -> {
+        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.UNCANNY_MUSHROOM_FULL.get(), 1)
+            .addIngredient(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get())
+            .addCriterion("has_uncanny_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
+            .setGroup("crafting")
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "full_uncanny_mushroom_block_from_uncanny_mushroom"));
+        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get(), 1)
+            .addIngredient(ModBlocks.UNCANNY_MUSHROOM_FULL.get())
+            .addCriterion("has_full_red_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM_FULL.get()))
+            .setGroup("crafting")
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "plain_uncanny_mushroom_block_from_full_uncanny_mushroom_block"));
+
+        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.RED_MUSHROOM_FULL.get(), 1)
+            .addIngredient(Blocks.RED_MUSHROOM_BLOCK)
+            .addCriterion("has_vanilla_red_mushroom", RegistrateRecipeProvider.hasItem(Blocks.RED_MUSHROOM_BLOCK))
+            .setGroup("crafting")
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "full_red_mushroom_block_from_red_mushroom"));
+        ShapelessRecipeBuilder.shapelessRecipe(Blocks.RED_MUSHROOM_BLOCK, 1)
+            .addIngredient(ModBlocks.RED_MUSHROOM_FULL.get())
+            .addCriterion("has_full_red_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.RED_MUSHROOM_FULL.get()))
+            .setGroup("crafting")
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_red_mushroom_block_from_full_red_mushroom_block"));
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get().asItem(), 1)
+            .patternLine("XX")
+            .patternLine("XX")
+            .key('X', ModBlocks.UNCANNY_MUSHROOM.get())
+            .setGroup("crafting")
+            .addCriterion("has_uncanny_mushroom", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM.get()))
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_mushroom_block_from_mushrooms"));
+        ShapedRecipeBuilder.shapedRecipe(Blocks.RED_MUSHROOM_BLOCK, 1)
+            .patternLine("XX")
+            .patternLine("XX")
+            .key('X', Items.RED_MUSHROOM)
+            .setGroup("crafting")
+            .addCriterion("has_red_mushroom", RegistrateRecipeProvider.hasItem(Items.RED_MUSHROOM))
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "red_mushroom_block_from_mushrooms"));
+        ShapedRecipeBuilder.shapedRecipe(Blocks.BROWN_MUSHROOM_BLOCK, 1)
+            .patternLine("XX")
+            .patternLine("XX")
+            .key('X', Items.BROWN_MUSHROOM)
+            .addCriterion("has_brown_mushroom", RegistrateRecipeProvider.hasItem(Items.BROWN_MUSHROOM))
+            .setGroup("crafting")
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "brown_mushroom_block_from_mushrooms"));
+        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.BROWN_MUSHROOM_FULL.get(), 1)
+            .addIngredient(Blocks.BROWN_MUSHROOM_BLOCK)
+            .setGroup("crafting")
+            .addCriterion("has_vanilla_brown_mushroom", RegistrateRecipeProvider.hasItem(Blocks.BROWN_MUSHROOM_BLOCK))
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "full_brown_mushroom_block_from_brown_mushroom"));
+        ShapelessRecipeBuilder.shapelessRecipe(Blocks.BROWN_MUSHROOM_BLOCK, 1)
+            .addIngredient(ModBlocks.BROWN_MUSHROOM_FULL.get())
+            .addCriterion("has_full_brown_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.BROWN_MUSHROOM_FULL.get()))
+            .setGroup("crafting")
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_brown_mushroom_block_from_full_brown_mushroom_block"));
+        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.STEM_MUSHROOM_FULL.get(), 1)
+            .addIngredient(Blocks.MUSHROOM_STEM)
+            .addCriterion("has_vanilla_stem_mushroom", RegistrateRecipeProvider.hasItem(Blocks.MUSHROOM_STEM))
+            .setGroup("crafting")
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "full_stem_mushroom_block_from_stem_mushroom"));
+        ShapelessRecipeBuilder.shapelessRecipe(Blocks.MUSHROOM_STEM, 1)
+            .addIngredient(ModBlocks.STEM_MUSHROOM_FULL.get())
+            .addCriterion("has_full_stem_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.STEM_MUSHROOM_FULL.get()))
+            .setGroup("crafting")
+            .build(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_stem_mushroom_block_from_full_stem_mushroom_block"));
       })
       .register();
 

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mysticalworld:stem_mushroom_full"
+          "name": "mysticalworld:uncanny_mushroom_block"
         }
       ],
       "conditions": [

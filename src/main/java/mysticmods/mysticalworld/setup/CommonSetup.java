@@ -78,6 +78,7 @@ public class CommonSetup {
       fire.setFireInfo(ModBlocks.CHARRED_WOOD.get(), 1, 1);
       ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.STONEPETAL.getId(), () -> ModBlocks.POTTED_STONEPETAL.get());
 
+      ConfiguredFeatures.REGISTRY.registration();
       ConfiguredStructures.REGISTRY.registration();
       ModFeatures.generateFeatures();
       ModFeatures.REGISTRY.registration();

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:vanilla_stem_mushroom_block_from_full_stem_mushroom_block"
+    ]
+  },
+  "criteria": {
+    "has_full_stem_mushroom_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mysticalworld:stem_mushroom_full"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:vanilla_stem_mushroom_block_from_full_stem_mushroom_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_full_stem_mushroom_block",
+      "has_the_recipe"
+    ]
+  ]
+}

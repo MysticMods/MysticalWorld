@@ -1,5 +1,6 @@
 package mysticmods.mysticalworld.blocks;
 
+import mysticmods.mysticalworld.init.ConfiguredFeatures;
 import mysticmods.mysticalworld.init.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -33,7 +34,9 @@ public class AnywhereMushroomBlock extends MushroomBlock {
   public boolean grow(ServerWorld world, BlockPos pos, BlockState state, Random rand) {
     world.removeBlock(pos, false);
     ConfiguredFeature<?, ?> configuredfeature;
-    if (this == ModBlocks.ANYWHERE_BROWN_MUSHROOM.get()) {
+    if (this == ModBlocks.UNCANNY_MUSHROOM.get()) {
+      configuredfeature = ConfiguredFeatures.HUGE_UNCANNY_MUSHROOM;
+    } else if (this == ModBlocks.ANYWHERE_BROWN_MUSHROOM.get()) {
       configuredfeature = Features.HUGE_BROWN_MUSHROOM;
     } else {
       if (this != ModBlocks.ANYWHERE_RED_MUSHROOM.get()) {

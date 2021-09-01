@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "crafting",
+  "ingredients": [
+    {
+      "item": "minecraft:brown_mushroom_block"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:brown_mushroom_full"
+  }
+}
