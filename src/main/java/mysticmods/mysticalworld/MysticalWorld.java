@@ -7,6 +7,7 @@ import mysticmods.mysticalworld.events.MaskHandler;
 import mysticmods.mysticalworld.events.global.GrassHandler;
 import mysticmods.mysticalworld.events.mappings.Remaps;
 import mysticmods.mysticalworld.gen.LootTableGenerator;
+import mysticmods.mysticalworld.gen.PotionTagGenerator;
 import mysticmods.mysticalworld.init.*;
 import mysticmods.mysticalworld.integration.dynamictrees.DynamicTrees;
 import mysticmods.mysticalworld.setup.ClientInit;
@@ -108,6 +109,7 @@ public class MysticalWorld {
     if (event.includeServer()) {
       ModLoot.load();
       event.getGenerator().addProvider(new LootTableGenerator(event.getGenerator()));
+      event.getGenerator().addProvider(new PotionTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
     }
   }
 }

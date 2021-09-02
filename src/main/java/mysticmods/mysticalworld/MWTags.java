@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagRegistryManager;
 import net.minecraft.util.ResourceLocation;
@@ -128,14 +129,14 @@ public class MWTags {
   }
 
   public static class Potions extends MWTags {
-    public static Tags.IOptionalNamedTag<Potion> RANDOM_BLACKLIST = compatTag("random_potion_blacklist");
+    public static ITag.INamedTag<Potion> RANDOM_BLACKLIST = compatTag("random_potion_blacklist");
 
-    static Tags.IOptionalNamedTag<Potion> modTag (String name) {
+    static ITag.INamedTag<Potion> modTag (String name) {
       return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTION_TYPES, new ResourceLocation(MysticalWorld.MODID, name));
     }
 
-    static Tags.IOptionalNamedTag<Potion> compatTag (String name) {
-      return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTION_TYPES, new ResourceLocation("forge", "name"));
+    static ITag.INamedTag<Potion> compatTag (String name) {
+      return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTION_TYPES, new ResourceLocation("forge", name));
     }
   }
 }
