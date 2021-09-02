@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:uncanny_mushroom_block"
+  },
+  "result": "mysticalworld:uncanny_mushroom_slab",
+  "count": 2
+}

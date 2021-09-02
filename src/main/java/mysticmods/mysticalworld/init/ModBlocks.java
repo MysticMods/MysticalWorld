@@ -432,7 +432,10 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<HugeMushroomBlock> UNCANNY_MUSHROOM_BLOCK = MysticalWorld.REGISTRATE.block("uncanny_mushroom_block", Material.WOOD, HugeMushroomBlock::new)
-      .properties(o -> o.hardnessAndResistance(0.2F).sound(SoundType.WOOD))
+      .properties(o -> o.hardnessAndResistance(0.2F).sound(SoundType.WOOD).setLightLevel(q -> 4))
+      .loot((ctx, p) -> {
+        ctx.registerLootTable(p, RegistrateBlockLootTables.droppingItemRarely(p, ModBlocks.UNCANNY_MUSHROOM.get()));
+      })
       .blockstate((ctx, p) -> {
         ModelFile model = p.models().withExistingParent(ctx.getName(), new ResourceLocation("minecraft", "block/template_single_face")).texture("texture", p.models().modLoc("block/uncanny_mushroom_block"));
         ModelFile inside = p.models().getExistingFile(new ResourceLocation("minecraft", "block/mushroom_block_inside"));
@@ -457,13 +460,99 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<Block> UNCANNY_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("uncanny_mushroom_full", Material.WOOD, Block::new)
-      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .properties(o -> o.hardnessAndResistance(0.2F).sound(SoundType.WOOD).setLightLevel(q -> 4))
       .blockstate((ctx, p) -> {
         p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), p.blockTexture(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get())));
       })
       .item()
       .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation(MysticalWorld.MODID, "block/uncanny_mushroom_block")))
       .build()
+      .register();
+
+  public static RegistryEntry<StairsBlock> UNCANNY_MUSHROOM_STAIRS = MysticalWorld.REGISTRATE.block("uncanny_mushroom_stairs", Material.WOOD, stairsBlock(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
+      .properties(MUSHROOM_PROPS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.stairs(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK), ModBlocks.UNCANNY_MUSHROOM_STAIRS, null, true)
+      )
+      .blockstate(stairs(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<SlabBlock> UNCANNY_MUSHROOM_SLAB = MysticalWorld.REGISTRATE.block("uncanny_mushroom_slab", Material.WOOD, SlabBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ModBlocks::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          p.slab(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()), ModBlocks.UNCANNY_MUSHROOM_SLAB, null, true)
+      )
+      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .blockstate(slab(ModBlocks.UNCANNY_MUSHROOM_FULL, () ->  ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
+      .register();
+
+  public static RegistryEntry<WallBlock> UNCANNY_MUSHROOM_WALL = MysticalWorld.REGISTRATE.block("uncanny_mushroom_wall", Material.WOOD, WallBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          p.wall(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()), ModBlocks.UNCANNY_MUSHROOM_WALL)
+      )
+      .blockstate(wall(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<FenceBlock> UNCANNY_MUSHROOM_FENCE = MysticalWorld.REGISTRATE.block("uncanny_mushroom_fence", Material.WOOD, FenceBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .tag(ItemTags.WOODEN_FENCES)
+      .model(ModBlocks::inventoryModel)
+      .build()
+      .tag(BlockTags.WOODEN_FENCES)
+      .recipe((ctx, p) ->
+          p.fence(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK), ModBlocks.UNCANNY_MUSHROOM_FENCE, null)
+      )
+      .blockstate(fence(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<FenceGateBlock> UNCANNY_MUSHROOM_FENCE_GATE = MysticalWorld.REGISTRATE.block("uncanny_mushroom_fence_gate", Material.WOOD, FenceGateBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.fenceGate(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK), ModBlocks.UNCANNY_MUSHROOM_FENCE_GATE, null)
+      )
+      .blockstate(gate(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.WidePostBlock> UNCANNY_MUSHROOM_WIDE_POST = MysticalWorld.REGISTRATE.block("uncanny_mushroom_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          MysticalWorld.RECIPES.widePost(ModBlocks.UNCANNY_MUSHROOM_BLOCK, ModBlocks.UNCANNY_MUSHROOM_WIDE_POST, null, true, p)
+      )
+      .blockstate(widePost(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
+      .register();
+
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> UNCANNY_MUSHROOM_SMALL_POST = MysticalWorld.REGISTRATE.block("uncanny_mushroom_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
+      .properties(MUSHROOM_PROPS)
+      .item()
+      .model(ModBlocks::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          MysticalWorld.RECIPES.narrowPost(ModBlocks.UNCANNY_MUSHROOM_BLOCK, ModBlocks.UNCANNY_MUSHROOM_SMALL_POST, null, true, p)
+      )
+      .blockstate(narrowPost(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
       .register();
 
   // MUSHROOM

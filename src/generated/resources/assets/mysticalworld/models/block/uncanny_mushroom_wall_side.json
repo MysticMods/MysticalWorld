@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side",
+  "textures": {
+    "wall": "mysticalworld:block/uncanny_mushroom_block"
+  }
+}

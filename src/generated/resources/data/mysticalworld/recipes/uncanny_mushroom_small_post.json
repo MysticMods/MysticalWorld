@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:uncanny_mushroom_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:uncanny_mushroom_small_post",
+    "count": 4
+  }
+}
