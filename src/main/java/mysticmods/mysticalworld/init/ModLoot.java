@@ -5,20 +5,24 @@ import mysticmods.mysticalworld.loot.conditions.HasHorns;
 import mysticmods.mysticalworld.loot.conditions.IsColor;
 import mysticmods.mysticalworld.loot.conditions.IsLava;
 import mysticmods.mysticalworld.loot.conditions.IsObsidian;
+import mysticmods.mysticalworld.loot.functions.RandomPotion;
 import net.minecraft.loot.LootConditionType;
+import net.minecraft.loot.LootFunctionType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 
 public class ModLoot {
-  public static final LootConditionType HAS_HORNS = new LootConditionType(new HasHorns.Serializer());
-  public static final LootConditionType IS_COLOR = new LootConditionType(new IsColor.Serializer());
-  public static final LootConditionType IS_OBSIDIAN = new LootConditionType(new IsObsidian.Serializer());
-  public static final LootConditionType IS_LAVA = new LootConditionType(new IsLava.Serializer());
+  public static final ConfiguredRegistry<LootFunctionType> FUNCTION_REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, Registry.LOOT_FUNCTION_TYPE);
+  public static final ConfiguredRegistry<LootConditionType> CONDITION_REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, Registry.LOOT_CONDITION_TYPE);
+
+  public static final LootFunctionType RANDOM_POTION = FUNCTION_REGISTRY.register("random_potion", new LootFunctionType(new RandomPotion.Serializer()));
+
+  public static final LootConditionType HAS_HORNS = CONDITION_REGISTRY.register("has_horns", new LootConditionType(new HasHorns.Serializer()));
+  public static final LootConditionType IS_COLOR = CONDITION_REGISTRY.register("is_color", new LootConditionType(new IsColor.Serializer()));
+  public static final LootConditionType IS_OBSIDIAN = CONDITION_REGISTRY.register("is_lava", new LootConditionType(new IsObsidian.Serializer()));
+  public static final LootConditionType IS_LAVA = CONDITION_REGISTRY.register("is_obsidian", new LootConditionType(new IsLava.Serializer()));
 
   public static void load() {
-    Registry.register(Registry.LOOT_CONDITION_TYPE, new ResourceLocation(MysticalWorld.MODID, "has_horns"), HAS_HORNS);
-    Registry.register(Registry.LOOT_CONDITION_TYPE, new ResourceLocation(MysticalWorld.MODID, "is_color"), IS_COLOR);
-    Registry.register(Registry.LOOT_CONDITION_TYPE, new ResourceLocation(MysticalWorld.MODID, "is_lava"), IS_LAVA);
-    Registry.register(Registry.LOOT_CONDITION_TYPE, new ResourceLocation(MysticalWorld.MODID, "is_obsidian"), IS_OBSIDIAN);
   }
 }

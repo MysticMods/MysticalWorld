@@ -108,6 +108,8 @@ public class MysticalWorld {
   public void onDataGen(GatherDataEvent event) {
     if (event.includeServer()) {
       ModLoot.load();
+      ModLoot.CONDITION_REGISTRY.registration();
+      ModLoot.FUNCTION_REGISTRY.registration();
       event.getGenerator().addProvider(new LootTableGenerator(event.getGenerator()));
       event.getGenerator().addProvider(new PotionTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
     }

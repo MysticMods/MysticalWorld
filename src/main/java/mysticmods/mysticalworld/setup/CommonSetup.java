@@ -82,8 +82,11 @@ public class CommonSetup {
       ConfiguredStructures.REGISTRY.registration();
       ModFeatures.generateFeatures();
       ModFeatures.REGISTRY.registration();
+      ModLoot.FUNCTION_REGISTRY.registration();
+      ModLoot.CONDITION_REGISTRY.registration();
 
       SpawnEggItem.EGGS.remove(null);
+      //noinspection unchecked
       ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.EGGS.put(o.get().getType(null), o.get()));
     });
   }
