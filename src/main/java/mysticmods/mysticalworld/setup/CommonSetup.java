@@ -113,7 +113,6 @@ public class CommonSetup {
 
   public static void loadComplete(FMLLoadCompleteEvent event) {
     event.enqueueWork(() -> {
-      ModifyLoot.modify();
     });
   }
 }
