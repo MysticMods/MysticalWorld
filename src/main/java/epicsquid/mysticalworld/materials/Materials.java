@@ -3,11 +3,14 @@ package epicsquid.mysticalworld.materials;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.material.MaterialTypes;
 import epicsquid.mysticalworld.MysticalWorld;
+import epicsquid.mysticalworld.config.ConfigManager;
+import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -54,5 +57,17 @@ public class Materials {
 
   public static void registerOreDictionary() {
     getMaterials().forEach(Material::initOreDictionary);
+    if (ConfigManager.iron.enableDusts) {
+      OreDictionary.registerOre("dustIron", ModItems.iron_dust);
+    }
+    if (ConfigManager.iron.enableTinyDusts) {
+      OreDictionary.registerOre("tinyDustIron", ModItems.iron_dust_tiny);
+    }
+    if (ConfigManager.gold.enableDusts) {
+      OreDictionary.registerOre("dustGold", ModItems.gold_dust);
+    }
+    if (ConfigManager.gold.enableTinyDusts) {
+      OreDictionary.registerOre("tinyDustGold", ModItems.gold_dust_tiny);
+    }
   }
 }
