@@ -54,6 +54,9 @@ public class ShoulderRenderer {
   public static void onRenderHand(RenderHandEvent event) {
     Minecraft mc = Minecraft.getMinecraft();
     EntityPlayer player = mc.player;
+    if (player == null) {
+      return;
+    }
     World world = mc.world;
     float ticks = event.getPartialTicks();
 
@@ -89,6 +92,9 @@ public class ShoulderRenderer {
   public static void onRenderPlayerPost(RenderPlayerEvent.Post event) {
     Minecraft mc = Minecraft.getMinecraft();
     EntityPlayer player = mc.player;
+    if (player == null) {
+      return;
+    }
     EntityPlayer ePlayer = event.getEntityPlayer();
     World world = mc.world;
     float ticks = event.getPartialRenderTick();
