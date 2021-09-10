@@ -243,7 +243,7 @@ public class ModEntities {
               )
           )
       )
-      .properties(o -> o.size(0.8f, 0.6f).setTrackingRange(5).setShouldReceiveVelocityUpdates(false).setUpdateInterval(20))
+      .properties(o -> o.size(0.8f, 0.6f).setTrackingRange(5).setShouldReceiveVelocityUpdates(true).setUpdateInterval(20))
       .register();
 
   static {
