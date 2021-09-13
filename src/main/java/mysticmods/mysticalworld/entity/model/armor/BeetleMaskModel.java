@@ -4,6 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
+import noobanidus.libs.noobutil.client.model.ArmorBaseModel;
 
 public class BeetleMaskModel extends ArmorBaseModel {
   public ModelRenderer mask;
