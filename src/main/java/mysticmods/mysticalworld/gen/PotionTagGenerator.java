@@ -14,8 +14,8 @@ public class PotionTagGenerator extends ForgeRegistryTagsProvider<Potion> {
   }
 
   @Override
-  protected void registerTags() {
-    getOrCreateBuilder(MWTags.Potions.RANDOM_BLACKLIST);
+  protected void addTags() {
+    tag(MWTags.Potions.RANDOM_BLACKLIST);
   }
 
   @Override

@@ -12,6 +12,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class QuicksilverPickaxeItem extends PickaxeItem implements IQuicksilverItem {
 
   private int counter;
@@ -30,12 +32,12 @@ public class QuicksilverPickaxeItem extends PickaxeItem implements IQuicksilverI
   }
 
   @Override
-  public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+  public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
     return true;
   }
 
   @Override
-  public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
+  public boolean mineBlock(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
     return true;
   }
 }

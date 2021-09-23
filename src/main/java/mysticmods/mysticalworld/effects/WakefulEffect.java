@@ -17,11 +17,11 @@ public class WakefulEffect extends InstantEffect {
   }
 
   @Override
-  public void performEffect(LivingEntity entity, int amplifier) {
+  public void applyEffectTick(LivingEntity entity, int amplifier) {
     if (entity instanceof PlayerEntity) {
       PlayerEntity player = (PlayerEntity) entity;
-      player.takeStat(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
-      player.sendMessage(new TranslationTextComponent("message.dandelion_cordial").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.YELLOW))), Util.DUMMY_UUID);
+      player.resetStat(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
+      player.sendMessage(new TranslationTextComponent("message.dandelion_cordial").setStyle(Style.EMPTY.withColor(Color.fromLegacyFormat(TextFormatting.YELLOW))), Util.NIL_UUID);
     }
   }
 }

@@ -19,17 +19,17 @@ public class EmptyRecipe extends SpecialRecipe {
   }
 
   @Override
-  public ItemStack getCraftingResult(CraftingInventory inv) {
+  public ItemStack assemble(CraftingInventory inv) {
     return ItemStack.EMPTY;
   }
 
   @Override
-  public boolean canFit(int width, int height) {
+  public boolean canCraftInDimensions(int width, int height) {
     return false;
   }
 
   @Override
-  public ItemStack getRecipeOutput() {
+  public ItemStack getResultItem() {
     return ItemStack.EMPTY;
   }
 

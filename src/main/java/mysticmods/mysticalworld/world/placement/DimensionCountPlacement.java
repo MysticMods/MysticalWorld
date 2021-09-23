@@ -30,8 +30,8 @@ public class DimensionCountPlacement extends Placement<DimensionCountRangeConfig
 
   @Override
   public Stream<BlockPos> getPositions(WorldDecoratingHelper helper, Random rand, DimensionCountRangeConfig config, BlockPos pos) {
-    ServerWorld world = helper.field_242889_a.getWorld();
-    if (config.dimensions.contains(world.getDimensionKey())) {
+    ServerWorld world = helper.level.getLevel();
+    if (config.dimensions.contains(world.dimension())) {
       return getPositions(rand, config, pos);
     } else {
       return Stream.empty();

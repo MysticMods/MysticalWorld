@@ -12,6 +12,8 @@ import net.minecraft.util.Hand;
 
 import java.util.EnumSet;
 
+import net.minecraft.entity.ai.goal.Goal.Flag;
+
 public class HealTargetGoal extends TargetGoal {
   private CreatureEntity attacker;
   private int attackTick;
@@ -28,12 +30,12 @@ public class HealTargetGoal extends TargetGoal {
     this.attacker = attacker;
     this.speedTowardsTarget = speedTowardsTarget;
     this.longMemory = true;
-    this.setMutexFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+    this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
   }
 
   @Override
-  public boolean shouldExecute() {
-    LivingEntity target = attacker.getAttackTarget();
+  public boolean canUse() {
+    LivingEntity target = attacker.getTarget();
     if (target == null) {
       return false;
     }
@@ -42,14 +44,14 @@ public class HealTargetGoal extends TargetGoal {
   }
 
   @Override
-  public boolean shouldContinueExecuting() {
-    LivingEntity target = attacker.getAttackTarget();
+  public boolean canContinueToUse() {
+    LivingEntity target = attacker.getTarget();
     if (target == null) {
       return false;
     }
 
     if (target instanceof PlayerEntity) {
-      this.path = attacker.getNavigator().getPathToEntity(target, 0);
+      this.path = attacker.getNavigation().createPath(target, 0);
       return this.path != null;
     }
 
@@ -57,33 +59,33 @@ public class HealTargetGoal extends TargetGoal {
   }
 
   @Override
-  public void startExecuting() {
-    this.attacker.getNavigator().setPath(this.path, this.speedTowardsTarget);
+  public void start() {
+    this.attacker.getNavigation().moveTo(this.path, this.speedTowardsTarget);
   }
 
   @Override
-  public void resetTask() {
-    LivingEntity entitylivingbase = this.attacker.getAttackTarget();
+  public void stop() {
+    LivingEntity entitylivingbase = this.attacker.getTarget();
 
     if (entitylivingbase instanceof PlayerEntity && (entitylivingbase.isSpectator() || ((PlayerEntity) entitylivingbase).isCreative())) {
-      this.attacker.setAttackTarget(null);
+      this.attacker.setTarget(null);
     }
 
-    this.attacker.getNavigator().clearPath();
+    this.attacker.getNavigation().stop();
   }
 
   @Override
   public void tick() {
-    LivingEntity entitylivingbase = this.attacker.getAttackTarget();
+    LivingEntity entitylivingbase = this.attacker.getTarget();
     if (entitylivingbase != null) {
-      this.attacker.getLookController().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
-      double d0 = this.attacker.getDistanceSq(entitylivingbase.getPosX(), entitylivingbase.getBoundingBox().minY, entitylivingbase.getPosZ());
+      this.attacker.getLookControl().setLookAt(entitylivingbase, 30.0F, 30.0F);
+      double d0 = this.attacker.distanceToSqr(entitylivingbase.getX(), entitylivingbase.getBoundingBox().minY, entitylivingbase.getZ());
       --this.delayCounter;
 
-      this.targetX = entitylivingbase.getPosX();
+      this.targetX = entitylivingbase.getX();
       this.targetY = entitylivingbase.getBoundingBox().minY;
-      this.targetZ = entitylivingbase.getPosZ();
-      this.delayCounter = 4 + this.attacker.getRNG().nextInt(7);
+      this.targetZ = entitylivingbase.getZ();
+      this.delayCounter = 4 + this.attacker.getRandom().nextInt(7);
 
       if (d0 > 1024.0D) {
         this.delayCounter += 10;
@@ -91,7 +93,7 @@ public class HealTargetGoal extends TargetGoal {
         this.delayCounter += 5;
       }
 
-      if (!this.attacker.getNavigator().tryMoveToEntityLiving(entitylivingbase, this.speedTowardsTarget)) {
+      if (!this.attacker.getNavigation().moveTo(entitylivingbase, this.speedTowardsTarget)) {
         this.delayCounter += 15;
       }
       this.attackTick = Math.max(this.attackTick - 1, 0);
@@ -104,9 +106,9 @@ public class HealTargetGoal extends TargetGoal {
 
     if (distToEnemySqr <= d0 && this.attackTick <= 0) {
       this.attackTick = 20;
-      this.attacker.swingArm(Hand.MAIN_HAND);
+      this.attacker.swing(Hand.MAIN_HAND);
       enemy.heal(ConfigManager.HAT_CONFIG.getAntlerHealing());
-      enemy.addPotionEffect(new EffectInstance(Effects.REGENERATION, ConfigManager.HAT_CONFIG.getAntlerRegenDuration(), ConfigManager.HAT_CONFIG.getAntlerRegenAmplifier(), false, false));
+      enemy.addEffect(new EffectInstance(Effects.REGENERATION, ConfigManager.HAT_CONFIG.getAntlerRegenDuration(), ConfigManager.HAT_CONFIG.getAntlerRegenAmplifier(), false, false));
       this.attacker.remove();
     }
   }

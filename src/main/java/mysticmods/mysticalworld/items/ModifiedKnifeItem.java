@@ -11,6 +11,8 @@ import noobanidus.libs.noobutil.item.BaseItems;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.item.Item.Properties;
+
 public abstract class ModifiedKnifeItem extends BaseItems.KnifeItem implements IModifiable {
   protected Map<Attribute, AttributeModifier> modifiers = new HashMap<>();
 
@@ -24,8 +26,8 @@ public abstract class ModifiedKnifeItem extends BaseItems.KnifeItem implements I
   }
 
   @Override
-  public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-    Multimap<Attribute, AttributeModifier> result = super.getAttributeModifiers(equipmentSlot);
+  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+    Multimap<Attribute, AttributeModifier> result = super.getDefaultAttributeModifiers(equipmentSlot);
     if (result.isEmpty()) {
       //noinspection UnstableApiUsage
       return MultimapBuilder.hashKeys().hashSetValues().build();

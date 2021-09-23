@@ -24,19 +24,19 @@ import java.util.Random;
 @SuppressWarnings("deprecation")
 public class PetrifiedFlowerBlock extends FlowerBlock {
   public PetrifiedFlowerBlock(AbstractBlock.Properties propertiesIn) {
-    super(Effects.JUMP_BOOST, 50, propertiesIn);
+    super(Effects.JUMP, 50, propertiesIn);
   }
 
   @Override
-  protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-    return state.isIn(Tags.Blocks.STONE) || state.isIn(Blocks.GRAVEL) || state.isIn(Tags.Blocks.ORES);
+  protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    return state.is(Tags.Blocks.STONE) || state.is(Blocks.GRAVEL) || state.is(Tags.Blocks.ORES);
   }
 
   @Override
   @OnlyIn(Dist.CLIENT)
   public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-    VoxelShape voxelshape = this.getShape(stateIn, worldIn, pos, ISelectionContext.dummy());
-    Vector3d vector3d = voxelshape.getBoundingBox().getCenter();
+    VoxelShape voxelshape = this.getShape(stateIn, worldIn, pos, ISelectionContext.empty());
+    Vector3d vector3d = voxelshape.bounds().getCenter();
     double d0 = (double) pos.getX() + vector3d.x;
     double d1 = (double) pos.getZ() + vector3d.z;
 
@@ -49,11 +49,11 @@ public class PetrifiedFlowerBlock extends FlowerBlock {
   }
 
   @Override
-  public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-    if (!worldIn.isRemote) {
+  public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    if (!worldIn.isClientSide) {
       if (entityIn instanceof LivingEntity) {
         LivingEntity livingentity = (LivingEntity) entityIn;
-        livingentity.addPotionEffect(new EffectInstance(Effects.JUMP_BOOST, 20, 2));
+        livingentity.addEffect(new EffectInstance(Effects.JUMP, 20, 2));
       }
     }
   }

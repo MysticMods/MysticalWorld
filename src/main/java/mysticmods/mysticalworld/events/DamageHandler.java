@@ -11,9 +11,9 @@ public class DamageHandler {
   public static void onAttackDamage(LivingDamageEvent event) {
     DamageSource source = event.getSource();
     LivingEntity target = event.getEntityLiving();
-    if (target.isEntityUndead()) {
+    if (target.isInvertedHealAndHarm()) {
       if (source != null) {
-        Entity trueAttacker = source.getTrueSource();
+        Entity trueAttacker = source.getEntity();
         if (trueAttacker instanceof PlayerEntity) {
           PlayerEntity player = (PlayerEntity) trueAttacker;
           float smiteAmount = (float) player.getAttributeValue(ModModifiers.SMITE.get());
@@ -23,13 +23,13 @@ public class DamageHandler {
     }
     if (target instanceof PlayerEntity) {
       if (source != null) {
-        Entity trueAttacker = source.getTrueSource();
+        Entity trueAttacker = source.getEntity();
         if (trueAttacker instanceof LivingEntity) {
-          if (((LivingEntity) trueAttacker).isEntityUndead()) {
+          if (((LivingEntity) trueAttacker).isInvertedHealAndHarm()) {
             PlayerEntity player = (PlayerEntity) target;
             float blessedAmount = (float) player.getAttributeValue(ModModifiers.BLESSED.get());
             if (blessedAmount > 0) {
-              trueAttacker.attackEntityFrom(DamageSource.ON_FIRE, blessedAmount);
+              trueAttacker.hurt(DamageSource.ON_FIRE, blessedAmount);
             }
           }
         }

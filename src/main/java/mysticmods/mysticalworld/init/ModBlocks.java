@@ -150,69 +150,69 @@ public class ModBlocks {
   }
 
   public static NonNullFunction<Block.Properties, StairsBlock> stairsBlock(RegistryEntry<? extends Block> block) {
-    return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b) {
+    return (b) -> new StairsBlock(() -> block.get().defaultBlockState(), b) {
       @Override
-      public PushReaction getPushReaction(BlockState p_149656_1_) {
+      public PushReaction getPistonPushReaction(BlockState pState) {
         if (this == ModBlocks.SOFT_OBSIDIAN_STAIRS.get()) {
           return PushReaction.BLOCK;
         }
-        return super.getPushReaction(p_149656_1_);
+        return super.getPistonPushReaction(pState);
       }
     };
   }
 
   public static NonNullFunction<Block.Properties, StairsBlock> stairsBlock(Supplier<? extends Block> block) {
-    return (b) -> new StairsBlock(() -> block.get().getDefaultState(), b) {
+    return (b) -> new StairsBlock(() -> block.get().defaultBlockState(), b) {
       @Override
-      public PushReaction getPushReaction(BlockState p_149656_1_) {
+      public PushReaction getPistonPushReaction(BlockState pState) {
         if (this == ModBlocks.SOFT_OBSIDIAN_STAIRS.get()) {
           return PushReaction.BLOCK;
         }
-        return super.getPushReaction(p_149656_1_);
+        return super.getPistonPushReaction(pState);
       }
     };
   }
 
-  public static RegistryEntry<UncannyGravelBlock> UNCANNY_GRAVEL = MysticalWorld.REGISTRATE.block("uncanny_gravel", Material.SAND, UncannyGravelBlock::new).properties(o -> o.hardnessAndResistance(0.6f).sound(SoundType.GROUND))
+  public static RegistryEntry<UncannyGravelBlock> UNCANNY_GRAVEL = MysticalWorld.REGISTRATE.block("uncanny_gravel", Material.SAND, UncannyGravelBlock::new).properties(o -> o.strength(0.6f).sound(SoundType.GRAVEL))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.UNCANNY_GRAVEL))
       .tag(Tags.Items.GRAVEL)
       .build()
       .tag(Tags.Blocks.GRAVEL)
-      .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 8)
-          .patternLine("GGG")
-          .patternLine("GPG")
-          .patternLine("GGG")
-          .key('G', Tags.Items.GRAVEL)
-          .key('P', Tags.Items.DYES_CYAN)
-          .addCriterion("has_gravel", RegistrateRecipeProvider.hasItem(Tags.Items.GRAVEL))
-          .addCriterion("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_CYAN))
-          .build(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_gravel"))
+      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 8)
+          .pattern("GGG")
+          .pattern("GPG")
+          .pattern("GGG")
+          .define('G', Tags.Items.GRAVEL)
+          .define('P', Tags.Items.DYES_CYAN)
+          .unlockedBy("has_gravel", RegistrateRecipeProvider.hasItem(Tags.Items.GRAVEL))
+          .unlockedBy("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_CYAN))
+          .save(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_gravel"))
       )
       .register();
 
-  public static RegistryEntry<SandBlock> UNCANNY_SAND = MysticalWorld.REGISTRATE.block("uncanny_sand", Material.SAND, (b) -> new SandBlock(0x6c36e0, b)).properties(o -> o.hardnessAndResistance(0.5f).sound(SoundType.GROUND))
+  public static RegistryEntry<SandBlock> UNCANNY_SAND = MysticalWorld.REGISTRATE.block("uncanny_sand", Material.SAND, (b) -> new SandBlock(0x6c36e0, b)).properties(o -> o.strength(0.5f).sound(SoundType.GRAVEL))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.UNCANNY_SAND))
       .tag(ItemTags.SAND)
       .build()
       .tag(BlockTags.SAND)
       .recipe((ctx, p) -> {
-        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 8)
-            .patternLine("GGG")
-            .patternLine("GPG")
-            .patternLine("GGG")
-            .key('G', Tags.Items.SAND)
-            .key('P', Tags.Items.DYES_PURPLE)
-            .addCriterion("has_sand", RegistrateRecipeProvider.hasItem(Tags.Items.SAND))
-            .addCriterion("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_PURPLE))
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_sand"));
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(ModBlocks.UNCANNY_SAND.get()), Items.PURPLE_STAINED_GLASS, 0, 200);
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 8)
+            .pattern("GGG")
+            .pattern("GPG")
+            .pattern("GGG")
+            .define('G', Tags.Items.SAND)
+            .define('P', Tags.Items.DYES_PURPLE)
+            .unlockedBy("has_sand", RegistrateRecipeProvider.hasItem(Tags.Items.SAND))
+            .unlockedBy("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_PURPLE))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_sand"));
+        CookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.UNCANNY_SAND.get()), Items.PURPLE_STAINED_GLASS, 0, 200);
       })
       .register();
 
-  public static RegistryEntry<PetrifiedFlowerBlock> STONEPETAL = MysticalWorld.REGISTRATE.block("stonepetal", Material.PLANTS, PetrifiedFlowerBlock::new)
-      .properties(o -> o.doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT))
+  public static RegistryEntry<PetrifiedFlowerBlock> STONEPETAL = MysticalWorld.REGISTRATE.block("stonepetal", Material.PLANT, PetrifiedFlowerBlock::new)
+      .properties(o -> o.noCollission().instabreak().sound(SoundType.GRASS))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ctx.getEntry())))))
       .item()
       .model(ModBlocks::generated)
@@ -221,30 +221,30 @@ public class ModBlocks {
       .tag(BlockTags.FLOWERS)
       .recipe((ctx, p) -> {
         DataIngredient a = DataIngredient.items(ModBlocks.STONEPETAL.get());
-        ShapelessRecipeBuilder.shapelessRecipe(Items.GRAY_DYE, 4).addIngredient(ctx.getEntry()).addCriterion("has_stonepetal", a.getCritereon(p)).build(p, new ResourceLocation(MysticalWorld.MODID, "gray_dye_from_stonepetal"));
+        ShapelessRecipeBuilder.shapeless(Items.GRAY_DYE, 4).requires(ctx.getEntry()).unlockedBy("has_stonepetal", a.getCritereon(p)).save(p, new ResourceLocation(MysticalWorld.MODID, "gray_dye_from_stonepetal"));
       })
       .register();
 
-  public static RegistryEntry<AnywhereMushroomBlock> ANYWHERE_RED_MUSHROOM = MysticalWorld.REGISTRATE.block("red_mushroom", Material.PLANTS, AnywhereMushroomBlock::new)
-      .properties(o -> o.doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> 1).setNeedsPostProcessing((a, b, c) -> true))
+  public static RegistryEntry<AnywhereMushroomBlock> ANYWHERE_RED_MUSHROOM = MysticalWorld.REGISTRATE.block("red_mushroom", Material.PLANT, AnywhereMushroomBlock::new)
+      .properties(o -> o.noCollission().randomTicks().instabreak().sound(SoundType.GRASS).lightLevel((state) -> 1).hasPostProcess((a, b, c) -> true))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(Blocks.RED_MUSHROOM)))))
       .loot((ctx, p) -> {
-        ctx.registerDropping(p, Blocks.RED_MUSHROOM);
+        ctx.dropOther(p, Blocks.RED_MUSHROOM);
       })
       .tag(BlockTags.ENDERMAN_HOLDABLE)
       .register();
 
-  public static RegistryEntry<AnywhereMushroomBlock> ANYWHERE_BROWN_MUSHROOM = MysticalWorld.REGISTRATE.block("brown_mushroom", Material.PLANTS, AnywhereMushroomBlock::new)
-      .properties(o -> o.doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> 1).setNeedsPostProcessing((a, b, c) -> true))
+  public static RegistryEntry<AnywhereMushroomBlock> ANYWHERE_BROWN_MUSHROOM = MysticalWorld.REGISTRATE.block("brown_mushroom", Material.PLANT, AnywhereMushroomBlock::new)
+      .properties(o -> o.noCollission().randomTicks().instabreak().sound(SoundType.GRASS).lightLevel((state) -> 1).hasPostProcess((a, b, c) -> true))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(Blocks.BROWN_MUSHROOM)))))
       .tag(BlockTags.ENDERMAN_HOLDABLE)
       .loot((ctx, p) -> {
-        ctx.registerDropping(p, Blocks.BROWN_MUSHROOM);
+        ctx.dropOther(p, Blocks.BROWN_MUSHROOM);
       })
       .register();
 
-  public static RegistryEntry<AnywhereMushroomBlock> UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("uncanny_mushroom", Material.PLANTS, AnywhereMushroomBlock::new)
-      .properties(o -> o.doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> 6).setNeedsPostProcessing((a, b, c) -> true))
+  public static RegistryEntry<AnywhereMushroomBlock> UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("uncanny_mushroom", Material.PLANT, AnywhereMushroomBlock::new)
+      .properties(o -> o.noCollission().randomTicks().instabreak().sound(SoundType.GRASS).lightLevel((state) -> 6).hasPostProcess((a, b, c) -> true))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ModBlocks.UNCANNY_MUSHROOM.get())))))
       .item()
       .model(ModBlocks::generated)
@@ -253,59 +253,59 @@ public class ModBlocks {
       .tag(BlockTags.ENDERMAN_HOLDABLE)
       .recipe((ctx, p) -> {
         DataIngredient a = DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM.get());
-        ShapelessRecipeBuilder.shapelessRecipe(Items.PURPLE_DYE, 4).addIngredient(ctx.getEntry()).addCriterion("has_uncanny_mushroom", a.getCritereon(p)).build(p, new ResourceLocation(MysticalWorld.MODID, "purple_dye_from_uncanny_mushroom"));
+        ShapelessRecipeBuilder.shapeless(Items.PURPLE_DYE, 4).requires(ctx.getEntry()).unlockedBy("has_uncanny_mushroom", a.getCritereon(p)).save(p, new ResourceLocation(MysticalWorld.MODID, "purple_dye_from_uncanny_mushroom"));
       })
       .register();
 
-  public static RegistryEntry<FlowerPotBlock> POTTED_STONEPETAL = MysticalWorld.REGISTRATE.block("potted_stonepetal", Material.MISCELLANEOUS, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.STONEPETAL, AbstractBlock.Properties.from(Blocks.OAK_SAPLING)))
+  public static RegistryEntry<FlowerPotBlock> POTTED_STONEPETAL = MysticalWorld.REGISTRATE.block("potted_stonepetal", Material.DECORATION, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.STONEPETAL, AbstractBlock.Properties.copy(Blocks.OAK_SAPLING)))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/stonepetal")))
-      .loot((ctx, p) -> ctx.registerLootTable(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.STONEPETAL.get())))
+      .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.STONEPETAL.get())))
       .register();
 
-  private static NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.hardnessAndResistance(1f).sound(SoundType.PLANT);
-  private static NonNullUnaryOperator<Block.Properties> MUSHROOM_PROPS = (o) -> o.hardnessAndResistance(0.2F).sound(SoundType.WOOD);
+  private static NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.strength(1f).sound(SoundType.GRASS);
+  private static NonNullUnaryOperator<Block.Properties> MUSHROOM_PROPS = (o) -> o.strength(0.2F).sound(SoundType.WOOD);
 
   public static RegistryEntry<ThatchBlock> THATCH = MysticalWorld.REGISTRATE.block("thatch", Material.WOOD, ThatchBlock::new)
-      .properties(o -> o.sound(SoundType.PLANT))
+      .properties(o -> o.sound(SoundType.GRASS))
       .item()
       .model(NonNullBiConsumer.noop())
       .build()
       .blockstate(NonNullBiConsumer.noop())
       .recipe((ctx, p) -> {
-            ShapedRecipeBuilder.shapedRecipe(ModBlocks.THATCH.get(), 32)
-                .patternLine("XY")
-                .patternLine("YX")
-                .key('X', Blocks.HAY_BLOCK)
-                .key('Y', Tags.Items.CROPS_WHEAT)
-                .addCriterion("has_hay", RegistrateRecipeProvider.hasItem(Blocks.HAY_BLOCK))
-                .addCriterion("has_wheat", RegistrateRecipeProvider.hasItem(Items.WHEAT))
-                .build(p);
-            ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.SIMPLE_THATCH.get(), 1)
-                .addIngredient(ModBlocks.THATCH.get())
-                .addCriterion("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.THATCH.get()))
-                .build(p, MysticalWorld.RECIPES.rl("simple_thatch_from_thatch"));
-            ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.THATCH.get(), 1)
-                .addIngredient(ModBlocks.SIMPLE_THATCH.get())
-                .addCriterion("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.SIMPLE_THATCH.get()))
-                .build(p, MysticalWorld.RECIPES.rl("thatch_from_simple_thatch"));
+            ShapedRecipeBuilder.shaped(ModBlocks.THATCH.get(), 32)
+                .pattern("XY")
+                .pattern("YX")
+                .define('X', Blocks.HAY_BLOCK)
+                .define('Y', Tags.Items.CROPS_WHEAT)
+                .unlockedBy("has_hay", RegistrateRecipeProvider.hasItem(Blocks.HAY_BLOCK))
+                .unlockedBy("has_wheat", RegistrateRecipeProvider.hasItem(Items.WHEAT))
+                .save(p);
+            ShapelessRecipeBuilder.shapeless(ModBlocks.SIMPLE_THATCH.get(), 1)
+                .requires(ModBlocks.THATCH.get())
+                .unlockedBy("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.THATCH.get()))
+                .save(p, MysticalWorld.RECIPES.rl("simple_thatch_from_thatch"));
+            ShapelessRecipeBuilder.shapeless(ModBlocks.THATCH.get(), 1)
+                .requires(ModBlocks.SIMPLE_THATCH.get())
+                .unlockedBy("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.SIMPLE_THATCH.get()))
+                .save(p, MysticalWorld.RECIPES.rl("thatch_from_simple_thatch"));
           }
       )
       .register();
 
   public static RegistryEntry<Block> SIMPLE_THATCH = MysticalWorld.REGISTRATE.block("simple_thatch", Material.WOOD, Block::new)
-      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .properties(o -> Block.Properties.of(Material.WOOD).sound(SoundType.GRASS))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.SIMPLE_THATCH))
       .build()
       .recipe((ctx, p) -> {
-        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.SIMPLE_THATCH.get(), 1)
-            .addIngredient(ModBlocks.THATCH.get())
-            .addCriterion("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.THATCH.get()))
-            .build(p, "simple_thatch_from_thatch");
-        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.THATCH.get(), 1)
-            .addIngredient(ModBlocks.SIMPLE_THATCH.get())
-            .addCriterion("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.SIMPLE_THATCH.get()))
-            .build(p, "thatch_from_simple_thatch");
+        ShapelessRecipeBuilder.shapeless(ModBlocks.SIMPLE_THATCH.get(), 1)
+            .requires(ModBlocks.THATCH.get())
+            .unlockedBy("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.THATCH.get()))
+            .save(p, "simple_thatch_from_thatch");
+        ShapelessRecipeBuilder.shapeless(ModBlocks.THATCH.get(), 1)
+            .requires(ModBlocks.SIMPLE_THATCH.get())
+            .unlockedBy("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.SIMPLE_THATCH.get()))
+            .save(p, "thatch_from_simple_thatch");
       })
       .register();
 
@@ -332,7 +332,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SIMPLE_THATCH), ModBlocks.THATCH_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.SIMPLE_THATCH))
       .register();
 
@@ -396,24 +396,24 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<OakAppleBlock> GALL_APPLE = MysticalWorld.REGISTRATE.block("gall_apple_crop", OakAppleBlock::new)
-      .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
+      .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
       .loot((p, t) -> p.
-          registerLootTable(ModBlocks.GALL_APPLE.get(), RegistrateBlockLootTables.
-              droppingAndBonusWhen(ModBlocks.GALL_APPLE.get(), Items.AIR, ModItems.GALL_APPLE.get(), new BlockStateProperty.Builder(ModBlocks.GALL_APPLE.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 3)))))
+          add(ModBlocks.GALL_APPLE.get(), RegistrateBlockLootTables.
+              droppingAndBonusWhen(ModBlocks.GALL_APPLE.get(), Items.AIR, ModItems.GALL_APPLE.get(), new BlockStateProperty.Builder(ModBlocks.GALL_APPLE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 3)))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
   public static RegistryEntry<AubergineCropBlock> AUBERGINE_CROP = MysticalWorld.REGISTRATE.block("aubergine_crop", AubergineCropBlock::new)
-      .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
+      .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
       .loot((p, t) -> p.
-          registerLootTable(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
-              droppingAndBonusWhen(ModBlocks.AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.AUBERGINE_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7)))))
+          add(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
+              droppingAndBonusWhen(ModBlocks.AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new BlockStateProperty.Builder(ModBlocks.AUBERGINE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7)))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
   public static RegistryEntry<WildCropBlock> WILD_AUBERGINE = MysticalWorld.REGISTRATE.block("wild_aubergine", WildCropBlock::new)
-      .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
-      .loot((p, t) -> p.registerLootTable(t, LootTable.builder().addLootPool(RegistrateBlockLootTables.withSurvivesExplosion(ModItems.AUBERGINE.get(), LootPool.builder().rolls(RandomValueRange.of(1, 3)).addEntry(ItemLootEntry.builder(ModItems.AUBERGINE.get())))).addLootPool(RegistrateBlockLootTables.withSurvivesExplosion(ModItems.AUBERGINE_SEEDS.get(), LootPool.builder().rolls(RandomValueRange.of(1, 2)).addEntry(ItemLootEntry.builder(ModItems.AUBERGINE_SEEDS.get()))))))
+      .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
+      .loot((p, t) -> p.add(t, LootTable.lootTable().withPool(RegistrateBlockLootTables.withSurvivesExplosion(ModItems.AUBERGINE.get(), LootPool.lootPool().setRolls(RandomValueRange.between(1, 3)).add(ItemLootEntry.lootTableItem(ModItems.AUBERGINE.get())))).withPool(RegistrateBlockLootTables.withSurvivesExplosion(ModItems.AUBERGINE_SEEDS.get(), LootPool.lootPool().setRolls(RandomValueRange.between(1, 2)).add(ItemLootEntry.lootTableItem(ModItems.AUBERGINE_SEEDS.get()))))))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry())
               .partialState()
@@ -422,8 +422,8 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<WildCropBlock> WILD_WART = MysticalWorld.REGISTRATE.block("wild_wart", WildCropBlock::new)
-      .properties(o -> Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0f).sound(SoundType.CROP).tickRandomly())
-      .loot((p, t) -> p.registerLootTable(t, LootTable.builder().addLootPool(RegistrateBlockLootTables.withSurvivesExplosion(Items.NETHER_WART, LootPool.builder().rolls(RandomValueRange.of(1, 3)).addEntry(ItemLootEntry.builder(Items.NETHER_WART)))).addLootPool(RegistrateBlockLootTables.withSurvivesExplosion(Items.NETHER_WART, LootPool.builder().rolls(RandomValueRange.of(1, 2)).addEntry(ItemLootEntry.builder(Items.NETHER_WART))))))
+      .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
+      .loot((p, t) -> p.add(t, LootTable.lootTable().withPool(RegistrateBlockLootTables.withSurvivesExplosion(Items.NETHER_WART, LootPool.lootPool().setRolls(RandomValueRange.between(1, 3)).add(ItemLootEntry.lootTableItem(Items.NETHER_WART)))).withPool(RegistrateBlockLootTables.withSurvivesExplosion(Items.NETHER_WART, LootPool.lootPool().setRolls(RandomValueRange.between(1, 2)).add(ItemLootEntry.lootTableItem(Items.NETHER_WART))))))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry())
               .partialState()
@@ -432,9 +432,9 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<HugeMushroomBlock> UNCANNY_MUSHROOM_BLOCK = MysticalWorld.REGISTRATE.block("uncanny_mushroom_block", Material.WOOD, HugeMushroomBlock::new)
-      .properties(o -> o.hardnessAndResistance(0.2F).sound(SoundType.WOOD).setLightLevel(q -> 4))
+      .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 4))
       .loot((ctx, p) -> {
-        ctx.registerLootTable(p, RegistrateBlockLootTables.droppingItemRarely(p, ModBlocks.UNCANNY_MUSHROOM.get()));
+        ctx.add(p, RegistrateBlockLootTables.droppingItemRarely(p, ModBlocks.UNCANNY_MUSHROOM.get()));
       })
       .blockstate((ctx, p) -> {
         ModelFile model = p.models().withExistingParent(ctx.getName(), new ResourceLocation("minecraft", "block/template_single_face")).texture("texture", p.models().modLoc("block/uncanny_mushroom_block"));
@@ -460,7 +460,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<Block> UNCANNY_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("uncanny_mushroom_full", Material.WOOD, Block::new)
-      .properties(o -> o.hardnessAndResistance(0.2F).sound(SoundType.WOOD).setLightLevel(q -> 4))
+      .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 4))
       .blockstate((ctx, p) -> {
         p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), p.blockTexture(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get())));
       })
@@ -492,7 +492,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()), ModBlocks.UNCANNY_MUSHROOM_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.UNCANNY_MUSHROOM_FULL, () ->  ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
       .register();
 
@@ -557,7 +557,7 @@ public class ModBlocks {
 
   // MUSHROOM
   public static RegistryEntry<Block> RED_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("red_mushroom_full", Material.WOOD, Block::new)
-      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .properties(o -> Block.Properties.of(Material.WOOD).sound(SoundType.GRASS))
       .blockstate((ctx, p) -> {
         p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/red_mushroom_block")));
       })
@@ -567,7 +567,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<Block> BROWN_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("brown_mushroom_full", Material.WOOD, Block::new)
-      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .properties(o -> Block.Properties.of(Material.WOOD).sound(SoundType.GRASS))
       .blockstate((ctx, p) -> {
         p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/brown_mushroom_block")));
       })
@@ -577,7 +577,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<Block> STEM_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("stem_mushroom_full", Material.WOOD, Block::new)
-      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .properties(o -> Block.Properties.of(Material.WOOD).sound(SoundType.GRASS))
       .blockstate((ctx, p) -> {
         p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_stem")));
       })
@@ -585,69 +585,69 @@ public class ModBlocks {
       .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_stem")))
       .build()
       .recipe((ctx, p) -> {
-        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.UNCANNY_MUSHROOM_FULL.get(), 1)
-            .addIngredient(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get())
-            .addCriterion("has_uncanny_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
-            .setGroup("crafting")
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "full_uncanny_mushroom_block_from_uncanny_mushroom"));
-        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get(), 1)
-            .addIngredient(ModBlocks.UNCANNY_MUSHROOM_FULL.get())
-            .addCriterion("has_full_red_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM_FULL.get()))
-            .setGroup("crafting")
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "plain_uncanny_mushroom_block_from_full_uncanny_mushroom_block"));
+        ShapelessRecipeBuilder.shapeless(ModBlocks.UNCANNY_MUSHROOM_FULL.get(), 1)
+            .requires(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get())
+            .unlockedBy("has_uncanny_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
+            .group("crafting")
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "full_uncanny_mushroom_block_from_uncanny_mushroom"));
+        ShapelessRecipeBuilder.shapeless(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get(), 1)
+            .requires(ModBlocks.UNCANNY_MUSHROOM_FULL.get())
+            .unlockedBy("has_full_red_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM_FULL.get()))
+            .group("crafting")
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "plain_uncanny_mushroom_block_from_full_uncanny_mushroom_block"));
 
-        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.RED_MUSHROOM_FULL.get(), 1)
-            .addIngredient(Blocks.RED_MUSHROOM_BLOCK)
-            .addCriterion("has_vanilla_red_mushroom", RegistrateRecipeProvider.hasItem(Blocks.RED_MUSHROOM_BLOCK))
-            .setGroup("crafting")
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "full_red_mushroom_block_from_red_mushroom"));
-        ShapelessRecipeBuilder.shapelessRecipe(Blocks.RED_MUSHROOM_BLOCK, 1)
-            .addIngredient(ModBlocks.RED_MUSHROOM_FULL.get())
-            .addCriterion("has_full_red_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.RED_MUSHROOM_FULL.get()))
-            .setGroup("crafting")
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_red_mushroom_block_from_full_red_mushroom_block"));
+        ShapelessRecipeBuilder.shapeless(ModBlocks.RED_MUSHROOM_FULL.get(), 1)
+            .requires(Blocks.RED_MUSHROOM_BLOCK)
+            .unlockedBy("has_vanilla_red_mushroom", RegistrateRecipeProvider.hasItem(Blocks.RED_MUSHROOM_BLOCK))
+            .group("crafting")
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "full_red_mushroom_block_from_red_mushroom"));
+        ShapelessRecipeBuilder.shapeless(Blocks.RED_MUSHROOM_BLOCK, 1)
+            .requires(ModBlocks.RED_MUSHROOM_FULL.get())
+            .unlockedBy("has_full_red_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.RED_MUSHROOM_FULL.get()))
+            .group("crafting")
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_red_mushroom_block_from_full_red_mushroom_block"));
 
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get().asItem(), 1)
-            .patternLine("XX")
-            .patternLine("XX")
-            .key('X', ModBlocks.UNCANNY_MUSHROOM.get())
-            .setGroup("crafting")
-            .addCriterion("has_uncanny_mushroom", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM.get()))
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_mushroom_block_from_mushrooms"));
-        ShapedRecipeBuilder.shapedRecipe(Blocks.RED_MUSHROOM_BLOCK, 1)
-            .patternLine("XX")
-            .patternLine("XX")
-            .key('X', Items.RED_MUSHROOM)
-            .setGroup("crafting")
-            .addCriterion("has_red_mushroom", RegistrateRecipeProvider.hasItem(Items.RED_MUSHROOM))
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "red_mushroom_block_from_mushrooms"));
-        ShapedRecipeBuilder.shapedRecipe(Blocks.BROWN_MUSHROOM_BLOCK, 1)
-            .patternLine("XX")
-            .patternLine("XX")
-            .key('X', Items.BROWN_MUSHROOM)
-            .addCriterion("has_brown_mushroom", RegistrateRecipeProvider.hasItem(Items.BROWN_MUSHROOM))
-            .setGroup("crafting")
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "brown_mushroom_block_from_mushrooms"));
-        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.BROWN_MUSHROOM_FULL.get(), 1)
-            .addIngredient(Blocks.BROWN_MUSHROOM_BLOCK)
-            .setGroup("crafting")
-            .addCriterion("has_vanilla_brown_mushroom", RegistrateRecipeProvider.hasItem(Blocks.BROWN_MUSHROOM_BLOCK))
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "full_brown_mushroom_block_from_brown_mushroom"));
-        ShapelessRecipeBuilder.shapelessRecipe(Blocks.BROWN_MUSHROOM_BLOCK, 1)
-            .addIngredient(ModBlocks.BROWN_MUSHROOM_FULL.get())
-            .addCriterion("has_full_brown_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.BROWN_MUSHROOM_FULL.get()))
-            .setGroup("crafting")
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_brown_mushroom_block_from_full_brown_mushroom_block"));
-        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.STEM_MUSHROOM_FULL.get(), 1)
-            .addIngredient(Blocks.MUSHROOM_STEM)
-            .addCriterion("has_vanilla_stem_mushroom", RegistrateRecipeProvider.hasItem(Blocks.MUSHROOM_STEM))
-            .setGroup("crafting")
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "full_stem_mushroom_block_from_stem_mushroom"));
-        ShapelessRecipeBuilder.shapelessRecipe(Blocks.MUSHROOM_STEM, 1)
-            .addIngredient(ModBlocks.STEM_MUSHROOM_FULL.get())
-            .addCriterion("has_full_stem_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.STEM_MUSHROOM_FULL.get()))
-            .setGroup("crafting")
-            .build(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_stem_mushroom_block_from_full_stem_mushroom_block"));
+        ShapedRecipeBuilder.shaped(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get().asItem(), 1)
+            .pattern("XX")
+            .pattern("XX")
+            .define('X', ModBlocks.UNCANNY_MUSHROOM.get())
+            .group("crafting")
+            .unlockedBy("has_uncanny_mushroom", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM.get()))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_mushroom_block_from_mushrooms"));
+        ShapedRecipeBuilder.shaped(Blocks.RED_MUSHROOM_BLOCK, 1)
+            .pattern("XX")
+            .pattern("XX")
+            .define('X', Items.RED_MUSHROOM)
+            .group("crafting")
+            .unlockedBy("has_red_mushroom", RegistrateRecipeProvider.hasItem(Items.RED_MUSHROOM))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "red_mushroom_block_from_mushrooms"));
+        ShapedRecipeBuilder.shaped(Blocks.BROWN_MUSHROOM_BLOCK, 1)
+            .pattern("XX")
+            .pattern("XX")
+            .define('X', Items.BROWN_MUSHROOM)
+            .unlockedBy("has_brown_mushroom", RegistrateRecipeProvider.hasItem(Items.BROWN_MUSHROOM))
+            .group("crafting")
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "brown_mushroom_block_from_mushrooms"));
+        ShapelessRecipeBuilder.shapeless(ModBlocks.BROWN_MUSHROOM_FULL.get(), 1)
+            .requires(Blocks.BROWN_MUSHROOM_BLOCK)
+            .group("crafting")
+            .unlockedBy("has_vanilla_brown_mushroom", RegistrateRecipeProvider.hasItem(Blocks.BROWN_MUSHROOM_BLOCK))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "full_brown_mushroom_block_from_brown_mushroom"));
+        ShapelessRecipeBuilder.shapeless(Blocks.BROWN_MUSHROOM_BLOCK, 1)
+            .requires(ModBlocks.BROWN_MUSHROOM_FULL.get())
+            .unlockedBy("has_full_brown_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.BROWN_MUSHROOM_FULL.get()))
+            .group("crafting")
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_brown_mushroom_block_from_full_brown_mushroom_block"));
+        ShapelessRecipeBuilder.shapeless(ModBlocks.STEM_MUSHROOM_FULL.get(), 1)
+            .requires(Blocks.MUSHROOM_STEM)
+            .unlockedBy("has_vanilla_stem_mushroom", RegistrateRecipeProvider.hasItem(Blocks.MUSHROOM_STEM))
+            .group("crafting")
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "full_stem_mushroom_block_from_stem_mushroom"));
+        ShapelessRecipeBuilder.shapeless(Blocks.MUSHROOM_STEM, 1)
+            .requires(ModBlocks.STEM_MUSHROOM_FULL.get())
+            .unlockedBy("has_full_stem_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.STEM_MUSHROOM_FULL.get()))
+            .group("crafting")
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_stem_mushroom_block_from_full_stem_mushroom_block"));
       })
       .register();
 
@@ -674,7 +674,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.RED_MUSHROOM_FULL, () -> Blocks.RED_MUSHROOM_BLOCK))
       .register();
 
@@ -762,7 +762,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.BROWN_MUSHROOM_FULL, () -> Blocks.BROWN_MUSHROOM_BLOCK))
       .register();
 
@@ -850,7 +850,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.STEM_MUSHROOM_FULL, () -> Blocks.MUSHROOM_STEM))
       .register();
 
@@ -916,7 +916,7 @@ public class ModBlocks {
   // INSIDE
 
   public static RegistryEntry<Block> MUSHROOM_INSIDE = MysticalWorld.REGISTRATE.block("mushroom_inside_block", Material.WOOD, Block::new)
-      .properties(o -> Block.Properties.create(Material.WOOD).sound(SoundType.PLANT))
+      .properties(o -> Block.Properties.of(Material.WOOD).sound(SoundType.GRASS))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.MUSHROOM_INSIDE))
       .build()
@@ -924,7 +924,7 @@ public class ModBlocks {
         p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_block_inside")));
       })
       .recipe((ctx, p) -> {
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(MWTags.Items.MUSHROOM_BLOCKS), ctx.getEntry(), 0.125f, 200).addCriterion("has_mushroom", RegistrateRecipeProvider.hasItem(MWTags.Items.MUSHROOM_BLOCKS)).build(p, "mushroom_inside_from_smelting");
+        CookingRecipeBuilder.smelting(Ingredient.of(MWTags.Items.MUSHROOM_BLOCKS), ctx.getEntry(), 0.125f, 200).unlockedBy("has_mushroom", RegistrateRecipeProvider.hasItem(MWTags.Items.MUSHROOM_BLOCKS)).save(p, "mushroom_inside_from_smelting");
       })
       .register();
 
@@ -951,7 +951,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.MUSHROOM_INSIDE))
       .register();
 
@@ -1016,27 +1016,27 @@ public class ModBlocks {
 
   // MUD BLOCK
 
-  public static RegistryEntry<WetMudBlock> WET_MUD_BLOCK = MysticalWorld.REGISTRATE.block("wet_mud_block", Material.EARTH, WetMudBlock::new)
-      .properties((o) -> o.sound(SoundType.SLIME).hardnessAndResistance(1f))
+  public static RegistryEntry<WetMudBlock> WET_MUD_BLOCK = MysticalWorld.REGISTRATE.block("wet_mud_block", Material.DIRT, WetMudBlock::new)
+      .properties((o) -> o.sound(SoundType.SLIME_BLOCK).strength(1f))
       .item()
       .model(ModBlocks::itemModel)
       .build()
       .blockstate(simpleBlockState("block/wet_mud_block"))
       .recipe((ctx, p) ->
-          ShapedRecipeBuilder.shapedRecipe(ModBlocks.WET_MUD_BLOCK.get(), 8)
-              .patternLine("XXX")
-              .patternLine("XWX")
-              .patternLine("XXX")
-              .key('X', Blocks.DIRT)
-              .key('W', Items.WATER_BUCKET)
-              .addCriterion("has_dirt", RegistrateRecipeProvider.hasItem(Blocks.DIRT))
-              .build(p)
+          ShapedRecipeBuilder.shaped(ModBlocks.WET_MUD_BLOCK.get(), 8)
+              .pattern("XXX")
+              .pattern("XWX")
+              .pattern("XXX")
+              .define('X', Blocks.DIRT)
+              .define('W', Items.WATER_BUCKET)
+              .unlockedBy("has_dirt", RegistrateRecipeProvider.hasItem(Blocks.DIRT))
+              .save(p)
       )
       .register();
 
-  private static NonNullUnaryOperator<Block.Properties> STONE_PROPS = (o) -> o.sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2f);
+  private static NonNullUnaryOperator<Block.Properties> STONE_PROPS = (o) -> o.sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2f);
 
-  public static RegistryEntry<Block> MUD_BLOCK = MysticalWorld.REGISTRATE.block("mud_block", Material.ROCK, Block::new)
+  public static RegistryEntry<Block> MUD_BLOCK = MysticalWorld.REGISTRATE.block("mud_block", Material.STONE, Block::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1047,7 +1047,7 @@ public class ModBlocks {
       )
       .register();
 
-  public static RegistryEntry<StairsBlock> MUD_BLOCK_STAIRS = MysticalWorld.REGISTRATE.block("mud_block_stairs", Material.ROCK, stairsBlock(ModBlocks.MUD_BLOCK))
+  public static RegistryEntry<StairsBlock> MUD_BLOCK_STAIRS = MysticalWorld.REGISTRATE.block("mud_block_stairs", Material.STONE, stairsBlock(ModBlocks.MUD_BLOCK))
       .properties(STONE_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -1060,7 +1060,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.MUD_BLOCK))
       .register();
 
-  public static RegistryEntry<SlabBlock> MUD_BLOCK_SLAB = MysticalWorld.REGISTRATE.block("mud_block_slab", Material.ROCK, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> MUD_BLOCK_SLAB = MysticalWorld.REGISTRATE.block("mud_block_slab", Material.STONE, SlabBlock::new)
       .properties(STONE_PROPS)
       .item()
       .tag(ItemTags.SLABS)
@@ -1070,11 +1070,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.MUD_BLOCK))
       .register();
 
-  public static RegistryEntry<WallBlock> MUD_BLOCK_WALL = MysticalWorld.REGISTRATE.block("mud_block_wall", Material.ROCK, WallBlock::new)
+  public static RegistryEntry<WallBlock> MUD_BLOCK_WALL = MysticalWorld.REGISTRATE.block("mud_block_wall", Material.STONE, WallBlock::new)
       .properties(STONE_PROPS)
       .item()
       .tag(ItemTags.WALLS)
@@ -1087,7 +1087,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.MUD_BLOCK))
       .register();
 
-  public static RegistryEntry<FenceBlock> MUD_BLOCK_FENCE = MysticalWorld.REGISTRATE.block("mud_block_fence", Material.ROCK, FenceBlock::new)
+  public static RegistryEntry<FenceBlock> MUD_BLOCK_FENCE = MysticalWorld.REGISTRATE.block("mud_block_fence", Material.STONE, FenceBlock::new)
       .properties(STONE_PROPS)
       .item()
       .tag(ItemTags.FENCES)
@@ -1100,7 +1100,7 @@ public class ModBlocks {
       .blockstate(fence(ModBlocks.MUD_BLOCK))
       .register();
 
-  public static RegistryEntry<FenceGateBlock> MUD_BLOCK_FENCE_GATE = MysticalWorld.REGISTRATE.block("mud_block_fence_gate", Material.ROCK, FenceGateBlock::new)
+  public static RegistryEntry<FenceGateBlock> MUD_BLOCK_FENCE_GATE = MysticalWorld.REGISTRATE.block("mud_block_fence_gate", Material.STONE, FenceGateBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1111,7 +1111,7 @@ public class ModBlocks {
       .blockstate(gate(ModBlocks.MUD_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> MUD_BLOCK_WIDE_POST = MysticalWorld.REGISTRATE.block("mud_block_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> MUD_BLOCK_WIDE_POST = MysticalWorld.REGISTRATE.block("mud_block_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1122,7 +1122,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.MUD_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> MUD_BLOCK_SMALL_POST = MysticalWorld.REGISTRATE.block("mud_block_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> MUD_BLOCK_SMALL_POST = MysticalWorld.REGISTRATE.block("mud_block_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1135,8 +1135,8 @@ public class ModBlocks {
 
   // MUD BRICK
 
-  public static RegistryEntry<WetMudBrick> WET_MUD_BRICK = MysticalWorld.REGISTRATE.block("wet_mud_brick", Material.EARTH, WetMudBrick::new)
-      .properties(o -> o.sound(SoundType.SLIME).hardnessAndResistance(1f))
+  public static RegistryEntry<WetMudBrick> WET_MUD_BRICK = MysticalWorld.REGISTRATE.block("wet_mud_brick", Material.DIRT, WetMudBrick::new)
+      .properties(o -> o.sound(SoundType.SLIME_BLOCK).strength(1f))
       .item()
       .model(ModBlocks::itemModel)
       .build()
@@ -1146,7 +1146,7 @@ public class ModBlocks {
       )
       .register();
 
-  public static RegistryEntry<Block> MUD_BRICK = MysticalWorld.REGISTRATE.block("mud_brick", Material.ROCK, Block::new)
+  public static RegistryEntry<Block> MUD_BRICK = MysticalWorld.REGISTRATE.block("mud_brick", Material.STONE, Block::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1155,13 +1155,13 @@ public class ModBlocks {
       .recipe((ctx, p) -> {
         p.smelting(DataIngredient.items(ModBlocks.WET_MUD_BRICK), ModBlocks.MUD_BRICK, 0.15f);
         MysticalWorld.RECIPES.twoByTwo(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BRICK, null, p);
-        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(ModBlocks.MUD_BLOCK.get()), ModBlocks.MUD_BRICK.get())
-            .addCriterion("has_mud_block", RegistrateRecipeProvider.hasItem(ModBlocks.MUD_BLOCK.get()))
-            .build(p, "mud_bricks_from_mud_blocks_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.MUD_BLOCK.get()), ModBlocks.MUD_BRICK.get())
+            .unlocks("has_mud_block", RegistrateRecipeProvider.hasItem(ModBlocks.MUD_BLOCK.get()))
+            .save(p, "mud_bricks_from_mud_blocks_stonecutting");
       })
       .register();
 
-  public static RegistryEntry<StairsBlock> MUD_BRICK_STAIRS = MysticalWorld.REGISTRATE.block("mud_brick_stairs", Material.ROCK, stairsBlock(ModBlocks.MUD_BRICK))
+  public static RegistryEntry<StairsBlock> MUD_BRICK_STAIRS = MysticalWorld.REGISTRATE.block("mud_brick_stairs", Material.STONE, stairsBlock(ModBlocks.MUD_BRICK))
       .properties(STONE_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -1174,7 +1174,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.MUD_BRICK))
       .register();
 
-  public static RegistryEntry<SlabBlock> MUD_BRICK_SLAB = MysticalWorld.REGISTRATE.block("mud_brick_slab", Material.ROCK, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> MUD_BRICK_SLAB = MysticalWorld.REGISTRATE.block("mud_brick_slab", Material.STONE, SlabBlock::new)
       .properties(STONE_PROPS)
       .item()
       .tag(ItemTags.SLABS)
@@ -1184,11 +1184,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.MUD_BRICK))
       .register();
 
-  public static RegistryEntry<WallBlock> MUD_BRICK_WALL = MysticalWorld.REGISTRATE.block("mud_brick_wall", Material.ROCK, WallBlock::new)
+  public static RegistryEntry<WallBlock> MUD_BRICK_WALL = MysticalWorld.REGISTRATE.block("mud_brick_wall", Material.STONE, WallBlock::new)
       .properties(STONE_PROPS)
       .item()
       .tag(ItemTags.WALLS)
@@ -1201,7 +1201,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.MUD_BRICK))
       .register();
 
-  public static RegistryEntry<FenceBlock> MUD_BRICK_FENCE = MysticalWorld.REGISTRATE.block("mud_brick_fence", Material.ROCK, FenceBlock::new)
+  public static RegistryEntry<FenceBlock> MUD_BRICK_FENCE = MysticalWorld.REGISTRATE.block("mud_brick_fence", Material.STONE, FenceBlock::new)
       .properties(STONE_PROPS)
       .item()
       .tag(ItemTags.FENCES)
@@ -1214,7 +1214,7 @@ public class ModBlocks {
       .blockstate(fence(ModBlocks.MUD_BRICK))
       .register();
 
-  public static RegistryEntry<FenceGateBlock> MUD_BRICK_FENCE_GATE = MysticalWorld.REGISTRATE.block("mud_brick_fence_gate", Material.ROCK, FenceGateBlock::new)
+  public static RegistryEntry<FenceGateBlock> MUD_BRICK_FENCE_GATE = MysticalWorld.REGISTRATE.block("mud_brick_fence_gate", Material.STONE, FenceGateBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1225,7 +1225,7 @@ public class ModBlocks {
       .blockstate(gate(ModBlocks.MUD_BRICK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> MUD_BRICK_WIDE_POST = MysticalWorld.REGISTRATE.block("mud_brick_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> MUD_BRICK_WIDE_POST = MysticalWorld.REGISTRATE.block("mud_brick_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1236,7 +1236,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.MUD_BRICK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> MUD_BRICK_SMALL_POST = MysticalWorld.REGISTRATE.block("mud_brick_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> MUD_BRICK_SMALL_POST = MysticalWorld.REGISTRATE.block("mud_brick_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1249,7 +1249,7 @@ public class ModBlocks {
 
   // CHARRED STUFF
 
-  private static NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD).hardnessAndResistance(2.0f).harvestTool(ToolType.AXE);
+  private static NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD).strength(2.0f).harvestTool(ToolType.AXE);
 
   public static RegistryEntry<CharredLogBlock> CHARRED_WOOD = MysticalWorld.REGISTRATE.block("charred_wood", (o) -> new CharredLogBlock(o, true))
       .properties(WOOD_PROPS)
@@ -1263,7 +1263,7 @@ public class ModBlocks {
       .build()
       .recipe((ctx, p) -> {
         DataIngredient log = DataIngredient.items(ModBlocks.CHARRED_LOG.get());
-        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 3).addIngredient(log).addIngredient(log).addIngredient(log).addIngredient(log).addCriterion("has_charred_log", RegistrateRecipeProvider.hasItem(ModBlocks.CHARRED_LOG.get())).build(p, new ResourceLocation("mysticalworld", "charred_wood_from_logs"));
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3).requires(log).requires(log).requires(log).requires(log).unlockedBy("has_charred_log", RegistrateRecipeProvider.hasItem(ModBlocks.CHARRED_LOG.get())).save(p, new ResourceLocation("mysticalworld", "charred_wood_from_logs"));
       })
       .register();
 
@@ -1291,7 +1291,7 @@ public class ModBlocks {
       .build()
       .recipe((ctx, p) -> {
         DataIngredient log = DataIngredient.items(ModBlocks.STRIPPED_CHARRED_LOG.get());
-        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 3).addIngredient(log).addIngredient(log).addIngredient(log).addIngredient(log).addCriterion("has_stripped_charred_log", RegistrateRecipeProvider.hasItem(ModBlocks.STRIPPED_CHARRED_LOG.get())).build(p, new ResourceLocation("mysticalworld", "stripped_charred_wood_from_logs"));
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3).requires(log).requires(log).requires(log).requires(log).unlockedBy("has_stripped_charred_log", RegistrateRecipeProvider.hasItem(ModBlocks.STRIPPED_CHARRED_LOG.get())).save(p, new ResourceLocation("mysticalworld", "stripped_charred_wood_from_logs"));
       })
       .register();
 
@@ -1308,7 +1308,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<Block> CHARRED_PLANKS = MysticalWorld.REGISTRATE.block("charred_planks", Material.WOOD, Block::new)
-      .properties(o -> o.sound(SoundType.WOOD).hardnessAndResistance(2.0f, 3.0f))
+      .properties(o -> o.sound(SoundType.WOOD).strength(2.0f, 3.0f))
       .tag(BlockTags.PLANKS)
       .item()
       .tag(ItemTags.PLANKS)
@@ -1342,7 +1342,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.CHARRED_PLANKS), ModBlocks.CHARRED_SLAB, null, false)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.CHARRED_PLANKS))
       .register();
 
@@ -1407,7 +1407,7 @@ public class ModBlocks {
 
   // TERRACOTTA BRICK
 
-  public static RegistryEntry<Block> TERRACOTTA_BRICK = MysticalWorld.REGISTRATE.block("terracotta_brick", Material.ROCK, Block::new)
+  public static RegistryEntry<Block> TERRACOTTA_BRICK = MysticalWorld.REGISTRATE.block("terracotta_brick", Material.STONE, Block::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1419,7 +1419,7 @@ public class ModBlocks {
       })
       .register();
 
-  public static RegistryEntry<StairsBlock> TERRACOTTA_BRICK_STAIRS = MysticalWorld.REGISTRATE.block("terracotta_brick_stairs", Material.ROCK, stairsBlock(ModBlocks.TERRACOTTA_BRICK))
+  public static RegistryEntry<StairsBlock> TERRACOTTA_BRICK_STAIRS = MysticalWorld.REGISTRATE.block("terracotta_brick_stairs", Material.STONE, stairsBlock(ModBlocks.TERRACOTTA_BRICK))
       .properties(STONE_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -1432,7 +1432,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
-  public static RegistryEntry<SlabBlock> TERRACOTTA_BRICK_SLAB = MysticalWorld.REGISTRATE.block("terracotta_brick_slab", Material.ROCK, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> TERRACOTTA_BRICK_SLAB = MysticalWorld.REGISTRATE.block("terracotta_brick_slab", Material.STONE, SlabBlock::new)
       .properties(STONE_PROPS)
       .item()
       .tag(ItemTags.SLABS)
@@ -1442,11 +1442,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
-  public static RegistryEntry<WallBlock> TERRACOTTA_BRICK_WALL = MysticalWorld.REGISTRATE.block("terracotta_brick_wall", Material.ROCK, WallBlock::new)
+  public static RegistryEntry<WallBlock> TERRACOTTA_BRICK_WALL = MysticalWorld.REGISTRATE.block("terracotta_brick_wall", Material.STONE, WallBlock::new)
       .properties(STONE_PROPS)
       .item()
       .tag(ItemTags.WALLS)
@@ -1459,7 +1459,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
-  public static RegistryEntry<FenceBlock> TERRACOTTA_BRICK_FENCE = MysticalWorld.REGISTRATE.block("terracotta_brick_fence", Material.ROCK, FenceBlock::new)
+  public static RegistryEntry<FenceBlock> TERRACOTTA_BRICK_FENCE = MysticalWorld.REGISTRATE.block("terracotta_brick_fence", Material.STONE, FenceBlock::new)
       .properties(STONE_PROPS)
       .item()
       .tag(ItemTags.FENCES)
@@ -1472,7 +1472,7 @@ public class ModBlocks {
       .blockstate(fence(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
-  public static RegistryEntry<FenceGateBlock> TERRACOTTA_BRICK_FENCE_GATE = MysticalWorld.REGISTRATE.block("terracotta_brick_fence_gate", Material.ROCK, FenceGateBlock::new)
+  public static RegistryEntry<FenceGateBlock> TERRACOTTA_BRICK_FENCE_GATE = MysticalWorld.REGISTRATE.block("terracotta_brick_fence_gate", Material.STONE, FenceGateBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1483,7 +1483,7 @@ public class ModBlocks {
       .blockstate(gate(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> TERRACOTTA_BRICK_WIDE_POST = MysticalWorld.REGISTRATE.block("terracotta_brick_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> TERRACOTTA_BRICK_WIDE_POST = MysticalWorld.REGISTRATE.block("terracotta_brick_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1494,7 +1494,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> TERRACOTTA_BRICK_SMALL_POST = MysticalWorld.REGISTRATE.block("terracotta_brick_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> TERRACOTTA_BRICK_SMALL_POST = MysticalWorld.REGISTRATE.block("terracotta_brick_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
       .properties(STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1507,9 +1507,9 @@ public class ModBlocks {
 
   // IRON BRICK
 
-  private static NonNullUnaryOperator<Block.Properties> IRON_PROPS = (o) -> o.sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.2f);
+  private static NonNullUnaryOperator<Block.Properties> IRON_PROPS = (o) -> o.sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.2f);
 
-  public static RegistryEntry<Block> IRON_BRICK = MysticalWorld.REGISTRATE.block("iron_brick", Material.IRON, Block::new)
+  public static RegistryEntry<Block> IRON_BRICK = MysticalWorld.REGISTRATE.block("iron_brick", Material.METAL, Block::new)
       .properties(IRON_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1520,7 +1520,7 @@ public class ModBlocks {
       })
       .register();
 
-  public static RegistryEntry<StairsBlock> IRON_BRICK_STAIRS = MysticalWorld.REGISTRATE.block("iron_brick_stairs", Material.IRON, stairsBlock(ModBlocks.IRON_BRICK))
+  public static RegistryEntry<StairsBlock> IRON_BRICK_STAIRS = MysticalWorld.REGISTRATE.block("iron_brick_stairs", Material.METAL, stairsBlock(ModBlocks.IRON_BRICK))
       .properties(IRON_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -1533,7 +1533,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.IRON_BRICK))
       .register();
 
-  public static RegistryEntry<SlabBlock> IRON_BRICK_SLAB = MysticalWorld.REGISTRATE.block("iron_brick_slab", Material.IRON, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> IRON_BRICK_SLAB = MysticalWorld.REGISTRATE.block("iron_brick_slab", Material.METAL, SlabBlock::new)
       .properties(IRON_PROPS)
       .item()
       .tag(ItemTags.SLABS)
@@ -1543,11 +1543,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.IRON_BRICK), ModBlocks.IRON_BRICK_SLAB, null, false)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.IRON_BRICK))
       .register();
 
-  public static RegistryEntry<WallBlock> IRON_BRICK_WALL = MysticalWorld.REGISTRATE.block("iron_brick_wall", Material.IRON, WallBlock::new)
+  public static RegistryEntry<WallBlock> IRON_BRICK_WALL = MysticalWorld.REGISTRATE.block("iron_brick_wall", Material.METAL, WallBlock::new)
       .properties(IRON_PROPS)
       .item()
       .tag(ItemTags.WALLS)
@@ -1560,7 +1560,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.IRON_BRICK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> IRON_BRICK_WIDE_POST = MysticalWorld.REGISTRATE.block("iron_brick_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> IRON_BRICK_WIDE_POST = MysticalWorld.REGISTRATE.block("iron_brick_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
       .properties(IRON_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1571,7 +1571,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.IRON_BRICK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> IRON_BRICK_SMALL_POST = MysticalWorld.REGISTRATE.block("iron_brick_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> IRON_BRICK_SMALL_POST = MysticalWorld.REGISTRATE.block("iron_brick_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
       .properties(IRON_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1584,7 +1584,7 @@ public class ModBlocks {
 
   // SOFT STONE
 
-  private static final NonNullUnaryOperator<Block.Properties> SOFT_STONE_PROPS = o -> o.sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(1f);
+  private static final NonNullUnaryOperator<Block.Properties> SOFT_STONE_PROPS = o -> o.sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1f);
   private static final NonNullUnaryOperator<Block.Properties> BLACKENED_STONE_PROPS = SOFT_STONE_PROPS;
 
   public static RegistryEntry<Block> SOFT_STONE = MysticalWorld.REGISTRATE.block("soft_stone", Block::new)
@@ -1601,7 +1601,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<StairsBlock> SOFT_STONE_STAIRS = MysticalWorld.REGISTRATE.block("soft_stone_stairs", Material.ROCK, stairsBlock(ModBlocks.SOFT_STONE))
+  public static RegistryEntry<StairsBlock> SOFT_STONE_STAIRS = MysticalWorld.REGISTRATE.block("soft_stone_stairs", Material.STONE, stairsBlock(ModBlocks.SOFT_STONE))
       .properties(SOFT_STONE_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -1614,7 +1614,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.SOFT_STONE))
       .register();
 
-  public static RegistryEntry<SlabBlock> SOFT_STONE_SLAB = MysticalWorld.REGISTRATE.block("soft_stone_slab", Material.ROCK, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> SOFT_STONE_SLAB = MysticalWorld.REGISTRATE.block("soft_stone_slab", Material.STONE, SlabBlock::new)
       .properties(SOFT_STONE_PROPS)
       .item()
       .tag(ItemTags.SLABS)
@@ -1624,11 +1624,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SOFT_STONE), ModBlocks.SOFT_STONE_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.SOFT_STONE))
       .register();
 
-  public static RegistryEntry<WallBlock> SOFT_STONE_WALL = MysticalWorld.REGISTRATE.block("soft_stone_wall", Material.ROCK, WallBlock::new)
+  public static RegistryEntry<WallBlock> SOFT_STONE_WALL = MysticalWorld.REGISTRATE.block("soft_stone_wall", Material.STONE, WallBlock::new)
       .properties(SOFT_STONE_PROPS)
       .item()
       .tag(ItemTags.WALLS)
@@ -1641,7 +1641,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.SOFT_STONE))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> SOFT_STONE_WIDE_POST = MysticalWorld.REGISTRATE.block("soft_stone_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> SOFT_STONE_WIDE_POST = MysticalWorld.REGISTRATE.block("soft_stone_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
       .properties(SOFT_STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1652,7 +1652,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.SOFT_STONE))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> SOFT_STONE_SMALL_POST = MysticalWorld.REGISTRATE.block("soft_stone_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> SOFT_STONE_SMALL_POST = MysticalWorld.REGISTRATE.block("soft_stone_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
       .properties(SOFT_STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1671,19 +1671,19 @@ public class ModBlocks {
       .tag(Tags.Items.STONE)
       .build()
       .recipe((ctx, p) -> {
-        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 4)
-            .patternLine("AB")
-            .patternLine("BA")
-            .key('A', Tags.Items.STONE)
-            .key('B', Ingredient.fromItems(Items.COAL, Items.CHARCOAL))
-            .addCriterion("has_stone", RegistrateRecipeProvider.hasItem(Tags.Items.STONE))
-            .build(p);
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 4)
+            .pattern("AB")
+            .pattern("BA")
+            .define('A', Tags.Items.STONE)
+            .define('B', Ingredient.of(Items.COAL, Items.CHARCOAL))
+            .unlockedBy("has_stone", RegistrateRecipeProvider.hasItem(Tags.Items.STONE))
+            .save(p);
       })
       .tag(Tags.Blocks.STONE)
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<StairsBlock> BLACKENED_STONE_STAIRS = MysticalWorld.REGISTRATE.block("blackened_stone_stairs", Material.ROCK, stairsBlock(ModBlocks.BLACKENED_STONE))
+  public static RegistryEntry<StairsBlock> BLACKENED_STONE_STAIRS = MysticalWorld.REGISTRATE.block("blackened_stone_stairs", Material.STONE, stairsBlock(ModBlocks.BLACKENED_STONE))
       .properties(BLACKENED_STONE_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -1696,7 +1696,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.BLACKENED_STONE))
       .register();
 
-  public static RegistryEntry<SlabBlock> BLACKENED_STONE_SLAB = MysticalWorld.REGISTRATE.block("blackened_stone_slab", Material.ROCK, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> BLACKENED_STONE_SLAB = MysticalWorld.REGISTRATE.block("blackened_stone_slab", Material.STONE, SlabBlock::new)
       .properties(BLACKENED_STONE_PROPS)
       .item()
       .tag(ItemTags.SLABS)
@@ -1706,11 +1706,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.BLACKENED_STONE), ModBlocks.BLACKENED_STONE_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.BLACKENED_STONE))
       .register();
 
-  public static RegistryEntry<WallBlock> BLACKENED_STONE_WALL = MysticalWorld.REGISTRATE.block("blackened_stone_wall", Material.ROCK, WallBlock::new)
+  public static RegistryEntry<WallBlock> BLACKENED_STONE_WALL = MysticalWorld.REGISTRATE.block("blackened_stone_wall", Material.STONE, WallBlock::new)
       .properties(BLACKENED_STONE_PROPS)
       .item()
       .tag(ItemTags.WALLS)
@@ -1723,7 +1723,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.BLACKENED_STONE))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> BLACKENED_STONE_WIDE_POST = MysticalWorld.REGISTRATE.block("blackened_stone_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> BLACKENED_STONE_WIDE_POST = MysticalWorld.REGISTRATE.block("blackened_stone_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
       .properties(BLACKENED_STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1734,7 +1734,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.BLACKENED_STONE))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> BLACKENED_STONE_SMALL_POST = MysticalWorld.REGISTRATE.block("blackened_stone_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> BLACKENED_STONE_SMALL_POST = MysticalWorld.REGISTRATE.block("blackened_stone_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
       .properties(BLACKENED_STONE_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1747,7 +1747,7 @@ public class ModBlocks {
 
   // SMOOTH OBSIDIAN
 
-  private static NonNullUnaryOperator<Block.Properties> SOFT_OBSIDIAN_PROPS = o -> o.sound(SoundType.STONE).hardnessAndResistance(25f, 600f);
+  private static NonNullUnaryOperator<Block.Properties> SOFT_OBSIDIAN_PROPS = o -> o.sound(SoundType.STONE).strength(25f, 600f);
 
   public static RegistryEntry<SoftObsidian.SoftObsidianBlock> SOFT_OBSIDIAN = MysticalWorld.REGISTRATE.block("soft_obsidian", SoftObsidian.SoftObsidianBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
@@ -1758,18 +1758,18 @@ public class ModBlocks {
       .tag(Tags.Blocks.OBSIDIAN)
       .blockstate(ModBlocks::simpleBlockState)
       .recipe((ctx, p) -> {
-        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 4)
-            .patternLine("AB")
-            .patternLine("BA")
-            .key('A', Tags.Items.STONE)
-            .key('B', Tags.Items.OBSIDIAN)
-            .addCriterion("has_stone", RegistrateRecipeProvider.hasItem(Tags.Items.STONE))
-            .addCriterion("has_obsidian", RegistrateRecipeProvider.hasItem(Tags.Items.OBSIDIAN))
-            .build(p);
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 4)
+            .pattern("AB")
+            .pattern("BA")
+            .define('A', Tags.Items.STONE)
+            .define('B', Tags.Items.OBSIDIAN)
+            .unlockedBy("has_stone", RegistrateRecipeProvider.hasItem(Tags.Items.STONE))
+            .unlockedBy("has_obsidian", RegistrateRecipeProvider.hasItem(Tags.Items.OBSIDIAN))
+            .save(p);
       })
       .register();
 
-  public static RegistryEntry<StairsBlock> SOFT_OBSIDIAN_STAIRS = MysticalWorld.REGISTRATE.block("soft_obsidian_stairs", Material.ROCK, stairsBlock(ModBlocks.SOFT_OBSIDIAN))
+  public static RegistryEntry<StairsBlock> SOFT_OBSIDIAN_STAIRS = MysticalWorld.REGISTRATE.block("soft_obsidian_stairs", Material.STONE, stairsBlock(ModBlocks.SOFT_OBSIDIAN))
       .properties(SOFT_OBSIDIAN_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -1782,7 +1782,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<SoftObsidian.SoftObsidianSlabBlock> SOFT_OBSIDIAN_SLAB = MysticalWorld.REGISTRATE.block("soft_obsidian_slab", Material.ROCK, SoftObsidian.SoftObsidianSlabBlock::new)
+  public static RegistryEntry<SoftObsidian.SoftObsidianSlabBlock> SOFT_OBSIDIAN_SLAB = MysticalWorld.REGISTRATE.block("soft_obsidian_slab", Material.STONE, SoftObsidian.SoftObsidianSlabBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .tag(ItemTags.SLABS)
@@ -1792,11 +1792,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SOFT_OBSIDIAN), ModBlocks.SOFT_OBSIDIAN_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<SoftObsidian.SoftObsidianWallBlock> SOFT_OBSIDIAN_WALL = MysticalWorld.REGISTRATE.block("soft_obsidian_wall", Material.ROCK, SoftObsidian.SoftObsidianWallBlock::new)
+  public static RegistryEntry<SoftObsidian.SoftObsidianWallBlock> SOFT_OBSIDIAN_WALL = MysticalWorld.REGISTRATE.block("soft_obsidian_wall", Material.STONE, SoftObsidian.SoftObsidianWallBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .tag(ItemTags.WALLS)
@@ -1809,7 +1809,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<SoftObsidian.SoftObsidianWidePostBlock> SOFT_OBSIDIAN_WIDE_POST = MysticalWorld.REGISTRATE.block("soft_obsidian_wide_post", Material.ROCK, SoftObsidian.SoftObsidianWidePostBlock::new)
+  public static RegistryEntry<SoftObsidian.SoftObsidianWidePostBlock> SOFT_OBSIDIAN_WIDE_POST = MysticalWorld.REGISTRATE.block("soft_obsidian_wide_post", Material.STONE, SoftObsidian.SoftObsidianWidePostBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1820,7 +1820,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
-  public static RegistryEntry<SoftObsidian.SoftObsidianNarrowPostBlock> SOFT_OBSIDIAN_SMALL_POST = MysticalWorld.REGISTRATE.block("soft_obsidian_small_post", Material.ROCK, SoftObsidian.SoftObsidianNarrowPostBlock::new)
+  public static RegistryEntry<SoftObsidian.SoftObsidianNarrowPostBlock> SOFT_OBSIDIAN_SMALL_POST = MysticalWorld.REGISTRATE.block("soft_obsidian_small_post", Material.STONE, SoftObsidian.SoftObsidianNarrowPostBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -1844,7 +1844,7 @@ public class ModBlocks {
       .tag(MWTags.Blocks.QUARTZ_ORE)
       .blockstate(ModBlocks::simpleBlockState)
       .loot((p, t) ->
-          p.registerLootTable(ModBlocks.GRANITE_QUARTZ_ORE.get(), RegistrateBlockLootTables.droppingItemWithFortune(t, Items.QUARTZ))
+          p.add(ModBlocks.GRANITE_QUARTZ_ORE.get(), RegistrateBlockLootTables.droppingItemWithFortune(t, Items.QUARTZ))
       )
       .register();
 
@@ -1861,11 +1861,11 @@ public class ModBlocks {
       .tag(MWTags.Blocks.AMETHYST_ORE)
       .blockstate(ModBlocks::simpleBlockState)
       .loot((p, t) ->
-          p.registerLootTable(ModBlocks.AMETHYST_ORE.get(), RegistrateBlockLootTables.droppingItemWithFortune(t, ModItems.AMETHYST_GEM.get()))
+          p.add(ModBlocks.AMETHYST_ORE.get(), RegistrateBlockLootTables.droppingItemWithFortune(t, ModItems.AMETHYST_GEM.get()))
       )
       .register();
 
-  public static RegistryEntry<Block> AMETHYST_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.AMETHYST.blockName(), Material.IRON, Block::new)
+  public static RegistryEntry<Block> AMETHYST_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.AMETHYST.blockName(), Material.METAL, Block::new)
       .properties(o -> {
         ModMaterials.AMETHYST.getBlockProps(o);
         return o;
@@ -1878,7 +1878,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<StairsBlock> AMETHYST_STAIRS = MysticalWorld.REGISTRATE.block("amethyst_stairs", Material.IRON, stairsBlock(ModBlocks.AMETHYST_BLOCK))
+  public static RegistryEntry<StairsBlock> AMETHYST_STAIRS = MysticalWorld.REGISTRATE.block("amethyst_stairs", Material.METAL, stairsBlock(ModBlocks.AMETHYST_BLOCK))
       .properties(o -> {
         ModMaterials.AMETHYST.getBlockProps(o);
         return o;
@@ -1894,7 +1894,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.AMETHYST_BLOCK))
       .register();
 
-  public static RegistryEntry<SlabBlock> AMETHYST_SLAB = MysticalWorld.REGISTRATE.block("amethyst_slab", Material.IRON, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> AMETHYST_SLAB = MysticalWorld.REGISTRATE.block("amethyst_slab", Material.METAL, SlabBlock::new)
       .properties(o -> {
         ModMaterials.AMETHYST.getBlockProps(o);
         return o;
@@ -1907,11 +1907,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.AMETHYST_BLOCK), ModBlocks.AMETHYST_SLAB, null, false)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.AMETHYST_BLOCK))
       .register();
 
-  public static RegistryEntry<WallBlock> AMETHYST_WALL = MysticalWorld.REGISTRATE.block("amethyst_wall", Material.IRON, WallBlock::new)
+  public static RegistryEntry<WallBlock> AMETHYST_WALL = MysticalWorld.REGISTRATE.block("amethyst_wall", Material.METAL, WallBlock::new)
       .properties(o -> {
         ModMaterials.AMETHYST.getBlockProps(o);
         return o;
@@ -1927,7 +1927,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.AMETHYST_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> AMETHYST_WIDE_POST = MysticalWorld.REGISTRATE.block("amethyst_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> AMETHYST_WIDE_POST = MysticalWorld.REGISTRATE.block("amethyst_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.AMETHYST.getBlockProps(o);
         return o;
@@ -1941,7 +1941,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.AMETHYST_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> AMETHYST_SMALL_POST = MysticalWorld.REGISTRATE.block("amethyst_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> AMETHYST_SMALL_POST = MysticalWorld.REGISTRATE.block("amethyst_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.AMETHYST.getBlockProps(o);
         return o;
@@ -1969,7 +1969,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<Block> COPPER_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.COPPER.blockName(), Material.IRON, Block::new)
+  public static RegistryEntry<Block> COPPER_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.COPPER.blockName(), Material.METAL, Block::new)
       .properties(o -> {
         ModMaterials.COPPER.getBlockProps(o);
         return o;
@@ -1982,7 +1982,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<StairsBlock> COPPER_STAIRS = MysticalWorld.REGISTRATE.block("copper_stairs", Material.IRON, stairsBlock(ModBlocks.COPPER_BLOCK))
+  public static RegistryEntry<StairsBlock> COPPER_STAIRS = MysticalWorld.REGISTRATE.block("copper_stairs", Material.METAL, stairsBlock(ModBlocks.COPPER_BLOCK))
       .properties(o -> {
         ModMaterials.COPPER.getBlockProps(o);
         return o;
@@ -1998,7 +1998,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.COPPER_BLOCK))
       .register();
 
-  public static RegistryEntry<SlabBlock> COPPER_SLAB = MysticalWorld.REGISTRATE.block("copper_slab", Material.IRON, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> COPPER_SLAB = MysticalWorld.REGISTRATE.block("copper_slab", Material.METAL, SlabBlock::new)
       .properties(o -> {
         ModMaterials.COPPER.getBlockProps(o);
         return o;
@@ -2011,11 +2011,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.COPPER_BLOCK), ModBlocks.COPPER_SLAB, null, false)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.COPPER_BLOCK))
       .register();
 
-  public static RegistryEntry<WallBlock> COPPER_WALL = MysticalWorld.REGISTRATE.block("copper_wall", Material.IRON, WallBlock::new)
+  public static RegistryEntry<WallBlock> COPPER_WALL = MysticalWorld.REGISTRATE.block("copper_wall", Material.METAL, WallBlock::new)
       .properties(o -> {
         ModMaterials.COPPER.getBlockProps(o);
         return o;
@@ -2031,7 +2031,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.COPPER_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> COPPER_WIDE_POST = MysticalWorld.REGISTRATE.block("copper_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> COPPER_WIDE_POST = MysticalWorld.REGISTRATE.block("copper_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.COPPER.getBlockProps(o);
         return o;
@@ -2045,7 +2045,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.COPPER_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> COPPER_SMALL_POST = MysticalWorld.REGISTRATE.block("copper_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> COPPER_SMALL_POST = MysticalWorld.REGISTRATE.block("copper_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.COPPER.getBlockProps(o);
         return o;
@@ -2076,7 +2076,7 @@ public class ModBlocks {
 
   public static ResourceLocation RL = new ResourceLocation("mysticalworld:item/copper");
 
-  public static RegistryEntry<Block> LEAD_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.LEAD.blockName(), Material.IRON, Block::new)
+  public static RegistryEntry<Block> LEAD_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.LEAD.blockName(), Material.METAL, Block::new)
       .properties(o -> {
         ModMaterials.LEAD.getBlockProps(o);
         return o;
@@ -2089,7 +2089,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<StairsBlock> LEAD_STAIRS = MysticalWorld.REGISTRATE.block("lead_stairs", Material.IRON, stairsBlock(ModBlocks.LEAD_BLOCK))
+  public static RegistryEntry<StairsBlock> LEAD_STAIRS = MysticalWorld.REGISTRATE.block("lead_stairs", Material.METAL, stairsBlock(ModBlocks.LEAD_BLOCK))
       .properties(o -> {
         ModMaterials.LEAD.getBlockProps(o);
         return o;
@@ -2105,7 +2105,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.LEAD_BLOCK))
       .register();
 
-  public static RegistryEntry<SlabBlock> LEAD_SLAB = MysticalWorld.REGISTRATE.block("lead_slab", Material.IRON, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> LEAD_SLAB = MysticalWorld.REGISTRATE.block("lead_slab", Material.METAL, SlabBlock::new)
       .properties(o -> {
         ModMaterials.LEAD.getBlockProps(o);
         return o;
@@ -2118,11 +2118,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.LEAD_BLOCK), ModBlocks.LEAD_SLAB, null, false)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.LEAD_BLOCK))
       .register();
 
-  public static RegistryEntry<WallBlock> LEAD_WALL = MysticalWorld.REGISTRATE.block("lead_wall", Material.IRON, WallBlock::new)
+  public static RegistryEntry<WallBlock> LEAD_WALL = MysticalWorld.REGISTRATE.block("lead_wall", Material.METAL, WallBlock::new)
       .properties(o -> {
         ModMaterials.LEAD.getBlockProps(o);
         return o;
@@ -2138,7 +2138,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.LEAD_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> LEAD_WIDE_POST = MysticalWorld.REGISTRATE.block("lead_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> LEAD_WIDE_POST = MysticalWorld.REGISTRATE.block("lead_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.LEAD.getBlockProps(o);
         return o;
@@ -2152,7 +2152,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.LEAD_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> LEAD_SMALL_POST = MysticalWorld.REGISTRATE.block("lead_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> LEAD_SMALL_POST = MysticalWorld.REGISTRATE.block("lead_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.LEAD.getBlockProps(o);
         return o;
@@ -2181,7 +2181,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<Block> QUICKSILVER_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.QUICKSILVER.blockName(), Material.IRON, Block::new)
+  public static RegistryEntry<Block> QUICKSILVER_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.QUICKSILVER.blockName(), Material.METAL, Block::new)
       .properties(o -> {
         ModMaterials.QUICKSILVER.getBlockProps(o);
         return o;
@@ -2194,7 +2194,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<StairsBlock> QUICKSILVER_STAIRS = MysticalWorld.REGISTRATE.block("quicksilver_stairs", Material.IRON, stairsBlock(ModBlocks.QUICKSILVER_BLOCK))
+  public static RegistryEntry<StairsBlock> QUICKSILVER_STAIRS = MysticalWorld.REGISTRATE.block("quicksilver_stairs", Material.METAL, stairsBlock(ModBlocks.QUICKSILVER_BLOCK))
       .properties(o -> {
         ModMaterials.QUICKSILVER.getBlockProps(o);
         return o;
@@ -2210,7 +2210,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.QUICKSILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<SlabBlock> QUICKSILVER_SLAB = MysticalWorld.REGISTRATE.block("quicksilver_slab", Material.IRON, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> QUICKSILVER_SLAB = MysticalWorld.REGISTRATE.block("quicksilver_slab", Material.METAL, SlabBlock::new)
       .properties(o -> {
         ModMaterials.QUICKSILVER.getBlockProps(o);
         return o;
@@ -2223,11 +2223,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.QUICKSILVER_BLOCK), ModBlocks.QUICKSILVER_SLAB, null, false)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.QUICKSILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<WallBlock> QUICKSILVER_WALL = MysticalWorld.REGISTRATE.block("quicksilver_wall", Material.IRON, WallBlock::new)
+  public static RegistryEntry<WallBlock> QUICKSILVER_WALL = MysticalWorld.REGISTRATE.block("quicksilver_wall", Material.METAL, WallBlock::new)
       .properties(o -> {
         ModMaterials.QUICKSILVER.getBlockProps(o);
         return o;
@@ -2243,7 +2243,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.QUICKSILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> QUICKSILVER_WIDE_POST = MysticalWorld.REGISTRATE.block("quicksilver_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> QUICKSILVER_WIDE_POST = MysticalWorld.REGISTRATE.block("quicksilver_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.QUICKSILVER.getBlockProps(o);
         return o;
@@ -2257,7 +2257,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.QUICKSILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> QUICKSILVER_SMALL_POST = MysticalWorld.REGISTRATE.block("quicksilver_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> QUICKSILVER_SMALL_POST = MysticalWorld.REGISTRATE.block("quicksilver_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.QUICKSILVER.getBlockProps(o);
         return o;
@@ -2285,7 +2285,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<Block> SILVER_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.SILVER.blockName(), Material.IRON, Block::new)
+  public static RegistryEntry<Block> SILVER_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.SILVER.blockName(), Material.METAL, Block::new)
       .properties(o -> {
         ModMaterials.SILVER.getBlockProps(o);
         return o;
@@ -2298,7 +2298,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<StairsBlock> SILVER_STAIRS = MysticalWorld.REGISTRATE.block("silver_stairs", Material.IRON, stairsBlock(ModBlocks.SILVER_BLOCK))
+  public static RegistryEntry<StairsBlock> SILVER_STAIRS = MysticalWorld.REGISTRATE.block("silver_stairs", Material.METAL, stairsBlock(ModBlocks.SILVER_BLOCK))
       .properties(o -> {
         ModMaterials.SILVER.getBlockProps(o);
         return o;
@@ -2314,7 +2314,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.SILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<SlabBlock> SILVER_SLAB = MysticalWorld.REGISTRATE.block("silver_slab", Material.IRON, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> SILVER_SLAB = MysticalWorld.REGISTRATE.block("silver_slab", Material.METAL, SlabBlock::new)
       .properties(o -> {
         ModMaterials.SILVER.getBlockProps(o);
         return o;
@@ -2327,11 +2327,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SILVER_BLOCK), ModBlocks.SILVER_SLAB, null, false)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.SILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<WallBlock> SILVER_WALL = MysticalWorld.REGISTRATE.block("silver_wall", Material.IRON, WallBlock::new)
+  public static RegistryEntry<WallBlock> SILVER_WALL = MysticalWorld.REGISTRATE.block("silver_wall", Material.METAL, WallBlock::new)
       .properties(o -> {
         ModMaterials.SILVER.getBlockProps(o);
         return o;
@@ -2347,7 +2347,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.SILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> SILVER_WIDE_POST = MysticalWorld.REGISTRATE.block("silver_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> SILVER_WIDE_POST = MysticalWorld.REGISTRATE.block("silver_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.SILVER.getBlockProps(o);
         return o;
@@ -2361,7 +2361,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.SILVER_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> SILVER_SMALL_POST = MysticalWorld.REGISTRATE.block("silver_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> SILVER_SMALL_POST = MysticalWorld.REGISTRATE.block("silver_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.SILVER.getBlockProps(o);
         return o;
@@ -2390,7 +2390,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<Block> TIN_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.TIN.blockName(), Material.IRON, Block::new)
+  public static RegistryEntry<Block> TIN_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.TIN.blockName(), Material.METAL, Block::new)
       .properties(o -> {
         ModMaterials.TIN.getBlockProps(o);
         return o;
@@ -2403,7 +2403,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<StairsBlock> TIN_STAIRS = MysticalWorld.REGISTRATE.block("tin_stairs", Material.IRON, stairsBlock(ModBlocks.TIN_BLOCK))
+  public static RegistryEntry<StairsBlock> TIN_STAIRS = MysticalWorld.REGISTRATE.block("tin_stairs", Material.METAL, stairsBlock(ModBlocks.TIN_BLOCK))
       .properties(o -> {
         ModMaterials.TIN.getBlockProps(o);
         return o;
@@ -2419,7 +2419,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.TIN_BLOCK))
       .register();
 
-  public static RegistryEntry<SlabBlock> TIN_SLAB = MysticalWorld.REGISTRATE.block("tin_slab", Material.IRON, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> TIN_SLAB = MysticalWorld.REGISTRATE.block("tin_slab", Material.METAL, SlabBlock::new)
       .properties(o -> {
         ModMaterials.TIN.getBlockProps(o);
         return o;
@@ -2432,11 +2432,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.TIN_BLOCK), ModBlocks.TIN_SLAB, null, false)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.TIN_BLOCK))
       .register();
 
-  public static RegistryEntry<WallBlock> TIN_WALL = MysticalWorld.REGISTRATE.block("tin_wall", Material.IRON, WallBlock::new)
+  public static RegistryEntry<WallBlock> TIN_WALL = MysticalWorld.REGISTRATE.block("tin_wall", Material.METAL, WallBlock::new)
       .properties(o -> {
         ModMaterials.TIN.getBlockProps(o);
         return o;
@@ -2452,7 +2452,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.TIN_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> TIN_WIDE_POST = MysticalWorld.REGISTRATE.block("tin_wide_post", Material.IRON, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> TIN_WIDE_POST = MysticalWorld.REGISTRATE.block("tin_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
         ModMaterials.TIN.getBlockProps(o);
         return o;
@@ -2466,7 +2466,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.TIN_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> TIN_SMALL_POST = MysticalWorld.REGISTRATE.block("tin_small_post", Material.IRON, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> TIN_SMALL_POST = MysticalWorld.REGISTRATE.block("tin_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.TIN.getBlockProps(o);
         return o;
@@ -2480,9 +2480,9 @@ public class ModBlocks {
       .blockstate(narrowPost(ModBlocks.TIN_BLOCK))
       .register();
 
-  public static NonNullUnaryOperator<Block.Properties> PEARL_PROPS = o -> o.hardnessAndResistance(1.2F, 1.2F).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(1);
+  public static NonNullUnaryOperator<Block.Properties> PEARL_PROPS = o -> o.strength(1.2F, 1.2F).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(1);
 
-  public static RegistryEntry<Block> PEARL_BLOCK = MysticalWorld.REGISTRATE.block("pearl_block", Material.ROCK, Block::new)
+  public static RegistryEntry<Block> PEARL_BLOCK = MysticalWorld.REGISTRATE.block("pearl_block", Material.STONE, Block::new)
       .properties(PEARL_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -2492,7 +2492,7 @@ public class ModBlocks {
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static RegistryEntry<StairsBlock> PEARL_STAIRS = MysticalWorld.REGISTRATE.block("pearl_stairs", Material.ROCK, stairsBlock(ModBlocks.PEARL_BLOCK))
+  public static RegistryEntry<StairsBlock> PEARL_STAIRS = MysticalWorld.REGISTRATE.block("pearl_stairs", Material.STONE, stairsBlock(ModBlocks.PEARL_BLOCK))
       .properties(PEARL_PROPS)
       .tag(BlockTags.STAIRS)
       .item()
@@ -2505,7 +2505,7 @@ public class ModBlocks {
       .blockstate(stairs(ModBlocks.PEARL_BLOCK))
       .register();
 
-  public static RegistryEntry<SlabBlock> PEARL_SLAB = MysticalWorld.REGISTRATE.block("pearl_slab", Material.ROCK, SlabBlock::new)
+  public static RegistryEntry<SlabBlock> PEARL_SLAB = MysticalWorld.REGISTRATE.block("pearl_slab", Material.STONE, SlabBlock::new)
       .properties(PEARL_PROPS)
       .item()
       .tag(ItemTags.SLABS)
@@ -2515,11 +2515,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_SLAB, null, true)
       )
-      .loot((p, t) -> p.registerLootTable(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
       .blockstate(slab(ModBlocks.PEARL_BLOCK))
       .register();
 
-  public static RegistryEntry<WallBlock> PEARL_WALL = MysticalWorld.REGISTRATE.block("pearl_wall", Material.ROCK, WallBlock::new)
+  public static RegistryEntry<WallBlock> PEARL_WALL = MysticalWorld.REGISTRATE.block("pearl_wall", Material.STONE, WallBlock::new)
       .properties(PEARL_PROPS)
       .item()
       .tag(ItemTags.WALLS)
@@ -2532,7 +2532,7 @@ public class ModBlocks {
       .blockstate(wall(ModBlocks.PEARL_BLOCK))
       .register();
 
-  public static RegistryEntry<FenceBlock> PEARL_FENCE = MysticalWorld.REGISTRATE.block("pearl_fence", Material.ROCK, FenceBlock::new)
+  public static RegistryEntry<FenceBlock> PEARL_FENCE = MysticalWorld.REGISTRATE.block("pearl_fence", Material.STONE, FenceBlock::new)
       .properties(PEARL_PROPS)
       .item()
       .tag(ItemTags.WALLS)
@@ -2547,7 +2547,7 @@ public class ModBlocks {
       .blockstate(fence(ModBlocks.PEARL_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.WidePostBlock> PEARL_WIDE_POST = MysticalWorld.REGISTRATE.block("pearl_wide_post", Material.ROCK, BaseBlocks.WidePostBlock::new)
+  public static RegistryEntry<BaseBlocks.WidePostBlock> PEARL_WIDE_POST = MysticalWorld.REGISTRATE.block("pearl_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
       .properties(PEARL_PROPS)
       .item()
       .model(ModBlocks::itemModel)
@@ -2558,7 +2558,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.PEARL_BLOCK))
       .register();
 
-  public static RegistryEntry<BaseBlocks.NarrowPostBlock> PEARL_SMALL_POST = MysticalWorld.REGISTRATE.block("pearl_small_post", Material.ROCK, BaseBlocks.NarrowPostBlock::new)
+  public static RegistryEntry<BaseBlocks.NarrowPostBlock> PEARL_SMALL_POST = MysticalWorld.REGISTRATE.block("pearl_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
       .properties(PEARL_PROPS)
       .item()
       .model(ModBlocks::itemModel)

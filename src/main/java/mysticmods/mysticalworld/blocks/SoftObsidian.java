@@ -4,6 +4,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.PushReaction;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class SoftObsidian {
   public static class SoftObsidianBlock extends Block {
     public SoftObsidianBlock(Properties p_i48440_1_) {
@@ -11,7 +13,7 @@ public class SoftObsidian {
     }
 
     @Override
-    public PushReaction getPushReaction(BlockState p_149656_1_) {
+    public PushReaction getPistonPushReaction(BlockState pState) {
       return PushReaction.BLOCK;
     }
   }
@@ -22,7 +24,7 @@ public class SoftObsidian {
     }
 
     @Override
-    public PushReaction getPushReaction(BlockState p_149656_1_) {
+    public PushReaction getPistonPushReaction(BlockState pState) {
       return PushReaction.BLOCK;
     }
   }
@@ -33,7 +35,7 @@ public class SoftObsidian {
     }
 
     @Override
-    public PushReaction getPushReaction(BlockState p_149656_1_) {
+    public PushReaction getPistonPushReaction(BlockState pState) {
       return PushReaction.BLOCK;
     }
   }
@@ -45,7 +47,7 @@ public class SoftObsidian {
     }
 
     @Override
-    public PushReaction getPushReaction(BlockState p_149656_1_) {
+    public PushReaction getPistonPushReaction(BlockState pState) {
       return PushReaction.BLOCK;
     }
   }
@@ -56,7 +58,7 @@ public class SoftObsidian {
     }
 
     @Override
-    public PushReaction getPushReaction(BlockState p_149656_1_) {
+    public PushReaction getPistonPushReaction(BlockState pState) {
       return PushReaction.BLOCK;
     }
   }
@@ -67,7 +69,7 @@ public class SoftObsidian {
     }
 
     @Override
-    public PushReaction getPushReaction(BlockState p_149656_1_) {
+    public PushReaction getPistonPushReaction(BlockState pState) {
       return PushReaction.BLOCK;
     }
   }

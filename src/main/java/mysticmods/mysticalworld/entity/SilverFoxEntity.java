@@ -33,19 +33,21 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
+import net.minecraft.entity.ai.goal.Goal.Flag;
+
 @SuppressWarnings("NullableProblems")
 public class SilverFoxEntity extends TameableEntity {
-  private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.FLOAT);
+  private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.defineId(SilverFoxEntity.class, DataSerializers.FLOAT);
   /*  private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.BOOLEAN);*/
 
   public SilverFoxEntity(EntityType<? extends SilverFoxEntity> type, World worldIn) {
     super(type, worldIn);
-    setTamed(false);
-    this.experienceValue = 5;
+    setTame(false);
+    this.xpReward = 5;
   }
 
   @Override
-  public boolean isBreedingItem(@Nonnull ItemStack stack) {
+  public boolean isFood(@Nonnull ItemStack stack) {
     return stack.getItem() == Items.CHICKEN;
   }
 
@@ -66,7 +68,7 @@ public class SilverFoxEntity extends TameableEntity {
     goalSelector.addGoal(0, new SwimGoal(this));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
     goalSelector.addGoal(2, new SitGoal(this));
-    goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.CHICKEN), false));
+    goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Items.CHICKEN), false));
     goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
     goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
     goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
@@ -82,29 +84,29 @@ public class SilverFoxEntity extends TameableEntity {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3d).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2d);
+    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0d).add(Attributes.MOVEMENT_SPEED, 0.3d).add(Attributes.ATTACK_DAMAGE, 2d);
   }
 
   @Override
-  public void setAttackTarget(@Nullable LivingEntity entitylivingbaseIn) {
-    super.setAttackTarget(entitylivingbaseIn);
+  public void setTarget(@Nullable LivingEntity entitylivingbaseIn) {
+    super.setTarget(entitylivingbaseIn);
 
     if (entitylivingbaseIn == null) {
       this.setAngry(false);
-    } else if (!this.isTamed()) {
+    } else if (!this.isTame()) {
       this.setAngry(true);
     }
   }
 
   @Override
-  protected void updateAITasks() {
-    this.dataManager.set(DATA_HEALTH_ID, this.getHealth());
+  protected void customServerAiStep() {
+    this.entityData.set(DATA_HEALTH_ID, this.getHealth());
   }
 
   @Override
-  protected void registerData() {
-    super.registerData();
-    this.dataManager.register(DATA_HEALTH_ID, this.getHealth());
+  protected void defineSynchedData() {
+    super.defineSynchedData();
+    this.entityData.define(DATA_HEALTH_ID, this.getHealth());
     /*    this.dataManager.register(SLEEPING, false);*/
   }
 
@@ -114,13 +116,13 @@ public class SilverFoxEntity extends TameableEntity {
   }
 
   @Override
-  public void writeAdditional(CompoundNBT compound) {
-    super.writeAdditional(compound);
+  public void addAdditionalSaveData(CompoundNBT compound) {
+    super.addAdditionalSaveData(compound);
   }
 
   @Override
-  public void readAdditional(CompoundNBT compound) {
-    super.readAdditional(compound);
+  public void readAdditionalSaveData(CompoundNBT compound) {
+    super.readAdditionalSaveData(compound);
   }
 
   @Nullable
@@ -136,45 +138,45 @@ public class SilverFoxEntity extends TameableEntity {
   }
 
   @Override
-  public void livingTick() {
-    super.livingTick();
+  public void aiStep() {
+    super.aiStep();
 
     if (this.isAngry() && this.isSleeping()) {
-      this.setSleeping(false);
+      this.setInSittingPose(false);
     }
 
-    if (!this.world.isRemote && this.getAttackTarget() == null && this.isAngry()) {
+    if (!this.level.isClientSide && this.getTarget() == null && this.isAngry()) {
       this.setAngry(false);
     }
   }
 
   @Override
-  public boolean attackEntityFrom(DamageSource source, float amount) {
+  public boolean hurt(DamageSource source, float amount) {
     if (isInvulnerableTo(source)) {
       return false;
     } else {
-      Entity entity = source.getTrueSource();
+      Entity entity = source.getEntity();
 
       if (isSleeping()) {
-        setSleeping(false);
+        setInSittingPose(false);
       }
 
-      this.func_233687_w_(false);
+      this.setOrderedToSit(false);
 
       if (entity != null && !(entity instanceof PlayerEntity) && !(entity instanceof ArrowEntity)) {
         amount = (amount + 1.0F) / 2.0F;
       }
 
-      return super.attackEntityFrom(source, amount);
+      return super.hurt(source, amount);
     }
   }
 
   @Override
-  public boolean attackEntityAsMob(Entity entityIn) {
-    boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) getAttributeValue(Attributes.ATTACK_DAMAGE)));
+  public boolean doHurtTarget(Entity entityIn) {
+    boolean flag = entityIn.hurt(DamageSource.mobAttack(this), (float) ((int) getAttributeValue(Attributes.ATTACK_DAMAGE)));
 
     if (flag) {
-      applyEnchantments(this, entityIn);
+      doEnchantDamageEffects(this, entityIn);
       playSound(ModSounds.FOX_BITE.get(), 1.0f, 1.0f);
     }
 
@@ -182,8 +184,8 @@ public class SilverFoxEntity extends TameableEntity {
   }
 
   @Override
-  public void setTamed(boolean tamed) {
-    super.setTamed(tamed);
+  public void setTame(boolean tamed) {
+    super.setTame(tamed);
     if (tamed) {
       this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0D);
       this.setHealth(20.0F);
@@ -196,33 +198,33 @@ public class SilverFoxEntity extends TameableEntity {
 
   @SuppressWarnings("Duplicates")
   @Override
-  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
-    ItemStack itemstack = player.getHeldItem(hand);
+  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+    ItemStack itemstack = player.getItemInHand(hand);
     Item item = itemstack.getItem();
-    if (this.world.isRemote) {
-      boolean flag = this.isOwner(player) || this.isTamed() || item == Items.APPLE && !this.isTamed();
+    if (this.level.isClientSide) {
+      boolean flag = this.isOwnedBy(player) || this.isTame() || item == Items.APPLE && !this.isTame();
       return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
     } else {
-      if (this.isTamed()) {
-        if (this.isBreedingItem(itemstack) && this.getHealth() < this.getMaxHealth()) {
-          if (!player.abilities.isCreativeMode) {
+      if (this.isTame()) {
+        if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+          if (!player.abilities.instabuild) {
             itemstack.shrink(1);
           }
 
-          Food food = item.getFood();
+          Food food = item.getFoodProperties();
           if (food != null) {
-            this.heal((float) food.getHealing());
+            this.heal((float) food.getNutrition());
             return ActionResultType.SUCCESS;
           }
         }
 
         /*            if (!(item instanceof DyeItem)) {*/
-        ActionResultType actionresulttype = super.func_230254_b_(player, hand);
-        if ((!actionresulttype.isSuccessOrConsume() || this.isChild()) && this.isOwner(player)) {
-          this.func_233687_w_(!this.isSitting());
-          this.isJumping = false;
-          this.navigator.clearPath();
-          this.setAttackTarget(null);
+        ActionResultType actionresulttype = super.mobInteract(player, hand);
+        if ((!actionresulttype.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
+          this.setOrderedToSit(!this.isOrderedToSit());
+          this.jumping = false;
+          this.navigation.stop();
+          this.setTarget(null);
           return ActionResultType.SUCCESS;
         }
 
@@ -239,29 +241,29 @@ public class SilverFoxEntity extends TameableEntity {
                return ActionResultType.SUCCESS;
             }*/
       } else if (item == Items.APPLE) {
-        if (!player.abilities.isCreativeMode) {
+        if (!player.abilities.instabuild) {
           itemstack.shrink(1);
         }
 
-        if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-          this.setTamedBy(player);
-          this.navigator.clearPath();
-          this.setAttackTarget(null);
-          this.func_233687_w_(true);
-          this.world.setEntityState(this, (byte) 7);
+        if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+          this.tame(player);
+          this.navigation.stop();
+          this.setTarget(null);
+          this.setOrderedToSit(true);
+          this.level.broadcastEntityEvent(this, (byte) 7);
         } else {
-          this.world.setEntityState(this, (byte) 6);
+          this.level.broadcastEntityEvent(this, (byte) 6);
         }
 
         return ActionResultType.SUCCESS;
       }
 
-      return super.func_230254_b_(player, hand);
+      return super.mobInteract(player, hand);
     }
   }
 
 /*  @Override
-  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
+  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
     ItemStack stack = player.getHeldItem(hand);
 
     if (isTamed()) {
@@ -282,7 +284,7 @@ public class SilverFoxEntity extends TameableEntity {
       }
 
       if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(stack)) {
-        this.func_233687_w_(!this.isSitting());
+        this.setOrderedToSit(!this.isSitting());
         this.isJumping = false;
         this.navigator.clearPath();
         this.setAttackTarget(null);
@@ -297,7 +299,7 @@ public class SilverFoxEntity extends TameableEntity {
           this.setTamedBy(player);
           this.navigator.clearPath();
           this.setAttackTarget(null);
-          this.func_233687_w_(true);
+          this.setOrderedToSit(true);
           this.setHealth(20.0F);
           this.world.setEntityState(this, (byte) 7);
         } else {
@@ -307,20 +309,20 @@ public class SilverFoxEntity extends TameableEntity {
       return ActionResultType.SUCCESS;
     }
 
-    return super.func_230254_b_(player, hand);
+    return super.mobInteract(player, hand);
   }*/
 
   public boolean isAngry() {
-    return (this.dataManager.get(TAMED) & 2) != 0;
+    return (this.entityData.get(DATA_FLAGS_ID) & 2) != 0;
   }
 
   public void setAngry(boolean angry) {
-    byte b0 = this.dataManager.get(TAMED);
+    byte b0 = this.entityData.get(DATA_FLAGS_ID);
 
     if (angry) {
-      this.dataManager.set(TAMED, (byte) (b0 | 2));
+      this.entityData.set(DATA_FLAGS_ID, (byte) (b0 | 2));
     } else {
-      this.dataManager.set(TAMED, (byte) (b0 & -3));
+      this.entityData.set(DATA_FLAGS_ID, (byte) (b0 & -3));
     }
   }
 
@@ -340,20 +342,20 @@ public class SilverFoxEntity extends TameableEntity {
   }*/
 
   @Override
-  public boolean shouldAttackEntity(LivingEntity target, LivingEntity owner) {
+  public boolean wantsToAttack(LivingEntity target, LivingEntity owner) {
     if (!(target instanceof CreeperEntity) && !(target instanceof GhastEntity)) {
       if (target instanceof SilverFoxEntity) {
         SilverFoxEntity entityfox = (SilverFoxEntity) target;
 
-        if (entityfox.isTamed() && entityfox.getOwner() == owner) {
+        if (entityfox.isTame() && entityfox.getOwner() == owner) {
           return false;
         }
       }
 
-      if (target instanceof PlayerEntity && owner instanceof PlayerEntity && !((PlayerEntity) owner).canAttackPlayer((PlayerEntity) target)) {
+      if (target instanceof PlayerEntity && owner instanceof PlayerEntity && !((PlayerEntity) owner).canHarmPlayer((PlayerEntity) target)) {
         return false;
       } else {
-        return !(target instanceof AbstractHorseEntity) || !((AbstractHorseEntity) target).isTame();
+        return !(target instanceof AbstractHorseEntity) || !((AbstractHorseEntity) target).isTamed();
       }
     } else {
       return false;
@@ -361,19 +363,19 @@ public class SilverFoxEntity extends TameableEntity {
   }
 
   @Override
-  public boolean canBeLeashedTo(PlayerEntity player) {
-    return !this.isAngry() && super.canBeLeashedTo(player);
+  public boolean canBeLeashed(PlayerEntity player) {
+    return !this.isAngry() && super.canBeLeashed(player);
   }
 
 
   @Override
-  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
-    return ModEntities.SILVER_FOX.get().create(ageable.world);
+  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+    return ModEntities.SILVER_FOX.get().create(ageable.level);
   }
 
   @Override
   @Nonnull
-  public ResourceLocation getLootTable() {
+  public ResourceLocation getDefaultLootTable() {
     return new ResourceLocation(MysticalWorld.MODID, "entities/silver_fox");
   }
 
@@ -386,17 +388,17 @@ public class SilverFoxEntity extends TameableEntity {
 
     public SleepGoal(SilverFoxEntity entityIn) {
       this.tameable = entityIn;
-      EnumSet<Flag> mutexes = getMutexFlags();
+      EnumSet<Flag> mutexes = getFlags();
       mutexes.add(Flag.JUMP);
-      setMutexFlags(mutexes);
+      setFlags(mutexes);
     }
 
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
     @Override
-    public boolean shouldExecute() {
-      if (!this.tameable.isTamed()) {
+    public boolean canUse() {
+      if (!this.tameable.isTame()) {
         return false;
       } else if (this.tameable.isInWater()) {
         return false;
@@ -408,7 +410,7 @@ public class SilverFoxEntity extends TameableEntity {
         if (entitylivingbase == null) {
           return true;
         } else {
-          return (!(this.tameable.getDistanceSq(entitylivingbase) < 144.0D) || entitylivingbase.getRevengeTarget() == null) && this.isSleeping;
+          return (!(this.tameable.distanceToSqr(entitylivingbase) < 144.0D) || entitylivingbase.getLastHurtByMob() == null) && this.isSleeping;
         }
       }
     }
@@ -417,17 +419,17 @@ public class SilverFoxEntity extends TameableEntity {
      * Execute a one shot task or start executing a continuous task
      */
     @Override
-    public void startExecuting() {
-      this.tameable.getNavigator().clearPath();
-      this.tameable.setSleeping(true);
+    public void start() {
+      this.tameable.getNavigation().stop();
+      this.tameable.setInSittingPose(true);
     }
 
     /**
      * Reset the task's internal state. Called when this task is interrupted by another one
      */
     @Override
-    public void resetTask() {
-      this.tameable.setSleeping(false);
+    public void stop() {
+      this.tameable.setInSittingPose(false);
     }
 
     /**

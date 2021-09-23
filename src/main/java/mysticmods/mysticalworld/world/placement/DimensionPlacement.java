@@ -21,8 +21,8 @@ public class DimensionPlacement extends Placement<DimensionConfig> {
 
   @Override
   public Stream<BlockPos> getPositions(WorldDecoratingHelper helper, Random rand, DimensionConfig config, BlockPos pos) {
-    ServerWorld world = helper.field_242889_a.getWorld();
-    if (config.dimensions.contains(world.getDimensionKey())) {
+    ServerWorld world = helper.level.getLevel();
+    if (config.dimensions.contains(world.dimension())) {
       return Stream.of(pos);
     } else {
       return Stream.empty();

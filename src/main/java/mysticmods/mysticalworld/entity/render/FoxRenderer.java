@@ -28,7 +28,7 @@ public class FoxRenderer extends MobRenderer<SilverFoxEntity, FoxModel> {
 
   @Override
   @Nonnull
-  public ResourceLocation getEntityTexture(@Nonnull SilverFoxEntity entity) {
+  public ResourceLocation getTextureLocation(@Nonnull SilverFoxEntity entity) {
     return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/fox.png");
   }
 }

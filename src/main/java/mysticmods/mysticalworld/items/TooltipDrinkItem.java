@@ -11,6 +11,8 @@ import noobanidus.libs.noobutil.item.BaseItems;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class TooltipDrinkItem extends BaseItems.DrinkItem {
   private String translationKey;
 
@@ -21,10 +23,10 @@ public class TooltipDrinkItem extends BaseItems.DrinkItem {
 
   @Override
   @OnlyIn(Dist.CLIENT)
-  public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-    super.addInformation(stack, worldIn, tooltip, flagIn);
+  public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
     tooltip.add(new StringTextComponent(""));
-    tooltip.add(new TranslationTextComponent(translationKey).setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.YELLOW))));
+    tooltip.add(new TranslationTextComponent(translationKey).setStyle(Style.EMPTY.withColor(Color.fromLegacyFormat(TextFormatting.YELLOW))));
   }
 }

@@ -11,6 +11,8 @@ import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class CharredLogBlock extends RotatedPillarBlock {
   private final boolean wood;
 
@@ -24,9 +26,9 @@ public class CharredLogBlock extends RotatedPillarBlock {
   public BlockState getToolModifiedState(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack stack, ToolType toolType) {
     if (toolType == ToolType.AXE) {
       if (wood) {
-        return ModBlocks.STRIPPED_CHARRED_WOOD.get().getDefaultState().with(AXIS, state.get(AXIS));
+        return ModBlocks.STRIPPED_CHARRED_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
       } else {
-        return ModBlocks.STRIPPED_CHARRED_LOG.get().getDefaultState().with(AXIS, state.get(AXIS));
+        return ModBlocks.STRIPPED_CHARRED_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
       }
     }
     return super.getToolModifiedState(state, world, pos, player, stack, toolType);

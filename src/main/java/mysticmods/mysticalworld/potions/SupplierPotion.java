@@ -21,7 +21,7 @@ public class SupplierPotion extends Potion {
 
   @SafeVarargs
   public SupplierPotion(@Nullable String baseNameIn, Supplier<EffectInstance>... effectsIn) {
-    super(baseNameIn, new EffectInstance(Effects.SLOWNESS));
+    super(baseNameIn, new EffectInstance(Effects.MOVEMENT_SLOWDOWN));
     this.effects = ImmutableList.of();
     this.effectsSupplier = ImmutableList.copyOf(effectsIn);
   }
@@ -35,10 +35,10 @@ public class SupplierPotion extends Potion {
   }
 
   @Override
-  public boolean hasInstantEffect() {
+  public boolean hasInstantEffects() {
     if (!effectsSupplier.isEmpty()) {
       for (EffectInstance effectinstance : this.getEffects()) {
-        if (effectinstance.getPotion().isInstant()) {
+        if (effectinstance.getEffect().isInstantenous()) {
           return true;
         }
       }

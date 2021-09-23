@@ -7,7 +7,7 @@ import net.minecraft.util.EntityDamageSource;
 import javax.annotation.Nullable;
 
 public class ModDamage {
-  public static DamageSource SPIRIT_DAMAGE = new DamageSource("spirit_damage").setDamageBypassesArmor().setDifficultyScaled();
+  public static DamageSource SPIRIT_DAMAGE = new DamageSource("spirit_damage").bypassArmor().setScalesWithDifficulty();
 
   public static DamageSource causeSpiritDamage(@Nullable Entity entity) {
     DamageSource source;
@@ -15,7 +15,7 @@ public class ModDamage {
       source = SPIRIT_DAMAGE;
     } else {
       source = new EntityDamageSource("spirit_damage", entity);
-      source.setDamageBypassesArmor().setDifficultyScaled();
+      source.bypassArmor().setScalesWithDifficulty();
     }
     return source;
   }

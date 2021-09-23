@@ -13,30 +13,32 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class WaspAttractantItem extends Item {
-  public WaspAttractantItem(Properties p_i48487_1_) {
-    super(p_i48487_1_);
+  public WaspAttractantItem(Properties pProperties) {
+    super(pProperties);
   }
 
   @Override
-  public ActionResultType onItemUse(ItemUseContext init) {
+  public ActionResultType useOn(ItemUseContext init) {
     BlockItemUseContext context = new BlockItemUseContext(init);
-    ItemStack item = init.getItem();
+    ItemStack item = init.getItemInHand();
     PlayerEntity player = init.getPlayer();
-    Direction facing = init.getFace();
-    BlockPos pos = init.getPos();
-    World world = init.getWorld();
+    Direction facing = init.getClickedFace();
+    BlockPos pos = init.getClickedPos();
+    World world = init.getLevel();
 
-    if (facing == Direction.UP || facing == Direction.DOWN || player != null && !player.canPlayerEdit(pos.offset(facing), facing, item) || !world.getBlockState(pos.offset(facing)).isReplaceable(context)) {
+    if (facing == Direction.UP || facing == Direction.DOWN || player != null && !player.mayUseItemAt(pos.relative(facing), facing, item) || !world.getBlockState(pos.relative(facing)).canBeReplaced(context)) {
       return ActionResultType.FAIL;
     }
 
     BlockState blockAt = world.getBlockState(pos);
-    if (blockAt.isIn(Blocks.DARK_OAK_LOG) || blockAt.isIn(Blocks.OAK_LOG) || blockAt.isIn(Blocks.DARK_OAK_WOOD) || blockAt.isIn(Blocks.OAK_WOOD)) {
-      if (!world.isRemote) {
+    if (blockAt.is(Blocks.DARK_OAK_LOG) || blockAt.is(Blocks.OAK_LOG) || blockAt.is(Blocks.DARK_OAK_WOOD) || blockAt.is(Blocks.OAK_WOOD)) {
+      if (!world.isClientSide) {
         BlockState apple = ModBlocks.GALL_APPLE.get().getStateForPlacement(context);
         if (apple != null) {
-          world.setBlockState(pos.offset(facing), apple, 10);
+          world.setBlock(pos.relative(facing), apple, 10);
           if (player == null || !player.isCreative()) {
             item.shrink(1);
           }
@@ -48,6 +50,6 @@ public class WaspAttractantItem extends Item {
       return ActionResultType.FAIL;
     }
 
-    return ActionResultType.func_233537_a_(world.isRemote);
+    return ActionResultType.sidedSuccess(world.isClientSide);
   }
 }

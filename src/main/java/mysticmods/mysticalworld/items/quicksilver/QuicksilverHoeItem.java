@@ -18,6 +18,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class QuicksilverHoeItem extends HoeItem implements IQuicksilverItem {
 
   private int counter;
@@ -37,29 +39,29 @@ public class QuicksilverHoeItem extends HoeItem implements IQuicksilverItem {
   }
 
   @Override
-  public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+  public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
     return true;
   }
 
   @Override
-  public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
+  public boolean mineBlock(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
     return true;
   }
 
   @Override
-  public ActionResultType onItemUse(ItemUseContext context) {
-    World world = context.getWorld();
-    BlockPos blockpos = context.getPos();
+  public ActionResultType useOn(ItemUseContext context) {
+    World world = context.getLevel();
+    BlockPos blockpos = context.getClickedPos();
     // TODO: Fix this
     int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(context);
     if (hook != 0) return hook > 0 ? ActionResultType.SUCCESS : ActionResultType.FAIL;
-    if (context.getFace() != Direction.DOWN && world.isAirBlock(blockpos.up())) {
-      BlockState blockstate = HOE_LOOKUP.get(world.getBlockState(blockpos).getBlock());
+    if (context.getClickedFace() != Direction.DOWN && world.isEmptyBlock(blockpos.above())) {
+      BlockState blockstate = TILLABLES.get(world.getBlockState(blockpos).getBlock());
       if (blockstate != null) {
         PlayerEntity playerentity = context.getPlayer();
-        world.playSound(playerentity, blockpos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-        if (!world.isRemote) {
-          world.setBlockState(blockpos, blockstate, 11);
+        world.playSound(playerentity, blockpos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        if (!world.isClientSide) {
+          world.setBlock(blockpos, blockstate, 11);
         }
 
         return ActionResultType.SUCCESS;

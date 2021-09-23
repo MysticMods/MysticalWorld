@@ -31,62 +31,62 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
 
   public FoxModel() {
     super(true, 5.0f, 2.0f);
-    this.textureWidth = 32;
-    this.textureHeight = 32;
+    this.texWidth = 32;
+    this.texHeight = 32;
     this.backL = new ModelRenderer(this, 0, 16);
     this.backL.mirror = true;
-    this.backL.setRotationPoint(1.0F, 4.0F, 1.5F);
+    this.backL.setPos(1.0F, 4.0F, 1.5F);
     this.backL.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
     this.tail4 = new ModelRenderer(this, 8, 18);
-    this.tail4.setRotationPoint(0.0F, 3.5F, 0.0F);
+    this.tail4.setPos(0.0F, 3.5F, 0.0F);
     this.tail4.addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2, 0.0F);
     this.setRotateAngle(tail4, 0.39269908169872414F, 0.0F, 0.0F);
     this.body1 = new ModelRenderer(this, 12, 8);
-    this.body1.setRotationPoint(0.0F, 15.5F, -2.0F);
+    this.body1.setPos(0.0F, 15.5F, -2.0F);
     this.body1.addBox(-2.5F, 0.0F, 0.0F, 5, 4, 5, 0.0F);
     this.backR = new ModelRenderer(this, 0, 16);
-    this.backR.setRotationPoint(-1.0F, 4.0F, 1.5F);
+    this.backR.setPos(-1.0F, 4.0F, 1.5F);
     this.backR.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
     this.neck = new ModelRenderer(this, 16, 0);
-    this.neck.setRotationPoint(0.0F, 1.5F, 2.0F);
+    this.neck.setPos(0.0F, 1.5F, 2.0F);
     this.neck.addBox(-2.0F, -2.0F, -4.0F, 4, 4, 4, 0.0F);
     this.setRotateAngle(neck, -0.2617993877991494F, 0.0F, 0.0F);
     this.earR = new ModelRenderer(this, 0, 12);
-    this.earR.setRotationPoint(-1.5F, -1.0F, -1.0F);
+    this.earR.setPos(-1.5F, -1.0F, -1.0F);
     this.earR.addBox(-1.0F, -3.0F, -0.5F, 2, 3, 1, 0.0F);
     this.setRotateAngle(earR, 0.0F, 0.2617993877991494F, -0.5235987755982988F);
     this.tail3 = new ModelRenderer(this, 0, 24);
-    this.tail3.setRotationPoint(0.0F, 3.0F, 0.0F);
+    this.tail3.setPos(0.0F, 3.0F, 0.0F);
     this.tail3.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4, 0.0F);
     this.snout = new ModelRenderer(this, 0, 0);
-    this.snout.setRotationPoint(0.0F, 0.0F, -3.0F);
+    this.snout.setPos(0.0F, 0.0F, -3.0F);
     this.snout.addBox(-1.5F, 0.0F, -3.0F, 3, 2, 3, 0.0F);
     this.setRotateAngle(snout, 0.17453292519943295F, 0.0F, 0.0F);
     this.head = new ModelRenderer(this, 0, 5);
-    this.head.setRotationPoint(0.0F, 0.0F, -4.0F);
+    this.head.setPos(0.0F, 0.0F, -4.0F);
     this.head.addBox(-2.5F, -2.0F, -3.0F, 5, 4, 3, 0.0F);
     this.setRotateAngle(head, 0.2617993877991494F, 0.0F, 0.0F);
     this.tail1 = new ModelRenderer(this, 12, 0);
-    this.tail1.setRotationPoint(0.0F, 1.0F, 2.5F);
+    this.tail1.setPos(0.0F, 1.0F, 2.5F);
     this.tail1.addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2, 0.0F);
     this.setRotateAngle(tail1, 1.1780972450961724F, 0.0F, 0.0F);
     this.earL = new ModelRenderer(this, 0, 12);
     this.earL.mirror = true;
-    this.earL.setRotationPoint(1.5F, -1.0F, -1.0F);
+    this.earL.setPos(1.5F, -1.0F, -1.0F);
     this.earL.addBox(-1.0F, -3.0F, -0.5F, 2, 3, 1, 0.0F);
     this.setRotateAngle(earL, 0.0F, -0.2617993877991494F, 0.5235987755982988F);
     this.frontL = new ModelRenderer(this, 0, 16);
     this.frontL.mirror = true;
-    this.frontL.setRotationPoint(1.0F, 4.0F, 1.0F);
+    this.frontL.setPos(1.0F, 4.0F, 1.0F);
     this.frontL.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
     this.body2 = new ModelRenderer(this, 16, 17);
-    this.body2.setRotationPoint(0.0F, 0.0F, 5.0F);
+    this.body2.setPos(0.0F, 0.0F, 5.0F);
     this.body2.addBox(-2.0F, 0.0F, 0.0F, 4, 4, 3, 0.0F);
     this.frontR = new ModelRenderer(this, 0, 16);
-    this.frontR.setRotationPoint(-1.0F, 4.0F, 1.0F);
+    this.frontR.setPos(-1.0F, 4.0F, 1.0F);
     this.frontR.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
     this.tail2 = new ModelRenderer(this, 16, 24);
-    this.tail2.setRotationPoint(0.0F, 1.5F, 0.0F);
+    this.tail2.setPos(0.0F, 1.5F, 0.0F);
     this.tail2.addBox(-1.5F, 0.0F, -1.5F, 3, 3, 3, 0.0F);
     this.setRotateAngle(tail2, -0.39269908169872414F, 0.0F, 0.0F);
     this.body2.addChild(this.backL);
@@ -107,13 +107,13 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
 
   @Nonnull
   @Override
-  protected Iterable<ModelRenderer> getHeadParts() {
+  protected Iterable<ModelRenderer> headParts() {
     return ImmutableSet.of();
   }
 
   @Nonnull
   @Override
-  protected Iterable<ModelRenderer> getBodyParts() {
+  protected Iterable<ModelRenderer> bodyParts() {
     return ImmutableSet.of(body1);
   }
 
@@ -122,23 +122,23 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
   }
 
   @Override
-  public void setRotationAngles(@Nonnull SilverFoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+  public void setupAnim(@Nonnull SilverFoxEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
     float cos = (float) Math.cos(ageInTicks * 0.0625f * (Math.PI * 2.0f));
-    if (!entityIn.isEntitySleeping()) {
-      this.earL.rotateAngleZ = 0.5235987755982988F + getBobble(60, ageInTicks) * 0.0981747703F;
-      this.earR.rotateAngleZ = -0.5235987755982988F - getBobble(130, ageInTicks) * 0.0981747703F;
-      this.backL.rotateAngleX = limbSwingAmount * sin;
-      this.frontR.rotateAngleX = limbSwingAmount * sin;
-      this.backR.rotateAngleX = -limbSwingAmount * sin;
-      this.frontL.rotateAngleX = -limbSwingAmount * sin;
-      this.head.rotateAngleX = headPitch * 0.017453292F;
-      this.head.rotateAngleY = netHeadYaw * 0.017453292F;
-      this.tail1.rotateAngleX = 1.1780972450961724F + limbSwingAmount;
-      this.tail1.rotateAngleZ = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(45, ageInTicks);
-      this.tail2.rotateAngleZ = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(90, ageInTicks);
-      this.tail3.rotateAngleZ = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(135, ageInTicks);
-      this.tail4.rotateAngleZ = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(180, ageInTicks);
+    if (!entityIn.isInSittingPose()) {
+      this.earL.zRot = 0.5235987755982988F + getBobble(60, ageInTicks) * 0.0981747703F;
+      this.earR.zRot = -0.5235987755982988F - getBobble(130, ageInTicks) * 0.0981747703F;
+      this.backL.xRot = limbSwingAmount * sin;
+      this.frontR.xRot = limbSwingAmount * sin;
+      this.backR.xRot = -limbSwingAmount * sin;
+      this.frontL.xRot = -limbSwingAmount * sin;
+      this.head.xRot = headPitch * 0.017453292F;
+      this.head.yRot = netHeadYaw * 0.017453292F;
+      this.tail1.xRot = 1.1780972450961724F + limbSwingAmount;
+      this.tail1.zRot = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(45, ageInTicks);
+      this.tail2.zRot = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(90, ageInTicks);
+      this.tail3.zRot = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(135, ageInTicks);
+      this.tail4.zRot = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(180, ageInTicks);
       this.setRotateAngle(body1, 0F, 0.0F, 0.0F);
       this.setRotateAngle(body2, 0F, 0.0F, 0.0F);
     } else {
@@ -160,33 +160,33 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
   }
 
   @Override
-  public void setLivingAnimations(@Nonnull SilverFoxEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
+  public void prepareMobModel(@Nonnull SilverFoxEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
 
-    this.backL.setRotationPoint(1.0F, 4.0F, 1.5F);
-    this.backR.setRotationPoint(-1.0F, 4.0F, 1.5F);
-    this.body1.setRotationPoint(0.0F, 15.5F, -2.0F);
-    this.body2.setRotationPoint(0.0F, 0.0F, 5.0F);
-    this.earL.setRotationPoint(1.5F, -1.0F, -1.0F);
-    this.earR.setRotationPoint(-1.5F, -1.0F, -1.0F);
-    this.frontL.setRotationPoint(1.0F, 4.0F, 1.0F);
-    this.frontR.setRotationPoint(-1.0F, 4.0F, 1.0F);
-    this.head.setRotationPoint(0.0F, 0.0F, -4.0F);
-    this.neck.setRotationPoint(0.0F, 1.5F, 2.0F);
-    this.snout.setRotationPoint(0.0F, 0.0F, -3.0F);
-    this.tail1.setRotationPoint(0.0F, 1.0F, 2.5F);
-    this.tail2.setRotationPoint(0.0F, 1.5F, 0.0F);
-    this.tail3.setRotationPoint(0.0F, 3.0F, 0.0F);
-    this.tail4.setRotationPoint(0.0F, 3.5F, 0.0F);
+    this.backL.setPos(1.0F, 4.0F, 1.5F);
+    this.backR.setPos(-1.0F, 4.0F, 1.5F);
+    this.body1.setPos(0.0F, 15.5F, -2.0F);
+    this.body2.setPos(0.0F, 0.0F, 5.0F);
+    this.earL.setPos(1.5F, -1.0F, -1.0F);
+    this.earR.setPos(-1.5F, -1.0F, -1.0F);
+    this.frontL.setPos(1.0F, 4.0F, 1.0F);
+    this.frontR.setPos(-1.0F, 4.0F, 1.0F);
+    this.head.setPos(0.0F, 0.0F, -4.0F);
+    this.neck.setPos(0.0F, 1.5F, 2.0F);
+    this.snout.setPos(0.0F, 0.0F, -3.0F);
+    this.tail1.setPos(0.0F, 1.0F, 2.5F);
+    this.tail2.setPos(0.0F, 1.5F, 0.0F);
+    this.tail3.setPos(0.0F, 3.0F, 0.0F);
+    this.tail4.setPos(0.0F, 3.5F, 0.0F);
 
-    super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
+    super.prepareMobModel(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
   }
 
   /**
    * This is a helper function from Tabula to set the rotation of model parts
    */
   private void setRotateAngle(@Nonnull ModelRenderer ModelRenderer, float x, float y, float z) {
-    ModelRenderer.rotateAngleX = x;
-    ModelRenderer.rotateAngleY = y;
-    ModelRenderer.rotateAngleZ = z;
+    ModelRenderer.xRot = x;
+    ModelRenderer.yRot = y;
+    ModelRenderer.zRot = z;
   }
 }

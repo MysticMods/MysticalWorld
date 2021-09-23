@@ -15,31 +15,31 @@ public interface IDamageRecipe {
 
   default Ingredient createDamageIngredient(Ingredient ingredient) {
     List<ItemStack> matchingStacks = new ArrayList<>();
-    for (ItemStack stack : ingredient.getMatchingStacks()) {
-      if (!stack.isDamageable()) {
+    for (ItemStack stack : ingredient.getItems()) {
+      if (!stack.isDamageableItem()) {
         throw new IllegalArgumentException("Invalid itemstack '" + stack.toString() + "' for DamageRecipe: flagged as damage item, but not damageable.");
       }
       for (int i = 0; i < stack.getMaxDamage(); i++) {
         ItemStack copy = stack.copy();
-        copy.setDamage(i);
+        copy.setDamageValue(i);
         matchingStacks.add(copy);
       }
     }
-    return Ingredient.fromStacks(matchingStacks.toArray(new ItemStack[0]));
+    return Ingredient.of(matchingStacks.toArray(new ItemStack[0]));
   }
 
   default NonNullList<ItemStack> getRemainingItems(CraftingInventory inv, Ingredient damageIngredient, int damageAmount) {
-    NonNullList<ItemStack> result = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
+    NonNullList<ItemStack> result = NonNullList.withSize(inv.getContainerSize(), ItemStack.EMPTY);
 
     for (int i = 0; i < result.size(); i++) {
-      ItemStack current = inv.getStackInSlot(i);
+      ItemStack current = inv.getItem(i);
       if (current.isEmpty()) {
         continue;
       }
 
       if (damageIngredient.test(current)) {
         current = current.copy();
-        if (current.attemptDamageItem(damageAmount, MathUtil.rand, null)) {
+        if (current.hurt(damageAmount, MathUtil.rand, null)) {
           current.setCount(0);
         }
         if (!current.isEmpty()) {

@@ -12,6 +12,8 @@ import noobanidus.libs.noobutil.item.BaseItems;
 
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class QuicksilverKnifeItem extends BaseItems.KnifeItem implements IQuicksilverItem {
 
   private int counter;
@@ -30,12 +32,12 @@ public class QuicksilverKnifeItem extends BaseItems.KnifeItem implements IQuicks
   }
 
   @Override
-  public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+  public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
     return true;
   }
 
   @Override
-  public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
+  public boolean mineBlock(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
     return true;
   }
 }

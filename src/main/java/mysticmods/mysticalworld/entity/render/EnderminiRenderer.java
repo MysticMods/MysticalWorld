@@ -38,35 +38,35 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
 
   @Nonnull
   @Override
-  public Vector3d getRenderOffset(EnderminiEntity p_225627_1_, float p_225627_2_) {
-    if (p_225627_1_.isScreaming()) {
+  public Vector3d getRenderOffset(EnderminiEntity pEntity, float pPartialTicks) {
+    if (pEntity.isScreaming()) {
       return new Vector3d(this.rnd.nextGaussian() * 0.02D, 0.0D, this.rnd.nextGaussian() * 0.02D);
     } else {
-      return super.getRenderOffset(p_225627_1_, p_225627_2_);
+      return super.getRenderOffset(pEntity, pPartialTicks);
     }
   }
 
   @Override
-  public void render(EnderminiEntity p_225623_1_, float p_225623_2_, float p_225623_3_, MatrixStack stack, IRenderTypeBuffer p_225623_5_, int p_225623_6_) {
-    BlockState blockstate = p_225623_1_.getHeldBlockState();
-    EnderminiModel<EnderminiEntity> endermanmodel = this.getEntityModel();
-    endermanmodel.isCarrying = blockstate != null;
-    endermanmodel.isAttacking = p_225623_1_.isScreaming();
-    stack.push();
+  public void render(EnderminiEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack stack, IRenderTypeBuffer pBuffer, int pPackedLight) {
+    BlockState blockstate = pEntity.getHeldBlockState();
+    EnderminiModel<EnderminiEntity> endermanmodel = this.getModel();
+    endermanmodel.carrying = blockstate != null;
+    endermanmodel.creepy = pEntity.isScreaming();
+    stack.pushPose();
     stack.scale(0.4f, 0.4f, 0.4f);
-    super.render(p_225623_1_, p_225623_2_, p_225623_3_, stack, p_225623_5_, p_225623_6_);
-    stack.pop();
+    super.render(pEntity, pEntityYaw, pPartialTicks, stack, pBuffer, pPackedLight);
+    stack.popPose();
   }
 
   @Nonnull
   @Override
-  public ResourceLocation getEntityTexture(@Nonnull EnderminiEntity entity) {
+  public ResourceLocation getTextureLocation(@Nonnull EnderminiEntity entity) {
     return ENDERMINI_TEXTURES;
   }
 
   @Nonnull
   @Override
-  public EnderminiModel<EnderminiEntity> getEntityModel() {
+  public EnderminiModel<EnderminiEntity> getModel() {
     return ModelHolder.enderminiModel;
   }
 
@@ -83,31 +83,31 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
     }
 
     @Override
-    public void render(@Nonnull MatrixStack p_225628_1_, @Nonnull IRenderTypeBuffer p_225628_2_, int p_225628_3_, EnderminiEntity p_225628_4_, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
-      BlockState blockstate = p_225628_4_.getHeldBlockState();
+    public void render(@Nonnull MatrixStack pMatrixStack, @Nonnull IRenderTypeBuffer pBuffer, int pPackedLight, EnderminiEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+      BlockState blockstate = pLivingEntity.getHeldBlockState();
       if (blockstate != null) {
-        p_225628_1_.push();
-        p_225628_1_.translate(0.0D, 0.6875D, -0.75D);
-        p_225628_1_.rotate(Vector3f.XP.rotationDegrees(20.0F));
-        p_225628_1_.rotate(Vector3f.YP.rotationDegrees(45.0F));
-        p_225628_1_.translate(0.25D, 0.1875D, 0.25D);
-        p_225628_1_.scale(-0.5F, -0.5F, 0.5F);
-        p_225628_1_.rotate(Vector3f.YP.rotationDegrees(90.0F));
-        Minecraft.getInstance().getBlockRendererDispatcher().renderBlock(blockstate, p_225628_1_, p_225628_2_, p_225628_3_, OverlayTexture.NO_OVERLAY, EmptyModelData.INSTANCE);
-        p_225628_1_.pop();
+        pMatrixStack.pushPose();
+        pMatrixStack.translate(0.0D, 0.6875D, -0.75D);
+        pMatrixStack.mulPose(Vector3f.XP.rotationDegrees(20.0F));
+        pMatrixStack.mulPose(Vector3f.YP.rotationDegrees(45.0F));
+        pMatrixStack.translate(0.25D, 0.1875D, 0.25D);
+        pMatrixStack.scale(-0.5F, -0.5F, 0.5F);
+        pMatrixStack.mulPose(Vector3f.YP.rotationDegrees(90.0F));
+        Minecraft.getInstance().getBlockRenderer().renderBlock(blockstate, pMatrixStack, pBuffer, pPackedLight, OverlayTexture.NO_OVERLAY, EmptyModelData.INSTANCE);
+        pMatrixStack.popPose();
       }
     }
   }
 
   public static class EnderminiEyesLayer<T extends LivingEntity> extends AbstractEyesLayer<T, EnderminiModel<T>> {
-    private static final RenderType SKIN = RenderType.getEyes(new ResourceLocation("textures/entity/enderman/enderman_eyes.png"));
+    private static final RenderType SKIN = RenderType.eyes(new ResourceLocation("textures/entity/enderman/enderman_eyes.png"));
 
     public EnderminiEyesLayer(IEntityRenderer<T, EnderminiModel<T>> p_i50939_1_) {
       super(p_i50939_1_);
     }
 
     @Override
-    public RenderType getRenderType() {
+    public RenderType renderType() {
       return SKIN;
     }
   }

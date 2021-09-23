@@ -28,7 +28,7 @@ public class FrogRenderer extends MobRenderer<FrogEntity, FrogModel> {
 
   @Override
   @Nonnull
-  public ResourceLocation getEntityTexture(@Nonnull FrogEntity entity) {
-    return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/" + (entity.getEntityId() % 2 == 0 ? "frog" : "toad") + ".png");
+  public ResourceLocation getTextureLocation(@Nonnull FrogEntity entity) {
+    return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/" + (entity.getId() % 2 == 0 ? "frog" : "toad") + ".png");
   }
 }

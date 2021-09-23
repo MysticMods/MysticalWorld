@@ -28,8 +28,8 @@ public class MixinApplyBonus {
   @Inject(method="doApply", at=@At(value="INVOKE_ASSIGN", target="Lnet/minecraft/enchantment/EnchantmentHelper;getEnchantmentLevel(Lnet/minecraft/enchantment/Enchantment;Lnet/minecraft/item/ItemStack;)I"), locals = LocalCapture.CAPTURE_FAILHARD)
   protected void applySerendipity(ItemStack stack, LootContext context, CallbackInfoReturnable<ItemStack> cir, ItemStack stack2, int enchantmentLevel) {
     Enchantment enchantment = ((ApplyBonus) (Object) this).enchantment;
-    if (enchantment == Enchantments.FORTUNE) {
-      Entity entity = context.get(LootParameters.THIS_ENTITY);
+    if (enchantment == Enchantments.BLOCK_FORTUNE) {
+      Entity entity = context.getParamOrNull(LootParameters.THIS_ENTITY);
       if (entity instanceof PlayerEntity) {
         double serendipity = ((PlayerEntity) entity).getAttributeValue(ModModifiers.SERENDIPITY.get());
         this.serendipityValue = Serendipity.calculateAdditional(serendipity);
@@ -37,13 +37,13 @@ public class MixinApplyBonus {
     }
   }
 
-  @Redirect(method="doApply", at=@At(value="INVOKE", target="Lnet/minecraft/loot/functions/ApplyBonus$IFormula;func_216204_a(Ljava/util/Random;II)I"))
+  @Redirect(method="doApply", at=@At(value="INVOKE", target="Lnet/minecraft/loot/functions/ApplyBonus$IFormula;calculateNewCount(Ljava/util/Random;II)I"))
   protected int redirectCount(ApplyBonus.IFormula iFormula, Random random, int i, int i1)
   {
     if (this.serendipityValue != -1) {
-      return iFormula.func_216204_a(random, i, i1 + this.serendipityValue);
+      return iFormula.calculateNewCount(random, i, i1 + this.serendipityValue);
     } else {
-      return iFormula.func_216204_a(random, i, i1);
+      return iFormula.calculateNewCount(random, i, i1);
     }
   }
 }

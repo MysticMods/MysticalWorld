@@ -28,7 +28,7 @@ public class OwlRenderer extends MobRenderer<OwlEntity, OwlModel> {
 
   @Override
   @Nonnull
-  public ResourceLocation getEntityTexture(@Nonnull OwlEntity entity) {
+  public ResourceLocation getTextureLocation(@Nonnull OwlEntity entity) {
     return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/owl.png");
   }
 }

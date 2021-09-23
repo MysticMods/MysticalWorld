@@ -26,7 +26,7 @@ public class RandomPotion extends LootFunction {
     super(conditions);
   }
 
-  public LootFunctionType getFunctionType() {
+  public LootFunctionType getType() {
     return ModLoot.RANDOM_POTION;
   }
 
@@ -34,26 +34,26 @@ public class RandomPotion extends LootFunction {
     return MWTags.Potions.RANDOM_BLACKLIST;
   }
 
-  public ItemStack doApply(ItemStack stack, LootContext context) {
+  public ItemStack run(ItemStack stack, LootContext context) {
     Random random = context.getRandom();
 
     List<Potion> potions = ForgeRegistries.POTION_TYPES.getValues().stream().filter(potion -> !potion.isIn(getIgnoreTag())).collect(Collectors.toList());
     Potion potion = potions.get(random.nextInt(potions.size()));
-    PotionUtils.addPotionToItemStack(stack, potion);
+    PotionUtils.setPotion(stack, potion);
     return stack;
   }
 
   public static LootFunction.Builder<?> builder() {
-    return builder(RandomPotion::new);
+    return simpleBuilder(RandomPotion::new);
   }
 
   public static class Builder extends LootFunction.Builder<RandomPotion.Builder> {
 
-    protected RandomPotion.Builder doCast() {
+    protected RandomPotion.Builder getThis() {
       return this;
     }
 
-    public RandomPotion.Builder func_237424_a_(Enchantment p_237424_1_) {
+    public RandomPotion.Builder withEnchantment(Enchantment pEnchantment) {
       return this;
     }
 

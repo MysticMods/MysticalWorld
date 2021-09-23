@@ -15,9 +15,9 @@ public class ModModifiers {
   public static final UUID SMITE_MODIFIER = UUID.fromString("6dfb72af-627d-47e1-b8b0-4c99ea590f2e");
   public static final UUID SERENDIPITY_MODIFIER = UUID.fromString("3e0b0175-9e90-4c11-b004-9535f399deac");
 
-  public static final RegistryEntry<Attribute> BLESSED = REGISTRATE.simple("blessed", Attribute.class, () -> new RangedAttribute("mysticalworld.blessed", 0D, 0D, 10D).setShouldWatch(true));
-  public static final RegistryEntry<Attribute> SMITE = REGISTRATE.simple("smite", Attribute.class, () -> new RangedAttribute("mysticalworld.smite", 0D, 0D, 5D).setShouldWatch(true));
-  public static final RegistryEntry<Attribute> SERENDIPITY = REGISTRATE.simple("serendipity", Attribute.class, () -> new RangedAttribute("mysticalworld.serendipity", 0D, 0D, 10D).setShouldWatch(true));
+  public static final RegistryEntry<Attribute> BLESSED = REGISTRATE.simple("blessed", Attribute.class, () -> new RangedAttribute("mysticalworld.blessed", 0D, 0D, 10D).setSyncable(true));
+  public static final RegistryEntry<Attribute> SMITE = REGISTRATE.simple("smite", Attribute.class, () -> new RangedAttribute("mysticalworld.smite", 0D, 0D, 5D).setSyncable(true));
+  public static final RegistryEntry<Attribute> SERENDIPITY = REGISTRATE.simple("serendipity", Attribute.class, () -> new RangedAttribute("mysticalworld.serendipity", 0D, 0D, 10D).setSyncable(true));
 
   public static void load() {
 

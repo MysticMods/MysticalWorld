@@ -10,14 +10,14 @@ public class SlowRegenerationEffect extends Effect {
   }
 
   @Override
-  public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
-    if (entityLivingBaseIn.getHealth() < entityLivingBaseIn.getMaxHealth() && entityLivingBaseIn.ticksExisted % 50 == 0) {
+  public void applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
+    if (entityLivingBaseIn.getHealth() < entityLivingBaseIn.getMaxHealth() && entityLivingBaseIn.tickCount % 50 == 0) {
       entityLivingBaseIn.heal(1.0F);
     }
   }
 
   @Override
-  public boolean isReady(int duration, int amplifier) {
+  public boolean isDurationEffectTick(int duration, int amplifier) {
     int k = 50 >> amplifier;
     if (k > 0) {
       return duration % k == 0;

@@ -32,16 +32,16 @@ public class ShapedDamageRecipe extends ShapedRecipe implements IDamageRecipe {
   }
 
   public static ShapedDamageRecipe create(ShapedRecipe recipe, Ingredient damageItem, int damageAmount) {
-    return new ShapedDamageRecipe(recipe.getId(), recipe.getGroup(), recipe.getRecipeWidth(), recipe.getRecipeHeight(), recipe.getIngredients(), recipe.getRecipeOutput(), damageItem, damageAmount);
+    return new ShapedDamageRecipe(recipe.getId(), recipe.getGroup(), recipe.getRecipeWidth(), recipe.getRecipeHeight(), recipe.getIngredients(), recipe.getResultItem(), damageItem, damageAmount);
   }
 
   public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ShapedDamageRecipe> {
 
     @Override
-    public ShapedDamageRecipe read(ResourceLocation recipeId, JsonObject json) {
-      ShapedRecipe result = IRecipeSerializer.CRAFTING_SHAPED.read(recipeId, json);
-      Ingredient damageItem = Ingredient.deserialize(json.get(IDamageRecipe.TAG));
-      int damageAmount = JSONUtils.getInt(json, IDamageRecipe.DAMAGE, -1);
+    public ShapedDamageRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+      ShapedRecipe result = IRecipeSerializer.SHAPED_RECIPE.fromJson(recipeId, json);
+      Ingredient damageItem = Ingredient.fromJson(json.get(IDamageRecipe.TAG));
+      int damageAmount = JSONUtils.getAsInt(json, IDamageRecipe.DAMAGE, -1);
       if (damageAmount == -1) {
         throw new JsonSyntaxException("Invalid damage_amount for ShapedDamageRecipe.");
       }
@@ -49,17 +49,17 @@ public class ShapedDamageRecipe extends ShapedRecipe implements IDamageRecipe {
     }
 
     @Override
-    public ShapedDamageRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-      ShapedRecipe result = IRecipeSerializer.CRAFTING_SHAPED.read(recipeId, buffer);
-      Ingredient damageItem = Ingredient.read(buffer);
+    public ShapedDamageRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+      ShapedRecipe result = IRecipeSerializer.SHAPED_RECIPE.fromNetwork(recipeId, buffer);
+      Ingredient damageItem = Ingredient.fromNetwork(buffer);
       int damageAmount = buffer.readInt();
       return ShapedDamageRecipe.create(result, damageItem, damageAmount);
     }
 
     @Override
-    public void write(PacketBuffer buffer, ShapedDamageRecipe recipe) {
-      IRecipeSerializer.CRAFTING_SHAPED.write(buffer, recipe);
-      recipe.damageItem.write(buffer);
+    public void toNetwork(PacketBuffer buffer, ShapedDamageRecipe recipe) {
+      IRecipeSerializer.SHAPED_RECIPE.toNetwork(buffer, recipe);
+      recipe.damageItem.toNetwork(buffer);
       buffer.writeInt(recipe.damageAmount);
     }
   }

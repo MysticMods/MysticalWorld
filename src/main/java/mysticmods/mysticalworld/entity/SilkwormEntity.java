@@ -34,8 +34,8 @@ import javax.annotation.Nonnull;
 public class SilkwormEntity extends AnimalEntity {
   public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/silkworm");
 
-  private static final DataParameter<Integer> SIZE = EntityDataManager.createKey(SilkwormEntity.class, DataSerializers.VARINT);
-  private static final DataParameter<Integer> LEAVES_CONSUMED = EntityDataManager.createKey(SilkwormEntity.class, DataSerializers.VARINT);
+  private static final DataParameter<Integer> SIZE = EntityDataManager.defineId(SilkwormEntity.class, DataSerializers.INT);
+  private static final DataParameter<Integer> LEAVES_CONSUMED = EntityDataManager.defineId(SilkwormEntity.class, DataSerializers.INT);
   private static final int MAX_SIZE = 120;
 
   private ItemEntity leafTarget;
@@ -43,7 +43,7 @@ public class SilkwormEntity extends AnimalEntity {
 
   public SilkwormEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
     super(type, worldIn);
-    this.experienceValue = 1;
+    this.xpReward = 1;
   }
 
   public void setLeafTarget(ItemEntity leaf) {
@@ -56,7 +56,7 @@ public class SilkwormEntity extends AnimalEntity {
 
   @Override
   @Nonnull
-  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
+  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
     return null;
   }
 
@@ -65,71 +65,71 @@ public class SilkwormEntity extends AnimalEntity {
     goalSelector.addGoal(1, new SwimGoal(this));
     goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.5d, false));
     goalSelector.addGoal(3, new RandomWalkingGoal(this, 0.5d));
-    goalSelector.addGoal(3, new TemptGoal(this, 0.9d, false, Ingredient.fromItems(LeafHandler.getLeafItems().toArray(new Item[0]))));
+    goalSelector.addGoal(3, new TemptGoal(this, 0.9d, false, Ingredient.of(LeafHandler.getLeafItems().toArray(new Item[0]))));
     goalSelector.addGoal(8, new LookRandomlyGoal(this));
     targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, SilkwormEntity.class, false));
   }
 
   @Override
-  protected void registerData() {
-    super.registerData();
-    this.dataManager.register(SIZE, 0);
-    this.dataManager.register(LEAVES_CONSUMED, 0);
+  protected void defineSynchedData() {
+    super.defineSynchedData();
+    this.entityData.define(SIZE, 0);
+    this.entityData.define(LEAVES_CONSUMED, 0);
   }
 
   public int getLeavesConsumed() {
-    return this.dataManager.get(LEAVES_CONSUMED);
+    return this.entityData.get(LEAVES_CONSUMED);
   }
 
   public void setLeavesConsumed(int amount) {
-    this.dataManager.set(LEAVES_CONSUMED, amount);
+    this.entityData.set(LEAVES_CONSUMED, amount);
   }
 
   public void resetLeaves() {
-    this.dataManager.set(LEAVES_CONSUMED, 0);
+    this.entityData.set(LEAVES_CONSUMED, 0);
   }
 
   private boolean shouldPlaySound() {
-    return (ticksExisted - lastTickPlayed) > 8;
+    return (tickCount - lastTickPlayed) > 8;
   }
 
   public void eatLeaves() {
     incLeaves();
-    for (int i = 0; i < 1 + rand.nextInt(3); i++) {
+    for (int i = 0; i < 1 + random.nextInt(3); i++) {
       grow();
     }
     this.heal(1f);
     if (shouldPlaySound()) {
-      world.playSound(null, getPosX(), getPosY(), getPosZ(), SoundEvents.ENTITY_LLAMA_EAT, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() * 0.02f);
-      lastTickPlayed = ticksExisted;
+      level.playSound(null, getX(), getY(), getZ(), SoundEvents.LLAMA_EAT, SoundCategory.NEUTRAL, 0.5f, 1.2f + random.nextFloat() * 0.02f);
+      lastTickPlayed = tickCount;
     }
   }
 
   private void incLeaves() {
-    this.dataManager.set(LEAVES_CONSUMED, getLeavesConsumed() + 1);
+    this.entityData.set(LEAVES_CONSUMED, getLeavesConsumed() + 1);
   }
 
   public int getSize() {
-    return this.dataManager.get(SIZE);
+    return this.entityData.get(SIZE);
   }
 
   public void setSize(int size) {
-    this.dataManager.set(SIZE, size);
+    this.entityData.set(SIZE, size);
   }
 
   private void incSize() {
-    if (!this.isChild()) {
-      this.dataManager.set(SIZE, getSize() + 1);
+    if (!this.isBaby()) {
+      this.entityData.set(SIZE, getSize() + 1);
     }
   }
 
   @Override
-  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
-    if (!player.world.isRemote) {
-      ItemStack itemstack = player.getHeldItem(hand);
+  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+    if (!player.level.isClientSide) {
+      ItemStack itemstack = player.getItemInHand(hand);
 
       if (LeafHandler.getLeafItems().contains(itemstack.getItem())) {
-        if (!player.abilities.isCreativeMode) {
+        if (!player.abilities.instabuild) {
           itemstack.shrink(1);
         }
         eatLeaves();
@@ -138,7 +138,7 @@ public class SilkwormEntity extends AnimalEntity {
       }
     }
 
-    return super.func_230254_b_(player, hand);
+    return super.mobInteract(player, hand);
   }
 
   @Override
@@ -147,15 +147,15 @@ public class SilkwormEntity extends AnimalEntity {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15d);
+    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0d).add(Attributes.MOVEMENT_SPEED, 0.15d);
   }
 
   // TODO: prevent crop trampling
 
   @Override
   protected SoundEvent getAmbientSound() {
-    if (world.rand.nextInt(4) == 0) {
-      return net.minecraft.util.SoundEvents.ENTITY_ENDERMITE_AMBIENT;
+    if (level.random.nextInt(4) == 0) {
+      return net.minecraft.util.SoundEvents.ENDERMITE_AMBIENT;
     }
 
     return null;
@@ -163,21 +163,21 @@ public class SilkwormEntity extends AnimalEntity {
 
   @Override
   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-    return net.minecraft.util.SoundEvents.ENTITY_ENDERMITE_HURT;
+    return net.minecraft.util.SoundEvents.ENDERMITE_HURT;
   }
 
   @Override
   protected SoundEvent getDeathSound() {
-    return net.minecraft.util.SoundEvents.ENTITY_ENDERMITE_DEATH;
+    return net.minecraft.util.SoundEvents.ENDERMITE_DEATH;
   }
 
   @Override
   protected void playStepSound(BlockPos pos, BlockState state) {
-    this.playSound(net.minecraft.util.SoundEvents.ENTITY_ENDERMITE_STEP, 0.15F, 1.3F + (world.rand.nextFloat() - 0.5f));
+    this.playSound(net.minecraft.util.SoundEvents.ENDERMITE_STEP, 0.15F, 1.3F + (level.random.nextFloat() - 0.5f));
   }
 
   @Override
-  public ResourceLocation getLootTable() {
+  public ResourceLocation getDefaultLootTable() {
     return LOOT_TABLE;
   }
 
@@ -187,47 +187,47 @@ public class SilkwormEntity extends AnimalEntity {
   }
 
   @Override
-  protected float getSoundPitch() {
-    return 1.3f + rand.nextFloat() - 0.5f;
+  protected float getVoicePitch() {
+    return 1.3f + random.nextFloat() - 0.5f;
   }
 
   @Override
-  public void readAdditional(CompoundNBT compound) {
-    super.readAdditional(compound);
+  public void readAdditionalSaveData(CompoundNBT compound) {
+    super.readAdditionalSaveData(compound);
     setSize(compound.getInt("Size"));
     setLeavesConsumed(compound.getInt("Leaves"));
   }
 
   @Override
-  public void writeAdditional(CompoundNBT compound) {
-    super.writeAdditional(compound);
+  public void addAdditionalSaveData(CompoundNBT compound) {
+    super.addAdditionalSaveData(compound);
     compound.putInt("Size", getSize());
     compound.putInt("Leaves", getLeavesConsumed());
   }
 
   @Override
-  public boolean onLivingFall(float distance, float damageMultiplier) {
+  public boolean causeFallDamage(float distance, float damageMultiplier) {
     float[] ret = net.minecraftforge.common.ForgeHooks.onLivingFall(this, distance, damageMultiplier);
     if (ret == null) return false;
     distance = ret[0];
     damageMultiplier = ret[1];
     // This just handles riding entities
     // super.fall(distance, damageMultiplier);
-    EffectInstance potioneffect = this.getActivePotionEffect(Effects.JUMP_BOOST);
+    EffectInstance potioneffect = this.getEffect(Effects.JUMP);
     float f = potioneffect == null ? 0.0F : (float) (potioneffect.getAmplifier() + 1);
     int i = MathHelper.ceil((distance - 3.0F - f) * damageMultiplier);
 
     if (i > 0) {
-      this.playSound(this.getFallSound(i), 1.0F, 1.0F);
+      this.playSound(this.getFallDamageSound(i), 1.0F, 1.0F);
       // They take no fall damage
       // this.attackEntityFrom(DamageSource.FALL, (float) i);
-      int j = MathHelper.floor(this.getPosX());
-      int k = MathHelper.floor(this.getPosY() - 0.2);
-      int l = MathHelper.floor(this.getPosZ());
-      BlockState iblockstate = this.world.getBlockState(new BlockPos(j, k, l));
+      int j = MathHelper.floor(this.getX());
+      int k = MathHelper.floor(this.getY() - 0.2);
+      int l = MathHelper.floor(this.getZ());
+      BlockState iblockstate = this.level.getBlockState(new BlockPos(j, k, l));
 
       if (iblockstate.getMaterial() != Material.AIR) {
-        SoundType soundtype = iblockstate.getBlock().getSoundType(iblockstate, world, new BlockPos(j, k, l), this);
+        SoundType soundtype = iblockstate.getBlock().getSoundType(iblockstate, level, new BlockPos(j, k, l), this);
         this.playSound(soundtype.getFallSound(), soundtype.getVolume() * 0.5F, soundtype.getPitch() * 0.75F);
       }
     }
@@ -239,8 +239,8 @@ public class SilkwormEntity extends AnimalEntity {
   public void tick() {
     super.tick();
 
-    if (!this.world.isRemote) {
-      if (this.rand.nextInt(ConfigManager.SILKWORM_CONFIG.getGrowthChance()) == 0) {
+    if (!this.level.isClientSide) {
+      if (this.random.nextInt(ConfigManager.SILKWORM_CONFIG.getGrowthChance()) == 0) {
         grow();
       }
     }
@@ -250,11 +250,11 @@ public class SilkwormEntity extends AnimalEntity {
     int size = getSize();
     if (size == MAX_SIZE) {
       setSize(0);
-      if (isServerWorld()) {
-        int quantity = Math.max(1, Math.min(5, (rand.nextInt(Math.max(getLeavesConsumed() % 8, 1)))));
-        this.entityDropItem(ModItems.SILK_COCOON.get(), quantity);
+      if (isEffectiveAi()) {
+        int quantity = Math.max(1, Math.min(5, (random.nextInt(Math.max(getLeavesConsumed() % 8, 1)))));
+        this.spawnAtLocation(ModItems.SILK_COCOON.get(), quantity);
         this.resetLeaves();
-        world.playSound(null, getPosX(), getPosY(), getPosZ(), net.minecraft.util.SoundEvents.ENTITY_CHICKEN_EGG, SoundCategory.NEUTRAL, 0.5f, 1.2f + rand.nextFloat() - 0.5f);
+        level.playSound(null, getX(), getY(), getZ(), net.minecraft.util.SoundEvents.CHICKEN_EGG, SoundCategory.NEUTRAL, 0.5f, 1.2f + random.nextFloat() - 0.5f);
       }
     } else {
       incSize();
@@ -262,14 +262,14 @@ public class SilkwormEntity extends AnimalEntity {
   }
 
   @Override
-  public boolean attackEntityAsMob(Entity entityIn) {
+  public boolean doHurtTarget(Entity entityIn) {
     if (entityIn instanceof SilkwormEntity) {
       SilkwormEntity other = (SilkwormEntity) entityIn;
       if (other.getSize() > this.getSize()) {
         return false; // Don't attack things that are bigger than us.
       }
 
-      boolean result = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), Integer.MAX_VALUE);
+      boolean result = entityIn.hurt(DamageSource.mobAttack(this), Integer.MAX_VALUE);
       if (result) {
         grow();
       }
@@ -279,7 +279,7 @@ public class SilkwormEntity extends AnimalEntity {
   }
 
   @Override
-  public CreatureAttribute getCreatureAttribute() {
+  public CreatureAttribute getMobType() {
     return CreatureAttribute.ARTHROPOD;
   }
 }

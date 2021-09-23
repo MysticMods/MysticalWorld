@@ -18,7 +18,7 @@ public class HellSproutRenderer extends MobRenderer<HellSproutEntity, HellSprout
   public static ResourceLocation TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/sprout_hell.png");
 
   @Override
-  public ResourceLocation getEntityTexture(HellSproutEntity entity) {
+  public ResourceLocation getTextureLocation(HellSproutEntity entity) {
     return TEXTURE;
   }
 

@@ -14,8 +14,8 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 public class MaskHandler {
   public static void onAttackEntity(AttackEntityEvent event) {
     PlayerEntity player = event.getPlayer();
-    World world = player.world;
-    if (world.isRemote) {
+    World world = player.level;
+    if (world.isClientSide) {
       return;
     }
 
@@ -26,14 +26,14 @@ public class MaskHandler {
 
     if (targetEntity.isAlive() && targetEntity instanceof LivingEntity) {
       LivingEntity target = (LivingEntity) targetEntity;
-      ItemStack mask = player.getItemStackFromSlot(EquipmentSlotType.HEAD);
+      ItemStack mask = player.getItemBySlot(EquipmentSlotType.HEAD);
       if (mask.getItem() == ModItems.BEETLE_MASK.get()) {
-        if (world.rand.nextInt(ConfigManager.HAT_CONFIG.getMaskChance()) == 0) {
+        if (world.random.nextInt(ConfigManager.HAT_CONFIG.getMaskChance()) == 0) {
           if (ConfigManager.HAT_CONFIG.getMaskDurabilityDamage() != -1) {
-            if (world.rand.nextInt(4) == 1) {
-              target.attackEntityFrom(DamageSource.causeMobDamage(player), ConfigManager.HAT_CONFIG.getMaskAttackDamage());
-              mask.damageItem(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> {
-                breaker.sendBreakAnimation(EquipmentSlotType.HEAD);
+            if (world.random.nextInt(4) == 1) {
+              target.hurt(DamageSource.mobAttack(player), ConfigManager.HAT_CONFIG.getMaskAttackDamage());
+              mask.hurtAndBreak(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> {
+                breaker.broadcastBreakEvent(EquipmentSlotType.HEAD);
               });
             }
           }

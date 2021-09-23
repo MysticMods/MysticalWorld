@@ -14,16 +14,18 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class AnywhereMushroomBlock extends MushroomBlock {
   public AnywhereMushroomBlock(Properties properties) {
     super(properties);
   }
 
   @Override
-  public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-    BlockPos blockpos = pos.down();
+  public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    BlockPos blockpos = pos.below();
     BlockState blockstate = worldIn.getBlockState(blockpos);
-    if (blockstate.isIn(BlockTags.MUSHROOM_GROW_BLOCK)) {
+    if (blockstate.is(BlockTags.MUSHROOM_GROW_BLOCK)) {
       return true;
     } else {
       return blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.util.Direction.UP, this);
@@ -31,7 +33,7 @@ public class AnywhereMushroomBlock extends MushroomBlock {
   }
 
   @Override
-  public boolean grow(ServerWorld world, BlockPos pos, BlockState state, Random rand) {
+  public boolean growMushroom(ServerWorld world, BlockPos pos, BlockState state, Random rand) {
     world.removeBlock(pos, false);
     ConfiguredFeature<?, ?> configuredfeature;
     if (this == ModBlocks.UNCANNY_MUSHROOM.get()) {
@@ -40,17 +42,17 @@ public class AnywhereMushroomBlock extends MushroomBlock {
       configuredfeature = Features.HUGE_BROWN_MUSHROOM;
     } else {
       if (this != ModBlocks.ANYWHERE_RED_MUSHROOM.get()) {
-        world.setBlockState(pos, state, 3);
+        world.setBlock(pos, state, 3);
         return false;
       }
 
       configuredfeature = Features.HUGE_RED_MUSHROOM;
     }
 
-    if (configuredfeature.generate(world, world.getChunkProvider().getChunkGenerator(), rand, pos)) {
+    if (configuredfeature.place(world, world.getChunkSource().getGenerator(), rand, pos)) {
       return true;
     } else {
-      world.setBlockState(pos, state, 3);
+      world.setBlock(pos, state, 3);
       return false;
     }
   }

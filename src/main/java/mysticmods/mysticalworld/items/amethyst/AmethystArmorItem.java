@@ -11,14 +11,16 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import noobanidus.libs.noobutil.material.MaterialType;
 
+import net.minecraft.item.Item.Properties;
+
 public class AmethystArmorItem extends ModifiedArmorItem implements ILeadItem {
   public AmethystArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
     super(materialIn, slot, builder);
   }
 
   @Override
-  public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-    Multimap<Attribute, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
+  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+    Multimap<Attribute, AttributeModifier> map = super.getDefaultAttributeModifiers(equipmentSlot);
 
     if (this.slot == equipmentSlot) {
       if (slot == EquipmentSlotType.CHEST || slot == EquipmentSlotType.LEGS) {

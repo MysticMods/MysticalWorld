@@ -13,9 +13,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class BlazeRocketRecipe extends SpecialRecipe {
-  private static final Ingredient INGREDIENT_PAPER = Ingredient.fromItems(Items.PAPER);
-  private static final Ingredient INGREDIENT_BLAZE_POWDER = Ingredient.fromItems(Items.BLAZE_POWDER);
-  private static final Ingredient INGREDIENT_FIREWORK_STAR = Ingredient.fromItems(Items.FIREWORK_STAR);
+  private static final Ingredient INGREDIENT_PAPER = Ingredient.of(Items.PAPER);
+  private static final Ingredient INGREDIENT_BLAZE_POWDER = Ingredient.of(Items.BLAZE_POWDER);
+  private static final Ingredient INGREDIENT_FIREWORK_STAR = Ingredient.of(Items.FIREWORK_STAR);
 
   public BlazeRocketRecipe(ResourceLocation idIn) {
     super(idIn);
@@ -26,8 +26,8 @@ public class BlazeRocketRecipe extends SpecialRecipe {
     boolean flag = false;
     int i = 0;
 
-    for (int j = 0; j < inv.getSizeInventory(); ++j) {
-      ItemStack itemstack = inv.getStackInSlot(j);
+    for (int j = 0; j < inv.getContainerSize(); ++j) {
+      ItemStack itemstack = inv.getItem(j);
       if (!itemstack.isEmpty()) {
         if (INGREDIENT_PAPER.test(itemstack)) {
           if (flag) {
@@ -50,19 +50,19 @@ public class BlazeRocketRecipe extends SpecialRecipe {
   }
 
   @Override
-  public ItemStack getCraftingResult(CraftingInventory inv) {
+  public ItemStack assemble(CraftingInventory inv) {
     ItemStack itemstack = new ItemStack(Items.FIREWORK_ROCKET, 5);
-    CompoundNBT compoundnbt = itemstack.getOrCreateChildTag("Fireworks");
+    CompoundNBT compoundnbt = itemstack.getOrCreateTagElement("Fireworks");
     ListNBT listnbt = new ListNBT();
     int i = 0;
 
-    for (int j = 0; j < inv.getSizeInventory(); ++j) {
-      ItemStack itemstack1 = inv.getStackInSlot(j);
+    for (int j = 0; j < inv.getContainerSize(); ++j) {
+      ItemStack itemstack1 = inv.getItem(j);
       if (!itemstack1.isEmpty()) {
         if (INGREDIENT_BLAZE_POWDER.test(itemstack1)) {
           ++i;
         } else if (INGREDIENT_FIREWORK_STAR.test(itemstack1)) {
-          CompoundNBT compoundnbt1 = itemstack1.getChildTag("Explosion");
+          CompoundNBT compoundnbt1 = itemstack1.getTagElement("Explosion");
           if (compoundnbt1 != null) {
             listnbt.add(compoundnbt1);
           }
@@ -82,7 +82,7 @@ public class BlazeRocketRecipe extends SpecialRecipe {
    * Used to determine if this recipe can fit in a grid of the given width/height
    */
   @Override
-  public boolean canFit(int width, int height) {
+  public boolean canCraftInDimensions(int width, int height) {
     return width * height >= 2;
   }
 
@@ -91,7 +91,7 @@ public class BlazeRocketRecipe extends SpecialRecipe {
    * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
    */
   @Override
-  public ItemStack getRecipeOutput() {
+  public ItemStack getResultItem() {
     return new ItemStack(Items.FIREWORK_ROCKET);
   }
 

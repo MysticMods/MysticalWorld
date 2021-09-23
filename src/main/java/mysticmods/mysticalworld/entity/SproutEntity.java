@@ -25,17 +25,17 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class SproutEntity extends AnimalEntity {
-  public static final DataParameter<Integer> variant = EntityDataManager.createKey(SproutEntity.class, DataSerializers.VARINT);
+  public static final DataParameter<Integer> variant = EntityDataManager.defineId(SproutEntity.class, DataSerializers.INT);
 
   public SproutEntity(EntityType<? extends SproutEntity> type, World world) {
     super(type, world);
-    this.experienceValue = 3;
+    this.xpReward = 3;
   }
 
   @Override
   @Nonnull
-  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
-    SproutEntity entity = ModEntities.SPROUT.get().create(ageable.world);
+  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+    SproutEntity entity = ModEntities.SPROUT.get().create(ageable.level);
     if (entity != null) {
       entity.setVariant(entity.getVariant());
     }
@@ -51,7 +51,7 @@ public class SproutEntity extends AnimalEntity {
   @Nullable
   @Override
   protected SoundEvent getAmbientSound() {
-    if (rand.nextInt(45) == 0) {
+    if (random.nextInt(45) == 0) {
       return ModSounds.SPROUT_AMBIENT.get();
     }
 
@@ -59,17 +59,17 @@ public class SproutEntity extends AnimalEntity {
   }
 
   @Override
-  protected void registerData() {
-    super.registerData();
-    this.getDataManager().register(variant, rand.nextInt(4));
+  protected void defineSynchedData() {
+    super.defineSynchedData();
+    this.getEntityData().define(variant, random.nextInt(4));
   }
 
   private void setVariant(int variant) {
-    this.getDataManager().set(SproutEntity.variant, variant);
+    this.getEntityData().set(SproutEntity.variant, variant);
   }
 
   private int getVariant() {
-    return this.getDataManager().get(variant);
+    return this.getEntityData().get(variant);
   }
 
   @Override
@@ -77,43 +77,43 @@ public class SproutEntity extends AnimalEntity {
     goalSelector.addGoal(0, new SwimGoal(this));
     goalSelector.addGoal(1, new PanicGoal(this, 1.5));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-    goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromTag(MWTags.Items.AUBERGINE), false));
+    goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(MWTags.Items.AUBERGINE), false));
     goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0));
     goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0f));
     goalSelector.addGoal(7, new LookRandomlyGoal(this));
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d);
+    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0d).add(Attributes.MOVEMENT_SPEED, 0.2d);
   }
 
   @Override
   @Nonnull
-  public ResourceLocation getLootTable() {
+  public ResourceLocation getDefaultLootTable() {
     return new ResourceLocation("mysticalworld:entities/sprout");
   }
 
   @Override
-  public boolean isBreedingItem(ItemStack stack) {
+  public boolean isFood(ItemStack stack) {
     return stack.getItem() == ModItems.AUBERGINE.get();
   }
 
 
   @Override
   public float getStandingEyeHeight(Pose pose, EntitySize size) {
-    return isChild() ? getHeight() : 1.3F;
+    return isBaby() ? getBbHeight() : 1.3F;
   }
 
   @Override
-  public void readAdditional(CompoundNBT compound) {
-    super.readAdditional(compound);
-    getDataManager().set(variant, compound.getInt("variant"));
+  public void readAdditionalSaveData(CompoundNBT compound) {
+    super.readAdditionalSaveData(compound);
+    getEntityData().set(variant, compound.getInt("variant"));
   }
 
   @Override
-  public void writeAdditional(CompoundNBT compound) {
-    super.writeAdditional(compound);
-    compound.putInt("variant", getDataManager().get(variant));
+  public void addAdditionalSaveData(CompoundNBT compound) {
+    super.addAdditionalSaveData(compound);
+    compound.putInt("variant", getEntityData().get(variant));
   }
 
   public static int StringToVariant(String color) {

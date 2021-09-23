@@ -16,12 +16,12 @@ public class TooltipHandler {
   public static void onTooltip(ItemTooltipEvent event) {
     ItemStack stack = event.getItemStack();
     Item item = stack.getItem();
-    if (item.isFood()) {
+    if (item.isEdible()) {
       List<ITextComponent> tooltip = event.getToolTip();
-      Food food = item.getFood();
+      Food food = item.getFoodProperties();
       if (food != null) {
-        tooltip.add(new StringTextComponent("Healing: " + food.getHealing()));
-        tooltip.add(new StringTextComponent(String.format("Saturation: %.1f", food.getSaturation())));
+        tooltip.add(new StringTextComponent("Healing: " + food.getNutrition()));
+        tooltip.add(new StringTextComponent(String.format("Saturation: %.1f", food.getSaturationModifier())));
       }
     }
   }

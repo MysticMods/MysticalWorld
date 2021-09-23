@@ -24,6 +24,8 @@ import noobanidus.libs.noobutil.material.MaterialType;
 import javax.annotation.Nullable;
 import java.util.Map;
 
+import net.minecraft.item.Item.Properties;
+
 public class AntlerHatItem extends ModifiedArmorItem {
   public AntlerHatItem(Properties builder) {
     super(ModMaterials.ANTLER.getArmorMaterial(), EquipmentSlotType.HEAD, builder);
@@ -35,8 +37,8 @@ public class AntlerHatItem extends ModifiedArmorItem {
   }
 
   @Override
-  public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-    Multimap<Attribute, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
+  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+    Multimap<Attribute, AttributeModifier> map = super.getDefaultAttributeModifiers(equipmentSlot);
 
     if (equipmentSlot == EquipmentSlotType.HEAD && ConfigManager.HAT_CONFIG.getAntlerHealthBonus() != -1) {
       map.put(Attributes.MAX_HEALTH, this.getOrCreateModifier(Attributes.MAX_HEALTH, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Antler Health Boost", ConfigManager.HAT_CONFIG.getAntlerHealthBonus(), AttributeModifier.Operation.ADDITION)));
@@ -51,17 +53,17 @@ public class AntlerHatItem extends ModifiedArmorItem {
       return;
     }
 
-    if (!world.isRemote && player.getHealth() < (ConfigManager.HAT_CONFIG.getAntlerThreshold() == -1 ? player.getMaxHealth() : player.getMaxHealth() - ConfigManager.HAT_CONFIG.getAntlerThreshold()) && world.rand.nextInt(ConfigManager.HAT_CONFIG.getAntlerFrequency()) == 0) {
-      if (player.getActivePotionEffect(Effects.REGENERATION) != null) {
+    if (!world.isClientSide && player.getHealth() < (ConfigManager.HAT_CONFIG.getAntlerThreshold() == -1 ? player.getMaxHealth() : player.getMaxHealth() - ConfigManager.HAT_CONFIG.getAntlerThreshold()) && world.random.nextInt(ConfigManager.HAT_CONFIG.getAntlerFrequency()) == 0) {
+      if (player.getEffect(Effects.REGENERATION) != null) {
         return;
       }
       player.heal(ConfigManager.HAT_CONFIG.getAntlerHealing());
-      player.addPotionEffect(new EffectInstance(Effects.REGENERATION, ConfigManager.HAT_CONFIG.getAntlerRegenDuration(), ConfigManager.HAT_CONFIG.getAntlerRegenAmplifier()));
+      player.addEffect(new EffectInstance(Effects.REGENERATION, ConfigManager.HAT_CONFIG.getAntlerRegenDuration(), ConfigManager.HAT_CONFIG.getAntlerRegenAmplifier()));
 
-      ItemStack head = player.getItemStackFromSlot(EquipmentSlotType.HEAD);
+      ItemStack head = player.getItemBySlot(EquipmentSlotType.HEAD);
       if (ConfigManager.HAT_CONFIG.getAntlerDamage() != -1) {
-        head.damageItem(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> {
-          breaker.sendBreakAnimation(EquipmentSlotType.HEAD);
+        head.hurtAndBreak(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> {
+          breaker.broadcastBreakEvent(EquipmentSlotType.HEAD);
         });
       }
     }

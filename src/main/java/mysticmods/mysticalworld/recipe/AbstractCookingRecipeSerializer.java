@@ -25,18 +25,18 @@ public abstract class AbstractCookingRecipeSerializer<T extends AbstractCookingR
   }
 
   @Override
-  public T read(ResourceLocation recipeId, JsonObject json) {
-    String s = JSONUtils.getString(json, "group", "");
-    JsonElement jsonelement = (JSONUtils.isJsonArray(json, "ingredient") ? JSONUtils.getJsonArray(json, "ingredient") : JSONUtils.getJsonObject(json, "ingredient"));
-    Ingredient ingredient = Ingredient.deserialize(jsonelement);
+  public T fromJson(ResourceLocation recipeId, JsonObject json) {
+    String s = JSONUtils.getAsString(json, "group", "");
+    JsonElement jsonelement = (JSONUtils.isArrayNode(json, "ingredient") ? JSONUtils.getAsJsonArray(json, "ingredient") : JSONUtils.getAsJsonObject(json, "ingredient"));
+    Ingredient ingredient = Ingredient.fromJson(jsonelement);
     //Forge: Check if primitive string to keep vanilla or a object which can contain a count field.
     if (!json.has("result"))
       throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
     ItemStack itemstack;
     if (json.get("result").isJsonObject())
-      itemstack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
+      itemstack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
     else {
-      String s1 = JSONUtils.getString(json, "result");
+      String s1 = JSONUtils.getAsString(json, "result");
       ResourceLocation resourcelocation = new ResourceLocation(s1);
       Item item = ForgeRegistries.ITEMS.getValue(resourcelocation);
       if (item == null) {
@@ -44,28 +44,28 @@ public abstract class AbstractCookingRecipeSerializer<T extends AbstractCookingR
       }
       itemstack = new ItemStack(item);
     }
-    float f = JSONUtils.getFloat(json, "experience", 0.0F);
-    int i = JSONUtils.getInt(json, "cookingtime", this.defaultCookTime);
+    float f = JSONUtils.getAsFloat(json, "experience", 0.0F);
+    int i = JSONUtils.getAsInt(json, "cookingtime", this.defaultCookTime);
     return this.serializer.create(recipeId, s, ingredient, itemstack, f, i);
   }
 
   @Override
-  public T read(ResourceLocation recipeId, PacketBuffer buffer) {
-    String s = buffer.readString(32767);
-    Ingredient ingredient = Ingredient.read(buffer);
-    ItemStack itemstack = buffer.readItemStack();
+  public T fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+    String s = buffer.readUtf(32767);
+    Ingredient ingredient = Ingredient.fromNetwork(buffer);
+    ItemStack itemstack = buffer.readItem();
     float f = buffer.readFloat();
     int i = buffer.readVarInt();
     return this.serializer.create(recipeId, s, ingredient, itemstack, f, i);
   }
 
   @Override
-  public void write(PacketBuffer buffer, T recipe) {
-    buffer.writeString(recipe.getGroup());
-    recipe.getIngredients().forEach(o -> o.write(buffer));
-    buffer.writeItemStack(recipe.getRecipeOutput());
+  public void toNetwork(PacketBuffer buffer, T recipe) {
+    buffer.writeUtf(recipe.getGroup());
+    recipe.getIngredients().forEach(o -> o.toNetwork(buffer));
+    buffer.writeItem(recipe.getResultItem());
     buffer.writeFloat(recipe.getExperience());
-    buffer.writeVarInt(recipe.getCookTime());
+    buffer.writeVarInt(recipe.getCookingTime());
   }
 
   public interface IFactory<T extends AbstractCookingRecipe> {

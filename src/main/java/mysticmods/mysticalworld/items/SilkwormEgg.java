@@ -30,29 +30,31 @@ import net.minecraft.world.spawner.AbstractSpawner;
 
 import java.util.Objects;
 
+import net.minecraft.item.Item.Properties;
+
 public class SilkwormEgg extends Item {
   public SilkwormEgg(Properties builder) {
     super(builder);
   }
 
   private ActionResultType use(ItemUseContext context) {
-    World world = context.getWorld();
-    if (world.isRemote) {
+    World world = context.getLevel();
+    if (world.isClientSide) {
       return ActionResultType.SUCCESS;
     } else {
-      ItemStack itemstack = context.getItem();
-      BlockPos blockpos = context.getPos();
-      Direction direction = context.getFace();
+      ItemStack itemstack = context.getItemInHand();
+      BlockPos blockpos = context.getClickedPos();
+      Direction direction = context.getClickedFace();
       BlockState blockstate = world.getBlockState(blockpos);
       Block block = blockstate.getBlock();
       if (block == Blocks.SPAWNER) {
-        TileEntity tileentity = world.getTileEntity(blockpos);
+        TileEntity tileentity = world.getBlockEntity(blockpos);
         if (tileentity instanceof MobSpawnerTileEntity) {
-          AbstractSpawner abstractspawner = ((MobSpawnerTileEntity) tileentity).getSpawnerBaseLogic();
+          AbstractSpawner abstractspawner = ((MobSpawnerTileEntity) tileentity).getSpawner();
           EntityType<SilkwormEntity> entitytype1 = ModEntities.SILKWORM.get();
-          abstractspawner.setEntityType(entitytype1);
-          tileentity.markDirty();
-          world.notifyBlockUpdate(blockpos, blockstate, blockstate, 3);
+          abstractspawner.setEntityId(entitytype1);
+          tileentity.setChanged();
+          world.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
           itemstack.shrink(1);
           return ActionResultType.SUCCESS;
         }
@@ -62,7 +64,7 @@ public class SilkwormEgg extends Item {
       if (blockstate.getCollisionShape(world, blockpos).isEmpty()) {
         blockpos1 = blockpos;
       } else {
-        blockpos1 = blockpos.offset(direction);
+        blockpos1 = blockpos.relative(direction);
       }
 
       EntityType<SilkwormEntity> entitytype = ModEntities.SILKWORM.get();
@@ -75,28 +77,28 @@ public class SilkwormEgg extends Item {
   }
 
   private ActionResult<ItemStack> rightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-    ItemStack itemstack = playerIn.getHeldItem(handIn);
-    if (worldIn.isRemote) {
+    ItemStack itemstack = playerIn.getItemInHand(handIn);
+    if (worldIn.isClientSide) {
       return new ActionResult<>(ActionResultType.PASS, itemstack);
     } else {
-      RayTraceResult raytraceresult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
+      RayTraceResult raytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
       if (raytraceresult.getType() != RayTraceResult.Type.BLOCK) {
         return new ActionResult<>(ActionResultType.PASS, itemstack);
       } else {
         BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceresult;
-        BlockPos blockpos = blockraytraceresult.getPos();
+        BlockPos blockpos = blockraytraceresult.getBlockPos();
         if (!(worldIn.getBlockState(blockpos).getBlock() instanceof FlowingFluidBlock)) {
           return new ActionResult<>(ActionResultType.PASS, itemstack);
-        } else if (worldIn.isBlockModifiable(playerIn, blockpos) && playerIn.canPlayerEdit(blockpos, blockraytraceresult.getFace(), itemstack)) {
+        } else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, blockraytraceresult.getDirection(), itemstack)) {
           EntityType<SilkwormEntity> entitytype = ModEntities.SILKWORM.get();
           if (entitytype.spawn((ServerWorld) worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false) == null) {
             return new ActionResult<>(ActionResultType.PASS, itemstack);
           } else {
-            if (!playerIn.abilities.isCreativeMode) {
+            if (!playerIn.abilities.instabuild) {
               itemstack.shrink(1);
             }
 
-            playerIn.addStat(Stats.ITEM_USED.get(this));
+            playerIn.awardStat(Stats.ITEM_USED.get(this));
             return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
           }
         } else {
@@ -107,14 +109,14 @@ public class SilkwormEgg extends Item {
   }
 
   @Override
-  public ActionResultType onItemUse(ItemUseContext context) {
-    World world = context.getWorld();
-    if (!world.isRemote()) {
+  public ActionResultType useOn(ItemUseContext context) {
+    World world = context.getLevel();
+    if (!world.isClientSide()) {
       if (world.getRandom().nextInt(ConfigManager.SILKWORM_CONFIG.getSuccessChance()) == 0) {
         return use(context);
       } else {
-        if (context.getPlayer() == null || !context.getPlayer().abilities.isCreativeMode) {
-          context.getItem().shrink(1);
+        if (context.getPlayer() == null || !context.getPlayer().abilities.instabuild) {
+          context.getItemInHand().shrink(1);
         }
         return ActionResultType.SUCCESS;
       }
@@ -124,13 +126,13 @@ public class SilkwormEgg extends Item {
   }
 
   @Override
-  public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-    ItemStack itemstack = playerIn.getHeldItem(handIn);
-    if (!worldIn.isRemote()) {
+  public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    ItemStack itemstack = playerIn.getItemInHand(handIn);
+    if (!worldIn.isClientSide()) {
       if (worldIn.getRandom().nextInt(ConfigManager.SILKWORM_CONFIG.getSuccessChance()) == 0) {
         return rightClick(worldIn, playerIn, handIn);
       } else {
-        if (!playerIn.abilities.isCreativeMode) {
+        if (!playerIn.abilities.instabuild) {
           itemstack.shrink(1);
         }
         return new ActionResult<>(ActionResultType.SUCCESS, itemstack);

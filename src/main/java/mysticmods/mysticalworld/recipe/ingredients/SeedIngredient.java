@@ -35,18 +35,18 @@ public class SeedIngredient extends Ingredient {
   }
 
   @Override
-  public ItemStack[] getMatchingStacks() {
-    return get().getMatchingStacks();
+  public ItemStack[] getItems() {
+    return get().getItems();
   }
 
   @Override
-  public IntList getValidItemStacksPacked() {
-    return get().getValidItemStacksPacked();
+  public IntList getStackingIds() {
+    return get().getStackingIds();
   }
 
   @Override
-  public boolean hasNoMatchingItems() {
-    return get().hasNoMatchingItems();
+  public boolean isEmpty() {
+    return get().isEmpty();
   }
 
   @Override
@@ -61,7 +61,7 @@ public class SeedIngredient extends Ingredient {
   }
 
   @Override
-  public JsonElement serialize() {
+  public JsonElement toJson() {
     JsonObject obj = new JsonObject();
     obj.addProperty("type", CraftingHelper.getID(Serializer.INSTANCE).toString());
     return obj;
@@ -76,7 +76,7 @@ public class SeedIngredient extends Ingredient {
     if (SEEDS == null) {
       NonNullList<ItemStack> matchingStacks = NonNullList.create();
       for (Item item : ForgeRegistries.ITEMS.getValues()) {
-        if (!SEED_PATTERN.matcher(item.getTranslationKey()).find()) {
+        if (!SEED_PATTERN.matcher(item.getDescriptionId()).find()) {
           continue;
         }
 
@@ -91,7 +91,7 @@ public class SeedIngredient extends Ingredient {
           }
         }
       }
-      SEEDS = Ingredient.fromStacks(matchingStacks.toArray(new ItemStack[0]));
+      SEEDS = Ingredient.of(matchingStacks.toArray(new ItemStack[0]));
     }
     return SEEDS;
   }

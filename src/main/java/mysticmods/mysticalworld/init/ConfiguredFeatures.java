@@ -17,7 +17,7 @@ import java.util.Map;
 public class ConfiguredFeatures {
   public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, WorldGenRegistries.CONFIGURED_FEATURE);
 
-  public static final ConfiguredFeature<?, ?> HUGE_UNCANNY_MUSHROOM = register("huge_uncanny_mushroom", Feature.HUGE_RED_MUSHROOM.withConfiguration(new BigMushroomFeatureConfig(new SupplierBlockStateProvider("mysticalworld", "uncanny_mushroom_block").addPair("down", false), new SimpleBlockStateProvider(Blocks.MUSHROOM_STEM.getDefaultState()), 2)));
+  public static final ConfiguredFeature<?, ?> HUGE_UNCANNY_MUSHROOM = register("huge_uncanny_mushroom", Feature.HUGE_RED_MUSHROOM.configured(new BigMushroomFeatureConfig(new SupplierBlockStateProvider("mysticalworld", "uncanny_mushroom_block").addPair("down", false), new SimpleBlockStateProvider(Blocks.MUSHROOM_STEM.defaultBlockState()), 2)));
 
   private static ConfiguredFeature<?, ?> register(String id, ConfiguredFeature<?, ?> feature) {
     return REGISTRY.register(id, feature);

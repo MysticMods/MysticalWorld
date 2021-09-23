@@ -30,7 +30,7 @@ public class SupplierBlockStateProvider extends AbstractSupplierBlockStateProvid
   }
 
   @Override
-  protected BlockStateProviderType<?> getProviderType() {
+  protected BlockStateProviderType<?> type() {
     return ModFeatures.SUPPLIER_STATE_PROVIDER.get();
   }
 }

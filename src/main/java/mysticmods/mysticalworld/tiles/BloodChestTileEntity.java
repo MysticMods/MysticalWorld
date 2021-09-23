@@ -293,8 +293,8 @@ public class BloodChestTileEntity extends TileEntity implements IChestLid, ITick
     return new net.minecraftforge.items.wrapper.InvWrapper(inv == null ? this : inv);
   }
 
-  public static void setLootTable(IBlockReader reader, Random rand, BlockPos p_195479_2_, ResourceLocation lootTableIn) {
-    TileEntity tileentity = reader.getTileEntity(p_195479_2_);
+  public static void setLootTable(IBlockReader reader, Random rand, BlockPos pPos, ResourceLocation lootTableIn) {
+    TileEntity tileentity = reader.getTileEntity(pPos);
     if (tileentity instanceof LockableLootTileEntity) {
       ((LockableLootTileEntity) tileentity).setLootTable(lootTableIn, rand.nextLong());
     }
@@ -332,7 +332,7 @@ public class BloodChestTileEntity extends TileEntity implements IChestLid, ITick
       }
 
       this.lootTable = null;
-      LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) this.world)).withParameter(LootParameters.field_237457_g_, Vector3d.copyCentered(this.pos)).withSeed(this.lootTableSeed);
+      LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) this.world)).withParameter(LootParameters.ORIGIN, Vector3d.copyCentered(this.pos)).withSeed(this.lootTableSeed);
       if (player != null) {
         lootcontext$builder.withLuck(player.getLuck()).withParameter(LootParameters.THIS_ENTITY, player);
       }
@@ -409,8 +409,8 @@ public class BloodChestTileEntity extends TileEntity implements IChestLid, ITick
     this.getItems().clear();
   }
 
-  public boolean canOpen(PlayerEntity p_213904_1_) {
-    return canUnlock(p_213904_1_, this.code, this.getDisplayName()) && (this.lootTable == null || !p_213904_1_.isSpectator());
+  public boolean canOpen(PlayerEntity pPlayer) {
+    return canUnlock(pPlayer, this.code, this.getDisplayName()) && (this.lootTable == null || !pPlayer.isSpectator());
   }
 
   @Nullable
@@ -466,10 +466,10 @@ public class BloodChestTileEntity extends TileEntity implements IChestLid, ITick
     return this.customName;
   }
 
-  public static boolean canUnlock(PlayerEntity p_213905_0_, LockCode p_213905_1_, ITextComponent p_213905_2_) {
-    if (!p_213905_0_.isSpectator() && !p_213905_1_.func_219964_a(p_213905_0_.getHeldItemMainhand())) {
-      p_213905_0_.sendStatusMessage(new TranslationTextComponent("container.isLocked", p_213905_2_), true);
-      p_213905_0_.playSound(SoundEvents.BLOCK_CHEST_LOCKED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+  public static boolean canUnlock(PlayerEntity pPlayer, LockCode pCode, ITextComponent p_213905_2_) {
+    if (!pPlayer.isSpectator() && !pCode.unlocksWith(pPlayer.getHeldItemMainhand())) {
+      pPlayer.sendStatusMessage(new TranslationTextComponent("container.isLocked", p_213905_2_), true);
+      pPlayer.playSound(SoundEvents.BLOCK_CHEST_LOCKED, SoundCategory.BLOCKS, 1.0F, 1.0F);
       return false;
     } else {
       return true;

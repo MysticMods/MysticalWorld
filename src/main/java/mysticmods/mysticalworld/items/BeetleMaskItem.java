@@ -20,6 +20,8 @@ import noobanidus.libs.noobutil.material.MaterialType;
 import javax.annotation.Nullable;
 import java.util.Map;
 
+import net.minecraft.item.Item.Properties;
+
 public class BeetleMaskItem extends ModifiedArmorItem {
   public BeetleMaskItem(Properties builder) {
     super(ModMaterials.CARAPACE.getArmorMaterial(), EquipmentSlotType.HEAD, builder);
@@ -31,8 +33,8 @@ public class BeetleMaskItem extends ModifiedArmorItem {
   }
 
   @Override
-  public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-    Multimap<Attribute, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
+  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+    Multimap<Attribute, AttributeModifier> map = super.getDefaultAttributeModifiers(equipmentSlot);
 
     if (equipmentSlot == EquipmentSlotType.HEAD && ConfigManager.HAT_CONFIG.getMaskBonusDamage() != -1) {
       map.put(Attributes.ATTACK_DAMAGE, this.getOrCreateModifier(Attributes.ATTACK_DAMAGE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Beetle Mask Damage Bonus", ConfigManager.HAT_CONFIG.getMaskBonusDamage(), AttributeModifier.Operation.MULTIPLY_TOTAL)));

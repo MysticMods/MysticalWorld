@@ -17,7 +17,7 @@ public class DimensionCountRangeConfig implements IPlacementConfig {
       Codec.INT.fieldOf("bottomOffset").forGetter((config) -> config.bottomOffset),
       Codec.INT.fieldOf("topOffset").forGetter((config) -> config.topOffset),
       Codec.INT.fieldOf("maximum").forGetter((config) -> config.maximum),
-      ResourceLocation.CODEC.listOf().fieldOf("dimensions").forGetter(o -> o.dimensions.stream().map(RegistryKey::getLocation).collect(Collectors.toList()))).apply(codec, (c, b, t, m, r) -> new DimensionCountRangeConfig(c, b, t, m, r.stream().map(o -> RegistryKey.getOrCreateKey(Registry.WORLD_KEY, o)).collect(Collectors.toSet()))));
+      ResourceLocation.CODEC.listOf().fieldOf("dimensions").forGetter(o -> o.dimensions.stream().map(RegistryKey::location).collect(Collectors.toList()))).apply(codec, (c, b, t, m, r) -> new DimensionCountRangeConfig(c, b, t, m, r.stream().map(o -> RegistryKey.create(Registry.DIMENSION_REGISTRY, o)).collect(Collectors.toSet()))));
 
   public final Set<RegistryKey<World>> dimensions;
   public final int count;

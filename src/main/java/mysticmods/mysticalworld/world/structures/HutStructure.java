@@ -17,6 +17,9 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import noobanidus.libs.noobutil.world.gen.structure.SimpleStructure;
 
+import net.minecraft.world.gen.feature.structure.Structure.IStartFactory;
+import noobanidus.libs.noobutil.world.gen.structure.SimpleStructure.SimpleStart;
+
 public class HutStructure extends SimpleStructure {
   public HutStructure(Codec<NoFeatureConfig> codec) {
     super(codec);
@@ -28,14 +31,14 @@ public class HutStructure extends SimpleStructure {
   }
 
   @Override
-  protected boolean func_230363_a_(ChunkGenerator chunkGenerator, BiomeProvider biomeProvider, long seed, SharedSeedRandom sharedSeed, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig config) {
+  protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeProvider, long seed, SharedSeedRandom sharedSeed, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig config) {
     int startX = chunkX << 4;
     int startZ = chunkZ << 4;
     int min = Integer.MAX_VALUE;
     int max = 0;
     for (int x = 0; x < 16; x++) {
       for (int z = 0; z < 16; z++) {
-        int height = chunkGenerator.getHeight(startX + x, startZ + z, Heightmap.Type.WORLD_SURFACE_WG);
+        int height = chunkGenerator.getBaseHeight(startX + x, startZ + z, Heightmap.Type.WORLD_SURFACE_WG);
         if (height < min) {
           min = height;
         }

@@ -56,7 +56,7 @@ import java.util.function.Supplier;
 public class ModFeatures {
   public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, WorldGenRegistries.CONFIGURED_FEATURE);
 
-  public static final IRuleTestType<OreGenTest> ORE_GEN = IRuleTestType.func_237129_a_("ore_gen", OreGenTest.CODEC);
+  public static final IRuleTestType<OreGenTest> ORE_GEN = IRuleTestType.register("ore_gen", OreGenTest.CODEC);
 
   public static final RegistryEntry<SupplierOreFeature> SUPPLIER_ORE = MysticalWorld.REGISTRATE.simple("supplier_ore_feature", Feature.class, () -> new SupplierOreFeature(SupplierOreFeatureConfig.CODEC));
 
@@ -66,9 +66,9 @@ public class ModFeatures {
 
   public static final RegistryEntry<BlockStateProviderType<SupplierBlockStateProvider>> SUPPLIER_STATE_PROVIDER = MysticalWorld.REGISTRATE.simple("supplier_state_provider", BlockStateProviderType.class, () -> new BlockStateProviderType<>(SupplierBlockStateProvider.CODEC));
 
-  public static ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
+  public static ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleBlockStateProvider(Blocks.AIR.defaultBlockState()), new FancyFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
 
-  public static Supplier<ConfiguredFeature<?, ?>> STONEPETAL_PATCH = new LazySupplier<>(() -> Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.STONEPETAL.get().getDefaultState()), SimpleBlockPlacer.PLACER)).tries(ConfigManager.STONEPETAL_CONFIG.getTries()).whitelist(Sets.newHashSet(Blocks.STONE)).build()).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(ConfigManager.STONEPETAL_CONFIG.getRepeats()));
+  public static Supplier<ConfiguredFeature<?, ?>> STONEPETAL_PATCH = new LazySupplier<>(() -> Feature.RANDOM_PATCH.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.STONEPETAL.get().defaultBlockState()), SimpleBlockPlacer.INSTANCE)).tries(ConfigManager.STONEPETAL_CONFIG.getTries()).whitelist(Sets.newHashSet(Blocks.STONE)).build()).decorated(Features.Placements.ADD_32).decorated(Features.Placements.HEIGHTMAP_SQUARE).count(ConfigManager.STONEPETAL_CONFIG.getRepeats()));
 
   private static final List<ConfiguredFeature<?, ?>> ORE_FEATURES = new ArrayList<>();
 
@@ -76,18 +76,18 @@ public class ModFeatures {
     for (OreConfig config : ConfigManager.ORE_CONFIG) {
       if (config.getChance() > 0) {
         ConfiguredFeature<?, ?> feat;
-        ORE_FEATURES.add(feat = SUPPLIER_ORE.get().withConfiguration(new SupplierOreFeatureConfig(config.getRule(), config.getOreKey(), config.getSize())
-        ).withPlacement(
-            ModFeatures.DIMENSION_COUNT_PLACEMENT.get().configure(new DimensionCountRangeConfig(config.getChance(), config.getMinY(), 0, config.getMaxY() - config.getMinY(), config.getDimensions())
+        ORE_FEATURES.add(feat = SUPPLIER_ORE.get().configured(new SupplierOreFeatureConfig(config.getRule(), config.getOreKey(), config.getSize())
+        ).decorated(
+            ModFeatures.DIMENSION_COUNT_PLACEMENT.get().configured(new DimensionCountRangeConfig(config.getChance(), config.getMinY(), 0, config.getMaxY() - config.getMinY(), config.getDimensions())
             )
         ));
         REGISTRY.register(config.getName().toLowerCase(), feat);
       }
     }
-    CHARRED_TREE = CHARRED_TREE.withPlacement(ModFeatures.DIMENSION_PLACEMENT.get().configure(new DimensionConfig(ConfigManager.DEAD_TREE_CONFIG.getDimensions())));
+    CHARRED_TREE = CHARRED_TREE.decorated(ModFeatures.DIMENSION_PLACEMENT.get().configured(new DimensionConfig(ConfigManager.DEAD_TREE_CONFIG.getDimensions())));
     REGISTRY.register("charred_tree", CHARRED_TREE);
     ConfigManager.DEAD_TREE_CONFIG.setSupplierFeature(() -> () -> CHARRED_TREE);
-    final ConfiguredFeature<?, ?> stonepetalPatch = STONEPETAL_PATCH.get().withPlacement(ModFeatures.DIMENSION_PLACEMENT.get().configure(new DimensionConfig(ConfigManager.STONEPETAL_CONFIG.getDimensions())));
+    final ConfiguredFeature<?, ?> stonepetalPatch = STONEPETAL_PATCH.get().decorated(ModFeatures.DIMENSION_PLACEMENT.get().configured(new DimensionConfig(ConfigManager.STONEPETAL_CONFIG.getDimensions())));
     STONEPETAL_PATCH = () -> stonepetalPatch;
     REGISTRY.register("stonepetal_patch", stonepetalPatch);
     ConfigManager.STONEPETAL_CONFIG.setSupplierFeature(() -> STONEPETAL_PATCH);
@@ -142,7 +142,7 @@ public class ModFeatures {
       event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> ore);
     }
     if (event.getName() != null) {
-      RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
+      RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, event.getName());
       Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
       ModEntities.registerEntity(event, types);
       if (!ModList.get().isLoaded("dynamictrees")) {
@@ -159,12 +159,12 @@ public class ModFeatures {
   public static void onWorldLoad(final WorldEvent.Load event) {
     if (event.getWorld() instanceof ServerWorld) {
       ServerWorld world = (ServerWorld) event.getWorld();
-      if (world.getChunkProvider().getChunkGenerator() instanceof FlatChunkGenerator && world.getDimensionKey().equals(World.OVERWORLD)) {
+      if (world.getChunkSource().getGenerator() instanceof FlatChunkGenerator && world.dimension().equals(World.OVERWORLD)) {
         return;
       }
 
       if (GETCODEC_METHOD == null) {
-        Method codec = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+        Method codec = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "codec");
         MethodHandles.Lookup l = MethodHandles.lookup();
         try {
           GETCODEC_METHOD = l.unreflect(codec);
@@ -177,7 +177,7 @@ public class ModFeatures {
       ResourceLocation chunkGen = null;
       try {
         //noinspection unchecked
-        chunkGen = Registry.CHUNK_GENERATOR_CODEC.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invokeExact(world.getChunkProvider().generator));
+        chunkGen = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invokeExact(world.getChunkSource().generator));
       } catch (Throwable throwable) {
         MysticalWorld.LOG.error("Unable to look up chunk provider's generator", throwable);
         return;
@@ -186,12 +186,12 @@ public class ModFeatures {
         return;
       }
 
-      if (world.getDimensionKey().equals(World.OVERWORLD)) {
-        Map<Structure<?>, StructureSeparationSettings> temp = new HashMap<>(world.getChunkProvider().generator.func_235957_b_().func_236195_a_());
-        temp.put(ModStructures.BARROW_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.BARROW_STRUCTURE));
-        temp.put(ModStructures.HUT_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.HUT_STRUCTURE));
-        temp.put(ModStructures.RUINED_HUT_STRUCTURE, DimensionStructuresSettings.field_236191_b_.get(ModStructures.RUINED_HUT_STRUCTURE));
-        world.getChunkProvider().generator.func_235957_b_().field_236193_d_ = temp;
+      if (world.dimension().equals(World.OVERWORLD)) {
+        Map<Structure<?>, StructureSeparationSettings> temp = new HashMap<>(world.getChunkSource().generator.getSettings().structureConfig());
+        temp.put(ModStructures.BARROW_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.BARROW_STRUCTURE));
+        temp.put(ModStructures.HUT_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.HUT_STRUCTURE));
+        temp.put(ModStructures.RUINED_HUT_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.RUINED_HUT_STRUCTURE));
+        world.getChunkSource().generator.getSettings().structureConfig = temp;
       }
     }
   }

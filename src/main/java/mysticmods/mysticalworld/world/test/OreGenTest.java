@@ -16,7 +16,7 @@ public class OreGenTest extends RuleTest {
 
   @Override
   public boolean test(BlockState q, Random rand) {
-    if (OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD.test(q, rand) || OreFeatureConfig.FillerBlockType.NETHERRACK.test(q, rand)) {
+    if (OreFeatureConfig.FillerBlockType.NATURAL_STONE.test(q, rand) || OreFeatureConfig.FillerBlockType.NETHERRACK.test(q, rand)) {
       return true;
     }
 

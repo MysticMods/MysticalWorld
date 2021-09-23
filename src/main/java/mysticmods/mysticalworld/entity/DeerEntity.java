@@ -22,17 +22,17 @@ import javax.annotation.Nonnull;
 
 public class DeerEntity extends AnimalEntity {
 
-  public static final DataParameter<Boolean> hasHorns = EntityDataManager.createKey(DeerEntity.class, DataSerializers.BOOLEAN);
+  public static final DataParameter<Boolean> hasHorns = EntityDataManager.defineId(DeerEntity.class, DataSerializers.BOOLEAN);
 
   public DeerEntity(EntityType<? extends DeerEntity> type, World world) {
     super(type, world);
-    this.experienceValue = 3;
+    this.xpReward = 3;
   }
 
   @Override
-  protected void registerData() {
-    super.registerData();
-    getDataManager().register(hasHorns, rand.nextBoolean());
+  protected void defineSynchedData() {
+    super.defineSynchedData();
+    getEntityData().define(hasHorns, random.nextBoolean());
   }
 
   @Override
@@ -40,7 +40,7 @@ public class DeerEntity extends AnimalEntity {
     goalSelector.addGoal(0, new SwimGoal(this));
     goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-    goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.WHEAT), false));
+    goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Items.WHEAT), false));
     goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
     goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
     goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -50,39 +50,39 @@ public class DeerEntity extends AnimalEntity {
   @Override
   public void tick() {
     super.tick();
-    this.rotationYaw = this.rotationYawHead;
+    this.yRot = this.yHeadRot;
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d);
+    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0d).add(Attributes.MOVEMENT_SPEED, 0.2d);
   }
 
   @Override
   @Nonnull
-  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
-    return ModEntities.DEER.get().create(ageable.world);
+  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+    return ModEntities.DEER.get().create(ageable.level);
   }
 
   @Override
   @Nonnull
-  public ResourceLocation getLootTable() {
+  public ResourceLocation getDefaultLootTable() {
     return new ResourceLocation(MysticalWorld.MODID, "entities/deer");
   }
 
   @Override
   public float getStandingEyeHeight(Pose pose, EntitySize size) {
-    return this.isChild() ? this.getHeight() : 1.3F;
+    return this.isBaby() ? this.getBbHeight() : 1.3F;
   }
 
   @Override
-  public void readAdditional(@Nonnull CompoundNBT compound) {
-    super.readAdditional(compound);
-    getDataManager().set(hasHorns, compound.getBoolean("hasHorns"));
+  public void readAdditionalSaveData(@Nonnull CompoundNBT compound) {
+    super.readAdditionalSaveData(compound);
+    getEntityData().set(hasHorns, compound.getBoolean("hasHorns"));
   }
 
   @Override
-  public void writeAdditional(@Nonnull CompoundNBT compound) {
-    super.writeAdditional(compound);
-    compound.putBoolean("hasHorns", getDataManager().get(hasHorns));
+  public void addAdditionalSaveData(@Nonnull CompoundNBT compound) {
+    super.addAdditionalSaveData(compound);
+    compound.putBoolean("hasHorns", getEntityData().get(hasHorns));
   }
 }

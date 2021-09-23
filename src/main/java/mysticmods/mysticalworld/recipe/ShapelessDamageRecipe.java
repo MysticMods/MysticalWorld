@@ -31,16 +31,16 @@ public class ShapelessDamageRecipe extends ShapelessRecipe implements IDamageRec
   }
 
   public static ShapelessDamageRecipe create(ShapelessRecipe recipe, Ingredient damageItem, int damageAmount) {
-    return new ShapelessDamageRecipe(recipe.getId(), recipe.getGroup(), recipe.getRecipeOutput(), recipe.getIngredients(), damageItem, damageAmount);
+    return new ShapelessDamageRecipe(recipe.getId(), recipe.getGroup(), recipe.getResultItem(), recipe.getIngredients(), damageItem, damageAmount);
   }
 
   public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ShapelessDamageRecipe> {
 
     @Override
-    public ShapelessDamageRecipe read(ResourceLocation recipeId, JsonObject json) {
-      ShapelessRecipe result = IRecipeSerializer.CRAFTING_SHAPELESS.read(recipeId, json);
-      Ingredient damageItem = Ingredient.deserialize(json.get(TAG));
-      int damageAmount = JSONUtils.getInt(json, DAMAGE, -1);
+    public ShapelessDamageRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+      ShapelessRecipe result = IRecipeSerializer.SHAPELESS_RECIPE.fromJson(recipeId, json);
+      Ingredient damageItem = Ingredient.fromJson(json.get(TAG));
+      int damageAmount = JSONUtils.getAsInt(json, DAMAGE, -1);
       if (damageAmount == -1) {
         throw new JsonSyntaxException("Invalid damage_amount for ShapelessDamageRecipe.");
       }
@@ -48,17 +48,17 @@ public class ShapelessDamageRecipe extends ShapelessRecipe implements IDamageRec
     }
 
     @Override
-    public ShapelessDamageRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-      ShapelessRecipe result = IRecipeSerializer.CRAFTING_SHAPELESS.read(recipeId, buffer);
-      Ingredient damageItem = Ingredient.read(buffer);
+    public ShapelessDamageRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+      ShapelessRecipe result = IRecipeSerializer.SHAPELESS_RECIPE.fromNetwork(recipeId, buffer);
+      Ingredient damageItem = Ingredient.fromNetwork(buffer);
       int damageAmount = buffer.readInt();
       return ShapelessDamageRecipe.create(result, damageItem, damageAmount);
     }
 
     @Override
-    public void write(PacketBuffer buffer, ShapelessDamageRecipe recipe) {
-      IRecipeSerializer.CRAFTING_SHAPELESS.write(buffer, recipe);
-      recipe.damageItem.write(buffer);
+    public void toNetwork(PacketBuffer buffer, ShapelessDamageRecipe recipe) {
+      IRecipeSerializer.SHAPELESS_RECIPE.toNetwork(buffer, recipe);
+      recipe.damageItem.toNetwork(buffer);
       buffer.writeInt(recipe.damageAmount);
     }
   }

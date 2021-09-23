@@ -29,21 +29,21 @@ public class LeafHandler {
   public static Set<Block> getLeafBlocks() {
     if (LEAF_BLOCKS == null) {
       ITag.INamedTag<Item> leaf_items = ItemTags.LEAVES;
-      LEAF_ITEMS = Sets.newHashSet(leaf_items.getAllElements());
+      LEAF_ITEMS = Sets.newHashSet(leaf_items.getValues());
       ITag.INamedTag<Block> leaf_blocks = BlockTags.LEAVES;
-      LEAF_BLOCKS = Sets.newHashSet(leaf_blocks.getAllElements());
+      LEAF_BLOCKS = Sets.newHashSet(leaf_blocks.getValues());
     }
 
     return LEAF_BLOCKS;
   }
 
   public static void onBlockDrops(BlockEvent.BreakEvent event) {
-    if (ConfigManager.SILKWORM_CONFIG.getLeafDropsEnabled() && !event.getWorld().isRemote()) {
+    if (ConfigManager.SILKWORM_CONFIG.getLeafDropsEnabled() && !event.getWorld().isClientSide()) {
       BlockState state = event.getState();
       if (getLeafBlocks().contains(state.getBlock())) {
         if (event.getWorld().getRandom().nextInt(ConfigManager.SILKWORM_CONFIG.getLeafDropChance()) == 0) {
           BlockPos pos = event.getPos();
-          event.getWorld().addEntity(new ItemEntity((World) event.getWorld(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModItems.SILKWORM_EGG.get())));
+          event.getWorld().addFreshEntity(new ItemEntity((World) event.getWorld(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModItems.SILKWORM_EGG.get())));
         }
       }
     }

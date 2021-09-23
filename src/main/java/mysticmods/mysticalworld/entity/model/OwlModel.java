@@ -25,91 +25,91 @@ public class OwlModel extends AgeableModel<OwlEntity> {
 
   public OwlModel() {
     super(true, 5.0f, 2.0f);
-    textureWidth = 64;
-    textureHeight = 64;
+    texWidth = 64;
+    texHeight = 64;
 
     body = new ModelRenderer(this);
-    body.setRotationPoint(0.0F, 24.0F, 0.0F);
-    body.setTextureOffset(0, 0).addBox(-4.0F, -13.0F, -4.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
+    body.setPos(0.0F, 24.0F, 0.0F);
+    body.texOffs(0, 0).addBox(-4.0F, -13.0F, -4.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
 
     footR = new ModelRenderer(this);
-    footR.setRotationPoint(-1.5F, -4.0F, -0.5F);
+    footR.setPos(-1.5F, -4.0F, -0.5F);
     body.addChild(footR);
-    footR.setTextureOffset(0, 43).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F, 0.0F, false);
-    footR.setTextureOffset(26, 48).addBox(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F, 0.0F, false);
-    footR.setTextureOffset(0, 48).addBox(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F, 0.0F, false);
+    footR.texOffs(0, 43).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F, 0.0F, false);
+    footR.texOffs(26, 48).addBox(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F, 0.0F, false);
+    footR.texOffs(0, 48).addBox(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F, 0.0F, false);
 
     footL = new ModelRenderer(this);
-    footL.setRotationPoint(1.5F, -4.0F, -0.5F);
+    footL.setPos(1.5F, -4.0F, -0.5F);
     body.addChild(footL);
-    footL.setTextureOffset(12, 43).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F, 0.0F, false);
-    footL.setTextureOffset(22, 48).addBox(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F, 0.0F, false);
-    footL.setTextureOffset(8, 48).addBox(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F, 0.0F, false);
+    footL.texOffs(12, 43).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F, 0.0F, false);
+    footL.texOffs(22, 48).addBox(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F, 0.0F, false);
+    footL.texOffs(8, 48).addBox(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F, 0.0F, false);
 
     wingR1 = new ModelRenderer(this);
-    wingR1.setRotationPoint(-4.0F, -13.0F, -1.0F);
+    wingR1.setPos(-4.0F, -13.0F, -1.0F);
     body.addChild(wingR1);
-    wingR1.setTextureOffset(16, 17).addBox(-1.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F, 0.0F, false);
+    wingR1.texOffs(16, 17).addBox(-1.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F, 0.0F, false);
 
     wingR2 = new ModelRenderer(this);
-    wingR2.setRotationPoint(-1.0F, 7.0F, -2.0F);
+    wingR2.setPos(-1.0F, 7.0F, -2.0F);
     wingR1.addChild(wingR2);
     setRotationAngle(wingR2, 0.1745F, 0.0349F, -0.1745F);
-    wingR2.setTextureOffset(14, 31).addBox(0.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F, 0.0F, false);
+    wingR2.texOffs(14, 31).addBox(0.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F, 0.0F, false);
 
     wingL1 = new ModelRenderer(this);
-    wingL1.setRotationPoint(4.0F, -13.0F, -1.0F);
+    wingL1.setPos(4.0F, -13.0F, -1.0F);
     body.addChild(wingL1);
-    wingL1.setTextureOffset(0, 17).addBox(0.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F, 0.0F, false);
+    wingL1.texOffs(0, 17).addBox(0.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F, 0.0F, false);
 
     wingL2 = new ModelRenderer(this);
-    wingL2.setRotationPoint(1.0F, 7.0F, -2.0F);
+    wingL2.setPos(1.0F, 7.0F, -2.0F);
     wingL1.addChild(wingL2);
     setRotationAngle(wingL2, 0.1745F, -0.0349F, 0.1745F);
-    wingL2.setTextureOffset(0, 31).addBox(-1.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F, 0.0F, false);
+    wingL2.texOffs(0, 31).addBox(-1.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F, 0.0F, false);
 
     tail = new ModelRenderer(this);
-    tail.setRotationPoint(0.0F, -5.0F, 4.0F);
+    tail.setPos(0.0F, -5.0F, 4.0F);
     body.addChild(tail);
     setRotationAngle(tail, 0.5236F, 0.0F, 0.0F);
-    tail.setTextureOffset(28, 31).addBox(-3.0F, 0.0F, -2.0F, 6.0F, 4.0F, 2.0F, 0.0F, false);
+    tail.texOffs(28, 31).addBox(-3.0F, 0.0F, -2.0F, 6.0F, 4.0F, 2.0F, 0.0F, false);
 
     head = new ModelRenderer(this);
-    head.setRotationPoint(0.0F, -13.0F, 0.0F);
+    head.setPos(0.0F, -13.0F, 0.0F);
     body.addChild(head);
-    head.setTextureOffset(32, 0).addBox(-3.5F, -6.0F, -3.5F, 7.0F, 6.0F, 7.0F, 0.0F, false);
-    head.setTextureOffset(16, 48).addBox(-1.0F, -3.0F, -4.5F, 2.0F, 2.0F, 1.0F, 0.0F, false);
+    head.texOffs(32, 0).addBox(-3.5F, -6.0F, -3.5F, 7.0F, 6.0F, 7.0F, 0.0F, false);
+    head.texOffs(16, 48).addBox(-1.0F, -3.0F, -4.5F, 2.0F, 2.0F, 1.0F, 0.0F, false);
 
     tuftR = new ModelRenderer(this);
-    tuftR.setRotationPoint(-2.0F, -6.0F, -3.0F);
+    tuftR.setPos(-2.0F, -6.0F, -3.0F);
     head.addChild(tuftR);
     setRotationAngle(tuftR, 0.4363F, -0.3491F, 0.0F);
-    tuftR.setTextureOffset(24, 43).addBox(-2.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F, 0.0F, false);
+    tuftR.texOffs(24, 43).addBox(-2.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F, 0.0F, false);
 
     tuftL = new ModelRenderer(this);
-    tuftL.setRotationPoint(2.0F, -6.0F, -3.0F);
+    tuftL.setPos(2.0F, -6.0F, -3.0F);
     head.addChild(tuftL);
     setRotationAngle(tuftL, 0.4363F, 0.3491F, 0.0F);
-    tuftL.setTextureOffset(36, 43).addBox(0.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F, 0.0F, false);
+    tuftL.texOffs(36, 43).addBox(0.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F, 0.0F, false);
   }
 
   @Nonnull
   @Override
-  protected Iterable<ModelRenderer> getHeadParts() {
+  protected Iterable<ModelRenderer> headParts() {
     return ImmutableSet.of();
   }
 
   @Nonnull
   @Override
-  protected Iterable<ModelRenderer> getBodyParts() {
+  protected Iterable<ModelRenderer> bodyParts() {
     return ImmutableSet.of(body);
   }
 
   @Override
-  public void setRotationAngles(OwlEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-    this.head.rotateAngleX = headPitch * 0.017453292F;
-    this.head.rotateAngleY = netHeadYaw * 0.017453292F;
-    this.head.rotateAngleZ = 0.0F;
+  public void setupAnim(OwlEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    this.head.xRot = headPitch * 0.017453292F;
+    this.head.yRot = netHeadYaw * 0.017453292F;
+    this.head.zRot = 0.0F;
 
     boolean hootfire = false;
     if (entityIn.hasCustomName() && entityIn.getCustomName() != null && entityIn.getCustomName().getString().equals("Hootfire")) {
@@ -142,7 +142,7 @@ public class OwlModel extends AgeableModel<OwlEntity> {
   }
 
   @Override
-  public void setLivingAnimations(OwlEntity owl, float limbSwing, float limbSwingAmount, float partialTickTime) {
+  public void prepareMobModel(OwlEntity owl, float limbSwing, float limbSwingAmount, float partialTickTime) {
     if (owl.isFlying()) {
       this.state = State.FLYING;
     } else {
@@ -151,9 +151,9 @@ public class OwlModel extends AgeableModel<OwlEntity> {
   }
 
   public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-    modelRenderer.rotateAngleX = x;
-    modelRenderer.rotateAngleY = y;
-    modelRenderer.rotateAngleZ = z;
+    modelRenderer.xRot = x;
+    modelRenderer.yRot = y;
+    modelRenderer.zRot = z;
   }
 
   @OnlyIn(Dist.CLIENT)

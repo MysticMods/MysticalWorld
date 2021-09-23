@@ -28,13 +28,13 @@ public class BeetleRenderer extends MobRenderer<BeetleEntity, BeetleModel> {
   }
 
   @Override
-  protected void preRenderCallback(BeetleEntity entity, MatrixStack matrix, float partialTickTime) {
+  protected void scale(BeetleEntity entity, MatrixStack matrix, float partialTickTime) {
     matrix.scale(0.45f, 0.45f, 0.45f);
   }
 
   @Override
   @Nonnull
-  public ResourceLocation getEntityTexture(@Nonnull BeetleEntity entity) {
+  public ResourceLocation getTextureLocation(@Nonnull BeetleEntity entity) {
     return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/beetle_blue.png");
   }
 }

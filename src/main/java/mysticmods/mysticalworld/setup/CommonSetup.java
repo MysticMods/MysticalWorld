@@ -53,29 +53,29 @@ public class CommonSetup {
 
       PotionRecipes.registerRecipes();
 
-      ChickenEntity.TEMPTATION_ITEMS = Ingredient.merge(Arrays.asList(ChickenEntity.TEMPTATION_ITEMS, Ingredient.fromItems(ModItems.AUBERGINE_SEEDS.get())));
+      ChickenEntity.FOOD_ITEMS = Ingredient.merge(Arrays.asList(ChickenEntity.FOOD_ITEMS, Ingredient.of(ModItems.AUBERGINE_SEEDS.get())));
 
       FireBlock fire = (FireBlock) Blocks.FIRE;
 
-      fire.setFireInfo(ModBlocks.THATCH.get(), 5, 20);
-      fire.setFireInfo(ModBlocks.THATCH_FENCE.get(), 5, 20);
-      fire.setFireInfo(ModBlocks.THATCH_FENCE_GATE.get(), 5, 20);
-      fire.setFireInfo(ModBlocks.THATCH_SLAB.get(), 5, 20);
-      fire.setFireInfo(ModBlocks.THATCH_SMALL_POST.get(), 5, 20);
-      fire.setFireInfo(ModBlocks.THATCH_WIDE_POST.get(), 5, 20);
-      fire.setFireInfo(ModBlocks.THATCH_STAIRS.get(), 5, 20);
-      fire.setFireInfo(ModBlocks.THATCH_WALL.get(), 5, 20);
-      fire.setFireInfo(ModBlocks.SIMPLE_THATCH.get(), 5, 20);
-      fire.setFireInfo(ModBlocks.CHARRED_PLANKS.get(), 1, 1);
-      fire.setFireInfo(ModBlocks.CHARRED_LOG.get(), 1, 1);
-      fire.setFireInfo(ModBlocks.CHARRED_FENCE.get(), 1, 1);
-      fire.setFireInfo(ModBlocks.CHARRED_FENCE_GATE.get(), 1, 1);
-      fire.setFireInfo(ModBlocks.CHARRED_SLAB.get(), 1, 1);
-      fire.setFireInfo(ModBlocks.CHARRED_SMALL_POST.get(), 1, 1);
-      fire.setFireInfo(ModBlocks.CHARRED_STAIRS.get(), 1, 1);
-      fire.setFireInfo(ModBlocks.CHARRED_WALL.get(), 1, 1);
-      fire.setFireInfo(ModBlocks.CHARRED_WIDE_POST.get(), 1, 1);
-      fire.setFireInfo(ModBlocks.CHARRED_WOOD.get(), 1, 1);
+      fire.setFlammable(ModBlocks.THATCH.get(), 5, 20);
+      fire.setFlammable(ModBlocks.THATCH_FENCE.get(), 5, 20);
+      fire.setFlammable(ModBlocks.THATCH_FENCE_GATE.get(), 5, 20);
+      fire.setFlammable(ModBlocks.THATCH_SLAB.get(), 5, 20);
+      fire.setFlammable(ModBlocks.THATCH_SMALL_POST.get(), 5, 20);
+      fire.setFlammable(ModBlocks.THATCH_WIDE_POST.get(), 5, 20);
+      fire.setFlammable(ModBlocks.THATCH_STAIRS.get(), 5, 20);
+      fire.setFlammable(ModBlocks.THATCH_WALL.get(), 5, 20);
+      fire.setFlammable(ModBlocks.SIMPLE_THATCH.get(), 5, 20);
+      fire.setFlammable(ModBlocks.CHARRED_PLANKS.get(), 1, 1);
+      fire.setFlammable(ModBlocks.CHARRED_LOG.get(), 1, 1);
+      fire.setFlammable(ModBlocks.CHARRED_FENCE.get(), 1, 1);
+      fire.setFlammable(ModBlocks.CHARRED_FENCE_GATE.get(), 1, 1);
+      fire.setFlammable(ModBlocks.CHARRED_SLAB.get(), 1, 1);
+      fire.setFlammable(ModBlocks.CHARRED_SMALL_POST.get(), 1, 1);
+      fire.setFlammable(ModBlocks.CHARRED_STAIRS.get(), 1, 1);
+      fire.setFlammable(ModBlocks.CHARRED_WALL.get(), 1, 1);
+      fire.setFlammable(ModBlocks.CHARRED_WIDE_POST.get(), 1, 1);
+      fire.setFlammable(ModBlocks.CHARRED_WOOD.get(), 1, 1);
       ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.STONEPETAL.getId(), () -> ModBlocks.POTTED_STONEPETAL.get());
 
       ConfiguredFeatures.REGISTRY.registration();
@@ -85,9 +85,9 @@ public class CommonSetup {
       ModLoot.FUNCTION_REGISTRY.registration();
       ModLoot.CONDITION_REGISTRY.registration();
 
-      SpawnEggItem.EGGS.remove(null);
+      SpawnEggItem.BY_ID.remove(null);
       //noinspection unchecked
-      ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.EGGS.put(o.get().getType(null), o.get()));
+      ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.BY_ID.put(o.get().getType(null), o.get()));
     });
   }
 

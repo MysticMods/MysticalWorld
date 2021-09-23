@@ -31,7 +31,7 @@ public class ClientSetup {
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.HELL_SPROUT.get(), new HellSproutRenderer.Factory());
 
     event.enqueueWork(() -> {
-      RenderType rendertype = RenderType.getCutoutMipped();
+      RenderType rendertype = RenderType.cutoutMipped();
       RenderTypeLookup.setRenderLayer(ModBlocks.AUBERGINE_CROP.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.WILD_AUBERGINE.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);

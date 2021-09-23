@@ -17,6 +17,8 @@ import noobanidus.libs.noobutil.material.MaterialType;
 import java.util.Random;
 
 // TODO find a way to block damaging the item
+import net.minecraft.item.Item.Properties;
+
 public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksilverItem {
   private int counter;
   private Random random = new Random();
@@ -29,13 +31,13 @@ public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksil
   public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
     counter = counter >= 20 ? 1 : counter + 1;
     if (counter % 20 == 0 && entity instanceof LivingEntity) {
-      drip(stack, (LivingEntity) entity, random, getEquipmentSlot());
+      drip(stack, (LivingEntity) entity, random, getSlot());
     }
   }
 
   @Override
-  public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-    Multimap<Attribute, AttributeModifier> map = super.getAttributeModifiers(equipmentSlot);
+  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+    Multimap<Attribute, AttributeModifier> map = super.getDefaultAttributeModifiers(equipmentSlot);
 
     if (this.slot == equipmentSlot) {
       float val = 0.05f;

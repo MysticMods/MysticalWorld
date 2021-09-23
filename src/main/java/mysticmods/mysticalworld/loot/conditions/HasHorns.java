@@ -23,10 +23,10 @@ public class HasHorns implements ILootCondition {
   @Override
   public boolean test(LootContext lootContext) {
     boolean flag;
-    Entity looted = lootContext.get(LootParameters.THIS_ENTITY);
+    Entity looted = lootContext.getParamOrNull(LootParameters.THIS_ENTITY);
     if (looted instanceof DeerEntity) {
       DeerEntity deer = (DeerEntity) looted;
-      flag = deer.getDataManager().get(DeerEntity.hasHorns);
+      flag = deer.getEntityData().get(DeerEntity.hasHorns);
     } else {
       flag = false;
     }
@@ -34,7 +34,7 @@ public class HasHorns implements ILootCondition {
   }
 
   @Override
-  public LootConditionType func_230419_b_() {
+  public LootConditionType getType() {
     return ModLoot.HAS_HORNS;
   }
 
@@ -47,7 +47,7 @@ public class HasHorns implements ILootCondition {
 
     @Override
     public HasHorns deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new HasHorns(JSONUtils.getBoolean(json, "inverse", false));
+      return new HasHorns(JSONUtils.getAsBoolean(json, "inverse", false));
     }
   }
 

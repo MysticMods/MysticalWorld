@@ -15,7 +15,7 @@ import net.minecraft.potion.Potion;
 public class ModEffects {
   public static final RegistryEntry<WakefulEffect> WAKEFUL = MysticalWorld.REGISTRATE.effect("wakeful", WakefulEffect::new).register();
   public static final RegistryEntry<SlowRegenerationEffect> SLOW_REGEN = MysticalWorld.REGISTRATE.effect("slow_regeneration", SlowRegenerationEffect::new).register();
-  public static final RegistryEntry<Effect> SERENDIPITY = MysticalWorld.REGISTRATE.effect("serendipity", () -> new SimpleEffect(EffectType.BENEFICIAL, 0x8c348c).addAttributesModifier(ModModifiers.SERENDIPITY.get(), "baf5ced1-927f-46ee-9e02-f4aae6d55316", 1.25, AttributeModifier.Operation.ADDITION))
+  public static final RegistryEntry<Effect> SERENDIPITY = MysticalWorld.REGISTRATE.effect("serendipity", () -> new SimpleEffect(EffectType.BENEFICIAL, 0x8c348c).addAttributeModifier(ModModifiers.SERENDIPITY.get(), "baf5ced1-927f-46ee-9e02-f4aae6d55316", 1.25, AttributeModifier.Operation.ADDITION))
       .lang("Serendipity")
       .register();
 

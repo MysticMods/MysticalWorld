@@ -10,6 +10,8 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class NautilusHornBase extends Item {
   private int duration;
 
@@ -19,19 +21,19 @@ public class NautilusHornBase extends Item {
   }
 
   @Override
-  public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-    ItemStack itemstack = player.getHeldItem(hand);
+  public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    ItemStack itemstack = player.getItemInHand(hand);
 
-    if (!world.isRemote) {
-      player.addPotionEffect(new EffectInstance(Effects.DOLPHINS_GRACE, duration));
-      itemstack.damageItem(1, player, (p) -> p.sendBreakAnimation(hand));
+    if (!world.isClientSide) {
+      player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, duration));
+      itemstack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
     }
 
     return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
   }
 
   @Override
-  public boolean hasEffect(ItemStack stack) {
+  public boolean isFoil(ItemStack stack) {
     return duration == 500;
   }
 

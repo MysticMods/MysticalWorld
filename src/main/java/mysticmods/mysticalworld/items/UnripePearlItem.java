@@ -10,6 +10,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import noobanidus.libs.noobutil.util.MathUtil;
 
+import net.minecraft.item.Item.Properties;
+
 public class UnripePearlItem extends Item {
 
   public UnripePearlItem(Properties props) {
@@ -17,23 +19,23 @@ public class UnripePearlItem extends Item {
   }
 
   @Override
-  public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-    ItemStack itemstack = player.getHeldItem(hand);
+  public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    ItemStack itemstack = player.getItemInHand(hand);
 
-    if (!world.isRemote) {
+    if (!world.isClientSide) {
       int counter = 0;
       boolean flag;
       do {
-        double d0 = player.getPosX() + (MathUtil.rand.nextDouble() - 0.5D) * 64.0D;
-        double d1 = player.getPosY() + (double) (MathUtil.rand.nextInt(64) - 32);
-        double d2 = player.getPosZ() + (MathUtil.rand.nextDouble() - 0.5D) * 64.0D;
-        flag = player.attemptTeleport(d0, d1, d2, false);
+        double d0 = player.getX() + (MathUtil.rand.nextDouble() - 0.5D) * 64.0D;
+        double d1 = player.getY() + (double) (MathUtil.rand.nextInt(64) - 32);
+        double d2 = player.getZ() + (MathUtil.rand.nextDouble() - 0.5D) * 64.0D;
+        flag = player.randomTeleport(d0, d1, d2, false);
         counter++;
       } while (!flag && counter != 15);
       if (flag) {
-        player.world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, ModSounds.ENDERMINI_PORTAL.get(), player.getSoundCategory(), 1.0F, 1.0F);
+        player.level.playSound(null, player.xo, player.yo, player.zo, ModSounds.ENDERMINI_PORTAL.get(), player.getSoundSource(), 1.0F, 1.0F);
         player.playSound(ModSounds.ENDERMINI_PORTAL.get(), 1.0F, 1.0F);
-        player.getCooldownTracker().setCooldown(this, 20);
+        player.getCooldowns().addCooldown(this, 20);
         if (!player.isCreative()) {
           itemstack.shrink(1);
         }

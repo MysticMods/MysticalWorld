@@ -57,22 +57,22 @@ public class CapabilityHandler {
 
   public static void onSquidMilked(PlayerInteractEvent.EntityInteract event) {
     PlayerEntity player = (PlayerEntity) event.getEntity();
-    ItemStack heldItem = player.getHeldItem(event.getHand());
+    ItemStack heldItem = player.getItemInHand(event.getHand());
     if (!heldItem.isEmpty() && heldItem.getItem() instanceof GlassBottleItem) {
       if (event.getTarget() instanceof SquidEntity) {
         event.setCanceled(true);
         event.setCancellationResult(ActionResultType.SUCCESS);
-        if (!event.getWorld().isRemote) {
+        if (!event.getWorld().isClientSide) {
           event.getTarget().getCapability(AnimalCooldownCapabilityProvider.ANIMAL_COOLDOWN_CAPABILITY).ifPresent(cap -> {
             if (cap.canHarvest()) {
               cap.setCooldown(20 * 15);
-              event.getWorld().playSound(player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_COW_MILK, SoundCategory.PLAYERS, 0.5F, event.getWorld().rand.nextFloat() * 0.25F + 0.6F, true);
+              event.getWorld().playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.COW_MILK, SoundCategory.PLAYERS, 0.5F, event.getWorld().random.nextFloat() * 0.25F + 0.6F, true);
               if (!player.isCreative()) {
                 heldItem.shrink(1);
               }
-              player.inventory.addItemStackToInventory(new ItemStack(ModItems.INK_BOTTLE.get()));
+              player.inventory.add(new ItemStack(ModItems.INK_BOTTLE.get()));
             } else {
-              player.sendStatusMessage(new TranslationTextComponent("message.squid.cooldown").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.BLUE)).setBold(true)), true);
+              player.displayClientMessage(new TranslationTextComponent("message.squid.cooldown").setStyle(Style.EMPTY.withColor(Color.fromLegacyFormat(TextFormatting.BLUE)).withBold(true)), true);
             }
           });
         }

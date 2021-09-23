@@ -23,12 +23,14 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nonnull;
 import java.util.EnumSet;
 
+import net.minecraft.entity.ai.goal.Goal.Flag;
+
 public class FrogEntity extends AnimalEntity {
   public float offGround = 0f;
 
   public FrogEntity(EntityType<? extends FrogEntity> type, World worldIn) {
     super(type, worldIn);
-    this.experienceValue = 2;
+    this.xpReward = 2;
   }
 
   public static class GoalFrogJump extends Goal {
@@ -36,33 +38,33 @@ public class FrogEntity extends AnimalEntity {
 
     public GoalFrogJump(FrogEntity entity) {
       this.frog = entity;
-      EnumSet<Flag> mutexes = getMutexFlags();
+      EnumSet<Flag> mutexes = getFlags();
       mutexes.add(Flag.JUMP);
-      setMutexFlags(mutexes);
+      setFlags(mutexes);
     }
 
     @Override
-    public boolean shouldExecute() {
-      return (frog.onGround || frog.inWater) && (frog.ticksExisted + frog.getEntityId()) % 20 == 0 && frog.rand.nextBoolean();
+    public boolean canUse() {
+      return (frog.onGround || frog.wasTouchingWater) && (frog.tickCount + frog.getId()) % 20 == 0 && frog.random.nextBoolean();
     }
 
     @Override
-    public void startExecuting() {
-      float ang = frog.rand.nextFloat() * (float) Math.PI * 2.0f;
-      frog.setMotion(new Vector3d(Math.sin(ang) * 0.25, 0.375 + 0.125 * frog.rand.nextFloat(), Math.cos(ang) * 0.25));
-      frog.getLookController().setLookPosition(frog.getPosX() + frog.getMotion().x * 60f, frog.getPosY(), frog.getPosZ() + frog.getMotion().z * 60f, frog.getHorizontalFaceSpeed(), frog.getVerticalFaceSpeed());
+    public void start() {
+      float ang = frog.random.nextFloat() * (float) Math.PI * 2.0f;
+      frog.setDeltaMovement(new Vector3d(Math.sin(ang) * 0.25, 0.375 + 0.125 * frog.random.nextFloat(), Math.cos(ang) * 0.25));
+      frog.getLookControl().setLookAt(frog.getX() + frog.getDeltaMovement().x * 60f, frog.getY(), frog.getZ() + frog.getDeltaMovement().z * 60f, frog.getMaxHeadYRot(), frog.getMaxHeadXRot());
     }
   }
 
   @Override
-  public void damageEntity(@Nonnull DamageSource source, float amount) {
-    if (!source.getDamageType().equalsIgnoreCase(DamageSource.FALL.getDamageType())) {
-      super.damageEntity(source, amount);
+  public void actuallyHurt(@Nonnull DamageSource source, float amount) {
+    if (!source.getMsgId().equalsIgnoreCase(DamageSource.FALL.getMsgId())) {
+      super.actuallyHurt(source, amount);
     }
   }
 
   @Override
-  public boolean isBreedingItem(@Nonnull ItemStack stack) {
+  public boolean isFood(@Nonnull ItemStack stack) {
     return stack.getItem() == Items.BROWN_MUSHROOM;
   }
 
@@ -71,7 +73,7 @@ public class FrogEntity extends AnimalEntity {
     goalSelector.addGoal(0, new SwimGoal(this));
     goalSelector.addGoal(1, new PanicGoal(this, 1.0D));
     goalSelector.addGoal(2, new BreedGoal(this, 0.75D));
-    goalSelector.addGoal(3, new TemptGoal(this, 0.75D, Ingredient.fromItems(Blocks.BROWN_MUSHROOM), false));
+    goalSelector.addGoal(3, new TemptGoal(this, 0.75D, Ingredient.of(Blocks.BROWN_MUSHROOM), false));
     goalSelector.addGoal(4, new FollowParentGoal(this, 0.75D));
     goalSelector.addGoal(4, new GoalFrogJump(this));
     goalSelector.addGoal(5, new RandomWalkingGoal(this, 0.5D));
@@ -82,8 +84,8 @@ public class FrogEntity extends AnimalEntity {
   @Override
   public void tick() {
     super.tick();
-    if (onGround && (Math.abs(getMotion().x) > 0.05 || Math.abs(getMotion().z) > 0.05)) {
-      this.jump();
+    if (onGround && (Math.abs(getDeltaMovement().x) > 0.05 || Math.abs(getDeltaMovement().z) > 0.05)) {
+      this.jumpFromGround();
     }
     if (!onGround) {
       offGround += 0.25f;
@@ -101,18 +103,18 @@ public class FrogEntity extends AnimalEntity {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.5d);
+    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0d).add(Attributes.MOVEMENT_SPEED, 0.5d);
   }
 
   @Override
   @Nonnull
-  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
+  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
     return ModEntities.FROG.get().create(world);
   }
 
   @Override
   @Nonnull
-  public ResourceLocation getLootTable() {
+  public ResourceLocation getDefaultLootTable() {
     return new ResourceLocation(MysticalWorld.MODID, "entities/frog");
   }
 

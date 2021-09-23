@@ -34,19 +34,19 @@ public class ModTags {
     }
 
     private void add(Tags.IOptionalNamedTag<Block> tag, Supplier<? extends Block>... items) {
-      provider.getOrCreateBuilder(tag).add(Stream.of(items).map(Supplier::get).toArray(Block[]::new));
+      provider.tag(tag).add(Stream.of(items).map(Supplier::get).toArray(Block[]::new));
     }
 
     private void add(Tags.IOptionalNamedTag<Block> tag, Block... items) {
-      provider.getOrCreateBuilder(tag).add(items);
+      provider.tag(tag).add(items);
     }
 
     private void add(Tags.IOptionalNamedTag<Block> tag, Tags.IOptionalNamedTag<Block> tag2) {
-      provider.getOrCreateBuilder(tag).addTags(tag2);
+      provider.tag(tag).addTags(tag2);
     }
 
     private Additionals<Block> additional(Tags.IOptionalNamedTag<Block> tag) {
-      return (o) -> provider.getOrCreateBuilder(tag).addTags(o);
+      return (o) -> provider.tag(tag).addTags(o);
     }
   }
 
@@ -58,19 +58,19 @@ public class ModTags {
     }
 
     private void add(Tags.IOptionalNamedTag<Item> tag, Supplier<? extends IItemProvider>... items) {
-      provider.getOrCreateBuilder(tag).add(Stream.of(items).map(Supplier::get).map(IItemProvider::asItem).toArray(Item[]::new));
+      provider.tag(tag).add(Stream.of(items).map(Supplier::get).map(IItemProvider::asItem).toArray(Item[]::new));
     }
 
     private void add(Tags.IOptionalNamedTag<Item> tag, IItemProvider... items) {
-      provider.getOrCreateBuilder(tag).add(Stream.of(items).map(IItemProvider::asItem).toArray(Item[]::new));
+      provider.tag(tag).add(Stream.of(items).map(IItemProvider::asItem).toArray(Item[]::new));
     }
 
     private void add(Tags.IOptionalNamedTag<Item> tag, Tags.IOptionalNamedTag<Item> tag2) {
-      provider.getOrCreateBuilder(tag).addTags(tag2);
+      provider.tag(tag).addTags(tag2);
     }
 
     private Additionals<Item> additional(Tags.IOptionalNamedTag<Item> tag) {
-      return (o) -> provider.getOrCreateBuilder(tag).addTags(o);
+      return (o) -> provider.tag(tag).addTags(o);
     }
   }
 
@@ -127,7 +127,7 @@ public class ModTags {
       p.copy(MWTags.Blocks.TERRACOTTA, MWTags.Items.TERRACOTTA);
       p.copy(MWTags.Blocks.MUSHROOM_BLOCKS, MWTags.Items.MUSHROOM_BLOCKS);
 
-      p.getOrCreateBuilder(ItemTags.BEACON_PAYMENT_ITEMS).add(ModItems.AMETHYST_GEM.get(), ModItems.COPPER_INGOT.get(), ModItems.LEAD_INGOT.get(), ModItems.QUICKSILVER_INGOT.get(), ModItems.SILVER_INGOT.get(), ModItems.TIN_INGOT.get(), ModItems.PEARL_GEM.get());
+      p.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(ModItems.AMETHYST_GEM.get(), ModItems.COPPER_INGOT.get(), ModItems.LEAD_INGOT.get(), ModItems.QUICKSILVER_INGOT.get(), ModItems.SILVER_INGOT.get(), ModItems.TIN_INGOT.get(), ModItems.PEARL_GEM.get());
     });
 
     REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, p -> {
@@ -143,12 +143,12 @@ public class ModTags {
       b.add(MWTags.Blocks.MUSHROOM_BLOCKS, ModBlocks.MUSHROOM_INSIDE.get());
       b.add(MWTags.Blocks.BASE_STONE_GRANITE, Blocks.GRANITE);
       b.additional(Tags.Blocks.STORAGE_BLOCKS).add(MWTags.Blocks.AMETHYST_STORAGE, MWTags.Blocks.COPPER_STORAGE, MWTags.Blocks.LEAD_STORAGE, MWTags.Blocks.QUICKSILVER_STORAGE, MWTags.Blocks.SILVER_STORAGE, MWTags.Blocks.TIN_STORAGE, MWTags.Blocks.PEARL_STORAGE);
-      p.getOrCreateBuilder(BlockTags.BEACON_BASE_BLOCKS).add(ModBlocks.AMETHYST_BLOCK.get(), ModBlocks.COPPER_BLOCK.get(), ModBlocks.LEAD_BLOCK.get(), ModBlocks.QUICKSILVER_BLOCK.get(), ModBlocks.SILVER_BLOCK.get(), ModBlocks.TIN_BLOCK.get(), ModBlocks.PEARL_BLOCK.get());
+      p.tag(BlockTags.BEACON_BASE_BLOCKS).add(ModBlocks.AMETHYST_BLOCK.get(), ModBlocks.COPPER_BLOCK.get(), ModBlocks.LEAD_BLOCK.get(), ModBlocks.QUICKSILVER_BLOCK.get(), ModBlocks.SILVER_BLOCK.get(), ModBlocks.TIN_BLOCK.get(), ModBlocks.PEARL_BLOCK.get());
       b.add(MWTags.Blocks.CROPS, ModBlocks.AUBERGINE_CROP.get());
       b.add(MWTags.Blocks.AUBERGINE_CROP, ModBlocks.AUBERGINE_CROP.get());
       b.add(MWTags.Blocks.EGGPLANT_CROP, ModBlocks.AUBERGINE_CROP.get());
 
-      p.getOrCreateBuilder(BlockTags.BASE_STONE_OVERWORLD).add(ModBlocks.SOFT_STONE.get());
+      p.tag(BlockTags.BASE_STONE_OVERWORLD).add(ModBlocks.SOFT_STONE.get());
     });
   }
 

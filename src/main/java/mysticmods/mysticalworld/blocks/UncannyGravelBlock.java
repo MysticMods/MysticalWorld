@@ -7,6 +7,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class UncannyGravelBlock extends GravelBlock {
   public UncannyGravelBlock(Properties properties) {
     super(properties);

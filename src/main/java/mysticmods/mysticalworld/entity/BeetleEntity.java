@@ -28,7 +28,7 @@ public class BeetleEntity extends TameableEntity {
 
   public BeetleEntity(EntityType<? extends BeetleEntity> type, World worldIn) {
     super(type, worldIn);
-    this.experienceValue = 3;
+    this.xpReward = 3;
   }
 
   @Override
@@ -37,7 +37,7 @@ public class BeetleEntity extends TameableEntity {
     goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
     goalSelector.addGoal(2, new SitGoal(this));
-    goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.MELON_SLICE), false));
+    goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Items.MELON_SLICE), false));
     goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
     goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
     goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -45,66 +45,66 @@ public class BeetleEntity extends TameableEntity {
   }
 
   @Override
-  public boolean isBreedingItem(@Nonnull ItemStack stack) {
+  public boolean isFood(@Nonnull ItemStack stack) {
     return stack.getItem() == Items.MELON_SLICE;
   }
 
   @Override
-  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
-    ItemStack itemstack = player.getHeldItem(hand);
+  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+    ItemStack itemstack = player.getItemInHand(hand);
     Item item = itemstack.getItem();
-    if (this.world.isRemote) {
-      boolean flag = this.isOwner(player) || this.isTamed() || item == Items.MELON_SEEDS && !this.isTamed();
+    if (this.level.isClientSide) {
+      boolean flag = this.isOwnedBy(player) || this.isTame() || item == Items.MELON_SEEDS && !this.isTame();
       return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
     } else {
-      if (this.isTamed()) {
-        if (this.isBreedingItem(itemstack) && this.getHealth() < this.getMaxHealth()) {
-          if (!player.abilities.isCreativeMode) {
+      if (this.isTame()) {
+        if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+          if (!player.abilities.instabuild) {
             itemstack.shrink(1);
           }
 
-          Food food = item.getFood();
+          Food food = item.getFoodProperties();
           if (food != null) {
-            this.heal((float) food.getHealing());
+            this.heal((float) food.getNutrition());
             return ActionResultType.SUCCESS;
           }
         }
 
-        ActionResultType actionresulttype = super.func_230254_b_(player, hand);
-        if ((!actionresulttype.isSuccessOrConsume() || this.isChild()) && this.isOwner(player)) {
-          this.func_233687_w_(!this.isSitting());
-          this.isJumping = false;
-          this.navigator.clearPath();
-          this.setAttackTarget(null);
+        ActionResultType actionresulttype = super.mobInteract(player, hand);
+        if ((!actionresulttype.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
+          this.setOrderedToSit(!this.isOrderedToSit());
+          this.jumping = false;
+          this.navigation.stop();
+          this.setTarget(null);
           return ActionResultType.SUCCESS;
         }
 
         return actionresulttype;
       } else if (item == Items.MELON_SEEDS) {
-        if (!player.abilities.isCreativeMode) {
+        if (!player.abilities.instabuild) {
           itemstack.shrink(1);
         }
 
-        if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-          this.setTamedBy(player);
-          this.navigator.clearPath();
-          this.setAttackTarget(null);
-          this.func_233687_w_(true);
-          this.world.setEntityState(this, (byte) 7);
+        if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+          this.tame(player);
+          this.navigation.stop();
+          this.setTarget(null);
+          this.setOrderedToSit(true);
+          this.level.broadcastEntityEvent(this, (byte) 7);
         } else {
-          this.world.setEntityState(this, (byte) 6);
+          this.level.broadcastEntityEvent(this, (byte) 6);
         }
 
         return ActionResultType.SUCCESS;
       }
 
-      return super.func_230254_b_(player, hand);
+      return super.mobInteract(player, hand);
     }
   }
 
 /*  @Override
-  public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
-    ActionResultType type = super.func_230254_b_(player, hand);
+  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+    ActionResultType type = super.mobInteract(player, hand);
     if (type != ActionResultType.PASS) {
       return type;
     }
@@ -141,7 +141,7 @@ public class BeetleEntity extends TameableEntity {
             }
           }
         } else {
-          this.func_233687_w_(!this.isSitting());
+          this.setOrderedToSit(!this.isSitting());
           this.isJumping = false;
           this.navigator.clearPath();
           this.setAttackTarget(null);
@@ -156,7 +156,7 @@ public class BeetleEntity extends TameableEntity {
         if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
           this.setTamedBy(player);
           this.navigator.clearPath();
-          this.func_233687_w_(true);
+          this.setOrderedToSit(true);
           this.world.setEntityState(this, (byte) 7);
         } else {
           this.world.setEntityState(this, (byte) 6);
@@ -170,18 +170,18 @@ public class BeetleEntity extends TameableEntity {
   }*/
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15d);
+    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0d).add(Attributes.MOVEMENT_SPEED, 0.15d);
   }
 
   @Override
   @Nonnull
-  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
-    return ModEntities.BEETLE.get().create(ageable.world);
+  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+    return ModEntities.BEETLE.get().create(ageable.level);
   }
 
   @Override
   @Nonnull
-  public ResourceLocation getLootTable() {
+  public ResourceLocation getDefaultLootTable() {
     return new ResourceLocation(MysticalWorld.MODID, "entities/beetle");
   }
 

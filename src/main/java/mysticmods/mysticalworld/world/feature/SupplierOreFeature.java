@@ -20,7 +20,7 @@ public class SupplierOreFeature extends Feature<SupplierOreFeatureConfig> {
   }
 
   @Override
-  public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, SupplierOreFeatureConfig config) {
+  public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, SupplierOreFeatureConfig config) {
     float f = rand.nextFloat() * (float) Math.PI;
     float f1 = (float) config.size / 8.0F;
     int i = MathHelper.ceil(((float) config.size / 16.0F * 2.0F + 1.0F) / 2.0F);
@@ -113,11 +113,11 @@ public class SupplierOreFeature extends Feature<SupplierOreFeatureConfig> {
                     int l2 = i2 - p_207803_16_ + (j2 - p_207803_17_) * p_207803_19_ + (k2 - p_207803_18_) * p_207803_19_ * p_207803_20_;
                     if (!bitset.get(l2)) {
                       bitset.set(l2);
-                      blockpos$mutable.setPos(i2, j2, k2);
+                      blockpos$mutable.set(i2, j2, k2);
                       if (config.target.test(worldIn.getBlockState(blockpos$mutable), random)) {
                         BlockState state = config.getState();
                         if (state.getBlock() != Blocks.AIR) {
-                          worldIn.setBlockState(blockpos$mutable, state, 2);
+                          worldIn.setBlock(blockpos$mutable, state, 2);
                         }
                         ++i;
                       }

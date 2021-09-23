@@ -18,6 +18,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class QuicksilverShovelItem extends ShovelItem implements IQuicksilverItem {
 
   private int counter;
@@ -36,27 +38,27 @@ public class QuicksilverShovelItem extends ShovelItem implements IQuicksilverIte
   }
 
   @Override
-  public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+  public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
     return true;
   }
 
   @Override
-  public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
+  public boolean mineBlock(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
     return true;
   }
 
   @Override
-  public ActionResultType onItemUse(ItemUseContext context) {
-    World world = context.getWorld();
-    BlockPos blockpos = context.getPos();
-    BlockState upState = world.getBlockState(blockpos.up());
-    if (context.getFace() != Direction.DOWN && upState.getBlock().isAir(upState, world, blockpos.up())) {
-      BlockState blockstate = SHOVEL_LOOKUP.get(world.getBlockState(blockpos).getBlock());
+  public ActionResultType useOn(ItemUseContext context) {
+    World world = context.getLevel();
+    BlockPos blockpos = context.getClickedPos();
+    BlockState upState = world.getBlockState(blockpos.above());
+    if (context.getClickedFace() != Direction.DOWN && upState.getBlock().isAir(upState, world, blockpos.above())) {
+      BlockState blockstate = FLATTENABLES.get(world.getBlockState(blockpos).getBlock());
       if (blockstate != null) {
         PlayerEntity playerentity = context.getPlayer();
-        world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-        if (!world.isRemote) {
-          world.setBlockState(blockpos, blockstate, 11);
+        world.playSound(playerentity, blockpos, SoundEvents.SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        if (!world.isClientSide) {
+          world.setBlock(blockpos, blockstate, 11);
         }
 
         return ActionResultType.SUCCESS;

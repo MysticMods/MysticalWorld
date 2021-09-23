@@ -20,9 +20,9 @@ public class SilkwormRenderer extends MobRenderer<SilkwormEntity, SilkwormModel>
   }
 
   @Override
-  protected void preRenderCallback(SilkwormEntity entity, MatrixStack matrix, float partialTickTime) {
+  protected void scale(SilkwormEntity entity, MatrixStack matrix, float partialTickTime) {
     float scale = entity.getSize() / 120.0f;
-    if (entity.isChild()) {
+    if (entity.isBaby()) {
       scale = -0.2f;
     }
     matrix.scale(0.4f + scale, 0.6f + scale, 1f + scale);
@@ -30,7 +30,7 @@ public class SilkwormRenderer extends MobRenderer<SilkwormEntity, SilkwormModel>
 
   @Override
   @Nonnull
-  public ResourceLocation getEntityTexture(@Nonnull SilkwormEntity entity) {
+  public ResourceLocation getTextureLocation(@Nonnull SilkwormEntity entity) {
     return SILKWORM_TEXTURE;
   }
 

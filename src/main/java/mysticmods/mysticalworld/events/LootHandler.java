@@ -17,24 +17,24 @@ import java.util.Set;
 
 @SuppressWarnings("unused")
 public class LootHandler {
-  private static Set<ResourceLocation> tables = Sets.newHashSet(LootTables.CHESTS_SIMPLE_DUNGEON, LootTables.CHESTS_ABANDONED_MINESHAFT, LootTables.CHESTS_DESERT_PYRAMID, LootTables.CHESTS_JUNGLE_TEMPLE, LootTables.CHESTS_WOODLAND_MANSION);
+  private static Set<ResourceLocation> tables = Sets.newHashSet(LootTables.SIMPLE_DUNGEON, LootTables.ABANDONED_MINESHAFT, LootTables.DESERT_PYRAMID, LootTables.JUNGLE_TEMPLE, LootTables.WOODLAND_MANSION);
   private static ResourceLocation squid_table = new ResourceLocation("minecraft", "entities/squid");
 
   public static void onLootLoad(LootTableLoadEvent event) {
     if (tables.contains(event.getName())) {
       event.getTable().addPool(
-          LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(MysticalWorld.MODID, "chests/inject")).weight(1).quality(0)).name("mystical_world_chest_injection").build());
+          LootPool.lootPool().add(TableLootEntry.lootTableReference(new ResourceLocation(MysticalWorld.MODID, "chests/inject")).setWeight(1).setQuality(0)).name("mystical_world_chest_injection").build());
     }
 
     if (event.getName().equals(squid_table)) {
-      event.getTable().addPool(LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(MysticalWorld.MODID, "entities/squid_inject"))).name("mystical_world_squid_injection").build());
+      event.getTable().addPool(LootPool.lootPool().add(TableLootEntry.lootTableReference(new ResourceLocation(MysticalWorld.MODID, "entities/squid_inject"))).name("mystical_world_squid_injection").build());
     }
   }
 
   public static void onLooting(LootingLevelEvent event) {
     DamageSource source = event.getDamageSource();
-    if (source != null && source.getTrueSource() != null && source.getTrueSource() instanceof PlayerEntity) {
-      PlayerEntity player = (PlayerEntity) source.getTrueSource();
+    if (source != null && source.getEntity() != null && source.getEntity() instanceof PlayerEntity) {
+      PlayerEntity player = (PlayerEntity) source.getEntity();
 
       int looting = event.getLootingLevel();
 

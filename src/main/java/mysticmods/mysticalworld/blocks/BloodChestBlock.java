@@ -112,7 +112,7 @@ public class BloodChestBlock extends Block implements IWaterLoggable {
       if (inamedcontainerprovider != null) {
         player.openContainer(inamedcontainerprovider);
         player.addStat(this.getOpenStat());
-        PiglinTasks.func_234478_a_(player, true);
+        PiglinTasks.angerNearbyPiglins(player, true);
       }
 
       return ActionResultType.CONSUME;
@@ -127,17 +127,17 @@ public class BloodChestBlock extends Block implements IWaterLoggable {
   public static TileEntityMerger.ICallback<ChestTileEntity, Float2FloatFunction> getLidRotationCallback(final IChestLid lid) {
     return new TileEntityMerger.ICallback<ChestTileEntity, Float2FloatFunction>() {
       @Override
-      public Float2FloatFunction func_225539_a_(ChestTileEntity p_225539_1_, ChestTileEntity p_225539_2_) {
+      public Float2FloatFunction acceptDouble(ChestTileEntity p_225539_1_, ChestTileEntity p_225539_2_) {
         return (angle) -> Math.max(p_225539_1_.getLidAngle(angle), p_225539_2_.getLidAngle(angle));
       }
 
       @Override
-      public Float2FloatFunction func_225538_a_(ChestTileEntity p_225538_1_) {
+      public Float2FloatFunction acceptSingle(ChestTileEntity p_225538_1_) {
         return p_225538_1_::getLidAngle;
       }
 
       @Override
-      public Float2FloatFunction func_225537_b_() {
+      public Float2FloatFunction acceptNone() {
         return lid::getLidAngle;
       }
     };

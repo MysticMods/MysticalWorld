@@ -57,7 +57,7 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
     StringJoiner sb2 = new StringJoiner(",");
     biomeRestrictions.forEach(biome -> sb2.add(biome.getName()));
     configBiomeRestrictions = builder.comment("Which biome types this tree shouldn't spawn in (default END, NETHER)").define("biomeRestrictions", sb2.toString());
-    configDimensions = builder.comment("The dimensions that this feature should spawn in as a list (default [\"minecraft:overworld\"])").defineList("dimensions", dimensions.stream().map(RegistryKey::getLocation).map(ResourceLocation::toString).collect(Collectors.toList()), (o) -> o instanceof String);
+    configDimensions = builder.comment("The dimensions that this feature should spawn in as a list (default [\"minecraft:overworld\"])").defineList("dimensions", dimensions.stream().map(RegistryKey::location).map(ResourceLocation::toString).collect(Collectors.toList()), (o) -> o instanceof String);
     builder.pop();
   }
 
@@ -71,7 +71,7 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
 
   public Set<RegistryKey<World>> getDimensions() {
     if (storedDimension == null) {
-      storedDimension = configDimensions.get().stream().map(o -> RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(o))).collect(Collectors.toSet());
+      storedDimension = configDimensions.get().stream().map(o -> RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(o))).collect(Collectors.toSet());
     }
 
     return storedDimension;

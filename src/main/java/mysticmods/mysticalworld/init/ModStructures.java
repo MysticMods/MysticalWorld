@@ -26,9 +26,9 @@ import java.util.Set;
 public class ModStructures {
   private static Set<Structure<?>> STRUCTURES = new HashSet<>();
 
-  public static final Structure<NoFeatureConfig> HUT_STRUCTURE = register("hut", new HutStructure(NoFeatureConfig.field_236558_a_));
-  public static final Structure<NoFeatureConfig> BARROW_STRUCTURE = register("barrow", new BarrowStructure(NoFeatureConfig.field_236558_a_));
-  public static final Structure<NoFeatureConfig> RUINED_HUT_STRUCTURE = register("ruined_hut", new RuinedHutStructure(NoFeatureConfig.field_236558_a_));
+  public static final Structure<NoFeatureConfig> HUT_STRUCTURE = register("hut", new HutStructure(NoFeatureConfig.CODEC));
+  public static final Structure<NoFeatureConfig> BARROW_STRUCTURE = register("barrow", new BarrowStructure(NoFeatureConfig.CODEC));
+  public static final Structure<NoFeatureConfig> RUINED_HUT_STRUCTURE = register("ruined_hut", new RuinedHutStructure(NoFeatureConfig.CODEC));
 
   private static <T extends IFeatureConfig> Structure<T> register(String name, Structure<T> feature) {
     ResourceLocation rl = new ResourceLocation(MysticalWorld.MODID, name);
@@ -49,21 +49,21 @@ public class ModStructures {
   }
 
   public static <F extends Structure<?>> void setupStructure(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {
-    Structure.NAME_STRUCTURE_BIMAP.put(structure.getRegistryName().toString(), structure);
+    Structure.STRUCTURES_REGISTRY.put(structure.getRegistryName().toString(), structure);
 
     if (transformSurroundingLand) {
-      Structure.field_236384_t_ = ImmutableList.<Structure<?>>builder().addAll(Structure.field_236384_t_).add(structure).build();
+      Structure.NOISE_AFFECTING_FEATURES = ImmutableList.<Structure<?>>builder().addAll(Structure.NOISE_AFFECTING_FEATURES).add(structure).build();
     }
 
-    DimensionStructuresSettings.field_236191_b_ = ImmutableMap.<Structure<?>, StructureSeparationSettings>builder().putAll(DimensionStructuresSettings.field_236191_b_).put(structure, structureSeparationSettings).build();
+    DimensionStructuresSettings.DEFAULTS = ImmutableMap.<Structure<?>, StructureSeparationSettings>builder().putAll(DimensionStructuresSettings.DEFAULTS).put(structure, structureSeparationSettings).build();
 
-    WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {
-      Map<Structure<?>, StructureSeparationSettings> structureMap = settings.getValue().getStructures().func_236195_a_();
+    WorldGenRegistries.NOISE_GENERATOR_SETTINGS.entrySet().forEach(settings -> {
+      Map<Structure<?>, StructureSeparationSettings> structureMap = settings.getValue().structureSettings().structureConfig();
 
       if (structureMap instanceof ImmutableMap) {
         Map<Structure<?>, StructureSeparationSettings> temp = new HashMap<>(structureMap);
         temp.put(structure, structureSeparationSettings);
-        settings.getValue().getStructures().field_236193_d_ = temp;
+        settings.getValue().structureSettings().structureConfig = temp;
       } else {
         structureMap.put(structure, structureSeparationSettings);
       }

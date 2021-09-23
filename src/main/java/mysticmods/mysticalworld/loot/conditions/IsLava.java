@@ -23,7 +23,7 @@ public class IsLava implements ILootCondition {
   @Override
   public boolean test(LootContext context) {
     boolean flag;
-    Entity looted = context.get(LootParameters.THIS_ENTITY);
+    Entity looted = context.getParamOrNull(LootParameters.THIS_ENTITY);
     if (looted instanceof LavaCatEntity) {
       LavaCatEntity cat = (LavaCatEntity) looted;
       flag = cat.getIsLava();
@@ -34,7 +34,7 @@ public class IsLava implements ILootCondition {
   }
 
   @Override
-  public LootConditionType func_230419_b_() {
+  public LootConditionType getType() {
     return ModLoot.IS_LAVA;
   }
 
@@ -46,7 +46,7 @@ public class IsLava implements ILootCondition {
 
     @Override
     public IsLava deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new IsLava(JSONUtils.getBoolean(json, "inverse", false));
+      return new IsLava(JSONUtils.getAsBoolean(json, "inverse", false));
     }
   }
 

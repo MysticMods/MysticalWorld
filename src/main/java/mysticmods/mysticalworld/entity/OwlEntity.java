@@ -40,7 +40,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
 
   public OwlEntity(EntityType<? extends TameableEntity> type, World worldIn) {
     super(type, worldIn);
-    this.moveController = new FlyingMovementController(this, 15, false);
+    this.moveControl = new FlyingMovementController(this, 15, false);
   }
 
   @Override
@@ -53,21 +53,21 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
   }
 
   public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0d).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2d).createMutableAttribute(Attributes.FLYING_SPEED, 0.55d);
+    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0d).add(Attributes.MOVEMENT_SPEED, 0.2d).add(Attributes.FLYING_SPEED, 0.55d);
   }
 
   @Override
-  protected PathNavigator createNavigator(World worldIn) {
+  protected PathNavigator createNavigation(World worldIn) {
     FlyingPathNavigator pathnavigateflying = new FlyingPathNavigator(this, worldIn);
     pathnavigateflying.setCanOpenDoors(false);
     //pathnavigateflying.setCanFloat(true);
-    pathnavigateflying.setCanEnterDoors(true);
+    pathnavigateflying.setCanPassDoors(true);
     return pathnavigateflying;
   }
 
   @Override
   public float getEyeHeight(Pose pose) {
-    return this.getHeight() * 0.6F;
+    return this.getBbHeight() * 0.6F;
   }
 
   @Override
@@ -88,10 +88,10 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
 
     this.flapping = (float) ((double) this.flapping * 0.9D);
 
-    Vector3d motion = this.getMotion();
+    Vector3d motion = this.getDeltaMovement();
 
     if (!this.onGround && motion.y < 0.0D) {
-      this.setMotion(motion.x, motion.y * 0.6D, motion.z);
+      this.setDeltaMovement(motion.x, motion.y * 0.6D, motion.z);
     }
 
     this.flap += this.flapping * 2.0F;
@@ -102,14 +102,14 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
    * the animal type)
    */
   @Override
-  public boolean isBreedingItem(ItemStack stack) {
+  public boolean isFood(ItemStack stack) {
     return stack.getItem() == Items.RABBIT;
   }
 
-  public static boolean placement(EntityType<? extends AnimalEntity> p_223316_0_, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random p_223316_4_) {
-    BlockState down = worldIn.getBlockState(blockpos.down());
+  public static boolean placement(EntityType<? extends AnimalEntity> pAnimal, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random pRandom) {
+    BlockState down = worldIn.getBlockState(blockpos.below());
     Block block = down.getBlock();
-    return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || (block instanceof RotatedPillarBlock && down.getMaterial() == Material.WOOD) || block == Blocks.AIR && worldIn.getLight(blockpos) > 8;
+    return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || (block instanceof RotatedPillarBlock && down.getMaterial() == Material.WOOD) || block == Blocks.AIR && worldIn.getMaxLocalRawBrightness(blockpos) > 8;
   }
 
   // TODO: Fix fall damage
@@ -118,18 +118,18 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
   }*/
 
   @Override
-  protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
+  protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
   }
 
   @Override
   @Nonnull
-  public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity ageable) {
-    return ModEntities.OWL.get().create(ageable.world);
+  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+    return ModEntities.OWL.get().create(ageable.level);
   }
 
   @Override
-  public boolean attackEntityAsMob(Entity entityIn) {
-    return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0F);
+  public boolean doHurtTarget(Entity entityIn) {
+    return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
   }
 
   @Override
@@ -150,12 +150,12 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
 
   @Override
   protected void playStepSound(BlockPos pos, BlockState blockIn) {
-    this.playSound(SoundEvents.ENTITY_PARROT_STEP, 0.15F, 1.0F);
+    this.playSound(SoundEvents.PARROT_STEP, 0.15F, 1.0F);
   }
 
   @Override
   protected float playFlySound(float p_191954_1_) {
-    this.playSound(SoundEvents.ENTITY_PARROT_FLY, 0.15F, 1.0F);
+    this.playSound(SoundEvents.PARROT_FLY, 0.15F, 1.0F);
     return p_191954_1_ + this.flapSpeed / 2.0F;
   }
 
@@ -168,8 +168,8 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
    * Gets the pitch of living sounds in living entities.
    */
   @Override
-  protected float getSoundPitch() {
-    return getPitch(this.rand);
+  protected float getVoicePitch() {
+    return getPitch(this.random);
   }
 
   private static float getPitch(Random random) {
@@ -177,7 +177,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
   }
 
   @Override
-  public SoundCategory getSoundCategory() {
+  public SoundCategory getSoundSource() {
     return SoundCategory.NEUTRAL;
   }
 
@@ -185,14 +185,14 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
    * Returns true if this entity should push and be pushed by other entities when colliding.
    */
   @Override
-  public boolean canBePushed() {
+  public boolean isPushable() {
     return true;
   }
 
   @Override
-  protected void collideWithEntity(Entity entityIn) {
+  protected void doPush(Entity entityIn) {
     if (!(entityIn instanceof PlayerEntity)) {
-      super.collideWithEntity(entityIn);
+      super.doPush(entityIn);
     }
   }
 
@@ -200,16 +200,16 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
    * Called when the entity is attacked.
    */
   @Override
-  public boolean attackEntityFrom(DamageSource source, float amount) {
+  public boolean hurt(DamageSource source, float amount) {
     if (this.isInvulnerableTo(source)) {
       return false;
     } else {
-      return super.attackEntityFrom(source, amount);
+      return super.hurt(source, amount);
     }
   }
 
   @Override
-  public ResourceLocation getLootTable() {
+  public ResourceLocation getDefaultLootTable() {
     return LOOT_TABLE;
   }
 

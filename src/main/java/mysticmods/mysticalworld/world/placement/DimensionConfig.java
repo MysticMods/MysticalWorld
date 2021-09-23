@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class DimensionConfig implements IPlacementConfig {
   public static final Codec<DimensionConfig> CODEC = RecordCodecBuilder.create((codec) -> codec.group(
-      ResourceLocation.CODEC.listOf().fieldOf("dimensions").forGetter(o -> o.dimensions.stream().map(RegistryKey::getLocation).collect(Collectors.toList()))).apply(codec, (r) -> new DimensionConfig(r.stream().map(o -> RegistryKey.getOrCreateKey(Registry.WORLD_KEY, o)).collect(Collectors.toSet()))));
+      ResourceLocation.CODEC.listOf().fieldOf("dimensions").forGetter(o -> o.dimensions.stream().map(RegistryKey::location).collect(Collectors.toList()))).apply(codec, (r) -> new DimensionConfig(r.stream().map(o -> RegistryKey.create(Registry.DIMENSION_REGISTRY, o)).collect(Collectors.toSet()))));
 
   public final Set<RegistryKey<World>> dimensions;
 

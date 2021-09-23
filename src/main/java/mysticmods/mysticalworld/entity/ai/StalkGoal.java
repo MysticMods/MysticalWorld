@@ -9,6 +9,8 @@ import net.minecraft.world.World;
 
 import java.util.EnumSet;
 
+import net.minecraft.entity.ai.goal.Goal.Flag;
+
 public class StalkGoal extends Goal {
   private World world;
   protected CreatureEntity attacker;
@@ -38,21 +40,21 @@ public class StalkGoal extends Goal {
 
   public StalkGoal(CreatureEntity creature, double speedIn, boolean useLongMemory) {
     this.attacker = creature;
-    this.world = creature.world;
+    this.world = creature.level;
     this.speedTowardsTarget = speedIn;
     this.longMemory = useLongMemory;
 
-    EnumSet<Flag> set = getMutexFlags();
+    EnumSet<Flag> set = getFlags();
     set.add(Flag.TARGET);
-    setMutexFlags(set);
+    setFlags(set);
   }
 
   /**
    * Returns whether the EntityAIBase should begin execution.
    */
   @Override
-  public boolean shouldExecute() {
-    LivingEntity entitylivingbase = this.attacker.getAttackTarget();
+  public boolean canUse() {
+    LivingEntity entitylivingbase = this.attacker.getTarget();
 
     if (entitylivingbase == null) {
       return false;
@@ -61,20 +63,20 @@ public class StalkGoal extends Goal {
     } else {
       if (canPenalize) {
         if (--this.delayCounter <= 0) {
-          this.path = this.attacker.getNavigator().getPathToEntity(entitylivingbase, 32);
-          this.delayCounter = 4 + this.attacker.getRNG().nextInt(7);
+          this.path = this.attacker.getNavigation().createPath(entitylivingbase, 32);
+          this.delayCounter = 4 + this.attacker.getRandom().nextInt(7);
           return this.path != null;
         } else {
           return true;
         }
       }
-      this.path = this.attacker.getNavigator().getPathToEntity(entitylivingbase, 32);
+      this.path = this.attacker.getNavigation().createPath(entitylivingbase, 32);
 
       if (this.path != null) {
         return true;
       } else {
         return this.getAttackReachSqr(entitylivingbase) >= this.attacker
-            .getDistanceSq(entitylivingbase.getPosX(), entitylivingbase.getBoundingBox().minY, entitylivingbase.getPosZ());
+            .distanceToSqr(entitylivingbase.getX(), entitylivingbase.getBoundingBox().minY, entitylivingbase.getZ());
       }
     }
   }
@@ -83,16 +85,16 @@ public class StalkGoal extends Goal {
    * Returns whether an in-progress EntityAIBase should continue executing
    */
   @Override
-  public boolean shouldContinueExecuting() {
-    LivingEntity entitylivingbase = this.attacker.getAttackTarget();
+  public boolean canContinueToUse() {
+    LivingEntity entitylivingbase = this.attacker.getTarget();
 
     if (entitylivingbase == null) {
       return false;
     } else if (!entitylivingbase.isAlive()) {
       return false;
     } else if (!this.longMemory) {
-      return !this.attacker.getNavigator().noPath();
-    } else if (!this.attacker.isWithinHomeDistanceFromPosition(entitylivingbase.getPosition())) {
+      return !this.attacker.getNavigation().isDone();
+    } else if (!this.attacker.isWithinRestriction(entitylivingbase.blockPosition())) {
       return false;
     } else {
       return !(entitylivingbase instanceof PlayerEntity) || !entitylivingbase.isSpectator() && !((PlayerEntity) entitylivingbase).isCreative();
@@ -103,8 +105,8 @@ public class StalkGoal extends Goal {
    * Execute a one shot task or start executing a continuous task
    */
   @Override
-  public void startExecuting() {
-    this.attacker.getNavigator().setPath(this.path, this.speedTowardsTarget);
+  public void start() {
+    this.attacker.getNavigation().moveTo(this.path, this.speedTowardsTarget);
     this.delayCounter = 0;
   }
 
@@ -112,14 +114,14 @@ public class StalkGoal extends Goal {
    * Reset the task's internal state. Called when this task is interrupted by another one
    */
   @Override
-  public void resetTask() {
-    LivingEntity entitylivingbase = this.attacker.getAttackTarget();
+  public void stop() {
+    LivingEntity entitylivingbase = this.attacker.getTarget();
 
     if (entitylivingbase instanceof PlayerEntity && (entitylivingbase.isSpectator() || ((PlayerEntity) entitylivingbase).isCreative())) {
-      this.attacker.setAttackTarget(null);
+      this.attacker.setTarget(null);
     }
 
-    this.attacker.getNavigator().clearPath();
+    this.attacker.getNavigation().stop();
   }
 
   /**
@@ -128,24 +130,24 @@ public class StalkGoal extends Goal {
   @Override
   public void tick() {
     super.tick();
-    LivingEntity entitylivingbase = this.attacker.getAttackTarget();
-    this.attacker.getLookController().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
-    double d0 = this.attacker.getDistanceSq(entitylivingbase.getPosX(), entitylivingbase.getBoundingBox().minY, entitylivingbase.getPosZ());
+    LivingEntity entitylivingbase = this.attacker.getTarget();
+    this.attacker.getLookControl().setLookAt(entitylivingbase, 30.0F, 30.0F);
+    double d0 = this.attacker.distanceToSqr(entitylivingbase.getX(), entitylivingbase.getBoundingBox().minY, entitylivingbase.getZ());
     --this.delayCounter;
 
-    if ((this.longMemory || this.attacker.getEntitySenses().canSee(entitylivingbase)) && this.delayCounter <= 0 && (
-        this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D || entitylivingbase.getDistanceSq(this.targetX, this.targetY, this.targetZ) >= 1.0D
-            || this.attacker.getRNG().nextFloat() < 0.05F)) {
-      this.targetX = entitylivingbase.getPosX();
+    if ((this.longMemory || this.attacker.getSensing().canSee(entitylivingbase)) && this.delayCounter <= 0 && (
+        this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D || entitylivingbase.distanceToSqr(this.targetX, this.targetY, this.targetZ) >= 1.0D
+            || this.attacker.getRandom().nextFloat() < 0.05F)) {
+      this.targetX = entitylivingbase.getX();
       this.targetY = entitylivingbase.getBoundingBox().minY;
-      this.targetZ = entitylivingbase.getPosZ();
-      this.delayCounter = 4 + this.attacker.getRNG().nextInt(7);
+      this.targetZ = entitylivingbase.getZ();
+      this.delayCounter = 4 + this.attacker.getRandom().nextInt(7);
 
       if (this.canPenalize) {
         this.delayCounter += failedPathFindingPenalty;
-        if (this.attacker.getNavigator().getPath() != null) {
-          net.minecraft.pathfinding.PathPoint finalPathPoint = this.attacker.getNavigator().getPath().getFinalPathPoint();
-          if (finalPathPoint != null && entitylivingbase.getDistanceSq(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z) < 1)
+        if (this.attacker.getNavigation().getPath() != null) {
+          net.minecraft.pathfinding.PathPoint finalPathPoint = this.attacker.getNavigation().getPath().getEndNode();
+          if (finalPathPoint != null && entitylivingbase.distanceToSqr(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z) < 1)
             failedPathFindingPenalty = 0;
           else
             failedPathFindingPenalty += 10;
@@ -160,7 +162,7 @@ public class StalkGoal extends Goal {
         this.delayCounter += 5;
       }
 
-      if (!this.attacker.getNavigator().tryMoveToEntityLiving(entitylivingbase, this.speedTowardsTarget)) {
+      if (!this.attacker.getNavigation().moveTo(entitylivingbase, this.speedTowardsTarget)) {
         this.delayCounter += 15;
       }
     }
@@ -169,6 +171,6 @@ public class StalkGoal extends Goal {
   }
 
   private double getAttackReachSqr(LivingEntity attackTarget) {
-    return (this.attacker.getWidth() * 2.0F * this.attacker.getWidth() * 2.0F + attackTarget.getWidth());
+    return (this.attacker.getBbWidth() * 2.0F * this.attacker.getBbWidth() * 2.0F + attackTarget.getBbWidth());
   }
 }

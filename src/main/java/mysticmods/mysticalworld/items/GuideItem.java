@@ -34,35 +34,35 @@ public class GuideItem extends Item {
   }
 
   @Override
-  public ITextComponent getDisplayName(ItemStack stack) {
+  public ITextComponent getName(ItemStack stack) {
     Book book = getBook();
-    return (book != null ? new TranslationTextComponent(book.name) : super.getDisplayName(stack));
+    return (book != null ? new TranslationTextComponent(book.name) : super.getName(stack));
   }
 
   @Override
   @OnlyIn(Dist.CLIENT)
-  public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-    super.addInformation(stack, worldIn, tooltip, flagIn);
+  public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    super.appendHoverText(stack, worldIn, tooltip, flagIn);
     Book book = getBook();
     if (book != null && book.contents != null) {
-      tooltip.add(book.getSubtitle().mergeStyle(TextFormatting.GRAY));
+      tooltip.add(book.getSubtitle().withStyle(TextFormatting.GRAY));
     }
   }
 
   @Override
-  public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-    ItemStack stack = playerIn.getHeldItem(handIn);
+  public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    ItemStack stack = playerIn.getItemInHand(handIn);
     Book book = getBook();
     if (book == null) {
-      return ActionResult.resultFail(stack);
+      return ActionResult.fail(stack);
     } else {
       if (playerIn instanceof ServerPlayerEntity) {
         NetworkHandler.sendToPlayer(new MessageOpenBookGui(book.id, null), (ServerPlayerEntity) playerIn);
         SoundEvent sfx = PatchouliSounds.getSound(book.openSound, PatchouliSounds.book_open);
-        worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), sfx, SoundCategory.PLAYERS, 1.0F, (float) (0.7D + Math.random() * 0.4D));
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), sfx, SoundCategory.PLAYERS, 1.0F, (float) (0.7D + Math.random() * 0.4D));
       }
 
-      return ActionResult.resultSuccess(stack);
+      return ActionResult.success(stack);
     }
   }
 }

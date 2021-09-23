@@ -25,10 +25,10 @@ public class IsColor implements ILootCondition {
   @Override
   public boolean test(LootContext lootContext) {
     int variant;
-    Entity looted = lootContext.get(LootParameters.THIS_ENTITY);
+    Entity looted = lootContext.getParamOrNull(LootParameters.THIS_ENTITY);
     if (looted instanceof SproutEntity) {
       SproutEntity sprout = (SproutEntity) looted;
-      variant = sprout.getDataManager().get(SproutEntity.variant);
+      variant = sprout.getEntityData().get(SproutEntity.variant);
     } else {
       variant = 0;
     }
@@ -39,7 +39,7 @@ public class IsColor implements ILootCondition {
   }
 
   @Override
-  public LootConditionType func_230419_b_() {
+  public LootConditionType getType() {
     return ModLoot.IS_COLOR;
   }
 
@@ -52,7 +52,7 @@ public class IsColor implements ILootCondition {
 
     @Override
     public IsColor deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new IsColor(JSONUtils.getBoolean(json, "inverse", false), JSONUtils.getString(json, "color", "green"));
+      return new IsColor(JSONUtils.getAsBoolean(json, "inverse", false), JSONUtils.getAsString(json, "color", "green"));
     }
   }
 

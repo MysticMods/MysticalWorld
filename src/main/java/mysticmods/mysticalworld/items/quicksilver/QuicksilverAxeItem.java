@@ -19,6 +19,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class QuicksilverAxeItem extends AxeItem implements IQuicksilverItem {
 
   private int counter;
@@ -37,26 +39,26 @@ public class QuicksilverAxeItem extends AxeItem implements IQuicksilverItem {
   }
 
   @Override
-  public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+  public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
     return true;
   }
 
   @Override
-  public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
+  public boolean mineBlock(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
     return true;
   }
 
   @Override
-  public ActionResultType onItemUse(ItemUseContext context) {
-    World world = context.getWorld();
-    BlockPos blockpos = context.getPos();
+  public ActionResultType useOn(ItemUseContext context) {
+    World world = context.getLevel();
+    BlockPos blockpos = context.getClickedPos();
     BlockState blockstate = world.getBlockState(blockpos);
-    Block block = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
+    Block block = STRIPABLES.get(blockstate.getBlock());
     if (block != null) {
       PlayerEntity playerentity = context.getPlayer();
-      world.playSound(playerentity, blockpos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-      if (!world.isRemote) {
-        world.setBlockState(blockpos, block.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
+      world.playSound(playerentity, blockpos, SoundEvents.AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+      if (!world.isClientSide) {
+        world.setBlock(blockpos, block.defaultBlockState().setValue(RotatedPillarBlock.AXIS, blockstate.getValue(RotatedPillarBlock.AXIS)), 11);
       }
 
       return ActionResultType.SUCCESS;

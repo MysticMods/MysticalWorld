@@ -51,212 +51,212 @@ public class ModEntities {
   public static List<RegistryEntry<? extends LazySpawnEggItem<?>>> SPAWN_EGGS = new ArrayList<>();
 
   public static RegistryEntry<EntityType<BeetleEntity>> BEETLE = MysticalWorld.REGISTRATE.entity("beetle", BeetleEntity::new, EntityClassification.CREATURE)
-      .properties(o -> o.size(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
-      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()
-          .addLootPool(LootPool.builder()
-              .addEntry(ItemLootEntry.builder(ModItems.CARAPACE.get())
-                  .acceptFunction(SetCount.builder(RandomValueRange.of(0, 1)))
-                  .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1, 2)))
+      .properties(o -> o.sized(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(ItemLootEntry.lootTableItem(ModItems.CARAPACE.get())
+                  .apply(SetCount.setCount(RandomValueRange.between(0, 1)))
+                  .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1, 2)))
               )
-              .addEntry(ItemLootEntry.builder(Items.SLIME_BALL)
-                  .acceptFunction(SetCount.builder(RandomValueRange.of(0, 1)))
-                  .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1, 2)))
+              .add(ItemLootEntry.lootTableItem(Items.SLIME_BALL)
+                  .apply(SetCount.setCount(RandomValueRange.between(0, 1)))
+                  .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1, 2)))
               )
-              .rolls(ConstantRange.of(1))
+              .setRolls(ConstantRange.exactly(1))
           )
       ))
       .register();
 
   public static RegistryEntry<EntityType<DeerEntity>> DEER = MysticalWorld.REGISTRATE.entity("deer", DeerEntity::new, EntityClassification.CREATURE)
       .loot((p, e) ->
-          p.registerLootTable(e, LootTable.builder()
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(Items.LEATHER)
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 2)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0, 3)))
+          p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(Items.LEATHER)
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 2)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0, 3)))
                   )
-                  .rolls(ConstantRange.of(1))
+                  .setRolls(ConstantRange.exactly(1))
               )
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(ModItems.VENISON.get())
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(1, 3)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0, 1)))
-                      .acceptFunction(Smelt.func_215953_b()
-                          .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true).build()))))
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(ModItems.VENISON.get())
+                      .apply(SetCount.setCount(RandomValueRange.between(1, 3)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0, 1)))
+                      .apply(Smelt.smelted()
+                          .when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
                   )
-                  .rolls(ConstantRange.of(1))
+                  .setRolls(ConstantRange.exactly(1))
               )
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(ModItems.ANTLERS.get())
-                      .acceptFunction(SetCount.builder(ConstantRange.of(1)))
-                      .acceptCondition(HasHorns.builder())
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(ModItems.ANTLERS.get())
+                      .apply(SetCount.setCount(ConstantRange.exactly(1)))
+                      .when(HasHorns.builder())
                   )
-                  .rolls(ConstantRange.of(1))
+                  .setRolls(ConstantRange.exactly(1))
               )
           )
       )
-      .properties(o -> o.size(1.0f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .properties(o -> o.sized(1.0f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
   public static RegistryEntry<EntityType<FrogEntity>> FROG = MysticalWorld.REGISTRATE.entity("frog", FrogEntity::new, EntityClassification.AMBIENT)
-      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(Items.SLIME_BALL)
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 2)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1, 2)))
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(Items.SLIME_BALL)
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 2)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1, 2)))
                   )
-                  .rolls(ConstantRange.of(1))
+                  .setRolls(ConstantRange.exactly(1))
               )
           )
       )
-      .properties(o -> o.size(0.5f, 0.5f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .properties(o -> o.sized(0.5f, 0.5f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
   public static RegistryEntry<EntityType<SilverFoxEntity>> SILVER_FOX = MysticalWorld.REGISTRATE.entity("silver_fox", SilverFoxEntity::new, EntityClassification.CREATURE)
-      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(ModItems.PELT.get())
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 2)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1, 2)))
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(ModItems.PELT.get())
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 2)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1, 2)))
                   )
-                  .rolls(ConstantRange.of(1))
+                  .setRolls(ConstantRange.exactly(1))
               )
           )
       )
-      .properties(o -> o.size(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .properties(o -> o.sized(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
   public static RegistryEntry<EntityType<HellSproutEntity>> HELL_SPROUT = MysticalWorld.REGISTRATE.entity("hell_sprout", HellSproutEntity::new, EntityClassification.CREATURE)
-      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(Items.NETHER_WART)
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 2)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1, 3)))
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(Items.NETHER_WART)
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 2)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1, 3)))
                   )
-                  .rolls(ConstantRange.of(1))
+                  .setRolls(ConstantRange.exactly(1))
               )
           )
       )
-      .properties(o -> o.size(0.5f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).immuneToFire())
+      .properties(o -> o.sized(0.5f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).fireImmune())
       .register();
 
   public static RegistryEntry<EntityType<SproutEntity>> SPROUT = MysticalWorld.REGISTRATE.entity("sprout", SproutEntity::new, EntityClassification.CREATURE)
-      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(Items.MELON_SLICE)
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 2)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1, 3)))
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(Items.MELON_SLICE)
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 2)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1, 3)))
                   )
-                  .acceptCondition(IsColor.builder("green"))
-                  .rolls(ConstantRange.of(1))
+                  .when(IsColor.builder("green"))
+                  .setRolls(ConstantRange.exactly(1))
               )
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(ModItems.AUBERGINE.get())
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 2)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1, 3)))
-                      .acceptFunction(Smelt.func_215953_b()
-                          .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true).build()))))
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(ModItems.AUBERGINE.get())
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 2)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1, 3)))
+                      .apply(Smelt.smelted()
+                          .when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
                   )
-                  .acceptCondition(IsColor.builder("purple"))
-                  .rolls(ConstantRange.of(1))
+                  .when(IsColor.builder("purple"))
+                  .setRolls(ConstantRange.exactly(1))
               )
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(Items.BEETROOT)
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 2)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1, 3)))
-                      .acceptFunction(Smelt.func_215953_b()
-                          .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true).build()))))
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(Items.BEETROOT)
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 2)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1, 3)))
+                      .apply(Smelt.smelted()
+                          .when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
                   )
-                  .acceptCondition(IsColor.builder("red"))
-                  .rolls(ConstantRange.of(1))
+                  .when(IsColor.builder("red"))
+                  .setRolls(ConstantRange.exactly(1))
               )
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(Items.POTATO)
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 2)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1, 3)))
-                      .acceptFunction(Smelt.func_215953_b()
-                          .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true).build()))))
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(Items.POTATO)
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 2)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1, 3)))
+                      .apply(Smelt.smelted()
+                          .when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
                   )
-                  .acceptCondition(IsColor.builder("tan"))
-                  .rolls(ConstantRange.of(1))
+                  .when(IsColor.builder("tan"))
+                  .setRolls(ConstantRange.exactly(1))
               )
           )
       )
-      .properties(o -> o.size(0.5f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .properties(o -> o.sized(0.5f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
   public static RegistryEntry<EntityType<EnderminiEntity>> ENDERMINI = MysticalWorld.REGISTRATE.entity("endermini", EnderminiEntity::new, EntityClassification.MONSTER)
-      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(ModItems.YOUNG_PEARL.get())
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 1)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0, 3)))
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(ModItems.YOUNG_PEARL.get())
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 1)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0, 3)))
                   )
-                  .rolls(ConstantRange.of(1))
+                  .setRolls(ConstantRange.exactly(1))
               )
           )
       )
-      .properties(o -> o.size(0.3f, 1.45f).setTrackingRange(32).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .properties(o -> o.sized(0.3f, 1.45f).setTrackingRange(32).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
   public static RegistryEntry<EntityType<LavaCatEntity>> LAVA_CAT = MysticalWorld.REGISTRATE.entity("lava_cat", LavaCatEntity::new, EntityClassification.CREATURE)
-      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(Items.OBSIDIAN)
-                      .acceptFunction(SetCount.builder(ConstantRange.of(1)))
-                      .acceptCondition(IsObsidian.builder())
-                      .acceptCondition(RandomChance.builder(0.7f)))
-                  .addEntry(ItemLootEntry.builder(Items.COBBLESTONE)
-                      .acceptFunction(SetCount.builder(ConstantRange.of(1)))
-                      .acceptCondition(IsObsidian.builder()))
-                  .addEntry(ItemLootEntry.builder(Items.COBBLESTONE)
-                      .acceptFunction(SetCount.builder(ConstantRange.of(1)))
-                      .acceptCondition(IsLava.builder()))
-                  .rolls(ConstantRange.of(1))
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(Items.OBSIDIAN)
+                      .apply(SetCount.setCount(ConstantRange.exactly(1)))
+                      .when(IsObsidian.builder())
+                      .when(RandomChance.randomChance(0.7f)))
+                  .add(ItemLootEntry.lootTableItem(Items.COBBLESTONE)
+                      .apply(SetCount.setCount(ConstantRange.exactly(1)))
+                      .when(IsObsidian.builder()))
+                  .add(ItemLootEntry.lootTableItem(Items.COBBLESTONE)
+                      .apply(SetCount.setCount(ConstantRange.exactly(1)))
+                      .when(IsLava.builder()))
+                  .setRolls(ConstantRange.exactly(1))
               )
           )
       )
-      .properties(o -> o.size(0.75f, 0.875f).setTrackingRange(34).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .properties(o -> o.sized(0.75f, 0.875f).setTrackingRange(34).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
   public static RegistryEntry<EntityType<OwlEntity>> OWL = MysticalWorld.REGISTRATE.entity("owl", OwlEntity::new, EntityClassification.CREATURE)
-      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(Items.FEATHER)
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 3)))
-                      .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1, 3)))
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(Items.FEATHER)
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 3)))
+                      .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1, 3)))
                   )
-                  .rolls(ConstantRange.of(1))
+                  .setRolls(ConstantRange.exactly(1))
               )
           )
       )
-      .properties(o -> o.size(0.5f, 0.9f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .properties(o -> o.sized(0.5f, 0.9f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
   public static RegistryEntry<EntityType<SilkwormEntity>> SILKWORM = MysticalWorld.REGISTRATE.entity("silkworm", SilkwormEntity::new, EntityClassification.CREATURE)
-      .loot((p, e) -> p.registerLootTable(e, LootTable.builder()
-              .addLootPool(LootPool.builder()
-                  .addEntry(ItemLootEntry.builder(ModItems.SILKWORM_EGG.get())
-                      .acceptFunction(SetCount.builder(RandomValueRange.of(0, 2)))
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(ItemLootEntry.lootTableItem(ModItems.SILKWORM_EGG.get())
+                      .apply(SetCount.setCount(RandomValueRange.between(0, 2)))
                   )
-                  .rolls(ConstantRange.of(1))
+                  .setRolls(ConstantRange.exactly(1))
               )
           )
       )
-      .properties(o -> o.size(0.8f, 0.6f).setTrackingRange(5).setShouldReceiveVelocityUpdates(true).setUpdateInterval(20))
+      .properties(o -> o.sized(0.8f, 0.6f).setTrackingRange(5).setShouldReceiveVelocityUpdates(true).setUpdateInterval(20))
       .register();
 
   static {
-    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("beetle_spawn_egg", spawnEgg(ModEntities.BEETLE, 0x418594, 0x211D15)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("deer_spawn_egg", spawnEgg(ModEntities.DEER, 0xa18458, 0x5e4d33)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("frog_spawn_egg", spawnEgg(ModEntities.FROG, 0x285234, 0xDBE697)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("silver_fox_spawn_egg", spawnEgg(ModEntities.SILVER_FOX, 0x9e9088, 0xF5E0D3)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("sprout_spawn_egg", spawnEgg(ModEntities.SPROUT, 0xe8f442, 0xd11f5a)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("endermini_spawn_egg", spawnEgg(ModEntities.ENDERMINI, 0xa11e78, 0x650cbe)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("lava_cat_spawn_egg", spawnEgg(ModEntities.LAVA_CAT, 0xde3535, 0xe89613)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("owl_spawn_egg", spawnEgg(ModEntities.OWL, 0x8c654a, 0xdec9ba)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("silkworm_spawn_egg", spawnEgg(ModEntities.SILKWORM, 0xd1cecd, 0x635e5b)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
-    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("hell_sprout_spawn_egg", spawnEgg(ModEntities.HELL_SPROUT, 0x8a0303, 0xe8f442)).properties((p) -> p.group(ItemGroup.MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("beetle_spawn_egg", spawnEgg(ModEntities.BEETLE, 0x418594, 0x211D15)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("deer_spawn_egg", spawnEgg(ModEntities.DEER, 0xa18458, 0x5e4d33)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("frog_spawn_egg", spawnEgg(ModEntities.FROG, 0x285234, 0xDBE697)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("silver_fox_spawn_egg", spawnEgg(ModEntities.SILVER_FOX, 0x9e9088, 0xF5E0D3)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("sprout_spawn_egg", spawnEgg(ModEntities.SPROUT, 0xe8f442, 0xd11f5a)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("endermini_spawn_egg", spawnEgg(ModEntities.ENDERMINI, 0xa11e78, 0x650cbe)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("lava_cat_spawn_egg", spawnEgg(ModEntities.LAVA_CAT, 0xde3535, 0xe89613)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("owl_spawn_egg", spawnEgg(ModEntities.OWL, 0x8c654a, 0xdec9ba)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("silkworm_spawn_egg", spawnEgg(ModEntities.SILKWORM, 0xd1cecd, 0x635e5b)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("hell_sprout_spawn_egg", spawnEgg(ModEntities.HELL_SPROUT, 0x8a0303, 0xe8f442)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
   }
 
   public static BiMap<RegistryEntry<? extends EntityType<?>>, MobConfig> configMap = HashBiMap.create();
@@ -300,30 +300,30 @@ public class ModEntities {
 
   public static void registerEntities() {
     EntitySpawnPlacementRegistry.register(DEER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
-        AnimalEntity::canAnimalSpawn);
+        AnimalEntity::checkAnimalSpawnRules);
     EntitySpawnPlacementRegistry.register(FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
-        AnimalEntity::canAnimalSpawn);
+        AnimalEntity::checkAnimalSpawnRules);
     EntitySpawnPlacementRegistry.register(SPROUT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
-        AnimalEntity::canAnimalSpawn);
+        AnimalEntity::checkAnimalSpawnRules);
     EntitySpawnPlacementRegistry.register(SILVER_FOX.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
-        AnimalEntity::canAnimalSpawn);
+        AnimalEntity::checkAnimalSpawnRules);
     EntitySpawnPlacementRegistry.register(BEETLE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
-        AnimalEntity::canAnimalSpawn);
+        AnimalEntity::checkAnimalSpawnRules);
     EntitySpawnPlacementRegistry.register(OWL.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING, OwlEntity::placement);
     EntitySpawnPlacementRegistry.register(LAVA_CAT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LavaCatEntity::placement);
     EntitySpawnPlacementRegistry.register(HELL_SPROUT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LavaCatEntity::placement);
   }
 
   public static void registerAttributes(EntityAttributeCreationEvent event) {
-    event.put(ModEntities.BEETLE.get(), BeetleEntity.attributes().create());
-    event.put(ModEntities.DEER.get(), DeerEntity.attributes().create());
-    event.put(ModEntities.FROG.get(), FrogEntity.attributes().create());
-    event.put(ModEntities.SILVER_FOX.get(), SilverFoxEntity.attributes().create());
-    event.put(ModEntities.SPROUT.get(), SproutEntity.attributes().create());
-    event.put(ModEntities.ENDERMINI.get(), EnderminiEntity.attributes().create());
-    event.put(ModEntities.LAVA_CAT.get(), LavaCatEntity.attributes().create());
-    event.put(ModEntities.OWL.get(), OwlEntity.attributes().create());
-    event.put(ModEntities.SILKWORM.get(), SilkwormEntity.attributes().create());
-    event.put(ModEntities.HELL_SPROUT.get(), HellSproutEntity.attributes().create());
+    event.put(ModEntities.BEETLE.get(), BeetleEntity.attributes().build());
+    event.put(ModEntities.DEER.get(), DeerEntity.attributes().build());
+    event.put(ModEntities.FROG.get(), FrogEntity.attributes().build());
+    event.put(ModEntities.SILVER_FOX.get(), SilverFoxEntity.attributes().build());
+    event.put(ModEntities.SPROUT.get(), SproutEntity.attributes().build());
+    event.put(ModEntities.ENDERMINI.get(), EnderminiEntity.attributes().build());
+    event.put(ModEntities.LAVA_CAT.get(), LavaCatEntity.attributes().build());
+    event.put(ModEntities.OWL.get(), OwlEntity.attributes().build());
+    event.put(ModEntities.SILKWORM.get(), SilkwormEntity.attributes().build());
+    event.put(ModEntities.HELL_SPROUT.get(), HellSproutEntity.attributes().build());
   }
 }

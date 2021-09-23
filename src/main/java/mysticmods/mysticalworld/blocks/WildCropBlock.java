@@ -13,7 +13,7 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Random;
 
 public class WildCropBlock extends BushBlock {
-  private static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+  private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
   public WildCropBlock(AbstractBlock.Properties builder) {
     super(builder);
@@ -26,12 +26,12 @@ public class WildCropBlock extends BushBlock {
   }
 
   @Override
-  protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-    return state.isIn(Blocks.GRASS_BLOCK) || state.isIn(Blocks.DIRT) || state.isIn(Blocks.COARSE_DIRT) || state.isIn(Blocks.PODZOL) || state.isIn(Blocks.FARMLAND);
+  protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    return state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT) || state.is(Blocks.PODZOL) || state.is(Blocks.FARMLAND);
   }
 
   @Override
-  public boolean ticksRandomly(BlockState state) {
+  public boolean isRandomlyTicking(BlockState state) {
     return false;
   }
 
@@ -41,16 +41,16 @@ public class WildCropBlock extends BushBlock {
   }
 
   @Override
-  public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-    BlockPos blockpos = pos.down();
+  public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    BlockPos blockpos = pos.below();
     if (state.getBlock() == this) {
       return true;
     }
-    return this.isValidGround(worldIn.getBlockState(blockpos), worldIn, blockpos);
+    return this.mayPlaceOn(worldIn.getBlockState(blockpos), worldIn, blockpos);
   }
 
   @SuppressWarnings("deprecation")
   @Override
-  public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+  public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
   }
 }

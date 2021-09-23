@@ -49,7 +49,7 @@ public class MysticalWorld {
 
   public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
     @Override
-    public ItemStack createIcon() {
+    public ItemStack makeIcon() {
       return new ItemStack(ModBlocks.AMETHYST_BLOCK.get());
     }
   };
