@@ -178,7 +178,7 @@ public class EnderminiEntity extends CreatureEntity {
     double d0 = this.getX() + (this.random.nextDouble() - 0.5D) * 64.0D;
     double d1 = this.getY() + (double) (this.random.nextInt(64) - 32);
     double d2 = this.getZ() + (this.random.nextDouble() - 0.5D) * 64.0D;
-    return this.teleportTo(d0, d1, d2);
+    return this.teleport(d0, d1, d2);
   }
 
   protected boolean teleportToEntity(Entity p_70816_1_) {
@@ -188,13 +188,13 @@ public class EnderminiEntity extends CreatureEntity {
     double d1 = this.getX() + (this.random.nextDouble() - 0.5D) * 8.0D - vec3d.x * 16.0D;
     double d2 = this.getY() + (double) (this.random.nextInt(16) - 8) - vec3d.y * 16.0D;
     double d3 = this.getZ() + (this.random.nextDouble() - 0.5D) * 8.0D - vec3d.z * 16.0D;
-    return this.teleportTo(d1, d2, d3);
+    return this.teleport(d1, d2, d3);
   }
 
   /**
    * Teleport the endermini
    */
-  private boolean teleportTo(double x, double y, double z) {
+  private boolean teleport(double x, double y, double z) {
     net.minecraftforge.event.entity.living.EnderTeleportEvent event = new net.minecraftforge.event.entity.living.EnderTeleportEvent(this, x, y, z, 0);
     if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event))
       return false;
