@@ -25,7 +25,7 @@ public class MixinApplyBonus {
   @Unique
   private int serendipityValue = 0;
 
-  @Inject(method="run", at=@At(value="INVOKE_ASSIGN", target="Lnet/minecraft/enchantment/EnchantmentHelper;getEnchantmentLevel(Lnet/minecraft/enchantment/Enchantment;Lnet/minecraft/item/ItemStack;)I"), locals = LocalCapture.CAPTURE_FAILHARD)
+  @Inject(method="run", at=@At(value="INVOKE_ASSIGN", target="Lnet/minecraft/enchantment/EnchantmentHelper;getItemEnchantmentLevel(Lnet/minecraft/enchantment/Enchantment;Lnet/minecraft/item/ItemStack;)I"), locals = LocalCapture.CAPTURE_FAILHARD)
   protected void applySerendipity(ItemStack stack, LootContext context, CallbackInfoReturnable<ItemStack> cir, ItemStack stack2, int enchantmentLevel) {
     Enchantment enchantment = ((ApplyBonus) (Object) this).enchantment;
     if (enchantment == Enchantments.BLOCK_FORTUNE) {
