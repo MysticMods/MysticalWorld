@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:simple_thatch"
-  },
-  "result": "mysticalworld:thatch_slab",
-  "count": 2
-}

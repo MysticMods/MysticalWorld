@@ -168,5 +168,7 @@ public class Remaps {
     remapItem("cracked_stone_wall", "soft_stone_wall");
     remapItem("cracked_stone_wide_post", "soft_stone_wide_post");
     remapItem("cracked_stone_small_post", "soft_stone_small_post");
+    remapBlock("simple_thatch", "thatch");
+    remapItem("simple_thatch", "thatch");
   }
 }

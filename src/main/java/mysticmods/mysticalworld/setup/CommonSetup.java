@@ -10,7 +10,6 @@ import mysticmods.mysticalworld.events.CapabilityHandler;
 import mysticmods.mysticalworld.events.DamageHandler;
 import mysticmods.mysticalworld.events.LootHandler;
 import mysticmods.mysticalworld.init.*;
-import mysticmods.mysticalworld.init.*;
 import mysticmods.mysticalworld.potions.PotionRecipes;
 import mysticmods.mysticalworld.recipe.ingredients.SeedIngredient;
 import net.minecraft.block.Blocks;
@@ -57,7 +56,6 @@ public class CommonSetup {
 
       FireBlock fire = (FireBlock) Blocks.FIRE;
 
-      fire.setFlammable(ModBlocks.THATCH.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH_FENCE.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH_FENCE_GATE.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH_SLAB.get(), 5, 20);
@@ -65,7 +63,7 @@ public class CommonSetup {
       fire.setFlammable(ModBlocks.THATCH_WIDE_POST.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH_STAIRS.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH_WALL.get(), 5, 20);
-      fire.setFlammable(ModBlocks.SIMPLE_THATCH.get(), 5, 20);
+      fire.setFlammable(ModBlocks.THATCH.get(), 5, 20);
       fire.setFlammable(ModBlocks.CHARRED_PLANKS.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_LOG.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_FENCE.get(), 1, 1);

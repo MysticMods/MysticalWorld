@@ -19,7 +19,6 @@ import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.data.SingleItemRecipeBuilder;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -268,11 +267,9 @@ public class ModBlocks {
   private static NonNullUnaryOperator<Block.Properties> MUSHROOM_PROPS = (o) -> o.strength(0.2F).sound(SoundType.WOOD);
 
   public static BlockEntry<ThatchBlock> THATCH = MysticalWorld.REGISTRATE.block("thatch", Material.WOOD, ThatchBlock::new)
-      .properties(o -> o.sound(SoundType.GRASS))
       .item()
-      .model(NonNullBiConsumer.noop())
+      .model((ctx, p) -> p.blockItem(ModBlocks.THATCH))
       .build()
-      .blockstate(NonNullBiConsumer.noop())
       .recipe((ctx, p) -> {
             ShapedRecipeBuilder.shaped(ModBlocks.THATCH.get(), 32)
                 .pattern("XY")
@@ -282,33 +279,8 @@ public class ModBlocks {
                 .unlockedBy("has_hay", RegistrateRecipeProvider.hasItem(Blocks.HAY_BLOCK))
                 .unlockedBy("has_wheat", RegistrateRecipeProvider.hasItem(Items.WHEAT))
                 .save(p);
-            ShapelessRecipeBuilder.shapeless(ModBlocks.SIMPLE_THATCH.get(), 1)
-                .requires(ModBlocks.THATCH.get())
-                .unlockedBy("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.THATCH.get()))
-                .save(p, MysticalWorld.RECIPES.rl("simple_thatch_from_thatch"));
-            ShapelessRecipeBuilder.shapeless(ModBlocks.THATCH.get(), 1)
-                .requires(ModBlocks.SIMPLE_THATCH.get())
-                .unlockedBy("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.SIMPLE_THATCH.get()))
-                .save(p, MysticalWorld.RECIPES.rl("thatch_from_simple_thatch"));
           }
       )
-      .register();
-
-  public static BlockEntry<Block> SIMPLE_THATCH = MysticalWorld.REGISTRATE.block("simple_thatch", Material.WOOD, Block::new)
-      .properties(o -> Block.Properties.of(Material.WOOD).sound(SoundType.GRASS))
-      .item()
-      .model((ctx, p) -> p.blockItem(ModBlocks.SIMPLE_THATCH))
-      .build()
-      .recipe((ctx, p) -> {
-        ShapelessRecipeBuilder.shapeless(ModBlocks.SIMPLE_THATCH.get(), 1)
-            .requires(ModBlocks.THATCH.get())
-            .unlockedBy("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.THATCH.get()))
-            .save(p, "simple_thatch_from_thatch");
-        ShapelessRecipeBuilder.shapeless(ModBlocks.THATCH.get(), 1)
-            .requires(ModBlocks.SIMPLE_THATCH.get())
-            .unlockedBy("has_thatch", RegistrateRecipeProvider.hasItem(ModBlocks.SIMPLE_THATCH.get()))
-            .save(p, "thatch_from_simple_thatch");
-      })
       .register();
 
   public static BlockEntry<StairsBlock> THATCH_STAIRS = MysticalWorld.REGISTRATE.block("thatch_stairs", Material.WOOD, stairsBlock(ModBlocks.THATCH))
@@ -332,10 +304,10 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          p.slab(DataIngredient.items(ModBlocks.SIMPLE_THATCH), ModBlocks.THATCH_SLAB, null, true)
+          p.slab(DataIngredient.items(ModBlocks.THATCH), ModBlocks.THATCH_SLAB, null, true)
       )
       .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
-      .blockstate(slab(ModBlocks.SIMPLE_THATCH))
+      .blockstate(slab(ModBlocks.THATCH))
       .register();
 
   public static BlockEntry<WallBlock> THATCH_WALL = MysticalWorld.REGISTRATE.block("thatch_wall", Material.WOOD, WallBlock::new)
