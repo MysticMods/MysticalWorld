@@ -164,7 +164,7 @@ public class ModFeatures {
       }
 
       if (GETCODEC_METHOD == null) {
-        Method codec = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "codec");
+        Method codec = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
         MethodHandles.Lookup l = MethodHandles.lookup();
         try {
           GETCODEC_METHOD = l.unreflect(codec);
