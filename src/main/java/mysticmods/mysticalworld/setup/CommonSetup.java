@@ -75,6 +75,7 @@ public class CommonSetup {
       fire.setFlammable(ModBlocks.CHARRED_WIDE_POST.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_WOOD.get(), 1, 1);
       ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.STONEPETAL.getId(), () -> ModBlocks.POTTED_STONEPETAL.get());
+      ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.UNCANNY_MUSHROOM.getId(), () -> ModBlocks.POTTED_UNCANNY_MUSHROOM.get());
 
       ConfiguredFeatures.REGISTRY.registration();
       ConfiguredStructures.REGISTRY.registration();

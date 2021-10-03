@@ -6,7 +6,6 @@ import mysticmods.mysticalworld.entity.model.ModelHolder;
 import mysticmods.mysticalworld.entity.render.*;
 import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModEntities;
-import mysticmods.mysticalworld.entity.render.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -37,6 +36,7 @@ public class ClientSetup {
       RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.STONEPETAL.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_STONEPETAL.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_UNCANNY_MUSHROOM.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.WILD_WART.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.ANYWHERE_BROWN_MUSHROOM.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.ANYWHERE_RED_MUSHROOM.get(), rendertype);

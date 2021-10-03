@@ -244,8 +244,8 @@ public class ModBlocks {
       })
       .register();
 
-  public static BlockEntry<AnywhereMushroomBlock> UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("uncanny_mushroom", Material.PLANT, AnywhereMushroomBlock::new)
-      .properties(o -> o.noCollission().randomTicks().instabreak().sound(SoundType.GRASS).lightLevel((state) -> 6).hasPostProcess((a, b, c) -> true))
+  public static BlockEntry<UncannyMushroomBlock> UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("uncanny_mushroom", Material.PLANT, UncannyMushroomBlock::new)
+      .properties(o -> o.noCollission().randomTicks().instabreak().sound(SoundType.GRASS).lightLevel((state) -> 9).hasPostProcess((a, b, c) -> true))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ModBlocks.UNCANNY_MUSHROOM.get())))))
       .item()
       .model(ModBlocks::generated)
@@ -261,6 +261,11 @@ public class ModBlocks {
   public static BlockEntry<FlowerPotBlock> POTTED_STONEPETAL = MysticalWorld.REGISTRATE.block("potted_stonepetal", Material.DECORATION, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.STONEPETAL, AbstractBlock.Properties.copy(Blocks.OAK_SAPLING)))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/stonepetal")))
       .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.STONEPETAL.get())))
+      .register();
+
+  public static BlockEntry<FlowerPotBlock> POTTED_UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("potted_uncanny_mushroom", Material.DECORATION, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.UNCANNY_MUSHROOM, AbstractBlock.Properties.copy(Blocks.OAK_SAPLING)))
+      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/uncanny_mushroom")))
+      .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.UNCANNY_MUSHROOM.get())))
       .register();
 
   private static NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.strength(1f).sound(SoundType.GRASS);
@@ -406,7 +411,7 @@ public class ModBlocks {
       .register();
 
   public static BlockEntry<HugeMushroomBlock> UNCANNY_MUSHROOM_BLOCK = MysticalWorld.REGISTRATE.block("uncanny_mushroom_block", Material.WOOD, HugeMushroomBlock::new)
-      .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 4))
+      .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 8))
       .loot((ctx, p) -> {
         ctx.add(p, RegistrateBlockLootTables.droppingItemRarely(p, ModBlocks.UNCANNY_MUSHROOM.get()));
       })
@@ -434,7 +439,7 @@ public class ModBlocks {
       .register();
 
   public static BlockEntry<Block> UNCANNY_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("uncanny_mushroom_full", Material.WOOD, Block::new)
-      .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 4))
+      .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 8))
       .blockstate((ctx, p) -> {
         p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), p.blockTexture(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get())));
       })
