@@ -31,6 +31,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -348,6 +350,10 @@ public class EnderminiEntity extends CreatureEntity {
     CARRIABLE_BLOCKS.add(Blocks.MELON);
     CARRIABLE_BLOCKS.add(Blocks.MYCELIUM);
     CARRIABLE_BLOCKS.add(Blocks.NETHERRACK);
+  }
+
+  public static boolean checkMonsterSpawnRules(EntityType<EnderminiEntity> pType, IServerWorld pLevel, SpawnReason pReason, BlockPos pPos, Random pRandom) {
+    return checkMobSpawnRules(pType, pLevel, pReason, pPos, pRandom);
   }
 
   static class FindPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
