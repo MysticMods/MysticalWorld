@@ -79,6 +79,13 @@ public class DuckModel extends AgeableModel<DuckEntity> {
 
   @Override
   public void setupAnim(DuckEntity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    if (pEntity.isInWater()) {
+      this.leg_L.visible = false;
+      this.leg_R.visible = false;
+    } else {
+      this.leg_L.visible = true;
+      this.leg_R.visible = true;
+    }
     this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
     this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
     // TODO: CHECK THESE

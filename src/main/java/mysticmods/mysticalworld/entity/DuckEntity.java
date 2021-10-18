@@ -101,6 +101,6 @@ public class DuckEntity extends AnimalEntity {
 
   @Override
   protected void jumpInLiquid(ITag<Fluid> pFluidTag) {
-    this.setDeltaMovement(this.getDeltaMovement().add(0, this.getNavigation().canFloat() ? 0.039 : 0.3, 0.0));
+    this.setDeltaMovement(this.getDeltaMovement().add(0, this.getNavigation().canFloat() ? 0.039 : 0.2, 0.0));
   }
 }

@@ -41,6 +41,9 @@ public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel> {
 
   @Override
   protected float getBob(DuckEntity pLivingBase, float pPartialTicks) {
+    if (pLivingBase.isInWater()) {
+      return 0f;
+    }
     float f = MathHelper.lerp(pPartialTicks, pLivingBase.oFlap, pLivingBase.flap);
     float f1 = MathHelper.lerp(pPartialTicks, pLivingBase.oFlapSpeed, pLivingBase.flapSpeed);
     return (MathHelper.sin(f) + 1.0F) * f1;
