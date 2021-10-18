@@ -2,6 +2,7 @@ package mysticmods.mysticalworld.entity;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
+import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -16,11 +17,13 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.EnumSet;
 
 import net.minecraft.entity.ai.goal.Goal.Flag;
@@ -92,6 +95,15 @@ public class FrogEntity extends AnimalEntity {
     } else {
       offGround = 0;
     }
+  }
+
+  @Nullable
+  @Override
+  protected SoundEvent getAmbientSound() {
+    if (random.nextInt(6) == 0) {
+      return ModSounds.FROG_AMBIENT.get();
+    }
+    return null;
   }
 
   public float getOffGround(float pTicks) {

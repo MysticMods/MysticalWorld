@@ -4,6 +4,7 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.events.LeafHandler;
 import mysticmods.mysticalworld.init.ModItems;
+import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -100,7 +101,7 @@ public class SilkwormEntity extends AnimalEntity {
     }
     this.heal(1f);
     if (shouldPlaySound()) {
-      level.playSound(null, getX(), getY(), getZ(), SoundEvents.LLAMA_EAT, SoundCategory.NEUTRAL, 0.5f, 1.2f + random.nextFloat() * 0.02f);
+      level.playSound(null, getX(), getY(), getZ(), ModSounds.SILKWORM_EAT.get(), SoundCategory.NEUTRAL, 0.5f, 1.2f + random.nextFloat() * 0.02f);
       lastTickPlayed = tickCount;
     }
   }
@@ -155,7 +156,7 @@ public class SilkwormEntity extends AnimalEntity {
   @Override
   protected SoundEvent getAmbientSound() {
     if (level.random.nextInt(4) == 0) {
-      return net.minecraft.util.SoundEvents.ENDERMITE_AMBIENT;
+      return ModSounds.SILKWORM_AMBIENT.get();
     }
 
     return null;
@@ -163,17 +164,17 @@ public class SilkwormEntity extends AnimalEntity {
 
   @Override
   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-    return net.minecraft.util.SoundEvents.ENDERMITE_HURT;
+    return ModSounds.SILKWORM_HURT.get();
   }
 
   @Override
   protected SoundEvent getDeathSound() {
-    return net.minecraft.util.SoundEvents.ENDERMITE_DEATH;
+    return ModSounds.SILKWORM_DEATH.get();
   }
 
   @Override
   protected void playStepSound(BlockPos pos, BlockState state) {
-    this.playSound(net.minecraft.util.SoundEvents.ENDERMITE_STEP, 0.15F, 1.3F + (level.random.nextFloat() - 0.5f));
+    this.playSound(ModSounds.SILKWORM_STEP.get(), 0.15F, 1.3F + (level.random.nextFloat() - 0.5f));
   }
 
   @Override
@@ -254,7 +255,7 @@ public class SilkwormEntity extends AnimalEntity {
         int quantity = Math.max(1, Math.min(5, (random.nextInt(Math.max(getLeavesConsumed() % 8, 1)))));
         this.spawnAtLocation(ModItems.SILK_COCOON.get(), quantity);
         this.resetLeaves();
-        level.playSound(null, getX(), getY(), getZ(), net.minecraft.util.SoundEvents.CHICKEN_EGG, SoundCategory.NEUTRAL, 0.5f, 1.2f + random.nextFloat() - 0.5f);
+        level.playSound(null, getX(), getY(), getZ(), ModSounds.SILKWORM_PLOP.get(), SoundCategory.NEUTRAL, 0.5f, 1.2f + random.nextFloat() - 0.5f);
       }
     } else {
       incSize();

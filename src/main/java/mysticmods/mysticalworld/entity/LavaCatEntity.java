@@ -2,6 +2,7 @@ package mysticmods.mysticalworld.entity;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
+import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -115,9 +116,9 @@ public class LavaCatEntity extends TameableEntity {
   protected SoundEvent getAmbientSound() {
     if (this.isTame()) {
       if (this.isInLove()) {
-        return SoundEvents.CAT_PURR;
+        return ModSounds.LAVA_CAT_PURR.get();
       } else {
-        return this.random.nextInt(4) == 0 ? SoundEvents.CAT_PURREOW : SoundEvents.CAT_AMBIENT;
+        return this.random.nextInt(4) == 0 ? ModSounds.LAVA_CAT_PURREOW.get() : ModSounds.LAVA_CAT_AMBIENT.get();
       }
     } else {
       return null;
@@ -126,12 +127,12 @@ public class LavaCatEntity extends TameableEntity {
 
   @Override
   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-    return net.minecraft.util.SoundEvents.CAT_HURT;
+    return ModSounds.LAVA_CAT_HURT.get();
   }
 
   @Override
   protected SoundEvent getDeathSound() {
-    return SoundEvents.CAT_DEATH;
+    return ModSounds.LAVA_CAT_DEATH.get();
   }
 
   @Override
@@ -353,7 +354,7 @@ public class LavaCatEntity extends TameableEntity {
     super.tick();
 
     if (getIsLava() && level.isRainingAt(blockPosition()) && level.canSeeSkyFromBelowWater(blockPosition()) && random.nextInt(30) == 0) {
-      level.playSound(null, getX(), getY(), getZ(), SoundEvents.LAVA_EXTINGUISH, SoundCategory.NEUTRAL, 0.2f, 1.3f);
+      level.playSound(null, getX(), getY(), getZ(), ModSounds.LAVA_CAT_SIZZLE.get(), SoundCategory.NEUTRAL, 0.2f, 1.3f);
     }
 
     if (getIsLava() && wasTouchingWater) {

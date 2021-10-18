@@ -35,3 +35,7 @@ Many thanks to the following people who have donated their time for translating 
 # Additional thanks
 
 Thanks a huge amount to Vadis and SmellyModder for helping with the animation and posing of Foxes and Owls.
+
+# Sounds
+
+Credit goes to [egomassive's Frog.ogg](https://freesound.org/people/egomassive/sounds/536759/) as the basis of the frog sounds.

@@ -2,6 +2,7 @@ package mysticmods.mysticalworld.events;
 
 import mysticmods.mysticalworld.capability.AnimalCooldownCapabilityProvider;
 import mysticmods.mysticalworld.init.ModItems;
+import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -66,7 +67,7 @@ public class CapabilityHandler {
           event.getTarget().getCapability(AnimalCooldownCapabilityProvider.ANIMAL_COOLDOWN_CAPABILITY).ifPresent(cap -> {
             if (cap.canHarvest()) {
               cap.setCooldown(20 * 15);
-              event.getWorld().playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.COW_MILK, SoundCategory.PLAYERS, 0.5F, event.getWorld().random.nextFloat() * 0.25F + 0.6F, true);
+              event.getWorld().playLocalSound(player.getX(), player.getY(), player.getZ(), ModSounds.SQUID_MILK.get(), SoundCategory.PLAYERS, 0.5F, event.getWorld().random.nextFloat() * 0.25F + 0.6F, true);
               if (!player.isCreative()) {
                 heldItem.shrink(1);
               }
