@@ -21,10 +21,6 @@ public class MobConfig extends AbstractConfig {
   protected ForgeConfigSpec.IntValue configMax;
   protected ForgeConfigSpec.ConfigValue<String> configBiomes;
 
-  private int cachedChance = -9999;
-  private int cachedMin = -9999;
-  private int cachedMax = -9999;
-
   public MobConfig(String name, int chance, int min, int max, List<String> biomes) {
     this(name, chance, min, max, biomes, BiomeDictionary.Type.OVERWORLD);
   }
@@ -44,24 +40,15 @@ public class MobConfig extends AbstractConfig {
   }
 
   public int getChance() {
-    if (cachedChance == -9999) {
-      cachedChance = configChance.get();
-    }
-    return cachedChance;
+    return configChance.get();
   }
 
   public int getMin() {
-    if (cachedMin == -9999) {
-      cachedMin = configMin.get();
-    }
-    return cachedMin;
+    return configMin.get();
   }
 
   public int getMax() {
-    if (cachedMax == -9999) {
-      cachedMax = configMax.get();
-    }
-    return cachedMax;
+    return configMax.get();
   }
 
   private List<BiomeDictionary.Type> cachedBiomes = null;
@@ -109,8 +96,5 @@ public class MobConfig extends AbstractConfig {
   @Override
   public void reset() {
     cachedBiomes = null;
-    cachedChance = -9999;
-    cachedMin = -9999;
-    cachedMax = -9999;
   }
 }

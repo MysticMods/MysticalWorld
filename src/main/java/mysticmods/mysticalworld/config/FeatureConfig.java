@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public abstract class FeatureConfig<T extends FeatureConfig> extends AbstractConfig {
+public abstract class FeatureConfig<T extends FeatureConfig<T>> extends AbstractConfig {
   // TODO: Caching
 
   protected List<BiomeDictionary.Type> biomes;

@@ -40,6 +40,7 @@ public class ConfigManager {
   public static StructureConfig HUT_CONFIG;
   public static StructureConfig BARROW_CONFIG;
   public static ForgeConfigSpec.BooleanValue SEED_INJECTION;
+  public static MobConfig DUCK_CONFIG;
 
   public static List<AbstractConfig> CONFIGS = new ArrayList<>();
 
@@ -112,6 +113,7 @@ public class ConfigManager {
     OWL_CONFIG = new MobConfig("Owl", 9, 1, 3, Arrays.asList("taiga", "extreme_hills", "forest", "icy"));
     LAVA_CAT_CONFIG = new MobConfig("Lava Cat", 2, 1, 1, Collections.singletonList("nether"), BiomeDictionary.Type.NETHER); // test
     SILKWORM_CONFIG = new SilkwormConfig(true, 65, 1, 68);
+    DUCK_CONFIG = new MobConfig("Duck", 5, 1, 4, Arrays.asList("wet", "swamp", "river", "beach"));
     HAT_CONFIG = new HatConfig();
 
     DEER_CONFIG.apply(COMMON_BUILDER);
@@ -124,6 +126,7 @@ public class ConfigManager {
     OWL_CONFIG.apply(COMMON_BUILDER);
     LAVA_CAT_CONFIG.apply(COMMON_BUILDER);
     SILKWORM_CONFIG.apply(COMMON_BUILDER);
+    DUCK_CONFIG.apply(COMMON_BUILDER);
   }
 
   public static void loadConfig(ForgeConfigSpec spec, Path path) {

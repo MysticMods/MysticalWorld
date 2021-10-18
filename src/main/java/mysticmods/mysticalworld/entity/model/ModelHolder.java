@@ -15,6 +15,7 @@ public class ModelHolder {
   public static LavaCatModel lavaCatModel;
   public static OwlModel owlModel;
   public static SilkwormModel silkwormModel;
+  public static DuckModel duckModel;
 
   public static BeetleMaskModel beetleMaskModel;
   public static AntlerHatModel antlerHatModel;
@@ -32,5 +33,6 @@ public class ModelHolder {
     silkwormModel = new SilkwormModel();
     beetleMaskModel = new BeetleMaskModel();
     antlerHatModel = new AntlerHatModel();
+    duckModel = new DuckModel();
   }
 }
