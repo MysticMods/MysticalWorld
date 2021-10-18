@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mysticalworld:skeleton_bottom_2"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:skeleton_bottom_3"
+  }
+}

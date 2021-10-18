@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mysticalworld:block/skeleton_top4"
+    },
+    "facing=south": {
+      "model": "mysticalworld:block/skeleton_top4",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mysticalworld:block/skeleton_top4",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "mysticalworld:block/skeleton_top4",
+      "y": 90
+    }
+  }
+}

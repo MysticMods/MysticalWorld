@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BB",
+    "BB",
+    "BB"
+  ],
+  "key": {
+    "B": {
+      "tag": "forge:bones"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:bone_pile_1"
+  }
+}
