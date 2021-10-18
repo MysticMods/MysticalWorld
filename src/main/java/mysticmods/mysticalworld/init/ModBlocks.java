@@ -2741,6 +2741,7 @@ public class ModBlocks {
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
               ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/skeleton_top4"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
+
           )
       )
       .lang("Skeletal Remains")

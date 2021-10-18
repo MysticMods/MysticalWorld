@@ -1,8 +1,6 @@
 package mysticmods.mysticalworld.entity.model;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import mysticmods.mysticalworld.entity.DuckEntity;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -79,6 +77,11 @@ public class DuckModel extends AgeableModel<DuckEntity> {
 
   @Override
   public void setupAnim(DuckEntity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    boolean vallen = false;
+    if (pEntity.hasCustomName() && pEntity.getCustomName() != null && (pEntity.getCustomName().getString().equals("Vallen") || pEntity.getCustomName().getString().equals("VallenFrostweavr"))) {
+      vallen = true;
+    }
+
     if (pEntity.isInWater()) {
       this.leg_L.visible = false;
       this.leg_R.visible = false;
@@ -93,6 +96,12 @@ public class DuckModel extends AgeableModel<DuckEntity> {
     this.leg_R.xRot = MathHelper.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.4F * pLimbSwingAmount;
     this.wing_L.zRot = pAgeInTicks;
     this.wing_R.zRot = -pAgeInTicks;
+
+    if (vallen) {
+      this.main.xRot = ((float) Math.PI / 2F);
+    } else {
+      this.main.xRot = 0;
+    }
   }
 
   public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
