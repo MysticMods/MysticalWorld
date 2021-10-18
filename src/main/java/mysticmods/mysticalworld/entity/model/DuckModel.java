@@ -81,12 +81,11 @@ public class DuckModel extends AgeableModel<DuckEntity> {
   public void setupAnim(DuckEntity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
     this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
     this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
-    //this.main.xRot = ((float)Math.PI / 2F);
     // TODO: CHECK THESE
-    this.leg_R.xRot = MathHelper.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
-    this.leg_L.xRot = MathHelper.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.4F * pLimbSwingAmount;
-    this.wing_R.zRot = pAgeInTicks;
-    this.wing_L.zRot = -pAgeInTicks;
+    this.leg_L.xRot = MathHelper.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
+    this.leg_R.xRot = MathHelper.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.4F * pLimbSwingAmount;
+    this.wing_L.zRot = pAgeInTicks;
+    this.wing_R.zRot = -pAgeInTicks;
   }
 
   public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

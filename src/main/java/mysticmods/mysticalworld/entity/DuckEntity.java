@@ -51,7 +51,7 @@ public class DuckEntity extends AnimalEntity {
   @Nullable
   @Override
   public AgeableEntity getBreedOffspring(ServerWorld level, AgeableEntity parent) {
-    return ModEntities.BEETLE.get().create(level);
+    return ModEntities.DUCK.get().create(level);
   }
 
   @Override
@@ -81,7 +81,7 @@ public class DuckEntity extends AnimalEntity {
     this.oFlapSpeed = this.flapSpeed;
     this.flapSpeed = (float)((double)this.flapSpeed + (double)(this.onGround ? -1 : 4) * 0.3D);
     this.flapSpeed = MathHelper.clamp(this.flapSpeed, 0.0F, 1.0F);
-    if (!this.onGround && this.flapping < 1.0F) {
+    if (!this.isInWater() && !this.onGround && this.flapping < 1.0F) {
       this.flapping = 1.0F;
     }
 
