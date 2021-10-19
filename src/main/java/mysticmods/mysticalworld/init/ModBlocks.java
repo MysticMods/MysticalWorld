@@ -2561,7 +2561,7 @@ public class ModBlocks {
       .blockstate(narrowPost(ModBlocks.PEARL_BLOCK))
       .register();
 
-  public static BlockEntry<BonesBlock> BONE_PILE_1 = MysticalWorld.REGISTRATE.block("bone_pile_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE, 0))
+  public static BlockEntry<BonesBlock> BONE_PILE_1 = MysticalWorld.REGISTRATE.block("bone_pile_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
@@ -2584,7 +2584,7 @@ public class ModBlocks {
       })
       .register();
 
-  public static BlockEntry<BonesBlock> BONE_PILE_2 = MysticalWorld.REGISTRATE.block("bone_pile_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE, 1))
+  public static BlockEntry<BonesBlock> BONE_PILE_2 = MysticalWorld.REGISTRATE.block("bone_pile_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .lang("Bone Pile")
       .blockstate((ctx, p) ->
@@ -2598,7 +2598,7 @@ public class ModBlocks {
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_1.get()).unlockedBy("has_bone_pile_1", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_1.get())).save(p))
       .register();
 
-  public static BlockEntry<BonesBlock> BONE_PILE_3 = MysticalWorld.REGISTRATE.block("bone_pile_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE, 2))
+  public static BlockEntry<BonesBlock> BONE_PILE_3 = MysticalWorld.REGISTRATE.block("bone_pile_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .lang("Bone Pile")
       .blockstate((ctx, p) ->
@@ -2612,7 +2612,7 @@ public class ModBlocks {
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_2.get()).unlockedBy("has_bone_pile_2", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_2.get())).save(p))
       .register();
 
-  public static BlockEntry<BonesBlock> BONE_PILE_4 = MysticalWorld.REGISTRATE.block("bone_pile_4", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE, 2))
+  public static BlockEntry<BonesBlock> BONE_PILE_4 = MysticalWorld.REGISTRATE.block("bone_pile_4", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .lang("Bone Pile")
       .blockstate((ctx, p) ->
@@ -2626,7 +2626,7 @@ public class ModBlocks {
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_3.get()).unlockedBy("has_bone_pile_3", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_3.get())).save(p))
       .register();
 
-  public static BlockEntry<BonesBlock> SKELETON_BOTTOM_1 = MysticalWorld.REGISTRATE.block("skeleton_bottom_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM, 0))
+  public static BlockEntry<BonesBlock> SKELETON_BOTTOM_1 = MysticalWorld.REGISTRATE.block("skeleton_bottom_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
@@ -2649,7 +2649,7 @@ public class ModBlocks {
       })
       .register();
 
-  public static BlockEntry<BonesBlock> SKELETON_BOTTOM_2 = MysticalWorld.REGISTRATE.block("skeleton_bottom_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM, 0))
+  public static BlockEntry<BonesBlock> SKELETON_BOTTOM_2 = MysticalWorld.REGISTRATE.block("skeleton_bottom_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
@@ -2665,7 +2665,7 @@ public class ModBlocks {
       )
       .register();
 
-  public static BlockEntry<BonesBlock> SKELETON_BOTTOM_3 = MysticalWorld.REGISTRATE.block("skeleton_bottom_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM, 2))
+  public static BlockEntry<BonesBlock> SKELETON_BOTTOM_3 = MysticalWorld.REGISTRATE.block("skeleton_bottom_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
@@ -2681,7 +2681,7 @@ public class ModBlocks {
       )
       .register();
 
-  public static BlockEntry<BonesBlock> SKELETON_TOP_1 = MysticalWorld.REGISTRATE.block("skeleton_top_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP, 0))
+  public static BlockEntry<BonesBlock> SKELETON_TOP_1 = MysticalWorld.REGISTRATE.block("skeleton_top_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
@@ -2704,7 +2704,7 @@ public class ModBlocks {
       })
       .register();
 
-  public static BlockEntry<BonesBlock> SKELETON_TOP_2 = MysticalWorld.REGISTRATE.block("skeleton_top_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP, 0))
+  public static BlockEntry<BonesBlock> SKELETON_TOP_2 = MysticalWorld.REGISTRATE.block("skeleton_top_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
@@ -2720,7 +2720,7 @@ public class ModBlocks {
       )
       .register();
 
-  public static BlockEntry<BonesBlock> SKELETON_TOP_3 = MysticalWorld.REGISTRATE.block("skeleton_top_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP, 2))
+  public static BlockEntry<BonesBlock> SKELETON_TOP_3 = MysticalWorld.REGISTRATE.block("skeleton_top_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
@@ -2736,7 +2736,7 @@ public class ModBlocks {
       )
       .register();
 
-  public static BlockEntry<BonesBlock> SKELETON_TOP_4 = MysticalWorld.REGISTRATE.block("skeleton_top_4", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP, 2))
+  public static BlockEntry<BonesBlock> SKELETON_TOP_4 = MysticalWorld.REGISTRATE.block("skeleton_top_4", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
       .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
