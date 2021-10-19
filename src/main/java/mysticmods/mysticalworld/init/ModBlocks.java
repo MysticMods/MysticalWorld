@@ -14,22 +14,27 @@ import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.blocks.*;
+import net.minecraft.advancements.criterion.EnchantmentPredicate;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.data.SingleItemRecipeBuilder;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.loot.ItemLootEntry;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.RandomValueRange;
+import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.BlockStateProperty;
+import net.minecraft.loot.conditions.ILootCondition;
+import net.minecraft.loot.conditions.MatchTool;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -59,7 +64,7 @@ public class ModBlocks {
     return init[0] + "_" + init[1] + init[2];
   }
 
-  public static <T extends Item> ItemModelBuilder boneModel (DataGenContext<Item, T> ctx, RegistrateItemModelProvider p) {
+  public static <T extends Item> ItemModelBuilder boneModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider p) {
     return p.withExistingParent(name(ctx.getEntry()), new ResourceLocation(MysticalWorld.MODID, "block/" + boneName(ctx.get())));
   }
 
@@ -187,6 +192,15 @@ public class ModBlocks {
     };
   }
 
+  private static final ILootCondition.IBuilder HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))));
+
+
+  public static <T extends Block> NonNullBiConsumer<RegistrateBlockLootTables, T> boneLoot() {
+    return (t, p) -> {
+      t.add(p, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(p).when(HAS_SILK_TOUCH).otherwise(ItemLootEntry.lootTableItem(Items.BONE).apply(SetCount.setCount(RandomValueRange.between(1, 4)))))));
+    };
+  }
+
   public static BlockEntry<UncannyGravelBlock> UNCANNY_GRAVEL = MysticalWorld.REGISTRATE.block("uncanny_gravel", Material.SAND, UncannyGravelBlock::new).properties(o -> o.strength(0.6f).sound(SoundType.GRAVEL))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.UNCANNY_GRAVEL))
@@ -229,7 +243,7 @@ public class ModBlocks {
       .properties(o -> o.noCollission().instabreak().sound(SoundType.GRASS))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ctx.getEntry())))))
       .item()
-      .model((ctx, p) -> generated(ctx, p))
+      .model(ModBlocks::generated)
       .tag(ItemTags.FLOWERS)
       .build()
       .tag(BlockTags.FLOWERS)
@@ -2550,6 +2564,7 @@ public class ModBlocks {
       .blockstate(widePost(ModBlocks.PEARL_BLOCK))
       .register();
 
+
   public static BlockEntry<BaseBlocks.NarrowPostBlock> PEARL_SMALL_POST = MysticalWorld.REGISTRATE.block("pearl_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
       .properties(PEARL_PROPS)
       .item()
@@ -2561,8 +2576,10 @@ public class ModBlocks {
       .blockstate(narrowPost(ModBlocks.PEARL_BLOCK))
       .register();
 
+  protected static NonNullUnaryOperator<AbstractBlock.Properties> BONE_PROPS = (o) -> AbstractBlock.Properties.of(Material.STONE, MaterialColor.SAND).strength(0.2F).sound(SoundType.BONE_BLOCK);
+
   public static BlockEntry<BonesBlock> BONE_PILE_1 = MysticalWorld.REGISTRATE.block("bone_pile_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
               ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/bone_pile1"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
@@ -2582,10 +2599,11 @@ public class ModBlocks {
             .save(p);
         ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_4.get()).unlockedBy("has_bone_pile_4", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_4.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "bone_pile_1_from_bone_pile_4"));
       })
+      .loot(boneLoot())
       .register();
 
   public static BlockEntry<BonesBlock> BONE_PILE_2 = MysticalWorld.REGISTRATE.block("bone_pile_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .lang("Bone Pile")
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
@@ -2596,10 +2614,11 @@ public class ModBlocks {
       .model(ModBlocks::boneModel)
       .build()
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_1.get()).unlockedBy("has_bone_pile_1", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_1.get())).save(p))
+      .loot(boneLoot())
       .register();
 
   public static BlockEntry<BonesBlock> BONE_PILE_3 = MysticalWorld.REGISTRATE.block("bone_pile_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .lang("Bone Pile")
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
@@ -2610,10 +2629,11 @@ public class ModBlocks {
       .model(ModBlocks::boneModel)
       .build()
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_2.get()).unlockedBy("has_bone_pile_2", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_2.get())).save(p))
+      .loot(boneLoot())
       .register();
 
   public static BlockEntry<BonesBlock> BONE_PILE_4 = MysticalWorld.REGISTRATE.block("bone_pile_4", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .lang("Bone Pile")
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
@@ -2624,10 +2644,11 @@ public class ModBlocks {
       .model(ModBlocks::boneModel)
       .build()
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_3.get()).unlockedBy("has_bone_pile_3", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_3.get())).save(p))
+      .loot(boneLoot())
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_BOTTOM_1 = MysticalWorld.REGISTRATE.block("skeleton_bottom_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
               ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/skeleton_bottom1"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
@@ -2647,10 +2668,11 @@ public class ModBlocks {
             .save(p);
         ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_3.get()).unlockedBy("has_skeleton_bottom_3", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_BOTTOM_3.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "skeleton_bottom_1_from_skeleton_bottom_4"));
       })
+      .loot(boneLoot())
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_BOTTOM_2 = MysticalWorld.REGISTRATE.block("skeleton_bottom_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
               ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/skeleton_bottom2"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
@@ -2661,12 +2683,13 @@ public class ModBlocks {
       .model(ModBlocks::boneModel)
       .build()
       .recipe((ctx, p) ->
-        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_1.get()).unlockedBy("has_skeleton_bottom_1", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_BOTTOM_1.get())).save(p)
+          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_1.get()).unlockedBy("has_skeleton_bottom_1", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_BOTTOM_1.get())).save(p)
       )
+      .loot(boneLoot())
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_BOTTOM_3 = MysticalWorld.REGISTRATE.block("skeleton_bottom_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
               ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/skeleton_bottom3"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
@@ -2679,10 +2702,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_2.get()).unlockedBy("has_skeleton_bottom_2", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_BOTTOM_2.get())).save(p)
       )
+      .loot(boneLoot())
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_TOP_1 = MysticalWorld.REGISTRATE.block("skeleton_top_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
               ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/skeleton_top1"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
@@ -2702,10 +2726,11 @@ public class ModBlocks {
             .save(p);
         ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_4.get()).unlockedBy("has_skeleton_top_4", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_TOP_4.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "skeleton_top_1_from_skeleton_top_4"));
       })
+      .loot(boneLoot())
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_TOP_2 = MysticalWorld.REGISTRATE.block("skeleton_top_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
               ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/skeleton_top2"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
@@ -2718,10 +2743,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_1.get()).unlockedBy("has_skeleton_top_1", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_TOP_1.get())).save(p)
       )
+      .loot(boneLoot())
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_TOP_3 = MysticalWorld.REGISTRATE.block("skeleton_top_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
               ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/skeleton_top3"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
@@ -2734,10 +2760,11 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_2.get()).unlockedBy("has_skeleton_top_2", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_TOP_2.get())).save(p)
       )
+      .loot(boneLoot())
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_TOP_4 = MysticalWorld.REGISTRATE.block("skeleton_top_4", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
-      .properties(o -> AbstractBlock.Properties.copy(Blocks.BONE_BLOCK))
+      .properties(BONE_PROPS)
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
               ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/skeleton_top4"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
@@ -2751,6 +2778,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_3.get()).unlockedBy("has_skeleton_top_3", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_TOP_3.get())).save(p)
       )
+      .loot(boneLoot())
       .register();
 
   public static void load() {

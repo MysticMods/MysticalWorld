@@ -5,13 +5,42 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "mysticalworld:skeleton_bottom_3"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": "mysticalworld:skeleton_bottom_3"
+            },
+            {
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "min": 1.0,
+                    "max": 4.0,
+                    "type": "minecraft:uniform"
+                  }
+                }
+              ],
+              "name": "minecraft:bone"
+            }
+          ]
         }
       ]
     }
