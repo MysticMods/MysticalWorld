@@ -18,6 +18,7 @@ import noobanidus.libs.noobutil.util.VoxelUtil;
 import javax.annotation.Nullable;
 
 public class BonesBlock extends HorizontalBlock {
+  // TODO: Just make these into blocks
   private static final VoxelShape[] bone_pile_south_shapes = new VoxelShape[]{
       VoxelUtil.multiOr(Block.box(9, 0, 5, 11, 12, 7), Block.box(5, 0, 5, 7, 12, 7), Block.box(4, 0, 4, 12, 7, 5), Block.box(4, 0, 5, 12, 1, 12), Block.box(6, 7, 4, 10, 8, 5), Block.box(6, 5, 11, 10, 6, 12), Block.box(5, 4, 11, 11, 5, 12), Block.box(5, 1, 11, 11, 2, 12), Block.box(7, 2, 11, 9, 4, 12), Block.box(4, 1, 5, 5, 4, 12), Block.box(11, 1, 5, 12, 4, 12), Block.box(7, 4, 10, 9, 9, 11), Block.box(9, 8, 10, 12, 9, 11), Block.box(9, 8, 7, 11, 9, 8), Block.box(5, 8, 7, 7, 9, 8), Block.box(10, 6, 7, 11, 7, 8), Block.box(5, 6, 7, 6, 7, 8), Block.box(11, 8, 7, 12, 9, 10), Block.box(4, 8, 7, 5, 9, 10), Block.box(11, 6, 7, 12, 7, 10), Block.box(4, 6, 7, 5, 7, 10), Block.box(11, 4, 8, 12, 5, 10), Block.box(4, 4, 8, 5, 5, 10), Block.box(9, 6, 10, 12, 7, 11), Block.box(9, 4, 10, 12, 5, 11), Block.box(4, 8, 10, 7, 9, 11), Block.box(4, 4, 10, 7, 5, 11), Block.box(4, 6, 10, 7, 7, 11), Block.box(12, 9, 7, 14, 10, 9)),
       VoxelUtil.multiOr(Block.box(-2, 0, 8, 10, 2, 10), Block.box(6, 0, 2, 8, 2, 14), Block.box(10, 2, 2, 12, 4, 14), Block.box(10, 0, 0, 12, 2, 12), Block.box(3, 0, 4, 5, 1, 6)),
@@ -191,14 +192,8 @@ public class BonesBlock extends HorizontalBlock {
 
   @Nullable
   @Override
-  public BlockState getStateForPlacement(BlockItemUseContext context) {
-    // TODO: Maybe not this
-    Direction facing = context.getClickedFace();
-    if (!facing.getAxis().isHorizontal()) {
-      facing = Direction.NORTH;
-    }
-
-    return this.defaultBlockState().setValue(FACING, facing.getOpposite());
+  public BlockState getStateForPlacement(BlockItemUseContext pContext) {
+    return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
   }
 
   public enum BoneType {

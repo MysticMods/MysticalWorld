@@ -316,5 +316,15 @@
       "mysticalworld:frog/croak4"
     ],
     "subtitle": "mysticalworld.subtitles.entity.frog.croak"
-  }
+  },
+  "mob.duck.quack": {
+    "category": "neutral",
+    "sounds": [
+      "mysticalworld:duck/duck1",
+      "mysticalworld:duck/duck2",
+      "mysticalworld:duck/duck3",
+      "mysticalworld:duck/duck4"
+    ],
+    "subtitle": "mysticalworld.subtitles.entity.frog.quack"
+  }  
 }

@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"0": "block/bone_block_top",
 		"particle": "block/bone_block_top",
