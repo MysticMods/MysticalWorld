@@ -2,6 +2,7 @@ package mysticmods.mysticalworld.entity;
 
 import mysticmods.mysticalworld.entity.ai.DuckSwimGoal;
 import mysticmods.mysticalworld.init.ModEntities;
+import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -16,6 +17,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.tags.ITag;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -75,6 +77,7 @@ public class DuckEntity extends AnimalEntity {
     return BREEDING_INGREDIENT.test(pStack);
   }
 
+  @Override
   public void aiStep() {
     super.aiStep();
     this.oFlap = this.flap;
@@ -102,5 +105,19 @@ public class DuckEntity extends AnimalEntity {
   @Override
   protected void jumpInLiquid(ITag<Fluid> pFluidTag) {
     this.setDeltaMovement(this.getDeltaMovement().add(0, this.getNavigation().canFloat() ? 0.039 : 0.2, 0.0));
+  }
+
+  @Nullable
+  @Override
+  protected SoundEvent getAmbientSound() {
+    if (random.nextInt(9) == 0) {
+      return ModSounds.DUCK_AMBIENT.get();
+    }
+    return null;
+  }
+
+  @Override
+  protected SoundEvent getSwimSound() {
+    return ModSounds.DUCK_SWIM.get();
   }
 }

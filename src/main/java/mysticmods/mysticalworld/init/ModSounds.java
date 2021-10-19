@@ -56,6 +56,10 @@ public class ModSounds {
   public static final RegistryEntry<SoundEvent> UNRIPE_PEARL_USE = MysticalWorld.REGISTRATE.soundEvent("item.unripe_pearl.use").register();
   public static final RegistryEntry<SoundEvent> PEARLEPORTER_USE = MysticalWorld.REGISTRATE.soundEvent("item.pearleporter.use").register();
 
+  // Duck
+  public static final RegistryEntry<SoundEvent> DUCK_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.duck.quack").register();
+  public static final RegistryEntry<SoundEvent> DUCK_SWIM = MysticalWorld.REGISTRATE.soundEvent("mob.duck.swim").register();
+
   public static void load() {
   }
 }

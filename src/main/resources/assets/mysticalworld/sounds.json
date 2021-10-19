@@ -325,6 +325,12 @@
       "mysticalworld:duck/duck3",
       "mysticalworld:duck/duck4"
     ],
-    "subtitle": "mysticalworld.subtitles.entity.frog.quack"
-  }  
+    "subtitle": "mysticalworld.subtitles.entity.duck.quack"
+  }  ,
+  "mob.duck.swim": {
+    "category": "neutral",
+    "sounds": [
+      "mysticalworld:duck/swim"
+    ]
+  }
 }

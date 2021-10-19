@@ -70,6 +70,7 @@ public class ModLang {
       p.add("mysticalworld.subtitles.entity.silkworm.step", "Silkworm walks");
       p.add("mysticalworld.subtitles.entity.silkworm.eat", "Silkworm eats");
       p.add("mysticalworld.subtitles.entity.frog.croak", "Frog croaks");
+      p.add("mysticalworld.subtitles.entity.duck.quack", "Duck quacks");
     });
   }
 

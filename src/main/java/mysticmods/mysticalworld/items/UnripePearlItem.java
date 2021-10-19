@@ -33,7 +33,7 @@ public class UnripePearlItem extends Item {
         counter++;
       } while (!flag && counter != 15);
       if (flag) {
-        player.level.playSound(null, player.xo, player.yo, player.zo, ModSounds.ENDERMINI_PORTAL.get(), player.getSoundSource(), 1.0F, 1.0F);
+        player.level.playSound(null, player.xo, player.yo, player.zo, ModSounds.UNRIPE_PEARL_USE.get(), player.getSoundSource(), 1.0F, 1.0F);
         player.playSound(ModSounds.ENDERMINI_PORTAL.get(), 1.0F, 1.0F);
         player.getCooldowns().addCooldown(this, 20);
         if (!player.isCreative()) {
