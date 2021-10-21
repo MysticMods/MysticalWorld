@@ -1,7 +1,7 @@
 {
   "name": "Bones",
   "icon": "mysticalworld:skeleton_top_2",
-  "category": "items",
+  "category": "decorations",
   "pages": [
     {
       "type": "crafting",
