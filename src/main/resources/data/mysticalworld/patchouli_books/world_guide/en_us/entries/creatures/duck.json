@@ -14,8 +14,7 @@
       "type": "entity",
       "name": "Duck",
       "entity": "mysticalworld:duck",
-      "scale": 1.5,
-      "offset": -0.3,
+      "scale": 1,
       "text": "Ducks can be found hanging out in swamps or near sources of water!"
     }
   ]
