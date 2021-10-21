@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
 
 public class OreConfig extends AbstractConfig {
 
-  private String name;
-  private int chance;
-  private int minY;
-  private int maxY;
-  private int size;
-  private List<RegistryKey<World>> dimensions;
-  private Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore;
+  private final String name;
+  private final int chance;
+  private final int minY;
+  private final int maxY;
+  private final int size;
+  private final List<RegistryKey<World>> dimensions;
+  private final Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore;
 
   private ForgeConfigSpec.IntValue configChance;
   private ForgeConfigSpec.IntValue configMinY;
@@ -32,7 +32,7 @@ public class OreConfig extends AbstractConfig {
   private ForgeConfigSpec.IntValue configSize;
   private ForgeConfigSpec.ConfigValue<List<? extends String>> configDimensions;
 
-  private RuleTest rule;
+  private final RuleTest rule;
 
   public OreConfig(String name, int chance, int minY, int maxY, int size, List<RegistryKey<World>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
     this(name, chance, minY, maxY, size, dimensions, ore, OreGenTest.INSTANCE);

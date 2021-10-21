@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class TreeConfig extends FeatureConfig<TreeConfig> {
   private final double chance;
-  private List<RegistryKey<World>> dimensions;
+  private final List<RegistryKey<World>> dimensions;
   private ForgeConfigSpec.DoubleValue configChance;
   private ForgeConfigSpec.ConfigValue<List<? extends String>> configDimensions;
 

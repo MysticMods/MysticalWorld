@@ -17,8 +17,8 @@ import java.util.Set;
 
 @SuppressWarnings("unused")
 public class LootHandler {
-  private static Set<ResourceLocation> tables = Sets.newHashSet(LootTables.SIMPLE_DUNGEON, LootTables.ABANDONED_MINESHAFT, LootTables.DESERT_PYRAMID, LootTables.JUNGLE_TEMPLE, LootTables.WOODLAND_MANSION);
-  private static ResourceLocation squid_table = new ResourceLocation("minecraft", "entities/squid");
+  private static final Set<ResourceLocation> tables = Sets.newHashSet(LootTables.SIMPLE_DUNGEON, LootTables.ABANDONED_MINESHAFT, LootTables.DESERT_PYRAMID, LootTables.JUNGLE_TEMPLE, LootTables.WOODLAND_MANSION);
+  private static final ResourceLocation squid_table = new ResourceLocation("minecraft", "entities/squid");
 
   public static void onLootLoad(LootTableLoadEvent event) {
     if (tables.contains(event.getName())) {

@@ -20,8 +20,8 @@ public class LayerLava extends LayerRenderer<LavaCatEntity, LavaCatModel> {
   private static final ResourceLocation MAGMA_TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_magma.png");
   private static final ResourceLocation OBSIDIAN_TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_obsidian.png");
 
-  private IEntityRenderer<LavaCatEntity, LavaCatModel> renderer;
-  private LavaCatModel mainModel;
+  private final IEntityRenderer<LavaCatEntity, LavaCatModel> renderer;
+  private final LavaCatModel mainModel;
 
   public LayerLava(IEntityRenderer<LavaCatEntity, LavaCatModel> entityRendererIn) {
     super(entityRendererIn);

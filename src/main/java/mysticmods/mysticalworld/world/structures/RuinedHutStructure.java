@@ -59,7 +59,7 @@ public class RuinedHutStructure extends SimpleStructure {
       super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
     }
 
-    private static ResourceLocation POOL = new ResourceLocation(MysticalWorld.MODID, "hut_ruined_pool/start_pool");
+    private static final ResourceLocation POOL = new ResourceLocation(MysticalWorld.MODID, "hut_ruined_pool/start_pool");
 
     @Override
     protected ResourceLocation getPoolLocation() {

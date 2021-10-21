@@ -23,7 +23,7 @@ import net.minecraft.item.Item.Properties;
 public class QuicksilverShovelItem extends ShovelItem implements IQuicksilverItem {
 
   private int counter;
-  private Random random = new Random();
+  private final Random random = new Random();
 
   public QuicksilverShovelItem(IItemTier tier, float attackDamage, float attackSpeed, Properties props) {
     super(tier, attackDamage, attackSpeed, props);

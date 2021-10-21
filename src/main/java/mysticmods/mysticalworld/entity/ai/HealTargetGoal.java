@@ -15,10 +15,10 @@ import java.util.EnumSet;
 import net.minecraft.entity.ai.goal.Goal.Flag;
 
 public class HealTargetGoal extends TargetGoal {
-  private CreatureEntity attacker;
+  private final CreatureEntity attacker;
   private int attackTick;
-  private double speedTowardsTarget;
-  private boolean longMemory;
+  private final double speedTowardsTarget;
+  private final boolean longMemory;
   private Path path;
   private int delayCounter;
   private double targetX;

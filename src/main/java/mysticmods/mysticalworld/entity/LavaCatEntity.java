@@ -39,7 +39,7 @@ import java.util.UUID;
 
 @SuppressWarnings({"Duplicates", "NullableProblems", "unused"})
 public class LavaCatEntity extends TameableEntity {
-  private static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/lava_cat");
+  private static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/lava_cat");
 
   private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.defineId(LavaCatEntity.class, DataSerializers.BOOLEAN);
   private static final UUID OBSIDIAN_SPEED_MODIFIER = UUID.fromString("f58f95e9-fb51-4604-a66d-89433c9dd8a5");

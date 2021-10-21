@@ -14,7 +14,7 @@ import java.util.List;
 import net.minecraft.item.Item.Properties;
 
 public class TooltipDrinkItem extends BaseItems.DrinkItem {
-  private String translationKey;
+  private final String translationKey;
 
   public TooltipDrinkItem(Properties properties, String translationKey) {
     super(properties);

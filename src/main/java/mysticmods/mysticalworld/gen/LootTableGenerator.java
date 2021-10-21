@@ -21,10 +21,10 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class LootTableGenerator extends LootTableProvider {
-  private static ResourceLocation HUT = new ResourceLocation(MysticalWorld.MODID, "hut");
-  private static ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");
-  private static ResourceLocation BREWING = new ResourceLocation(MysticalWorld.MODID, "brewing");
-  private static ResourceLocation HOUSE = new ResourceLocation(MysticalWorld.MODID, "sand_house");
+  private static final ResourceLocation HUT = new ResourceLocation(MysticalWorld.MODID, "hut");
+  private static final ResourceLocation BARROW = new ResourceLocation(MysticalWorld.MODID, "barrow");
+  private static final ResourceLocation BREWING = new ResourceLocation(MysticalWorld.MODID, "brewing");
+  private static final ResourceLocation HOUSE = new ResourceLocation(MysticalWorld.MODID, "sand_house");
 
   private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> tables = ImmutableList.of(Pair.of(ChestLootTables::new, LootParameterSets.CHEST));
 

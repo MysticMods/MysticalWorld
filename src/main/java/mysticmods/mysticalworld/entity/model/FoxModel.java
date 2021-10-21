@@ -13,21 +13,21 @@ import javax.annotation.Nonnull;
  */
 public class FoxModel extends AgeableModel<SilverFoxEntity> {
 
-  private ModelRenderer body1;
-  private ModelRenderer frontL;
-  private ModelRenderer frontR;
-  private ModelRenderer body2;
-  private ModelRenderer neck;
-  private ModelRenderer backL;
-  private ModelRenderer backR;
-  private ModelRenderer tail1;
-  private ModelRenderer tail2;
-  private ModelRenderer tail3;
-  private ModelRenderer tail4;
-  private ModelRenderer head;
-  private ModelRenderer snout;
-  private ModelRenderer earR;
-  private ModelRenderer earL;
+  private final ModelRenderer body1;
+  private final ModelRenderer frontL;
+  private final ModelRenderer frontR;
+  private final ModelRenderer body2;
+  private final ModelRenderer neck;
+  private final ModelRenderer backL;
+  private final ModelRenderer backR;
+  private final ModelRenderer tail1;
+  private final ModelRenderer tail2;
+  private final ModelRenderer tail3;
+  private final ModelRenderer tail4;
+  private final ModelRenderer head;
+  private final ModelRenderer snout;
+  private final ModelRenderer earR;
+  private final ModelRenderer earL;
 
   public FoxModel() {
     super(true, 5.0f, 2.0f);

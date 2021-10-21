@@ -49,6 +49,9 @@ public class AnimalSpawnInfo implements IComponentProcessor {
       case "hell_sprout":
         this.animal = ConfigManager.HELL_SPROUT_CONFIG;
         break;
+      case "duck":
+        this.animal = ConfigManager.DUCK_CONFIG;
+        break;
       default:
         this.animal = null;
         break;

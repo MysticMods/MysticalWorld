@@ -15,9 +15,9 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 @SuppressWarnings("NullableProblems")
 public class ShapedDamageRecipe extends ShapedRecipe implements IDamageRecipe {
-  private Ingredient damageItem;
-  private Ingredient damageIngredient;
-  private int damageAmount;
+  private final Ingredient damageItem;
+  private final Ingredient damageIngredient;
+  private final int damageAmount;
 
   private ShapedDamageRecipe(ResourceLocation idIn, String groupIn, int recipeWidthIn, int recipeHeightIn, NonNullList<Ingredient> recipeItemsIn, ItemStack recipeOutputIn, Ingredient damageItem, int damageAmount) {
     super(idIn, groupIn, recipeWidthIn, recipeHeightIn, recipeItemsIn, recipeOutputIn);

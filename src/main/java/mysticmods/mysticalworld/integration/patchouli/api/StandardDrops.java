@@ -8,8 +8,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.*;
 
 public class StandardDrops {
-  private static Map<String, List<ResourceLocation>> DROPS = new HashMap<>();
-  private static Map<String, List<ItemStack>> DROP_ITEMS = new HashMap<>();
+  private static final Map<String, List<ResourceLocation>> DROPS = new HashMap<>();
+  private static final Map<String, List<ItemStack>> DROP_ITEMS = new HashMap<>();
 
   static {
     DROPS.put("beetle", Arrays.asList(new ResourceLocation("mysticalworld", "carapace"), new ResourceLocation("minecraft", "slime_ball")));
@@ -23,6 +23,7 @@ public class StandardDrops {
     DROPS.put("sprout", Arrays.asList(new ResourceLocation("minecraft", "melon_slice"), new ResourceLocation("mysticalworld", "aubergine"), new ResourceLocation("minecraft", "beetroot"), new ResourceLocation("minecraft", "potato")));
     DROPS.put("hell_sprout", Arrays.asList(new ResourceLocation("minecraft", "nether_wart")));
     DROPS.put("squid", Arrays.asList(new ResourceLocation("mysticalworld", "raw_squid")));
+    DROPS.put("duck", Arrays.asList(new ResourceLocation("minecraft", "feather")));
   }
 
   public static List<ItemStack> getDrops(String name) {

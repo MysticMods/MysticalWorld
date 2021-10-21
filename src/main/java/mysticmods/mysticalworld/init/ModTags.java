@@ -27,7 +27,7 @@ public class ModTags {
   }
 
   private static class BlockBuilder {
-    private RegistrateTagsProvider<Block> provider;
+    private final RegistrateTagsProvider<Block> provider;
 
     private BlockBuilder(RegistrateTagsProvider<Block> provider) {
       this.provider = provider;
@@ -51,7 +51,7 @@ public class ModTags {
   }
 
   private static class ItemBuilder {
-    private RegistrateTagsProvider<Item> provider;
+    private final RegistrateTagsProvider<Item> provider;
 
     private ItemBuilder(RegistrateTagsProvider<Item> provider) {
       this.provider = provider;

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class StructureConfig extends FeatureConfig<StructureConfig> {
-  private String name;
+  private final String name;
 
   public StructureConfig(String name, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
     super(biomeTypes, biomeRestrictions);

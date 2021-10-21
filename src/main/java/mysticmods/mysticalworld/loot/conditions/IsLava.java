@@ -50,7 +50,7 @@ public class IsLava implements ILootCondition {
     }
   }
 
-  private static IsLava INSTANCE = new IsLava(false);
+  private static final IsLava INSTANCE = new IsLava(false);
 
   public static ILootCondition.IBuilder builder() {
     return () -> INSTANCE;

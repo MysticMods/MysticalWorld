@@ -22,8 +22,8 @@ public class SpiritAttackGoal extends TargetGoal {
   private double targetY;
   private double targetZ;
   private long lastCanUseCheck;
-  private int failedPathFindingPenalty = 0;
-  private boolean canPenalize = false;
+  private final int failedPathFindingPenalty = 0;
+  private final boolean canPenalize = false;
 
   public SpiritAttackGoal(CreatureEntity creature, double speedIn, boolean useLongMemory) {
     super(creature, false, false);

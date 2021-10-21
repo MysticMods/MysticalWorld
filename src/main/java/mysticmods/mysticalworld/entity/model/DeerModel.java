@@ -11,24 +11,24 @@ import java.util.Collections;
 public class DeerModel extends AgeableModel<DeerEntity> {
 
   //fields
-  private ModelRenderer head;
-  private ModelRenderer ear1;
-  private ModelRenderer ear2;
-  private ModelRenderer neck;
-  private ModelRenderer body;
-  private ModelRenderer tail;
-  private ModelRenderer legRF;
-  private ModelRenderer legLF;
-  private ModelRenderer legLB;
-  private ModelRenderer legRB;
-  private ModelRenderer horn1;
-  private ModelRenderer horn2;
-  private ModelRenderer horn3;
-  private ModelRenderer horn4;
-  private ModelRenderer horn5;
-  private ModelRenderer horn6;
-  private ModelRenderer horn7;
-  private ModelRenderer horn8;
+  private final ModelRenderer head;
+  private final ModelRenderer ear1;
+  private final ModelRenderer ear2;
+  private final ModelRenderer neck;
+  private final ModelRenderer body;
+  private final ModelRenderer tail;
+  private final ModelRenderer legRF;
+  private final ModelRenderer legLF;
+  private final ModelRenderer legLB;
+  private final ModelRenderer legRB;
+  private final ModelRenderer horn1;
+  private final ModelRenderer horn2;
+  private final ModelRenderer horn3;
+  private final ModelRenderer horn4;
+  private final ModelRenderer horn5;
+  private final ModelRenderer horn6;
+  private final ModelRenderer horn7;
+  private final ModelRenderer horn8;
 
   public DeerModel() {
     super(true, 5.0f, 2.0f);

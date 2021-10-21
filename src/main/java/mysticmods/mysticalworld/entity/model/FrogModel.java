@@ -13,12 +13,12 @@ import javax.annotation.Nonnull;
  */
 public class FrogModel extends AgeableModel<FrogEntity> {
 
-  private ModelRenderer body;
-  private ModelRenderer backR;
-  private ModelRenderer backL;
-  private ModelRenderer frontR;
-  private ModelRenderer frontL;
-  private ModelRenderer head;
+  private final ModelRenderer body;
+  private final ModelRenderer backR;
+  private final ModelRenderer backL;
+  private final ModelRenderer frontR;
+  private final ModelRenderer frontL;
+  private final ModelRenderer head;
 
   public FrogModel() {
     super(true, 5.0f, 2.0f);

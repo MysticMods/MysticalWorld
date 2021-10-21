@@ -21,7 +21,7 @@ import net.minecraft.item.Item.Properties;
 
 public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksilverItem {
   private int counter;
-  private Random random = new Random();
+  private final Random random = new Random();
 
   public QuicksilverArmorItem(IArmorMaterial material, EquipmentSlotType slot, Properties props) {
     super(material, slot, props);

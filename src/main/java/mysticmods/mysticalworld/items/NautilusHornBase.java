@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraft.item.Item.Properties;
 
 public class NautilusHornBase extends Item {
-  private int duration;
+  private final int duration;
 
   public NautilusHornBase(Properties properties, int duration) {
     super(properties);

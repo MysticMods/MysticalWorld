@@ -4,10 +4,10 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class SilkwormConfig extends AbstractConfig {
 
-  private boolean leafDrops;
-  private int leafDropChance;
-  private int successChance;
-  private int growthChance;
+  private final boolean leafDrops;
+  private final int leafDropChance;
+  private final int successChance;
+  private final int growthChance;
 
   private ForgeConfigSpec.BooleanValue configLeafDrops;
   private ForgeConfigSpec.ConfigValue<Integer> configLeafDropChance;

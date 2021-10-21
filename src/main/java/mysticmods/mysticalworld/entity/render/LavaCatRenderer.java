@@ -18,7 +18,7 @@ import javax.annotation.Nonnull;
 
 @OnlyIn(Dist.CLIENT)
 public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel> {
-  private static ResourceLocation OBSIDIAN_KITTY = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_eyes.png");
+  private static final ResourceLocation OBSIDIAN_KITTY = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_eyes.png");
 
   public LavaCatRenderer(EntityRendererManager rendermanagerIn, LavaCatModel model, float shadowsizeIn) {
     super(rendermanagerIn, model, shadowsizeIn);

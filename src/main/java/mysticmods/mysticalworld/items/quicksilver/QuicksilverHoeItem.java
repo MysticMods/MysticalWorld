@@ -23,7 +23,7 @@ import net.minecraft.item.Item.Properties;
 public class QuicksilverHoeItem extends HoeItem implements IQuicksilverItem {
 
   private int counter;
-  private Random random = new Random();
+  private final Random random = new Random();
 
   public QuicksilverHoeItem(IItemTier itemTier, int attackDamage, float attackSpeed, Properties properties) {
     super(itemTier, attackDamage, attackSpeed, properties);

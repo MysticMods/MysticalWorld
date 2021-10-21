@@ -8,11 +8,11 @@ import net.minecraft.util.math.vector.Vector3d;
 
 
 public class SproutModel extends AgeableModel<SproutEntity> {
-  private ModelRenderer head;
-  private ModelRenderer legL;
-  private ModelRenderer legR;
-  private ModelRenderer leafTop;
-  private ModelRenderer leafBottom;
+  private final ModelRenderer head;
+  private final ModelRenderer legL;
+  private final ModelRenderer legR;
+  private final ModelRenderer leafTop;
+  private final ModelRenderer leafBottom;
 
   public SproutModel() {
     super(true, 5.0f, 2.0f);

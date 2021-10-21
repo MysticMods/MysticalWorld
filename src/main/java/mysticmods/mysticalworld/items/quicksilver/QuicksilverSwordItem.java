@@ -17,7 +17,7 @@ import net.minecraft.item.Item.Properties;
 public class QuicksilverSwordItem extends SwordItem implements IQuicksilverItem {
 
   private int counter;
-  private Random random = new Random();
+  private final Random random = new Random();
 
   public QuicksilverSwordItem(IItemTier tier, int attackDamage, float attackSpeed, Properties props) {
     super(tier, attackDamage, attackSpeed, props);

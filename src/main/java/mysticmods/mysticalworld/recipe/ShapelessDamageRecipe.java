@@ -14,9 +14,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class ShapelessDamageRecipe extends ShapelessRecipe implements IDamageRecipe {
-  private Ingredient damageItem;
-  private Ingredient damageIngredient;
-  private int damageAmount;
+  private final Ingredient damageItem;
+  private final Ingredient damageIngredient;
+  private final int damageAmount;
 
   public ShapelessDamageRecipe(ResourceLocation idIn, String groupIn, ItemStack recipeOutputIn, NonNullList<Ingredient> recipeItemsIn, Ingredient damageItem, int damageAmount) {
     super(idIn, groupIn, recipeOutputIn, recipeItemsIn);

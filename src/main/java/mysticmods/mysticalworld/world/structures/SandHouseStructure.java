@@ -56,7 +56,7 @@ public class SandHouseStructure extends SimpleStructure {
       super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
     }
 
-    private static ResourceLocation POOL = new ResourceLocation(MysticalWorld.MODID, "sand_house_pool/start_pool");
+    private static final ResourceLocation POOL = new ResourceLocation(MysticalWorld.MODID, "sand_house_pool/start_pool");
 
     @Override
     protected ResourceLocation getPoolLocation() {

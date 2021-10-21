@@ -13,20 +13,20 @@ import javax.annotation.Nonnull;
  */
 public class BeetleModel extends AgeableModel<BeetleEntity> {
 
-  private ModelRenderer body;
-  private ModelRenderer wingL;
-  private ModelRenderer wingR;
-  private ModelRenderer head;
-  private ModelRenderer legL1;
-  private ModelRenderer legL2;
-  private ModelRenderer legL3;
-  private ModelRenderer legR1;
-  private ModelRenderer legR2;
-  private ModelRenderer legR3;
-  private ModelRenderer antennaR1;
-  private ModelRenderer antennaL1;
-  private ModelRenderer antennaR2;
-  private ModelRenderer antennaR2_1;
+  private final ModelRenderer body;
+  private final ModelRenderer wingL;
+  private final ModelRenderer wingR;
+  private final ModelRenderer head;
+  private final ModelRenderer legL1;
+  private final ModelRenderer legL2;
+  private final ModelRenderer legL3;
+  private final ModelRenderer legR1;
+  private final ModelRenderer legR2;
+  private final ModelRenderer legR3;
+  private final ModelRenderer antennaR1;
+  private final ModelRenderer antennaL1;
+  private final ModelRenderer antennaR2;
+  private final ModelRenderer antennaR2_1;
 
   public BeetleModel() {
     super(true, 5.0f, 2.0f);

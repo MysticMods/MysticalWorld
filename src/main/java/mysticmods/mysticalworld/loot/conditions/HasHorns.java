@@ -51,7 +51,7 @@ public class HasHorns implements ILootCondition {
     }
   }
 
-  private static HasHorns INSTANCE = new HasHorns(false);
+  private static final HasHorns INSTANCE = new HasHorns(false);
 
   public static ILootCondition.IBuilder builder() {
     return () -> INSTANCE;

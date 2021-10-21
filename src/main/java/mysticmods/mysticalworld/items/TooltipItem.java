@@ -14,7 +14,7 @@ import java.util.List;
 import net.minecraft.item.Item.Properties;
 
 public class TooltipItem extends Item {
-  private String translationKey;
+  private final String translationKey;
 
 
   public TooltipItem(Properties properties, String translationKey) {
