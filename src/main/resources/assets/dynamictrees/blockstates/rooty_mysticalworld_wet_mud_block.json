@@ -1,0 +1,6 @@
+{
+	"multipart": [
+		{   "apply": { "model": "mysticalworld:block/wet_mud_block" }},
+		{	"apply": { "model": "dynamictrees:block/roots" }}
+	]
+}

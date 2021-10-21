@@ -151,6 +151,7 @@ public class ModFeatures {
       tryPlaceFeature(event, types, ConfigManager.STONEPETAL_CONFIG);
       tryPlaceFeature(event, types, ConfigManager.HUT_CONFIG);
       tryPlaceFeature(event, types, ConfigManager.BARROW_CONFIG);
+      tryPlaceFeature(event, types, ConfigManager.SAND_HOUSE_CONFIG);
     }
   }
 
@@ -191,6 +192,7 @@ public class ModFeatures {
         temp.put(ModStructures.BARROW_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.BARROW_STRUCTURE));
         temp.put(ModStructures.HUT_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.HUT_STRUCTURE));
         temp.put(ModStructures.RUINED_HUT_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.RUINED_HUT_STRUCTURE));
+        temp.put(ModStructures.SAND_HOUSE_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.SAND_HOUSE_STRUCTURE));
         world.getChunkSource().generator.getSettings().structureConfig = temp;
       }
     }

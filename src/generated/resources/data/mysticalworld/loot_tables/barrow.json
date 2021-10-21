@@ -141,7 +141,11 @@
           "type": "minecraft:item",
           "name": "minecraft:saddle"
         }
-      ]
+      ],
+      "bonus_rolls": {
+        "min": 1.0,
+        "max": 5.0
+      }
     },
     {
       "rolls": {
@@ -289,7 +293,11 @@
           ],
           "name": "minecraft:magma_cream"
         }
-      ]
+      ],
+      "bonus_rolls": {
+        "min": 1.0,
+        "max": 2.0
+      }
     },
     {
       "rolls": {
@@ -436,7 +444,11 @@
           "type": "minecraft:empty",
           "weight": 4
         }
-      ]
+      ],
+      "bonus_rolls": {
+        "min": 1.0,
+        "max": 2.0
+      }
     }
   ]
 }

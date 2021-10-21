@@ -1,0 +1,6 @@
+{
+	"multipart": [
+		{   "apply": { "model": "mysticalworld:block/uncanny_sand" }},
+		{	"apply": { "model": "dynamictrees:block/roots" }}
+	]
+}

@@ -1,0 +1,4 @@
+{
+  "primitive_soil": "mysticalworld:mud_block",
+  "acceptable_soils": [ "dirt_like", "mud_like" ]
+}

@@ -39,6 +39,7 @@ public class ConfigManager {
   public static StonepetalConfig STONEPETAL_CONFIG;
   public static StructureConfig HUT_CONFIG;
   public static StructureConfig BARROW_CONFIG;
+  public static StructureConfig SAND_HOUSE_CONFIG;
   public static ForgeConfigSpec.BooleanValue SEED_INJECTION;
   public static MobConfig DUCK_CONFIG;
 
@@ -83,6 +84,8 @@ public class ConfigManager {
     HUT_CONFIG.apply(COMMON_BUILDER);
     BARROW_CONFIG = new StructureConfig("barrow", Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.PLAINS), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setStructure(() -> ConfiguredStructures.CONFIGURED_BARROW);
     BARROW_CONFIG.apply(COMMON_BUILDER);
+    SAND_HOUSE_CONFIG = new StructureConfig("sand_house", Arrays.asList(BiomeDictionary.Type.SANDY), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setStructure(() -> ConfiguredStructures.CONFIGURED_SAND_HOUSE);
+    SAND_HOUSE_CONFIG.apply(COMMON_BUILDER);
     SEED_INJECTION = COMMON_BUILDER.comment("Whether or not the aubergine loot table is injected into the grass seed table").define("seed_injection", true);
     COMMON_BUILDER.pop();
 

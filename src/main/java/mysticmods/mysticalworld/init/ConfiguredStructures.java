@@ -20,6 +20,7 @@ public class ConfiguredStructures {
   public static StructureFeature<?, ?> CONFIGURED_HUT = register("hut", ModStructures.HUT_STRUCTURE, ModStructures.HUT_STRUCTURE.configured(IFeatureConfig.NONE));
   public static StructureFeature<?, ?> CONFIGURED_BARROW = register("barrow", ModStructures.BARROW_STRUCTURE, ModStructures.BARROW_STRUCTURE.configured(IFeatureConfig.NONE));
   public static StructureFeature<?, ?> CONFIGURED_RUINED_HUT = register("ruined_hut", ModStructures.RUINED_HUT_STRUCTURE, ModStructures.RUINED_HUT_STRUCTURE.configured(IFeatureConfig.NONE));
+  public static StructureFeature<?, ?> CONFIGURED_SAND_HOUSE = register("sand_house", ModStructures.SAND_HOUSE_STRUCTURE, ModStructures.SAND_HOUSE_STRUCTURE.configured(IFeatureConfig.NONE));
 
   private static StructureFeature<?, ?> register(String id, @Nullable Structure<?> structure, StructureFeature<?, ?> feature) {
     StructureFeature<?, ?> result = REGISTRY.register(id, feature);
@@ -29,6 +30,6 @@ public class ConfiguredStructures {
   }
 
   public static void registerStructures() {
-    CONFIGURED_STRUCTURES.forEach(FlatGenerationSettings.STRUCTURE_FEATURES::put);
+    FlatGenerationSettings.STRUCTURE_FEATURES.putAll(CONFIGURED_STRUCTURES);
   }
 }

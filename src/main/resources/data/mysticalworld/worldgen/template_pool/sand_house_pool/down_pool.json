@@ -1,0 +1,15 @@
+{
+  "name": "mysticalworld:sand_house_pool/down_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "mysticalworld:sand_bottom1",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

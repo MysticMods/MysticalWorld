@@ -6,6 +6,7 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.world.structures.BarrowStructure;
 import mysticmods.mysticalworld.world.structures.HutStructure;
 import mysticmods.mysticalworld.world.structures.RuinedHutStructure;
+import mysticmods.mysticalworld.world.structures.SandHouseStructure;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -24,11 +25,12 @@ import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModStructures {
-  private static Set<Structure<?>> STRUCTURES = new HashSet<>();
+  private static final Set<Structure<?>> STRUCTURES = new HashSet<>();
 
   public static final Structure<NoFeatureConfig> HUT_STRUCTURE = register("hut", new HutStructure(NoFeatureConfig.CODEC));
   public static final Structure<NoFeatureConfig> BARROW_STRUCTURE = register("barrow", new BarrowStructure(NoFeatureConfig.CODEC));
   public static final Structure<NoFeatureConfig> RUINED_HUT_STRUCTURE = register("ruined_hut", new RuinedHutStructure(NoFeatureConfig.CODEC));
+  public static final Structure<NoFeatureConfig> SAND_HOUSE_STRUCTURE = register("sand_house", new SandHouseStructure(NoFeatureConfig.CODEC));
 
   private static <T extends IFeatureConfig> Structure<T> register(String name, Structure<T> feature) {
     ResourceLocation rl = new ResourceLocation(MysticalWorld.MODID, name);
@@ -46,6 +48,7 @@ public class ModStructures {
     setupStructure(HUT_STRUCTURE, new StructureSeparationSettings(45, 20, 12886419), true);
     setupStructure(BARROW_STRUCTURE, new StructureSeparationSettings(150, 65, 314159223), true);
     setupStructure(RUINED_HUT_STRUCTURE, new StructureSeparationSettings(70, 35, 8266497), true);
+    setupStructure(SAND_HOUSE_STRUCTURE, new StructureSeparationSettings(90, 40, 11496812), true);
   }
 
   public static <F extends Structure<?>> void setupStructure(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {
