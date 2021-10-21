@@ -11,13 +11,6 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:simple_thatch_from_thatch",
-      "recipe2": "mysticalworld:thatch_from_simple_thatch",
-      "link_recipe": "true",
-      "text": "Simple thatch lacks sheafs."
-    },
-    {
-      "type": "crafting",
       "title": "Stairs & Slabs",
       "link_recipe": true,
       "recipe": "mysticalworld:thatch_stairs",

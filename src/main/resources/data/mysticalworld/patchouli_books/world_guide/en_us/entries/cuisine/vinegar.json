@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "mysticalworld:vinegar",
-      "text": "Causes hunger but serves no other purpose."
+      "text": "Causes hunger but can be used to top off $(l:cuisine/fish_and_chips)fish and chips$()!"
     }
   ]
 }

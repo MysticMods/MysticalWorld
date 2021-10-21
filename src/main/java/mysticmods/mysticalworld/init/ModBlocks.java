@@ -2661,8 +2661,8 @@ public class ModBlocks {
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
             .pattern("BBB")
+            .pattern("BB ")
             .pattern("BBB")
-            .pattern("B B")
             .define('B', Tags.Items.BONES)
             .unlockedBy("has_bones", RegistrateRecipeProvider.hasItem(Tags.Items.BONES))
             .save(p);
@@ -2718,8 +2718,8 @@ public class ModBlocks {
       .build()
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-            .pattern("B B")
             .pattern("BBB")
+            .pattern(" BB")
             .pattern("BBB")
             .define('B', Tags.Items.BONES)
             .unlockedBy("has_bones", RegistrateRecipeProvider.hasItem(Tags.Items.BONES))
