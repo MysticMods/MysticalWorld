@@ -3,10 +3,7 @@ package mysticmods.mysticalworld;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagRegistryManager;
+import net.minecraft.tags.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeTagHandler;
 import net.minecraftforge.common.Tags;
@@ -47,6 +44,10 @@ public class MWTags {
 
     static Tags.IOptionalNamedTag<Block> compatTag(String name) {
       return BlockTags.createOptional(new ResourceLocation("forge", name));
+    }
+
+    public static ITag<Block> resolve (ResourceLocation location) {
+      return TagCollectionManager.getInstance().getBlocks().getTag(location);
     }
   }
 
@@ -125,6 +126,10 @@ public class MWTags {
 
     static Tags.IOptionalNamedTag<Item> compatTag(String name) {
       return ItemTags.createOptional(new ResourceLocation("forge", name));
+    }
+
+    public static ITag<Item> resolve (ResourceLocation location) {
+      return TagCollectionManager.getInstance().getItems().getTag(location);
     }
   }
 
