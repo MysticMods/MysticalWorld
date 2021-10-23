@@ -1,6 +1,5 @@
 package mysticmods.mysticalworld.init;
 
-import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
@@ -13,9 +12,6 @@ import mysticmods.mysticalworld.items.lead.LeadArmorItem;
 import mysticmods.mysticalworld.items.quicksilver.*;
 import mysticmods.mysticalworld.items.silver.*;
 import mysticmods.mysticalworld.items.tin.TinArmorItem;
-import mysticmods.mysticalworld.items.*;
-import mysticmods.mysticalworld.items.quicksilver.*;
-import mysticmods.mysticalworld.items.silver.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -151,15 +147,44 @@ public class ModItems {
           .save(p))
       .register();
 
-  public static RegistryEntry<BeetleMaskItem> BEETLE_MASK = MysticalWorld.REGISTRATE.item("beetle_mask", BeetleMaskItem::new)
-      .properties(o -> o.durability(399).rarity(Rarity.RARE))
+  public static RegistryEntry<BeetleArmorItem> BEETLE_HELMET = MysticalWorld.REGISTRATE.item("beetle_helmet", (p) -> new BeetleArmorItem(p, EquipmentSlotType.HEAD))
+      .properties(o -> o.rarity(Rarity.RARE))
       .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
-          .pattern("CWC")
-          .pattern("CWC")
-          .pattern(" S ")
+          .pattern("CCC")
+          .pattern("C C")
           .define('C', ModItems.CARAPACE.get())
-          .define('W', ItemTags.PLANKS)
-          .define('S', Tags.Items.RODS_WOODEN)
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(ModItems.CARAPACE.get()))
+          .save(p))
+      .register();
+
+  public static RegistryEntry<BeetleArmorItem> BEETLE_CHESTPLATE = MysticalWorld.REGISTRATE.item("beetle_chestplate", (p) -> new BeetleArmorItem(p, EquipmentSlotType.CHEST))
+      .properties(o -> o.rarity(Rarity.RARE))
+      .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
+          .pattern("C C")
+          .pattern("CCC")
+          .pattern("CCC")
+          .define('C', ModItems.CARAPACE.get())
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(ModItems.CARAPACE.get()))
+          .save(p))
+      .register();
+
+  public static RegistryEntry<BeetleArmorItem> BEETLE_LEGGINGS = MysticalWorld.REGISTRATE.item("beetle_leggings", (p) -> new BeetleArmorItem(p, EquipmentSlotType.LEGS))
+      .properties(o -> o.rarity(Rarity.RARE))
+      .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
+          .pattern("CCC")
+          .pattern("C C")
+          .pattern("C C")
+          .define('C', ModItems.CARAPACE.get())
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(ModItems.CARAPACE.get()))
+          .save(p))
+      .register();
+
+  public static RegistryEntry<BeetleArmorItem> BEETLE_BOOTS = MysticalWorld.REGISTRATE.item("beetle_boots", (p) -> new BeetleArmorItem(p, EquipmentSlotType.FEET))
+      .properties(o -> o.rarity(Rarity.RARE))
+      .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
+          .pattern("C C")
+          .pattern("C C")
+          .define('C', ModItems.CARAPACE.get())
           .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(ModItems.CARAPACE.get()))
           .save(p))
       .register();

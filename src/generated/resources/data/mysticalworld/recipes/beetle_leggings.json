@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "C C",
+    "C C"
+  ],
+  "key": {
+    "C": {
+      "item": "mysticalworld:carapace"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:beetle_leggings"
+  }
+}

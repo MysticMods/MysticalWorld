@@ -170,5 +170,6 @@ public class Remaps {
     remapItem("cracked_stone_small_post", "soft_stone_small_post");
     remapBlock("simple_thatch", "thatch");
     remapItem("simple_thatch", "thatch");
+    remapItem("beetle_mask", "beetle_helmet");
   }
 }

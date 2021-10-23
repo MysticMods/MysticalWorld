@@ -27,7 +27,7 @@ public class MaskHandler {
     if (targetEntity.isAlive() && targetEntity instanceof LivingEntity) {
       LivingEntity target = (LivingEntity) targetEntity;
       ItemStack mask = player.getItemBySlot(EquipmentSlotType.HEAD);
-      if (mask.getItem() == ModItems.BEETLE_MASK.get()) {
+      if (mask.getItem() == ModItems.BEETLE_HELMET.get()) {
         if (world.random.nextInt(ConfigManager.HAT_CONFIG.getMaskChance()) == 0) {
           if (ConfigManager.HAT_CONFIG.getMaskDurabilityDamage() != -1) {
             if (world.random.nextInt(4) == 1) {

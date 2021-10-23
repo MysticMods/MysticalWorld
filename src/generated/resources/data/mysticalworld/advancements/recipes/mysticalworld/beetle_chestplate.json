@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "mysticalworld:beetle_mask"
+      "mysticalworld:beetle_chestplate"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "mysticalworld:beetle_mask"
+        "recipe": "mysticalworld:beetle_chestplate"
       }
     }
   },
