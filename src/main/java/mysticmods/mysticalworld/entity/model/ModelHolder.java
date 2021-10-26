@@ -2,7 +2,9 @@ package mysticmods.mysticalworld.entity.model;
 
 import mysticmods.mysticalworld.entity.EnderminiEntity;
 import mysticmods.mysticalworld.entity.model.armor.AntlerHatModel;
+import mysticmods.mysticalworld.entity.model.armor.BeetleArmorModel;
 import mysticmods.mysticalworld.entity.model.armor.BeetleMaskModel;
+import net.minecraft.inventory.EquipmentSlotType;
 
 public class ModelHolder {
   public static FoxModel foxModel;
@@ -20,6 +22,11 @@ public class ModelHolder {
   public static BeetleMaskModel beetleMaskModel;
   public static AntlerHatModel antlerHatModel;
 
+  public static BeetleArmorModel beetle_helm;
+  public static BeetleArmorModel beetle_chestplate;
+  public static BeetleArmorModel beetle_leggings;
+  public static BeetleArmorModel beetle_boots;
+
   public static void init() {
     foxModel = new FoxModel();
     frogModel = new FrogModel();
@@ -34,5 +41,9 @@ public class ModelHolder {
     beetleMaskModel = new BeetleMaskModel();
     antlerHatModel = new AntlerHatModel();
     duckModel = new DuckModel();
+    beetle_helm = new BeetleArmorModel(EquipmentSlotType.HEAD);
+    beetle_boots = new BeetleArmorModel(EquipmentSlotType.FEET);
+    beetle_chestplate = new BeetleArmorModel(EquipmentSlotType.CHEST);
+    beetle_leggings = new BeetleArmorModel(EquipmentSlotType.LEGS);
   }
 }

@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[35,)"
+issueTrackerURL="${modIssues}"
+license="${modLicense}"
+[[mods]]
+modId="${modId}"
+version="${version}"
+displayName="${modName}"
+displayURL="${modHomepage}"
+credits="${modCredits}"
+authors="${modAuthor}"
+description='''
+${modDescription}
+'''
+[[dependencies.${modId}]]
+    modId="forge"
+    mandatory=true
+    versionRange="[35,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${modId}]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${modId}]]
+    modId="patchouli"
+    mandatory=true
+    versionRange="[1.16.2-47,)"
+    ordering="NONE"
+    side="BOTH"

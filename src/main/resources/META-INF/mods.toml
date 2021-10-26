@@ -1,32 +1,14 @@
 modLoader="javafml"
 loaderVersion="[35,)"
-issueTrackerURL="${modIssues}"
-license="${modLicense}"
+issueTrackerURL="https://github.com/noobanidus/noobutil/issues"
+license="MIT"
 [[mods]]
-modId="${modId}"
-version="${version}"
-displayName="${modName}"
-displayURL="${modHomepage}"
-credits="${modCredits}"
-authors="${modAuthor}"
+modId="mysticalworld"
+version="1.0"
+displayName="Mystical World"
+displayURL="https://google.com"
+credits="None"
+authors="Noobanidus"
 description='''
-${modDescription}
+Description.
 '''
-[[dependencies.${modId}]]
-    modId="forge"
-    mandatory=true
-    versionRange="[35,)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.${modId}]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.16.5,)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.${modId}]]
-    modId="patchouli"
-    mandatory=true
-    versionRange="[1.16.2-47,)"
-    ordering="NONE"
-    side="BOTH"
