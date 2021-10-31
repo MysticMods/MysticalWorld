@@ -60,7 +60,6 @@ public class MWTags {
     public static Tags.IOptionalNamedTag<Item> COOKED_SEAFOOD = compatTag("cooked_seafood");
 
     public static Tags.IOptionalNamedTag<Item> STONEPETAL = modTag("stonepetal");
-    public static Tags.IOptionalNamedTag<Item> CARAPACE = modTag("carapace");
 
     public static Tags.IOptionalNamedTag<Item> AUBERGINE = compatTag("crops/aubergine");
     public static Tags.IOptionalNamedTag<Item> EGGPLANT = compatTag("crops/eggplant");

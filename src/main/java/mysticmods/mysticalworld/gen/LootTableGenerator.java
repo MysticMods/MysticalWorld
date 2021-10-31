@@ -192,7 +192,7 @@ public class LootTableGenerator extends LootTableProvider {
                       .add(ItemLootEntry.lootTableItem(Items.ENDER_PEARL).setWeight(1).apply(SetCount.setCount(RandomValueRange.between(0.0F, 5.0F))))
                       .add(ItemLootEntry.lootTableItem(Items.FIREWORK_ROCKET).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0f, 4.0f))))
                       .add(ItemLootEntry.lootTableItem(ModItems.ANTLER_HAT.get()).setWeight(3).apply(EnchantRandomly.randomApplicableEnchantment()))
-                      .add(ItemLootEntry.lootTableItem(ModItems.BEETLE_HELMET.get()).setWeight(6).apply(EnchantRandomly.randomApplicableEnchantment()))
+                      .add(ItemLootEntry.lootTableItem(ModItems.BEETLE_MASK.get()).setWeight(6).apply(EnchantRandomly.randomApplicableEnchantment()))
                       .add(ItemLootEntry.lootTableItem(Items.OBSIDIAN).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(2.0f, 7.0f))))
                       .add(ItemLootEntry.lootTableItem(Items.NETHER_WART_BLOCK).setWeight(3).apply(SetCount.setCount(RandomValueRange.between(2.0f, 4.0f))))
                       .add(ItemLootEntry.lootTableItem(Items.PHANTOM_MEMBRANE).setWeight(2))

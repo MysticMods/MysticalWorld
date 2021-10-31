@@ -353,7 +353,7 @@
               "function": "minecraft:enchant_randomly"
             }
           ],
-          "name": "mysticalworld:beetle_helmet"
+          "name": "mysticalworld:beetle_mask"
         },
         {
           "type": "minecraft:item",
