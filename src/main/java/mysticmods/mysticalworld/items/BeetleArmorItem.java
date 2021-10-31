@@ -26,8 +26,12 @@ import java.util.Map;
 import net.minecraft.item.Item.Properties;
 
 public class BeetleArmorItem extends ModifiedArmorItem {
+  private final LazyValue<BipedModel<?>> model;
+
   public BeetleArmorItem(Properties builder, EquipmentSlotType slot) {
     super(ModMaterials.CARAPACE.getArmorMaterial(), slot, builder);
+
+    this.model = DistExecutor.unsafeRunForDist(() -> () -> new LazyValue<>(() -> this.provideArmorModelForSlot(slot)), () -> () -> null);
   }
 
   @Override
@@ -57,26 +61,11 @@ public class BeetleArmorItem extends ModifiedArmorItem {
   @Override
   @OnlyIn(Dist.CLIENT)
   public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-    ModelHolder.init();
-    BeetleArmorModel model;
+    return (A) model.get();
+  }
 
-    switch (slot) {
-      case CHEST:
-        model = ModelHolder.beetle_chestplate;
-        break;
-      case HEAD:
-        model = ModelHolder.beetle_helm;
-        break;
-      case LEGS:
-        model = ModelHolder.beetle_leggings;
-        break;
-      case FEET:
-        model = ModelHolder.beetle_boots;
-        break;
-      default:
-        return null;
-    }
-
-    return (A) model;
+  @OnlyIn(Dist.CLIENT)
+  public BipedModel<?> provideArmorModelForSlot(EquipmentSlotType slot) {
+    return new BeetleArmorModel(slot);
   }
 }
