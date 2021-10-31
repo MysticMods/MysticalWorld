@@ -56,15 +56,19 @@ public class DuckEntity extends AnimalEntity {
     return ModEntities.DUCK.get().create(level);
   }
 
+  protected Ingredient getBreedingIngredient () {
+    if (BREEDING_INGREDIENT == null) {
+      BREEDING_INGREDIENT = Ingredient.of(Tags.Items.SEEDS);
+    }
+    return BREEDING_INGREDIENT;
+  }
+
   @Override
   protected void registerGoals() {
-    if (BREEDING_INGREDIENT == null) {
-       BREEDING_INGREDIENT = Ingredient.of(Tags.Items.SEEDS);
-    }
     goalSelector.addGoal(0, new DuckSwimGoal(this));
     goalSelector.addGoal(1, new PanicGoal(this, 1.6d));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0d));
-    goalSelector.addGoal(3, new TemptGoal(this, 1.0d, false, BREEDING_INGREDIENT));
+    goalSelector.addGoal(3, new TemptGoal(this, 1.0d, false, getBreedingIngredient()));
     goalSelector.addGoal(4, new FollowParentGoal(this, 1.0d));
     goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
     goalSelector.addGoal(5, new RandomSwimmingGoal(this, 1.0d, 120));
@@ -74,7 +78,7 @@ public class DuckEntity extends AnimalEntity {
 
   @Override
   public boolean isFood(ItemStack pStack) {
-    return BREEDING_INGREDIENT.test(pStack);
+    return getBreedingIngredient().test(pStack);
   }
 
   @Override
