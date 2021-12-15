@@ -2,6 +2,7 @@ package mysticmods.mysticalworld.entity;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
+import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -15,10 +16,12 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class DeerEntity extends AnimalEntity {
 
@@ -72,6 +75,15 @@ public class DeerEntity extends AnimalEntity {
   @Override
   public float getStandingEyeHeight(Pose pose, EntitySize size) {
     return this.isBaby() ? this.getBbHeight() : 1.3F;
+  }
+
+  @Nullable
+  @Override
+  protected SoundEvent getAmbientSound() {
+    if (random.nextInt(6) == 0) {
+      return ModSounds.DEER_AMBIENT.get();
+    }
+    return null;
   }
 
   @Override

@@ -332,5 +332,13 @@
     "sounds": [
       "mysticalworld:duck/swim"
     ]
+  },
+  "mob.deer.ambient": {
+    "category": "neutral",
+    "sounds": [
+      "mysticalworld:deer/deer1",
+      "mysticalworld:deer/deer2",
+      "mysticalworld:deer/deer3"
+    ]
   }
 }
