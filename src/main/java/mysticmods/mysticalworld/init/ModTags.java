@@ -77,7 +77,7 @@ public class ModTags {
   static {
     REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, p -> {
       ItemBuilder b = new ItemBuilder(p);
-      b.additional(Tags.Items.ORES).add(MWTags.Items.AMETHYST_ORE, MWTags.Items.COPPER_ORE, MWTags.Items.LEAD_ORE, MWTags.Items.QUICKSILVER_ORE, MWTags.Items.SILVER_ORE, MWTags.Items.TIN_ORE, MWTags.Items.QUARTZ_ORE);
+      b.additional(Tags.Items.ORES).add(MWTags.Items.SAPPHIRE_ORE, MWTags.Items.COPPER_ORE, MWTags.Items.LEAD_ORE, MWTags.Items.QUICKSILVER_ORE, MWTags.Items.SILVER_ORE, MWTags.Items.TIN_ORE, MWTags.Items.QUARTZ_ORE);
 
       b.add(MWTags.Items.SEEDS, ModItems.AUBERGINE_SEEDS);
 
@@ -94,21 +94,21 @@ public class ModTags {
       b.add(MWTags.Items.SLIME, Items.SLIME_BALL);
       b.add(MWTags.Items.STONEPETAL, ModBlocks.STONEPETAL);
 
-      b.add(Tags.Items.GEMS, MWTags.Items.AMETHYST_GEM);
+      b.add(Tags.Items.GEMS, MWTags.Items.SAPPHIRE_GEM);
 
       b.additional(Tags.Items.INGOTS).add(MWTags.Items.COPPER_INGOT, MWTags.Items.LEAD_INGOT, MWTags.Items.QUICKSILVER_INGOT, MWTags.Items.SILVER_INGOT, MWTags.Items.TIN_INGOT);
       b.additional(Tags.Items.NUGGETS).add(MWTags.Items.COPPER_NUGGET, MWTags.Items.LEAD_NUGGET, MWTags.Items.QUICKSILVER_NUGGET, MWTags.Items.SILVER_NUGGET, MWTags.Items.TIN_NUGGET);
       b.additional(Tags.Items.DUSTS).add(MWTags.Items.COPPER_DUST, MWTags.Items.LEAD_DUST, MWTags.Items.QUICKSILVER_DUST, MWTags.Items.SILVER_DUST, MWTags.Items.TIN_DUST, MWTags.Items.GOLD_DUST, MWTags.Items.IRON_DUST);
 
-      b.add(MWTags.Items.GEMS, ModItems.AMETHYST_GEM, () -> Items.DIAMOND);
+      b.add(MWTags.Items.GEMS, ModItems.SAPPHIRE_GEM, () -> Items.DIAMOND);
 
       b.add(MWTags.Items.VEGETABLES, Items.CARROT, Items.BEETROOT);
       b.add(MWTags.Items.VEGETABLES, ModItems.AUBERGINE);
       b.add(MWTags.Items.COOKED_VEGETABLES, ModItems.COOKED_BEETROOT, ModItems.COOKED_CARROT, () -> Items.BAKED_POTATO, ModItems.COOKED_AUBERGINE);
       b.add(MWTags.Items.COOKED_SEAFOOD, ModItems.COOKED_SQUID, () -> Items.COOKED_COD, () -> Items.COOKED_SALMON);
 
-      b.add(MWTags.Items.SWORDS, ModItems.AMETHYST_SWORD, ModItems.CACTUS_SWORD, ModItems.COPPER_SWORD, ModItems.LEAD_SWORD, ModItems.QUICKSILVER_SWORD, ModItems.SILVER_SWORD, ModItems.TIN_SWORD);
-      b.add(MWTags.Items.KNIVES, ModItems.AMETHYST_KNIFE, ModItems.CACTUS_KNIFE, ModItems.COPPER_KNIFE, ModItems.DIAMOND_KNIFE, ModItems.GOLD_KNIFE, ModItems.IRON_KNIFE, ModItems.LEAD_KNIFE, ModItems.QUICKSILVER_KNIFE, ModItems.SILVER_KNIFE, ModItems.STONE_KNIFE, ModItems.TIN_KNIFE, ModItems.WOODEN_KNIFE);
+      b.add(MWTags.Items.SWORDS, ModItems.SAPPHIRE_SWORD, ModItems.CACTUS_SWORD, ModItems.COPPER_SWORD, ModItems.LEAD_SWORD, ModItems.QUICKSILVER_SWORD, ModItems.SILVER_SWORD, ModItems.TIN_SWORD);
+      b.add(MWTags.Items.KNIVES, ModItems.SAPPHIRE_KNIFE, ModItems.CACTUS_KNIFE, ModItems.COPPER_KNIFE, ModItems.DIAMOND_KNIFE, ModItems.GOLD_KNIFE, ModItems.IRON_KNIFE, ModItems.LEAD_KNIFE, ModItems.QUICKSILVER_KNIFE, ModItems.SILVER_KNIFE, ModItems.STONE_KNIFE, ModItems.TIN_KNIFE, ModItems.WOODEN_KNIFE);
       b.add(MWTags.Items.FORGE_KNIVES, MWTags.Items.KNIVES);
 
       b.add(MWTags.Items.SILVER_ITEMS, ModItems.SILVER_SWORD, ModItems.SILVER_KNIFE, ModItems.SILVER_AXE, ModItems.SILVER_HOE, ModItems.SILVER_PICKAXE, ModItems.SILVER_SHOVEL, ModItems.SILVER_BOOTS, ModItems.SILVER_CHESTPLATE, ModItems.SILVER_HELMET, ModItems.SILVER_LEGGINGS, ModItems.SILVER_SPEAR);
@@ -127,13 +127,13 @@ public class ModTags {
       p.copy(MWTags.Blocks.TERRACOTTA, MWTags.Items.TERRACOTTA);
       p.copy(MWTags.Blocks.MUSHROOM_BLOCKS, MWTags.Items.MUSHROOM_BLOCKS);
 
-      p.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(ModItems.AMETHYST_GEM.get(), ModItems.COPPER_INGOT.get(), ModItems.LEAD_INGOT.get(), ModItems.QUICKSILVER_INGOT.get(), ModItems.SILVER_INGOT.get(), ModItems.TIN_INGOT.get(), ModItems.PEARL_GEM.get());
+      p.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(ModItems.SAPPHIRE_GEM.get(), ModItems.COPPER_INGOT.get(), ModItems.LEAD_INGOT.get(), ModItems.QUICKSILVER_INGOT.get(), ModItems.SILVER_INGOT.get(), ModItems.TIN_INGOT.get(), ModItems.PEARL_GEM.get());
     });
 
     REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, p -> {
       BlockBuilder b = new BlockBuilder(p);
 
-      b.additional(Tags.Blocks.ORES).add(MWTags.Blocks.AMETHYST_ORE, MWTags.Blocks.COPPER_ORE, MWTags.Blocks.LEAD_ORE, MWTags.Blocks.QUICKSILVER_ORE, MWTags.Blocks.SILVER_ORE, MWTags.Blocks.TIN_ORE, MWTags.Blocks.QUARTZ_ORE);
+      b.additional(Tags.Blocks.ORES).add(MWTags.Blocks.SAPPHIRE_ORE, MWTags.Blocks.COPPER_ORE, MWTags.Blocks.LEAD_ORE, MWTags.Blocks.QUICKSILVER_ORE, MWTags.Blocks.SILVER_ORE, MWTags.Blocks.TIN_ORE, MWTags.Blocks.QUARTZ_ORE);
 
       b.add(MWTags.Blocks.PURPUR, Blocks.PURPUR_BLOCK, Blocks.PURPUR_PILLAR);
       b.add(MWTags.Blocks.NETHER_BRICKS, Blocks.NETHER_BRICKS);
@@ -142,8 +142,8 @@ public class ModTags {
       b.add(MWTags.Blocks.MUSHROOM_BLOCKS, Blocks.MUSHROOM_STEM, Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM_BLOCK);
       b.add(MWTags.Blocks.MUSHROOM_BLOCKS, ModBlocks.MUSHROOM_INSIDE.get());
       b.add(MWTags.Blocks.BASE_STONE_GRANITE, Blocks.GRANITE);
-      b.additional(Tags.Blocks.STORAGE_BLOCKS).add(MWTags.Blocks.AMETHYST_STORAGE, MWTags.Blocks.COPPER_STORAGE, MWTags.Blocks.LEAD_STORAGE, MWTags.Blocks.QUICKSILVER_STORAGE, MWTags.Blocks.SILVER_STORAGE, MWTags.Blocks.TIN_STORAGE, MWTags.Blocks.PEARL_STORAGE);
-      p.tag(BlockTags.BEACON_BASE_BLOCKS).add(ModBlocks.AMETHYST_BLOCK.get(), ModBlocks.COPPER_BLOCK.get(), ModBlocks.LEAD_BLOCK.get(), ModBlocks.QUICKSILVER_BLOCK.get(), ModBlocks.SILVER_BLOCK.get(), ModBlocks.TIN_BLOCK.get(), ModBlocks.PEARL_BLOCK.get());
+      b.additional(Tags.Blocks.STORAGE_BLOCKS).add(MWTags.Blocks.SAPPHIRE_STORAGE, MWTags.Blocks.COPPER_STORAGE, MWTags.Blocks.LEAD_STORAGE, MWTags.Blocks.QUICKSILVER_STORAGE, MWTags.Blocks.SILVER_STORAGE, MWTags.Blocks.TIN_STORAGE, MWTags.Blocks.PEARL_STORAGE);
+      p.tag(BlockTags.BEACON_BASE_BLOCKS).add(ModBlocks.SAPPHIRE_BLOCK.get(), ModBlocks.COPPER_BLOCK.get(), ModBlocks.LEAD_BLOCK.get(), ModBlocks.QUICKSILVER_BLOCK.get(), ModBlocks.SILVER_BLOCK.get(), ModBlocks.TIN_BLOCK.get(), ModBlocks.PEARL_BLOCK.get());
       b.add(MWTags.Blocks.CROPS, ModBlocks.AUBERGINE_CROP.get());
       b.add(MWTags.Blocks.AUBERGINE_CROP, ModBlocks.AUBERGINE_CROP.get());
       b.add(MWTags.Blocks.EGGPLANT_CROP, ModBlocks.AUBERGINE_CROP.get());

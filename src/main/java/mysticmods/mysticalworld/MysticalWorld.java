@@ -50,7 +50,7 @@ public class MysticalWorld {
   public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
     @Override
     public ItemStack makeIcon() {
-      return new ItemStack(ModBlocks.AMETHYST_BLOCK.get());
+      return new ItemStack(ModBlocks.SAPPHIRE_BLOCK.get());
     }
   };
 

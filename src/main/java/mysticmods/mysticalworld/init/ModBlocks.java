@@ -1854,39 +1854,39 @@ public class ModBlocks {
       )
       .register();
 
-  // AMETHYST
-  public static BlockEntry<BaseBlocks.OreBlock> AMETHYST_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.AMETHYST.oreName(), oreBlock(ModMaterials.AMETHYST))
+  // SAPPHIRE
+  public static BlockEntry<BaseBlocks.OreBlock> SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.SAPPHIRE.oreName(), oreBlock(ModMaterials.SAPPHIRE))
       .properties(o -> {
-        ModMaterials.AMETHYST.getOreBlockProperties(o);
+        ModMaterials.SAPPHIRE.getOreBlockProperties(o);
         return o;
       })
       .item()
       .model(ModBlocks::itemModel)
-      .tag(MWTags.Items.AMETHYST_ORE)
+      .tag(MWTags.Items.SAPPHIRE_ORE)
       .build()
-      .tag(MWTags.Blocks.AMETHYST_ORE)
+      .tag(MWTags.Blocks.SAPPHIRE_ORE)
       .blockstate(ModBlocks::simpleBlockState)
       .loot((p, t) ->
-          p.add(ModBlocks.AMETHYST_ORE.get(), RegistrateBlockLootTables.droppingItemWithFortune(t, ModItems.AMETHYST_GEM.get()))
+          p.add(ModBlocks.SAPPHIRE_ORE.get(), RegistrateBlockLootTables.droppingItemWithFortune(t, ModItems.SAPPHIRE_GEM.get()))
       )
       .register();
 
-  public static BlockEntry<Block> AMETHYST_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.AMETHYST.blockName(), Material.METAL, Block::new)
+  public static BlockEntry<Block> SAPPHIRE_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.SAPPHIRE.blockName(), Material.METAL, Block::new)
       .properties(o -> {
-        ModMaterials.AMETHYST.getBlockProps(o);
+        ModMaterials.SAPPHIRE.getBlockProps(o);
         return o;
       })
       .item()
       .model(ModBlocks::itemModel)
-      .tag(MWTags.Items.AMETHYST_BLOCK)
+      .tag(MWTags.Items.SAPPHIRE_BLOCK)
       .build()
-      .tag(MWTags.Blocks.AMETHYST_STORAGE)
+      .tag(MWTags.Blocks.SAPPHIRE_STORAGE)
       .blockstate(ModBlocks::simpleBlockState)
       .register();
 
-  public static BlockEntry<StairsBlock> AMETHYST_STAIRS = MysticalWorld.REGISTRATE.block("amethyst_stairs", Material.METAL, stairsBlock(ModBlocks.AMETHYST_BLOCK))
+  public static BlockEntry<StairsBlock> SAPPHIRE_STAIRS = MysticalWorld.REGISTRATE.block("sapphire_stairs", Material.METAL, stairsBlock(ModBlocks.SAPPHIRE_BLOCK))
       .properties(o -> {
-        ModMaterials.AMETHYST.getBlockProps(o);
+        ModMaterials.SAPPHIRE.getBlockProps(o);
         return o;
       })
       .tag(BlockTags.STAIRS)
@@ -1895,14 +1895,14 @@ public class ModBlocks {
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          p.stairs(DataIngredient.items(ModBlocks.AMETHYST_BLOCK), ModBlocks.AMETHYST_STAIRS, null, false)
+          p.stairs(DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK), ModBlocks.SAPPHIRE_STAIRS, null, false)
       )
-      .blockstate(stairs(ModBlocks.AMETHYST_BLOCK))
+      .blockstate(stairs(ModBlocks.SAPPHIRE_BLOCK))
       .register();
 
-  public static BlockEntry<SlabBlock> AMETHYST_SLAB = MysticalWorld.REGISTRATE.block("amethyst_slab", Material.METAL, SlabBlock::new)
+  public static BlockEntry<SlabBlock> SAPPHIRE_SLAB = MysticalWorld.REGISTRATE.block("sapphire_slab", Material.METAL, SlabBlock::new)
       .properties(o -> {
-        ModMaterials.AMETHYST.getBlockProps(o);
+        ModMaterials.SAPPHIRE.getBlockProps(o);
         return o;
       })
       .item()
@@ -1911,15 +1911,15 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          p.slab(DataIngredient.items(ModBlocks.AMETHYST_BLOCK), ModBlocks.AMETHYST_SLAB, null, false)
+          p.slab(DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK), ModBlocks.SAPPHIRE_SLAB, null, false)
       )
       .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
-      .blockstate(slab(ModBlocks.AMETHYST_BLOCK))
+      .blockstate(slab(ModBlocks.SAPPHIRE_BLOCK))
       .register();
 
-  public static BlockEntry<WallBlock> AMETHYST_WALL = MysticalWorld.REGISTRATE.block("amethyst_wall", Material.METAL, WallBlock::new)
+  public static BlockEntry<WallBlock> SAPPHIRE_WALL = MysticalWorld.REGISTRATE.block("sapphire_wall", Material.METAL, WallBlock::new)
       .properties(o -> {
-        ModMaterials.AMETHYST.getBlockProps(o);
+        ModMaterials.SAPPHIRE.getBlockProps(o);
         return o;
       })
       .item()
@@ -1928,37 +1928,37 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          p.wall(DataIngredient.items(ModBlocks.AMETHYST_BLOCK), ModBlocks.AMETHYST_WALL)
+          p.wall(DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK), ModBlocks.SAPPHIRE_WALL)
       )
-      .blockstate(wall(ModBlocks.AMETHYST_BLOCK))
+      .blockstate(wall(ModBlocks.SAPPHIRE_BLOCK))
       .register();
 
-  public static BlockEntry<BaseBlocks.WidePostBlock> AMETHYST_WIDE_POST = MysticalWorld.REGISTRATE.block("amethyst_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
+  public static BlockEntry<BaseBlocks.WidePostBlock> SAPPHIRE_WIDE_POST = MysticalWorld.REGISTRATE.block("sapphire_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
-        ModMaterials.AMETHYST.getBlockProps(o);
+        ModMaterials.SAPPHIRE.getBlockProps(o);
         return o;
       })
       .item()
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          MysticalWorld.RECIPES.widePost(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_WIDE_POST, null, false, p)
+          MysticalWorld.RECIPES.widePost(ModBlocks.SAPPHIRE_BLOCK, ModBlocks.SAPPHIRE_WIDE_POST, null, false, p)
       )
-      .blockstate(widePost(ModBlocks.AMETHYST_BLOCK))
+      .blockstate(widePost(ModBlocks.SAPPHIRE_BLOCK))
       .register();
 
-  public static BlockEntry<BaseBlocks.NarrowPostBlock> AMETHYST_SMALL_POST = MysticalWorld.REGISTRATE.block("amethyst_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
+  public static BlockEntry<BaseBlocks.NarrowPostBlock> SAPPHIRE_SMALL_POST = MysticalWorld.REGISTRATE.block("sapphire_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
-        ModMaterials.AMETHYST.getBlockProps(o);
+        ModMaterials.SAPPHIRE.getBlockProps(o);
         return o;
       })
       .item()
       .model(ModBlocks::itemModel)
       .build()
       .recipe((ctx, p) ->
-          MysticalWorld.RECIPES.narrowPost(ModBlocks.AMETHYST_BLOCK, ModBlocks.AMETHYST_SMALL_POST, null, false, p)
+          MysticalWorld.RECIPES.narrowPost(ModBlocks.SAPPHIRE_BLOCK, ModBlocks.SAPPHIRE_SMALL_POST, null, false, p)
       )
-      .blockstate(narrowPost(ModBlocks.AMETHYST_BLOCK))
+      .blockstate(narrowPost(ModBlocks.SAPPHIRE_BLOCK))
       .register();
 
   // COPPER

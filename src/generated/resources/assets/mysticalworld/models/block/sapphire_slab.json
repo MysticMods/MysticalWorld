@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "mysticalworld:block/sapphire_block",
+    "bottom": "mysticalworld:block/sapphire_block",
+    "top": "mysticalworld:block/sapphire_block"
+  }
+}

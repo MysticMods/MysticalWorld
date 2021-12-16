@@ -22,8 +22,8 @@ public class ModLang {
       p.add("attribute.name.forge.swimSpeed", "Swim Speed");
       p.add("advancement.mysticalworld.root", "Mystical World");
       p.add("advancement.mysticalworld.root.desc", "There's magic everywhere!");
-      p.add("advancement.mysticalworld.amethyst", "Sobriety Test");
-      p.add("advancement.mysticalworld.amethyst.desc", "Find a gem more divine than diamond!");
+      p.add("advancement.mysticalworld.sapphire", "Serendipitous Sapphires");
+      p.add("advancement.mysticalworld.sapphire.desc", "Be lucky enough to find a gem more divine than diamond!");
       p.add("advancement.mysticalworld.aubergine", "That's No Carrot...");
       p.add("advancement.mysticalworld.aubergine.desc", "Once, purple carrots were all the rage. But this is an aubergine.");
       p.add("advancement.mysticalworld.epic_squid", "Epic Squid!");
@@ -71,6 +71,7 @@ public class ModLang {
       p.add("mysticalworld.subtitles.entity.silkworm.eat", "Silkworm eats");
       p.add("mysticalworld.subtitles.entity.frog.croak", "Frog croaks");
       p.add("mysticalworld.subtitles.entity.duck.quack", "Duck quacks");
+      p.add("mysticalworld.subtitles.entity.deer.ambient", "Deer squeals");
     });
   }
 

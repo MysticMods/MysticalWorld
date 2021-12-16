@@ -326,7 +326,7 @@
       "mysticalworld:duck/duck4"
     ],
     "subtitle": "mysticalworld.subtitles.entity.duck.quack"
-  }  ,
+  },
   "mob.duck.swim": {
     "category": "neutral",
     "sounds": [
@@ -339,6 +339,7 @@
       "mysticalworld:deer/deer1",
       "mysticalworld:deer/deer2",
       "mysticalworld:deer/deer3"
-    ]
+    ],
+    "subtitle": "mysticalworld.subtitles.entity.deer.ambient"
   }
 }

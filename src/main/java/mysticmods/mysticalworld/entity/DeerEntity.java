@@ -80,7 +80,7 @@ public class DeerEntity extends AnimalEntity {
   @Nullable
   @Override
   protected SoundEvent getAmbientSound() {
-    if (random.nextInt(6) == 0) {
+    if (random.nextInt(15) == 0) {
       return ModSounds.DEER_AMBIENT.get();
     }
     return null;

@@ -1,33 +1,33 @@
 {
-  "name": "Amethyst Decoration",
-  "icon": "mysticalworld:amethyst_stairs",
+  "name": "Sapphire Decoration",
+  "icon": "mysticalworld:sapphire_stairs",
   "category": "decorations",
   "pages": [
     {
       "type": "crafting",
-      "recipe": "mysticalworld:gems_amethyst_to_storage_block",
+      "recipe": "mysticalworld:gems_sapphire_to_storage_block",
       "link_recipe": true,
-      "text": "While mainly serving a purpose as storage, blocks of amethyst can also be crafted into various decorative elements."
+      "text": "While mainly serving a purpose as storage, blocks of sapphire can also be crafted into various decorative elements."
     },
     {
       "type": "crafting",
       "title": "Stairs & Slabs",
       "link_recipe": true,
-      "recipe": "mysticalworld:amethyst_stairs",
-      "recipe2": "mysticalworld:amethyst_slab"
+      "recipe": "mysticalworld:sapphire_stairs",
+      "recipe2": "mysticalworld:sapphire_slab"
     },
     {
       "type": "crafting",
       "title": "Posts",
       "link_recipe": true,
-      "recipe": "mysticalworld:amethyst_wide_post",
-      "recipe2": "mysticalworld:amethyst_small_post"
+      "recipe": "mysticalworld:sapphire_wide_post",
+      "recipe2": "mysticalworld:sapphire_small_post"
     },
     {
       "type": "crafting",
       "title": "Walls",
       "link_recipe": true,
-      "recipe": "mysticalworld:amethyst_wall"
+      "recipe": "mysticalworld:sapphire_wall"
     }
   ]
 }

@@ -61,7 +61,7 @@ public class ModSounds {
   public static final RegistryEntry<SoundEvent> DUCK_SWIM = MysticalWorld.REGISTRATE.soundEvent("mob.duck.swim").register();
 
   // Deer
-  public static final RegistryEntry<SoundEvent> DEER_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.deer.ambient");
+  public static final RegistryEntry<SoundEvent> DEER_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.deer.ambient").register();
 
   public static void load() {
   }

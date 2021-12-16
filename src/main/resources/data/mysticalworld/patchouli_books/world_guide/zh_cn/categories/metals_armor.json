@@ -2,5 +2,5 @@
   "name": "盔甲",
   "parent": "metals",
   "description": "与工具和武器一样，除了基本的护甲值和韧性外，每种盔甲都具有特殊的效果。",
-  "icon": "mysticalworld:amethyst_chestplate"
+  "icon": "mysticalworld:sapphire_chestplate"
 }

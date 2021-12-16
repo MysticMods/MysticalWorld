@@ -1,24 +1,24 @@
 {
-  "name": "Amethyst Tools",
-  "icon": "mysticalworld:amethyst_axe",
+  "name": "Sapphire Tools",
+  "icon": "mysticalworld:sapphire_axe",
   "category": "metals_tools",
   "pages": [
     {
       "type": "spotlight",
-      "item": "mysticalworld:amethyst",
-      "text": "Amethyst is a precious gem that can be used to craft a number of durable, high-quality tools.$(br2)These tools have the obsidian harvest level, identical to that of diamond tools."
+      "item": "mysticalworld:sapphire",
+      "text": "Sapphire is a precious gem that can be used to craft a number of durable, high-quality tools.$(br2)These tools have the obsidian harvest level, identical to that of diamond tools."
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:amethyst_axe",
-      "recipe2": "mysticalworld:amethyst_hoe",
-      "title": "Amethyst Tools"
+      "recipe": "mysticalworld:sapphire_axe",
+      "recipe2": "mysticalworld:sapphire_hoe",
+      "title": "Sapphire Tools"
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:amethyst_shovel",
-      "recipe2": "mysticalworld:amethyst_pickaxe",
-      "title": "Amethyst Tools"
+      "recipe": "mysticalworld:sapphire_shovel",
+      "recipe2": "mysticalworld:sapphire_pickaxe",
+      "title": "Sapphire Tools"
     }
   ]
 }

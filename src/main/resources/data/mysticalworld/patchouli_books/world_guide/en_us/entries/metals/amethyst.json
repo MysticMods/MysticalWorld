@@ -1,21 +1,21 @@
 {
-  "name": "Amethyst Ore",
-  "icon": "mysticalworld:amethyst_ore",
+  "name": "Sapphire Ore",
+  "icon": "mysticalworld:sapphire_ore",
   "category": "metals",
-  "flag": "roots:amethyst",
+  "flag": "roots:sapphire",
   "pages": [
     {
       "type": "spotlight",
       "link_recipe": true,
-      "item": "mysticalworld:amethyst_ore",
-      "text": "Amethyst can be found at similar depths to diamond and with a similar rarity. When mined with the Fortune enchantment, it gives considerably higher yield, although "
+      "item": "mysticalworld:sapphire_ore",
+      "text": "Sapphire can be found at similar depths to diamond and with a similar rarity. When mined with the Fortune enchantment, it gives considerably higher yield, although "
     },
     {
       "type": "smelting",
       "link_recipe": true,
-      "recipe": "mysticalworld:amethyst_from_smelting",
-      "title": "Amethyst Gems",
-      "text": "Amethyst ore that has been obtained can also be smelted to gain a single gem, either in a furnace or a blast furnace."
+      "recipe": "mysticalworld:sapphire_from_smelting",
+      "title": "Sapphire Gems",
+      "text": "Sapphire ore that has been obtained can also be smelted to gain a single gem, either in a furnace or a blast furnace."
     }
   ]
 }

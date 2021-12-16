@@ -1,24 +1,24 @@
 {
   "name": "紫水晶工具",
-  "icon": "mysticalworld:amethyst_axe",
+  "icon": "mysticalworld:sapphire_axe",
   "category": "metals_tools",
   "pages": [
     {
       "type": "spotlight",
-      "item": "mysticalworld:amethyst",
+      "item": "mysticalworld:sapphire",
       "text": "紫水晶是一种珍贵的宝石，可用于制作各种耐用的工具。$(br2)这些工具的挖掘等级和钻石相同。"
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:amethyst_axe",
-      "recipe2": "mysticalworld:amethyst_hoe",
-      "title": "Amethyst Tools"
+      "recipe": "mysticalworld:sapphire_axe",
+      "recipe2": "mysticalworld:sapphire_hoe",
+      "title": "Sapphire Tools"
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:amethyst_shovel",
-      "recipe2": "mysticalworld:amethyst_pickaxe",
-      "title": "Amethyst Tools"
+      "recipe": "mysticalworld:sapphire_shovel",
+      "recipe2": "mysticalworld:sapphire_pickaxe",
+      "title": "Sapphire Tools"
     }
   ]
 }

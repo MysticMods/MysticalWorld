@@ -1,22 +1,22 @@
 {
-  "name": "Amethyst Armor",
-  "icon": "mysticalworld:amethyst_helmet",
+  "name": "Sapphire Armor",
+  "icon": "mysticalworld:sapphire_helmet",
   "category": "metals_armor",
   "pages": [
     {
       "type": "spotlight",
-      "item": "mysticalworld:amethyst_helmet",
-      "text": "Dense, beautiful and prized by many, amethyst armor grants $(l:metals/modifiers/serendipity)Serendipity$()."
+      "item": "mysticalworld:sapphire_helmet",
+      "text": "Dense, beautiful and prized by many, sapphire armor grants $(l:metals/modifiers/serendipity)Serendipity$()."
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:amethyst_helmet",
-      "recipe2": "mysticalworld:amethyst_chestplate"
+      "recipe": "mysticalworld:sapphire_helmet",
+      "recipe2": "mysticalworld:sapphire_chestplate"
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:amethyst_leggings",
-      "recipe2": "mysticalworld:amethyst_boots"
+      "recipe": "mysticalworld:sapphire_leggings",
+      "recipe2": "mysticalworld:sapphire_boots"
     }
   ]
 }

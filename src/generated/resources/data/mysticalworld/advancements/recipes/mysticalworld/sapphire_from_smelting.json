@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:sapphire_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_ores_sapphire": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ores/sapphire"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:sapphire_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ores_sapphire",
+      "has_the_recipe"
+    ]
+  ]
+}

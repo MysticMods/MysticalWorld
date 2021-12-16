@@ -7,7 +7,7 @@ import com.tterrag.registrate.util.nullness.NonNullFunction;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.items.*;
-import mysticmods.mysticalworld.items.amethyst.AmethystArmorItem;
+import mysticmods.mysticalworld.items.sapphire.SapphireArmorItem;
 import mysticmods.mysticalworld.items.copper.CopperArmorItem;
 import mysticmods.mysticalworld.items.lead.LeadArmorItem;
 import mysticmods.mysticalworld.items.quicksilver.*;
@@ -562,9 +562,9 @@ public class ModItems {
       .tag(MWTags.Items.PEARL_GEM)
       .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.PEARL_BLOCK, () -> ModItems.PEARL_GEM, MWTags.Items.PEARL_BLOCK, MWTags.Items.PEARL_GEM, null, null, null, null))
       .register();
-  public static RegistryEntry<Item> AMETHYST_GEM = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName(), Item::new)
-      .tag(MWTags.Items.AMETHYST_GEM)
-      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.AMETHYST_BLOCK, () -> ModItems.AMETHYST_GEM, MWTags.Items.AMETHYST_BLOCK, MWTags.Items.AMETHYST_GEM, MWTags.Items.AMETHYST_ORE, null, null, null))
+  public static RegistryEntry<Item> SAPPHIRE_GEM = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName(), Item::new)
+      .tag(MWTags.Items.SAPPHIRE_GEM)
+      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.SAPPHIRE_BLOCK, () -> ModItems.SAPPHIRE_GEM, MWTags.Items.SAPPHIRE_BLOCK, MWTags.Items.SAPPHIRE_GEM, MWTags.Items.SAPPHIRE_ORE, null, null, null))
       .register();
   public static RegistryEntry<Item> COPPER_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getIngotName(), Item::new)
       .tag(MWTags.Items.COPPER_INGOT)
@@ -640,28 +640,28 @@ public class ModItems {
       .recipe((ctx, p) -> MysticalWorld.RECIPES.dust(MWTags.Items.IRON_DUST, () -> Items.IRON_INGOT, 0.125f, p))
       .register();
 
-  // Amethyst Tools
-  public static RegistryEntry<AxeItem> AMETHYST_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_axe", axe(AxeItem::new, ModMaterials.AMETHYST))
-      .model((ctx, p) -> p.handheld(ModItems.AMETHYST_AXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_AXE, null, p)).register();
-  public static RegistryEntry<HoeItem> AMETHYST_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_hoe", hoe(HoeItem::new, ModMaterials.AMETHYST))
-      .model((ctx, p) -> p.handheld(ModItems.AMETHYST_HOE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_HOE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> AMETHYST_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.AMETHYST))
-      .model((ctx, p) -> p.handheld(ModItems.AMETHYST_KNIFE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_KNIFE, null, p)).register();
-  public static RegistryEntry<PickaxeItem> AMETHYST_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_pickaxe", pickaxe(PickaxeItem::new, ModMaterials.AMETHYST))
-      .model((ctx, p) -> p.handheld(ModItems.AMETHYST_PICKAXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_PICKAXE, null, p)).register();
-  public static RegistryEntry<ShovelItem> AMETHYST_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_shovel", shovel(ShovelItem::new, ModMaterials.AMETHYST))
-      .model((ctx, p) -> p.handheld(ModItems.AMETHYST_SHOVEL))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_SHOVEL, null, p)).register();
-  public static RegistryEntry<SwordItem> AMETHYST_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_sword", sword(SwordItem::new, ModMaterials.AMETHYST))
-      .model((ctx, p) -> p.handheld(ModItems.AMETHYST_SWORD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_SWORD, null, p)).register();
-  public static RegistryEntry<ModifiedSpearItem> AMETHYST_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.AMETHYST))
-      .model((ctx, p) -> p.handheld(ModItems.AMETHYST_SPEAR))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.AMETHYST_SWORD, ModItems.AMETHYST_SPEAR, null, p)).register();
+  // Sapphire Tools
+  public static RegistryEntry<AxeItem> SAPPHIRE_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_axe", axe(AxeItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_AXE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_AXE, null, p)).register();
+  public static RegistryEntry<HoeItem> SAPPHIRE_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_hoe", hoe(HoeItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_HOE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_HOE, null, p)).register();
+  public static RegistryEntry<BaseItems.KnifeItem> SAPPHIRE_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_KNIFE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_KNIFE, null, p)).register();
+  public static RegistryEntry<PickaxeItem> SAPPHIRE_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_pickaxe", pickaxe(PickaxeItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_PICKAXE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_PICKAXE, null, p)).register();
+  public static RegistryEntry<ShovelItem> SAPPHIRE_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_shovel", shovel(ShovelItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_SHOVEL))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_SHOVEL, null, p)).register();
+  public static RegistryEntry<SwordItem> SAPPHIRE_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_sword", sword(SwordItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_SWORD))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_SWORD, null, p)).register();
+  public static RegistryEntry<ModifiedSpearItem> SAPPHIRE_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_SPEAR))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.SAPPHIRE_SWORD, ModItems.SAPPHIRE_SPEAR, null, p)).register();
 
   // Cactus
   public static RegistryEntry<AxeItem> CACTUS_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_axe", axe(AxeItem::new, ModMaterials.CACTUS))
@@ -844,17 +844,17 @@ public class ModItems {
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(Items.IRON_SWORD, ModItems.IRON_SPEAR, null, p)).register();
 
   // Armors
-  public static RegistryEntry<AmethystArmorItem> AMETHYST_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_helmet", armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.HEAD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_HELMET, null, p))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_helmet", armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.HEAD))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_HELMET, null, p))
       .register();
-  public static RegistryEntry<AmethystArmorItem> AMETHYST_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_chestplate", armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.CHEST))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_CHESTPLATE, null, p))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_chestplate", armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.CHEST))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<AmethystArmorItem> AMETHYST_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_leggings", armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.LEGS))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_LEGGINGS, null, p))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_leggings", armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.LEGS))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<AmethystArmorItem> AMETHYST_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.AMETHYST.getInternalName() + "_boots", armor(AmethystArmorItem::new, ModMaterials.AMETHYST, EquipmentSlotType.FEET))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.AMETHYST_GEM, ModItems.AMETHYST_BOOTS, null, p))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_boots", armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.FEET))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_BOOTS, null, p))
       .register();
 
   // COPPER
