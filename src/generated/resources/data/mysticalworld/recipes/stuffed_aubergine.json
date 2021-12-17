@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "mysticalworld:unique_shapeless",
   "ingredients": [
     {
       "item": "mysticalworld:cooked_aubergine"

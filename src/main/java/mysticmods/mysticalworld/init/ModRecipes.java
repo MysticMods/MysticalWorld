@@ -10,8 +10,10 @@ import mysticmods.mysticalworld.recipe.ShapelessDamageRecipe;
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.crafting.ShapelessRecipe;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
+import noobanidus.libs.noobutil.recipe.UniqueShapelessRecipe;
 
 // TODO: Done
 
@@ -23,6 +25,8 @@ public class ModRecipes {
   public static RegistryEntry<SpecialRecipeSerializer<BlazeRocketRecipe>> BLAZE_SERIALIZER = MysticalWorld.REGISTRATE.recipeSerializer("blaze_rocket_recipe", () -> new SpecialRecipeSerializer<>(BlazeRocketRecipe::new)).register();
 
   public static RegistryEntry<SpecialRecipeSerializer<EmptyRecipe>> EMPTY_SERIALIZER = MysticalWorld.REGISTRATE.recipeSerializer("empty_recipe", () -> new SpecialRecipeSerializer<>(EmptyRecipe::new)).register();
+
+  public static RegistryEntry<UniqueShapelessRecipe.Serializer> UNIQUE_SHAPELESS_RECIPE = MysticalWorld.REGISTRATE.recipeSerializer("unique_shapeless", UniqueShapelessRecipe.Serializer::new).register();
 
   public static void load() {
 

@@ -33,6 +33,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import noobanidus.libs.noobutil.data.generator.RecipeGenerator;
 import noobanidus.libs.noobutil.modifier.PlayerModifierRegistry;
+import noobanidus.libs.noobutil.recipe.UniqueShapelessRecipe;
 import noobanidus.libs.noobutil.reference.ModData;
 import noobanidus.libs.noobutil.registrate.CustomRegistrate;
 import org.apache.logging.log4j.LogManager;
@@ -112,6 +113,7 @@ public class MysticalWorld {
       ModLoot.load();
       ModLoot.CONDITION_REGISTRY.registration();
       ModLoot.FUNCTION_REGISTRY.registration();
+      UniqueShapelessRecipe.setStoredSerializer(ModRecipes.UNIQUE_SHAPELESS_RECIPE.get());
       event.getGenerator().addProvider(new LootTableGenerator(event.getGenerator()));
       event.getGenerator().addProvider(new PotionTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
     }
