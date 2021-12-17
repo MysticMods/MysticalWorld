@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-      "item": "mysticalworld:amethyst"
+      "item": "mysticalworld:sapphire"
     },
     "title": {
-      "translate": "advancement.mysticalworld.amethyst"
+      "translate": "advancement.mysticalworld.sapphire"
     },
     "description": {
-      "translate": "advancement.mysticalworld.amethyst.desc"
+      "translate": "advancement.mysticalworld.sapphire.desc"
     }
   },
   "parent": "mysticalworld:root",
@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:amethyst"
+            "item": "mysticalworld:sapphire"
           }
         ]
       }
