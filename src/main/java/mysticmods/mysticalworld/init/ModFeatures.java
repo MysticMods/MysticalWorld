@@ -45,7 +45,7 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
-import noobanidus.libs.noobutil.types.LazySupplier;
+import noobanidus.libs.noobutil.type.LazySupplier;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;

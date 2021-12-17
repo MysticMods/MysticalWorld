@@ -9,9 +9,9 @@ import net.minecraft.item.ItemTier;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvents;
+import noobanidus.libs.noobutil.ingredient.LazyIngredient;
 import noobanidus.libs.noobutil.item.WeaponType;
 import noobanidus.libs.noobutil.material.MaterialType;
-import noobanidus.libs.noobutil.types.LazyIngredient;
 
 public class ModMaterials {
   public static final String SAPPHIRE_NAME = "sapphire";

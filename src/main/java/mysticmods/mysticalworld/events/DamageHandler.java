@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class DamageHandler {
@@ -21,7 +22,7 @@ public class DamageHandler {
         }
       }
     }
-    if (target instanceof PlayerEntity) {
+    if (target instanceof PlayerEntity && !(target instanceof FakePlayer)) {
       if (source != null) {
         Entity trueAttacker = source.getEntity();
         if (trueAttacker instanceof LivingEntity) {

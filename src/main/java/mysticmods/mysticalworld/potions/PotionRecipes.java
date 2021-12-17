@@ -11,7 +11,7 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
-import noobanidus.libs.noobutil.types.LazyIngredient;
+import noobanidus.libs.noobutil.ingredient.LazyIngredient;
 
 public class PotionRecipes {
   public static void registerRecipes() {

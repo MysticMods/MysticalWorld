@@ -4,7 +4,7 @@ import com.mojang.serialization.Codec;
 import mysticmods.mysticalworld.init.ModFeatures;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
-import noobanidus.libs.noobutil.types.LazyStateSupplier;
+import noobanidus.libs.noobutil.type.LazyStateSupplier;
 import noobanidus.libs.noobutil.world.gen.provider.AbstractSupplierBlockStateProvider;
 
 import javax.annotation.Nullable;
