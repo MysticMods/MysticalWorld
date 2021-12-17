@@ -33,6 +33,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import noobanidus.libs.noobutil.data.generator.RecipeGenerator;
 import noobanidus.libs.noobutil.modifier.PlayerModifierRegistry;
+import noobanidus.libs.noobutil.reference.ModData;
 import noobanidus.libs.noobutil.registrate.CustomRegistrate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,6 +56,7 @@ public class MysticalWorld {
   };
 
   public MysticalWorld() {
+    ModData.setIdAndIdentifier(MODID, "MysticalWorld");
     ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
 
