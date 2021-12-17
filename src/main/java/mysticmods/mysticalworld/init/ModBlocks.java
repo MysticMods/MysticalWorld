@@ -46,6 +46,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.libs.noobutil.block.BaseBlocks;
+import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
 import noobanidus.libs.noobutil.material.MaterialType;
 
 import java.util.Objects;
@@ -1768,7 +1769,7 @@ public class ModBlocks {
             .pattern("AB")
             .pattern("BA")
             .define('A', Tags.Items.STONE)
-            .define('B', Tags.Items.OBSIDIAN)
+            .define('B', ExcludingIngredient.create(Tags.Items.OBSIDIAN, ctx.getEntry()))
             .unlockedBy("has_stone", RegistrateRecipeProvider.hasItem(Tags.Items.STONE))
             .unlockedBy("has_obsidian", RegistrateRecipeProvider.hasItem(Tags.Items.OBSIDIAN))
             .save(p);

@@ -14,10 +14,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(modid=MysticalWorld.MODID)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class Remaps {
   public static ResourceLocation IGNORE = new ResourceLocation(MysticalWorld.MODID, "ignore_remap");
 
@@ -170,5 +169,33 @@ public class Remaps {
     remapItem("cracked_stone_small_post", "soft_stone_small_post");
     remapBlock("simple_thatch", "thatch");
     remapItem("simple_thatch", "thatch");
+
+    remapBlock("amethyst_block", "sapphire_block");
+    remapBlock("amethyst_ore", "sapphire_ore");
+    remapBlock("amethyst_stairs", "sapphire_stairs");
+    remapBlock("amethyst_slab", "sapphire_slab");
+    remapBlock("amethyst_wall", "sapphire_wall");
+    remapBlock("amethyst_wide_post", "sapphire_wide_post");
+    remapBlock("amethyst_small_post", "sapphire_small_post");
+    remapItem("amethyst_block", "sapphire_block");
+    remapItem("amethyst_ore", "sapphire_ore");
+    remapItem("amethyst_stairs", "sapphire_stairs");
+    remapItem("amethyst_slab", "sapphire_slab");
+    remapItem("amethyst_wall", "sapphire_wall");
+    remapItem("amethyst_wide_post", "sapphire_wide_post");
+    remapItem("amethyst_small_post", "sapphire_small_post");
+
+    remapItem("amethyst", "sapphire");
+    remapItem("amethyst_axe", "sapphire_axe");
+    remapItem("amethyst_boots", "sapphire_boots");
+    remapItem("amethyst_chestplate", "sapphire_chestplate");
+    remapItem("amethyst_helmet", "sapphire_helmet");
+    remapItem("amethyst_hoe", "sapphire_hoe");
+    remapItem("amethyst_knife", "sapphire_knife");
+    remapItem("amethyst_leggings", "sapphire_leggings");
+    remapItem("amethyst_pickaxe", "sapphire_pickaxe");
+    remapItem("amethyst_shovel", "sapphire_shovel");
+    remapItem("amethyst_spear", "sapphire_spear");
+    remapItem("amethyst_sword", "sapphire_sword");
   }
 }
