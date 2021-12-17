@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=north": {
-      "model": "mysticalworld:block/bone_pile3"
+      "model": "mysticalworld:block/bone_pile4"
     },
     "facing=south": {
-      "model": "mysticalworld:block/bone_pile3",
+      "model": "mysticalworld:block/bone_pile4",
       "y": 180
     },
     "facing=west": {
-      "model": "mysticalworld:block/bone_pile3",
+      "model": "mysticalworld:block/bone_pile4",
       "y": 270
     },
     "facing=east": {
-      "model": "mysticalworld:block/bone_pile3",
+      "model": "mysticalworld:block/bone_pile4",
       "y": 90
     }
   }

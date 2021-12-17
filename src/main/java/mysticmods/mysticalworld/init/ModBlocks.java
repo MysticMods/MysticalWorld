@@ -2638,7 +2638,7 @@ public class ModBlocks {
       .lang("Bone Pile")
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry()).forAllStates((state) ->
-              ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/bone_pile3"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
+              ConfiguredModel.builder().modelFile(p.models().getExistingFile(new ResourceLocation(MysticalWorld.MODID, "block/bone_pile4"))).rotationY((int) (state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build()
           )
       )
       .item()
