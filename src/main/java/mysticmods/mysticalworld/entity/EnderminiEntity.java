@@ -8,6 +8,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -24,6 +26,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.potion.Effect;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
@@ -31,9 +34,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -313,21 +316,43 @@ public class EnderminiEntity extends CreatureEntity {
     }
   }
 
+  private final static String BETTERENDFORGE = "betterendforge";
+  private static Effect END_VEIL_EFFECT = null;
+  private static Enchantment END_VEIL_ENCHANTMENT = null;
+  private static int betterEnd = 0;
+
   /**
    * Checks to see if this enderman should be attacking this player
    */
   private boolean shouldAttackPlayer(PlayerEntity player) {
+    if (betterEnd == 0) {
+      if (END_VEIL_EFFECT == null) {
+        END_VEIL_EFFECT = ForgeRegistries.POTIONS.getValue(new ResourceLocation(BETTERENDFORGE, "end_veil"));
+      }
+      if (END_VEIL_ENCHANTMENT == null) {
+        END_VEIL_ENCHANTMENT = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(BETTERENDFORGE, "end_veil"));
+      }
+      if (END_VEIL_EFFECT == null || END_VEIL_ENCHANTMENT == null) {
+        betterEnd = -1;
+      } else {
+        betterEnd = 1;
+      }
+    }
     ItemStack itemstack = player.inventory.armor.get(3);
     if (itemstack.getItem() == Blocks.CARVED_PUMPKIN.asItem()) {
       return false;
-    } else {
-      Vector3d vec3d = player.getViewVector(1.0F).normalize();
-      Vector3d vec3d1 = new Vector3d(this.getX() - player.getX(), this.getBoundingBox().minY + (double) this.getEyeHeight() - (player.getY() + (double) player.getEyeHeight()), this.getZ() - player.getZ());
-      double d0 = vec3d1.length();
-      vec3d1 = vec3d1.normalize();
-      double d1 = vec3d.dot(vec3d1);
-      return d1 > 1.0D - 0.025D / d0 && player.canSee(this);
     }
+    if (betterEnd == 1) {
+      if (player.hasEffect(END_VEIL_EFFECT) || EnchantmentHelper.getEnchantmentLevel(END_VEIL_ENCHANTMENT, player) > 0) {
+        return false;
+      }
+    }
+    Vector3d vec3d = player.getViewVector(1.0F).normalize();
+    Vector3d vec3d1 = new Vector3d(this.getX() - player.getX(), this.getBoundingBox().minY + (double) this.getEyeHeight() - (player.getY() + (double) player.getEyeHeight()), this.getZ() - player.getZ());
+    double d0 = vec3d1.length();
+    vec3d1 = vec3d1.normalize();
+    double d1 = vec3d.dot(vec3d1);
+    return d1 > 1.0D - 0.025D / d0 && player.canSee(this);
   }
 
   public void setCarriedBlock(@Nullable BlockState pState) {
@@ -352,7 +377,8 @@ public class EnderminiEntity extends CreatureEntity {
     CARRIABLE_BLOCKS.add(Blocks.NETHERRACK);
   }
 
-  public static boolean checkMonsterSpawnRules(EntityType<EnderminiEntity> pType, IServerWorld pLevel, SpawnReason pReason, BlockPos pPos, Random pRandom) {
+  public static boolean checkMonsterSpawnRules(EntityType<EnderminiEntity> pType, IServerWorld pLevel, SpawnReason
+      pReason, BlockPos pPos, Random pRandom) {
     return checkMobSpawnRules(pType, pLevel, pReason, pPos, pRandom);
   }
 
