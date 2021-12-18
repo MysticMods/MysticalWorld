@@ -152,7 +152,7 @@ public class ModItems {
           .save(p))
       .register();
 
-  public static RegistryEntry<BeetleMaskItem> BEETLE_MASK = MysticalWorld.REGISTRATE.item("beetle_mask", BeetleMaskItem::new)
+  public static RegistryEntry<BeetleArmorItem> BEETLE_MASK = MysticalWorld.REGISTRATE.item("beetle_mask", (b) -> new BeetleArmorItem(b, EquipmentSlotType.HEAD))
       .properties(o -> o.durability(399).rarity(Rarity.RARE))
       .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
           .pattern("CWC")
@@ -163,6 +163,15 @@ public class ModItems {
           .define('S', Tags.Items.RODS_WOODEN)
           .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(ModItems.CARAPACE.get()))
           .save(p))
+      .register();
+
+  public static RegistryEntry<BeetleArmorItem> BEETLE_CHEST = MysticalWorld.REGISTRATE.item("beetle_chestplate", (b) -> new BeetleArmorItem(b, EquipmentSlotType.CHEST))
+      .register();
+
+  public static RegistryEntry<BeetleArmorItem> BEETLE_LEGGINGS = MysticalWorld.REGISTRATE.item("beetle_leggings", (b) -> new BeetleArmorItem(b, EquipmentSlotType.LEGS))
+      .register();
+
+  public static RegistryEntry<BeetleArmorItem> BEETLE_BOOTS = MysticalWorld.REGISTRATE.item("beetle_boots", (b) -> new BeetleArmorItem(b, EquipmentSlotType.FEET))
       .register();
 
   public static RegistryEntry<SilkwormEgg> SILKWORM_EGG = MysticalWorld.REGISTRATE.item("silkworm_egg", SilkwormEgg::new).register();
