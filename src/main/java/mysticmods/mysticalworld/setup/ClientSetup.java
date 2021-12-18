@@ -2,8 +2,8 @@ package mysticmods.mysticalworld.setup;
 
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import mysticmods.mysticalworld.entity.model.ModelHolder;
-import mysticmods.mysticalworld.entity.render.*;
+import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.client.render.*;
 import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModEntities;
 import net.minecraft.client.Minecraft;

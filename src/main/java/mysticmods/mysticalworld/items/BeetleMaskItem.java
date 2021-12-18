@@ -3,7 +3,7 @@ package mysticmods.mysticalworld.items;
 import com.google.common.collect.Multimap;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
-import mysticmods.mysticalworld.entity.model.ModelHolder;
+import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.init.ModMaterials;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
@@ -19,8 +19,6 @@ import noobanidus.libs.noobutil.material.MaterialType;
 
 import javax.annotation.Nullable;
 import java.util.Map;
-
-import net.minecraft.item.Item.Properties;
 
 public class BeetleMaskItem extends ModifiedArmorItem {
   public BeetleMaskItem(Properties builder) {
