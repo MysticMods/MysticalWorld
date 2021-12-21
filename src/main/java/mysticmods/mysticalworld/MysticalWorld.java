@@ -98,6 +98,7 @@ public class MysticalWorld {
     PlayerModifierRegistry.addModifier(ModModifiers.SERENDIPITY);
     PlayerModifierRegistry.addModifier(ModModifiers.BLESSED);
     PlayerModifierRegistry.addModifier(ModModifiers.SMITE);
+    PlayerModifierRegistry.addModifier(ModModifiers.CARAPAX);
 
     if (ModList.get().isLoaded("dynamictrees")) {
       DynamicTrees.init();
