@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:beetle_chestplate"
+    ]
+  },
+  "criteria": {
+    "has_carapace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "mysticalworld:carapace"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:beetle_chestplate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_carapace",
+      "has_the_recipe"
+    ]
+  ]
+}

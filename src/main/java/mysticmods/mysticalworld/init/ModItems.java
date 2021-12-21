@@ -153,7 +153,7 @@ public class ModItems {
           .save(p))
       .register();
 
-  public static RegistryEntry<BeetleArmorItem> BEETLE_MASK = MysticalWorld.REGISTRATE.item("beetle_helmet", (b) -> new BeetleArmorItem(b, EquipmentSlotType.HEAD))
+  public static RegistryEntry<BeetleArmorItem> BEETLE_HELMET = MysticalWorld.REGISTRATE.item("beetle_helmet", (b) -> new BeetleArmorItem(b, EquipmentSlotType.HEAD))
       .properties(o -> o.rarity(Rarity.RARE))
       .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
           .pattern("CCC")
@@ -163,7 +163,7 @@ public class ModItems {
           .save(p))
       .register();
 
-  public static RegistryEntry<BeetleArmorItem> BEETLE_CHEST = MysticalWorld.REGISTRATE.item("beetle_chestplate", (b) -> new BeetleArmorItem(b, EquipmentSlotType.CHEST))
+  public static RegistryEntry<BeetleArmorItem> BEETLE_CHESTPLATE = MysticalWorld.REGISTRATE.item("beetle_chestplate", (b) -> new BeetleArmorItem(b, EquipmentSlotType.CHEST))
       .properties(o -> o.rarity(Rarity.RARE))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
           .pattern("C C")
