@@ -64,6 +64,8 @@ public class MWTags {
     public static Tags.IOptionalNamedTag<Item> AUBERGINE = compatTag("crops/aubergine");
     public static Tags.IOptionalNamedTag<Item> EGGPLANT = compatTag("crops/eggplant");
 
+    public static Tags.IOptionalNamedTag<Item> CARAPACE = modTag("carapace");
+
     public static Tags.IOptionalNamedTag<Item> COPPER_ITEMS = modTag("copper_items");
     public static Tags.IOptionalNamedTag<Item> LEAD_ITEMS = modTag("lead_items");
     public static Tags.IOptionalNamedTag<Item> QUICKSILVER_ITEMS = modTag("quicksilver_items");

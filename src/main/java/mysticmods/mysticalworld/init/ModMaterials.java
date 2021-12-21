@@ -34,7 +34,7 @@ public class ModMaterials {
 
   public static MaterialType ANTLER = new MaterialType(ANTLER_NAME).item(() -> ModItems.ANTLERS).itemMaterial(350, 4.0f, 1.0f, 2, 18).armorMaterial(7, new int[]{3, 0, 0, 0}, SoundEvents.ARMOR_EQUIP_TURTLE, 1.0f, 0f).setConfigProvider(ConfigManager::getArmorConfig);
 
-  public static MaterialType CARAPACE = new MaterialType(CARAPACE_NAME).item(() -> ModItems.CARAPACE).itemMaterial(399, 4.0f, 1.0f, 2, 18).armorMaterial(7, new int[]{3, 0, 0, 0}, SoundEvents.ARMOR_EQUIP_TURTLE, 1.0f, 0f).setConfigProvider(ConfigManager::getArmorConfig);
+  public static MaterialType CARAPACE = new MaterialType(CARAPACE_NAME).item(() -> ModItems.CARAPACE).itemMaterial(399, 4.0f, 1.0f, 2, 18, () -> MWTags.Items.CARAPACE).armorMaterial(25, new int[]{2, 5, 6, 2}, SoundEvents.ARMOR_EQUIP_TURTLE, 0.0f, 0f).setConfigProvider(ConfigManager::getArmorConfig);
 
   public static MaterialType SAPPHIRE = new MaterialType(SAPPHIRE_NAME).itemMaterial(960, 8.0f, 3.0f, 3, 14, () -> MWTags.Items.SAPPHIRE_GEM).item(() -> ModItems.SAPPHIRE_GEM).block(() -> ModBlocks.SAPPHIRE_BLOCK).ore(() -> ModBlocks.SAPPHIRE_ORE).armorMaterial(33, new int[]{3, 6, 8, 3}, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.0f, 0f).setMinXP(1).setMaxXP(4).setModId(MysticalWorld.MODID).putDamageSpeed(
       WeaponType.AXE, 6.0f, -3.1f,

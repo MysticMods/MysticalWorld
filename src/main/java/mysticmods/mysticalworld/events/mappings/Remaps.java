@@ -197,5 +197,7 @@ public class Remaps {
     remapItem("amethyst_shovel", "sapphire_shovel");
     remapItem("amethyst_spear", "sapphire_spear");
     remapItem("amethyst_sword", "sapphire_sword");
+
+    remapItem("beetle_mask", "beetle_helmet");
   }
 }

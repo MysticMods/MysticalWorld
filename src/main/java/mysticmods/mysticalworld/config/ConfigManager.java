@@ -70,7 +70,7 @@ public class ConfigManager {
     ARMOR_CONFIGS.put(ModMaterials.QUICKSILVER_NAME, new ArmorConfig(ModMaterials.QUICKSILVER_NAME, 1, 3, 5, 2, 0f));
     ARMOR_CONFIGS.put(ModMaterials.SILVER_NAME, new ArmorConfig(ModMaterials.SILVER_NAME, 1, 3, 5, 2, 0f));
     ARMOR_CONFIGS.put(ModMaterials.TIN_NAME, new ArmorConfig(ModMaterials.TIN_NAME, 1, 4, 5, 2, 0f));
-    ARMOR_CONFIGS.put(ModMaterials.CARAPACE_NAME, new ArmorConfig(ModMaterials.CARAPACE_NAME, 3, 0, 0, 0, 1f));
+    ARMOR_CONFIGS.put(ModMaterials.CARAPACE_NAME, new ArmorConfig(ModMaterials.CARAPACE_NAME, 2, 5, 6, 2, 0f));
     ARMOR_CONFIGS.put(ModMaterials.ANTLER_NAME, new ArmorConfig(ModMaterials.ANTLER_NAME, 3, 0, 0, 0, 1f));
     ARMOR_CONFIGS.values().forEach(o -> o.apply(COMMON_BUILDER));
 
