@@ -5,16 +5,12 @@ import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.events.LeafHandler;
 import mysticmods.mysticalworld.events.MaskHandler;
 import mysticmods.mysticalworld.events.global.GrassHandler;
-import mysticmods.mysticalworld.events.mappings.Remaps;
 import mysticmods.mysticalworld.gen.LootTableGenerator;
 import mysticmods.mysticalworld.gen.PotionTagGenerator;
 import mysticmods.mysticalworld.init.*;
 import mysticmods.mysticalworld.integration.dynamictrees.DynamicTrees;
 import mysticmods.mysticalworld.setup.ClientInit;
 import mysticmods.mysticalworld.setup.CommonSetup;
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -90,7 +86,7 @@ public class MysticalWorld {
     MinecraftForge.EVENT_BUS.addListener(CommonSetup::serverStarting);
     MinecraftForge.EVENT_BUS.addListener(CommonSetup::serverAboutToStart);
     MinecraftForge.EVENT_BUS.addListener(LeafHandler::onBlockDrops);
-    MinecraftForge.EVENT_BUS.addListener(MaskHandler::onAttackEntity);
+    //MinecraftForge.EVENT_BUS.addListener(MaskHandler::onAttackEntity);
 
     MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModFeatures::onBiomeLoad);
     MinecraftForge.EVENT_BUS.addListener(ModFeatures::onWorldLoad);
