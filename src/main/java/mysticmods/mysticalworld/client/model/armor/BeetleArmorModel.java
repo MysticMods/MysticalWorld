@@ -43,7 +43,7 @@ public class BeetleArmorModel extends ArmorBaseModel {
     bodyAnchor = new ModelRenderer(this);
     bodyAnchor.setPos(-4.0F, 1.5F, -3.0F);
     bodyAnchor.texOffs(0, 46).addBox(-0.25F, 0.0F, 0.75F, 8.0F, 2.0F, 4.0F, 0.0F, false);
-    bodyAnchor.texOffs(0, 46).addBox(-0.25F, 6.0F, 0.75F, 8.0F, 2.0F, 4.0F, 0.0F, false);
+    bodyAnchor.texOffs(0, 46).addBox(0F, 6.0F, 0.75F, 8.0F, 2.0F, 4.0F, 0.0F, false);
     bodyAnchor.texOffs(8, 20).addBox(0.25F, -1.75F, 0.75F, 2.0F, 1.0F, 4.0F, 0.0F, false);
     bodyAnchor.texOffs(8, 20).addBox(5.75F, -1.75F, 0.75F, 2.0F, 1.0F, 4.0F, 0.0F, false);
     bodyAnchor.texOffs(0, 53).addBox(-0.5F, -1.0F, 5.0F, 9.0F, 10.0F, 1.0F, 0.0F, false);
@@ -86,10 +86,10 @@ public class BeetleArmorModel extends ArmorBaseModel {
 
     legR = new ModelRenderer(this);
     legR.setPos(1.6284F, 6.652F, 0.0F);
-    legR.texOffs(28, 11).addBox(-4.2284F, -6.402F, -2.5F, 3.0F, 4.0F, 5.0F, 0.0F, true);
+    legR.texOffs(28, 11).addBox(-4F, -6.402F, -2.5F, 3.0F, 4.0F, 5.0F, 0.0F, true);
     legR.texOffs(19, 29).addBox(-3.9784F, 1.098F, -2.25F, 4.0F, 1.0F, 4.0F, 0.0F, true);
     legR.texOffs(19, 29).addBox(-3.9784F, -0.402F, -2.25F, 4.0F, 1.0F, 4.0F, 0.0F, true);
-    legR.texOffs(16, 23).addBox(-0.7284F, -5.152F, -2.25F, 1.0F, 2.0F, 4.0F, 0.0F, true);
+    legR.texOffs(16, 23).addBox(-1F, -5.152F, -2.25F, 1.0F, 2.0F, 4.0F, 0.0F, true);
     legR.texOffs(39, 11).addBox(-3.4784F, -0.902F, -2.5F, 3.0F, 4.0F, 1.0F, 0.0F, true);
 
     bootR = new ModelRenderer(this);
@@ -106,22 +106,22 @@ public class BeetleArmorModel extends ArmorBaseModel {
 
     legL = new ModelRenderer(this);
     legL.setPos(-1.6284F, 0.152F, 0.0F);
-    legL.texOffs(19, 29).addBox(-0.2716F, 7.598F, -2.25F, 4.0F, 1.0F, 4.0F, 0.0F, false);
-    legL.texOffs(19, 29).addBox(-0.2716F, 6.098F, -2.25F, 4.0F, 1.0F, 4.0F, 0.0F, false);
+    legL.texOffs(19, 29).addBox(-0F, 7.598F, -2.25F, 4.0F, 1.0F, 4.0F, 0.0F, false);
+    legL.texOffs(19, 29).addBox(-0F, 6.098F, -2.25F, 4.0F, 1.0F, 4.0F, 0.0F, false);
     legL.texOffs(16, 23).addBox(-0.0216F, 1.348F, -2.25F, 1.0F, 2.0F, 4.0F, 0.0F, false);
-    legL.texOffs(39, 11).addBox(0.2284F, 5.598F, -2.5F, 3.0F, 4.0F, 1.0F, 0.0F, false);
+    legL.texOffs(39, 11).addBox(0.5F, 5.598F, -2.5F, 3.0F, 4.0F, 1.0F, 0.0F, false);
     legL.texOffs(28, 11).addBox(0.9784F, 0.098F, -2.5F, 3.0F, 4.0F, 5.0F, 0.0F, false);
 
     bootL = new ModelRenderer(this);
     bootL.setPos(-0.025F, 11.5F, -2.75F);
-    bootL.texOffs(20, 57).addBox(-1.775F, -0.9F, 0.0F, 4.0F, 2.0F, 5.0F, 0.0F, false);
-    bootL.texOffs(20, 46).addBox(-1.775F, -1.9F, 3.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
+    bootL.texOffs(20, 57).addBox(-1.75F, -0.9F, 0.0F, 4.0F, 2.0F, 5.0F, 0.0F, false);
+    bootL.texOffs(20, 46).addBox(-1.75F, -1.9F, 3.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
 
     ModelRenderer left_boot_plate_r1 = new ModelRenderer(this);
     left_boot_plate_r1.setPos(0.0F, 0.0F, 0.0F);
     bootL.addChild(left_boot_plate_r1);
     setRotationAngle(left_boot_plate_r1, -1.9635F, 0.0F, 0.0F);
-    left_boot_plate_r1.texOffs(20, 34).addBox(-1.625F, -0.5F, -1.0F, 3.0F, 1.0F, 2.0F, 0.0F, false);
+    left_boot_plate_r1.texOffs(20, 34).addBox(-1.125F, -0.5F, -1.0F, 3.0F, 1.0F, 2.0F, 0.0F, false);
 
     headAnchor.visible = slot == EquipmentSlotType.HEAD;
     bodyAnchor.visible = slot == EquipmentSlotType.CHEST;
