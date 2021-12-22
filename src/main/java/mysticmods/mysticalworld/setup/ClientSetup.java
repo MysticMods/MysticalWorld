@@ -3,6 +3,7 @@ package mysticmods.mysticalworld.setup;
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.client.player.layer.ShoulderRenderLayer;
 import mysticmods.mysticalworld.client.render.*;
 import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModEntities;
@@ -44,6 +45,8 @@ public class ClientSetup {
       RenderTypeLookup.setRenderLayer(ModBlocks.UNCANNY_MUSHROOM.get(), rendertype);
 
       ShadedClientSetup.init(event);
+
+      Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values().forEach(o -> o.addLayer(new ShoulderRenderLayer<>(o)));
 
       // TODO: Fix this
       ItemColors c = Minecraft.getInstance().getItemColors();

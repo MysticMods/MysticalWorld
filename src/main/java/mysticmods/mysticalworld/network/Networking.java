@@ -1,4 +1,4 @@
-/*package mysticmods.mysticalworld.network;
+package mysticmods.mysticalworld.network;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -28,4 +28,4 @@ public class Networking extends PacketHandler {
   public static <MSG> void send(PacketDistributor.PacketTarget target, MSG message) {
     INSTANCE.sendInternal(target, message);
   }
-}*/
+}

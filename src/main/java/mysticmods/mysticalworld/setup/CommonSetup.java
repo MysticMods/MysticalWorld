@@ -10,6 +10,7 @@ import mysticmods.mysticalworld.events.CapabilityHandler;
 import mysticmods.mysticalworld.events.DamageHandler;
 import mysticmods.mysticalworld.events.LootHandler;
 import mysticmods.mysticalworld.init.*;
+import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.potions.PotionRecipes;
 import mysticmods.mysticalworld.recipe.ingredients.SeedIngredient;
 import net.minecraft.block.Blocks;
@@ -41,7 +42,7 @@ public class CommonSetup {
     MysticalWorld.STONE_PLANT = PlantType.get("stone");
     CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
     CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
-    /*    Networking.INSTANCE.registerMessages();*/
+    Networking.INSTANCE.registerMessages();
 
     event.enqueueWork(() -> {
       ModLoot.load();
@@ -103,11 +104,7 @@ public class CommonSetup {
   @SuppressWarnings("Duplicates")
   public static void registerListeners() {
     MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
-    /*    MinecraftForge.EVENT_BUS.addListener(EntityHandler::onEntityInteract);*/
-    // TODO: Temporarily disabled
-    //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onDeath);
-    //MinecraftForge.EVENT_BUS.addListener(ShoulderHandler::onRightClickBlock);
-    /*    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);*/
+    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);
     MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, true, LootHandler::onLootLoad);
     MinecraftForge.EVENT_BUS.addListener(LootHandler::onLooting);
     MinecraftForge.EVENT_BUS.addGenericListener(Entity.class, CapabilityHandler::attachCapability);

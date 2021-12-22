@@ -1,4 +1,3 @@
-/*
 package mysticmods.mysticalworld.network;
 
 
@@ -26,12 +25,12 @@ public class ShoulderRide {
     long uuid1 = buffer.readLong();
     long uuid2 = buffer.readLong();
     id = new UUID(uuid1, uuid2);
-    tag = buffer.readCompoundTag();
+    tag = buffer.readNbt();
   }
 
   public ShoulderRide(PlayerEntity player, IPlayerShoulderCapability cap) {
     this.tag = cap.writeNBT();
-    this.id = player.getUniqueID();
+    this.id = player.getUUID();
   }
 
   public CompoundNBT getTag() {
@@ -45,7 +44,7 @@ public class ShoulderRide {
   public void encode(PacketBuffer buf) {
     buf.writeLong(id.getMostSignificantBits());
     buf.writeLong(id.getLeastSignificantBits());
-    buf.writeCompoundTag(tag);
+    buf.writeNbt(tag);
   }
 
   public void handle(Supplier<NetworkEvent.Context> context) {
@@ -55,9 +54,9 @@ public class ShoulderRide {
   @OnlyIn(Dist.CLIENT)
   private static void handle(ShoulderRide message, Supplier<NetworkEvent.Context> context) {
     PlayerEntity target = Minecraft.getInstance().player;
-    World world = target.world;
-    if (!target.getUniqueID().equals(message.getId())) {
-      target = world.getPlayerByUuid(message.getId());
+    World world = target.level;
+    if (!target.getUUID().equals(message.getId())) {
+      target = world.getPlayerByUUID(message.getId());
     }
 
     if (target == null) {
@@ -78,5 +77,4 @@ public class ShoulderRide {
     context.get().setPacketHandled(true);
   }
 }
-*/
 

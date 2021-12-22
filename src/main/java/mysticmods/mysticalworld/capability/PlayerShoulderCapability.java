@@ -20,7 +20,7 @@ public class PlayerShoulderCapability implements IPlayerShoulderCapability {
 
   static {
     MethodHandles.Lookup lookup = MethodHandles.lookup();
-    Method setRight = ObfuscationReflectionHelper.findMethod(PlayerEntity.class, "setShoulderEntityLeft", CompoundNBT.class);
+    Method setRight = ObfuscationReflectionHelper.findMethod(PlayerEntity.class, "func_192031_i", CompoundNBT.class);
     setRight.setAccessible(true);
     try {
       setRightShoulder = lookup.unreflect(setRight);
@@ -97,15 +97,14 @@ public class PlayerShoulderCapability implements IPlayerShoulderCapability {
 
   @Override
   public void readNBT(CompoundNBT incoming) {
-    CompoundNBT tag = incoming;
-    if (tag.contains("animalSerialized")) {
-      this.animalSerialized = tag.getCompound("animalSerialized");
+    if (incoming.contains("animalSerialized")) {
+      this.animalSerialized = incoming.getCompound("animalSerialized");
     }
-    if (tag.contains("shouldered")) {
-      this.shouldered = tag.getBoolean("shouldered");
+    if (incoming.contains("shouldered")) {
+      this.shouldered = incoming.getBoolean("shouldered");
     }
-    if (tag.contains("registryName")) {
-      this.registryName = tag.getString("registryName").isEmpty() ? null : new ResourceLocation(tag.getString("registryName"));
+    if (incoming.contains("registryName")) {
+      this.registryName = incoming.getString("registryName").isEmpty() ? null : new ResourceLocation(incoming.getString("registryName"));
     }
   }
 }

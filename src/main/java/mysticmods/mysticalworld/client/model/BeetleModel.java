@@ -1,9 +1,21 @@
 package mysticmods.mysticalworld.client.model;
 
 import com.google.common.collect.ImmutableSet;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.entity.BeetleEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Pose;
+import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 
 import javax.annotation.Nonnull;
 
@@ -11,8 +23,7 @@ import javax.annotation.Nonnull;
  * BeetleModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class BeetleModel extends AgeableModel<BeetleEntity> {
-
+public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
   private final ModelRenderer body;
   private final ModelRenderer wingL;
   private final ModelRenderer wingR;
@@ -124,7 +135,7 @@ public class BeetleModel extends AgeableModel<BeetleEntity> {
   }
 
   @Override
-  public void setupAnim(BeetleEntity beetleEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+  protected void setupAnim(ModelState state, int ticks, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     this.head.xRot = headPitch * 0.017453292F;
     this.head.yRot = netHeadYaw * 0.017453292F;
     this.antennaR1.xRot = 0.1308996938995747F + getBobble(30, ageInTicks) * 0.2617993877991494F;
@@ -132,9 +143,19 @@ public class BeetleModel extends AgeableModel<BeetleEntity> {
     this.wingL.yRot = 0.17453292519943295F + 0.0872664626F * getBobble(45, ageInTicks);
     this.wingR.yRot = -0.17453292519943295F - 0.0872664626F * getBobble(160, ageInTicks);
 
-//    if (state != ModelState.SHOULDER) {
-    //  }
-    if (beetleEntity.isInSittingPose()) {
+    if (state != ModelState.SHOULDER) {
+      this.legL1.zRot = limbSwingAmount * getSwing(0, ageInTicks) - 0.2617993877991494F;
+      this.legL2.zRot = limbSwingAmount * getSwing(120, ageInTicks) - 0.2617993877991494F;
+      this.legL3.zRot = limbSwingAmount * getSwing(240, ageInTicks) - 0.2617993877991494F;
+      this.legR1.zRot = limbSwingAmount * getSwing(180, ageInTicks) + 0.2617993877991494F;
+      this.legR2.zRot = limbSwingAmount * getSwing(300, ageInTicks) + 0.2617993877991494F;
+      this.legR3.zRot = limbSwingAmount * getSwing(60, ageInTicks) + 0.2617993877991494F;
+    }
+  }
+
+  @Override
+  protected void prepare(ModelState state) {
+    if (state == ModelState.SITTING) {
       this.body.setPos(0.0F, 20.0F, -4.0F);
       this.setRotateAngle(legR1, -0.4619008920774175F, -0.12228424816241118F, 1.2226123587776043F);
       this.setRotateAngle(legR2, 0.0F, 0.0F, 1.1609087739532686F);
@@ -150,18 +171,14 @@ public class BeetleModel extends AgeableModel<BeetleEntity> {
       this.setRotateAngle(legL1, -0.2617993877991494F, 0.0F, -0.2617993877991494F);
       this.setRotateAngle(legL2, 0.0F, 0.0F, -0.2617993877991494F);
       this.setRotateAngle(legL3, 0.2617993877991494F, 0.0F, -0.2617993877991494F);
-      this.legL1.zRot = limbSwingAmount * getSwing(0, ageInTicks) - 0.2617993877991494F;
-      this.legL2.zRot = limbSwingAmount * getSwing(120, ageInTicks) - 0.2617993877991494F;
-      this.legL3.zRot = limbSwingAmount * getSwing(240, ageInTicks) - 0.2617993877991494F;
-      this.legR1.zRot = limbSwingAmount * getSwing(180, ageInTicks) + 0.2617993877991494F;
-      this.legR2.zRot = limbSwingAmount * getSwing(300, ageInTicks) + 0.2617993877991494F;
-      this.legR3.zRot = limbSwingAmount * getSwing(60, ageInTicks) + 0.2617993877991494F;
     }
   }
 
-  /**
-   * This is a helper function from Tabula to set the rotation of model parts
-   */
+  @Override
+  public ResourceLocation getTexture(ModelState state) {
+    return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/beetle_blue.png");
+  }
+
   private void setRotateAngle(@Nonnull ModelRenderer modelRenderer, float x, float y, float z) {
     modelRenderer.xRot = x;
     modelRenderer.yRot = y;

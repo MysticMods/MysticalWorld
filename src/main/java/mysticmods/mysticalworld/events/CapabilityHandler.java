@@ -1,13 +1,21 @@
 package mysticmods.mysticalworld.events;
 
+import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.api.Capabilities;
 import mysticmods.mysticalworld.capability.AnimalCooldownCapabilityProvider;
+import mysticmods.mysticalworld.capability.PlayerShoulderCapability;
+import mysticmods.mysticalworld.capability.PlayerShoulderCapabilityProvider;
 import mysticmods.mysticalworld.init.ModItems;
 import mysticmods.mysticalworld.init.ModSounds;
+import mysticmods.mysticalworld.network.Networking;
+import mysticmods.mysticalworld.network.ShoulderRide;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.GlassBottleItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -16,17 +24,20 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class CapabilityHandler {
-/*  public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+  public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
     ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
     player.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
       if (cap.isShouldered()) {
         ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
         Networking.send(PacketDistributor.ALL.noArg(), message);
         try {
-          PlayerShoulderCapability.setRightShoulder.invokeExact(player, cap.generateShoulderNBT());
+          PlayerShoulderCapability.setRightShoulder.invokeExact((PlayerEntity)player, cap.generateShoulderNBT());
         } catch (Throwable throwable) {
           MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
         }
@@ -39,20 +50,20 @@ public class CapabilityHandler {
           ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
           Networking.sendTo(message, player);
           try {
-            PlayerShoulderCapability.setRightShoulder.invokeExact(other, cap.generateShoulderNBT());
+            PlayerShoulderCapability.setRightShoulder.invokeExact((PlayerEntity)other, cap.generateShoulderNBT());
           } catch (Throwable throwable) {
             MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
           }
         }
       });
     }
-  }*/
+  }
 
   public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
     if (event.getObject() instanceof SquidEntity) {
       event.addCapability(AnimalCooldownCapabilityProvider.IDENTIFIER, new AnimalCooldownCapabilityProvider());
-/*    } else if (event.getObject() instanceof PlayerEntity) {
-      event.addCapability(PlayerShoulderCapabilityProvider.IDENTIFIER, new PlayerShoulderCapabilityProvider());*/
+    } else if (event.getObject() instanceof PlayerEntity) {
+      event.addCapability(PlayerShoulderCapabilityProvider.IDENTIFIER, new PlayerShoulderCapabilityProvider());
     }
   }
 

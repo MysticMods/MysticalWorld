@@ -1,6 +1,11 @@
 package mysticmods.mysticalworld.entity;
 
 import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.api.Capabilities;
+import mysticmods.mysticalworld.api.IPlayerShoulderCapability;
+import mysticmods.mysticalworld.capability.PlayerShoulderCapability;
+import mysticmods.mysticalworld.network.Networking;
+import mysticmods.mysticalworld.network.ShoulderRide;
 import mysticmods.mysticalworld.init.ModEntities;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -18,8 +23,13 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fml.network.PacketDistributor;
 
 import javax.annotation.Nonnull;
 
@@ -58,7 +68,30 @@ public class BeetleEntity extends TameableEntity {
       return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
     } else {
       if (this.isTame()) {
-        if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+        if (this.isOwnedBy(player) && itemstack.isEmpty() && player.isCrouching()) {
+          LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
+          if (laycap.isPresent()) {
+            IPlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
+            if (!cap.isShouldered() && player.getShoulderEntityRight().isEmpty()) {
+              setOrderedToSit(false);
+              this.setShiftKeyDown(false);
+              cap.shoulder(this);
+              player.swing(Hand.MAIN_HAND);
+              try {
+                PlayerShoulderCapability.setRightShoulder.invokeExact(player, cap.generateShoulderNBT());
+              } catch (Throwable throwable) {
+                MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
+              }
+
+              ShoulderRide message = new ShoulderRide(player, cap);
+              Networking.send(PacketDistributor.ALL.noArg(), message);
+              this.remove();
+              return ActionResultType.SUCCESS;
+            } else {
+              player.displayClientMessage(new TranslationTextComponent("message.shoulder.occupied").setStyle(Style.EMPTY.withColor(TextFormatting.GREEN).withBold(true)), true);
+            }
+          }
+        } else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
           if (!player.abilities.instabuild) {
             itemstack.shrink(1);
           }
@@ -101,73 +134,6 @@ public class BeetleEntity extends TameableEntity {
       return super.mobInteract(player, hand);
     }
   }
-
-/*  @Override
-  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-    ActionResultType type = super.mobInteract(player, hand);
-    if (type != ActionResultType.PASS) {
-      return type;
-    }
-
-    ItemStack itemstack = player.getHeldItem(hand);
-
-    if (this.isTamed()) {
-      if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
-        if (itemstack.isEmpty() && player.isSneaking()) {
-          // TODO Temporarily disabled
-          if (!world.isRemote && false) {
-            // Try some shoulder surfing!
-            LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
-            if (laycap.isPresent()) {
-              IPlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
-              if (!cap.isShouldered() && player.getLeftShoulderEntity().isEmpty()) {
-                setSitting(false);
-                this.setSneaking(false);
-                cap.shoulder(this);
-                player.swingArm(Hand.MAIN_HAND);
-                try {
-                  PlayerShoulderCapability.setRightShoulder.invokeExact(player, cap.generateShoulderNBT());
-                } catch (Throwable throwable) {
-                  MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
-                }
-
-                ShoulderRide message = new ShoulderRide(player, cap);
-                Networking.send(PacketDistributor.ALL.noArg(), message);
-                this.remove();
-                return true;
-              } else {
-                player.sendStatusMessage(new TranslationTextComponent("message.shoulder.occupied").setStyle(new Style().setColor(TextFormatting.GREEN).setBold(true)), true);
-              }
-            }
-          }
-        } else {
-          this.setOrderedToSit(!this.isSitting());
-          this.isJumping = false;
-          this.navigator.clearPath();
-          this.setAttackTarget(null);
-        }
-      }
-    } else if (itemstack.getItem() == Items.MELON_SEEDS) {
-      if (!player.isCreative()) {
-        itemstack.shrink(1);
-      }
-
-      if (!this.world.isRemote) {
-        if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-          this.setTamedBy(player);
-          this.navigator.clearPath();
-          this.setOrderedToSit(true);
-          this.world.setEntityState(this, (byte) 7);
-        } else {
-          this.world.setEntityState(this, (byte) 6);
-        }
-      }
-
-      return ActionResultType.SUCCESS;
-    }
-
-    return ActionResultType.PASS;
-  }*/
 
   public static AttributeModifierMap.MutableAttribute attributes() {
     return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0d).add(Attributes.MOVEMENT_SPEED, 0.15d);
