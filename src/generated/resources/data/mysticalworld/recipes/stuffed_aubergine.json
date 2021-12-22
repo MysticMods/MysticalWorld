@@ -1,17 +1,35 @@
 {
-  "type": "mysticalworld:unique_shapeless",
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "mysticalworld:cooked_aubergine"
     },
     {
-      "tag": "forge:vegetables"
+      "type": "mysticalworld:excluding_ingredient",
+      "base": {
+        "tag": "forge:vegetables"
+      },
+      "without": {
+        "item": "mysticalworld:aubergine"
+      }
     },
     {
-      "tag": "forge:vegetables"
+      "type": "mysticalworld:excluding_ingredient",
+      "base": {
+        "tag": "forge:vegetables"
+      },
+      "without": {
+        "item": "mysticalworld:aubergine"
+      }
     },
     {
-      "tag": "forge:cooked_vegetables"
+      "type": "mysticalworld:excluding_ingredient",
+      "base": {
+        "tag": "forge:cooked_vegetables"
+      },
+      "without": {
+        "item": "mysticalworld:cooked_aubergine"
+      }
     }
   ],
   "result": {

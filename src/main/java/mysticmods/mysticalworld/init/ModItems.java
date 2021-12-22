@@ -26,6 +26,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
+import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
 import noobanidus.libs.noobutil.item.BaseItems;
 import noobanidus.libs.noobutil.item.WeaponType;
 import noobanidus.libs.noobutil.material.MaterialType;
@@ -424,7 +425,7 @@ public class ModItems {
 
   public static RegistryEntry<Item> STUFFED_AUBERGINE = MysticalWorld.REGISTRATE.item("stuffed_aubergine", Item::new)
       .properties(o -> o.food(ModFoods.STUFFED_AUBERGINE))
-      .recipe((ctx, p) -> UniqueShapelessRecipeBuilder.shapeless(ModItems.STUFFED_AUBERGINE.get(), 1).requires(ModItems.COOKED_AUBERGINE.get()).requires(MWTags.Items.VEGETABLES).requires(MWTags.Items.VEGETABLES).requires(MWTags.Items.COOKED_VEGETABLES).unlockedBy("has_cooked_aubergine", RegistrateRecipeProvider.hasItem(ModItems.COOKED_AUBERGINE.get())).save(p))
+      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ModItems.STUFFED_AUBERGINE.get(), 1).requires(ModItems.COOKED_AUBERGINE.get()).requires(ExcludingIngredient.create(MWTags.Items.VEGETABLES, ModItems.AUBERGINE.get())).requires(ExcludingIngredient.create(MWTags.Items.VEGETABLES, ModItems.AUBERGINE.get())).requires(ExcludingIngredient.create(MWTags.Items.COOKED_VEGETABLES, ModItems.COOKED_AUBERGINE.get())).unlockedBy("has_cooked_aubergine", RegistrateRecipeProvider.hasItem(ModItems.COOKED_AUBERGINE.get())).save(p))
       .register();
 
   public static RegistryEntry<Item> RAW_SQUID = MysticalWorld.REGISTRATE.item("raw_squid", Item::new)
