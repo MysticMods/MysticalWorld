@@ -143,7 +143,7 @@ public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
     this.wingL.yRot = 0.17453292519943295F + 0.0872664626F * getBobble(45, ageInTicks);
     this.wingR.yRot = -0.17453292519943295F - 0.0872664626F * getBobble(160, ageInTicks);
 
-    if (state != ModelState.SHOULDER) {
+    if (state == ModelState.NORMAL) {
       this.legL1.zRot = limbSwingAmount * getSwing(0, ageInTicks) - 0.2617993877991494F;
       this.legL2.zRot = limbSwingAmount * getSwing(120, ageInTicks) - 0.2617993877991494F;
       this.legL3.zRot = limbSwingAmount * getSwing(240, ageInTicks) - 0.2617993877991494F;
