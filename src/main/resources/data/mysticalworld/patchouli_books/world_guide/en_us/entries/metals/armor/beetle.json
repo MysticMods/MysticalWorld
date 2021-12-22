@@ -1,0 +1,20 @@
+{
+  "name": "Beetle Armor",
+  "icon": "mysticalworld:beetle_chestplate",
+  "category": "items",
+  "pages": [
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:beetle_helmet",
+      "recipe2": "mysticalworld:beetle_chestplate",
+      "text": "Carapace can be used to craft fearsome armor."
+    },
+    {
+      "type": "crafting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:beetle_leggings",
+      "recipe2": "mysticalworld:beetle_boots"
+    }
+  ]
+}
