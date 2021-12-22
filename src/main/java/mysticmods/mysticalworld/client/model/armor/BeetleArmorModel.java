@@ -7,8 +7,8 @@ import noobanidus.libs.noobutil.client.model.ArmorBaseModel;
 public class BeetleArmorModel extends ArmorBaseModel {
   private final ModelRenderer headAnchor;
   private final ModelRenderer bodyAnchor;
-  private final ModelRenderer armR;
-  private final ModelRenderer armL;
+  public final ModelRenderer armR;
+  public final ModelRenderer armL;
   private final ModelRenderer legR;
   private final ModelRenderer bootR;
   private final ModelRenderer legL;

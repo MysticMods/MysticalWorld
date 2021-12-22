@@ -1,8 +1,9 @@
 package mysticmods.mysticalworld.client.model;
 
-import mysticmods.mysticalworld.entity.EnderminiEntity;
 import mysticmods.mysticalworld.client.model.armor.AntlerHatModel;
-import mysticmods.mysticalworld.client.model.armor.BeetleMaskModel;
+import mysticmods.mysticalworld.client.model.armor.BeetleArmorModel;
+import mysticmods.mysticalworld.entity.EnderminiEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 
 public class ModelHolder {
   public static FoxModel foxModel;
@@ -17,7 +18,12 @@ public class ModelHolder {
   public static SilkwormModel silkwormModel;
   public static DuckModel duckModel;
 
-  public static BeetleMaskModel beetleMaskModel;
+  public static BeetleArmorModel beetleHelmet;
+  public static BeetleArmorModel beetleChestplate;
+  public static BeetleArmorModel beetleLeggings;
+  public static BeetleArmorModel beetleBoots;
+
+
   public static AntlerHatModel antlerHatModel;
 
   public static void init() {
@@ -31,8 +37,26 @@ public class ModelHolder {
     lavaCatModel = new LavaCatModel();
     owlModel = new OwlModel();
     silkwormModel = new SilkwormModel();
-    beetleMaskModel = new BeetleMaskModel();
     antlerHatModel = new AntlerHatModel();
     duckModel = new DuckModel();
+
+    beetleHelmet = new BeetleArmorModel(EquipmentSlotType.HEAD);
+    beetleChestplate = new BeetleArmorModel(EquipmentSlotType.CHEST);
+    beetleLeggings = new BeetleArmorModel(EquipmentSlotType.LEGS);
+    beetleBoots = new BeetleArmorModel(EquipmentSlotType.FEET);
+  }
+
+  public static BeetleArmorModel modelForSlot (EquipmentSlotType slot) {
+    switch (slot) {
+      case HEAD:
+        return beetleHelmet;
+      case CHEST:
+        return beetleChestplate;
+      case LEGS:
+        return beetleLeggings;
+      default:
+      case FEET:
+        return beetleBoots;
+    }
   }
 }
