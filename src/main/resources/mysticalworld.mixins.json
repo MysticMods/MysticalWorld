@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "mysticalworld.refmap.json",
   "mixins": [
-    "MixinApplyBonus"
+    "MixinApplyBonus",
+    "MixinPlayerEntity"
   ],
   "client": [
   ],

@@ -17,12 +17,16 @@ import java.lang.reflect.Method;
 
 public class PlayerShoulderCapability implements IPlayerShoulderCapability {
   public static MethodHandle setRightShoulder = null;
+  public static MethodHandle setLeftShoulder = null;
 
   static {
     MethodHandles.Lookup lookup = MethodHandles.lookup();
+    Method setLeft = ObfuscationReflectionHelper.findMethod(PlayerEntity.class, "func_192029_h", CompoundNBT.class);
+
+    setLeft.setAccessible(true);
     Method setRight = ObfuscationReflectionHelper.findMethod(PlayerEntity.class, "func_192031_i", CompoundNBT.class);
-    setRight.setAccessible(true);
     try {
+      setLeftShoulder = lookup.unreflect(setLeft);
       setRightShoulder = lookup.unreflect(setRight);
     } catch (IllegalAccessException e) {
       MysticalWorld.LOG.error("Unable to unprotect setRightShoulder", e);

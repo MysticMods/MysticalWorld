@@ -47,7 +47,7 @@ public class ShoulderHandler {
               player.swing(Hand.MAIN_HAND);
               cap.drop();
               try {
-                PlayerShoulderCapability.setRightShoulder.invokeExact(player, new CompoundNBT());
+                PlayerShoulderCapability.setLeftShoulder.invokeExact(player, new CompoundNBT());
               } catch (Throwable throwable) {
                 MysticalWorld.LOG.error("Unable to unset player having a shoulder entity", throwable);
               }
@@ -82,7 +82,7 @@ public class ShoulderHandler {
               player.swing(Hand.MAIN_HAND);
               cap.drop();
               try {
-                PlayerShoulderCapability.setRightShoulder.invokeExact(player, new CompoundNBT());
+                PlayerShoulderCapability.setLeftShoulder.invokeExact(player, new CompoundNBT());
               } catch (Throwable throwable) {
                 MysticalWorld.LOG.error("Unable to unset player having a shoulder entity", throwable);
               }

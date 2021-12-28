@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.GlassBottleItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
@@ -23,6 +24,7 @@ import net.minecraft.util.text.Color;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -32,12 +34,21 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public class CapabilityHandler {
   public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
     ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+    // Shim to fix mismatched data from left/right switch.
+    if (player.getShoulderEntityRight().contains("id", Constants.NBT.TAG_STRING) && player.getShoulderEntityRight().getString("id").equals("mysticalworld:beetle")) {
+      try {
+        PlayerShoulderCapability.setRightShoulder.invokeExact((PlayerEntity) player, new CompoundNBT());
+      } catch (Throwable e) {
+        MysticalWorld.LOG.error("Unable to clear " + player + "'s right shoulder! Oh dear.", e);
+      }
+    }
+
     player.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
       if (cap.isShouldered()) {
         ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
         Networking.send(PacketDistributor.ALL.noArg(), message);
         try {
-          PlayerShoulderCapability.setRightShoulder.invokeExact((PlayerEntity)player, cap.generateShoulderNBT());
+          PlayerShoulderCapability.setLeftShoulder.invokeExact((PlayerEntity)player, cap.generateShoulderNBT());
         } catch (Throwable throwable) {
           MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
         }
@@ -50,7 +61,7 @@ public class CapabilityHandler {
           ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
           Networking.sendTo(message, player);
           try {
-            PlayerShoulderCapability.setRightShoulder.invokeExact((PlayerEntity)other, cap.generateShoulderNBT());
+            PlayerShoulderCapability.setLeftShoulder.invokeExact((PlayerEntity)other, cap.generateShoulderNBT());
           } catch (Throwable throwable) {
             MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
           }
