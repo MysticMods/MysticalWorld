@@ -1,22 +1,17 @@
 package mysticmods.mysticalworld.init;
 
-import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.items.*;
-import mysticmods.mysticalworld.items.sapphire.SapphireArmorItem;
 import mysticmods.mysticalworld.items.copper.CopperArmorItem;
 import mysticmods.mysticalworld.items.lead.LeadArmorItem;
 import mysticmods.mysticalworld.items.quicksilver.*;
+import mysticmods.mysticalworld.items.sapphire.SapphireArmorItem;
 import mysticmods.mysticalworld.items.silver.*;
 import mysticmods.mysticalworld.items.tin.TinArmorItem;
-import mysticmods.mysticalworld.items.*;
-import mysticmods.mysticalworld.items.quicksilver.*;
-import mysticmods.mysticalworld.items.silver.*;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
@@ -26,71 +21,12 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
+import noobanidus.libs.noobutil.data.generator.ItemGenerator;
 import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
 import noobanidus.libs.noobutil.item.BaseItems;
-import noobanidus.libs.noobutil.item.WeaponType;
-import noobanidus.libs.noobutil.material.MaterialType;
-import noobanidus.libs.noobutil.recipe.builder.UniqueShapelessRecipeBuilder;
-
-// TODO: Convert to Registrate
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class ModItems {
-
-  @FunctionalInterface
-  public interface ToolBuilder<V extends Item> {
-    V apply(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder);
-  }
-
-  @FunctionalInterface
-  public interface ArmorBuilder<V extends Item> {
-    V apply(IArmorMaterial materialIn, EquipmentSlotType slot, Item.Properties builder);
-  }
-
-  private static <T extends Item> NonNullFunction<Item.Properties, T> tool(ToolBuilder<T> builder, WeaponType matType, MaterialType material) {
-    return (b) -> builder.apply(material.getItemMaterial(), material.getDamage(matType), material.getSpeed(matType), b);
-  }
-
-  private static <T extends Item> NonNullFunction<Item.Properties, T> sword(ToolBuilder<T> builder, MaterialType material) {
-    return tool(builder, WeaponType.SWORD, material);
-  }
-
-  private static <T extends Item> NonNullFunction<Item.Properties, T> spear(ToolBuilder<T> builder, MaterialType material) {
-    return tool(builder, WeaponType.SPEAR, material);
-  }
-
-  private static <T extends Item> NonNullFunction<Item.Properties, T> pickaxe(ToolBuilder<T> builder, MaterialType material) {
-    return tool(builder, WeaponType.PICKAXE, material);
-  }
-
-  private static <T extends Item> NonNullFunction<Item.Properties, T> axe(ToolBuilder<T> builder, MaterialType material) {
-    return tool(builder, WeaponType.AXE, material);
-  }
-
-  private static <T extends Item> NonNullFunction<Item.Properties, T> shovel(ToolBuilder<T> builder, MaterialType material) {
-    return tool(builder, WeaponType.SHOVEL, material);
-  }
-
-  private static <T extends Item> NonNullFunction<Item.Properties, T> knife(ToolBuilder<T> builder, MaterialType material) {
-    return tool(builder, WeaponType.KNIFE, material);
-  }
-
-  private static <T extends Item> NonNullFunction<Item.Properties, T> hoe(ToolBuilder<T> builder, MaterialType material) {
-    return tool(builder, WeaponType.HOE, material);
-  }
-
-  private static <T extends ArmorItem> NonNullFunction<Item.Properties, T> armor(ArmorBuilder<T> builder, MaterialType material, EquipmentSlotType slot) {
-    return (b) -> builder.apply(material.getArmorMaterial(), slot, b);
-  }
-
-  private static NonNullFunction<Item.Properties, DyeItem> dyeItem(DyeColor color) {
-    return (b) -> new DyeItem(color, b);
-  }
-
-  private static <T extends Block> NonNullFunction<Item.Properties, BlockNamedItem> blockNamedItem(RegistryEntry<T> block) {
-    return (b) -> new BlockNamedItem(block.get(), b);
-  }
-
   public static RegistryEntry<GuideItem> ENCYCLOPEDIA = MysticalWorld.REGISTRATE.item("encyclopedia", GuideItem::new)
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ModItems.ENCYCLOPEDIA.get(), 1)
           .requires(Items.BOOK)
@@ -170,7 +106,7 @@ public class ModItems {
           .pattern("C C")
           .pattern("CCC")
           .pattern("CCC")
-          .define('C',  MWTags.Items.CARAPACE)
+          .define('C', MWTags.Items.CARAPACE)
           .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(MWTags.Items.CARAPACE))
           .save(p))
       .register();
@@ -180,7 +116,7 @@ public class ModItems {
           .pattern("CCC")
           .pattern("C C")
           .pattern("C C")
-          .define('C',  MWTags.Items.CARAPACE)
+          .define('C', MWTags.Items.CARAPACE)
           .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(MWTags.Items.CARAPACE))
           .save(p))
       .register();
@@ -189,7 +125,7 @@ public class ModItems {
       .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
           .pattern("C C")
           .pattern("C C")
-          .define('C',  MWTags.Items.CARAPACE)
+          .define('C', MWTags.Items.CARAPACE)
           .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(MWTags.Items.CARAPACE))
           .save(p))
       .register();
@@ -384,7 +320,7 @@ public class ModItems {
       .properties(o -> o.food(ModFoods.COOKED_VENISON))
       .register();
 
-  public static RegistryEntry<BlockNamedItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRATE.item("aubergine_seeds", blockNamedItem(ModBlocks.AUBERGINE_CROP))
+  public static RegistryEntry<BlockNamedItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRATE.item("aubergine_seeds", ItemGenerator.blockNamedItem(ModBlocks.AUBERGINE_CROP))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.singleItem(ModItems.AUBERGINE, ModItems.AUBERGINE_SEEDS, 1, 1, p))
       .register();
 
@@ -671,289 +607,289 @@ public class ModItems {
       .register();
 
   // Sapphire Tools
-  public static RegistryEntry<AxeItem> SAPPHIRE_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_axe", axe(AxeItem::new, ModMaterials.SAPPHIRE))
+  public static RegistryEntry<AxeItem> SAPPHIRE_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.SAPPHIRE))
       .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_AXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_AXE, null, p)).register();
-  public static RegistryEntry<HoeItem> SAPPHIRE_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_hoe", hoe(HoeItem::new, ModMaterials.SAPPHIRE))
+  public static RegistryEntry<HoeItem> SAPPHIRE_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.SAPPHIRE))
       .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_HOE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_HOE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> SAPPHIRE_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.SAPPHIRE))
+  public static RegistryEntry<BaseItems.KnifeItem> SAPPHIRE_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.SAPPHIRE))
       .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_KNIFE, null, p)).register();
-  public static RegistryEntry<PickaxeItem> SAPPHIRE_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_pickaxe", pickaxe(PickaxeItem::new, ModMaterials.SAPPHIRE))
+  public static RegistryEntry<PickaxeItem> SAPPHIRE_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.SAPPHIRE))
       .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_PICKAXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_PICKAXE, null, p)).register();
-  public static RegistryEntry<ShovelItem> SAPPHIRE_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_shovel", shovel(ShovelItem::new, ModMaterials.SAPPHIRE))
+  public static RegistryEntry<ShovelItem> SAPPHIRE_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.SAPPHIRE))
       .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_SHOVEL))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_SHOVEL, null, p)).register();
-  public static RegistryEntry<SwordItem> SAPPHIRE_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_sword", sword(SwordItem::new, ModMaterials.SAPPHIRE))
+  public static RegistryEntry<SwordItem> SAPPHIRE_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.SAPPHIRE))
       .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_SWORD, null, p)).register();
-  public static RegistryEntry<ModifiedSpearItem> SAPPHIRE_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.SAPPHIRE))
+  public static RegistryEntry<ModifiedSpearItem> SAPPHIRE_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_spear", ItemGenerator.spear(ModifiedSpearItem::new, ModMaterials.SAPPHIRE))
       .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.SAPPHIRE_SWORD, ModItems.SAPPHIRE_SPEAR, null, p)).register();
 
   // Cactus
-  public static RegistryEntry<AxeItem> CACTUS_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_axe", axe(AxeItem::new, ModMaterials.CACTUS))
+  public static RegistryEntry<AxeItem> CACTUS_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.CACTUS))
       .model((ctx, p) -> p.handheld(ModItems.CACTUS_AXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(() -> Items.CACTUS, ModItems.CACTUS_AXE, null, p)).register();
-  public static RegistryEntry<HoeItem> CACTUS_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_hoe", hoe(HoeItem::new, ModMaterials.CACTUS))
+  public static RegistryEntry<HoeItem> CACTUS_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.CACTUS))
       .model((ctx, p) -> p.handheld(ModItems.CACTUS_HOE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(() -> Items.CACTUS, ModItems.CACTUS_HOE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> CACTUS_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.CACTUS))
+  public static RegistryEntry<BaseItems.KnifeItem> CACTUS_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.CACTUS))
       .model((ctx, p) -> p.handheld(ModItems.CACTUS_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(() -> Items.CACTUS, ModItems.CACTUS_KNIFE, null, p)).register();
-  public static RegistryEntry<PickaxeItem> CACTUS_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_pickaxe", pickaxe(PickaxeItem::new, ModMaterials.CACTUS))
+  public static RegistryEntry<PickaxeItem> CACTUS_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.CACTUS))
       .model((ctx, p) -> p.handheld(ModItems.CACTUS_PICKAXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(() -> Items.CACTUS, ModItems.CACTUS_PICKAXE, null, p)).register();
-  public static RegistryEntry<ShovelItem> CACTUS_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_shovel", shovel(ShovelItem::new, ModMaterials.CACTUS))
+  public static RegistryEntry<ShovelItem> CACTUS_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.CACTUS))
       .model((ctx, p) -> p.handheld(ModItems.CACTUS_SHOVEL))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(() -> Items.CACTUS, ModItems.CACTUS_SHOVEL, null, p)).register();
-  public static RegistryEntry<SwordItem> CACTUS_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_sword", sword(SwordItem::new, ModMaterials.CACTUS))
+  public static RegistryEntry<SwordItem> CACTUS_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.CACTUS))
       .model((ctx, p) -> p.handheld(ModItems.CACTUS_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(() -> Items.CACTUS, ModItems.CACTUS_SWORD, null, p)).register();
-  public static RegistryEntry<ModifiedSpearItem> CACTUS_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.CACTUS))
+  public static RegistryEntry<ModifiedSpearItem> CACTUS_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_spear", ItemGenerator.spear(ModifiedSpearItem::new, ModMaterials.CACTUS))
       .model((ctx, p) -> p.handheld(ModItems.CACTUS_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.CACTUS_SWORD, ModItems.CACTUS_SPEAR, null, p)).register();
 
   // COPPER
-  public static RegistryEntry<AxeItem> COPPER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_axe", axe(AxeItem::new, ModMaterials.COPPER))
+  public static RegistryEntry<AxeItem> COPPER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_AXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_AXE, null, p)).register();
-  public static RegistryEntry<HoeItem> COPPER_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_hoe", hoe(HoeItem::new, ModMaterials.COPPER))
+  public static RegistryEntry<HoeItem> COPPER_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_HOE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_HOE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> COPPER_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.COPPER))
+  public static RegistryEntry<BaseItems.KnifeItem> COPPER_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.COPPER_INGOT, ModItems.COPPER_KNIFE, null, p)).register();
-  public static RegistryEntry<PickaxeItem> COPPER_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_pickaxe", pickaxe(PickaxeItem::new, ModMaterials.COPPER))
+  public static RegistryEntry<PickaxeItem> COPPER_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_PICKAXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_PICKAXE, null, p)).register();
-  public static RegistryEntry<ShovelItem> COPPER_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_shovel", shovel(ShovelItem::new, ModMaterials.COPPER))
+  public static RegistryEntry<ShovelItem> COPPER_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_SHOVEL))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.COPPER_INGOT, ModItems.COPPER_SHOVEL, null, p)).register();
-  public static RegistryEntry<SwordItem> COPPER_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_sword", sword(SwordItem::new, ModMaterials.COPPER))
+  public static RegistryEntry<SwordItem> COPPER_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.COPPER_INGOT, ModItems.COPPER_SWORD, null, p)).register();
-  public static RegistryEntry<ModifiedSpearItem> COPPER_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.COPPER))
+  public static RegistryEntry<ModifiedSpearItem> COPPER_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_spear", ItemGenerator.spear(ModifiedSpearItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.COPPER_SWORD, ModItems.COPPER_SPEAR, null, p)).register();
 
   // LEAD
-  public static RegistryEntry<AxeItem> LEAD_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_axe", axe(AxeItem::new, ModMaterials.LEAD))
+  public static RegistryEntry<AxeItem> LEAD_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.LEAD))
       .model((ctx, p) -> p.handheld(ModItems.LEAD_AXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.LEAD_INGOT, ModItems.LEAD_AXE, null, p)).register();
-  public static RegistryEntry<HoeItem> LEAD_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_hoe", hoe(HoeItem::new, ModMaterials.LEAD))
+  public static RegistryEntry<HoeItem> LEAD_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.LEAD))
       .model((ctx, p) -> p.handheld(ModItems.LEAD_HOE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.LEAD_INGOT, ModItems.LEAD_HOE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> LEAD_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.LEAD))
+  public static RegistryEntry<BaseItems.KnifeItem> LEAD_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.LEAD))
       .model((ctx, p) -> p.handheld(ModItems.LEAD_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.LEAD_INGOT, ModItems.LEAD_KNIFE, null, p)).register();
-  public static RegistryEntry<PickaxeItem> LEAD_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_pickaxe", pickaxe(PickaxeItem::new, ModMaterials.LEAD))
+  public static RegistryEntry<PickaxeItem> LEAD_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.LEAD))
       .model((ctx, p) -> p.handheld(ModItems.LEAD_PICKAXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.LEAD_INGOT, ModItems.LEAD_PICKAXE, null, p)).register();
-  public static RegistryEntry<ShovelItem> LEAD_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_shovel", shovel(ShovelItem::new, ModMaterials.LEAD))
+  public static RegistryEntry<ShovelItem> LEAD_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.LEAD))
       .model((ctx, p) -> p.handheld(ModItems.LEAD_SHOVEL))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.LEAD_INGOT, ModItems.LEAD_SHOVEL, null, p)).register();
-  public static RegistryEntry<SwordItem> LEAD_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_sword", sword(SwordItem::new, ModMaterials.LEAD))
+  public static RegistryEntry<SwordItem> LEAD_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.LEAD))
       .model((ctx, p) -> p.handheld(ModItems.LEAD_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.LEAD_INGOT, ModItems.LEAD_SWORD, null, p)).register();
-  public static RegistryEntry<ModifiedSpearItem> LEAD_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.LEAD))
+  public static RegistryEntry<ModifiedSpearItem> LEAD_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_spear", ItemGenerator.spear(ModifiedSpearItem::new, ModMaterials.LEAD))
       .model((ctx, p) -> p.handheld(ModItems.LEAD_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.LEAD_SWORD, ModItems.LEAD_SPEAR, null, p)).register();
 
   // QUICKSILVER
-  public static RegistryEntry<QuicksilverAxeItem> QUICKSILVER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_axe", axe(QuicksilverAxeItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<QuicksilverAxeItem> QUICKSILVER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_axe", ItemGenerator.axe(QuicksilverAxeItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_AXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_AXE, null, p)).register();
-  public static RegistryEntry<QuicksilverHoeItem> QUICKSILVER_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_hoe", hoe(QuicksilverHoeItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<QuicksilverHoeItem> QUICKSILVER_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_hoe", ItemGenerator.hoe(QuicksilverHoeItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_HOE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HOE, null, p)).register();
-  public static RegistryEntry<QuicksilverKnifeItem> QUICKSILVER_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_knife", knife(QuicksilverKnifeItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<QuicksilverKnifeItem> QUICKSILVER_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_knife", ItemGenerator.knife(QuicksilverKnifeItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_KNIFE, null, p)).register();
-  public static RegistryEntry<QuicksilverPickaxeItem> QUICKSILVER_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_pickaxe", pickaxe(QuicksilverPickaxeItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<QuicksilverPickaxeItem> QUICKSILVER_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(QuicksilverPickaxeItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_PICKAXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_PICKAXE, null, p)).register();
-  public static RegistryEntry<QuicksilverShovelItem> QUICKSILVER_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_shovel", shovel(QuicksilverShovelItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<QuicksilverShovelItem> QUICKSILVER_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_shovel", ItemGenerator.shovel(QuicksilverShovelItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SHOVEL))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SHOVEL, null, p)).register();
-  public static RegistryEntry<QuicksilverSwordItem> QUICKSILVER_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_sword", sword(QuicksilverSwordItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<QuicksilverSwordItem> QUICKSILVER_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_sword", ItemGenerator.sword(QuicksilverSwordItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SWORD, null, p)).register();
-  public static RegistryEntry<QuicksilverSpearItem> QUICKSILVER_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_spear", spear(QuicksilverSpearItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<QuicksilverSpearItem> QUICKSILVER_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_spear", ItemGenerator.spear(QuicksilverSpearItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.QUICKSILVER_SWORD, ModItems.QUICKSILVER_SPEAR, null, p)).register();
 
   // SILVER
-  public static RegistryEntry<SilverAxeItem> SILVER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_axe", axe(SilverAxeItem::new, ModMaterials.SILVER))
+  public static RegistryEntry<SilverAxeItem> SILVER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_axe", ItemGenerator.axe(SilverAxeItem::new, ModMaterials.SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_AXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.SILVER_INGOT, ModItems.SILVER_AXE, null, p)).register();
-  public static RegistryEntry<SilverHoeItem> SILVER_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_hoe", hoe(SilverHoeItem::new, ModMaterials.SILVER))
+  public static RegistryEntry<SilverHoeItem> SILVER_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_hoe", ItemGenerator.hoe(SilverHoeItem::new, ModMaterials.SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_HOE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.SILVER_INGOT, ModItems.SILVER_HOE, null, p)).register();
-  public static RegistryEntry<SilverKnifeItem> SILVER_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_knife", knife(SilverKnifeItem::new, ModMaterials.SILVER))
+  public static RegistryEntry<SilverKnifeItem> SILVER_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_knife", ItemGenerator.knife(SilverKnifeItem::new, ModMaterials.SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.SILVER_INGOT, ModItems.SILVER_KNIFE, null, p)).register();
-  public static RegistryEntry<SilverPickaxeItem> SILVER_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_pickaxe", pickaxe(SilverPickaxeItem::new, ModMaterials.SILVER))
+  public static RegistryEntry<SilverPickaxeItem> SILVER_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(SilverPickaxeItem::new, ModMaterials.SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_PICKAXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.SILVER_INGOT, ModItems.SILVER_PICKAXE, null, p)).register();
-  public static RegistryEntry<SilverShovelItem> SILVER_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_shovel", shovel(SilverShovelItem::new, ModMaterials.SILVER))
+  public static RegistryEntry<SilverShovelItem> SILVER_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_shovel", ItemGenerator.shovel(SilverShovelItem::new, ModMaterials.SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_SHOVEL))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.SILVER_INGOT, ModItems.SILVER_SHOVEL, null, p)).register();
-  public static RegistryEntry<SilverSwordItem> SILVER_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_sword", sword(SilverSwordItem::new, ModMaterials.SILVER))
+  public static RegistryEntry<SilverSwordItem> SILVER_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_sword", ItemGenerator.sword(SilverSwordItem::new, ModMaterials.SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.SILVER_INGOT, ModItems.SILVER_SWORD, null, p)).register();
-  public static RegistryEntry<SilverSpearItem> SILVER_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_spear", spear(SilverSpearItem::new, ModMaterials.SILVER))
+  public static RegistryEntry<SilverSpearItem> SILVER_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_spear", ItemGenerator.spear(SilverSpearItem::new, ModMaterials.SILVER))
       .model((ctx, p) -> p.handheld(ModItems.SILVER_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.SILVER_SWORD, ModItems.SILVER_SPEAR, null, p)).register();
 
   // TIN
-  public static RegistryEntry<AxeItem> TIN_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_axe", axe(AxeItem::new, ModMaterials.TIN))
+  public static RegistryEntry<AxeItem> TIN_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.TIN))
       .model((ctx, p) -> p.handheld(ModItems.TIN_AXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.TIN_INGOT, ModItems.TIN_AXE, null, p)).register();
-  public static RegistryEntry<HoeItem> TIN_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_hoe", hoe(HoeItem::new, ModMaterials.TIN))
+  public static RegistryEntry<HoeItem> TIN_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.TIN))
       .model((ctx, p) -> p.handheld(ModItems.TIN_HOE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.TIN_INGOT, ModItems.TIN_HOE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> TIN_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.TIN))
+  public static RegistryEntry<BaseItems.KnifeItem> TIN_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.TIN))
       .model((ctx, p) -> p.handheld(ModItems.TIN_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.TIN_INGOT, ModItems.TIN_KNIFE, null, p)).register();
-  public static RegistryEntry<PickaxeItem> TIN_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_pickaxe", pickaxe(PickaxeItem::new, ModMaterials.TIN))
+  public static RegistryEntry<PickaxeItem> TIN_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.TIN))
       .model((ctx, p) -> p.handheld(ModItems.TIN_PICKAXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.TIN_INGOT, ModItems.TIN_PICKAXE, null, p)).register();
-  public static RegistryEntry<ShovelItem> TIN_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_shovel", shovel(ShovelItem::new, ModMaterials.TIN))
+  public static RegistryEntry<ShovelItem> TIN_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.TIN))
       .model((ctx, p) -> p.handheld(ModItems.TIN_SHOVEL))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.TIN_INGOT, ModItems.TIN_SHOVEL, null, p)).register();
-  public static RegistryEntry<SwordItem> TIN_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_sword", sword(SwordItem::new, ModMaterials.TIN))
+  public static RegistryEntry<SwordItem> TIN_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.TIN))
       .model((ctx, p) -> p.handheld(ModItems.TIN_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.TIN_INGOT, ModItems.TIN_SWORD, null, p)).register();
-  public static RegistryEntry<ModifiedSpearItem> TIN_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.TIN))
+  public static RegistryEntry<ModifiedSpearItem> TIN_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_spear", ItemGenerator.spear(ModifiedSpearItem::new, ModMaterials.TIN))
       .model((ctx, p) -> p.handheld(ModItems.TIN_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.TIN_SWORD, ModItems.TIN_SPEAR, null, p)).register();
 
   // VANILLA
   // Knives
-  public static RegistryEntry<BaseItems.KnifeItem> STONE_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.STONE.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.STONE))
+  public static RegistryEntry<BaseItems.KnifeItem> STONE_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.STONE.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.STONE))
       .model((ctx, p) -> p.handheld(ModItems.STONE_KNIFE))
       .recipe((ctx, p) -> {
         MysticalWorld.RECIPES.knife(Tags.Items.STONE, ModItems.STONE_KNIFE, null, p);
         MysticalWorld.RECIPES.knife(Tags.Items.COBBLESTONE, ModItems.STONE_KNIFE, null, p);
       }).register();
-  public static RegistryEntry<BaseItems.KnifeItem> WOODEN_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.WOODEN.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.WOODEN))
+  public static RegistryEntry<BaseItems.KnifeItem> WOODEN_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.WOODEN.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.WOODEN))
       .model((ctx, p) -> p.handheld(ModItems.WOODEN_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(ItemTags.PLANKS, ModItems.WOODEN_KNIFE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> DIAMOND_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.DIAMOND.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.DIAMOND))
+  public static RegistryEntry<BaseItems.KnifeItem> DIAMOND_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.DIAMOND.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.DIAMOND))
       .model((ctx, p) -> p.handheld(ModItems.DIAMOND_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(Tags.Items.GEMS_DIAMOND, ModItems.DIAMOND_KNIFE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> GOLD_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.GOLD.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.GOLD))
+  public static RegistryEntry<BaseItems.KnifeItem> GOLD_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.GOLD.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.GOLD))
       .model((ctx, p) -> p.handheld(ModItems.GOLD_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(Tags.Items.INGOTS_GOLD, ModItems.GOLD_KNIFE, null, p))
       .tag(ItemTags.PIGLIN_LOVED)
       .register();
-  public static RegistryEntry<BaseItems.KnifeItem> IRON_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.IRON.getInternalName() + "_knife", knife(BaseItems.KnifeItem::new, ModMaterials.IRON))
+  public static RegistryEntry<BaseItems.KnifeItem> IRON_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.IRON.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.IRON))
       .model((ctx, p) -> p.handheld(ModItems.IRON_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(Tags.Items.INGOTS_IRON, ModItems.IRON_KNIFE, null, p)).register();
 
   // Spears
-  public static RegistryEntry<ModifiedSpearItem> STONE_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.STONE.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.STONE))
+  public static RegistryEntry<ModifiedSpearItem> STONE_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.STONE.getInternalName() + "_spear", ItemGenerator.spear(ModifiedSpearItem::new, ModMaterials.STONE))
       .model((ctx, p) -> p.handheld(ModItems.STONE_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(Items.STONE_SWORD, ModItems.STONE_SPEAR, null, p)).register();
-  public static RegistryEntry<ModifiedSpearItem> WOODEN_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.WOODEN.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.WOODEN))
+  public static RegistryEntry<ModifiedSpearItem> WOODEN_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.WOODEN.getInternalName() + "_spear", ItemGenerator.spear(ModifiedSpearItem::new, ModMaterials.WOODEN))
       .model((ctx, p) -> p.handheld(ModItems.WOODEN_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(Items.WOODEN_SWORD, ModItems.WOODEN_SPEAR, null, p)).register();
-  public static RegistryEntry<ModifiedSpearItem> DIAMOND_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.DIAMOND.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.DIAMOND))
+  public static RegistryEntry<ModifiedSpearItem> DIAMOND_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.DIAMOND.getInternalName() + "_spear", ItemGenerator.spear(ModifiedSpearItem::new, ModMaterials.DIAMOND))
       .model((ctx, p) -> p.handheld(ModItems.DIAMOND_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(Items.DIAMOND_SWORD, ModItems.DIAMOND_SPEAR, null, p)).register();
-  public static RegistryEntry<ModifiedSpearItem> GOLD_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.GOLD.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.GOLD))
+  public static RegistryEntry<ModifiedSpearItem> GOLD_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.GOLD.getInternalName() + "_spear", ItemGenerator.spear(ModifiedSpearItem::new, ModMaterials.GOLD))
       .model((ctx, p) -> p.handheld(ModItems.GOLD_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(Items.GOLDEN_SWORD, ModItems.GOLD_SPEAR, null, p))
       .tag(ItemTags.PIGLIN_LOVED)
       .register();
-  public static RegistryEntry<ModifiedSpearItem> IRON_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.IRON.getInternalName() + "_spear", spear(ModifiedSpearItem::new, ModMaterials.IRON))
+  public static RegistryEntry<ModifiedSpearItem> IRON_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.IRON.getInternalName() + "_spear", ItemGenerator.spear(ModifiedSpearItem::new, ModMaterials.IRON))
       .model((ctx, p) -> p.handheld(ModItems.IRON_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(Items.IRON_SWORD, ModItems.IRON_SPEAR, null, p)).register();
 
   // Armors
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_helmet", armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.HEAD))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_helmet", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_HELMET, null, p))
       .register();
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_chestplate", armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.CHEST))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_chestplate", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_leggings", armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.LEGS))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_leggings", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_boots", armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.FEET))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_boots", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_BOOTS, null, p))
       .register();
 
   // COPPER
-  public static RegistryEntry<CopperArmorItem> COPPER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_helmet", armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.HEAD))
+  public static RegistryEntry<CopperArmorItem> COPPER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_helmet", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.COPPER_INGOT, ModItems.COPPER_HELMET, null, p))
       .register();
-  public static RegistryEntry<CopperArmorItem> COPPER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_chestplate", armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.CHEST))
+  public static RegistryEntry<CopperArmorItem> COPPER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_chestplate", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.COPPER_INGOT, ModItems.COPPER_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<CopperArmorItem> COPPER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_leggings", armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.LEGS))
+  public static RegistryEntry<CopperArmorItem> COPPER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_leggings", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.COPPER_INGOT, ModItems.COPPER_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<CopperArmorItem> COPPER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_boots", armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.FEET))
+  public static RegistryEntry<CopperArmorItem> COPPER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_boots", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.COPPER_INGOT, ModItems.COPPER_BOOTS, null, p))
       .register();
 
   // LEAD
-  public static RegistryEntry<LeadArmorItem> LEAD_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_helmet", armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.HEAD))
+  public static RegistryEntry<LeadArmorItem> LEAD_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_helmet", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.LEAD_INGOT, ModItems.LEAD_HELMET, null, p))
       .register();
-  public static RegistryEntry<LeadArmorItem> LEAD_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_chestplate", armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.CHEST))
+  public static RegistryEntry<LeadArmorItem> LEAD_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_chestplate", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.LEAD_INGOT, ModItems.LEAD_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<LeadArmorItem> LEAD_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_leggings", armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.LEGS))
+  public static RegistryEntry<LeadArmorItem> LEAD_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_leggings", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.LEAD_INGOT, ModItems.LEAD_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<LeadArmorItem> LEAD_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_boots", armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.FEET))
+  public static RegistryEntry<LeadArmorItem> LEAD_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_boots", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.LEAD_INGOT, ModItems.LEAD_BOOTS, null, p))
       .register();
 
   // QUICKSILVER
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_helmet", armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.HEAD))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_helmet", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HELMET, null, p))
       .register();
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_chestplate", armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.CHEST))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_chestplate", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_leggings", armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.LEGS))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_leggings", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_boots", armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.FEET))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_boots", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_BOOTS, null, p))
       .register();
 
   // SILVER
-  public static RegistryEntry<SilverArmorItem> SILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_helmet", armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.HEAD))
+  public static RegistryEntry<SilverArmorItem> SILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_helmet", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.SILVER_INGOT, ModItems.SILVER_HELMET, null, p))
       .register();
-  public static RegistryEntry<SilverArmorItem> SILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_chestplate", armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.CHEST))
+  public static RegistryEntry<SilverArmorItem> SILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_chestplate", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.SILVER_INGOT, ModItems.SILVER_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<SilverArmorItem> SILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_leggings", armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.LEGS))
+  public static RegistryEntry<SilverArmorItem> SILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_leggings", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.SILVER_INGOT, ModItems.SILVER_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<SilverArmorItem> SILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_boots", armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.FEET))
+  public static RegistryEntry<SilverArmorItem> SILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_boots", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.SILVER_INGOT, ModItems.SILVER_BOOTS, null, p))
       .register();
 
   // TIN
-  public static RegistryEntry<TinArmorItem> TIN_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_helmet", armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.HEAD))
+  public static RegistryEntry<TinArmorItem> TIN_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_helmet", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.TIN_INGOT, ModItems.TIN_HELMET, null, p))
       .register();
-  public static RegistryEntry<TinArmorItem> TIN_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_chestplate", armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.CHEST))
+  public static RegistryEntry<TinArmorItem> TIN_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_chestplate", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.TIN_INGOT, ModItems.TIN_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<TinArmorItem> TIN_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_leggings", armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.LEGS))
+  public static RegistryEntry<TinArmorItem> TIN_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_leggings", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.TIN_INGOT, ModItems.TIN_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<TinArmorItem> TIN_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_boots", armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.FEET))
+  public static RegistryEntry<TinArmorItem> TIN_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_boots", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.TIN_INGOT, ModItems.TIN_BOOTS, null, p))
       .register();
 

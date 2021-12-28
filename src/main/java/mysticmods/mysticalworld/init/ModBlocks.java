@@ -56,7 +56,7 @@ import noobanidus.libs.noobutil.material.MaterialType;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-@SuppressWarnings({"unused", "WeakerAccess", "unchecked"})
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class ModBlocks {
 
   private static <T extends IForgeRegistryEntry<?>> String boneName(T block) {
