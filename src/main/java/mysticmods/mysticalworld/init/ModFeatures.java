@@ -96,10 +96,10 @@ public class ModFeatures {
   public static void load() {
   }
 
-  private static boolean tryPlaceFeature(BiomeLoadingEvent event, Set<BiomeDictionary.Type> types, FeatureConfig<?> config) {
+  private static void tryPlaceFeature(BiomeLoadingEvent event, Set<BiomeDictionary.Type> types, FeatureConfig<?> config) {
     for (BiomeDictionary.Type rest : config.getBiomeRestrictions()) {
       if (types.contains(rest)) {
-        return false;
+        return;
       }
     }
     boolean place = false;
@@ -115,25 +115,23 @@ public class ModFeatures {
       }
     }
     if (!place) {
-      return false;
+      return;
     }
     if (config.isFeature()) {
       Supplier<ConfiguredFeature<?, ?>> sup = config.getFeature();
       if (sup == null) {
-        return false;
+        return;
       }
       event.getGeneration().getFeatures(config.getStage()).add(sup);
-      return true;
     } else {
       Supplier<StructureFeature<?, ?>> sup = config.getStructure();
       if (sup == null) {
-        return false;
+        return;
       }
       event.getGeneration().getStructures().add(sup);
       if (config == ConfigManager.HUT_CONFIG) {
         event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_RUINED_HUT);
       }
-      return true;
     }
   }
 
