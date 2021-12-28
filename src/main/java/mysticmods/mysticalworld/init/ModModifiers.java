@@ -8,8 +8,6 @@ import java.util.UUID;
 
 import static mysticmods.mysticalworld.MysticalWorld.REGISTRATE;
 
-// TODO: No Registrate conversion
-
 public class ModModifiers {
   public static final UUID BLESSED_MODIFIER = UUID.fromString("fa1a6f2d-c5c0-4a10-8eb8-44ec9f0765ca");
   public static final UUID SMITE_MODIFIER = UUID.fromString("6dfb72af-627d-47e1-b8b0-4c99ea590f2e");

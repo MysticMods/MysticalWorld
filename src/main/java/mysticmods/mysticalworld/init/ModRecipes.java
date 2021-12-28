@@ -15,8 +15,6 @@ import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import noobanidus.libs.noobutil.recipe.UniqueShapelessRecipe;
 
-// TODO: Done
-
 public class ModRecipes {
   public static RegistryEntry<ShapedDamageRecipe.Serializer> SHAPED_DAMAGE_SERIALIZER = MysticalWorld.REGISTRATE.recipeSerializer("shaped_damage_recipe", ShapedDamageRecipe.Serializer::new).register();
 
