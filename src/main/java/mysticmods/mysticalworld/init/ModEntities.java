@@ -242,8 +242,7 @@ public class ModEntities {
               )
           )
       )
-      // TODO: CHANGE UPDaTE INTERVAL
-      .properties(o -> o.sized(0.8f, 0.6f).setTrackingRange(5).setShouldReceiveVelocityUpdates(true).setUpdateInterval(20))
+      .properties(o -> o.sized(0.8f, 0.6f).setTrackingRange(5).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
   public static RegistryEntry<EntityType<DuckEntity>> DUCK = MysticalWorld.REGISTRATE.entity("duck", DuckEntity::new, EntityClassification.CREATURE)
@@ -257,7 +256,6 @@ public class ModEntities {
               )
           )
       )
-      // TODO: ADJUST SIZE???
       .properties(o -> o.sized(0.5f, 0.9f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
