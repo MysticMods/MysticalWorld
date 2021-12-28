@@ -173,7 +173,7 @@ public class ModFeatures {
         }
       }
 
-      ResourceLocation chunkGen = null;
+      ResourceLocation chunkGen;
       try {
         //noinspection unchecked
         chunkGen = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invokeExact(world.getChunkSource().generator));
