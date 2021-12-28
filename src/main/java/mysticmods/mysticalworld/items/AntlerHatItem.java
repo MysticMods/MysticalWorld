@@ -60,9 +60,7 @@ public class AntlerHatItem extends ModifiedArmorItem {
 
       ItemStack head = player.getItemBySlot(EquipmentSlotType.HEAD);
       if (ConfigManager.HAT_CONFIG.getAntlerDamage() != -1) {
-        head.hurtAndBreak(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> {
-          breaker.broadcastBreakEvent(EquipmentSlotType.HEAD);
-        });
+        head.hurtAndBreak(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> breaker.broadcastBreakEvent(EquipmentSlotType.HEAD));
       }
     }
   }

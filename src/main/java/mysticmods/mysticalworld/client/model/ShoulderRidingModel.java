@@ -45,25 +45,17 @@ public abstract class ShoulderRidingModel<T extends Entity> extends AgeableModel
       }
 
       pMatrixStack.translate(0.0D, this.yHeadOffset / 16.0F, this.zHeadOffset / 16.0F);
-      this.headParts().forEach((part) -> {
-        part.render(pMatrixStack, pBuffer, pPackedLight, pPackedOverlay);
-      });
+      this.headParts().forEach((part) -> part.render(pMatrixStack, pBuffer, pPackedLight, pPackedOverlay));
       pMatrixStack.popPose();
       pMatrixStack.pushPose();
       float f1 = 1.0F / this.babyBodyScale;
       pMatrixStack.scale(f1, f1, f1);
       pMatrixStack.translate(0.0D, this.bodyYOffset / 16.0F, 0.0D);
-      this.bodyParts().forEach((part) -> {
-        part.render(pMatrixStack, pBuffer, pPackedLight, pPackedOverlay);
-      });
+      this.bodyParts().forEach((part) -> part.render(pMatrixStack, pBuffer, pPackedLight, pPackedOverlay));
       pMatrixStack.popPose();
     } else {
-      this.headParts().forEach((part) -> {
-        part.render(pMatrixStack, pBuffer, pPackedLight, pPackedOverlay);
-      });
-      this.bodyParts().forEach((part) -> {
-        part.render(pMatrixStack, pBuffer, pPackedLight, pPackedOverlay);
-      });
+      this.headParts().forEach((part) -> part.render(pMatrixStack, pBuffer, pPackedLight, pPackedOverlay));
+      this.bodyParts().forEach((part) -> part.render(pMatrixStack, pBuffer, pPackedLight, pPackedOverlay));
     }
   }
 

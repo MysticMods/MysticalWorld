@@ -32,9 +32,7 @@ public class MaskHandler {
           if (ConfigManager.HAT_CONFIG.getMaskDurabilityDamage() != -1) {
             if (world.random.nextInt(4) == 1) {
               target.hurt(DamageSource.mobAttack(player), ConfigManager.HAT_CONFIG.getMaskAttackDamage());
-              mask.hurtAndBreak(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> {
-                breaker.broadcastBreakEvent(EquipmentSlotType.HEAD);
-              });
+              mask.hurtAndBreak(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> breaker.broadcastBreakEvent(EquipmentSlotType.HEAD));
             }
           }
         }
