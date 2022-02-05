@@ -58,7 +58,6 @@ public class ModItems {
       .register();
 
   public static RegistryEntry<NautilusHornBase.NautilusHorn> NAUTILUS_HORN = MysticalWorld.REGISTRATE.item("nautilus_horn", NautilusHornBase.NautilusHorn::new)
-      // KNIFE RECIPE TODO
       .model((ctx, p) -> p.handheld(ModItems.NAUTILUS_HORN))
       .properties(o -> o.durability(32).rarity(Rarity.RARE))
       .register();
@@ -75,6 +74,22 @@ public class ModItems {
           .unlockedBy("has_horn", RegistrateRecipeProvider.hasItem(ModItems.NAUTILUS_HORN.get()))
           .save(p))
       .model((ctx, p) -> p.withExistingParent(p.name(ModItems.GLISTERING_HORN), "item/handheld").texture("layer0", p.itemTexture(ModItems.NAUTILUS_HORN)))
+      .register();
+
+  public static RegistryEntry<PearleporterItem> PEARLEPORTER = MysticalWorld.REGISTRATE.item("pearleporter", PearleporterItem::new)
+      .properties(o -> o.durability(211).rarity(Rarity.EPIC))
+      .model((ctx, p) -> p.handheld(ModItems.PEARLEPORTER))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ModItems.PEARLEPORTER.get(), 1)
+            .pattern(" GP")
+            .pattern(" SG")
+            .pattern("S  ")
+            .define('G', Tags.Items.NUGGETS_GOLD)
+            .define('P', MWTags.Items.PEARL_GEM)
+            .define('S', Tags.Items.RODS_WOODEN)
+            .unlockedBy("has_pearl", RegistrateRecipeProvider.hasItem(ModItems.PEARL_GEM.get()))
+            .save(p);
+      })
       .register();
 
   public static RegistryEntry<AntlerHatItem> ANTLER_HAT = MysticalWorld.REGISTRATE.item("antler_hat", AntlerHatItem::new)

@@ -17,6 +17,7 @@ public class ModelHolder {
   public static OwlModel owlModel;
   public static SilkwormModel silkwormModel;
   public static DuckModel duckModel;
+  public static ClamModel clamModel;
 
   public static BeetleArmorModel beetleHelmet;
   public static BeetleArmorModel beetleChestplate;
@@ -39,6 +40,7 @@ public class ModelHolder {
     silkwormModel = new SilkwormModel();
     antlerHatModel = new AntlerHatModel();
     duckModel = new DuckModel();
+    clamModel = new ClamModel();
 
     beetleHelmet = new BeetleArmorModel(EquipmentSlotType.HEAD);
     beetleChestplate = new BeetleArmorModel(EquipmentSlotType.CHEST);

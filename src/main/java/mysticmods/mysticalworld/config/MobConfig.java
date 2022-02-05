@@ -1,5 +1,6 @@
 package mysticmods.mysticalworld.config;
 
+import net.minecraft.entity.EntityClassification;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -23,6 +24,10 @@ public class MobConfig extends AbstractConfig {
 
   public MobConfig(String name, int chance, int min, int max, List<String> biomes) {
     this(name, chance, min, max, biomes, BiomeDictionary.Type.OVERWORLD);
+  }
+
+  public EntityClassification getClassification () {
+    return EntityClassification.CREATURE;
   }
 
   public MobConfig(String name, int chance, int min, int max, List<String> biomes, BiomeDictionary.Type restriction) {

@@ -24,6 +24,7 @@ public class StandardDrops {
     DROPS.put("hell_sprout", Arrays.asList(new ResourceLocation("minecraft", "nether_wart")));
     DROPS.put("squid", Arrays.asList(new ResourceLocation("mysticalworld", "raw_squid")));
     DROPS.put("duck", Arrays.asList(new ResourceLocation("minecraft", "feather")));
+    DROPS.put("clam", Arrays.asList(new ResourceLocation("minecraft", "ender_pearl"), new ResourceLocation("mysticalworld", "pearl_gem")));
   }
 
   public static List<ItemStack> getDrops(String name) {

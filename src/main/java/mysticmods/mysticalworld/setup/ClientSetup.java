@@ -30,6 +30,7 @@ public class ClientSetup {
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.SILKWORM.get(), new SilkwormRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.HELL_SPROUT.get(), new HellSproutRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.DUCK.get(), new DuckRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.CLAM.get(), new ClamRenderer.Factory());
 
     event.enqueueWork(() -> {
       RenderType rendertype = RenderType.cutoutMipped();

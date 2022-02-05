@@ -13,6 +13,8 @@ public class ModLang {
       p.add("mysticalworld.food.rotten_apple", "Has a chance to corrupt innocent villagers.");
       p.add("mysticalworld.entity.lava_cat", "Lava Cat");
       p.add("mysticalworld.entity.obsidian_cat", "Obsidian Cat");
+      p.add("mysticalworld.item.pearleporter", "Right-Click to extract from a mature clam.");
+      p.add("mysticalworld.item.pearleporter_immature", "This clam will mature in %s seconds.");
       p.add("message.dandelion_cordial", "You feel well-rested!");
       p.add("message.squid.cooldown", "Give it time to produce more ink!");
       p.add("attribute.name.generic.reachDistance", "Reach");

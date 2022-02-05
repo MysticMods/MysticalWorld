@@ -1,0 +1,58 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "mysticalworld:is_mature",
+              "inverse": false
+            },
+            {
+              "condition": "mysticalworld:is_ender",
+              "inverse": false
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:ender_pearl"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "mysticalworld:is_mature",
+              "inverse": false
+            },
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "mysticalworld:is_ender",
+                "inverse": false
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "mysticalworld:lustrous_pearl"
+        }
+      ]
+    }
+  ]
+}

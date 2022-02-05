@@ -9,10 +9,7 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.config.MobConfig;
 import mysticmods.mysticalworld.entity.*;
-import mysticmods.mysticalworld.loot.conditions.HasHorns;
-import mysticmods.mysticalworld.loot.conditions.IsColor;
-import mysticmods.mysticalworld.loot.conditions.IsLava;
-import mysticmods.mysticalworld.loot.conditions.IsObsidian;
+import mysticmods.mysticalworld.loot.conditions.*;
 import net.minecraft.advancements.criterion.EntityFlagsPredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.entity.Entity;
@@ -20,6 +17,7 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
@@ -259,6 +257,26 @@ public class ModEntities {
       .properties(o -> o.sized(0.5f, 0.9f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
+  public static RegistryEntry<EntityType<ClamEntity>> CLAM = MysticalWorld.REGISTRATE.entity("clam", ClamEntity::new, EntityClassification.WATER_CREATURE)
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(ItemLootEntry.lootTableItem(Items.ENDER_PEARL)
+                  .apply(SetCount.setCount(ConstantRange.exactly(1)))
+                  .when(IsMature.builder())
+                  .when(IsEnder.builder())
+              )
+              .setRolls(ConstantRange.exactly(1))
+              )
+          .withPool(LootPool.lootPool()
+              .add(ItemLootEntry.lootTableItem(ModItems.PEARL_GEM.get())
+                  .apply(SetCount.setCount(ConstantRange.exactly(1)))
+                  .when(IsMature.builder())
+                  .when(IsEnder.builder().invert()))
+                  .setRolls(ConstantRange.exactly(1)))
+      ))
+      .properties(o -> o.sized(0.75f, 0.75f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
   static {
     SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("beetle_spawn_egg", spawnEgg(ModEntities.BEETLE, 0x418594, 0x211D15)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
     SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("deer_spawn_egg", spawnEgg(ModEntities.DEER, 0xa18458, 0x5e4d33)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
@@ -271,6 +289,7 @@ public class ModEntities {
     SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("silkworm_spawn_egg", spawnEgg(ModEntities.SILKWORM, 0xd1cecd, 0x635e5b)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
     SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("hell_sprout_spawn_egg", spawnEgg(ModEntities.HELL_SPROUT, 0x8a0303, 0xe8f442)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
     SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("duck_spawn_egg", spawnEgg(ModEntities.DUCK, 0xe4d6a5, 0xe9ad36)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
+    SPAWN_EGGS.add(MysticalWorld.REGISTRATE.item("clam_spawn_egg", spawnEgg(ModEntities.CLAM, 0xfffdd0, 0xfadadd)).properties((p) -> p.tab(ItemGroup.TAB_MISC)).model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register());
   }
 
   public static BiMap<RegistryEntry<? extends EntityType<?>>, MobConfig> configMap = HashBiMap.create();
@@ -286,6 +305,7 @@ public class ModEntities {
     configMap.put(ModEntities.OWL, ConfigManager.OWL_CONFIG);
     configMap.put(ModEntities.HELL_SPROUT, ConfigManager.HELL_SPROUT_CONFIG);
     configMap.put(ModEntities.DUCK, ConfigManager.DUCK_CONFIG);
+    configMap.put(ModEntities.CLAM, ConfigManager.CLAM_CONFIG);
   }
 
   public static void registerEntity(BiomeLoadingEvent event, Set<BiomeDictionary.Type> types) {
@@ -296,11 +316,11 @@ public class ModEntities {
         types2.retainAll(conf.getBiomes());
         if (!types2.isEmpty()) {
           if (conf.getRestriction() == BiomeDictionary.Type.NETHER && event.getCategory() == Biome.Category.NETHER) {
-            event.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
+            event.getSpawns().getSpawner(conf.getClassification()).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
           } else if (conf.getRestriction() == BiomeDictionary.Type.OVERWORLD && event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND) {
-            event.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
+            event.getSpawns().getSpawner(conf.getClassification()).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
           } else if (conf.getRestriction() == BiomeDictionary.Type.END && event.getCategory() == Biome.Category.THEEND) {
-            event.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
+            event.getSpawns().getSpawner(conf.getClassification()).add(new MobSpawnInfo.Spawners(entry.getKey().get(), conf.getChance(), conf.getMin(), conf.getMax()));
           }
         }
       }
@@ -324,6 +344,7 @@ public class ModEntities {
     EntitySpawnPlacementRegistry.register(HELL_SPROUT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LavaCatEntity::placement);
     EntitySpawnPlacementRegistry.register(ENDERMINI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EnderminiEntity::checkMonsterSpawnRules);
     EntitySpawnPlacementRegistry.register(DUCK.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
+    EntitySpawnPlacementRegistry.register(CLAM.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ClamEntity::checkClamSpawnRules);
   }
 
   public static void registerAttributes(EntityAttributeCreationEvent event) {
@@ -338,5 +359,6 @@ public class ModEntities {
     event.put(ModEntities.SILKWORM.get(), SilkwormEntity.attributes().build());
     event.put(ModEntities.HELL_SPROUT.get(), HellSproutEntity.attributes().build());
     event.put(ModEntities.DUCK.get(), DuckEntity.attributes().build());
+    event.put(ModEntities.CLAM.get(), ClamEntity.attributes().build());
   }
 }

@@ -42,6 +42,7 @@ public class ConfigManager {
   public static StructureConfig SAND_HOUSE_CONFIG;
   public static ForgeConfigSpec.BooleanValue SEED_INJECTION;
   public static MobConfig DUCK_CONFIG;
+  public static ClamConfig CLAM_CONFIG;
 
   public static List<AbstractConfig> CONFIGS = new ArrayList<>();
 
@@ -118,6 +119,7 @@ public class ConfigManager {
     SILKWORM_CONFIG = new SilkwormConfig(true, 65, 1, 68);
     DUCK_CONFIG = new MobConfig("Duck", 5, 1, 4, Arrays.asList("wet", "swamp", "river", "beach"));
     HAT_CONFIG = new HatConfig();
+    CLAM_CONFIG = new ClamConfig("Clam", 5, 1, 1, Arrays.asList("ocean", "river", "beach", "swamp", "wet"), 14, 4500, 6400);
 
     DEER_CONFIG.apply(COMMON_BUILDER);
     SPROUT_CONFIG.apply(COMMON_BUILDER);
@@ -130,6 +132,7 @@ public class ConfigManager {
     LAVA_CAT_CONFIG.apply(COMMON_BUILDER);
     SILKWORM_CONFIG.apply(COMMON_BUILDER);
     DUCK_CONFIG.apply(COMMON_BUILDER);
+    CLAM_CONFIG.apply(COMMON_BUILDER);
   }
 
   public static void loadConfig(ForgeConfigSpec spec, Path path) {

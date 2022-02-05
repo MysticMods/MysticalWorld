@@ -1,10 +1,7 @@
 package mysticmods.mysticalworld.init;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.loot.conditions.HasHorns;
-import mysticmods.mysticalworld.loot.conditions.IsColor;
-import mysticmods.mysticalworld.loot.conditions.IsLava;
-import mysticmods.mysticalworld.loot.conditions.IsObsidian;
+import mysticmods.mysticalworld.loot.conditions.*;
 import mysticmods.mysticalworld.loot.functions.RandomPotion;
 import net.minecraft.loot.LootConditionType;
 import net.minecraft.loot.LootFunctionType;
@@ -22,6 +19,8 @@ public class ModLoot {
   public static final LootConditionType IS_COLOR = CONDITION_REGISTRY.register("is_color", new LootConditionType(new IsColor.Serializer()));
   public static final LootConditionType IS_OBSIDIAN = CONDITION_REGISTRY.register("is_lava", new LootConditionType(new IsObsidian.Serializer()));
   public static final LootConditionType IS_LAVA = CONDITION_REGISTRY.register("is_obsidian", new LootConditionType(new IsLava.Serializer()));
+  public static final LootConditionType IS_MATURE = CONDITION_REGISTRY.register("is_mature", new LootConditionType(new IsMature.Serializer()));
+  public static final LootConditionType IS_ENDER = CONDITION_REGISTRY.register("is_ender", new LootConditionType(new IsEnder.Serializer()));
 
   public static void load() {
   }
