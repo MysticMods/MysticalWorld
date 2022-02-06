@@ -15,6 +15,7 @@ import mysticmods.mysticalworld.items.tin.TinArmorItem;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
@@ -90,6 +91,14 @@ public class ModItems {
             .unlockedBy("has_pearl", RegistrateRecipeProvider.hasItem(ModItems.PEARL_GEM.get()))
             .save(p);
       })
+      .register();
+
+  public static RegistryEntry<ClamBucketItem> CLAM_BUCKET = MysticalWorld.REGISTRATE.item("clam_bucket", (p) -> new ClamBucketItem(false, () -> Fluids.WATER, p))
+      .properties(o -> o.stacksTo(1))
+      .register();
+
+  public static RegistryEntry<ClamBucketItem> ENDER_CLAM_BUCKET = MysticalWorld.REGISTRATE.item("ender_clam_bucket", (p) -> new ClamBucketItem(true, () -> Fluids.WATER, p))
+      .properties(o -> o.stacksTo(1).rarity(Rarity.EPIC))
       .register();
 
   public static RegistryEntry<AntlerHatItem> ANTLER_HAT = MysticalWorld.REGISTRATE.item("antler_hat", AntlerHatItem::new)

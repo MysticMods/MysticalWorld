@@ -119,7 +119,7 @@ public class ConfigManager {
     SILKWORM_CONFIG = new SilkwormConfig(true, 65, 1, 68);
     DUCK_CONFIG = new MobConfig("Duck", 5, 1, 4, Arrays.asList("wet", "swamp", "river", "beach"));
     HAT_CONFIG = new HatConfig();
-    CLAM_CONFIG = new ClamConfig("Clam", 5, 1, 1, Arrays.asList("ocean", "river", "beach", "swamp", "wet"), 14, 4500, 6400);
+    CLAM_CONFIG = new ClamConfig("Clam", 2, 1, 1, Arrays.asList("ocean", "river", "beach", "swamp", "wet"), 31, 2300, 5100);
 
     DEER_CONFIG.apply(COMMON_BUILDER);
     SPROUT_CONFIG.apply(COMMON_BUILDER);

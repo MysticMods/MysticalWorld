@@ -51,7 +51,7 @@ public class ClamModel extends AgeableModel<ClamEntity> {
     this.setRotateAngle(shape3_2, 0.05585053606381855F, -0.017453292519943295F, 0.0F);
     this.Bottom = new ModelRenderer(this, 25, 16);
     this.Bottom.setPos(0.0F, 20.25F, 4.5F);
-    
+
     this.Bottom.addBox(-5.5F, -3.0F, 0.0F, 11, 2, 8, 0.0F);
     this.setRotateAngle(Bottom, 3.096039560112741F, 0.0F, 0.0F);
     this.shape2 = new ModelRenderer(this, 1, 19);

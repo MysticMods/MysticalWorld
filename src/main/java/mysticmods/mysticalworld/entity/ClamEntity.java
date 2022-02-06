@@ -2,19 +2,27 @@ package mysticmods.mysticalworld.entity;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
+import mysticmods.mysticalworld.init.ModItems;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.passive.WaterMobEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
@@ -26,6 +34,7 @@ import java.util.Random;
 public class ClamEntity extends WaterMobEntity {
   public static final DataParameter<Boolean> isEnder = EntityDataManager.defineId(ClamEntity.class, DataSerializers.BOOLEAN);
   public static final DataParameter<Integer> age = EntityDataManager.defineId(ClamEntity.class, DataSerializers.INT);
+  private static final DataParameter<Boolean> FROM_BUCKET = EntityDataManager.defineId(ClamEntity.class, DataSerializers.BOOLEAN);
 
   public ClamEntity(EntityType<? extends WaterMobEntity> type, World level) {
     super(type, level);
@@ -42,24 +51,35 @@ public class ClamEntity extends WaterMobEntity {
     super.defineSynchedData();
     getEntityData().define(isEnder, random.nextInt(ConfigManager.CLAM_CONFIG.getEnderChance()) == 0);
     getEntityData().define(age, random.nextInt(ConfigManager.CLAM_CONFIG.getInitialAge()));
+    getEntityData().define(FROM_BUCKET, false);
   }
 
   @Override
   protected void registerGoals() {
   }
 
+  private boolean fromBucket() {
+    return this.entityData.get(FROM_BUCKET);
+  }
+
+  public void setFromBucket(boolean p_203706_1_) {
+    this.entityData.set(FROM_BUCKET, p_203706_1_);
+  }
+
   @Override
   public void addAdditionalSaveData(CompoundNBT pCompound) {
     super.addAdditionalSaveData(pCompound);
-    getEntityData().set(isEnder, pCompound.getBoolean("isEnder"));
-    getEntityData().set(age, pCompound.getInt("age"));
+    pCompound.putBoolean("isEnder", getEntityData().get(isEnder));
+    pCompound.putInt("age", getEntityData().get(age));
+    pCompound.putBoolean("FromBucket", this.fromBucket());
   }
 
   @Override
   public void readAdditionalSaveData(CompoundNBT pCompound) {
     super.readAdditionalSaveData(pCompound);
-    pCompound.putBoolean("isEnder", getEntityData().get(isEnder));
-    pCompound.putInt("age", getEntityData().get(age));
+    getEntityData().set(isEnder, pCompound.getBoolean("isEnder"));
+    getEntityData().set(age, pCompound.getInt("age"));
+    this.setFromBucket(pCompound.getBoolean("FromBucket"));
   }
 
   @Override
@@ -94,11 +114,65 @@ public class ClamEntity extends WaterMobEntity {
     }
     getEntityData().set(age, getEntityData().get(age) + 1);
     if (this.level.isClientSide) {
-      if (getEntityData().get(age) > ConfigManager.CLAM_CONFIG.getMaxAge() && random.nextInt(6) == 0) {
-        for (int i = 0; i < 2; ++i) {
-          this.level.addParticle(getEntityData().get(isEnder) ? ParticleTypes.PORTAL : random.nextInt(5) == 0 ? ParticleTypes.BUBBLE_POP : ParticleTypes.BUBBLE, this.getX() + (this.random.nextDouble() - 0.5D) * (double) this.getBbWidth(), this.getY() + this.random.nextDouble() * (double) this.getBbHeight() - 0.25D, this.getZ() + (this.random.nextDouble() - 0.5D) * (double) this.getBbWidth(), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
+      if (getEntityData().get(age) > ConfigManager.CLAM_CONFIG.getMaxAge()) {
+        if (getEntityData().get(isEnder)) {
+          this.level.addParticle(ParticleTypes.PORTAL, this.getX() + (this.random.nextDouble() - 0.5D) * (double) this.getBbWidth(), this.getY() + this.random.nextDouble() * (double) this.getBbHeight() - 0.25D, this.getZ() + (this.random.nextDouble() - 0.5D) * (double) this.getBbWidth(), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
+        } else if (random.nextInt(12) == 0) {
+          for (int i = 0; i < 2; ++i) {
+            this.level.addParticle(getEntityData().get(isEnder) ? ParticleTypes.PORTAL : random.nextInt(5) == 0 ? ParticleTypes.BUBBLE_POP : ParticleTypes.BUBBLE, this.getX() + (this.random.nextDouble() - 0.5D) * (double) this.getBbWidth(), this.getY() + this.random.nextDouble() * (double) this.getBbHeight() - 0.25D, this.getZ() + (this.random.nextDouble() - 0.5D) * (double) this.getBbWidth(), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
+          }
         }
       }
+    }
+  }
+
+  @Override
+  public boolean requiresCustomPersistence() {
+    return super.requiresCustomPersistence() || this.fromBucket();
+  }
+
+  @Override
+  public boolean removeWhenFarAway(double pDistanceToClosestPlayer) {
+    return !this.fromBucket() && !this.hasCustomName();
+  }
+
+  @Override
+  protected ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
+    ItemStack itemstack = pPlayer.getItemInHand(pHand);
+    if (itemstack.getItem() == Items.WATER_BUCKET && this.isAlive()) {
+      this.playSound(SoundEvents.BUCKET_FILL_FISH, 1.0F, 1.0F);
+      itemstack.shrink(1);
+      ItemStack itemstack1 = this.getBucketItemStack();
+      this.saveToBucketTag(itemstack1);
+      if (!this.level.isClientSide) {
+        CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayerEntity) pPlayer, itemstack1);
+      }
+
+      if (itemstack.isEmpty()) {
+        pPlayer.setItemInHand(pHand, itemstack1);
+      } else if (!pPlayer.inventory.add(itemstack1)) {
+        pPlayer.drop(itemstack1, false);
+      }
+
+      this.remove();
+      return ActionResultType.sidedSuccess(this.level.isClientSide);
+    } else {
+      return super.mobInteract(pPlayer, pHand);
+    }
+  }
+
+  protected void saveToBucketTag(ItemStack p_204211_1_) {
+    if (this.hasCustomName()) {
+      p_204211_1_.setHoverName(this.getCustomName());
+    }
+
+  }
+
+  protected ItemStack getBucketItemStack() {
+    if (getEntityData().get(isEnder)) {
+      return new ItemStack(ModItems.ENDER_CLAM_BUCKET.get());
+    } else {
+      return new ItemStack(ModItems.CLAM_BUCKET.get());
     }
   }
 
