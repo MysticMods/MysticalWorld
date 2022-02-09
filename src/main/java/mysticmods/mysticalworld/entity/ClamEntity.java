@@ -166,14 +166,13 @@ public class ClamEntity extends WaterMobEntity {
       p_204211_1_.setHoverName(this.getCustomName());
     }
 
+    CompoundNBT tag = p_204211_1_.getOrCreateTag();
+    tag.putBoolean("isEnder", getEntityData().get(isEnder));
+    tag.putInt("age", getEntityData().get(age));
   }
 
   protected ItemStack getBucketItemStack() {
-    if (getEntityData().get(isEnder)) {
-      return new ItemStack(ModItems.ENDER_CLAM_BUCKET.get());
-    } else {
-      return new ItemStack(ModItems.CLAM_BUCKET.get());
-    }
+    return new ItemStack(ModItems.CLAM_BUCKET.get());
   }
 
   public static boolean checkClamSpawnRules(EntityType<? extends ClamEntity> p_223363_0_, IWorld p_223363_1_, SpawnReason p_223363_2_, BlockPos p_223363_3_, Random p_223363_4_) {

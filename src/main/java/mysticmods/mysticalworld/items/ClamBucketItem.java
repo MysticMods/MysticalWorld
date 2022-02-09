@@ -1,30 +1,27 @@
 package mysticmods.mysticalworld.items;
 
 import mysticmods.mysticalworld.entity.ClamEntity;
+import mysticmods.mysticalworld.init.ModEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import mysticmods.mysticalworld.init.ModEntities;
 
 import javax.annotation.Nullable;
 
 public class ClamBucketItem extends BucketItem {
-  public final boolean isEnder;
-
-  public ClamBucketItem(boolean isEnder, java.util.function.Supplier<? extends Fluid> p_i49022_2_, Item.Properties builder) {
+  public ClamBucketItem(java.util.function.Supplier<? extends Fluid> p_i49022_2_, Item.Properties builder) {
     super(p_i49022_2_, builder);
-    this.isEnder = isEnder;
   }
 
   public void checkExtraContent(World level, ItemStack stack, BlockPos pos) {
@@ -38,16 +35,13 @@ public class ClamBucketItem extends BucketItem {
   }
 
   private void spawn(ServerWorld level, ItemStack stack, BlockPos pos) {
-    Entity entity = ModEntities.CLAM.get().spawn(level, stack, (PlayerEntity) null, pos, SpawnReason.BUCKET, true, false);
+    Entity entity = ModEntities.CLAM.get().spawn(level, stack, null, pos, SpawnReason.BUCKET, true, false);
     if (entity != null) {
       ClamEntity clam = (ClamEntity) entity;
-      if (isEnder) {
-        clam.getEntityData().set(ClamEntity.isEnder, true);
-      }
+      CompoundNBT tag = stack.getOrCreateTag();
+      clam.getEntityData().set(ClamEntity.isEnder, tag.getBoolean("isEnder"));
+      clam.getEntityData().set(ClamEntity.age, tag.getInt("age"));
+      clam.setFromBucket(true);
     }
-    if (entity != null) {
-      ((AbstractFishEntity) entity).setFromBucket(true);
-    }
-
   }
 }

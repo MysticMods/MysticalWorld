@@ -18,21 +18,14 @@ public class ClamRenderer extends MobRenderer<ClamEntity, ClamModel> {
 
   @Override
   public ResourceLocation getTextureLocation(ClamEntity pEntity) {
-    if (pEntity.getEntityData().get(ClamEntity.isEnder)) {
-      return new ResourceLocation(MysticalWorld.MODID, "textures/entity/ender_clam.png");
-    } else {
-      return new ResourceLocation(MysticalWorld.MODID, "textures/entity/clam.png");
-    }
+    return new ResourceLocation(MysticalWorld.MODID, "textures/entity/clam.png");
   }
 
   public static class Factory implements IRenderFactory<ClamEntity> {
-
     @Override
     @Nonnull
     public ClamRenderer createRenderFor(@Nonnull EntityRendererManager manager) {
       return new ClamRenderer(manager, ModelHolder.clamModel, 0.5f);
     }
   }
-
-
 }
