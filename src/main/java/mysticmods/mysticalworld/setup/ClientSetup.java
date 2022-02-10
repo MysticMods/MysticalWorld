@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import noobanidus.libs.noobutil.setup.ShadedClientSetup;
+import noobanidus.libs.shoulders.client.bootstrap.Bootstrap;
 
 @SuppressWarnings("deprecation")
 public class ClientSetup {
@@ -46,6 +47,7 @@ public class ClientSetup {
       RenderTypeLookup.setRenderLayer(ModBlocks.UNCANNY_MUSHROOM.get(), rendertype);
 
       ShadedClientSetup.init(event);
+      Bootstrap.init(Minecraft.getInstance());
 
       Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values().forEach(o -> o.addLayer(new ShoulderRenderLayer<>(o)));
 
