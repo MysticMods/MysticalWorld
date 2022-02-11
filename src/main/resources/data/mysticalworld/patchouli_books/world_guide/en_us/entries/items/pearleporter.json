@@ -1,0 +1,17 @@
+{
+  "name": "Pearleporter",
+  "icon": "mysticalworld:pearleporter",
+  "category": "items",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:pearleporter",
+      "link_recipe": true,
+      "text": "The pearleporter has 211 uses by default, and can be used on a mature $(l:creatures/clam)clam$() that is producing particles to retrieve items without harming it."
+    },
+    {
+      "type": "text",
+      "text": "It can be enchanted with Unbreaking, as well as Luck of the Sea, which will increase the number of items produced."
+    }
+  ]
+}

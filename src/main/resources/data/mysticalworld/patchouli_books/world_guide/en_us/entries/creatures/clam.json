@@ -1,0 +1,22 @@
+{
+  "name": "Clam",
+  "icon": "mysticalworld:clam_bucket",
+  "category": "creatures",
+  "pages": [
+    {
+      "type": "animal_spawn_info",
+      "animal": "clam",
+      "breed": "Breed: Not breedable.",
+      "tame": "Taming: Not tameable.",
+      "blurb": "A $(l:items/pearleporter)Pearleporter$() can extract pearls without harming the clam."
+    },
+    {
+      "type": "entity",
+      "name": "Clam",
+      "entity": "mysticalworld:clam",
+      "scale": 0.7,
+      "offset": 0.3,
+      "text": "They produce particles when mature and can be transported via $(l:items/clam_bucket)clam bucket$()."
+    }
+  ]
+}

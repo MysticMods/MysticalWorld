@@ -1,0 +1,13 @@
+{
+  "name": "Clam Bucket",
+  "icon": "mysticalworld:clam_bucket",
+  "category": "items",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:clam_bucket",
+      "text": "Right-clicking a clam with a water bucket will pick the clam up.$(br2)Its maturity and whether or not it is an ender clam will be retained."
+    }
+  ]
+}
