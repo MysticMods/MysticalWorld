@@ -49,7 +49,7 @@ public class ClamEntity extends WaterMobEntity {
   @Override
   protected void defineSynchedData() {
     super.defineSynchedData();
-    getEntityData().define(isEnder, random.nextInt(ConfigManager.CLAM_CONFIG.getEnderChance()) == 0);
+    getEntityData().define(isEnder, ConfigManager.CLAM_CONFIG.getEnderChance() != 0 && random.nextInt(ConfigManager.CLAM_CONFIG.getEnderChance()) == 0);
     getEntityData().define(age, random.nextInt(ConfigManager.CLAM_CONFIG.getInitialAge()));
     getEntityData().define(FROM_BUCKET, false);
   }

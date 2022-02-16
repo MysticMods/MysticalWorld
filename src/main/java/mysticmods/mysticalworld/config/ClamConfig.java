@@ -42,7 +42,7 @@ public class ClamConfig extends MobConfig {
   @Override
   protected void doApply(ForgeConfigSpec.Builder builder) {
     super.doApply(builder);
-    configEnderChance = builder.comment("the chance of a clam spawning as an elder clam").defineInRange("enderChance", defaultEnderChance, 0, Integer.MAX_VALUE);
+    configEnderChance = builder.comment("the chance of a clam spawning as an ender clam [0 to disable ender clams]").defineInRange("enderChance", defaultEnderChance, 0, Integer.MAX_VALUE);
     configInitialAge = builder.comment("the upper value of initial age for a clam").defineInRange("initialAge", defaultInitialAge, 0, Integer.MAX_VALUE);
     configMaxAge = builder.comment("the max age for a clam").defineInRange("maxAge", defaultMaxAge, 0, Integer.MAX_VALUE);
   }
