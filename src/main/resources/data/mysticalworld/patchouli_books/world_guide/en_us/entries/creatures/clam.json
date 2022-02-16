@@ -8,7 +8,7 @@
       "animal": "clam",
       "breed": "Breed: Not breedable.",
       "tame": "Taming: Not tameable.",
-      "blurb": "A $(l:items/pearleporter)Pearleporter$() can extract pearls without harming the clam."
+      "blurb": "See $(l:creatures/clam#farming)Clam Farming$() for renewable ways to obtain items from clams."
     },
     {
       "type": "entity",
@@ -17,6 +17,16 @@
       "scale": 0.7,
       "offset": 0.3,
       "text": "They produce particles when mature and can be transported via $(l:items/clam_bucket)clam bucket$()."
+    },
+    {
+      "type": "text",
+      "title": "Clam Farming",
+      "anchor": "farming",
+      "text": "Clams are a renewable source of ender and lustrous pearls. Like fish and other aquatic animals, clams will despawn if left alone.$(br2)You can use a bucket of water on a clam to obtain a $(l:items/clam_bucket)clam bucket$(). This allows for easy transportation and prevents despawning.$(br2)Once you have obtained a $(l:decoration/pearl)lustrous pearl$(), you can craft a $(l:items/pearleporter)Pearleporter$(), which allows"
+    },
+    {
+      "type": "text",
+      "text": "you to harvest from mature clams without harming them.$(br2)Mature clams will emit particles: either bubbles for regular clams, or ender particles for ender clams."
     }
   ]
 }
