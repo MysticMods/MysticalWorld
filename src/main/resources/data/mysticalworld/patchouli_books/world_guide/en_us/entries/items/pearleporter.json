@@ -11,7 +11,7 @@
     },
     {
       "type": "text",
-      "text": "It can be enchanted with Unbreaking, as well as Luck of the Sea, which will increase the number of items produced."
+      "text": "It can be enchanted with Unbreaking, as well as Luck of the Sea, which will increase the number of items produced.$(br2)Using a pearleporter on an immature clam will tell you how many seconds remain until it matures."
     }
   ]
 }
