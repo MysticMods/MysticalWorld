@@ -6,8 +6,6 @@ import mysticmods.mysticalworld.events.LeafHandler;
 import mysticmods.mysticalworld.init.ModItems;
 import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -38,8 +36,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 
-import javax.annotation.Nonnull;
-
 public class SilkwormEntity extends Animal {
   public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/silkworm");
 
@@ -64,8 +60,7 @@ public class SilkwormEntity extends Animal {
   }
 
   @Override
-  @Nonnull
-  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
+  public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob ageable) {
     return null;
   }
 
@@ -74,7 +69,8 @@ public class SilkwormEntity extends Animal {
     goalSelector.addGoal(1, new FloatGoal(this));
     goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.5d, false));
     goalSelector.addGoal(3, new RandomStrollGoal(this, 0.5d));
-    goalSelector.addGoal(3, new TemptGoal(this, 0.9d, false, Ingredient.of(LeafHandler.getLeafItems().toArray(new Item[0]))));
+    // TODO: TAG
+    goalSelector.addGoal(3, new TemptGoal(this, 0.9d, Ingredient.of(LeafHandler.getLeafItems().toArray(new Item[0])), false));
     goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, SilkwormEntity.class, false));
   }
@@ -138,7 +134,7 @@ public class SilkwormEntity extends Animal {
       ItemStack itemstack = player.getItemInHand(hand);
 
       if (LeafHandler.getLeafItems().contains(itemstack.getItem())) {
-        if (!player.abilities.instabuild) {
+        if (!player.isCreative()) {
           itemstack.shrink(1);
         }
         eatLeaves();
@@ -196,7 +192,7 @@ public class SilkwormEntity extends Animal {
   }
 
   @Override
-  protected float getVoicePitch() {
+  public float getVoicePitch() {
     return 1.3f + random.nextFloat() - 0.5f;
   }
 
@@ -215,21 +211,17 @@ public class SilkwormEntity extends Animal {
   }
 
   @Override
-  public boolean causeFallDamage(float distance, float damageMultiplier) {
+  public boolean causeFallDamage(float distance, float damageMultiplier, DamageSource pDamageSource) {
     float[] ret = net.minecraftforge.common.ForgeHooks.onLivingFall(this, distance, damageMultiplier);
     if (ret == null) return false;
     distance = ret[0];
     damageMultiplier = ret[1];
-    // This just handles riding entities
-    // super.fall(distance, damageMultiplier);
     MobEffectInstance potioneffect = this.getEffect(MobEffects.JUMP);
     float f = potioneffect == null ? 0.0F : (float) (potioneffect.getAmplifier() + 1);
     int i = Mth.ceil((distance - 3.0F - f) * damageMultiplier);
 
     if (i > 0) {
       this.playSound(this.getFallDamageSound(i), 1.0F, 1.0F);
-      // They take no fall damage
-      // this.attackEntityFrom(DamageSource.FALL, (float) i);
       int j = Mth.floor(this.getX());
       int k = Mth.floor(this.getY() - 0.2);
       int l = Mth.floor(this.getZ());
@@ -242,6 +234,10 @@ public class SilkwormEntity extends Animal {
     }
 
     return false;
+  }
+
+  private SoundEvent getFallDamageSound(int pHeight) {
+    return pHeight > 4 ? this.getFallSounds().big() : this.getFallSounds().small();
   }
 
   @Override

@@ -4,8 +4,6 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -20,7 +18,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -205,18 +202,12 @@ public class LavaCatEntity extends TamableAnimal {
   }
 
   @Override
-  public boolean addEffect(MobEffectInstance potioneffectIn) {
-    MobEffect type = potioneffectIn.getEffect();
-    if (type == MobEffects.POISON || type == MobEffects.WITHER) {
+  public boolean canBeAffected(MobEffectInstance pPotioneffect) {
+    if (pPotioneffect.getEffect() == MobEffects.POISON || pPotioneffect.getEffect() == MobEffects.WITHER) {
       return false;
     }
 
-    return super.addEffect(potioneffectIn);
-  }
-
-  @Override
-  public ResourceLocation getDefaultLootTable() {
-    return LOOT_TABLE;
+    return super.canBeAffected(pPotioneffect);
   }
 
   @Override
@@ -229,7 +220,7 @@ public class LavaCatEntity extends TamableAnimal {
     } else {
       if (this.isTame()) {
         if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-          if (!player.abilities.instabuild) {
+          if (!player.isCreative()) {
             itemstack.shrink(1);
           }
 
@@ -248,7 +239,7 @@ public class LavaCatEntity extends TamableAnimal {
 
         return actionresulttype;
       } else if (item == Items.BLAZE_ROD) {
-        if (!player.abilities.instabuild) {
+        if (!player.isCreative()) {
           itemstack.shrink(1);
         }
 
@@ -269,42 +260,9 @@ public class LavaCatEntity extends TamableAnimal {
     }
   }
 
-/*  @Override
-  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-    ItemStack itemstack = player.getHeldItem(hand);
-
-    if (this.isTamed()) {
-      if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
-        this.setOrderedToSit(!this.isSitting());
-        this.isJumping = false;
-        this.navigator.clearPath();
-        this.setAttackTarget(null);
-        return ActionResultType.SUCCESS;
-      }
-    } else if (itemstack.getItem() == Items.BLAZE_ROD && player.getDistanceSq(this) < 9.0D) {
-      if (!player.isCreative()) {
-        itemstack.shrink(1);
-      }
-
-      if (!this.world.isRemote) {
-        if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-          this.setTamedBy(player);
-          this.setOrderedToSit(true);
-          this.world.setEntityState(this, (byte) 7);
-        } else {
-          this.world.setEntityState(this, (byte) 6);
-        }
-      }
-
-      return ActionResultType.SUCCESS;
-    }
-
-    return super.mobInteract(player, hand);
-  }*/
-
   @Override
-  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
-    LavaCatEntity lavacat = ModEntities.LAVA_CAT.get().create(ageable.level);
+  public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob ageable) {
+    LavaCatEntity lavacat = ModEntities.LAVA_CAT.get().create(world);
 
     if (this.isTame() && lavacat != null) {
       lavacat.setOwnerUUID(this.getOwnerUUID());
@@ -326,10 +284,9 @@ public class LavaCatEntity extends TamableAnimal {
       return false;
     } else if (!this.isTame()) {
       return false;
-    } else if (!(otherAnimal instanceof LavaCatEntity)) {
+    } else if (!(otherAnimal instanceof LavaCatEntity lavacat)) {
       return false;
     } else {
-      LavaCatEntity lavacat = (LavaCatEntity) otherAnimal;
 
       if (!lavacat.isTame()) {
         return false;
