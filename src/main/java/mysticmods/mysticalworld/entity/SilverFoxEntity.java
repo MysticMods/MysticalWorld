@@ -4,43 +4,69 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.GhastEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.entity.passive.RabbitEntity;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.passive.horse.AbstractHorseEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Ghast;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.animal.Rabbit;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.*;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-import net.minecraft.entity.ai.goal.Goal.Flag;
+import net.minecraft.world.entity.ai.goal.Goal.Flag;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 
 @SuppressWarnings("NullableProblems")
-public class SilverFoxEntity extends TameableEntity {
-  private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.defineId(SilverFoxEntity.class, DataSerializers.FLOAT);
+public class SilverFoxEntity extends TamableAnimal {
+  private static final EntityDataAccessor<Float> DATA_HEALTH_ID = SynchedEntityData.defineId(SilverFoxEntity.class, EntityDataSerializers.FLOAT);
   /*  private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.BOOLEAN);*/
 
-  public SilverFoxEntity(EntityType<? extends SilverFoxEntity> type, World worldIn) {
+  public SilverFoxEntity(EntityType<? extends SilverFoxEntity> type, Level worldIn) {
     super(type, worldIn);
     setTame(false);
     this.xpReward = 5;
@@ -65,26 +91,26 @@ public class SilverFoxEntity extends TameableEntity {
 
   @Override
   protected void registerGoals() {
-    goalSelector.addGoal(0, new SwimGoal(this));
+    goalSelector.addGoal(0, new FloatGoal(this));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-    goalSelector.addGoal(2, new SitGoal(this));
+    goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
     goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Items.CHICKEN), false));
     goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
     goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
     goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
-    goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+    goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
     goalSelector.addGoal(7, new BreedGoal(this, 1.0D));
-    goalSelector.addGoal(7, new LookRandomlyGoal(this));
-    goalSelector.addGoal(8, new RandomWalkingGoal(this, 1.0D));
+    goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+    goalSelector.addGoal(8, new RandomStrollGoal(this, 1.0D));
     //goalSelector.addGoal(9, new EntityAIBeg(this, 8.0F));
     targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
     targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
     targetSelector.addGoal(3, new HurtByTargetGoal(this));
-    targetSelector.addGoal(4, new NonTamedTargetGoal<>(this, AnimalEntity.class, false, e -> e instanceof ChickenEntity || e instanceof RabbitEntity));
+    targetSelector.addGoal(4, new NonTameRandomTargetGoal<>(this, Animal.class, false, e -> e instanceof Chicken || e instanceof Rabbit));
   }
 
-  public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0d).add(Attributes.MOVEMENT_SPEED, 0.3d).add(Attributes.ATTACK_DAMAGE, 2d);
+  public static AttributeSupplier.Builder attributes() {
+    return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0d).add(Attributes.MOVEMENT_SPEED, 0.3d).add(Attributes.ATTACK_DAMAGE, 2d);
   }
 
   @Override
@@ -116,12 +142,12 @@ public class SilverFoxEntity extends TameableEntity {
   }
 
   @Override
-  public void addAdditionalSaveData(CompoundNBT compound) {
+  public void addAdditionalSaveData(CompoundTag compound) {
     super.addAdditionalSaveData(compound);
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundNBT compound) {
+  public void readAdditionalSaveData(CompoundTag compound) {
     super.readAdditionalSaveData(compound);
   }
 
@@ -163,7 +189,7 @@ public class SilverFoxEntity extends TameableEntity {
 
       this.setOrderedToSit(false);
 
-      if (entity != null && !(entity instanceof PlayerEntity) && !(entity instanceof ArrowEntity)) {
+      if (entity != null && !(entity instanceof Player) && !(entity instanceof Arrow)) {
         amount = (amount + 1.0F) / 2.0F;
       }
 
@@ -198,12 +224,12 @@ public class SilverFoxEntity extends TameableEntity {
 
   @SuppressWarnings("Duplicates")
   @Override
-  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+  public InteractionResult mobInteract(Player player, InteractionHand hand) {
     ItemStack itemstack = player.getItemInHand(hand);
     Item item = itemstack.getItem();
     if (this.level.isClientSide) {
       boolean flag = this.isOwnedBy(player) || this.isTame() || item == Items.APPLE && !this.isTame();
-      return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
+      return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
     } else {
       if (this.isTame()) {
         if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
@@ -211,21 +237,21 @@ public class SilverFoxEntity extends TameableEntity {
             itemstack.shrink(1);
           }
 
-          Food food = item.getFoodProperties();
+          FoodProperties food = item.getFoodProperties();
           if (food != null) {
             this.heal((float) food.getNutrition());
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
           }
         }
 
         /*            if (!(item instanceof DyeItem)) {*/
-        ActionResultType actionresulttype = super.mobInteract(player, hand);
+        InteractionResult actionresulttype = super.mobInteract(player, hand);
         if ((!actionresulttype.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
           this.setOrderedToSit(!this.isOrderedToSit());
           this.jumping = false;
           this.navigation.stop();
           this.setTarget(null);
-          return ActionResultType.SUCCESS;
+          return InteractionResult.SUCCESS;
         }
 
         return actionresulttype;
@@ -255,7 +281,7 @@ public class SilverFoxEntity extends TameableEntity {
           this.level.broadcastEntityEvent(this, (byte) 6);
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
       }
 
       return super.mobInteract(player, hand);
@@ -343,7 +369,7 @@ public class SilverFoxEntity extends TameableEntity {
 
   @Override
   public boolean wantsToAttack(LivingEntity target, LivingEntity owner) {
-    if (!(target instanceof CreeperEntity) && !(target instanceof GhastEntity)) {
+    if (!(target instanceof Creeper) && !(target instanceof Ghast)) {
       if (target instanceof SilverFoxEntity) {
         SilverFoxEntity entityfox = (SilverFoxEntity) target;
 
@@ -352,10 +378,10 @@ public class SilverFoxEntity extends TameableEntity {
         }
       }
 
-      if (target instanceof PlayerEntity && owner instanceof PlayerEntity && !((PlayerEntity) owner).canHarmPlayer((PlayerEntity) target)) {
+      if (target instanceof Player && owner instanceof Player && !((Player) owner).canHarmPlayer((Player) target)) {
         return false;
       } else {
-        return !(target instanceof AbstractHorseEntity) || !((AbstractHorseEntity) target).isTamed();
+        return !(target instanceof AbstractHorse) || !((AbstractHorse) target).isTamed();
       }
     } else {
       return false;
@@ -363,13 +389,13 @@ public class SilverFoxEntity extends TameableEntity {
   }
 
   @Override
-  public boolean canBeLeashed(PlayerEntity player) {
+  public boolean canBeLeashed(Player player) {
     return !this.isAngry() && super.canBeLeashed(player);
   }
 
 
   @Override
-  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
     return ModEntities.SILVER_FOX.get().create(ageable.level);
   }
 

@@ -6,10 +6,10 @@ import mysticmods.mysticalworld.api.Capabilities;
 import mysticmods.mysticalworld.api.IPlayerShoulderCapability;
 import mysticmods.mysticalworld.capability.PlayerShoulderCapability;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -18,22 +18,22 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 public class ShoulderRide {
-  private CompoundNBT tag;
+  private CompoundTag tag;
   private UUID id;
 
-  public ShoulderRide(PacketBuffer buffer) {
+  public ShoulderRide(FriendlyByteBuf buffer) {
     long uuid1 = buffer.readLong();
     long uuid2 = buffer.readLong();
     id = new UUID(uuid1, uuid2);
     tag = buffer.readNbt();
   }
 
-  public ShoulderRide(PlayerEntity player, IPlayerShoulderCapability cap) {
+  public ShoulderRide(Player player, IPlayerShoulderCapability cap) {
     this.tag = cap.writeNBT();
     this.id = player.getUUID();
   }
 
-  public CompoundNBT getTag() {
+  public CompoundTag getTag() {
     return tag;
   }
 
@@ -41,7 +41,7 @@ public class ShoulderRide {
     return id;
   }
 
-  public void encode(PacketBuffer buf) {
+  public void encode(FriendlyByteBuf buf) {
     buf.writeLong(id.getMostSignificantBits());
     buf.writeLong(id.getLeastSignificantBits());
     buf.writeNbt(tag);
@@ -53,8 +53,8 @@ public class ShoulderRide {
 
   @OnlyIn(Dist.CLIENT)
   private static void handle(ShoulderRide message, Supplier<NetworkEvent.Context> context) {
-    PlayerEntity target = Minecraft.getInstance().player;
-    World world = target.level;
+    Player target = Minecraft.getInstance().player;
+    Level world = target.level;
     if (!target.getUUID().equals(message.getId())) {
       target = world.getPlayerByUUID(message.getId());
     }
@@ -63,7 +63,7 @@ public class ShoulderRide {
       return;
     }
 
-    final PlayerEntity player = target;
+    final Player player = target;
 
     target.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
       cap.readNBT(message.getTag());

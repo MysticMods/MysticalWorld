@@ -1,16 +1,16 @@
 package mysticmods.mysticalworld.world.placement;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.WorldDecoratingHelper;
-import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.placement.DecorationContext;
+import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class DimensionCountPlacement extends Placement<DimensionCountRangeConfig> {
+public class DimensionCountPlacement extends FeatureDecorator<DimensionCountRangeConfig> {
   public DimensionCountPlacement(Codec<DimensionCountRangeConfig> codec) {
     super(codec);
   }
@@ -29,8 +29,8 @@ public class DimensionCountPlacement extends Placement<DimensionCountRangeConfig
   }
 
   @Override
-  public Stream<BlockPos> getPositions(WorldDecoratingHelper helper, Random rand, DimensionCountRangeConfig config, BlockPos pos) {
-    ServerWorld world = helper.level.getLevel();
+  public Stream<BlockPos> getPositions(DecorationContext helper, Random rand, DimensionCountRangeConfig config, BlockPos pos) {
+    ServerLevel world = helper.level.getLevel();
     if (config.dimensions.contains(world.dimension())) {
       return getPositions(rand, config, pos);
     } else {

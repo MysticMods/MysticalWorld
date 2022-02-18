@@ -1,8 +1,8 @@
 package mysticmods.mysticalworld.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.RangedAttribute;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 
 import java.util.UUID;
 

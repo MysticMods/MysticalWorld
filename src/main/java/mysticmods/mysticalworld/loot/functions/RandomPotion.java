@@ -5,32 +5,32 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.init.ModLoot;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootFunction;
-import net.minecraft.loot.LootFunctionType;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.loot.functions.ILootFunction;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.tags.ITag;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
+import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.tags.Tag;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class RandomPotion extends LootFunction {
-  private RandomPotion(ILootCondition[] conditions) {
+public class RandomPotion extends LootItemConditionalFunction {
+  private RandomPotion(LootItemCondition[] conditions) {
     super(conditions);
   }
 
-  public LootFunctionType getType() {
+  public LootItemFunctionType getType() {
     return ModLoot.RANDOM_POTION;
   }
 
-  protected ITag.INamedTag<Potion> getIgnoreTag() {
+  protected Tag.Named<Potion> getIgnoreTag() {
     return MWTags.Potions.RANDOM_BLACKLIST;
   }
 
@@ -43,11 +43,11 @@ public class RandomPotion extends LootFunction {
     return stack;
   }
 
-  public static LootFunction.Builder<?> builder() {
+  public static LootItemConditionalFunction.Builder<?> builder() {
     return simpleBuilder(RandomPotion::new);
   }
 
-  public static class Builder extends LootFunction.Builder<RandomPotion.Builder> {
+  public static class Builder extends LootItemConditionalFunction.Builder<RandomPotion.Builder> {
 
     protected RandomPotion.Builder getThis() {
       return this;
@@ -57,17 +57,17 @@ public class RandomPotion extends LootFunction {
       return this;
     }
 
-    public ILootFunction build() {
+    public LootItemFunction build() {
       return new RandomPotion(this.getConditions());
     }
   }
 
-  public static class Serializer extends LootFunction.Serializer<RandomPotion> {
+  public static class Serializer extends LootItemConditionalFunction.Serializer<RandomPotion> {
     public void serialize(JsonObject json, RandomPotion base, JsonSerializationContext context) {
       super.serialize(json, base, context);
     }
 
-    public RandomPotion deserialize(JsonObject object, JsonDeserializationContext deserializationContext, ILootCondition[] conditionsIn) {
+    public RandomPotion deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootItemCondition[] conditionsIn) {
       return new RandomPotion(conditionsIn);
     }
   }

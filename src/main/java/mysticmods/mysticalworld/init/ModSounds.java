@@ -2,7 +2,7 @@ package mysticmods.mysticalworld.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import mysticmods.mysticalworld.MysticalWorld;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
 
 public class ModSounds {
   // Endermini

@@ -1,8 +1,8 @@
 package mysticmods.mysticalworld.config;
 
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -24,7 +24,7 @@ public abstract class FeatureConfig<T extends FeatureConfig<T>> extends Abstract
 
   protected Supplier<ConfiguredFeature<?, ?>> feature = null;
   protected Supplier<Supplier<ConfiguredFeature<?, ?>>> supplierFeature = null;
-  protected Supplier<StructureFeature<?, ?>> structure = null;
+  protected Supplier<ConfiguredStructureFeature<?, ?>> structure = null;
 
   public FeatureConfig(List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions) {
     super();
@@ -46,11 +46,11 @@ public abstract class FeatureConfig<T extends FeatureConfig<T>> extends Abstract
     return (T) this;
   }
 
-  public T setStructure(StructureFeature<?, ?> structure) {
+  public T setStructure(ConfiguredStructureFeature<?, ?> structure) {
     return setStructure(() -> structure);
   }
 
-  public T setStructure(Supplier<StructureFeature<?, ?>> structure) {
+  public T setStructure(Supplier<ConfiguredStructureFeature<?, ?>> structure) {
     this.structure = structure;
     return (T) this;
   }
@@ -64,7 +64,7 @@ public abstract class FeatureConfig<T extends FeatureConfig<T>> extends Abstract
   }
 
   @Nullable
-  public Supplier<StructureFeature<?, ?>> getStructure() {
+  public Supplier<ConfiguredStructureFeature<?, ?>> getStructure() {
     return structure;
   }
 
@@ -74,7 +74,7 @@ public abstract class FeatureConfig<T extends FeatureConfig<T>> extends Abstract
 
   public abstract boolean shouldSpawn();
 
-  public abstract GenerationStage.Decoration getStage();
+  public abstract GenerationStep.Decoration getStage();
 
   private Set<BiomeDictionary.Type> storedBiomes = null;
   private Set<BiomeDictionary.Type> storedRestrictions = null;

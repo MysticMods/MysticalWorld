@@ -7,9 +7,9 @@ import mysticmods.mysticalworld.init.ConfiguredStructures;
 import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModFeatures;
 import mysticmods.mysticalworld.init.ModMaterials;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
@@ -53,7 +53,7 @@ public class ConfigManager {
   }
 
   static {
-    List<RegistryKey<World>> defaultDimensions = Collections.singletonList(World.OVERWORLD);
+    List<ResourceKey<Level>> defaultDimensions = Collections.singletonList(Level.OVERWORLD);
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
     registerOreGeneration();
     COMMON_BUILDER.pop();
@@ -94,14 +94,14 @@ public class ConfigManager {
   }
 
   private static void registerOreGeneration() {
-    List<RegistryKey<World>> defaultDimensions = Collections.singletonList(World.OVERWORLD);
+    List<ResourceKey<Level>> defaultDimensions = Collections.singletonList(Level.OVERWORLD);
     ORE_CONFIG.add(new OreConfig("Copper", 8, 32, 76, 12, defaultDimensions, () -> ModBlocks.COPPER_ORE));
     ORE_CONFIG.add(new OreConfig("Tin", 8, 24, 64, 8, defaultDimensions, () -> ModBlocks.TIN_ORE));
     ORE_CONFIG.add(new OreConfig("Silver", 4, 0, 24, 8, defaultDimensions, () -> ModBlocks.SILVER_ORE));
     ORE_CONFIG.add(new OreConfig("Lead", 4, 8, 32, 8, defaultDimensions, () -> ModBlocks.LEAD_ORE));
     ORE_CONFIG.add(new OreConfig("Quicksilver", 3, 0, 16, 4, defaultDimensions, () -> ModBlocks.QUICKSILVER_ORE));
     ORE_CONFIG.add(new OreConfig("Sapphire", 4, 0, 24, 3, defaultDimensions, () -> ModBlocks.SAPPHIRE_ORE));
-    ORE_CONFIG.add(new OreConfig("Quartz", 13, 24, 76, 4, defaultDimensions, () -> ModBlocks.GRANITE_QUARTZ_ORE, new TagMatchRuleTest(MWTags.Blocks.BASE_STONE_GRANITE)));
+    ORE_CONFIG.add(new OreConfig("Quartz", 13, 24, 76, 4, defaultDimensions, () -> ModBlocks.GRANITE_QUARTZ_ORE, new TagMatchTest(MWTags.Blocks.BASE_STONE_GRANITE)));
 
     ORE_CONFIG.forEach(ore -> ore.apply(COMMON_BUILDER));
   }

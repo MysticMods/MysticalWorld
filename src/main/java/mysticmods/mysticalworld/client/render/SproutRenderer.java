@@ -4,13 +4,13 @@ import mysticmods.mysticalworld.entity.SproutEntity;
 import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.client.model.SproutModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class SproutRenderer extends MobRenderer<SproutEntity, SproutModel> {
-  private SproutRenderer(EntityRendererManager renderManager, SproutModel modelBase, float shadowSize) {
+  private SproutRenderer(EntityRenderDispatcher renderManager, SproutModel modelBase, float shadowSize) {
     super(renderManager, modelBase, shadowSize);
   }
 
@@ -34,7 +34,7 @@ public class SproutRenderer extends MobRenderer<SproutEntity, SproutModel> {
 
   public static class Factory implements IRenderFactory<SproutEntity> {
     @Override
-    public EntityRenderer<SproutEntity> createRenderFor(EntityRendererManager manager) {
+    public EntityRenderer<SproutEntity> createRenderFor(EntityRenderDispatcher manager) {
       return new SproutRenderer(manager, ModelHolder.sproutModel, 0.15f);
     }
   }

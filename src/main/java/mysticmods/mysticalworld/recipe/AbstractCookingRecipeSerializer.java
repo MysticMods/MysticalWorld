@@ -2,20 +2,20 @@ package mysticmods.mysticalworld.recipe;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 @SuppressWarnings("ALL")
-public abstract class AbstractCookingRecipeSerializer<T extends AbstractCookingRecipe> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
+public abstract class AbstractCookingRecipeSerializer<T extends AbstractCookingRecipe> extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<T> {
   protected final int defaultCookTime;
   protected final IFactory<T> serializer;
 
@@ -26,17 +26,17 @@ public abstract class AbstractCookingRecipeSerializer<T extends AbstractCookingR
 
   @Override
   public T fromJson(ResourceLocation recipeId, JsonObject json) {
-    String s = JSONUtils.getAsString(json, "group", "");
-    JsonElement jsonelement = (JSONUtils.isArrayNode(json, "ingredient") ? JSONUtils.getAsJsonArray(json, "ingredient") : JSONUtils.getAsJsonObject(json, "ingredient"));
+    String s = GsonHelper.getAsString(json, "group", "");
+    JsonElement jsonelement = (GsonHelper.isArrayNode(json, "ingredient") ? GsonHelper.getAsJsonArray(json, "ingredient") : GsonHelper.getAsJsonObject(json, "ingredient"));
     Ingredient ingredient = Ingredient.fromJson(jsonelement);
     //Forge: Check if primitive string to keep vanilla or a object which can contain a count field.
     if (!json.has("result"))
       throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
     ItemStack itemstack;
     if (json.get("result").isJsonObject())
-      itemstack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
+      itemstack = ShapedRecipe.itemFromJson(GsonHelper.getAsJsonObject(json, "result"));
     else {
-      String s1 = JSONUtils.getAsString(json, "result");
+      String s1 = GsonHelper.getAsString(json, "result");
       ResourceLocation resourcelocation = new ResourceLocation(s1);
       Item item = ForgeRegistries.ITEMS.getValue(resourcelocation);
       if (item == null) {
@@ -44,13 +44,13 @@ public abstract class AbstractCookingRecipeSerializer<T extends AbstractCookingR
       }
       itemstack = new ItemStack(item);
     }
-    float f = JSONUtils.getAsFloat(json, "experience", 0.0F);
-    int i = JSONUtils.getAsInt(json, "cookingtime", this.defaultCookTime);
+    float f = GsonHelper.getAsFloat(json, "experience", 0.0F);
+    int i = GsonHelper.getAsInt(json, "cookingtime", this.defaultCookTime);
     return this.serializer.create(recipeId, s, ingredient, itemstack, f, i);
   }
 
   @Override
-  public T fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+  public T fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
     String s = buffer.readUtf(32767);
     Ingredient ingredient = Ingredient.fromNetwork(buffer);
     ItemStack itemstack = buffer.readItem();
@@ -60,7 +60,7 @@ public abstract class AbstractCookingRecipeSerializer<T extends AbstractCookingR
   }
 
   @Override
-  public void toNetwork(PacketBuffer buffer, T recipe) {
+  public void toNetwork(FriendlyByteBuf buffer, T recipe) {
     buffer.writeUtf(recipe.getGroup());
     recipe.getIngredients().forEach(o -> o.toNetwork(buffer));
     buffer.writeItem(recipe.getResultItem());

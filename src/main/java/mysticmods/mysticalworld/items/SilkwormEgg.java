@@ -3,44 +3,44 @@ package mysticmods.mysticalworld.items;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.entity.SilkwormEntity;
 import mysticmods.mysticalworld.init.ModEntities;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.stats.Stats;
-import net.minecraft.tileentity.MobSpawnerTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.spawner.AbstractSpawner;
+import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.BaseSpawner;
 
 import java.util.Objects;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class SilkwormEgg extends Item {
   public SilkwormEgg(Properties builder) {
     super(builder);
   }
 
-  private ActionResultType use(ItemUseContext context) {
-    World world = context.getLevel();
+  private InteractionResult use(UseOnContext context) {
+    Level world = context.getLevel();
     if (world.isClientSide) {
-      return ActionResultType.SUCCESS;
+      return InteractionResult.SUCCESS;
     } else {
       ItemStack itemstack = context.getItemInHand();
       BlockPos blockpos = context.getClickedPos();
@@ -48,15 +48,15 @@ public class SilkwormEgg extends Item {
       BlockState blockstate = world.getBlockState(blockpos);
       Block block = blockstate.getBlock();
       if (block == Blocks.SPAWNER) {
-        TileEntity tileentity = world.getBlockEntity(blockpos);
-        if (tileentity instanceof MobSpawnerTileEntity) {
-          AbstractSpawner abstractspawner = ((MobSpawnerTileEntity) tileentity).getSpawner();
+        BlockEntity tileentity = world.getBlockEntity(blockpos);
+        if (tileentity instanceof SpawnerBlockEntity) {
+          BaseSpawner abstractspawner = ((SpawnerBlockEntity) tileentity).getSpawner();
           EntityType<SilkwormEntity> entitytype1 = ModEntities.SILKWORM.get();
           abstractspawner.setEntityId(entitytype1);
           tileentity.setChanged();
           world.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
           itemstack.shrink(1);
-          return ActionResultType.SUCCESS;
+          return InteractionResult.SUCCESS;
         }
       }
 
@@ -68,49 +68,49 @@ public class SilkwormEgg extends Item {
       }
 
       EntityType<SilkwormEntity> entitytype = ModEntities.SILKWORM.get();
-      if (entitytype.spawn((ServerWorld) world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
+      if (entitytype.spawn((ServerLevel) world, itemstack, context.getPlayer(), blockpos1, MobSpawnType.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
         itemstack.shrink(1);
       }
 
-      return ActionResultType.SUCCESS;
+      return InteractionResult.SUCCESS;
     }
   }
 
-  private ActionResult<ItemStack> rightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+  private InteractionResultHolder<ItemStack> rightClick(Level worldIn, Player playerIn, InteractionHand handIn) {
     ItemStack itemstack = playerIn.getItemInHand(handIn);
     if (worldIn.isClientSide) {
-      return new ActionResult<>(ActionResultType.PASS, itemstack);
+      return new InteractionResultHolder<>(InteractionResult.PASS, itemstack);
     } else {
-      RayTraceResult raytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
-      if (raytraceresult.getType() != RayTraceResult.Type.BLOCK) {
-        return new ActionResult<>(ActionResultType.PASS, itemstack);
+      HitResult raytraceresult = getPlayerPOVHitResult(worldIn, playerIn, ClipContext.Fluid.SOURCE_ONLY);
+      if (raytraceresult.getType() != HitResult.Type.BLOCK) {
+        return new InteractionResultHolder<>(InteractionResult.PASS, itemstack);
       } else {
-        BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceresult;
+        BlockHitResult blockraytraceresult = (BlockHitResult) raytraceresult;
         BlockPos blockpos = blockraytraceresult.getBlockPos();
-        if (!(worldIn.getBlockState(blockpos).getBlock() instanceof FlowingFluidBlock)) {
-          return new ActionResult<>(ActionResultType.PASS, itemstack);
+        if (!(worldIn.getBlockState(blockpos).getBlock() instanceof LiquidBlock)) {
+          return new InteractionResultHolder<>(InteractionResult.PASS, itemstack);
         } else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, blockraytraceresult.getDirection(), itemstack)) {
           EntityType<SilkwormEntity> entitytype = ModEntities.SILKWORM.get();
-          if (entitytype.spawn((ServerWorld) worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false) == null) {
-            return new ActionResult<>(ActionResultType.PASS, itemstack);
+          if (entitytype.spawn((ServerLevel) worldIn, itemstack, playerIn, blockpos, MobSpawnType.SPAWN_EGG, false, false) == null) {
+            return new InteractionResultHolder<>(InteractionResult.PASS, itemstack);
           } else {
             if (!playerIn.abilities.instabuild) {
               itemstack.shrink(1);
             }
 
             playerIn.awardStat(Stats.ITEM_USED.get(this));
-            return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+            return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
           }
         } else {
-          return new ActionResult<>(ActionResultType.FAIL, itemstack);
+          return new InteractionResultHolder<>(InteractionResult.FAIL, itemstack);
         }
       }
     }
   }
 
   @Override
-  public ActionResultType useOn(ItemUseContext context) {
-    World world = context.getLevel();
+  public InteractionResult useOn(UseOnContext context) {
+    Level world = context.getLevel();
     if (!world.isClientSide()) {
       if (world.getRandom().nextInt(ConfigManager.SILKWORM_CONFIG.getSuccessChance()) == 0) {
         return use(context);
@@ -118,7 +118,7 @@ public class SilkwormEgg extends Item {
         if (context.getPlayer() == null || !context.getPlayer().abilities.instabuild) {
           context.getItemInHand().shrink(1);
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
       }
     } else {
       return use(context);
@@ -126,7 +126,7 @@ public class SilkwormEgg extends Item {
   }
 
   @Override
-  public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+  public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
     ItemStack itemstack = playerIn.getItemInHand(handIn);
     if (!worldIn.isClientSide()) {
       if (worldIn.getRandom().nextInt(ConfigManager.SILKWORM_CONFIG.getSuccessChance()) == 0) {
@@ -135,7 +135,7 @@ public class SilkwormEgg extends Item {
         if (!playerIn.abilities.instabuild) {
           itemstack.shrink(1);
         }
-        return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+        return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
       }
     } else {
       return rightClick(worldIn, playerIn, handIn);

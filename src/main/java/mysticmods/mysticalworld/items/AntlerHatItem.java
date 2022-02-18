@@ -5,18 +5,18 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.init.ModMaterials;
-import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.world.World;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import noobanidus.libs.noobutil.material.MaterialType;
@@ -24,9 +24,11 @@ import noobanidus.libs.noobutil.material.MaterialType;
 import javax.annotation.Nullable;
 import java.util.Map;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class AntlerHatItem extends ModifiedArmorItem {
   public AntlerHatItem(Properties builder) {
-    super(ModMaterials.ANTLER.getArmorMaterial(), EquipmentSlotType.HEAD, builder);
+    super(ModMaterials.ANTLER.getArmorMaterial(), EquipmentSlot.HEAD, builder);
   }
 
   @Override
@@ -35,10 +37,10 @@ public class AntlerHatItem extends ModifiedArmorItem {
   }
 
   @Override
-  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
     Multimap<Attribute, AttributeModifier> map = super.getDefaultAttributeModifiers(equipmentSlot);
 
-    if (equipmentSlot == EquipmentSlotType.HEAD && ConfigManager.HAT_CONFIG.getAntlerHealthBonus() != -1) {
+    if (equipmentSlot == EquipmentSlot.HEAD && ConfigManager.HAT_CONFIG.getAntlerHealthBonus() != -1) {
       map.put(Attributes.MAX_HEALTH, this.getOrCreateModifier(Attributes.MAX_HEALTH, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Antler Health Boost", ConfigManager.HAT_CONFIG.getAntlerHealthBonus(), AttributeModifier.Operation.ADDITION)));
     }
 
@@ -46,28 +48,28 @@ public class AntlerHatItem extends ModifiedArmorItem {
   }
 
   @Override
-  public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+  public void onArmorTick(ItemStack stack, Level world, Player player) {
     if (ConfigManager.HAT_CONFIG.getAntlerFrequency() == -1) {
       return;
     }
 
     if (!world.isClientSide && player.getHealth() < (ConfigManager.HAT_CONFIG.getAntlerThreshold() == -1 ? player.getMaxHealth() : player.getMaxHealth() - ConfigManager.HAT_CONFIG.getAntlerThreshold()) && world.random.nextInt(ConfigManager.HAT_CONFIG.getAntlerFrequency()) == 0) {
-      if (player.getEffect(Effects.REGENERATION) != null) {
+      if (player.getEffect(MobEffects.REGENERATION) != null) {
         return;
       }
       player.heal(ConfigManager.HAT_CONFIG.getAntlerHealing());
-      player.addEffect(new EffectInstance(Effects.REGENERATION, ConfigManager.HAT_CONFIG.getAntlerRegenDuration(), ConfigManager.HAT_CONFIG.getAntlerRegenAmplifier()));
+      player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, ConfigManager.HAT_CONFIG.getAntlerRegenDuration(), ConfigManager.HAT_CONFIG.getAntlerRegenAmplifier()));
 
-      ItemStack head = player.getItemBySlot(EquipmentSlotType.HEAD);
+      ItemStack head = player.getItemBySlot(EquipmentSlot.HEAD);
       if (ConfigManager.HAT_CONFIG.getAntlerDamage() != -1) {
-        head.hurtAndBreak(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> breaker.broadcastBreakEvent(EquipmentSlotType.HEAD));
+        head.hurtAndBreak(ConfigManager.HAT_CONFIG.getAntlerDamage(), player, (breaker) -> breaker.broadcastBreakEvent(EquipmentSlot.HEAD));
       }
     }
   }
 
   @Nullable
   @Override
-  public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+  public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
     return MysticalWorld.MODID + ":textures/models/armor/antler_hat.png";
   }
 
@@ -75,7 +77,7 @@ public class AntlerHatItem extends ModifiedArmorItem {
   @Nullable
   @Override
   @OnlyIn(Dist.CLIENT)
-  public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+  public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
     return (A) ModelHolder.antlerHatModel;
   }
 }

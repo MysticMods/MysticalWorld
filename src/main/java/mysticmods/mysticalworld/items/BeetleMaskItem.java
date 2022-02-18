@@ -5,14 +5,14 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.init.ModMaterials;
-import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import noobanidus.libs.noobutil.material.MaterialType;
@@ -20,9 +20,11 @@ import noobanidus.libs.noobutil.material.MaterialType;
 import javax.annotation.Nullable;
 import java.util.Map;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class BeetleMaskItem extends ModifiedArmorItem {
   public BeetleMaskItem(Properties builder) {
-    super(ModMaterials.CARAPACE.getArmorMaterial(), EquipmentSlotType.HEAD, builder);
+    super(ModMaterials.CARAPACE.getArmorMaterial(), EquipmentSlot.HEAD, builder);
   }
 
   @Override
@@ -31,10 +33,10 @@ public class BeetleMaskItem extends ModifiedArmorItem {
   }
 
   @Override
-  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
     Multimap<Attribute, AttributeModifier> map = super.getDefaultAttributeModifiers(equipmentSlot);
 
-    if (equipmentSlot == EquipmentSlotType.HEAD && ConfigManager.HAT_CONFIG.getMaskBonusDamage() != -1) {
+    if (equipmentSlot == EquipmentSlot.HEAD && ConfigManager.HAT_CONFIG.getMaskBonusDamage() != -1) {
       map.put(Attributes.ATTACK_DAMAGE, this.getOrCreateModifier(Attributes.ATTACK_DAMAGE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Beetle Mask Damage Bonus", ConfigManager.HAT_CONFIG.getMaskBonusDamage(), AttributeModifier.Operation.MULTIPLY_TOTAL)));
     }
 
@@ -43,7 +45,7 @@ public class BeetleMaskItem extends ModifiedArmorItem {
 
   @Nullable
   @Override
-  public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+  public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
     return MysticalWorld.MODID + ":textures/models/armor/beetle_mask.png";
   }
 
@@ -51,7 +53,7 @@ public class BeetleMaskItem extends ModifiedArmorItem {
   @Nullable
   @Override
   @OnlyIn(Dist.CLIENT)
-  public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+  public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
     return (A) ModelHolder.beetleHelmet;
   }
 }

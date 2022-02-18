@@ -5,13 +5,13 @@ import mysticmods.mysticalworld.entity.HellSproutEntity;
 import mysticmods.mysticalworld.client.model.HellSproutModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class HellSproutRenderer extends MobRenderer<HellSproutEntity, HellSproutModel> {
-  private HellSproutRenderer(EntityRendererManager renderManager, HellSproutModel modelBase, float shadowSize) {
+  private HellSproutRenderer(EntityRenderDispatcher renderManager, HellSproutModel modelBase, float shadowSize) {
     super(renderManager, modelBase, shadowSize);
   }
 
@@ -24,7 +24,7 @@ public class HellSproutRenderer extends MobRenderer<HellSproutEntity, HellSprout
 
   public static class Factory implements IRenderFactory<HellSproutEntity> {
     @Override
-    public EntityRenderer<HellSproutEntity> createRenderFor(EntityRendererManager manager) {
+    public EntityRenderer<HellSproutEntity> createRenderFor(EntityRenderDispatcher manager) {
       return new HellSproutRenderer(manager, ModelHolder.hellSproutModel, 0.15f);
     }
   }

@@ -1,25 +1,25 @@
 package mysticmods.mysticalworld.recipe;
 
 import mysticmods.mysticalworld.init.ModRecipes;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.SpecialRecipe;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 
-public class EmptyRecipe extends SpecialRecipe {
+public class EmptyRecipe extends CustomRecipe {
   public EmptyRecipe(ResourceLocation idIn) {
     super(idIn);
   }
 
   @Override
-  public boolean matches(CraftingInventory inv, World worldIn) {
+  public boolean matches(CraftingContainer inv, Level worldIn) {
     return false;
   }
 
   @Override
-  public ItemStack assemble(CraftingInventory inv) {
+  public ItemStack assemble(CraftingContainer inv) {
     return ItemStack.EMPTY;
   }
 
@@ -34,7 +34,7 @@ public class EmptyRecipe extends SpecialRecipe {
   }
 
   @Override
-  public IRecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<?> getSerializer() {
     return ModRecipes.EMPTY_SERIALIZER.get();
   }
 }

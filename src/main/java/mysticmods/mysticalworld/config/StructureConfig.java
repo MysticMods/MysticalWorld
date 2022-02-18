@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.config;
 
-import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -16,7 +16,7 @@ public class StructureConfig extends FeatureConfig<StructureConfig> {
   }
 
   @Override
-  public GenerationStage.Decoration getStage() {
+  public GenerationStep.Decoration getStage() {
     return null;
   }
 

@@ -1,12 +1,12 @@
 package mysticmods.mysticalworld.effects;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 
-public class SlowRegenerationEffect extends Effect {
+public class SlowRegenerationEffect extends MobEffect {
   public SlowRegenerationEffect() {
-    super(EffectType.BENEFICIAL, 0x0034e1eb);
+    super(MobEffectCategory.BENEFICIAL, 0x0034e1eb);
   }
 
   @Override

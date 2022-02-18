@@ -1,7 +1,7 @@
 package mysticmods.mysticalworld.client.model;
 
-import net.minecraft.client.renderer.entity.model.EndermanModel;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.client.model.EndermanModel;
+import net.minecraft.world.entity.LivingEntity;
 
 public class EnderminiModel<T extends LivingEntity> extends EndermanModel<T> {
   public EnderminiModel() {

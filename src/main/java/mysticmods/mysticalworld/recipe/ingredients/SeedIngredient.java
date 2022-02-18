@@ -3,14 +3,14 @@ package mysticmods.mysticalworld.recipe.ingredients;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import it.unimi.dsi.fastutil.ints.IntList;
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.NonNullList;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.NonNullList;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IIngredientSerializer;
@@ -101,7 +101,7 @@ public class SeedIngredient extends Ingredient {
     private static final short ID = 0x123;
 
     @Override
-    public SeedIngredient parse(PacketBuffer buffer) {
+    public SeedIngredient parse(FriendlyByteBuf buffer) {
       return SeedIngredient.INSTANCE;
     }
 
@@ -111,7 +111,7 @@ public class SeedIngredient extends Ingredient {
     }
 
     @Override
-    public void write(PacketBuffer buffer, SeedIngredient ingredient) {
+    public void write(FriendlyByteBuf buffer, SeedIngredient ingredient) {
     }
   }
 }

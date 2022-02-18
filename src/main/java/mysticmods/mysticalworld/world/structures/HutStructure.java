@@ -2,43 +2,43 @@ package mysticmods.mysticalworld.world.structures;
 
 import com.mojang.serialization.Codec;
 import mysticmods.mysticalworld.MysticalWorld;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SharedSeedRandom;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import noobanidus.libs.noobutil.world.gen.structure.SimpleStructure;
 
-import net.minecraft.world.gen.feature.structure.Structure.IStartFactory;
+import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
 import noobanidus.libs.noobutil.world.gen.structure.SimpleStructure.SimpleStart;
 
 public class HutStructure extends SimpleStructure {
-  public HutStructure(Codec<NoFeatureConfig> codec) {
+  public HutStructure(Codec<NoneFeatureConfiguration> codec) {
     super(codec);
   }
 
   @Override
-  public IStartFactory<NoFeatureConfig> getStartFactory() {
+  public StructureStartFactory<NoneFeatureConfiguration> getStartFactory() {
     return HutStructure.Start::new;
   }
 
   @Override
-  protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeProvider, long seed, SharedSeedRandom sharedSeed, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig config) {
+  protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeSource biomeProvider, long seed, WorldgenRandom sharedSeed, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoneFeatureConfiguration config) {
     int startX = chunkX << 4;
     int startZ = chunkZ << 4;
     int min = Integer.MAX_VALUE;
     int max = 0;
     for (int x = 0; x < 16; x++) {
       for (int z = 0; z < 16; z++) {
-        int height = chunkGenerator.getBaseHeight(startX + x, startZ + z, Heightmap.Type.WORLD_SURFACE_WG);
+        int height = chunkGenerator.getBaseHeight(startX + x, startZ + z, Heightmap.Types.WORLD_SURFACE_WG);
         if (height < min) {
           min = height;
         }
@@ -55,7 +55,7 @@ public class HutStructure extends SimpleStructure {
   }
 
   public static class Start extends SimpleStart {
-    public Start(Structure<NoFeatureConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
+    public Start(StructureFeature<NoneFeatureConfiguration> structureIn, int chunkX, int chunkZ, BoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
       super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
     }
 
@@ -72,7 +72,7 @@ public class HutStructure extends SimpleStructure {
     }
 
     @Override
-    protected void modifyStructure(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, Biome biome, NoFeatureConfig noFeatureConfig, BlockPos blockPos) {
+    protected void modifyStructure(RegistryAccess dynamicRegistries, ChunkGenerator chunkGenerator, StructureManager templateManager, Biome biome, NoneFeatureConfiguration noFeatureConfig, BlockPos blockPos) {
 
     }
   }

@@ -3,9 +3,9 @@ package mysticmods.mysticalworld.capability;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.api.Capabilities;
 import mysticmods.mysticalworld.api.IPlayerShoulderCapability;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
@@ -14,7 +14,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class PlayerShoulderCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<CompoundNBT> {
+public class PlayerShoulderCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<CompoundTag> {
   public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalWorld.MODID, "player_shoulder_capability");
 
   private final IPlayerShoulderCapability instance = Capabilities.SHOULDER_CAPABILITY.getDefaultInstance();
@@ -25,12 +25,12 @@ public class PlayerShoulderCapabilityProvider implements ICapabilityProvider, IC
   }
 
   @Override
-  public CompoundNBT serializeNBT() {
-    return (CompoundNBT) Capabilities.SHOULDER_CAPABILITY.getStorage().writeNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null);
+  public CompoundTag serializeNBT() {
+    return (CompoundTag) Capabilities.SHOULDER_CAPABILITY.getStorage().writeNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null);
   }
 
   @Override
-  public void deserializeNBT(CompoundNBT nbt) {
+  public void deserializeNBT(CompoundTag nbt) {
     Capabilities.SHOULDER_CAPABILITY.getStorage().readNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null, nbt);
   }
 }

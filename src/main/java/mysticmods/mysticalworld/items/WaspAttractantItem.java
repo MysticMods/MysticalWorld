@@ -1,19 +1,19 @@
 package mysticmods.mysticalworld.items;
 
 import mysticmods.mysticalworld.init.ModBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class WaspAttractantItem extends Item {
   public WaspAttractantItem(Properties pProperties) {
@@ -21,16 +21,16 @@ public class WaspAttractantItem extends Item {
   }
 
   @Override
-  public ActionResultType useOn(ItemUseContext init) {
-    BlockItemUseContext context = new BlockItemUseContext(init);
+  public InteractionResult useOn(UseOnContext init) {
+    BlockPlaceContext context = new BlockPlaceContext(init);
     ItemStack item = init.getItemInHand();
-    PlayerEntity player = init.getPlayer();
+    Player player = init.getPlayer();
     Direction facing = init.getClickedFace();
     BlockPos pos = init.getClickedPos();
-    World world = init.getLevel();
+    Level world = init.getLevel();
 
     if (facing == Direction.UP || facing == Direction.DOWN || player != null && !player.mayUseItemAt(pos.relative(facing), facing, item) || !world.getBlockState(pos.relative(facing)).canBeReplaced(context)) {
-      return ActionResultType.FAIL;
+      return InteractionResult.FAIL;
     }
 
     BlockState blockAt = world.getBlockState(pos);
@@ -43,13 +43,13 @@ public class WaspAttractantItem extends Item {
             item.shrink(1);
           }
         } else {
-          return ActionResultType.FAIL;
+          return InteractionResult.FAIL;
         }
       }
     } else {
-      return ActionResultType.FAIL;
+      return InteractionResult.FAIL;
     }
 
-    return ActionResultType.sidedSuccess(world.isClientSide);
+    return InteractionResult.sidedSuccess(world.isClientSide);
   }
 }

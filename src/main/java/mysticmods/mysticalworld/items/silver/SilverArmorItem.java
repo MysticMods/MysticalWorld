@@ -3,26 +3,26 @@ package mysticmods.mysticalworld.items.silver;
 import com.google.common.collect.Multimap;
 import mysticmods.mysticalworld.init.ModModifiers;
 import mysticmods.mysticalworld.items.ModifiedArmorItem;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
 import noobanidus.libs.noobutil.material.MaterialType;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class SilverArmorItem extends ModifiedArmorItem implements ISilverItem {
-  public SilverArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
+  public SilverArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
     super(materialIn, slot, builder);
   }
 
   @Override
-  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
     Multimap<Attribute, AttributeModifier> map = super.getDefaultAttributeModifiers(equipmentSlot);
 
     if (this.slot == equipmentSlot) {
-      if (slot == EquipmentSlotType.CHEST || slot == EquipmentSlotType.LEGS) {
+      if (slot == EquipmentSlot.CHEST || slot == EquipmentSlot.LEGS) {
         map.put(Attributes.ATTACK_DAMAGE, getOrCreateModifier(Attributes.ATTACK_DAMAGE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Attack damage multiplier", 0.06f, AttributeModifier.Operation.MULTIPLY_TOTAL)));
       } else {
         map.put(Attributes.ATTACK_DAMAGE, getOrCreateModifier(Attributes.ATTACK_DAMAGE, () -> new AttributeModifier(MaterialType.ARMOR_MODIFIERS[slot.getIndex()], "Attack damage multiplier", 0.02f, AttributeModifier.Operation.MULTIPLY_TOTAL)));

@@ -6,15 +6,17 @@ import com.google.gson.JsonSerializationContext;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.entity.ClamEntity;
 import mysticmods.mysticalworld.init.ModLoot;
-import net.minecraft.entity.Entity;
-import net.minecraft.loot.ILootSerializer;
-import net.minecraft.loot.LootConditionType;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.JSONUtils;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.storage.loot.Serializer;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.util.GsonHelper;
 
-public class IsEnder implements ILootCondition {
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder;
+
+public class IsEnder implements LootItemCondition {
   private final boolean inverse;
 
   public IsEnder(boolean inverseIn) {
@@ -24,7 +26,7 @@ public class IsEnder implements ILootCondition {
   @Override
   public boolean test(LootContext lootContext) {
     boolean flag;
-    Entity looted = lootContext.getParamOrNull(LootParameters.THIS_ENTITY);
+    Entity looted = lootContext.getParamOrNull(LootContextParams.THIS_ENTITY);
     if (looted instanceof ClamEntity) {
       ClamEntity clam = (ClamEntity) looted;
       flag = clam.getEntityData().get(ClamEntity.isEnder);
@@ -36,11 +38,11 @@ public class IsEnder implements ILootCondition {
   }
 
   @Override
-  public LootConditionType getType() {
+  public LootItemConditionType getType() {
     return ModLoot.IS_ENDER;
   }
 
-  public static class Serializer implements ILootSerializer<IsEnder> {
+  public static class Serializer implements Serializer<IsEnder> {
     @Override
     public void serialize(JsonObject json, IsEnder value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);
@@ -48,11 +50,11 @@ public class IsEnder implements ILootCondition {
 
     @Override
     public IsEnder deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new IsEnder(JSONUtils.getAsBoolean(json, "inverse", false));
+      return new IsEnder(GsonHelper.getAsBoolean(json, "inverse", false));
     }
   }
 
-  public static IBuilder builder() {
+  public static Builder builder() {
     return () -> new IsEnder(false);
   }
 }

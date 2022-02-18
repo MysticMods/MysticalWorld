@@ -7,25 +7,25 @@ import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModItems;
 import mysticmods.mysticalworld.init.ModSounds;
 import mysticmods.mysticalworld.loot.Serendipity;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.*;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import noobanidus.libs.noobutil.type.LazySupplier;
@@ -34,6 +34,13 @@ import mysticmods.mysticalworld.init.ModModifiers;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.Item.Properties;
 
 public class PearleporterItem extends Item {
   public static LazySupplier<Ingredient> PEARL_INGREDIENT = new LazySupplier<>(() -> Ingredient.of(MWTags.Items.PEARL_GEM));
@@ -73,13 +80,13 @@ public class PearleporterItem extends Item {
     return super.isBookEnchantable(stack, book);
   }
 
-  public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity entity, Hand hand) {
+  public InteractionResult interactLivingEntity(ItemStack stack, Player playerIn, LivingEntity entity, InteractionHand hand) {
     if (entity.getType() != ModEntities.CLAM.get()) {
-      return ActionResultType.FAIL;
+      return InteractionResult.FAIL;
     }
 
     if (entity.level.isClientSide) {
-      return ActionResultType.PASS;
+      return InteractionResult.PASS;
     }
 
     ClamEntity clam = (ClamEntity) entity;
@@ -99,22 +106,22 @@ public class PearleporterItem extends Item {
         if (!playerIn.isCreative()) {
           stack.hurtAndBreak(1, playerIn, e -> e.broadcastBreakEvent(hand));
         }
-        playerIn.level.playSound(null, entity.blockPosition(), ModSounds.PEARLEPORTER_USE.get(), SoundCategory.PLAYERS, 1f, 0.2f);
+        playerIn.level.playSound(null, entity.blockPosition(), ModSounds.PEARLEPORTER_USE.get(), SoundSource.PLAYERS, 1f, 0.2f);
       }
     } else {
       int diff = ConfigManager.CLAM_CONFIG.getMaxAge() - clam.getEntityData().get(ClamEntity.age) / 20;
-      playerIn.displayClientMessage(new TranslationTextComponent("mysticalworld.item.pearleporter_immature", diff).setStyle(Style.EMPTY.withColor(TextFormatting.DARK_PURPLE)), true);
+      playerIn.displayClientMessage(new TranslatableComponent("mysticalworld.item.pearleporter_immature", diff).setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE)), true);
     }
 
-    return ActionResultType.SUCCESS;
+    return InteractionResult.SUCCESS;
   }
 
   @Override
   @OnlyIn(Dist.CLIENT)
-  public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+  public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
     super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 
-    pTooltip.add(new StringTextComponent(""));
-    pTooltip.add(new TranslationTextComponent("mysticalworld.item.pearleporter").setStyle(Style.EMPTY.withBold(true)));
+    pTooltip.add(new TextComponent(""));
+    pTooltip.add(new TranslatableComponent("mysticalworld.item.pearleporter").setStyle(Style.EMPTY.withBold(true)));
   }
 }

@@ -2,33 +2,33 @@ package mysticmods.mysticalworld.items.quicksilver;
 
 import com.google.common.collect.Multimap;
 import mysticmods.mysticalworld.items.ModifiedArmorItem;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 import noobanidus.libs.noobutil.material.MaterialType;
 
 import java.util.Random;
 
 // TODO find a way to block damaging the item
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksilverItem {
   private int counter;
   private final Random random = new Random();
 
-  public QuicksilverArmorItem(IArmorMaterial material, EquipmentSlotType slot, Properties props) {
+  public QuicksilverArmorItem(ArmorMaterial material, EquipmentSlot slot, Properties props) {
     super(material, slot, props);
   }
 
   @Override
-  public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+  public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
     counter = counter >= 20 ? 1 : counter + 1;
     if (counter % 20 == 0 && entity instanceof LivingEntity) {
       drip(stack, (LivingEntity) entity, random, getSlot());
@@ -36,12 +36,12 @@ public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksil
   }
 
   @Override
-  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
     Multimap<Attribute, AttributeModifier> map = super.getDefaultAttributeModifiers(equipmentSlot);
 
     if (this.slot == equipmentSlot) {
       float val = 0.05f;
-      if (slot == EquipmentSlotType.CHEST || slot == EquipmentSlotType.LEGS) {
+      if (slot == EquipmentSlot.CHEST || slot == EquipmentSlot.LEGS) {
         val = 0.1f;
       }
       final float val2 = val;

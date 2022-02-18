@@ -15,30 +15,30 @@ import mysticmods.mysticalworld.world.placement.DimensionCountPlacement;
 import mysticmods.mysticalworld.world.placement.DimensionCountRangeConfig;
 import mysticmods.mysticalworld.world.placement.DimensionPlacement;
 import mysticmods.mysticalworld.world.test.OreGenTest;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.FlatChunkGenerator;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
-import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
-import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.FlatLevelSource;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.blockplacers.SimpleBlockPlacer;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProviderType;
+import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.template.IRuleTestType;
-import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
-import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
-import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.settings.DimensionStructuresSettings;
-import net.minecraft.world.gen.settings.StructureSeparationSettings;
-import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
+import net.minecraft.world.level.levelgen.placement.FrequencyWithExtraChanceDecoratorConfiguration;
+import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
+import net.minecraft.world.level.levelgen.StructureSettings;
+import net.minecraft.world.level.levelgen.feature.configurations.StructureFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -53,22 +53,31 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Supplier;
 
-public class ModFeatures {
-  public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, WorldGenRegistries.CONFIGURED_FEATURE);
+import net.minecraft.data.worldgen.Features;
+import net.minecraft.util.UniformInt;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 
-  public static final IRuleTestType<OreGenTest> ORE_GEN = IRuleTestType.register("ore_gen", OreGenTest.CODEC);
+public class ModFeatures {
+  public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
+
+  public static final RuleTestType<OreGenTest> ORE_GEN = RuleTestType.register("ore_gen", OreGenTest.CODEC);
 
   public static final RegistryEntry<SupplierOreFeature> SUPPLIER_ORE = MysticalWorld.REGISTRATE.simple("supplier_ore_feature", Feature.class, () -> new SupplierOreFeature(SupplierOreFeatureConfig.CODEC));
 
-  private static final RegistryEntry<DimensionCountPlacement> DIMENSION_COUNT_PLACEMENT = MysticalWorld.REGISTRATE.simple("dimension_count_placement", Placement.class, () -> new DimensionCountPlacement(DimensionCountRangeConfig.CODEC));
+  private static final RegistryEntry<DimensionCountPlacement> DIMENSION_COUNT_PLACEMENT = MysticalWorld.REGISTRATE.simple("dimension_count_placement", FeatureDecorator.class, () -> new DimensionCountPlacement(DimensionCountRangeConfig.CODEC));
 
-  private static final RegistryEntry<DimensionPlacement> DIMENSION_PLACEMENT = MysticalWorld.REGISTRATE.simple("dimension_placement", Placement.class, () -> new DimensionPlacement(DimensionConfig.CODEC));
+  private static final RegistryEntry<DimensionPlacement> DIMENSION_PLACEMENT = MysticalWorld.REGISTRATE.simple("dimension_placement", FeatureDecorator.class, () -> new DimensionPlacement(DimensionConfig.CODEC));
 
   public static final RegistryEntry<BlockStateProviderType<SupplierBlockStateProvider>> SUPPLIER_STATE_PROVIDER = MysticalWorld.REGISTRATE.simple("supplier_state_provider", BlockStateProviderType.class, () -> new BlockStateProviderType<>(SupplierBlockStateProvider.CODEC));
 
-  public static ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleBlockStateProvider(Blocks.AIR.defaultBlockState()), new FancyFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
+  public static ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.configured((new TreeConfiguration.TreeConfigurationBuilder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleStateProvider(Blocks.AIR.defaultBlockState()), new FancyFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Types.MOTION_BLOCKING).build()).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
 
-  public static Supplier<ConfiguredFeature<?, ?>> STONEPETAL_PATCH = new LazySupplier<>(() -> Feature.RANDOM_PATCH.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.STONEPETAL.get().defaultBlockState()), SimpleBlockPlacer.INSTANCE)).tries(ConfigManager.STONEPETAL_CONFIG.getTries()).whitelist(Sets.newHashSet(Blocks.STONE)).build()).decorated(Features.Placements.ADD_32).decorated(Features.Placements.HEIGHTMAP_SQUARE).count(ConfigManager.STONEPETAL_CONFIG.getRepeats()));
+  public static Supplier<ConfiguredFeature<?, ?>> STONEPETAL_PATCH = new LazySupplier<>(() -> Feature.RANDOM_PATCH.configured((new RandomPatchConfiguration.GrassConfigurationBuilder(new SimpleStateProvider(ModBlocks.STONEPETAL.get().defaultBlockState()), SimpleBlockPlacer.INSTANCE)).tries(ConfigManager.STONEPETAL_CONFIG.getTries()).whitelist(Sets.newHashSet(Blocks.STONE)).build()).decorated(Features.Decorators.ADD_32).decorated(Features.Decorators.HEIGHTMAP_SQUARE).count(ConfigManager.STONEPETAL_CONFIG.getRepeats()));
 
   private static final List<ConfiguredFeature<?, ?>> ORE_FEATURES = new ArrayList<>();
 
@@ -124,7 +133,7 @@ public class ModFeatures {
       }
       event.getGeneration().getFeatures(config.getStage()).add(sup);
     } else {
-      Supplier<StructureFeature<?, ?>> sup = config.getStructure();
+      Supplier<ConfiguredStructureFeature<?, ?>> sup = config.getStructure();
       if (sup == null) {
         return;
       }
@@ -137,10 +146,10 @@ public class ModFeatures {
 
   public static void onBiomeLoad(BiomeLoadingEvent event) {
     for (ConfiguredFeature<?, ?> ore : ORE_FEATURES) {
-      event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> ore);
+      event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(() -> ore);
     }
     if (event.getName() != null) {
-      RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, event.getName());
+      ResourceKey<Biome> key = ResourceKey.create(Registry.BIOME_REGISTRY, event.getName());
       Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
       ModEntities.registerEntity(event, types);
       if (!ModList.get().isLoaded("dynamictrees")) {
@@ -156,9 +165,9 @@ public class ModFeatures {
   private static MethodHandle GETCODEC_METHOD = null;
 
   public static void onWorldLoad(final WorldEvent.Load event) {
-    if (event.getWorld() instanceof ServerWorld) {
-      ServerWorld world = (ServerWorld) event.getWorld();
-      if (world.getChunkSource().getGenerator() instanceof FlatChunkGenerator && world.dimension().equals(World.OVERWORLD)) {
+    if (event.getWorld() instanceof ServerLevel) {
+      ServerLevel world = (ServerLevel) event.getWorld();
+      if (world.getChunkSource().getGenerator() instanceof FlatLevelSource && world.dimension().equals(Level.OVERWORLD)) {
         return;
       }
 
@@ -185,12 +194,12 @@ public class ModFeatures {
         return;
       }
 
-      if (world.dimension().equals(World.OVERWORLD)) {
-        Map<Structure<?>, StructureSeparationSettings> temp = new HashMap<>(world.getChunkSource().generator.getSettings().structureConfig());
-        temp.put(ModStructures.BARROW_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.BARROW_STRUCTURE));
-        temp.put(ModStructures.HUT_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.HUT_STRUCTURE));
-        temp.put(ModStructures.RUINED_HUT_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.RUINED_HUT_STRUCTURE));
-        temp.put(ModStructures.SAND_HOUSE_STRUCTURE, DimensionStructuresSettings.DEFAULTS.get(ModStructures.SAND_HOUSE_STRUCTURE));
+      if (world.dimension().equals(Level.OVERWORLD)) {
+        Map<StructureFeature<?>, StructureFeatureConfiguration> temp = new HashMap<>(world.getChunkSource().generator.getSettings().structureConfig());
+        temp.put(ModStructures.BARROW_STRUCTURE, StructureSettings.DEFAULTS.get(ModStructures.BARROW_STRUCTURE));
+        temp.put(ModStructures.HUT_STRUCTURE, StructureSettings.DEFAULTS.get(ModStructures.HUT_STRUCTURE));
+        temp.put(ModStructures.RUINED_HUT_STRUCTURE, StructureSettings.DEFAULTS.get(ModStructures.RUINED_HUT_STRUCTURE));
+        temp.put(ModStructures.SAND_HOUSE_STRUCTURE, StructureSettings.DEFAULTS.get(ModStructures.SAND_HOUSE_STRUCTURE));
         world.getChunkSource().generator.getSettings().structureConfig = temp;
       }
     }

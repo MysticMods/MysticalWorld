@@ -2,12 +2,12 @@ package mysticmods.mysticalworld.config;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import mysticmods.mysticalworld.world.test.OreGenTest;
-import net.minecraft.block.Block;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraftforge.common.ForgeConfigSpec;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 
@@ -23,7 +23,7 @@ public class OreConfig extends AbstractConfig {
   private final int minY;
   private final int maxY;
   private final int size;
-  private final List<RegistryKey<World>> dimensions;
+  private final List<ResourceKey<Level>> dimensions;
   private final Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore;
 
   private ForgeConfigSpec.IntValue configChance;
@@ -34,11 +34,11 @@ public class OreConfig extends AbstractConfig {
 
   private final RuleTest rule;
 
-  public OreConfig(String name, int chance, int minY, int maxY, int size, List<RegistryKey<World>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
+  public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
     this(name, chance, minY, maxY, size, dimensions, ore, OreGenTest.INSTANCE);
   }
 
-  public OreConfig(String name, int chance, int minY, int maxY, int size, List<RegistryKey<World>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore, RuleTest test) {
+  public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore, RuleTest test) {
     super();
     this.name = name;
     this.chance = chance;
@@ -82,11 +82,11 @@ public class OreConfig extends AbstractConfig {
     return ore.get().getId();
   }
 
-  private Set<RegistryKey<World>> storedDimension = null;
+  private Set<ResourceKey<Level>> storedDimension = null;
 
-  public Set<RegistryKey<World>> getDimensions() {
+  public Set<ResourceKey<Level>> getDimensions() {
     if (storedDimension == null) {
-      storedDimension = configDimensions.get().stream().map(o -> RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(o))).collect(Collectors.toSet());
+      storedDimension = configDimensions.get().stream().map(o -> ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(o))).collect(Collectors.toSet());
     }
 
     return storedDimension;
@@ -99,7 +99,7 @@ public class OreConfig extends AbstractConfig {
     configSize = builder.comment("Max size of the vein.").defineInRange("veinSize", size, 1, 256);
     configMinY = builder.comment("Number of veins per chunk (set to 0 to disable).").defineInRange("minY", minY, 0, 256);
     configMaxY = builder.comment("Number of veins per chunk (set to 0 to disable).").defineInRange("maxY", maxY, 0, 256);
-    configDimensions = builder.comment("The dimensions that this ore should spawn in as a list (default [\"minecraft:overworld\"])").defineList("dimensions", dimensions.stream().map(RegistryKey::location).map(ResourceLocation::toString).collect(Collectors.toList()), (o) -> o instanceof String);
+    configDimensions = builder.comment("The dimensions that this ore should spawn in as a list (default [\"minecraft:overworld\"])").defineList("dimensions", dimensions.stream().map(ResourceKey::location).map(ResourceLocation::toString).collect(Collectors.toList()), (o) -> o instanceof String);
     builder.pop();
   }
 

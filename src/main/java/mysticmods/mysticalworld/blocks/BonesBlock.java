@@ -1,22 +1,24 @@
 package mysticmods.mysticalworld.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
 import noobanidus.libs.noobutil.util.VoxelUtil;
 
 import javax.annotation.Nullable;
 
-public class BonesBlock extends HorizontalBlock {
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+public class BonesBlock extends HorizontalDirectionalBlock {
   // TODO: Just make these into blocks
   private static final VoxelShape bone_pile_south_shape = Block.box(4, 0, 4, 12, 13, 12);
   private static final VoxelShape bone_pile_north_shape = VoxelUtil.rotateHorizontal(bone_pile_south_shape, Direction.SOUTH);
@@ -47,12 +49,12 @@ public class BonesBlock extends HorizontalBlock {
   }
 
   @Override
-  protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+  protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
     builder.add(FACING);
   }
 
   @Override
-  public VoxelShape getShape(BlockState pState, IBlockReader pLevel, BlockPos pPos, ISelectionContext pContext) {
+  public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
     Direction facing = pState.getValue(FACING);
     VoxelShape shape = null;
     switch (type) {
@@ -100,7 +102,7 @@ public class BonesBlock extends HorizontalBlock {
 
   @Nullable
   @Override
-  public BlockState getStateForPlacement(BlockItemUseContext pContext) {
+  public BlockState getStateForPlacement(BlockPlaceContext pContext) {
     return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
   }
 

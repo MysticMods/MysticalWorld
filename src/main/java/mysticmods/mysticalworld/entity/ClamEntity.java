@@ -4,45 +4,52 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.init.ModItems;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.passive.WaterMobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.WaterAnimal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class ClamEntity extends WaterMobEntity {
-  public static final DataParameter<Boolean> isEnder = EntityDataManager.defineId(ClamEntity.class, DataSerializers.BOOLEAN);
-  public static final DataParameter<Integer> age = EntityDataManager.defineId(ClamEntity.class, DataSerializers.INT);
-  private static final DataParameter<Boolean> FROM_BUCKET = EntityDataManager.defineId(ClamEntity.class, DataSerializers.BOOLEAN);
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.SpawnGroupData;
 
-  public ClamEntity(EntityType<? extends WaterMobEntity> type, World level) {
+public class ClamEntity extends WaterAnimal {
+  public static final EntityDataAccessor<Boolean> isEnder = SynchedEntityData.defineId(ClamEntity.class, EntityDataSerializers.BOOLEAN);
+  public static final EntityDataAccessor<Integer> age = SynchedEntityData.defineId(ClamEntity.class, EntityDataSerializers.INT);
+  private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(ClamEntity.class, EntityDataSerializers.BOOLEAN);
+
+  public ClamEntity(EntityType<? extends WaterAnimal> type, Level level) {
     super(type, level);
   }
 
   @Nullable
   @Override
-  public ILivingEntityData finalizeSpawn(IServerWorld pLevel, DifficultyInstance pDifficulty, SpawnReason pReason, @Nullable ILivingEntityData pSpawnData, @Nullable CompoundNBT pDataTag) {
+  public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
     return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
   }
 
@@ -67,7 +74,7 @@ public class ClamEntity extends WaterMobEntity {
   }
 
   @Override
-  public void addAdditionalSaveData(CompoundNBT pCompound) {
+  public void addAdditionalSaveData(CompoundTag pCompound) {
     super.addAdditionalSaveData(pCompound);
     pCompound.putBoolean("isEnder", getEntityData().get(isEnder));
     pCompound.putInt("age", getEntityData().get(age));
@@ -75,7 +82,7 @@ public class ClamEntity extends WaterMobEntity {
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundNBT pCompound) {
+  public void readAdditionalSaveData(CompoundTag pCompound) {
     super.readAdditionalSaveData(pCompound);
     getEntityData().set(isEnder, pCompound.getBoolean("isEnder"));
     getEntityData().set(age, pCompound.getInt("age"));
@@ -83,7 +90,7 @@ public class ClamEntity extends WaterMobEntity {
   }
 
   @Override
-  protected float getStandingEyeHeight(Pose pPose, EntitySize pSize) {
+  protected float getStandingEyeHeight(Pose pPose, EntityDimensions pSize) {
     return 0.3f;
   }
 
@@ -92,8 +99,8 @@ public class ClamEntity extends WaterMobEntity {
     return new ResourceLocation(MysticalWorld.MODID, "entities/clam");
   }
 
-  public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20d).add(Attributes.MOVEMENT_SPEED, 0).add(Attributes.KNOCKBACK_RESISTANCE, 5d);
+  public static AttributeSupplier.Builder attributes() {
+    return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20d).add(Attributes.MOVEMENT_SPEED, 0).add(Attributes.KNOCKBACK_RESISTANCE, 5d);
   }
 
   @Override
@@ -137,7 +144,7 @@ public class ClamEntity extends WaterMobEntity {
   }
 
   @Override
-  protected ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
+  protected InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
     ItemStack itemstack = pPlayer.getItemInHand(pHand);
     if (itemstack.getItem() == Items.WATER_BUCKET && this.isAlive()) {
       this.playSound(SoundEvents.BUCKET_FILL_FISH, 1.0F, 1.0F);
@@ -145,7 +152,7 @@ public class ClamEntity extends WaterMobEntity {
       ItemStack itemstack1 = this.getBucketItemStack();
       this.saveToBucketTag(itemstack1);
       if (!this.level.isClientSide) {
-        CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayerEntity) pPlayer, itemstack1);
+        CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) pPlayer, itemstack1);
       }
 
       if (itemstack.isEmpty()) {
@@ -155,7 +162,7 @@ public class ClamEntity extends WaterMobEntity {
       }
 
       this.remove();
-      return ActionResultType.sidedSuccess(this.level.isClientSide);
+      return InteractionResult.sidedSuccess(this.level.isClientSide);
     } else {
       return super.mobInteract(pPlayer, pHand);
     }
@@ -166,7 +173,7 @@ public class ClamEntity extends WaterMobEntity {
       p_204211_1_.setHoverName(this.getCustomName());
     }
 
-    CompoundNBT tag = p_204211_1_.getOrCreateTag();
+    CompoundTag tag = p_204211_1_.getOrCreateTag();
     tag.putBoolean("isEnder", getEntityData().get(isEnder));
     tag.putInt("age", getEntityData().get(age));
   }
@@ -175,7 +182,7 @@ public class ClamEntity extends WaterMobEntity {
     return new ItemStack(ModItems.CLAM_BUCKET.get());
   }
 
-  public static boolean checkClamSpawnRules(EntityType<? extends ClamEntity> p_223363_0_, IWorld p_223363_1_, SpawnReason p_223363_2_, BlockPos p_223363_3_, Random p_223363_4_) {
+  public static boolean checkClamSpawnRules(EntityType<? extends ClamEntity> p_223363_0_, LevelAccessor p_223363_1_, MobSpawnType p_223363_2_, BlockPos p_223363_3_, Random p_223363_4_) {
     return p_223363_1_.getBlockState(p_223363_3_).is(Blocks.WATER) && p_223363_1_.getBlockState(p_223363_3_.above()).is(Blocks.WATER);
   }
 }

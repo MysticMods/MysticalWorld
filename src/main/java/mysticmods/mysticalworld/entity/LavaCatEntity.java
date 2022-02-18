@@ -3,69 +3,94 @@ package mysticmods.mysticalworld.entity;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModSounds;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.UUID;
 
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.EntityDamageSource;
+import net.minecraft.world.entity.AgableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
+import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.OcelotAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
+
 @SuppressWarnings({"Duplicates", "NullableProblems", "unused"})
-public class LavaCatEntity extends TameableEntity {
+public class LavaCatEntity extends TamableAnimal {
   private static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/lava_cat");
 
-  private static final DataParameter<Boolean> IS_LAVA = EntityDataManager.defineId(LavaCatEntity.class, DataSerializers.BOOLEAN);
+  private static final EntityDataAccessor<Boolean> IS_LAVA = SynchedEntityData.defineId(LavaCatEntity.class, EntityDataSerializers.BOOLEAN);
   private static final UUID OBSIDIAN_SPEED_MODIFIER = UUID.fromString("f58f95e9-fb51-4604-a66d-89433c9dd8a5");
   private static final AttributeModifier OBSIDIAN_SPEED = new AttributeModifier(OBSIDIAN_SPEED_MODIFIER, "Speed debuff for being obsidian", -0.05D, AttributeModifier.Operation.MULTIPLY_TOTAL);
 
-  public LavaCatEntity(EntityType<? extends TameableEntity> type, World worldIn) {
+  public LavaCatEntity(EntityType<? extends TamableAnimal> type, Level worldIn) {
     super(type, worldIn);
   }
 
   @Override
   protected void registerGoals() {
-    goalSelector.addGoal(1, new SwimGoal(this));
-    goalSelector.addGoal(2, new SitGoal(this));
+    goalSelector.addGoal(1, new FloatGoal(this));
+    goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
     goalSelector.addGoal(3, new TemptGoal(this, 0.6D, Ingredient.of(Items.BLAZE_ROD), false));
     goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.0D, 10.0F, 5.0F, false));
     goalSelector.addGoal(7, new LeapAtTargetGoal(this, 0.3F));
     goalSelector.addGoal(8, new OcelotAttackGoal(this));
     goalSelector.addGoal(9, new BreedGoal(this, 0.8D));
-    goalSelector.addGoal(10, new RandomWalkingGoal(this, 0.8D, 1));
-    goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 10.0F));
+    goalSelector.addGoal(10, new RandomStrollGoal(this, 0.8D, 1));
+    goalSelector.addGoal(11, new LookAtPlayerGoal(this, Player.class, 10.0F));
     this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
     this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
     this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
   }
 
-  public static boolean placement(EntityType<? extends AnimalEntity> pAnimal, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random pRandom) {
+  public static boolean placement(EntityType<? extends Animal> pAnimal, LevelAccessor worldIn, MobSpawnType reason, BlockPos blockpos, Random pRandom) {
     Block block = worldIn.getBlockState(blockpos.below()).getBlock();
     return block == Blocks.NETHERRACK || block == Blocks.OBSIDIAN || block == Blocks.MAGMA_BLOCK || block == Blocks.SOUL_SAND || block == Blocks.SOUL_SOIL || block == Blocks.NETHER_BRICKS || block == Blocks.BONE_BLOCK || block == Blocks.NETHER_WART_BLOCK || block == Blocks.NETHER_GOLD_ORE || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_QUARTZ_ORE || block == Blocks.RED_NETHER_BRICKS || block == Blocks.CHISELED_NETHER_BRICKS || block == Blocks.BASALT || block == Blocks.POLISHED_BASALT || block == Blocks.CRACKED_NETHER_BRICKS || block == Blocks.BLACKSTONE || block == Blocks.CHISELED_POLISHED_BLACKSTONE || block == Blocks.GILDED_BLACKSTONE || block == Blocks.POLISHED_BLACKSTONE || block == Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS || block == Blocks.CRIMSON_NYLIUM || block == Blocks.CRIMSON_HYPHAE || block == Blocks.WARPED_WART_BLOCK || block == Blocks.GRAVEL || block == Blocks.GLOWSTONE || block == Blocks.POLISHED_BLACKSTONE_BRICKS || block == Blocks.WARPED_NYLIUM || block == Blocks.SHROOMLIGHT;
   }
@@ -102,8 +127,8 @@ public class LavaCatEntity extends TameableEntity {
     return !this.isTame() && this.tickCount > 2400;
   }
 
-  public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0d).add(Attributes.MOVEMENT_SPEED, 0.25d).add(Attributes.ATTACK_DAMAGE, 2.0d);
+  public static AttributeSupplier.Builder attributes() {
+    return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0d).add(Attributes.MOVEMENT_SPEED, 0.25d).add(Attributes.ATTACK_DAMAGE, 2.0d);
   }
 
   // TODO: Fix fall damage
@@ -195,9 +220,9 @@ public class LavaCatEntity extends TameableEntity {
   }
 
   @Override
-  public boolean addEffect(EffectInstance potioneffectIn) {
-    Effect type = potioneffectIn.getEffect();
-    if (type == Effects.POISON || type == Effects.WITHER) {
+  public boolean addEffect(MobEffectInstance potioneffectIn) {
+    MobEffect type = potioneffectIn.getEffect();
+    if (type == MobEffects.POISON || type == MobEffects.WITHER) {
       return false;
     }
 
@@ -210,12 +235,12 @@ public class LavaCatEntity extends TameableEntity {
   }
 
   @Override
-  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+  public InteractionResult mobInteract(Player player, InteractionHand hand) {
     ItemStack itemstack = player.getItemInHand(hand);
     Item item = itemstack.getItem();
     if (this.level.isClientSide) {
       boolean flag = this.isOwnedBy(player) || this.isTame() || item == Items.BLAZE_ROD && !this.isTame();
-      return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
+      return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
     } else {
       if (this.isTame()) {
         if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
@@ -224,16 +249,16 @@ public class LavaCatEntity extends TameableEntity {
           }
 
           this.heal(2f);
-          return ActionResultType.SUCCESS;
+          return InteractionResult.SUCCESS;
         }
 
-        ActionResultType actionresulttype = super.mobInteract(player, hand);
+        InteractionResult actionresulttype = super.mobInteract(player, hand);
         if ((!actionresulttype.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
           this.setOrderedToSit(!this.isOrderedToSit());
           this.jumping = false;
           this.navigation.stop();
           this.setTarget(null);
-          return ActionResultType.SUCCESS;
+          return InteractionResult.SUCCESS;
         }
 
         return actionresulttype;
@@ -252,7 +277,7 @@ public class LavaCatEntity extends TameableEntity {
           this.level.broadcastEntityEvent(this, (byte) 6);
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
       }
 
       return super.mobInteract(player, hand);
@@ -293,7 +318,7 @@ public class LavaCatEntity extends TameableEntity {
   }*/
 
   @Override
-  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
     LavaCatEntity lavacat = ModEntities.LAVA_CAT.get().create(ageable.level);
 
     if (this.isTame() && lavacat != null) {
@@ -307,11 +332,11 @@ public class LavaCatEntity extends TameableEntity {
 
   @Override
   public boolean isFood(ItemStack stack) {
-    return stack.getItem() == net.minecraft.item.Items.BLAZE_POWDER;
+    return stack.getItem() == net.minecraft.world.item.Items.BLAZE_POWDER;
   }
 
   @Override
-  public boolean canMate(AnimalEntity otherAnimal) {
+  public boolean canMate(Animal otherAnimal) {
     if (otherAnimal == this) {
       return false;
     } else if (!this.isTame()) {
@@ -335,7 +360,7 @@ public class LavaCatEntity extends TameableEntity {
 
   public void setIsLava(boolean val) {
     this.entityData.set(IS_LAVA, val);
-    ModifiableAttributeInstance instance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+    AttributeInstance instance = this.getAttribute(Attributes.MOVEMENT_SPEED);
     if (instance != null) {
       if (val && instance.hasModifier(OBSIDIAN_SPEED)) {
         instance.removeModifier(OBSIDIAN_SPEED);
@@ -354,7 +379,7 @@ public class LavaCatEntity extends TameableEntity {
     super.tick();
 
     if (getIsLava() && level.isRainingAt(blockPosition()) && level.canSeeSkyFromBelowWater(blockPosition()) && random.nextInt(30) == 0) {
-      level.playSound(null, getX(), getY(), getZ(), ModSounds.LAVA_CAT_SIZZLE.get(), SoundCategory.NEUTRAL, 0.2f, 1.3f);
+      level.playSound(null, getX(), getY(), getZ(), ModSounds.LAVA_CAT_SIZZLE.get(), SoundSource.NEUTRAL, 0.2f, 1.3f);
     }
 
     if (getIsLava() && wasTouchingWater) {
@@ -365,27 +390,27 @@ public class LavaCatEntity extends TameableEntity {
   }
 
   @Override
-  public void addAdditionalSaveData(CompoundNBT compound) {
+  public void addAdditionalSaveData(CompoundTag compound) {
     super.addAdditionalSaveData(compound);
     compound.putBoolean("IsLava", getIsLava());
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundNBT compound) {
+  public void readAdditionalSaveData(CompoundTag compound) {
     super.readAdditionalSaveData(compound);
     setIsLava(compound.getBoolean("IsLava"));
   }
 
   @Override
-  public ITextComponent getName() {
-    ITextComponent itextcomponent = this.getCustomName();
+  public Component getName() {
+    Component itextcomponent = this.getCustomName();
     if (itextcomponent != null) {
       return super.getName();
     } else {
       if (this.getIsLava()) {
-        return new TranslationTextComponent("mysticalworld.entity.lava_cat");
+        return new TranslatableComponent("mysticalworld.entity.lava_cat");
       } else {
-        return new TranslationTextComponent("mysticalworld.entity.obsidian_cat");
+        return new TranslatableComponent("mysticalworld.entity.obsidian_cat");
       }
     }
   }

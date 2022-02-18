@@ -7,15 +7,17 @@ import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.entity.ClamEntity;
 import mysticmods.mysticalworld.entity.SproutEntity;
 import mysticmods.mysticalworld.init.ModLoot;
-import net.minecraft.entity.Entity;
-import net.minecraft.loot.ILootSerializer;
-import net.minecraft.loot.LootConditionType;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.JSONUtils;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.storage.loot.Serializer;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.util.GsonHelper;
 
-public class IsMature implements ILootCondition {
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder;
+
+public class IsMature implements LootItemCondition {
   private final boolean inverse;
 
   public IsMature(boolean inverseIn) {
@@ -25,7 +27,7 @@ public class IsMature implements ILootCondition {
   @Override
   public boolean test(LootContext lootContext) {
     boolean flag;
-    Entity looted = lootContext.getParamOrNull(LootParameters.THIS_ENTITY);
+    Entity looted = lootContext.getParamOrNull(LootContextParams.THIS_ENTITY);
     if (looted instanceof ClamEntity) {
       ClamEntity clam = (ClamEntity) looted;
       flag = clam.getEntityData().get(ClamEntity.age) >= ConfigManager.CLAM_CONFIG.getMaxAge();
@@ -37,11 +39,11 @@ public class IsMature implements ILootCondition {
   }
 
   @Override
-  public LootConditionType getType() {
+  public LootItemConditionType getType() {
     return ModLoot.IS_MATURE;
   }
 
-  public static class Serializer implements ILootSerializer<IsMature> {
+  public static class Serializer implements Serializer<IsMature> {
     @Override
     public void serialize(JsonObject json, IsMature value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);
@@ -49,11 +51,11 @@ public class IsMature implements ILootCondition {
 
     @Override
     public IsMature deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new IsMature(JSONUtils.getAsBoolean(json, "inverse", false));
+      return new IsMature(GsonHelper.getAsBoolean(json, "inverse", false));
     }
   }
 
-  public static IBuilder builder() {
+  public static Builder builder() {
     return () -> new IsMature(false);
   }
 }

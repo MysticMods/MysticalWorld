@@ -1,19 +1,19 @@
 package mysticmods.mysticalworld.entity.ai;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.pathfinding.Path;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.level.Level;
 
 import java.util.EnumSet;
 
-import net.minecraft.entity.ai.goal.Goal.Flag;
+import net.minecraft.world.entity.ai.goal.Goal.Flag;
 
 public class StalkGoal extends Goal {
-  private final World world;
-  protected CreatureEntity attacker;
+  private final Level world;
+  protected PathfinderMob attacker;
   /**
    * An amount of decrementing ticks that allows the entity to attack once the tick reaches 0.
    */
@@ -38,7 +38,7 @@ public class StalkGoal extends Goal {
   private int failedPathFindingPenalty = 0;
   private final boolean canPenalize = false;
 
-  public StalkGoal(CreatureEntity creature, double speedIn, boolean useLongMemory) {
+  public StalkGoal(PathfinderMob creature, double speedIn, boolean useLongMemory) {
     this.attacker = creature;
     this.world = creature.level;
     this.speedTowardsTarget = speedIn;
@@ -97,7 +97,7 @@ public class StalkGoal extends Goal {
     } else if (!this.attacker.isWithinRestriction(entitylivingbase.blockPosition())) {
       return false;
     } else {
-      return !(entitylivingbase instanceof PlayerEntity) || !entitylivingbase.isSpectator() && !((PlayerEntity) entitylivingbase).isCreative();
+      return !(entitylivingbase instanceof Player) || !entitylivingbase.isSpectator() && !((Player) entitylivingbase).isCreative();
     }
   }
 
@@ -117,7 +117,7 @@ public class StalkGoal extends Goal {
   public void stop() {
     LivingEntity entitylivingbase = this.attacker.getTarget();
 
-    if (entitylivingbase instanceof PlayerEntity && (entitylivingbase.isSpectator() || ((PlayerEntity) entitylivingbase).isCreative())) {
+    if (entitylivingbase instanceof Player && (entitylivingbase.isSpectator() || ((Player) entitylivingbase).isCreative())) {
       this.attacker.setTarget(null);
     }
 
@@ -146,7 +146,7 @@ public class StalkGoal extends Goal {
       if (this.canPenalize) {
         this.delayCounter += failedPathFindingPenalty;
         if (this.attacker.getNavigation().getPath() != null) {
-          net.minecraft.pathfinding.PathPoint finalPathPoint = this.attacker.getNavigation().getPath().getEndNode();
+          net.minecraft.world.level.pathfinder.Node finalPathPoint = this.attacker.getNavigation().getPath().getEndNode();
           if (finalPathPoint != null && entitylivingbase.distanceToSqr(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z) < 1)
             failedPathFindingPenalty = 0;
           else

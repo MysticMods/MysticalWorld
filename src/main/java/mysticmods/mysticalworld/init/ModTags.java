@@ -3,13 +3,13 @@ package mysticmods.mysticalworld.init;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import mysticmods.mysticalworld.MWTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Supplier;
@@ -57,12 +57,12 @@ public class ModTags {
       this.provider = provider;
     }
 
-    private void add(Tags.IOptionalNamedTag<Item> tag, Supplier<? extends IItemProvider>... items) {
-      provider.tag(tag).add(Stream.of(items).map(Supplier::get).map(IItemProvider::asItem).toArray(Item[]::new));
+    private void add(Tags.IOptionalNamedTag<Item> tag, Supplier<? extends ItemLike>... items) {
+      provider.tag(tag).add(Stream.of(items).map(Supplier::get).map(ItemLike::asItem).toArray(Item[]::new));
     }
 
-    private void add(Tags.IOptionalNamedTag<Item> tag, IItemProvider... items) {
-      provider.tag(tag).add(Stream.of(items).map(IItemProvider::asItem).toArray(Item[]::new));
+    private void add(Tags.IOptionalNamedTag<Item> tag, ItemLike... items) {
+      provider.tag(tag).add(Stream.of(items).map(ItemLike::asItem).toArray(Item[]::new));
     }
 
     private void add(Tags.IOptionalNamedTag<Item> tag, Tags.IOptionalNamedTag<Item> tag2) {

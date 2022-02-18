@@ -11,8 +11,8 @@ import mysticmods.mysticalworld.init.*;
 import mysticmods.mysticalworld.integration.dynamictrees.DynamicTrees;
 import mysticmods.mysticalworld.setup.ClientInit;
 import mysticmods.mysticalworld.setup.CommonSetup;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.PlantType;
@@ -45,7 +45,7 @@ public class MysticalWorld {
   public static CustomRegistrate REGISTRATE;
   public static RecipeGenerator RECIPES = new RecipeGenerator(MODID);
 
-  public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalworld") {
+  public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab("mysticalworld") {
     @Override
     public ItemStack makeIcon() {
       return new ItemStack(ModBlocks.SAPPHIRE_BLOCK.get());

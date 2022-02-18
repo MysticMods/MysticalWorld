@@ -1,10 +1,10 @@
 package mysticmods.mysticalworld.events;
 
 import mysticmods.mysticalworld.init.ModModifiers;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
@@ -15,19 +15,19 @@ public class DamageHandler {
     if (target.isInvertedHealAndHarm()) {
       if (source != null) {
         Entity trueAttacker = source.getEntity();
-        if (trueAttacker instanceof PlayerEntity) {
-          PlayerEntity player = (PlayerEntity) trueAttacker;
+        if (trueAttacker instanceof Player) {
+          Player player = (Player) trueAttacker;
           float smiteAmount = (float) player.getAttributeValue(ModModifiers.SMITE.get());
           event.setAmount(event.getAmount() + smiteAmount);
         }
       }
     }
-    if (target instanceof PlayerEntity && !(target instanceof FakePlayer)) {
+    if (target instanceof Player && !(target instanceof FakePlayer)) {
       if (source != null) {
         Entity trueAttacker = source.getEntity();
         if (trueAttacker instanceof LivingEntity) {
           if (((LivingEntity) trueAttacker).isInvertedHealAndHarm()) {
-            PlayerEntity player = (PlayerEntity) target;
+            Player player = (Player) target;
             float blessedAmount = (float) player.getAttributeValue(ModModifiers.BLESSED.get());
             if (blessedAmount > 0) {
               trueAttacker.hurt(DamageSource.ON_FIRE, blessedAmount);

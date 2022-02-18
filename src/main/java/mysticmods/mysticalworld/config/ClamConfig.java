@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.config;
 
-import net.minecraft.entity.EntityClassification;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -23,8 +23,8 @@ public class ClamConfig extends MobConfig {
   }
 
   @Override
-  public EntityClassification getClassification() {
-    return EntityClassification.WATER_CREATURE;
+  public MobCategory getClassification() {
+    return MobCategory.WATER_CREATURE;
   }
 
   public int getEnderChance() {

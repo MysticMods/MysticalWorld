@@ -3,7 +3,7 @@ package mysticmods.mysticalworld.client.model;
 import mysticmods.mysticalworld.client.model.armor.AntlerHatModel;
 import mysticmods.mysticalworld.client.model.armor.BeetleArmorModel;
 import mysticmods.mysticalworld.entity.EnderminiEntity;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 
 public class ModelHolder {
   public static FoxModel foxModel;
@@ -42,13 +42,13 @@ public class ModelHolder {
     duckModel = new DuckModel();
     clamModel = new ClamModel();
 
-    beetleHelmet = new BeetleArmorModel(EquipmentSlotType.HEAD);
-    beetleChestplate = new BeetleArmorModel(EquipmentSlotType.CHEST);
-    beetleLeggings = new BeetleArmorModel(EquipmentSlotType.LEGS);
-    beetleBoots = new BeetleArmorModel(EquipmentSlotType.FEET);
+    beetleHelmet = new BeetleArmorModel(EquipmentSlot.HEAD);
+    beetleChestplate = new BeetleArmorModel(EquipmentSlot.CHEST);
+    beetleLeggings = new BeetleArmorModel(EquipmentSlot.LEGS);
+    beetleBoots = new BeetleArmorModel(EquipmentSlot.FEET);
   }
 
-  public static BeetleArmorModel modelForSlot (EquipmentSlotType slot) {
+  public static BeetleArmorModel modelForSlot (EquipmentSlot slot) {
     switch (slot) {
       case HEAD:
         return beetleHelmet;

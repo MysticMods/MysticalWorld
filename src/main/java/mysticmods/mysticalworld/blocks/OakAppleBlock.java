@@ -1,25 +1,25 @@
 package mysticmods.mysticalworld.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 import noobanidus.libs.noobutil.util.VoxelUtil;
 
@@ -28,7 +28,7 @@ import java.util.Random;
 
 public class OakAppleBlock extends BaseBlocks.CropsBlock {
   public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
-  public static final DirectionProperty FACING = HorizontalBlock.FACING;
+  public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
   private static final VoxelShape[] south_shapes = new VoxelShape[]{
       Block.box(7, 7, 15, 9, 9, 16),
@@ -74,7 +74,7 @@ public class OakAppleBlock extends BaseBlocks.CropsBlock {
   }
 
   @Override
-  public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+  public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
     if (worldIn.isClientSide) {
       return;
     }
@@ -91,7 +91,7 @@ public class OakAppleBlock extends BaseBlocks.CropsBlock {
     }
   }
 
-  public boolean canBlockStay(World worldIn, BlockPos pos, BlockState state) {
+  public boolean canBlockStay(Level worldIn, BlockPos pos, BlockState state) {
     pos = pos.relative(state.getValue(FACING));
     BlockState iblockstate = worldIn.getBlockState(pos);
     Block block = iblockstate.getBlock();
@@ -99,7 +99,7 @@ public class OakAppleBlock extends BaseBlocks.CropsBlock {
   }
 
   @Override
-  public VoxelShape getShape(BlockState state, IBlockReader source, BlockPos pos, ISelectionContext context) {
+  public VoxelShape getShape(BlockState state, BlockGetter source, BlockPos pos, CollisionContext context) {
     int i = state.getValue(AGE);
 
     switch (state.getValue(FACING)) {
@@ -126,12 +126,12 @@ public class OakAppleBlock extends BaseBlocks.CropsBlock {
   }
 
   @Override
-  protected boolean mayPlaceOn(BlockState pState, IBlockReader pLevel, BlockPos pPos) {
+  protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
     return true;
   }
 
   @Override
-  public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+  public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
     if (!this.canBlockStay(worldIn, pos, state)) {
       if (!worldIn.isClientSide) {
         worldIn.destroyBlock(pos, true);
@@ -140,34 +140,34 @@ public class OakAppleBlock extends BaseBlocks.CropsBlock {
   }
 
   @Override
-  public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+  public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
     return state.getValue(AGE) < 3;
   }
 
   @Override
-  public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state) {
+  public boolean isBonemealSuccess(Level worldIn, Random rand, BlockPos pos, BlockState state) {
     return false;
   }
 
   @Override
-  public void growCrops(World worldIn, BlockPos pos, BlockState state) {
+  public void growCrops(Level worldIn, BlockPos pos, BlockState state) {
     worldIn.setBlock(pos, state.setValue(AGE, state.getValue(AGE) + 1), 3);
   }
 
   @Override
-  protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+  protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
     builder.add(FACING, AGE);
   }
 
   @Override
-  public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+  public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
     Direction enumfacing = Direction.fromYRot((double) placer.yRot);
     worldIn.setBlock(pos, state.setValue(FACING, enumfacing), 2);
   }
 
   @Nullable
   @Override
-  public BlockState getStateForPlacement(BlockItemUseContext context) {
+  public BlockState getStateForPlacement(BlockPlaceContext context) {
     Direction facing = context.getClickedFace();
     if (!facing.getAxis().isHorizontal()) {
       facing = Direction.NORTH;

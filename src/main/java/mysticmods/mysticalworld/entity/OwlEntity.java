@@ -3,33 +3,55 @@ package mysticmods.mysticalworld.entity;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.FlyingMovementController;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.IFlyingAnimal;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.pathfinding.FlyingPathNavigator;
-import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.FlyingAnimal;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class OwlEntity extends TameableEntity implements IFlyingAnimal {
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class OwlEntity extends TamableAnimal implements FlyingAnimal {
   public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/owl");
 
   public float flap;
@@ -38,27 +60,27 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
   public float oFlap;
   public float flapping = 1.0F;
 
-  public OwlEntity(EntityType<? extends TameableEntity> type, World worldIn) {
+  public OwlEntity(EntityType<? extends TamableAnimal> type, Level worldIn) {
     super(type, worldIn);
-    this.moveControl = new FlyingMovementController(this, 15, false);
+    this.moveControl = new FlyingMoveControl(this, 15, false);
   }
 
   @Override
   protected void registerGoals() {
     goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
-    goalSelector.addGoal(0, new SwimGoal(this));
-    goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+    goalSelector.addGoal(0, new FloatGoal(this));
+    goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
     goalSelector.addGoal(2, new WaterAvoidingRandomFlyingGoal(this, 1D));
   }
 
-  public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0d).add(Attributes.MOVEMENT_SPEED, 0.2d).add(Attributes.FLYING_SPEED, 0.55d);
+  public static AttributeSupplier.Builder attributes() {
+    return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0d).add(Attributes.MOVEMENT_SPEED, 0.2d).add(Attributes.FLYING_SPEED, 0.55d);
   }
 
   @Override
-  protected PathNavigator createNavigation(World worldIn) {
-    FlyingPathNavigator pathnavigateflying = new FlyingPathNavigator(this, worldIn);
+  protected PathNavigation createNavigation(Level worldIn) {
+    FlyingPathNavigation pathnavigateflying = new FlyingPathNavigation(this, worldIn);
     pathnavigateflying.setCanOpenDoors(false);
     //pathnavigateflying.setCanFloat(true);
     pathnavigateflying.setCanPassDoors(true);
@@ -80,7 +102,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
     this.oFlap = this.flap;
     this.oFlapSpeed = this.flapSpeed;
     this.flapSpeed = (float) ((double) this.flapSpeed + (double) (this.onGround ? -1 : 4) * 0.3D);
-    this.flapSpeed = MathHelper.clamp(this.flapSpeed, 0.0F, 1.0F);
+    this.flapSpeed = Mth.clamp(this.flapSpeed, 0.0F, 1.0F);
 
     if (!this.onGround && this.flapping < 1.0F) {
       this.flapping = 1.0F;
@@ -88,7 +110,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
 
     this.flapping = (float) ((double) this.flapping * 0.9D);
 
-    Vector3d motion = this.getDeltaMovement();
+    Vec3 motion = this.getDeltaMovement();
 
     if (!this.onGround && motion.y < 0.0D) {
       this.setDeltaMovement(motion.x, motion.y * 0.6D, motion.z);
@@ -106,10 +128,10 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
     return stack.getItem() == Items.RABBIT;
   }
 
-  public static boolean placement(EntityType<? extends AnimalEntity> pAnimal, IWorld worldIn, SpawnReason reason, BlockPos blockpos, Random pRandom) {
+  public static boolean placement(EntityType<? extends Animal> pAnimal, LevelAccessor worldIn, MobSpawnType reason, BlockPos blockpos, Random pRandom) {
     BlockState down = worldIn.getBlockState(blockpos.below());
     Block block = down.getBlock();
-    return block instanceof LeavesBlock || block == net.minecraft.block.Blocks.GRASS || (block instanceof RotatedPillarBlock && down.getMaterial() == Material.WOOD) || block == Blocks.AIR && worldIn.getMaxLocalRawBrightness(blockpos) > 8;
+    return block instanceof LeavesBlock || block == net.minecraft.world.level.block.Blocks.GRASS || (block instanceof RotatedPillarBlock && down.getMaterial() == Material.WOOD) || block == Blocks.AIR && worldIn.getMaxLocalRawBrightness(blockpos) > 8;
   }
 
   // TODO: Fix fall damage
@@ -123,7 +145,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
 
   @Override
   @Nonnull
-  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
     return ModEntities.OWL.get().create(ageable.level);
   }
 
@@ -177,8 +199,8 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
   }
 
   @Override
-  public SoundCategory getSoundSource() {
-    return SoundCategory.NEUTRAL;
+  public SoundSource getSoundSource() {
+    return SoundSource.NEUTRAL;
   }
 
   /**
@@ -191,7 +213,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal {
 
   @Override
   protected void doPush(Entity entityIn) {
-    if (!(entityIn instanceof PlayerEntity)) {
+    if (!(entityIn instanceof Player)) {
       super.doPush(entityIn);
     }
   }

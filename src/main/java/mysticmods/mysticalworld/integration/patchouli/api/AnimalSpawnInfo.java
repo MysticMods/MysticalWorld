@@ -2,7 +2,7 @@ package mysticmods.mysticalworld.integration.patchouli.api;
 
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.config.MobConfig;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.BiomeDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 import vazkii.patchouli.api.IComponentProcessor;

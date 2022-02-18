@@ -5,15 +5,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import mysticmods.mysticalworld.entity.DeerEntity;
 import mysticmods.mysticalworld.init.ModLoot;
-import net.minecraft.entity.Entity;
-import net.minecraft.loot.ILootSerializer;
-import net.minecraft.loot.LootConditionType;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.JSONUtils;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.storage.loot.Serializer;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.util.GsonHelper;
 
-public class HasHorns implements ILootCondition {
+public class HasHorns implements LootItemCondition {
   private final boolean inverse;
 
   public HasHorns(boolean inverseIn) {
@@ -23,7 +23,7 @@ public class HasHorns implements ILootCondition {
   @Override
   public boolean test(LootContext lootContext) {
     boolean flag;
-    Entity looted = lootContext.getParamOrNull(LootParameters.THIS_ENTITY);
+    Entity looted = lootContext.getParamOrNull(LootContextParams.THIS_ENTITY);
     if (looted instanceof DeerEntity) {
       DeerEntity deer = (DeerEntity) looted;
       flag = deer.getEntityData().get(DeerEntity.hasHorns);
@@ -34,11 +34,11 @@ public class HasHorns implements ILootCondition {
   }
 
   @Override
-  public LootConditionType getType() {
+  public LootItemConditionType getType() {
     return ModLoot.HAS_HORNS;
   }
 
-  public static class Serializer implements ILootSerializer<HasHorns> {
+  public static class Serializer implements Serializer<HasHorns> {
     @Override
     public void serialize(JsonObject json, HasHorns value, JsonSerializationContext context) {
 
@@ -47,13 +47,13 @@ public class HasHorns implements ILootCondition {
 
     @Override
     public HasHorns deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new HasHorns(JSONUtils.getAsBoolean(json, "inverse", false));
+      return new HasHorns(GsonHelper.getAsBoolean(json, "inverse", false));
     }
   }
 
   private static final HasHorns INSTANCE = new HasHorns(false);
 
-  public static ILootCondition.IBuilder builder() {
+  public static LootItemCondition.Builder builder() {
     return () -> INSTANCE;
   }
 }

@@ -2,15 +2,15 @@ package mysticmods.mysticalworld.recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapelessRecipe;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class ShapelessDamageRecipe extends ShapelessRecipe implements IDamageRecipe {
@@ -26,7 +26,7 @@ public class ShapelessDamageRecipe extends ShapelessRecipe implements IDamageRec
   }
 
   @Override
-  public NonNullList<ItemStack> getRemainingItems(CraftingInventory inv) {
+  public NonNullList<ItemStack> getRemainingItems(CraftingContainer inv) {
     return getRemainingItems(inv, damageIngredient, damageAmount);
   }
 
@@ -34,13 +34,13 @@ public class ShapelessDamageRecipe extends ShapelessRecipe implements IDamageRec
     return new ShapelessDamageRecipe(recipe.getId(), recipe.getGroup(), recipe.getResultItem(), recipe.getIngredients(), damageItem, damageAmount);
   }
 
-  public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ShapelessDamageRecipe> {
+  public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ShapelessDamageRecipe> {
 
     @Override
     public ShapelessDamageRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-      ShapelessRecipe result = IRecipeSerializer.SHAPELESS_RECIPE.fromJson(recipeId, json);
+      ShapelessRecipe result = RecipeSerializer.SHAPELESS_RECIPE.fromJson(recipeId, json);
       Ingredient damageItem = Ingredient.fromJson(json.get(TAG));
-      int damageAmount = JSONUtils.getAsInt(json, DAMAGE, -1);
+      int damageAmount = GsonHelper.getAsInt(json, DAMAGE, -1);
       if (damageAmount == -1) {
         throw new JsonSyntaxException("Invalid damage_amount for ShapelessDamageRecipe.");
       }
@@ -48,16 +48,16 @@ public class ShapelessDamageRecipe extends ShapelessRecipe implements IDamageRec
     }
 
     @Override
-    public ShapelessDamageRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
-      ShapelessRecipe result = IRecipeSerializer.SHAPELESS_RECIPE.fromNetwork(recipeId, buffer);
+    public ShapelessDamageRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+      ShapelessRecipe result = RecipeSerializer.SHAPELESS_RECIPE.fromNetwork(recipeId, buffer);
       Ingredient damageItem = Ingredient.fromNetwork(buffer);
       int damageAmount = buffer.readInt();
       return ShapelessDamageRecipe.create(result, damageItem, damageAmount);
     }
 
     @Override
-    public void toNetwork(PacketBuffer buffer, ShapelessDamageRecipe recipe) {
-      IRecipeSerializer.SHAPELESS_RECIPE.toNetwork(buffer, recipe);
+    public void toNetwork(FriendlyByteBuf buffer, ShapelessDamageRecipe recipe) {
+      RecipeSerializer.SHAPELESS_RECIPE.toNetwork(buffer, recipe);
       recipe.damageItem.toNetwork(buffer);
       buffer.writeInt(recipe.damageAmount);
     }

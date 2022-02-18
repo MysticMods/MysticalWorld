@@ -5,44 +5,63 @@ import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.events.LeafHandler;
 import mysticmods.mysticalworld.init.ModItems;
 import mysticmods.mysticalworld.init.ModSounds;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import javax.annotation.Nonnull;
 
-public class SilkwormEntity extends AnimalEntity {
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+
+public class SilkwormEntity extends Animal {
   public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/silkworm");
 
-  private static final DataParameter<Integer> SIZE = EntityDataManager.defineId(SilkwormEntity.class, DataSerializers.INT);
-  private static final DataParameter<Integer> LEAVES_CONSUMED = EntityDataManager.defineId(SilkwormEntity.class, DataSerializers.INT);
+  private static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(SilkwormEntity.class, EntityDataSerializers.INT);
+  private static final EntityDataAccessor<Integer> LEAVES_CONSUMED = SynchedEntityData.defineId(SilkwormEntity.class, EntityDataSerializers.INT);
   private static final int MAX_SIZE = 120;
 
   private ItemEntity leafTarget;
   private int lastTickPlayed = 0;
 
-  public SilkwormEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
+  public SilkwormEntity(EntityType<? extends Animal> type, Level worldIn) {
     super(type, worldIn);
     this.xpReward = 1;
   }
@@ -57,17 +76,17 @@ public class SilkwormEntity extends AnimalEntity {
 
   @Override
   @Nonnull
-  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
     return null;
   }
 
   @Override
   protected void registerGoals() {
-    goalSelector.addGoal(1, new SwimGoal(this));
+    goalSelector.addGoal(1, new FloatGoal(this));
     goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.5d, false));
-    goalSelector.addGoal(3, new RandomWalkingGoal(this, 0.5d));
+    goalSelector.addGoal(3, new RandomStrollGoal(this, 0.5d));
     goalSelector.addGoal(3, new TemptGoal(this, 0.9d, false, Ingredient.of(LeafHandler.getLeafItems().toArray(new Item[0]))));
-    goalSelector.addGoal(8, new LookRandomlyGoal(this));
+    goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, SilkwormEntity.class, false));
   }
 
@@ -101,7 +120,7 @@ public class SilkwormEntity extends AnimalEntity {
     }
     this.heal(1f);
     if (shouldPlaySound()) {
-      level.playSound(null, getX(), getY(), getZ(), ModSounds.SILKWORM_EAT.get(), SoundCategory.NEUTRAL, 0.5f, 1.2f + random.nextFloat() * 0.02f);
+      level.playSound(null, getX(), getY(), getZ(), ModSounds.SILKWORM_EAT.get(), SoundSource.NEUTRAL, 0.5f, 1.2f + random.nextFloat() * 0.02f);
       lastTickPlayed = tickCount;
     }
   }
@@ -125,7 +144,7 @@ public class SilkwormEntity extends AnimalEntity {
   }
 
   @Override
-  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+  public InteractionResult mobInteract(Player player, InteractionHand hand) {
     if (!player.level.isClientSide) {
       ItemStack itemstack = player.getItemInHand(hand);
 
@@ -135,7 +154,7 @@ public class SilkwormEntity extends AnimalEntity {
         }
         eatLeaves();
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
       }
     }
 
@@ -147,8 +166,8 @@ public class SilkwormEntity extends AnimalEntity {
     return 0.1F;
   }
 
-  public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0d).add(Attributes.MOVEMENT_SPEED, 0.15d);
+  public static AttributeSupplier.Builder attributes() {
+    return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0d).add(Attributes.MOVEMENT_SPEED, 0.15d);
   }
 
   // TODO: prevent crop trampling
@@ -193,14 +212,14 @@ public class SilkwormEntity extends AnimalEntity {
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundNBT compound) {
+  public void readAdditionalSaveData(CompoundTag compound) {
     super.readAdditionalSaveData(compound);
     setSize(compound.getInt("Size"));
     setLeavesConsumed(compound.getInt("Leaves"));
   }
 
   @Override
-  public void addAdditionalSaveData(CompoundNBT compound) {
+  public void addAdditionalSaveData(CompoundTag compound) {
     super.addAdditionalSaveData(compound);
     compound.putInt("Size", getSize());
     compound.putInt("Leaves", getLeavesConsumed());
@@ -214,17 +233,17 @@ public class SilkwormEntity extends AnimalEntity {
     damageMultiplier = ret[1];
     // This just handles riding entities
     // super.fall(distance, damageMultiplier);
-    EffectInstance potioneffect = this.getEffect(Effects.JUMP);
+    MobEffectInstance potioneffect = this.getEffect(MobEffects.JUMP);
     float f = potioneffect == null ? 0.0F : (float) (potioneffect.getAmplifier() + 1);
-    int i = MathHelper.ceil((distance - 3.0F - f) * damageMultiplier);
+    int i = Mth.ceil((distance - 3.0F - f) * damageMultiplier);
 
     if (i > 0) {
       this.playSound(this.getFallDamageSound(i), 1.0F, 1.0F);
       // They take no fall damage
       // this.attackEntityFrom(DamageSource.FALL, (float) i);
-      int j = MathHelper.floor(this.getX());
-      int k = MathHelper.floor(this.getY() - 0.2);
-      int l = MathHelper.floor(this.getZ());
+      int j = Mth.floor(this.getX());
+      int k = Mth.floor(this.getY() - 0.2);
+      int l = Mth.floor(this.getZ());
       BlockState iblockstate = this.level.getBlockState(new BlockPos(j, k, l));
 
       if (iblockstate.getMaterial() != Material.AIR) {
@@ -255,7 +274,7 @@ public class SilkwormEntity extends AnimalEntity {
         int quantity = Math.max(1, Math.min(5, (random.nextInt(Math.max(getLeavesConsumed() % 8, 1)))));
         this.spawnAtLocation(ModItems.SILK_COCOON.get(), quantity);
         this.resetLeaves();
-        level.playSound(null, getX(), getY(), getZ(), ModSounds.SILKWORM_PLOP.get(), SoundCategory.NEUTRAL, 0.5f, 1.2f + random.nextFloat() - 0.5f);
+        level.playSound(null, getX(), getY(), getZ(), ModSounds.SILKWORM_PLOP.get(), SoundSource.NEUTRAL, 0.5f, 1.2f + random.nextFloat() - 0.5f);
       }
     } else {
       incSize();
@@ -280,8 +299,8 @@ public class SilkwormEntity extends AnimalEntity {
   }
 
   @Override
-  public CreatureAttribute getMobType() {
-    return CreatureAttribute.ARTHROPOD;
+  public MobType getMobType() {
+    return MobType.ARTHROPOD;
   }
 }
 

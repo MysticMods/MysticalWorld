@@ -1,16 +1,16 @@
 package mysticmods.mysticalworld.items;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.*;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.patchouli.common.base.PatchouliSounds;
@@ -20,6 +20,12 @@ import vazkii.patchouli.common.network.NetworkHandler;
 import vazkii.patchouli.common.network.message.MessageOpenBookGui;
 
 import java.util.List;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 
 @SuppressWarnings("NullableProblems")
 public class GuideItem extends Item {
@@ -34,35 +40,35 @@ public class GuideItem extends Item {
   }
 
   @Override
-  public ITextComponent getName(ItemStack stack) {
+  public Component getName(ItemStack stack) {
     Book book = getBook();
-    return (book != null ? new TranslationTextComponent(book.name) : super.getName(stack));
+    return (book != null ? new TranslatableComponent(book.name) : super.getName(stack));
   }
 
   @Override
   @OnlyIn(Dist.CLIENT)
-  public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+  public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
     super.appendHoverText(stack, worldIn, tooltip, flagIn);
     Book book = getBook();
     if (book != null && book.contents != null) {
-      tooltip.add(book.getSubtitle().withStyle(TextFormatting.GRAY));
+      tooltip.add(book.getSubtitle().withStyle(ChatFormatting.GRAY));
     }
   }
 
   @Override
-  public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+  public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
     ItemStack stack = playerIn.getItemInHand(handIn);
     Book book = getBook();
     if (book == null) {
-      return ActionResult.fail(stack);
+      return InteractionResultHolder.fail(stack);
     } else {
-      if (playerIn instanceof ServerPlayerEntity) {
-        NetworkHandler.sendToPlayer(new MessageOpenBookGui(book.id, null), (ServerPlayerEntity) playerIn);
+      if (playerIn instanceof ServerPlayer) {
+        NetworkHandler.sendToPlayer(new MessageOpenBookGui(book.id, null), (ServerPlayer) playerIn);
         SoundEvent sfx = PatchouliSounds.getSound(book.openSound, PatchouliSounds.book_open);
-        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), sfx, SoundCategory.PLAYERS, 1.0F, (float) (0.7D + Math.random() * 0.4D));
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), sfx, SoundSource.PLAYERS, 1.0F, (float) (0.7D + Math.random() * 0.4D));
       }
 
-      return ActionResult.success(stack);
+      return InteractionResultHolder.success(stack);
     }
   }
 }

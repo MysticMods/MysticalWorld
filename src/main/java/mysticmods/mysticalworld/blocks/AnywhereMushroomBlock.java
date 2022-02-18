@@ -2,19 +2,19 @@ package mysticmods.mysticalworld.blocks;
 
 import mysticmods.mysticalworld.init.ConfiguredFeatures;
 import mysticmods.mysticalworld.init.ModBlocks;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.MushroomBlock;
+import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Features;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.data.worldgen.Features;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class AnywhereMushroomBlock extends MushroomBlock {
   public AnywhereMushroomBlock(Properties properties) {
@@ -22,18 +22,18 @@ public class AnywhereMushroomBlock extends MushroomBlock {
   }
 
   @Override
-  public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+  public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
     BlockPos blockpos = pos.below();
     BlockState blockstate = worldIn.getBlockState(blockpos);
     if (blockstate.is(BlockTags.MUSHROOM_GROW_BLOCK)) {
       return true;
     } else {
-      return blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.util.Direction.UP, this);
+      return blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.core.Direction.UP, this);
     }
   }
 
   @Override
-  public boolean growMushroom(ServerWorld world, BlockPos pos, BlockState state, Random rand) {
+  public boolean growMushroom(ServerLevel world, BlockPos pos, BlockState state, Random rand) {
     world.removeBlock(pos, false);
     ConfiguredFeature<?, ?> configuredfeature;
     if (this == ModBlocks.UNCANNY_MUSHROOM.get()) {

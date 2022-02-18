@@ -4,38 +4,38 @@ import com.google.common.collect.Sets;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.entity.ai.StalkGoal;
 import mysticmods.mysticalworld.init.ModSounds;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.EndermiteEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.potion.Effect;
+import net.minecraft.world.entity.monster.Endermite;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.IndirectEntityDamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
@@ -46,40 +46,62 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 // Base heavily on vanilla Enderman
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.InteractGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+
 @SuppressWarnings({"deprecation", "Duplicates", "NullableProblems"})
-public class EnderminiEntity extends CreatureEntity {
+public class EnderminiEntity extends PathfinderMob {
   public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/endermini");
   private static final Set<Block> CARRIABLE_BLOCKS = Sets.newIdentityHashSet();
-  private static final DataParameter<java.util.Optional<BlockState>> CARRIED_BLOCK = EntityDataManager.defineId(EnderminiEntity.class, DataSerializers.BLOCK_STATE);
-  private static final DataParameter<Boolean> SCREAMING = EntityDataManager.defineId(EnderminiEntity.class, DataSerializers.BOOLEAN);
+  private static final EntityDataAccessor<java.util.Optional<BlockState>> CARRIED_BLOCK = SynchedEntityData.defineId(EnderminiEntity.class, EntityDataSerializers.BLOCK_STATE);
+  private static final EntityDataAccessor<Boolean> SCREAMING = SynchedEntityData.defineId(EnderminiEntity.class, EntityDataSerializers.BOOLEAN);
   private int lastCreepySound;
   private int targetChangeTime;
-  private static final Predicate<LivingEntity> endermitePredicate = (entity) -> entity instanceof EndermiteEntity && ((EndermiteEntity) entity).isPlayerSpawned();
+  private static final Predicate<LivingEntity> endermitePredicate = (entity) -> entity instanceof Endermite && ((Endermite) entity).isPlayerSpawned();
 
-  public EnderminiEntity(EntityType<? extends EnderminiEntity> type, World worldIn) {
+  public EnderminiEntity(EntityType<? extends EnderminiEntity> type, Level worldIn) {
     super(type, worldIn);
     this.maxUpStep = 1.0F;
-    this.setPathfindingMalus(PathNodeType.WATER, -1.0F);
+    this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
   }
 
   @Override
   protected void registerGoals() {
-    goalSelector.addGoal(0, new SwimGoal(this));
+    goalSelector.addGoal(0, new FloatGoal(this));
     goalSelector.addGoal(1, new EnderminiEntity.StareGoal(this));
     goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
     goalSelector.addGoal(2, new StalkGoal(this, 2.0D, false));
-    goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D, 0.0F));
-    goalSelector.addGoal(8, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 32.0F, 1.0f));
-    goalSelector.addGoal(8, new LookRandomlyGoal(this));
+    goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));
+    goalSelector.addGoal(8, new InteractGoal(this, Player.class, 32.0F, 1.0f));
+    goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     goalSelector.addGoal(10, new PlaceBlockGoal(this));
     goalSelector.addGoal(11, new EnderminiEntity.TakeBlockGoal(this));
     targetSelector.addGoal(1, new FindPlayerGoal(this));
-    targetSelector.addGoal(2, new HurtByTargetGoal(this, PlayerEntity.class));
-    targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EndermiteEntity.class, 10, true, false, endermitePredicate));
+    targetSelector.addGoal(2, new HurtByTargetGoal(this, Player.class));
+    targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Endermite.class, 10, true, false, endermitePredicate));
   }
 
-  public static AttributeModifierMap.MutableAttribute attributes() {
-    return MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.35).add(Attributes.ATTACK_DAMAGE, 0.5D).add(Attributes.FOLLOW_RANGE, 64.0D);
+  public static AttributeSupplier.Builder attributes() {
+    return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.35).add(Attributes.ATTACK_DAMAGE, 0.5D).add(Attributes.FOLLOW_RANGE, 64.0D);
   }
 
   @Override
@@ -112,7 +134,7 @@ public class EnderminiEntity extends CreatureEntity {
   }
 
   @Override
-  public void onSyncedDataUpdated(DataParameter<?> key) {
+  public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
     if (SCREAMING.equals(key) && this.isScreaming() && this.level.isClientSide) {
       this.playEnderminiSound();
     }
@@ -121,7 +143,7 @@ public class EnderminiEntity extends CreatureEntity {
   }
 
   @Override
-  public void addAdditionalSaveData(CompoundNBT compound) {
+  public void addAdditionalSaveData(CompoundTag compound) {
     super.addAdditionalSaveData(compound);
     BlockState iblockstate = getHeldBlockState();
 
@@ -131,7 +153,7 @@ public class EnderminiEntity extends CreatureEntity {
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundNBT compound) {
+  public void readAdditionalSaveData(CompoundTag compound) {
     super.readAdditionalSaveData(compound);
     BlockState iblockstate = null;
 
@@ -187,7 +209,7 @@ public class EnderminiEntity extends CreatureEntity {
   }
 
   protected boolean teleportToEntity(Entity p_70816_1_) {
-    Vector3d vec3d = new Vector3d(this.getX() - p_70816_1_.getX(),
+    Vec3 vec3d = new Vec3(this.getX() - p_70816_1_.getX(),
         this.getBoundingBox().minY + (double) (this.getBbHeight() / 2.0F) - p_70816_1_.getY() + (double) p_70816_1_.getEyeHeight(), this.getZ() - p_70816_1_.getZ());
     vec3d = vec3d.normalize();
     double d1 = this.getX() + (this.random.nextDouble() - 0.5D) * 8.0D - vec3d.x * 16.0D;
@@ -300,14 +322,14 @@ public class EnderminiEntity extends CreatureEntity {
     return this.entityData.get(SCREAMING);
   }
 
-  private boolean shouldFollowPlayer(PlayerEntity player) {
+  private boolean shouldFollowPlayer(Player player) {
     ItemStack itemstack = player.inventory.armor.get(3);
 
     if (itemstack.getItem() == Items.PUMPKIN) {
       return false;
     } else {
-      Vector3d vec3d = player.getViewVector(1.0F).normalize();
-      Vector3d vec3d1 = new Vector3d(this.getX() - player.getX(),
+      Vec3 vec3d = player.getViewVector(1.0F).normalize();
+      Vec3 vec3d1 = new Vec3(this.getX() - player.getX(),
           this.getBoundingBox().minY + (double) this.getEyeHeight() - (player.getY() + (double) player.getEyeHeight()), this.getZ() - player.getZ());
       double d0 = vec3d1.length();
       vec3d1 = vec3d1.normalize();
@@ -317,14 +339,14 @@ public class EnderminiEntity extends CreatureEntity {
   }
 
   private final static String BETTERENDFORGE = "betterendforge";
-  private static Effect END_VEIL_EFFECT = null;
+  private static MobEffect END_VEIL_EFFECT = null;
   private static Enchantment END_VEIL_ENCHANTMENT = null;
   private static int betterEnd = 0;
 
   /**
    * Checks to see if this enderman should be attacking this player
    */
-  private boolean shouldAttackPlayer(PlayerEntity player) {
+  private boolean shouldAttackPlayer(Player player) {
     if (betterEnd == 0) {
       if (END_VEIL_EFFECT == null) {
         END_VEIL_EFFECT = ForgeRegistries.POTIONS.getValue(new ResourceLocation(BETTERENDFORGE, "end_veil"));
@@ -347,8 +369,8 @@ public class EnderminiEntity extends CreatureEntity {
         return false;
       }
     }
-    Vector3d vec3d = player.getViewVector(1.0F).normalize();
-    Vector3d vec3d1 = new Vector3d(this.getX() - player.getX(), this.getBoundingBox().minY + (double) this.getEyeHeight() - (player.getY() + (double) player.getEyeHeight()), this.getZ() - player.getZ());
+    Vec3 vec3d = player.getViewVector(1.0F).normalize();
+    Vec3 vec3d1 = new Vec3(this.getX() - player.getX(), this.getBoundingBox().minY + (double) this.getEyeHeight() - (player.getY() + (double) player.getEyeHeight()), this.getZ() - player.getZ());
     double d0 = vec3d1.length();
     vec3d1 = vec3d1.normalize();
     double d1 = vec3d.dot(vec3d1);
@@ -377,23 +399,23 @@ public class EnderminiEntity extends CreatureEntity {
     CARRIABLE_BLOCKS.add(Blocks.NETHERRACK);
   }
 
-  public static boolean checkMonsterSpawnRules(EntityType<EnderminiEntity> pType, IServerWorld pLevel, SpawnReason
+  public static boolean checkMonsterSpawnRules(EntityType<EnderminiEntity> pType, ServerLevelAccessor pLevel, MobSpawnType
       pReason, BlockPos pPos, Random pRandom) {
     return checkMobSpawnRules(pType, pLevel, pReason, pPos, pRandom);
   }
 
-  static class FindPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
+  static class FindPlayerGoal extends NearestAttackableTargetGoal<Player> {
     private final EnderminiEntity enderman;
-    private PlayerEntity player;
+    private Player player;
     private int aggroTime;
     private int teleportTime;
-    private final EntityPredicate startAggroTargetConditions;
-    private final EntityPredicate continueAggroTargetConditions = (new EntityPredicate()).allowUnseeable();
+    private final TargetingConditions startAggroTargetConditions;
+    private final TargetingConditions continueAggroTargetConditions = (new TargetingConditions()).allowUnseeable();
 
     public FindPlayerGoal(EnderminiEntity p_i45842_1_) {
-      super(p_i45842_1_, PlayerEntity.class, false);
+      super(p_i45842_1_, Player.class, false);
       this.enderman = p_i45842_1_;
-      this.startAggroTargetConditions = (new EntityPredicate()).range(this.getFollowDistance()).selector((p_220790_1_) -> p_i45842_1_.shouldAttackPlayer((PlayerEntity) p_220790_1_));
+      this.startAggroTargetConditions = (new TargetingConditions()).range(this.getFollowDistance()).selector((p_220790_1_) -> p_i45842_1_.shouldAttackPlayer((Player) p_220790_1_));
     }
 
     /**
@@ -453,7 +475,7 @@ public class EnderminiEntity extends CreatureEntity {
         }
       } else {
         if (this.target != null && !this.enderman.isPassenger()) {
-          if (this.enderman.shouldAttackPlayer((PlayerEntity) this.target)) {
+          if (this.enderman.shouldAttackPlayer((Player) this.target)) {
             if (this.target.distanceToSqr(this.enderman) < 16.0D) {
               this.enderman.teleportRandomly();
             }
@@ -497,10 +519,10 @@ public class EnderminiEntity extends CreatureEntity {
     @Override
     public void tick() {
       Random random = this.enderman.getRandom();
-      World world = this.enderman.level;
-      int i = MathHelper.floor(this.enderman.getX() - 1.0D + random.nextDouble() * 2.0D);
-      int j = MathHelper.floor(this.enderman.getY() + random.nextDouble() * 2.0D);
-      int k = MathHelper.floor(this.enderman.getZ() - 1.0D + random.nextDouble() * 2.0D);
+      Level world = this.enderman.level;
+      int i = Mth.floor(this.enderman.getX() - 1.0D + random.nextDouble() * 2.0D);
+      int j = Mth.floor(this.enderman.getY() + random.nextDouble() * 2.0D);
+      int k = Mth.floor(this.enderman.getZ() - 1.0D + random.nextDouble() * 2.0D);
       BlockPos blockpos = new BlockPos(i, j, k);
       BlockState blockstate = world.getBlockState(blockpos);
       BlockPos blockpos1 = blockpos.below();
@@ -508,7 +530,7 @@ public class EnderminiEntity extends CreatureEntity {
       BlockState blockstate2 = this.enderman.getHeldBlockState();
       if (blockstate2 != null) {
         blockstate2 = Block.updateFromNeighbourShapes(blockstate2, this.enderman.level, blockpos);
-        if (this.canPlaceBlock(world, blockpos, blockstate2, blockstate, blockstate1, blockpos1) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(enderman, net.minecraftforge.common.util.BlockSnapshot.create(world.dimension(), world, blockpos1), net.minecraft.util.Direction.UP)) {
+        if (this.canPlaceBlock(world, blockpos, blockstate2, blockstate, blockstate1, blockpos1) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(enderman, net.minecraftforge.common.util.BlockSnapshot.create(world.dimension(), world, blockpos1), net.minecraft.core.Direction.UP)) {
           world.setBlock(blockpos, blockstate2, 3);
           this.enderman.setCarriedBlock(null);
         }
@@ -516,8 +538,8 @@ public class EnderminiEntity extends CreatureEntity {
       }
     }
 
-    private boolean canPlaceBlock(World p_220836_1_, BlockPos p_220836_2_, BlockState p_220836_3_, BlockState p_220836_4_, BlockState p_220836_5_, BlockPos p_220836_6_) {
-      return p_220836_4_.isAir(p_220836_1_, p_220836_2_) && !p_220836_5_.isAir(p_220836_1_, p_220836_6_) && !p_220836_5_.is(Blocks.BEDROCK) && p_220836_5_.isCollisionShapeFullBlock(p_220836_1_, p_220836_6_) && p_220836_3_.canSurvive(p_220836_1_, p_220836_2_) && p_220836_1_.getEntities(this.enderman, AxisAlignedBB.unitCubeFromLowerCorner(Vector3d.atLowerCornerOf(p_220836_2_))).isEmpty();
+    private boolean canPlaceBlock(Level p_220836_1_, BlockPos p_220836_2_, BlockState p_220836_3_, BlockState p_220836_4_, BlockState p_220836_5_, BlockPos p_220836_6_) {
+      return p_220836_4_.isAir(p_220836_1_, p_220836_2_) && !p_220836_5_.isAir(p_220836_1_, p_220836_6_) && !p_220836_5_.is(Blocks.BEDROCK) && p_220836_5_.isCollisionShapeFullBlock(p_220836_1_, p_220836_6_) && p_220836_3_.canSurvive(p_220836_1_, p_220836_2_) && p_220836_1_.getEntities(this.enderman, AABB.unitCubeFromLowerCorner(Vec3.atLowerCornerOf(p_220836_2_))).isEmpty();
     }
   }
 
@@ -535,11 +557,11 @@ public class EnderminiEntity extends CreatureEntity {
     @Override
     public boolean canUse() {
       LivingEntity livingentity = this.enderman.getTarget();
-      if (!(livingentity instanceof PlayerEntity)) {
+      if (!(livingentity instanceof Player)) {
         return false;
       } else {
         double d0 = livingentity.distanceToSqr(this.enderman);
-        return !(d0 > 256.0D) && this.enderman.shouldAttackPlayer((PlayerEntity) livingentity);
+        return !(d0 > 256.0D) && this.enderman.shouldAttackPlayer((Player) livingentity);
       }
     }
 
@@ -579,17 +601,17 @@ public class EnderminiEntity extends CreatureEntity {
     @Override
     public void tick() {
       Random random = this.enderman.getRandom();
-      World world = this.enderman.level;
-      int i = MathHelper.floor(this.enderman.getX() - 2.0D + random.nextDouble() * 4.0D);
-      int j = MathHelper.floor(this.enderman.getY() + random.nextDouble() * 3.0D);
-      int k = MathHelper.floor(this.enderman.getZ() - 2.0D + random.nextDouble() * 4.0D);
+      Level world = this.enderman.level;
+      int i = Mth.floor(this.enderman.getX() - 2.0D + random.nextDouble() * 4.0D);
+      int j = Mth.floor(this.enderman.getY() + random.nextDouble() * 3.0D);
+      int k = Mth.floor(this.enderman.getZ() - 2.0D + random.nextDouble() * 4.0D);
       BlockPos blockpos = new BlockPos(i, j, k);
       BlockState blockstate = world.getBlockState(blockpos);
       Block block = blockstate.getBlock();
-      Vector3d vec3d = new Vector3d((double) MathHelper.floor(this.enderman.getX()) + 0.5D, (double) j + 0.5D, (double) MathHelper.floor(this.enderman.getZ()) + 0.5D);
-      Vector3d vec3d1 = new Vector3d((double) i + 0.5D, (double) j + 0.5D, (double) k + 0.5D);
-      BlockRayTraceResult blockraytraceresult = world.clip(new RayTraceContext(vec3d, vec3d1, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this.enderman));
-      boolean flag = blockraytraceresult.getType() != RayTraceResult.Type.MISS && blockraytraceresult.getBlockPos().equals(blockpos);
+      Vec3 vec3d = new Vec3((double) Mth.floor(this.enderman.getX()) + 0.5D, (double) j + 0.5D, (double) Mth.floor(this.enderman.getZ()) + 0.5D);
+      Vec3 vec3d1 = new Vec3((double) i + 0.5D, (double) j + 0.5D, (double) k + 0.5D);
+      BlockHitResult blockraytraceresult = world.clip(new ClipContext(vec3d, vec3d1, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this.enderman));
+      boolean flag = blockraytraceresult.getType() != HitResult.Type.MISS && blockraytraceresult.getBlockPos().equals(blockpos);
       if (block.is(BlockTags.ENDERMAN_HOLDABLE) && flag) {
         this.enderman.setCarriedBlock(blockstate);
         world.removeBlock(blockpos, false);

@@ -1,20 +1,20 @@
 package mysticmods.mysticalworld.client.render;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.entity.DuckEntity;
 import mysticmods.mysticalworld.client.model.DuckModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
 public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel> {
-  private DuckRenderer(@Nonnull EntityRendererManager renderManager, @Nonnull DuckModel m, float f) {
+  private DuckRenderer(@Nonnull EntityRenderDispatcher renderManager, @Nonnull DuckModel m, float f) {
     super(renderManager, m, f);
   }
 
@@ -22,13 +22,13 @@ public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel> {
 
     @Override
     @Nonnull
-    public DuckRenderer createRenderFor(@Nonnull EntityRendererManager manager) {
+    public DuckRenderer createRenderFor(@Nonnull EntityRenderDispatcher manager) {
       return new DuckRenderer(manager, ModelHolder.duckModel, 0.05f);
     }
   }
 
   @Override
-  protected void scale(DuckEntity entity, MatrixStack matrix, float partialTickTime) {
+  protected void scale(DuckEntity entity, PoseStack matrix, float partialTickTime) {
     // TODO: matrix.scale(0.45f, 0.45f, 0.45f);
   }
 
@@ -43,8 +43,8 @@ public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel> {
     if (pLivingBase.isInWater()) {
       return 0f;
     }
-    float f = MathHelper.lerp(pPartialTicks, pLivingBase.oFlap, pLivingBase.flap);
-    float f1 = MathHelper.lerp(pPartialTicks, pLivingBase.oFlapSpeed, pLivingBase.flapSpeed);
-    return (MathHelper.sin(f) + 1.0F) * f1;
+    float f = Mth.lerp(pPartialTicks, pLivingBase.oFlap, pLivingBase.flap);
+    float f1 = Mth.lerp(pPartialTicks, pLivingBase.oFlapSpeed, pLivingBase.flapSpeed);
+    return (Mth.sin(f) + 1.0F) * f1;
   }
 }

@@ -5,36 +5,49 @@ import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModItems;
 import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class SproutEntity extends AnimalEntity {
-  public static final DataParameter<Integer> variant = EntityDataManager.defineId(SproutEntity.class, DataSerializers.INT);
+import net.minecraft.world.entity.AgableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
 
-  public SproutEntity(EntityType<? extends SproutEntity> type, World world) {
+public class SproutEntity extends Animal {
+  public static final EntityDataAccessor<Integer> variant = SynchedEntityData.defineId(SproutEntity.class, EntityDataSerializers.INT);
+
+  public SproutEntity(EntityType<? extends SproutEntity> type, Level world) {
     super(type, world);
     this.xpReward = 3;
   }
 
   @Override
   @Nonnull
-  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
     SproutEntity entity = ModEntities.SPROUT.get().create(ageable.level);
     if (entity != null) {
       entity.setVariant(entity.getVariant());
@@ -74,17 +87,17 @@ public class SproutEntity extends AnimalEntity {
 
   @Override
   protected void registerGoals() {
-    goalSelector.addGoal(0, new SwimGoal(this));
+    goalSelector.addGoal(0, new FloatGoal(this));
     goalSelector.addGoal(1, new PanicGoal(this, 1.5));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
     goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(MWTags.Items.AUBERGINE), false));
-    goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0));
-    goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0f));
-    goalSelector.addGoal(7, new LookRandomlyGoal(this));
+    goalSelector.addGoal(5, new RandomStrollGoal(this, 1.0));
+    goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0f));
+    goalSelector.addGoal(7, new RandomLookAroundGoal(this));
   }
 
-  public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0d).add(Attributes.MOVEMENT_SPEED, 0.2d);
+  public static AttributeSupplier.Builder attributes() {
+    return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0d).add(Attributes.MOVEMENT_SPEED, 0.2d);
   }
 
   @Override
@@ -100,18 +113,18 @@ public class SproutEntity extends AnimalEntity {
 
 
   @Override
-  public float getStandingEyeHeight(Pose pose, EntitySize size) {
+  public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
     return isBaby() ? getBbHeight() : 1.3F;
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundNBT compound) {
+  public void readAdditionalSaveData(CompoundTag compound) {
     super.readAdditionalSaveData(compound);
     getEntityData().set(variant, compound.getInt("variant"));
   }
 
   @Override
-  public void addAdditionalSaveData(CompoundNBT compound) {
+  public void addAdditionalSaveData(CompoundTag compound) {
     super.addAdditionalSaveData(compound);
     compound.putInt("variant", getEntityData().get(variant));
   }

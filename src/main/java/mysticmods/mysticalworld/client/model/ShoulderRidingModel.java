@@ -1,16 +1,16 @@
 package mysticmods.mysticalworld.client.model;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.model.AgeableModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Function;
 
-public abstract class ShoulderRidingModel<T extends Entity> extends AgeableModel<T> {
+public abstract class ShoulderRidingModel<T extends Entity> extends AgeableListModel<T> {
   public ShoulderRidingModel(boolean scaleHead, float yHeadOffset, float zHeadOfset) {
     super(scaleHead, yHeadOffset, zHeadOfset);
   }
@@ -34,7 +34,7 @@ public abstract class ShoulderRidingModel<T extends Entity> extends AgeableModel
     this.prepare(getStateFor(pEntity));
   }
 
-  public void renderOnShoulder(MatrixStack pMatrixStack, IVertexBuilder pBuffer, int pPackedLight, int pPackedOverlay, float pLimbSwing, float pLimbSwingAmount, float pNetHeadYaw, float pHeadPitch, int ticks) {
+  public void renderOnShoulder(PoseStack pMatrixStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pLimbSwing, float pLimbSwingAmount, float pNetHeadYaw, float pHeadPitch, int ticks) {
     this.prepare(ModelState.SHOULDER);
     this.setupAnim(ModelState.SHOULDER, ticks, pLimbSwing, pLimbSwingAmount, 0.0F, pNetHeadYaw, pHeadPitch);
     if (this.young) {
@@ -60,8 +60,8 @@ public abstract class ShoulderRidingModel<T extends Entity> extends AgeableModel
   }
 
   protected ModelState getStateFor (T entity) {
-    if (entity instanceof TameableEntity) {
-      TameableEntity tameable = (TameableEntity) entity;
+    if (entity instanceof TamableAnimal) {
+      TamableAnimal tameable = (TamableAnimal) entity;
       if (tameable.isInSittingPose()) {
         return ModelState.SITTING;
       } else {

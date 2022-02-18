@@ -1,33 +1,33 @@
 package mysticmods.mysticalworld.items.quicksilver;
 
 import mysticmods.mysticalworld.items.ModifiedSpearItem;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import java.util.Random;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class QuicksilverSpearItem extends ModifiedSpearItem implements IQuicksilverItem {
 
   private int counter;
   private final Random random = new Random();
 
-  public QuicksilverSpearItem(IItemTier tier, int attackDamage, float attackSpeed, Properties props) {
+  public QuicksilverSpearItem(Tier tier, int attackDamage, float attackSpeed, Properties props) {
     super(tier, attackDamage, attackSpeed, props);
   }
 
   @Override
-  public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+  public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
     counter = counter >= 20 ? 1 : counter + 1;
     if (counter % 20 == 0 && entity instanceof LivingEntity) {
-      drip(stack, (LivingEntity) entity, random, EquipmentSlotType.MAINHAND);
+      drip(stack, (LivingEntity) entity, random, EquipmentSlot.MAINHAND);
     }
   }
 
@@ -37,7 +37,7 @@ public class QuicksilverSpearItem extends ModifiedSpearItem implements IQuicksil
   }
 
   @Override
-  public boolean mineBlock(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
+  public boolean mineBlock(ItemStack stack, Level world, BlockState state, BlockPos post, LivingEntity entity) {
     return true;
   }
 }

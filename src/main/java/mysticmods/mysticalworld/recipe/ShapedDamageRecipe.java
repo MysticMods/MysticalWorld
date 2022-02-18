@@ -2,15 +2,15 @@ package mysticmods.mysticalworld.recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 @SuppressWarnings("NullableProblems")
@@ -27,7 +27,7 @@ public class ShapedDamageRecipe extends ShapedRecipe implements IDamageRecipe {
   }
 
   @Override
-  public NonNullList<ItemStack> getRemainingItems(CraftingInventory inv) {
+  public NonNullList<ItemStack> getRemainingItems(CraftingContainer inv) {
     return getRemainingItems(inv, damageIngredient, damageAmount);
   }
 
@@ -35,13 +35,13 @@ public class ShapedDamageRecipe extends ShapedRecipe implements IDamageRecipe {
     return new ShapedDamageRecipe(recipe.getId(), recipe.getGroup(), recipe.getRecipeWidth(), recipe.getRecipeHeight(), recipe.getIngredients(), recipe.getResultItem(), damageItem, damageAmount);
   }
 
-  public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ShapedDamageRecipe> {
+  public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ShapedDamageRecipe> {
 
     @Override
     public ShapedDamageRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-      ShapedRecipe result = IRecipeSerializer.SHAPED_RECIPE.fromJson(recipeId, json);
+      ShapedRecipe result = RecipeSerializer.SHAPED_RECIPE.fromJson(recipeId, json);
       Ingredient damageItem = Ingredient.fromJson(json.get(IDamageRecipe.TAG));
-      int damageAmount = JSONUtils.getAsInt(json, IDamageRecipe.DAMAGE, -1);
+      int damageAmount = GsonHelper.getAsInt(json, IDamageRecipe.DAMAGE, -1);
       if (damageAmount == -1) {
         throw new JsonSyntaxException("Invalid damage_amount for ShapedDamageRecipe.");
       }
@@ -49,16 +49,16 @@ public class ShapedDamageRecipe extends ShapedRecipe implements IDamageRecipe {
     }
 
     @Override
-    public ShapedDamageRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
-      ShapedRecipe result = IRecipeSerializer.SHAPED_RECIPE.fromNetwork(recipeId, buffer);
+    public ShapedDamageRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+      ShapedRecipe result = RecipeSerializer.SHAPED_RECIPE.fromNetwork(recipeId, buffer);
       Ingredient damageItem = Ingredient.fromNetwork(buffer);
       int damageAmount = buffer.readInt();
       return ShapedDamageRecipe.create(result, damageItem, damageAmount);
     }
 
     @Override
-    public void toNetwork(PacketBuffer buffer, ShapedDamageRecipe recipe) {
-      IRecipeSerializer.SHAPED_RECIPE.toNetwork(buffer, recipe);
+    public void toNetwork(FriendlyByteBuf buffer, ShapedDamageRecipe recipe) {
+      RecipeSerializer.SHAPED_RECIPE.toNetwork(buffer, recipe);
       recipe.damageItem.toNetwork(buffer);
       buffer.writeInt(recipe.damageAmount);
     }

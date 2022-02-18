@@ -2,27 +2,27 @@ package mysticmods.mysticalworld.items.tin;
 
 import com.google.common.collect.Multimap;
 import mysticmods.mysticalworld.items.ModifiedArmorItem;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraftforge.common.ForgeMod;
 import noobanidus.libs.noobutil.material.MaterialType;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class TinArmorItem extends ModifiedArmorItem implements ITinItem {
-  public TinArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
+  public TinArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
     super(materialIn, slot, builder);
   }
 
   @Override
-  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+  public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
     Multimap<Attribute, AttributeModifier> map = super.getDefaultAttributeModifiers(equipmentSlot);
 
     if (this.slot == equipmentSlot) {
       float val = 0.25f;
-      if (slot == EquipmentSlotType.CHEST || slot == EquipmentSlotType.LEGS) {
+      if (slot == EquipmentSlot.CHEST || slot == EquipmentSlot.LEGS) {
         val = 0.5f;
       }
       final float val2 = val;

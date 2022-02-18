@@ -1,13 +1,13 @@
 package mysticmods.mysticalworld.client.model;
 
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.model.AgeableModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Function;
 
-public abstract class GlowingModel<T extends Entity> extends AgeableModel<T> {
+public abstract class GlowingModel<T extends Entity> extends AgeableListModel<T> {
   public GlowingModel(boolean p_i225943_1_, float p_i225943_2_, float p_i225943_3_) {
     super(p_i225943_1_, p_i225943_2_, p_i225943_3_);
   }

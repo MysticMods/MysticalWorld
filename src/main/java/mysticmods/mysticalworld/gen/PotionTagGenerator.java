@@ -3,7 +3,7 @@ package mysticmods.mysticalworld.gen;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.potion.Potion;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeRegistryTagsProvider;
 import net.minecraftforge.registries.ForgeRegistries;

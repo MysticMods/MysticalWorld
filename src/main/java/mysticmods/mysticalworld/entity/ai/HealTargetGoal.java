@@ -1,21 +1,21 @@
 package mysticmods.mysticalworld.entity.ai;
 
 import mysticmods.mysticalworld.config.ConfigManager;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.TargetGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.pathfinding.Path;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.Hand;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.target.TargetGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.InteractionHand;
 
 import java.util.EnumSet;
 
-import net.minecraft.entity.ai.goal.Goal.Flag;
+import net.minecraft.world.entity.ai.goal.Goal.Flag;
 
 public class HealTargetGoal extends TargetGoal {
-  private final CreatureEntity attacker;
+  private final PathfinderMob attacker;
   private int attackTick;
   private final double speedTowardsTarget;
   private final boolean longMemory;
@@ -25,7 +25,7 @@ public class HealTargetGoal extends TargetGoal {
   private double targetY;
   private double targetZ;
 
-  public HealTargetGoal(CreatureEntity attacker, double speedTowardsTarget) {
+  public HealTargetGoal(PathfinderMob attacker, double speedTowardsTarget) {
     super(attacker, false, false);
     this.attacker = attacker;
     this.speedTowardsTarget = speedTowardsTarget;
@@ -40,7 +40,7 @@ public class HealTargetGoal extends TargetGoal {
       return false;
     }
 
-    return target instanceof PlayerEntity;
+    return target instanceof Player;
   }
 
   @Override
@@ -50,7 +50,7 @@ public class HealTargetGoal extends TargetGoal {
       return false;
     }
 
-    if (target instanceof PlayerEntity) {
+    if (target instanceof Player) {
       this.path = attacker.getNavigation().createPath(target, 0);
       return this.path != null;
     }
@@ -67,7 +67,7 @@ public class HealTargetGoal extends TargetGoal {
   public void stop() {
     LivingEntity entitylivingbase = this.attacker.getTarget();
 
-    if (entitylivingbase instanceof PlayerEntity && (entitylivingbase.isSpectator() || ((PlayerEntity) entitylivingbase).isCreative())) {
+    if (entitylivingbase instanceof Player && (entitylivingbase.isSpectator() || ((Player) entitylivingbase).isCreative())) {
       this.attacker.setTarget(null);
     }
 
@@ -106,9 +106,9 @@ public class HealTargetGoal extends TargetGoal {
 
     if (distToEnemySqr <= d0 && this.attackTick <= 0) {
       this.attackTick = 20;
-      this.attacker.swing(Hand.MAIN_HAND);
+      this.attacker.swing(InteractionHand.MAIN_HAND);
       enemy.heal(ConfigManager.HAT_CONFIG.getAntlerHealing());
-      enemy.addEffect(new EffectInstance(Effects.REGENERATION, ConfigManager.HAT_CONFIG.getAntlerRegenDuration(), ConfigManager.HAT_CONFIG.getAntlerRegenAmplifier(), false, false));
+      enemy.addEffect(new MobEffectInstance(MobEffects.REGENERATION, ConfigManager.HAT_CONFIG.getAntlerRegenDuration(), ConfigManager.HAT_CONFIG.getAntlerRegenAmplifier(), false, false));
       this.attacker.remove();
     }
   }

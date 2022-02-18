@@ -1,18 +1,18 @@
 package mysticmods.mysticalworld.entity.ai;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.TargetGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.pathfinding.Path;
-import net.minecraft.util.EntityPredicates;
-import net.minecraft.util.Hand;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.target.TargetGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.InteractionHand;
 
 import java.util.EnumSet;
 
 public class SpiritAttackGoal extends TargetGoal {
-  protected final CreatureEntity attacker;
+  protected final PathfinderMob attacker;
   protected int attackTick;
   private final double speedTowardsTarget;
   private final boolean longMemory;
@@ -25,7 +25,7 @@ public class SpiritAttackGoal extends TargetGoal {
   private final int failedPathFindingPenalty = 0;
   private final boolean canPenalize = false;
 
-  public SpiritAttackGoal(CreatureEntity creature, double speedIn, boolean useLongMemory) {
+  public SpiritAttackGoal(PathfinderMob creature, double speedIn, boolean useLongMemory) {
     super(creature, false, false);
     this.attacker = creature;
     this.speedTowardsTarget = speedIn;
@@ -77,7 +77,7 @@ public class SpiritAttackGoal extends TargetGoal {
     } else if (!this.attacker.isWithinRestriction(livingentity.blockPosition())) {
       return false;
     } else {
-      return !(livingentity instanceof PlayerEntity) || !livingentity.isSpectator() && !((PlayerEntity) livingentity).isCreative();
+      return !(livingentity instanceof Player) || !livingentity.isSpectator() && !((Player) livingentity).isCreative();
     }
   }
 
@@ -91,7 +91,7 @@ public class SpiritAttackGoal extends TargetGoal {
   @Override
   public void stop() {
     LivingEntity livingentity = this.attacker.getTarget();
-    if (!EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
+    if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
       this.attacker.setTarget(null);
     }
 
@@ -130,7 +130,7 @@ public class SpiritAttackGoal extends TargetGoal {
     double d0 = this.getAttackReachSqr(enemy);
     if (distToEnemySqr <= d0 && this.attackTick <= 0) {
       this.attackTick = 20;
-      this.attacker.swing(Hand.MAIN_HAND);
+      this.attacker.swing(InteractionHand.MAIN_HAND);
       this.attacker.doHurtTarget(enemy);
       this.attacker.remove();
     }

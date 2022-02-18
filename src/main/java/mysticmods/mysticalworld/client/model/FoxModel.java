@@ -2,8 +2,8 @@ package mysticmods.mysticalworld.client.model;
 
 import com.google.common.collect.ImmutableSet;
 import mysticmods.mysticalworld.entity.SilverFoxEntity;
-import net.minecraft.client.renderer.entity.model.AgeableModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.geom.ModelPart;
 
 import javax.annotation.Nonnull;
 
@@ -11,81 +11,81 @@ import javax.annotation.Nonnull;
  * FoxModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class FoxModel extends AgeableModel<SilverFoxEntity> {
+public class FoxModel extends AgeableListModel<SilverFoxEntity> {
 
-  private final ModelRenderer body1;
-  private final ModelRenderer frontL;
-  private final ModelRenderer frontR;
-  private final ModelRenderer body2;
-  private final ModelRenderer neck;
-  private final ModelRenderer backL;
-  private final ModelRenderer backR;
-  private final ModelRenderer tail1;
-  private final ModelRenderer tail2;
-  private final ModelRenderer tail3;
-  private final ModelRenderer tail4;
-  private final ModelRenderer head;
-  private final ModelRenderer snout;
-  private final ModelRenderer earR;
-  private final ModelRenderer earL;
+  private final ModelPart body1;
+  private final ModelPart frontL;
+  private final ModelPart frontR;
+  private final ModelPart body2;
+  private final ModelPart neck;
+  private final ModelPart backL;
+  private final ModelPart backR;
+  private final ModelPart tail1;
+  private final ModelPart tail2;
+  private final ModelPart tail3;
+  private final ModelPart tail4;
+  private final ModelPart head;
+  private final ModelPart snout;
+  private final ModelPart earR;
+  private final ModelPart earL;
 
   public FoxModel() {
     super(true, 5.0f, 2.0f);
     this.texWidth = 32;
     this.texHeight = 32;
-    this.backL = new ModelRenderer(this, 0, 16);
+    this.backL = new ModelPart(this, 0, 16);
     this.backL.mirror = true;
     this.backL.setPos(1.0F, 4.0F, 1.5F);
     this.backL.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
-    this.tail4 = new ModelRenderer(this, 8, 18);
+    this.tail4 = new ModelPart(this, 8, 18);
     this.tail4.setPos(0.0F, 3.5F, 0.0F);
     this.tail4.addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2, 0.0F);
     this.setRotateAngle(tail4, 0.39269908169872414F, 0.0F, 0.0F);
-    this.body1 = new ModelRenderer(this, 12, 8);
+    this.body1 = new ModelPart(this, 12, 8);
     this.body1.setPos(0.0F, 15.5F, -2.0F);
     this.body1.addBox(-2.5F, 0.0F, 0.0F, 5, 4, 5, 0.0F);
-    this.backR = new ModelRenderer(this, 0, 16);
+    this.backR = new ModelPart(this, 0, 16);
     this.backR.setPos(-1.0F, 4.0F, 1.5F);
     this.backR.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
-    this.neck = new ModelRenderer(this, 16, 0);
+    this.neck = new ModelPart(this, 16, 0);
     this.neck.setPos(0.0F, 1.5F, 2.0F);
     this.neck.addBox(-2.0F, -2.0F, -4.0F, 4, 4, 4, 0.0F);
     this.setRotateAngle(neck, -0.2617993877991494F, 0.0F, 0.0F);
-    this.earR = new ModelRenderer(this, 0, 12);
+    this.earR = new ModelPart(this, 0, 12);
     this.earR.setPos(-1.5F, -1.0F, -1.0F);
     this.earR.addBox(-1.0F, -3.0F, -0.5F, 2, 3, 1, 0.0F);
     this.setRotateAngle(earR, 0.0F, 0.2617993877991494F, -0.5235987755982988F);
-    this.tail3 = new ModelRenderer(this, 0, 24);
+    this.tail3 = new ModelPart(this, 0, 24);
     this.tail3.setPos(0.0F, 3.0F, 0.0F);
     this.tail3.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4, 0.0F);
-    this.snout = new ModelRenderer(this, 0, 0);
+    this.snout = new ModelPart(this, 0, 0);
     this.snout.setPos(0.0F, 0.0F, -3.0F);
     this.snout.addBox(-1.5F, 0.0F, -3.0F, 3, 2, 3, 0.0F);
     this.setRotateAngle(snout, 0.17453292519943295F, 0.0F, 0.0F);
-    this.head = new ModelRenderer(this, 0, 5);
+    this.head = new ModelPart(this, 0, 5);
     this.head.setPos(0.0F, 0.0F, -4.0F);
     this.head.addBox(-2.5F, -2.0F, -3.0F, 5, 4, 3, 0.0F);
     this.setRotateAngle(head, 0.2617993877991494F, 0.0F, 0.0F);
-    this.tail1 = new ModelRenderer(this, 12, 0);
+    this.tail1 = new ModelPart(this, 12, 0);
     this.tail1.setPos(0.0F, 1.0F, 2.5F);
     this.tail1.addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2, 0.0F);
     this.setRotateAngle(tail1, 1.1780972450961724F, 0.0F, 0.0F);
-    this.earL = new ModelRenderer(this, 0, 12);
+    this.earL = new ModelPart(this, 0, 12);
     this.earL.mirror = true;
     this.earL.setPos(1.5F, -1.0F, -1.0F);
     this.earL.addBox(-1.0F, -3.0F, -0.5F, 2, 3, 1, 0.0F);
     this.setRotateAngle(earL, 0.0F, -0.2617993877991494F, 0.5235987755982988F);
-    this.frontL = new ModelRenderer(this, 0, 16);
+    this.frontL = new ModelPart(this, 0, 16);
     this.frontL.mirror = true;
     this.frontL.setPos(1.0F, 4.0F, 1.0F);
     this.frontL.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
-    this.body2 = new ModelRenderer(this, 16, 17);
+    this.body2 = new ModelPart(this, 16, 17);
     this.body2.setPos(0.0F, 0.0F, 5.0F);
     this.body2.addBox(-2.0F, 0.0F, 0.0F, 4, 4, 3, 0.0F);
-    this.frontR = new ModelRenderer(this, 0, 16);
+    this.frontR = new ModelPart(this, 0, 16);
     this.frontR.setPos(-1.0F, 4.0F, 1.0F);
     this.frontR.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
-    this.tail2 = new ModelRenderer(this, 16, 24);
+    this.tail2 = new ModelPart(this, 16, 24);
     this.tail2.setPos(0.0F, 1.5F, 0.0F);
     this.tail2.addBox(-1.5F, 0.0F, -1.5F, 3, 3, 3, 0.0F);
     this.setRotateAngle(tail2, -0.39269908169872414F, 0.0F, 0.0F);
@@ -107,13 +107,13 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
 
   @Nonnull
   @Override
-  protected Iterable<ModelRenderer> headParts() {
+  protected Iterable<ModelPart> headParts() {
     return ImmutableSet.of();
   }
 
   @Nonnull
   @Override
-  protected Iterable<ModelRenderer> bodyParts() {
+  protected Iterable<ModelPart> bodyParts() {
     return ImmutableSet.of(body1);
   }
 
@@ -184,7 +184,7 @@ public class FoxModel extends AgeableModel<SilverFoxEntity> {
   /**
    * This is a helper function from Tabula to set the rotation of model parts
    */
-  private void setRotateAngle(@Nonnull ModelRenderer ModelRenderer, float x, float y, float z) {
+  private void setRotateAngle(@Nonnull ModelPart ModelRenderer, float x, float y, float z) {
     ModelRenderer.xRot = x;
     ModelRenderer.yRot = y;
     ModelRenderer.zRot = z;

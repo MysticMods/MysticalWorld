@@ -4,16 +4,16 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.entity.FrogEntity;
 import mysticmods.mysticalworld.client.model.FrogModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
 public class FrogRenderer extends MobRenderer<FrogEntity, FrogModel> {
 
-  private FrogRenderer(@Nonnull EntityRendererManager renderManager, @Nonnull FrogModel m, float f) {
+  private FrogRenderer(@Nonnull EntityRenderDispatcher renderManager, @Nonnull FrogModel m, float f) {
     super(renderManager, m, f);
   }
 
@@ -21,7 +21,7 @@ public class FrogRenderer extends MobRenderer<FrogEntity, FrogModel> {
 
     @Override
     @Nonnull
-    public FrogRenderer createRenderFor(@Nonnull EntityRendererManager manager) {
+    public FrogRenderer createRenderFor(@Nonnull EntityRenderDispatcher manager) {
       return new FrogRenderer(manager, ModelHolder.frogModel, 0.125f);
     }
   }

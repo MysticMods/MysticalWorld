@@ -1,39 +1,39 @@
 package mysticmods.mysticalworld.items.quicksilver;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import java.util.Random;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class QuicksilverShovelItem extends ShovelItem implements IQuicksilverItem {
 
   private int counter;
   private final Random random = new Random();
 
-  public QuicksilverShovelItem(IItemTier tier, float attackDamage, float attackSpeed, Properties props) {
+  public QuicksilverShovelItem(Tier tier, float attackDamage, float attackSpeed, Properties props) {
     super(tier, attackDamage, attackSpeed, props);
   }
 
   @Override
-  public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+  public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
     counter = counter >= 20 ? 1 : counter + 1;
     if (counter % 20 == 0 && entity instanceof LivingEntity) {
-      drip(stack, (LivingEntity) entity, random, EquipmentSlotType.MAINHAND);
+      drip(stack, (LivingEntity) entity, random, EquipmentSlot.MAINHAND);
     }
   }
 
@@ -43,28 +43,28 @@ public class QuicksilverShovelItem extends ShovelItem implements IQuicksilverIte
   }
 
   @Override
-  public boolean mineBlock(ItemStack stack, World world, BlockState state, BlockPos post, LivingEntity entity) {
+  public boolean mineBlock(ItemStack stack, Level world, BlockState state, BlockPos post, LivingEntity entity) {
     return true;
   }
 
   @Override
-  public ActionResultType useOn(ItemUseContext context) {
-    World world = context.getLevel();
+  public InteractionResult useOn(UseOnContext context) {
+    Level world = context.getLevel();
     BlockPos blockpos = context.getClickedPos();
     BlockState upState = world.getBlockState(blockpos.above());
     if (context.getClickedFace() != Direction.DOWN && upState.getBlock().isAir(upState, world, blockpos.above())) {
       BlockState blockstate = FLATTENABLES.get(world.getBlockState(blockpos).getBlock());
       if (blockstate != null) {
-        PlayerEntity playerentity = context.getPlayer();
-        world.playSound(playerentity, blockpos, SoundEvents.SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        Player playerentity = context.getPlayer();
+        world.playSound(playerentity, blockpos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
         if (!world.isClientSide) {
           world.setBlock(blockpos, blockstate, 11);
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
       }
     }
 
-    return ActionResultType.PASS;
+    return InteractionResult.PASS;
   }
 }

@@ -2,8 +2,8 @@ package mysticmods.mysticalworld.world;
 
 import com.mojang.serialization.Codec;
 import mysticmods.mysticalworld.init.ModFeatures;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProviderType;
 import noobanidus.libs.noobutil.type.LazyStateSupplier;
 import noobanidus.libs.noobutil.world.gen.provider.AbstractSupplierBlockStateProvider;
 

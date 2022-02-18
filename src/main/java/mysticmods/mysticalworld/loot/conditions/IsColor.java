@@ -5,15 +5,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import mysticmods.mysticalworld.entity.SproutEntity;
 import mysticmods.mysticalworld.init.ModLoot;
-import net.minecraft.entity.Entity;
-import net.minecraft.loot.ILootSerializer;
-import net.minecraft.loot.LootConditionType;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.JSONUtils;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.storage.loot.Serializer;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.util.GsonHelper;
 
-public class IsColor implements ILootCondition {
+public class IsColor implements LootItemCondition {
   private final boolean inverse;
   private final int variant;
 
@@ -25,7 +25,7 @@ public class IsColor implements ILootCondition {
   @Override
   public boolean test(LootContext lootContext) {
     int variant;
-    Entity looted = lootContext.getParamOrNull(LootParameters.THIS_ENTITY);
+    Entity looted = lootContext.getParamOrNull(LootContextParams.THIS_ENTITY);
     if (looted instanceof SproutEntity) {
       SproutEntity sprout = (SproutEntity) looted;
       variant = sprout.getEntityData().get(SproutEntity.variant);
@@ -39,11 +39,11 @@ public class IsColor implements ILootCondition {
   }
 
   @Override
-  public LootConditionType getType() {
+  public LootItemConditionType getType() {
     return ModLoot.IS_COLOR;
   }
 
-  public static class Serializer implements ILootSerializer<IsColor> {
+  public static class Serializer implements Serializer<IsColor> {
     @Override
     public void serialize(JsonObject json, IsColor value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);
@@ -52,11 +52,11 @@ public class IsColor implements ILootCondition {
 
     @Override
     public IsColor deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new IsColor(JSONUtils.getAsBoolean(json, "inverse", false), JSONUtils.getAsString(json, "color", "green"));
+      return new IsColor(GsonHelper.getAsBoolean(json, "inverse", false), GsonHelper.getAsString(json, "color", "green"));
     }
   }
 
-  public static ILootCondition.IBuilder builder(String variant) {
+  public static LootItemCondition.Builder builder(String variant) {
     return () -> new IsColor(false, variant);
   }
 }

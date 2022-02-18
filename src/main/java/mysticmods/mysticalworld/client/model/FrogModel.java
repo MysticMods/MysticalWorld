@@ -2,8 +2,8 @@ package mysticmods.mysticalworld.client.model;
 
 import com.google.common.collect.ImmutableSet;
 import mysticmods.mysticalworld.entity.FrogEntity;
-import net.minecraft.client.renderer.entity.model.AgeableModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.geom.ModelPart;
 
 import javax.annotation.Nonnull;
 
@@ -11,42 +11,42 @@ import javax.annotation.Nonnull;
  * FrogModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class FrogModel extends AgeableModel<FrogEntity> {
+public class FrogModel extends AgeableListModel<FrogEntity> {
 
-  private final ModelRenderer body;
-  private final ModelRenderer backR;
-  private final ModelRenderer backL;
-  private final ModelRenderer frontR;
-  private final ModelRenderer frontL;
-  private final ModelRenderer head;
+  private final ModelPart body;
+  private final ModelPart backR;
+  private final ModelPart backL;
+  private final ModelPart frontR;
+  private final ModelPart frontL;
+  private final ModelPart head;
 
   public FrogModel() {
     super(true, 5.0f, 2.0f);
     this.texWidth = 16;
     this.texHeight = 16;
-    this.head = new ModelRenderer(this, 4, 3);
+    this.head = new ModelPart(this, 4, 3);
     this.head.setPos(0.0F, 0.0F, -3.0F);
     this.head.addBox(-1.5F, -1.0F, -3.0F, 3, 2, 3, 0.0F);
     this.setRotateAngle(head, 0.39269908169872414F, 0.0F, 0.0F);
-    this.backL = new ModelRenderer(this, 0, 0);
+    this.backL = new ModelPart(this, 0, 0);
     this.backL.setPos(1.0F, 0.5F, 1.5F);
     this.backL.addBox(-1.0F, 0.0F, -0.5F, 2, 4, 1, 0.0F);
     this.setRotateAngle(backL, -0.6981317007977318F, -0.5235987755982988F, -0.5235987755982988F);
-    this.frontL = new ModelRenderer(this, 0, 5);
+    this.frontL = new ModelPart(this, 0, 5);
     this.frontL.mirror = true;
     this.frontL.setPos(1.0F, -0.25F, -2.5F);
     this.frontL.addBox(-0.5F, 0.0F, -0.5F, 1, 4, 1, 0.0F);
     this.setRotateAngle(frontL, 0.2617993877991494F, 0.0F, -0.2617993877991494F);
-    this.body = new ModelRenderer(this, 0, 9);
+    this.body = new ModelPart(this, 0, 9);
     this.body.setPos(0.0F, 22.0F, 0.0F);
     this.body.addBox(-1.5F, -1.0F, -3.0F, 3, 2, 5, 0.0F);
     this.setRotateAngle(body, -0.5235987755982988F, 0.0F, 0.0F);
-    this.backR = new ModelRenderer(this, 0, 0);
+    this.backR = new ModelPart(this, 0, 0);
     this.backR.mirror = true;
     this.backR.setPos(-1.0F, 0.5F, 1.5F);
     this.backR.addBox(-1.0F, 0.0F, -0.5F, 2, 4, 1, 0.0F);
     this.setRotateAngle(backR, -0.6981317007977318F, 0.5235987755982988F, 0.5235987755982988F);
-    this.frontR = new ModelRenderer(this, 0, 5);
+    this.frontR = new ModelPart(this, 0, 5);
     this.frontR.mirror = true;
     this.frontR.setPos(-1.0F, -0.25F, -2.5F);
     this.frontR.addBox(-0.5F, 0.0F, -0.5F, 1, 4, 1, 0.0F);
@@ -60,13 +60,13 @@ public class FrogModel extends AgeableModel<FrogEntity> {
 
   @Nonnull
   @Override
-  protected Iterable<ModelRenderer> headParts() {
+  protected Iterable<ModelPart> headParts() {
     return ImmutableSet.of();
   }
 
   @Nonnull
   @Override
-  protected Iterable<ModelRenderer> bodyParts() {
+  protected Iterable<ModelPart> bodyParts() {
     return ImmutableSet.of(body);
   }
 
@@ -81,7 +81,7 @@ public class FrogModel extends AgeableModel<FrogEntity> {
   /**
    * This is a helper function from Tabula to set the rotation of model parts
    */
-  private void setRotateAngle(@Nonnull ModelRenderer modelRenderer, float x, float y, float z) {
+  private void setRotateAngle(@Nonnull ModelPart modelRenderer, float x, float y, float z) {
     modelRenderer.xRot = x;
     modelRenderer.yRot = y;
     modelRenderer.zRot = z;

@@ -4,30 +4,44 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class DeerEntity extends AnimalEntity {
+import net.minecraft.world.entity.AgableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowParentGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
 
-  public static final DataParameter<Boolean> hasHorns = EntityDataManager.defineId(DeerEntity.class, DataSerializers.BOOLEAN);
+public class DeerEntity extends Animal {
 
-  public DeerEntity(EntityType<? extends DeerEntity> type, World world) {
+  public static final EntityDataAccessor<Boolean> hasHorns = SynchedEntityData.defineId(DeerEntity.class, EntityDataSerializers.BOOLEAN);
+
+  public DeerEntity(EntityType<? extends DeerEntity> type, Level world) {
     super(type, world);
     this.xpReward = 3;
   }
@@ -40,14 +54,14 @@ public class DeerEntity extends AnimalEntity {
 
   @Override
   protected void registerGoals() {
-    goalSelector.addGoal(0, new SwimGoal(this));
+    goalSelector.addGoal(0, new FloatGoal(this));
     goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
     goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Items.WHEAT), false));
     goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
-    goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
-    goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-    goalSelector.addGoal(7, new LookRandomlyGoal(this));
+    goalSelector.addGoal(5, new RandomStrollGoal(this, 1.0D));
+    goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
+    goalSelector.addGoal(7, new RandomLookAroundGoal(this));
   }
 
   @Override
@@ -56,13 +70,13 @@ public class DeerEntity extends AnimalEntity {
     this.yRot = this.yHeadRot;
   }
 
-  public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0d).add(Attributes.MOVEMENT_SPEED, 0.2d);
+  public static AttributeSupplier.Builder attributes() {
+    return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0d).add(Attributes.MOVEMENT_SPEED, 0.2d);
   }
 
   @Override
   @Nonnull
-  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
     return ModEntities.DEER.get().create(ageable.level);
   }
 
@@ -73,7 +87,7 @@ public class DeerEntity extends AnimalEntity {
   }
 
   @Override
-  public float getStandingEyeHeight(Pose pose, EntitySize size) {
+  public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
     return this.isBaby() ? this.getBbHeight() : 1.3F;
   }
 
@@ -87,13 +101,13 @@ public class DeerEntity extends AnimalEntity {
   }
 
   @Override
-  public void readAdditionalSaveData(@Nonnull CompoundNBT compound) {
+  public void readAdditionalSaveData(@Nonnull CompoundTag compound) {
     super.readAdditionalSaveData(compound);
     getEntityData().set(hasHorns, compound.getBoolean("hasHorns"));
   }
 
   @Override
-  public void addAdditionalSaveData(@Nonnull CompoundNBT compound) {
+  public void addAdditionalSaveData(@Nonnull CompoundTag compound) {
     super.addAdditionalSaveData(compound);
     compound.putBoolean("hasHorns", getEntityData().get(hasHorns));
   }

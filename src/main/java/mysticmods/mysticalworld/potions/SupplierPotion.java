@@ -1,9 +1,9 @@
 package mysticmods.mysticalworld.potions;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.potion.Potion;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.alchemy.Potion;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -11,23 +11,23 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class SupplierPotion extends Potion {
-  private final ImmutableList<Supplier<EffectInstance>> effectsSupplier;
-  private List<EffectInstance> instanceList = null;
+  private final ImmutableList<Supplier<MobEffectInstance>> effectsSupplier;
+  private List<MobEffectInstance> instanceList = null;
 
   @SafeVarargs
-  public SupplierPotion(Supplier<EffectInstance>... effectsIn) {
+  public SupplierPotion(Supplier<MobEffectInstance>... effectsIn) {
     this(null, effectsIn);
   }
 
   @SafeVarargs
-  public SupplierPotion(@Nullable String baseNameIn, Supplier<EffectInstance>... effectsIn) {
-    super(baseNameIn, new EffectInstance(Effects.MOVEMENT_SLOWDOWN));
+  public SupplierPotion(@Nullable String baseNameIn, Supplier<MobEffectInstance>... effectsIn) {
+    super(baseNameIn, new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN));
     this.effects = ImmutableList.of();
     this.effectsSupplier = ImmutableList.copyOf(effectsIn);
   }
 
   @Override
-  public List<EffectInstance> getEffects() {
+  public List<MobEffectInstance> getEffects() {
     if (instanceList == null) {
       instanceList = effectsSupplier.stream().map(Supplier::get).collect(Collectors.toList());
     }
@@ -37,7 +37,7 @@ public class SupplierPotion extends Potion {
   @Override
   public boolean hasInstantEffects() {
     if (!effectsSupplier.isEmpty()) {
-      for (EffectInstance effectinstance : this.getEffects()) {
+      for (MobEffectInstance effectinstance : this.getEffects()) {
         if (effectinstance.getEffect().isInstantenous()) {
           return true;
         }

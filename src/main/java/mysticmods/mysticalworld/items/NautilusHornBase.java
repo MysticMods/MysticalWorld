@@ -1,16 +1,16 @@
 package mysticmods.mysticalworld.items;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class NautilusHornBase extends Item {
   private final int duration;
@@ -21,15 +21,15 @@ public class NautilusHornBase extends Item {
   }
 
   @Override
-  public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+  public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
     ItemStack itemstack = player.getItemInHand(hand);
 
     if (!world.isClientSide) {
-      player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, duration));
+      player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, duration));
       itemstack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
     }
 
-    return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+    return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
   }
 
   @Override

@@ -9,8 +9,8 @@ import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.color.item.ItemColors;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import noobanidus.libs.noobutil.setup.ShadedClientSetup;
@@ -35,16 +35,16 @@ public class ClientSetup {
 
     event.enqueueWork(() -> {
       RenderType rendertype = RenderType.cutoutMipped();
-      RenderTypeLookup.setRenderLayer(ModBlocks.AUBERGINE_CROP.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.WILD_AUBERGINE.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.STONEPETAL.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_STONEPETAL.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_UNCANNY_MUSHROOM.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.WILD_WART.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.ANYWHERE_BROWN_MUSHROOM.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.ANYWHERE_RED_MUSHROOM.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.UNCANNY_MUSHROOM.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.AUBERGINE_CROP.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_AUBERGINE.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.STONEPETAL.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_STONEPETAL.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_UNCANNY_MUSHROOM.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_WART.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.ANYWHERE_BROWN_MUSHROOM.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.ANYWHERE_RED_MUSHROOM.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNCANNY_MUSHROOM.get(), rendertype);
 
       ShadedClientSetup.init(event);
       Bootstrap.init(Minecraft.getInstance());

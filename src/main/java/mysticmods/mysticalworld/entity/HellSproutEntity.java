@@ -4,26 +4,26 @@ import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModItems;
 import mysticmods.mysticalworld.init.ModSounds;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.NetherWartBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.NetherWartBlock;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.DirectionalPlaceContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.DirectionalPlaceContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 
@@ -31,10 +31,24 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class HellSproutEntity extends AnimalEntity {
+import net.minecraft.world.entity.AgableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+
+public class HellSproutEntity extends Animal {
   public static ItemStack netherWart = new ItemStack(Items.NETHER_WART);
 
-  public HellSproutEntity(EntityType<? extends HellSproutEntity> type, World world) {
+  public HellSproutEntity(EntityType<? extends HellSproutEntity> type, Level world) {
     super(type, world);
 //		setSize(0.5f, 1.0f);
     this.xpReward = 3;
@@ -52,7 +66,7 @@ public class HellSproutEntity extends AnimalEntity {
 
   @Override
   @Nonnull
-  public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageable) {
+  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
     return ModEntities.HELL_SPROUT.get().create(ageable.level);
   }
 
@@ -73,14 +87,14 @@ public class HellSproutEntity extends AnimalEntity {
 
   @Override
   protected void registerGoals() {
-    goalSelector.addGoal(0, new SwimGoal(this));
+    goalSelector.addGoal(0, new FloatGoal(this));
     goalSelector.addGoal(1, new PanicGoal(this, 1.5));
     goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
     goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(ModItems.COOKED_AUBERGINE.get()), false));
     goalSelector.addGoal(3, new PlantNetherWartGoal());
-    goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0));
-    goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0f));
-    goalSelector.addGoal(7, new LookRandomlyGoal(this));
+    goalSelector.addGoal(5, new RandomStrollGoal(this, 1.0));
+    goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0f));
+    goalSelector.addGoal(7, new RandomLookAroundGoal(this));
   }
 
   @Override
@@ -88,8 +102,8 @@ public class HellSproutEntity extends AnimalEntity {
     return stack.getItem() == ModItems.COOKED_AUBERGINE.get();
   }
 
-  public static AttributeModifierMap.MutableAttribute attributes() {
-    return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0d).add(Attributes.MOVEMENT_SPEED, 0.2d);
+  public static AttributeSupplier.Builder attributes() {
+    return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0d).add(Attributes.MOVEMENT_SPEED, 0.2d);
   }
 
   @Override
@@ -99,7 +113,7 @@ public class HellSproutEntity extends AnimalEntity {
   }
 
   @Override
-  public float getStandingEyeHeight(Pose pose, EntitySize size) {
+  public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
     return isBaby() ? getBbHeight() : 1.3F;
   }
 
@@ -139,7 +153,7 @@ public class HellSproutEntity extends AnimalEntity {
       }
     }
 
-    private boolean canPlaceBlock(World world, BlockPos pos, BlockState state, BlockState down) {
+    private boolean canPlaceBlock(Level world, BlockPos pos, BlockState state, BlockState down) {
       DirectionalPlaceContext context = new DirectionalPlaceContext(world, pos, Direction.DOWN, netherWart, Direction.UP);
       if (!state.getBlock().isAir(state, world, pos) || !state.canBeReplaced(context)) {
         return false;

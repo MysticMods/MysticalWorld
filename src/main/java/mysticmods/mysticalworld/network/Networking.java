@@ -1,7 +1,7 @@
 package mysticmods.mysticalworld.network;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fml.network.PacketDistributor;
 import noobanidus.libs.noobutil.network.PacketHandler;
 
@@ -17,7 +17,7 @@ public class Networking extends PacketHandler {
     registerMessage(ShoulderRide.class, ShoulderRide::encode, ShoulderRide::new, ShoulderRide::handle);
   }
 
-  public static void sendTo(Object msg, ServerPlayerEntity player) {
+  public static void sendTo(Object msg, ServerPlayer player) {
     INSTANCE.sendToInternal(msg, player);
   }
 

@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.init;
 
-import net.minecraft.block.ComposterBlock;
+import net.minecraft.world.level.block.ComposterBlock;
 
 // TODO: Aubergine Seeds
 

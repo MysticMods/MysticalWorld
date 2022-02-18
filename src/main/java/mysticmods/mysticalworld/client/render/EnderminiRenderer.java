@@ -1,25 +1,25 @@
 package mysticmods.mysticalworld.client.render;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.entity.EnderminiEntity;
 import mysticmods.mysticalworld.client.model.EnderminiModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.IEntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.layers.AbstractEyesLayer;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.client.renderer.entity.layers.EyesLayer;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.Vec3;
+import com.mojang.math.Vector3f;
 import net.minecraftforge.client.model.data.EmptyModelData;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
@@ -30,7 +30,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
   private static final ResourceLocation ENDERMINI_TEXTURES = new ResourceLocation(MysticalWorld.MODID, "textures/entity/endermini.png");
   private final Random rnd = new Random();
 
-  public EnderminiRenderer(EntityRendererManager renderManagerIn, EnderminiModel<EnderminiEntity> model, float size) {
+  public EnderminiRenderer(EntityRenderDispatcher renderManagerIn, EnderminiModel<EnderminiEntity> model, float size) {
     super(renderManagerIn, model, size);
     this.addLayer(new EnderminiEyesLayer<>(this));
     this.addLayer(new HeldBlockLayer(this));
@@ -38,16 +38,16 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
 
   @Nonnull
   @Override
-  public Vector3d getRenderOffset(EnderminiEntity pEntity, float pPartialTicks) {
+  public Vec3 getRenderOffset(EnderminiEntity pEntity, float pPartialTicks) {
     if (pEntity.isScreaming()) {
-      return new Vector3d(this.rnd.nextGaussian() * 0.02D, 0.0D, this.rnd.nextGaussian() * 0.02D);
+      return new Vec3(this.rnd.nextGaussian() * 0.02D, 0.0D, this.rnd.nextGaussian() * 0.02D);
     } else {
       return super.getRenderOffset(pEntity, pPartialTicks);
     }
   }
 
   @Override
-  public void render(EnderminiEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack stack, IRenderTypeBuffer pBuffer, int pPackedLight) {
+  public void render(EnderminiEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack stack, MultiBufferSource pBuffer, int pPackedLight) {
     BlockState blockstate = pEntity.getHeldBlockState();
     EnderminiModel<EnderminiEntity> endermanmodel = this.getModel();
     endermanmodel.carrying = blockstate != null;
@@ -72,18 +72,18 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
 
   public static class Factory implements IRenderFactory<EnderminiEntity> {
     @Override
-    public EntityRenderer<? super EnderminiEntity> createRenderFor(EntityRendererManager manager) {
+    public EntityRenderer<? super EnderminiEntity> createRenderFor(EntityRenderDispatcher manager) {
       return new EnderminiRenderer(manager, ModelHolder.enderminiModel, 0.35f);
     }
   }
 
-  public static class HeldBlockLayer extends LayerRenderer<EnderminiEntity, EnderminiModel<EnderminiEntity>> {
-    public HeldBlockLayer(IEntityRenderer<EnderminiEntity, EnderminiModel<EnderminiEntity>> p_i50949_1_) {
+  public static class HeldBlockLayer extends RenderLayer<EnderminiEntity, EnderminiModel<EnderminiEntity>> {
+    public HeldBlockLayer(RenderLayerParent<EnderminiEntity, EnderminiModel<EnderminiEntity>> p_i50949_1_) {
       super(p_i50949_1_);
     }
 
     @Override
-    public void render(@Nonnull MatrixStack pMatrixStack, @Nonnull IRenderTypeBuffer pBuffer, int pPackedLight, EnderminiEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    public void render(@Nonnull PoseStack pMatrixStack, @Nonnull MultiBufferSource pBuffer, int pPackedLight, EnderminiEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
       BlockState blockstate = pLivingEntity.getHeldBlockState();
       if (blockstate != null) {
         pMatrixStack.pushPose();
@@ -99,10 +99,10 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
     }
   }
 
-  public static class EnderminiEyesLayer<T extends LivingEntity> extends AbstractEyesLayer<T, EnderminiModel<T>> {
+  public static class EnderminiEyesLayer<T extends LivingEntity> extends EyesLayer<T, EnderminiModel<T>> {
     private static final RenderType SKIN = RenderType.eyes(new ResourceLocation("textures/entity/enderman/enderman_eyes.png"));
 
-    public EnderminiEyesLayer(IEntityRenderer<T, EnderminiModel<T>> p_i50939_1_) {
+    public EnderminiEyesLayer(RenderLayerParent<T, EnderminiModel<T>> p_i50939_1_) {
       super(p_i50939_1_);
     }
 

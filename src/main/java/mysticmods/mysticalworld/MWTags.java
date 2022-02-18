@@ -1,10 +1,10 @@
 package mysticmods.mysticalworld;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.potion.Potion;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.tags.*;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeTagHandler;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -46,8 +46,8 @@ public class MWTags {
       return BlockTags.createOptional(new ResourceLocation("forge", name));
     }
 
-    public static ITag<Block> resolve (ResourceLocation location) {
-      return TagCollectionManager.getInstance().getBlocks().getTag(location);
+    public static Tag<Block> resolve (ResourceLocation location) {
+      return SerializationTags.getInstance().getBlocks().getTag(location);
     }
   }
 
@@ -130,19 +130,19 @@ public class MWTags {
       return ItemTags.createOptional(new ResourceLocation("forge", name));
     }
 
-    public static ITag<Item> resolve (ResourceLocation location) {
-      return TagCollectionManager.getInstance().getItems().getTag(location);
+    public static Tag<Item> resolve (ResourceLocation location) {
+      return SerializationTags.getInstance().getItems().getTag(location);
     }
   }
 
   public static class Potions extends MWTags {
-    public static ITag.INamedTag<Potion> RANDOM_BLACKLIST = compatTag("random_potion_blacklist");
+    public static Tag.Named<Potion> RANDOM_BLACKLIST = compatTag("random_potion_blacklist");
 
-    static ITag.INamedTag<Potion> modTag (String name) {
+    static Tag.Named<Potion> modTag (String name) {
       return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTION_TYPES, new ResourceLocation(MysticalWorld.MODID, name));
     }
 
-    static ITag.INamedTag<Potion> compatTag (String name) {
+    static Tag.Named<Potion> compatTag (String name) {
       return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTION_TYPES, new ResourceLocation("forge", name));
     }
   }

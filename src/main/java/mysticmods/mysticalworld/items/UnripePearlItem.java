@@ -1,16 +1,16 @@
 package mysticmods.mysticalworld.items;
 
 import mysticmods.mysticalworld.init.ModSounds;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
 import noobanidus.libs.noobutil.util.MathUtil;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class UnripePearlItem extends Item {
 
@@ -19,7 +19,7 @@ public class UnripePearlItem extends Item {
   }
 
   @Override
-  public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+  public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
     ItemStack itemstack = player.getItemInHand(hand);
 
     if (!world.isClientSide) {
@@ -42,6 +42,6 @@ public class UnripePearlItem extends Item {
       }
     }
 
-    return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+    return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
   }
 }

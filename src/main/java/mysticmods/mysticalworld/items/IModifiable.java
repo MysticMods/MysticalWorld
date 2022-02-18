@@ -1,7 +1,7 @@
 package mysticmods.mysticalworld.items;
 
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 import java.util.Map;
 import java.util.function.Supplier;

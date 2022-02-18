@@ -1,18 +1,18 @@
 package mysticmods.mysticalworld.recipe;
 
 import mysticmods.mysticalworld.init.ModRecipes;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.SpecialRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 
-public class BlazeRocketRecipe extends SpecialRecipe {
+public class BlazeRocketRecipe extends CustomRecipe {
   private static final Ingredient INGREDIENT_PAPER = Ingredient.of(Items.PAPER);
   private static final Ingredient INGREDIENT_BLAZE_POWDER = Ingredient.of(Items.BLAZE_POWDER);
   private static final Ingredient INGREDIENT_FIREWORK_STAR = Ingredient.of(Items.FIREWORK_STAR);
@@ -22,7 +22,7 @@ public class BlazeRocketRecipe extends SpecialRecipe {
   }
 
   @Override
-  public boolean matches(CraftingInventory inv, World worldIn) {
+  public boolean matches(CraftingContainer inv, Level worldIn) {
     boolean flag = false;
     int i = 0;
 
@@ -50,10 +50,10 @@ public class BlazeRocketRecipe extends SpecialRecipe {
   }
 
   @Override
-  public ItemStack assemble(CraftingInventory inv) {
+  public ItemStack assemble(CraftingContainer inv) {
     ItemStack itemstack = new ItemStack(Items.FIREWORK_ROCKET, 5);
-    CompoundNBT compoundnbt = itemstack.getOrCreateTagElement("Fireworks");
-    ListNBT listnbt = new ListNBT();
+    CompoundTag compoundnbt = itemstack.getOrCreateTagElement("Fireworks");
+    ListTag listnbt = new ListTag();
     int i = 0;
 
     for (int j = 0; j < inv.getContainerSize(); ++j) {
@@ -62,7 +62,7 @@ public class BlazeRocketRecipe extends SpecialRecipe {
         if (INGREDIENT_BLAZE_POWDER.test(itemstack1)) {
           ++i;
         } else if (INGREDIENT_FIREWORK_STAR.test(itemstack1)) {
-          CompoundNBT compoundnbt1 = itemstack1.getTagElement("Explosion");
+          CompoundTag compoundnbt1 = itemstack1.getTagElement("Explosion");
           if (compoundnbt1 != null) {
             listnbt.add(compoundnbt1);
           }
@@ -96,7 +96,7 @@ public class BlazeRocketRecipe extends SpecialRecipe {
   }
 
   @Override
-  public IRecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<?> getSerializer() {
     return ModRecipes.BLAZE_SERIALIZER.get();
   }
 }

@@ -1,14 +1,14 @@
 package mysticmods.mysticalworld.api;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nullable;
 
 public interface IPlayerShoulderCapability {
-  CompoundNBT getAnimalSerialized();
+  CompoundTag getAnimalSerialized();
 
   boolean isShouldered();
 
@@ -24,9 +24,9 @@ public interface IPlayerShoulderCapability {
 
   void shoulder(Entity entity);
 
-  CompoundNBT writeNBT();
+  CompoundTag writeNBT();
 
-  CompoundNBT generateShoulderNBT();
+  CompoundTag generateShoulderNBT();
 
-  void readNBT(CompoundNBT incoming);
+  void readNBT(CompoundTag incoming);
 }

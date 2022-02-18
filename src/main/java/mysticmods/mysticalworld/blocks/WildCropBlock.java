@@ -1,32 +1,38 @@
 package mysticmods.mysticalworld.blocks;
 
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.Random;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class WildCropBlock extends BushBlock {
   private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
-  public WildCropBlock(AbstractBlock.Properties builder) {
+  public WildCropBlock(BlockBehaviour.Properties builder) {
     super(builder);
   }
 
   @SuppressWarnings("deprecation")
   @Override
-  public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+  public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
     return SHAPE;
   }
 
   @Override
-  protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+  protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
     return state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT) || state.is(Blocks.PODZOL) || state.is(Blocks.FARMLAND);
   }
 
@@ -37,11 +43,11 @@ public class WildCropBlock extends BushBlock {
 
   @SuppressWarnings("deprecation")
   @Override
-  public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+  public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
   }
 
   @Override
-  public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+  public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
     BlockPos blockpos = pos.below();
     if (state.getBlock() == this) {
       return true;
@@ -51,6 +57,6 @@ public class WildCropBlock extends BushBlock {
 
   @SuppressWarnings("deprecation")
   @Override
-  public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+  public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
   }
 }

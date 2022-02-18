@@ -13,14 +13,14 @@ import mysticmods.mysticalworld.init.*;
 import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.potions.PotionRecipes;
 import mysticmods.mysticalworld.recipe.ingredients.SeedIngredient;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FireBlock;
-import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -57,7 +57,7 @@ public class CommonSetup {
 
       PotionRecipes.registerRecipes();
 
-      ChickenEntity.FOOD_ITEMS = Ingredient.merge(Arrays.asList(ChickenEntity.FOOD_ITEMS, Ingredient.of(ModItems.AUBERGINE_SEEDS.get())));
+      Chicken.FOOD_ITEMS = Ingredient.merge(Arrays.asList(Chicken.FOOD_ITEMS, Ingredient.of(ModItems.AUBERGINE_SEEDS.get())));
 
       FireBlock fire = (FireBlock) Blocks.FIRE;
 

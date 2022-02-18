@@ -12,19 +12,29 @@ import mysticmods.mysticalworld.items.quicksilver.*;
 import mysticmods.mysticalworld.items.sapphire.SapphireArmorItem;
 import mysticmods.mysticalworld.items.silver.*;
 import mysticmods.mysticalworld.items.tin.TinArmorItem;
-import net.minecraft.block.Blocks;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import noobanidus.libs.noobutil.data.generator.ItemGenerator;
 import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
 import noobanidus.libs.noobutil.item.BaseItems;
+
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class ModItems {
@@ -110,7 +120,7 @@ public class ModItems {
           .save(p))
       .register();
 
-  public static RegistryEntry<BeetleArmorItem> BEETLE_HELMET = MysticalWorld.REGISTRATE.item("beetle_helmet", (b) -> new BeetleArmorItem(b, EquipmentSlotType.HEAD))
+  public static RegistryEntry<BeetleArmorItem> BEETLE_HELMET = MysticalWorld.REGISTRATE.item("beetle_helmet", (b) -> new BeetleArmorItem(b, EquipmentSlot.HEAD))
       .properties(o -> o.rarity(Rarity.RARE))
       .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
           .pattern("CCC")
@@ -120,7 +130,7 @@ public class ModItems {
           .save(p))
       .register();
 
-  public static RegistryEntry<BeetleArmorItem> BEETLE_CHESTPLATE = MysticalWorld.REGISTRATE.item("beetle_chestplate", (b) -> new BeetleArmorItem(b, EquipmentSlotType.CHEST))
+  public static RegistryEntry<BeetleArmorItem> BEETLE_CHESTPLATE = MysticalWorld.REGISTRATE.item("beetle_chestplate", (b) -> new BeetleArmorItem(b, EquipmentSlot.CHEST))
       .properties(o -> o.rarity(Rarity.RARE))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
           .pattern("C C")
@@ -131,7 +141,7 @@ public class ModItems {
           .save(p))
       .register();
 
-  public static RegistryEntry<BeetleArmorItem> BEETLE_LEGGINGS = MysticalWorld.REGISTRATE.item("beetle_leggings", (b) -> new BeetleArmorItem(b, EquipmentSlotType.LEGS))
+  public static RegistryEntry<BeetleArmorItem> BEETLE_LEGGINGS = MysticalWorld.REGISTRATE.item("beetle_leggings", (b) -> new BeetleArmorItem(b, EquipmentSlot.LEGS))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
           .pattern("CCC")
           .pattern("C C")
@@ -141,7 +151,7 @@ public class ModItems {
           .save(p))
       .register();
 
-  public static RegistryEntry<BeetleArmorItem> BEETLE_BOOTS = MysticalWorld.REGISTRATE.item("beetle_boots", (b) -> new BeetleArmorItem(b, EquipmentSlotType.FEET))
+  public static RegistryEntry<BeetleArmorItem> BEETLE_BOOTS = MysticalWorld.REGISTRATE.item("beetle_boots", (b) -> new BeetleArmorItem(b, EquipmentSlot.FEET))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
           .pattern("C C")
           .pattern("C C")
@@ -340,7 +350,7 @@ public class ModItems {
       .properties(o -> o.food(ModFoods.COOKED_VENISON))
       .register();
 
-  public static RegistryEntry<BlockNamedItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRATE.item("aubergine_seeds", ItemGenerator.blockNamedItem(ModBlocks.AUBERGINE_CROP))
+  public static RegistryEntry<ItemNameBlockItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRATE.item("aubergine_seeds", ItemGenerator.blockNamedItem(ModBlocks.AUBERGINE_CROP))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.singleItem(ModItems.AUBERGINE, ModItems.AUBERGINE_SEEDS, 1, 1, p))
       .register();
 
@@ -830,86 +840,86 @@ public class ModItems {
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(Items.IRON_SWORD, ModItems.IRON_SPEAR, null, p)).register();
 
   // Armors
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_helmet", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.HEAD))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_helmet", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_HELMET, null, p))
       .register();
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_chestplate", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.CHEST))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_chestplate", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_leggings", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.LEGS))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_leggings", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_boots", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlotType.FEET))
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_boots", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_BOOTS, null, p))
       .register();
 
   // COPPER
-  public static RegistryEntry<CopperArmorItem> COPPER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_helmet", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.HEAD))
+  public static RegistryEntry<CopperArmorItem> COPPER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_helmet", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlot.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.COPPER_INGOT, ModItems.COPPER_HELMET, null, p))
       .register();
-  public static RegistryEntry<CopperArmorItem> COPPER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_chestplate", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.CHEST))
+  public static RegistryEntry<CopperArmorItem> COPPER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_chestplate", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlot.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.COPPER_INGOT, ModItems.COPPER_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<CopperArmorItem> COPPER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_leggings", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.LEGS))
+  public static RegistryEntry<CopperArmorItem> COPPER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_leggings", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlot.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.COPPER_INGOT, ModItems.COPPER_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<CopperArmorItem> COPPER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_boots", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlotType.FEET))
+  public static RegistryEntry<CopperArmorItem> COPPER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_boots", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlot.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.COPPER_INGOT, ModItems.COPPER_BOOTS, null, p))
       .register();
 
   // LEAD
-  public static RegistryEntry<LeadArmorItem> LEAD_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_helmet", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.HEAD))
+  public static RegistryEntry<LeadArmorItem> LEAD_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_helmet", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlot.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.LEAD_INGOT, ModItems.LEAD_HELMET, null, p))
       .register();
-  public static RegistryEntry<LeadArmorItem> LEAD_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_chestplate", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.CHEST))
+  public static RegistryEntry<LeadArmorItem> LEAD_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_chestplate", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlot.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.LEAD_INGOT, ModItems.LEAD_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<LeadArmorItem> LEAD_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_leggings", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.LEGS))
+  public static RegistryEntry<LeadArmorItem> LEAD_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_leggings", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlot.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.LEAD_INGOT, ModItems.LEAD_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<LeadArmorItem> LEAD_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_boots", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlotType.FEET))
+  public static RegistryEntry<LeadArmorItem> LEAD_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_boots", ItemGenerator.armor(LeadArmorItem::new, ModMaterials.LEAD, EquipmentSlot.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.LEAD_INGOT, ModItems.LEAD_BOOTS, null, p))
       .register();
 
   // QUICKSILVER
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_helmet", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.HEAD))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_helmet", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HELMET, null, p))
       .register();
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_chestplate", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.CHEST))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_chestplate", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_leggings", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.LEGS))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_leggings", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_boots", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlotType.FEET))
+  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_boots", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_BOOTS, null, p))
       .register();
 
   // SILVER
-  public static RegistryEntry<SilverArmorItem> SILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_helmet", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.HEAD))
+  public static RegistryEntry<SilverArmorItem> SILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_helmet", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlot.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.SILVER_INGOT, ModItems.SILVER_HELMET, null, p))
       .register();
-  public static RegistryEntry<SilverArmorItem> SILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_chestplate", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.CHEST))
+  public static RegistryEntry<SilverArmorItem> SILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_chestplate", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlot.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.SILVER_INGOT, ModItems.SILVER_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<SilverArmorItem> SILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_leggings", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.LEGS))
+  public static RegistryEntry<SilverArmorItem> SILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_leggings", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlot.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.SILVER_INGOT, ModItems.SILVER_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<SilverArmorItem> SILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_boots", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlotType.FEET))
+  public static RegistryEntry<SilverArmorItem> SILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_boots", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlot.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.SILVER_INGOT, ModItems.SILVER_BOOTS, null, p))
       .register();
 
   // TIN
-  public static RegistryEntry<TinArmorItem> TIN_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_helmet", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.HEAD))
+  public static RegistryEntry<TinArmorItem> TIN_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_helmet", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.TIN_INGOT, ModItems.TIN_HELMET, null, p))
       .register();
-  public static RegistryEntry<TinArmorItem> TIN_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_chestplate", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.CHEST))
+  public static RegistryEntry<TinArmorItem> TIN_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_chestplate", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.TIN_INGOT, ModItems.TIN_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<TinArmorItem> TIN_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_leggings", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.LEGS))
+  public static RegistryEntry<TinArmorItem> TIN_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_leggings", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.TIN_INGOT, ModItems.TIN_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<TinArmorItem> TIN_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_boots", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlotType.FEET))
+  public static RegistryEntry<TinArmorItem> TIN_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_boots", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.TIN_INGOT, ModItems.TIN_BOOTS, null, p))
       .register();
 

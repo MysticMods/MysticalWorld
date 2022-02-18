@@ -1,9 +1,9 @@
 package mysticmods.mysticalworld.capability;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import net.minecraft.nbt.LongNBT;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.nbt.LongTag;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("ConstantConditions")
-public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<LongNBT> {
+public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<LongTag> {
   public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalWorld.MODID, "animal_cooldown_capability");
 
   @CapabilityInject(AnimalCooldownCapability.class)
@@ -23,12 +23,12 @@ public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, IC
   private final AnimalCooldownCapability instance = ANIMAL_COOLDOWN_CAPABILITY.getDefaultInstance();
 
   @Override
-  public LongNBT serializeNBT() {
-    return (LongNBT) ANIMAL_COOLDOWN_CAPABILITY.getStorage().writeNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null);
+  public LongTag serializeNBT() {
+    return (LongTag) ANIMAL_COOLDOWN_CAPABILITY.getStorage().writeNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null);
   }
 
   @Override
-  public void deserializeNBT(LongNBT nbt) {
+  public void deserializeNBT(LongTag nbt) {
     ANIMAL_COOLDOWN_CAPABILITY.getStorage().readNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null, nbt);
   }
 

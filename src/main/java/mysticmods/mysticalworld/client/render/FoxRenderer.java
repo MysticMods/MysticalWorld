@@ -4,16 +4,16 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.entity.SilverFoxEntity;
 import mysticmods.mysticalworld.client.model.FoxModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
 public class FoxRenderer extends MobRenderer<SilverFoxEntity, FoxModel> {
 
-  private FoxRenderer(@Nonnull EntityRendererManager renderManager, @Nonnull FoxModel m, float f) {
+  private FoxRenderer(@Nonnull EntityRenderDispatcher renderManager, @Nonnull FoxModel m, float f) {
     super(renderManager, m, f);
   }
 
@@ -21,7 +21,7 @@ public class FoxRenderer extends MobRenderer<SilverFoxEntity, FoxModel> {
 
     @Override
     @Nonnull
-    public FoxRenderer createRenderFor(@Nonnull EntityRendererManager manager) {
+    public FoxRenderer createRenderFor(@Nonnull EntityRenderDispatcher manager) {
       return new FoxRenderer(manager, ModelHolder.foxModel, 0.25f);
     }
   }

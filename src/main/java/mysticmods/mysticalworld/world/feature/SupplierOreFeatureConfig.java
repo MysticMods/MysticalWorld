@@ -2,15 +2,15 @@ package mysticmods.mysticalworld.world.feature;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class SupplierOreFeatureConfig implements IFeatureConfig {
+public class SupplierOreFeatureConfig implements FeatureConfiguration {
   public static final Codec<SupplierOreFeatureConfig> CODEC = RecordCodecBuilder.create((provider) -> provider.group(RuleTest.CODEC.fieldOf("target").forGetter((config) -> config.target), ResourceLocation.CODEC.fieldOf("state").forGetter((config) -> config.state), Codec.intRange(0, 64).fieldOf("size").forGetter((config) -> config.size)).apply(provider, SupplierOreFeatureConfig::new));
   public final RuleTest target;
   public final int size;

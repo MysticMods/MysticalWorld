@@ -1,33 +1,33 @@
 package mysticmods.mysticalworld.client.render.layers;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.entity.LavaCatEntity;
 import mysticmods.mysticalworld.client.model.LavaCatModel;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.IEntityRenderer;
-import net.minecraft.client.renderer.entity.layers.AbstractEyesLayer;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 
 @OnlyIn(Dist.CLIENT)
-public class LayerEyes extends AbstractEyesLayer<LavaCatEntity, LavaCatModel> {
+public class LayerEyes extends EyesLayer<LavaCatEntity, LavaCatModel> {
   private static final RenderType LAVA_EYES_TEXTURE = RenderType.entityCutout(new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_eyes.png"));
   private static final RenderType OBSIDIAN_EYES_TEXTURE = RenderType.entityCutout(new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_obsidian_eyes.png"));
 
-  public LayerEyes(IEntityRenderer<LavaCatEntity, LavaCatModel> entityRendererIn) {
+  public LayerEyes(RenderLayerParent<LavaCatEntity, LavaCatModel> entityRendererIn) {
     super(entityRendererIn);
   }
 
   @Override
-  public void render(@Nonnull MatrixStack pMatrixStack, @Nonnull IRenderTypeBuffer pBuffer, int pPackedLight, LavaCatEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-    IVertexBuilder ivertexbuilder;
+  public void render(@Nonnull PoseStack pMatrixStack, @Nonnull MultiBufferSource pBuffer, int pPackedLight, LavaCatEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    VertexConsumer ivertexbuilder;
     if (pLivingEntity.getIsLava()) {
       ivertexbuilder = pBuffer.getBuffer(LAVA_EYES_TEXTURE);
     } else {

@@ -1,9 +1,9 @@
 package mysticmods.mysticalworld.recipe;
 
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.NonNullList;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.core.NonNullList;
 import noobanidus.libs.noobutil.util.MathUtil;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public interface IDamageRecipe {
     return Ingredient.of(matchingStacks.toArray(new ItemStack[0]));
   }
 
-  default NonNullList<ItemStack> getRemainingItems(CraftingInventory inv, Ingredient damageIngredient, int damageAmount) {
+  default NonNullList<ItemStack> getRemainingItems(CraftingContainer inv, Ingredient damageIngredient, int damageAmount) {
     NonNullList<ItemStack> result = NonNullList.withSize(inv.getContainerSize(), ItemStack.EMPTY);
 
     for (int i = 0; i < result.size(); i++) {

@@ -1,10 +1,10 @@
 package mysticmods.mysticalworld.config;
 
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
   private final int repeats;
   private final int tries;
-  private final List<RegistryKey<World>> dimensions;
+  private final List<ResourceKey<Level>> dimensions;
   private ForgeConfigSpec.IntValue configRepeats;
   private ForgeConfigSpec.IntValue configTries;
   private ForgeConfigSpec.ConfigValue<List<? extends String>> configDimensions;
 
-  public StonepetalConfig(int repeats, int tries, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions, List<RegistryKey<World>> dimensions) {
+  public StonepetalConfig(int repeats, int tries, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions, List<ResourceKey<Level>> dimensions) {
     super(biomeTypes, biomeRestrictions);
     this.tries = tries;
     this.repeats = repeats;
@@ -42,8 +42,8 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
   }
 
   @Override
-  public GenerationStage.Decoration getStage() {
-    return GenerationStage.Decoration.VEGETAL_DECORATION;
+  public GenerationStep.Decoration getStage() {
+    return GenerationStep.Decoration.VEGETAL_DECORATION;
   }
 
   @Override
@@ -57,7 +57,7 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
     StringJoiner sb2 = new StringJoiner(",");
     biomeRestrictions.forEach(biome -> sb2.add(biome.getName()));
     configBiomeRestrictions = builder.comment("Which biome types this tree shouldn't spawn in (default END, NETHER)").define("biomeRestrictions", sb2.toString());
-    configDimensions = builder.comment("The dimensions that this feature should spawn in as a list (default [\"minecraft:overworld\"])").defineList("dimensions", dimensions.stream().map(RegistryKey::location).map(ResourceLocation::toString).collect(Collectors.toList()), (o) -> o instanceof String);
+    configDimensions = builder.comment("The dimensions that this feature should spawn in as a list (default [\"minecraft:overworld\"])").defineList("dimensions", dimensions.stream().map(ResourceKey::location).map(ResourceLocation::toString).collect(Collectors.toList()), (o) -> o instanceof String);
     builder.pop();
   }
 
@@ -67,11 +67,11 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
     this.storedDimension = null;
   }
 
-  private Set<RegistryKey<World>> storedDimension = null;
+  private Set<ResourceKey<Level>> storedDimension = null;
 
-  public Set<RegistryKey<World>> getDimensions() {
+  public Set<ResourceKey<Level>> getDimensions() {
     if (storedDimension == null) {
-      storedDimension = configDimensions.get().stream().map(o -> RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(o))).collect(Collectors.toSet());
+      storedDimension = configDimensions.get().stream().map(o -> ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(o))).collect(Collectors.toSet());
     }
 
     return storedDimension;

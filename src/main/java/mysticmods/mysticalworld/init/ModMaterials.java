@@ -3,11 +3,11 @@ package mysticmods.mysticalworld.init;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.sounds.SoundEvents;
 import noobanidus.libs.noobutil.ingredient.LazyIngredient;
 import noobanidus.libs.noobutil.item.WeaponType;
 import noobanidus.libs.noobutil.material.MaterialType;
@@ -150,35 +150,35 @@ public class ModMaterials {
       );
 
   public static MaterialType WOODEN = new MaterialType(WOODEN_NAME)
-      .setItemTier(ItemTier.WOOD)
+      .setItemTier(Tiers.WOOD)
       .setModId(MysticalWorld.MODID)
       .putDamageSpeed(
           WeaponType.KNIFE, 0f, -2.0f
       );
 
   public static MaterialType STONE = new MaterialType(STONE_NAME)
-      .setItemTier(ItemTier.STONE)
+      .setItemTier(Tiers.STONE)
       .setModId(MysticalWorld.MODID)
       .putDamageSpeed(
           WeaponType.KNIFE, 0f, -1.0f
       );
 
   public static MaterialType IRON = new MaterialType(IRON_NAME)
-      .setItemTier(ItemTier.IRON)
+      .setItemTier(Tiers.IRON)
       .setModId(MysticalWorld.MODID)
       .putDamageSpeed(
           WeaponType.KNIFE, 0f, -1.5f
       );
 
   public static MaterialType GOLD = new MaterialType(GOLD_NAME)
-      .setItemTier(ItemTier.GOLD)
+      .setItemTier(Tiers.GOLD)
       .setModId(MysticalWorld.MODID)
       .putDamageSpeed(
           WeaponType.KNIFE, 0f, -1.0f
       );
 
   public static MaterialType DIAMOND = new MaterialType(DIAMOND_NAME)
-      .setItemTier(ItemTier.DIAMOND)
+      .setItemTier(Tiers.DIAMOND)
       .setModId(MysticalWorld.MODID)
       .putDamageSpeed(
           WeaponType.KNIFE, 0.5f, -1.2f
