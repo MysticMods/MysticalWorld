@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 
 import java.util.UUID;
 import java.util.function.Supplier;

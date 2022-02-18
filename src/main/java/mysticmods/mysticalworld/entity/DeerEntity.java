@@ -3,8 +3,6 @@ package mysticmods.mysticalworld.entity;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModSounds;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -34,6 +32,12 @@ public class DeerEntity extends Animal {
     this.xpReward = 3;
   }
 
+  @Nullable
+  @Override
+  public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pEntity) {
+    return ModEntities.DEER.get().create(pLevel);
+  }
+
   @Override
   protected void defineSynchedData() {
     super.defineSynchedData();
@@ -55,23 +59,11 @@ public class DeerEntity extends Animal {
   @Override
   public void tick() {
     super.tick();
-    this.yRot = this.yHeadRot;
+    this.setYRot(this.yHeadRot);
   }
 
   public static AttributeSupplier.Builder attributes() {
     return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0d).add(Attributes.MOVEMENT_SPEED, 0.2d);
-  }
-
-  @Override
-  @Nonnull
-  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
-    return ModEntities.DEER.get().create(ageable.level);
-  }
-
-  @Override
-  @Nonnull
-  public ResourceLocation getDefaultLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "entities/deer");
   }
 
   @Override

@@ -3,8 +3,6 @@ package mysticmods.mysticalworld.entity;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModSounds;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -214,7 +212,7 @@ public class SilverFoxEntity extends TamableAnimal {
     } else {
       if (this.isTame()) {
         if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-          if (!player.abilities.instabuild) {
+          if (!player.isCreative()) {
             itemstack.shrink(1);
           }
 
@@ -248,7 +246,7 @@ public class SilverFoxEntity extends TamableAnimal {
                return ActionResultType.SUCCESS;
             }*/
       } else if (item == Items.APPLE) {
-        if (!player.abilities.instabuild) {
+        if (!player.isCreative()) {
           itemstack.shrink(1);
         }
 
@@ -376,8 +374,8 @@ public class SilverFoxEntity extends TamableAnimal {
 
 
   @Override
-  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
-    return ModEntities.SILVER_FOX.get().create(ageable.level);
+  public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob ageable) {
+    return ModEntities.SILVER_FOX.get().create(world);
   }
 
   @Override

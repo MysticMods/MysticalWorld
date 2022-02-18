@@ -5,9 +5,8 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.entity.ai.StalkGoal;
 import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -15,8 +14,8 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
-import net.minecraft.util.math.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -54,8 +53,8 @@ import java.util.EnumSet;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
-import java.util.function.Predicate;
 
+// TODO: Resynchronize this with EnderMan
 @SuppressWarnings({"deprecation", "Duplicates", "NullableProblems"})
 public class EnderminiEntity extends PathfinderMob {
   public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/endermini");
@@ -64,7 +63,6 @@ public class EnderminiEntity extends PathfinderMob {
   private static final EntityDataAccessor<Boolean> SCREAMING = SynchedEntityData.defineId(EnderminiEntity.class, EntityDataSerializers.BOOLEAN);
   private int lastCreepySound;
   private int targetChangeTime;
-  private static final Predicate<LivingEntity> endermitePredicate = (entity) -> entity instanceof Endermite && ((Endermite) entity).isPlayerSpawned();
 
   public EnderminiEntity(EntityType<? extends EnderminiEntity> type, Level worldIn) {
     super(type, worldIn);
@@ -85,7 +83,7 @@ public class EnderminiEntity extends PathfinderMob {
     goalSelector.addGoal(11, new EnderminiEntity.TakeBlockGoal(this));
     targetSelector.addGoal(1, new FindPlayerGoal(this));
     targetSelector.addGoal(2, new HurtByTargetGoal(this, Player.class));
-    targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Endermite.class, 10, true, false, endermitePredicate));
+    targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Endermite.class, true, false));
   }
 
   public static AttributeSupplier.Builder attributes() {
@@ -209,18 +207,29 @@ public class EnderminiEntity extends PathfinderMob {
   /**
    * Teleport the endermini
    */
-  private boolean teleport(double x, double y, double z) {
-    net.minecraftforge.event.entity.living.EnderTeleportEvent event = new net.minecraftforge.event.entity.living.EnderTeleportEvent(this, x, y, z, 0);
-    if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event))
-      return false;
-    boolean flag = this.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), false);
+  private boolean teleport(double pX, double pY, double pZ) {
+    BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(pX, pY, pZ);
 
-    if (flag) {
-      this.level.playSound(null, this.xo, this.yo, this.zo, ModSounds.ENDERMINI_PORTAL.get(), this.getSoundSource(), 1.0F, 1.0F);
-      /*this.playSound(ModSounds.Endermini.ENDERMINI_PORTAL.get(), 1.0F, 1.0F);*/
+    while (blockpos$mutableblockpos.getY() > this.level.getMinBuildHeight() && !this.level.getBlockState(blockpos$mutableblockpos).getMaterial().blocksMotion()) {
+      blockpos$mutableblockpos.move(Direction.DOWN);
     }
 
-    return flag;
+    BlockState blockstate = this.level.getBlockState(blockpos$mutableblockpos);
+    boolean flag = blockstate.getMaterial().blocksMotion();
+    boolean flag1 = blockstate.getFluidState().is(FluidTags.WATER);
+    if (flag && !flag1) {
+      net.minecraftforge.event.entity.EntityTeleportEvent.EnderEntity event = net.minecraftforge.event.ForgeEventFactory.onEnderTeleport(this, pX, pY, pZ);
+      if (event.isCanceled()) return false;
+      boolean flag2 = this.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true);
+      if (flag2 && !this.isSilent()) {
+        this.level.playSound(null, this.xo, this.yo, this.zo, ModSounds.ENDERMINI_PORTAL.get(), this.getSoundSource(), 1.0F, 1.0F);
+        this.playSound(ModSounds.ENDERMINI_PORTAL.get(), 1.0F, 1.0F);
+      }
+
+      return flag2;
+    } else {
+      return false;
+    }
   }
 
   @Override
@@ -247,11 +256,6 @@ public class EnderminiEntity extends PathfinderMob {
       Item item = Item.byBlock(iblockstate.getBlock());
       this.spawnAtLocation(new ItemStack(item, 1), 0.0F);
     }
-  }
-
-  @Override
-  public ResourceLocation getDefaultLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "entities/endermini");
   }
 
   /**
@@ -311,7 +315,7 @@ public class EnderminiEntity extends PathfinderMob {
   }
 
   private boolean shouldFollowPlayer(Player player) {
-    ItemStack itemstack = player.inventory.armor.get(3);
+    ItemStack itemstack = player.getInventory().armor.get(3);
 
     if (itemstack.getItem() == Items.PUMPKIN) {
       return false;
@@ -322,7 +326,7 @@ public class EnderminiEntity extends PathfinderMob {
       double d0 = vec3d1.length();
       vec3d1 = vec3d1.normalize();
       double d1 = vec3d.dot(vec3d1);
-      return d1 > 1.0D - 0.025D / d0 && player.canSee(this);
+      return d1 > 1.0D - 0.025D / d0 && player.hasLineOfSight(this);
     }
   }
 
@@ -337,7 +341,7 @@ public class EnderminiEntity extends PathfinderMob {
   private boolean shouldAttackPlayer(Player player) {
     if (betterEnd == 0) {
       if (END_VEIL_EFFECT == null) {
-        END_VEIL_EFFECT = ForgeRegistries.POTIONS.getValue(new ResourceLocation(BETTERENDFORGE, "end_veil"));
+        END_VEIL_EFFECT = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(BETTERENDFORGE, "end_veil"));
       }
       if (END_VEIL_ENCHANTMENT == null) {
         END_VEIL_ENCHANTMENT = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(BETTERENDFORGE, "end_veil"));
@@ -348,7 +352,7 @@ public class EnderminiEntity extends PathfinderMob {
         betterEnd = 1;
       }
     }
-    ItemStack itemstack = player.inventory.armor.get(3);
+    ItemStack itemstack = player.getInventory().armor.get(3);
     if (itemstack.getItem() == Blocks.CARVED_PUMPKIN.asItem()) {
       return false;
     }
@@ -362,7 +366,7 @@ public class EnderminiEntity extends PathfinderMob {
     double d0 = vec3d1.length();
     vec3d1 = vec3d1.normalize();
     double d1 = vec3d.dot(vec3d1);
-    return d1 > 1.0D - 0.025D / d0 && player.canSee(this);
+    return d1 > 1.0D - 0.025D / d0 && player.hasLineOfSight(this);
   }
 
   public void setCarriedBlock(@Nullable BlockState pState) {
@@ -398,12 +402,12 @@ public class EnderminiEntity extends PathfinderMob {
     private int aggroTime;
     private int teleportTime;
     private final TargetingConditions startAggroTargetConditions;
-    private final TargetingConditions continueAggroTargetConditions = (new TargetingConditions()).allowUnseeable();
+    private final TargetingConditions continueAggroTargetConditions = (TargetingConditions.forCombat().ignoreInvisibilityTesting());
 
     public FindPlayerGoal(EnderminiEntity p_i45842_1_) {
       super(p_i45842_1_, Player.class, false);
       this.enderman = p_i45842_1_;
-      this.startAggroTargetConditions = (new TargetingConditions()).range(this.getFollowDistance()).selector((p_220790_1_) -> p_i45842_1_.shouldAttackPlayer((Player) p_220790_1_));
+      this.startAggroTargetConditions = (TargetingConditions.forCombat()).range(this.getFollowDistance()).selector((p_220790_1_) -> p_i45842_1_.shouldAttackPlayer((Player) p_220790_1_));
     }
 
     /**
@@ -527,7 +531,7 @@ public class EnderminiEntity extends PathfinderMob {
     }
 
     private boolean canPlaceBlock(Level p_220836_1_, BlockPos p_220836_2_, BlockState p_220836_3_, BlockState p_220836_4_, BlockState p_220836_5_, BlockPos p_220836_6_) {
-      return p_220836_4_.isAir(p_220836_1_, p_220836_2_) && !p_220836_5_.isAir(p_220836_1_, p_220836_6_) && !p_220836_5_.is(Blocks.BEDROCK) && p_220836_5_.isCollisionShapeFullBlock(p_220836_1_, p_220836_6_) && p_220836_3_.canSurvive(p_220836_1_, p_220836_2_) && p_220836_1_.getEntities(this.enderman, AABB.unitCubeFromLowerCorner(Vec3.atLowerCornerOf(p_220836_2_))).isEmpty();
+      return p_220836_4_.isAir() && !p_220836_5_.isAir() && !p_220836_5_.is(Blocks.BEDROCK) && p_220836_5_.isCollisionShapeFullBlock(p_220836_1_, p_220836_6_) && p_220836_3_.canSurvive(p_220836_1_, p_220836_2_) && p_220836_1_.getEntities(this.enderman, AABB.unitCubeFromLowerCorner(Vec3.atLowerCornerOf(p_220836_2_))).isEmpty();
     }
   }
 
@@ -595,12 +599,11 @@ public class EnderminiEntity extends PathfinderMob {
       int k = Mth.floor(this.enderman.getZ() - 2.0D + random.nextDouble() * 4.0D);
       BlockPos blockpos = new BlockPos(i, j, k);
       BlockState blockstate = world.getBlockState(blockpos);
-      Block block = blockstate.getBlock();
       Vec3 vec3d = new Vec3((double) Mth.floor(this.enderman.getX()) + 0.5D, (double) j + 0.5D, (double) Mth.floor(this.enderman.getZ()) + 0.5D);
       Vec3 vec3d1 = new Vec3((double) i + 0.5D, (double) j + 0.5D, (double) k + 0.5D);
       BlockHitResult blockraytraceresult = world.clip(new ClipContext(vec3d, vec3d1, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this.enderman));
       boolean flag = blockraytraceresult.getType() != HitResult.Type.MISS && blockraytraceresult.getBlockPos().equals(blockpos);
-      if (block.is(BlockTags.ENDERMAN_HOLDABLE) && flag) {
+      if (blockstate.is(BlockTags.ENDERMAN_HOLDABLE) && flag) {
         this.enderman.setCarriedBlock(blockstate);
         world.removeBlock(blockpos, false);
       }

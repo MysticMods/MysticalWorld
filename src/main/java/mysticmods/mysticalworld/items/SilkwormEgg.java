@@ -92,7 +92,7 @@ public class SilkwormEgg extends Item {
           if (entitytype.spawn((ServerLevel) worldIn, itemstack, playerIn, blockpos, MobSpawnType.SPAWN_EGG, false, false) == null) {
             return new InteractionResultHolder<>(InteractionResult.PASS, itemstack);
           } else {
-            if (!playerIn.abilities.instabuild) {
+            if (!playerIn.isCreative()) {
               itemstack.shrink(1);
             }
 
@@ -113,7 +113,7 @@ public class SilkwormEgg extends Item {
       if (world.getRandom().nextInt(ConfigManager.SILKWORM_CONFIG.getSuccessChance()) == 0) {
         return use(context);
       } else {
-        if (context.getPlayer() == null || !context.getPlayer().abilities.instabuild) {
+        if (context.getPlayer() == null || !context.getPlayer().isCreative()) {
           context.getItemInHand().shrink(1);
         }
         return InteractionResult.SUCCESS;
@@ -130,7 +130,7 @@ public class SilkwormEgg extends Item {
       if (worldIn.getRandom().nextInt(ConfigManager.SILKWORM_CONFIG.getSuccessChance()) == 0) {
         return rightClick(worldIn, playerIn, handIn);
       } else {
-        if (!playerIn.abilities.instabuild) {
+        if (!playerIn.isCreative()) {
           itemstack.shrink(1);
         }
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);

@@ -4,8 +4,6 @@ import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModItems;
 import mysticmods.mysticalworld.init.ModSounds;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -35,9 +33,8 @@ public class SproutEntity extends Animal {
   }
 
   @Override
-  @Nonnull
-  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
-    SproutEntity entity = ModEntities.SPROUT.get().create(ageable.level);
+  public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob ageable) {
+    SproutEntity entity = ModEntities.SPROUT.get().create(world);
     if (entity != null) {
       entity.setVariant(entity.getVariant());
     }

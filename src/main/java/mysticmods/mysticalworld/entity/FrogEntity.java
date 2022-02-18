@@ -3,12 +3,11 @@ package mysticmods.mysticalworld.entity;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModSounds;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgableMob;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -33,6 +32,12 @@ public class FrogEntity extends Animal {
   public FrogEntity(EntityType<? extends FrogEntity> type, Level worldIn) {
     super(type, worldIn);
     this.xpReward = 2;
+  }
+
+  @org.jetbrains.annotations.Nullable
+  @Override
+  public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pEntity) {
+    return ModEntities.FROG.get().create(pLevel);
   }
 
   public static class GoalFrogJump extends Goal {
@@ -116,17 +121,4 @@ public class FrogEntity extends Animal {
   public static AttributeSupplier.Builder attributes() {
     return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0d).add(Attributes.MOVEMENT_SPEED, 0.5d);
   }
-
-  @Override
-  @Nonnull
-  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
-    return ModEntities.FROG.get().create(world);
-  }
-
-  @Override
-  @Nonnull
-  public ResourceLocation getDefaultLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "entities/frog");
-  }
-
 }

@@ -1,12 +1,7 @@
 package mysticmods.mysticalworld.entity;
 
-import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
-import net.minecraft.block.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -39,14 +34,14 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+@SuppressWarnings("NullableProblems")
 public class OwlEntity extends TamableAnimal implements FlyingAnimal {
-  public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/owl");
-
   public float flap;
   public float flapSpeed;
   public float oFlapSpeed;
   public float oFlap;
   public float flapping = 1.0F;
+  private float nextFlap = 1.0F;
 
   public OwlEntity(EntityType<? extends TamableAnimal> type, Level worldIn) {
     super(type, worldIn);
@@ -122,10 +117,10 @@ public class OwlEntity extends TamableAnimal implements FlyingAnimal {
     return block instanceof LeavesBlock || block == net.minecraft.world.level.block.Blocks.GRASS || (block instanceof RotatedPillarBlock && down.getMaterial() == Material.WOOD) || block == Blocks.AIR && worldIn.getMaxLocalRawBrightness(blockpos) > 8;
   }
 
-  // TODO: Fix fall damage
-/*  @Override
-  public void fall(float distance, float damageMultiplier) {
-  }*/
+  @Override
+  public boolean causeFallDamage(float pFallDistance, float pMultiplier, DamageSource pSource) {
+    return false;
+  }
 
   @Override
   protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
@@ -133,8 +128,8 @@ public class OwlEntity extends TamableAnimal implements FlyingAnimal {
 
   @Override
   @Nonnull
-  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
-    return ModEntities.OWL.get().create(ageable.level);
+  public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob ageable) {
+    return ModEntities.OWL.get().create(world);
   }
 
   @Override
@@ -164,21 +159,21 @@ public class OwlEntity extends TamableAnimal implements FlyingAnimal {
   }
 
   @Override
-  protected float playFlySound(float p_191954_1_) {
+  protected void onFlap() {
     this.playSound(SoundEvents.PARROT_FLY, 0.15F, 1.0F);
-    return p_191954_1_ + this.flapSpeed / 2.0F;
+    this.nextFlap = this.flyDist + this.flapSpeed / 2.0F;
   }
 
   @Override
-  protected boolean makeFlySound() {
-    return true;
+  protected boolean isFlapping() {
+    return this.flyDist > this.nextFlap;
   }
 
   /**
    * Gets the pitch of living sounds in living entities.
    */
   @Override
-  protected float getVoicePitch() {
+  public float getVoicePitch() {
     return getPitch(this.random);
   }
 
@@ -216,11 +211,6 @@ public class OwlEntity extends TamableAnimal implements FlyingAnimal {
     } else {
       return super.hurt(source, amount);
     }
-  }
-
-  @Override
-  public ResourceLocation getDefaultLootTable() {
-    return LOOT_TABLE;
   }
 
   public boolean isFlying() {

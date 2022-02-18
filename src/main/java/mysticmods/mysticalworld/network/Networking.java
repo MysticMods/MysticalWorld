@@ -2,7 +2,7 @@ package mysticmods.mysticalworld.network;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor;
 import noobanidus.libs.noobutil.network.PacketHandler;
 
 public class Networking extends PacketHandler {

@@ -87,11 +87,6 @@ public class ClamEntity extends WaterAnimal {
     return 0.3f;
   }
 
-  @Override
-  protected ResourceLocation getDefaultLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "entities/clam");
-  }
-
   public static AttributeSupplier.Builder attributes() {
     return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20d).add(Attributes.MOVEMENT_SPEED, 0).add(Attributes.KNOCKBACK_RESISTANCE, 5d);
   }
@@ -136,6 +131,7 @@ public class ClamEntity extends WaterAnimal {
     return !this.fromBucket() && !this.hasCustomName();
   }
 
+  // TODO: Migrate to `Bucketable`?
   @Override
   protected InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
     ItemStack itemstack = pPlayer.getItemInHand(pHand);
@@ -150,11 +146,11 @@ public class ClamEntity extends WaterAnimal {
 
       if (itemstack.isEmpty()) {
         pPlayer.setItemInHand(pHand, itemstack1);
-      } else if (!pPlayer.inventory.add(itemstack1)) {
+      } else if (!pPlayer.getInventory().add(itemstack1)) {
         pPlayer.drop(itemstack1, false);
       }
 
-      this.remove();
+      this.discard();
       return InteractionResult.sidedSuccess(this.level.isClientSide);
     } else {
       return super.mobInteract(pPlayer, pHand);
