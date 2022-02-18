@@ -2,10 +2,10 @@ package mysticmods.mysticalworld.init;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings;
 import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 
 import javax.annotation.Nullable;

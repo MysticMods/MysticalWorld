@@ -5,13 +5,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import mysticmods.mysticalworld.entity.DeerEntity;
 import mysticmods.mysticalworld.init.ModLoot;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.storage.loot.Serializer;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.util.GsonHelper;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 
 public class HasHorns implements LootItemCondition {
   private final boolean inverse;

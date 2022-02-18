@@ -1,11 +1,11 @@
 package mysticmods.mysticalworld.integration.jei;
 
-import mysticmods.mysticalworld.MysticalWorld;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
 import mezz.jei.api.runtime.IJeiRuntime;
+import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.resources.ResourceLocation;
 
 @JeiPlugin

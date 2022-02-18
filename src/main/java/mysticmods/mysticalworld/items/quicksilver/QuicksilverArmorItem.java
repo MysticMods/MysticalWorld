@@ -3,11 +3,11 @@ package mysticmods.mysticalworld.items.quicksilver;
 import com.google.common.collect.Multimap;
 import mysticmods.mysticalworld.items.ModifiedArmorItem;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -15,9 +15,6 @@ import net.minecraftforge.common.ForgeMod;
 import noobanidus.libs.noobutil.material.MaterialType;
 
 import java.util.Random;
-
-// TODO find a way to block damaging the item
-import net.minecraft.world.item.Item.Properties;
 
 public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksilverItem {
   private int counter;

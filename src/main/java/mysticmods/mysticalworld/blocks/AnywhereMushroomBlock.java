@@ -2,19 +2,15 @@ package mysticmods.mysticalworld.blocks;
 
 import mysticmods.mysticalworld.init.ConfiguredFeatures;
 import mysticmods.mysticalworld.init.ModBlocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.world.level.block.MushroomBlock;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.data.worldgen.Features;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.MushroomBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class AnywhereMushroomBlock extends MushroomBlock {
   public AnywhereMushroomBlock(Properties properties) {

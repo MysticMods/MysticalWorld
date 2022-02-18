@@ -5,17 +5,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.entity.ClamEntity;
-import mysticmods.mysticalworld.entity.SproutEntity;
 import mysticmods.mysticalworld.init.ModLoot;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.storage.loot.Serializer;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.util.GsonHelper;
-
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 
 public class IsMature implements LootItemCondition {
   private final boolean inverse;

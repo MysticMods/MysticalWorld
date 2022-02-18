@@ -1,16 +1,14 @@
 package mysticmods.mysticalworld.blocks;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.level.BlockGetter;
 import noobanidus.libs.noobutil.block.WaterloggedBlock;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 @SuppressWarnings({"deprecation", "Duplicates"})
 public class WetMudBlock extends WaterloggedBlock {

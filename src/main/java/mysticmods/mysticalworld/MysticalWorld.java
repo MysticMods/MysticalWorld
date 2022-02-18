@@ -3,7 +3,6 @@ package mysticmods.mysticalworld;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.events.LeafHandler;
-import mysticmods.mysticalworld.events.MaskHandler;
 import mysticmods.mysticalworld.events.global.GrassHandler;
 import mysticmods.mysticalworld.gen.LootTableGenerator;
 import mysticmods.mysticalworld.gen.PotionTagGenerator;

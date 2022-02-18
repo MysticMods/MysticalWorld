@@ -1,10 +1,8 @@
 package mysticmods.mysticalworld.blocks;
 
 import mysticmods.mysticalworld.init.ModItems;
-import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.ItemLike;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.CropBlock;
 
 @SuppressWarnings("ConstantConditions")
 public class AubergineCropBlock extends CropBlock {

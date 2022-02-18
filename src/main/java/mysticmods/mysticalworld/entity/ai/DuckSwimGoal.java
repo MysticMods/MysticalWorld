@@ -1,9 +1,8 @@
 package mysticmods.mysticalworld.entity.ai;
 
-import net.minecraft.entity.MobEntity;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.tags.FluidTags;
 
 import java.util.EnumSet;
 

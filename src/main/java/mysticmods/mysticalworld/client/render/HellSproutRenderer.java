@@ -1,11 +1,11 @@
 package mysticmods.mysticalworld.client.render;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.entity.HellSproutEntity;
 import mysticmods.mysticalworld.client.model.HellSproutModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
-import net.minecraft.client.renderer.entity.EntityRenderer;
+import mysticmods.mysticalworld.entity.HellSproutEntity;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;

@@ -2,9 +2,9 @@ package mysticmods.mysticalworld.world.placement;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.levelgen.placement.DecorationContext;
 import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
-import net.minecraft.server.level.ServerLevel;
 
 import java.util.Random;
 import java.util.stream.IntStream;

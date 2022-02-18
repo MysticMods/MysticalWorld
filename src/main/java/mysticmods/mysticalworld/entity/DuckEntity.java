@@ -3,38 +3,28 @@ package mysticmods.mysticalworld.entity;
 import mysticmods.mysticalworld.entity.ai.DuckSwimGoal;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModSounds;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.Tag;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.AgableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.tags.Tag;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.Mth;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
-
-import net.minecraft.world.entity.ai.goal.BreedGoal;
-import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.PanicGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
 
 public class DuckEntity extends Animal {
   public static Ingredient BREEDING_INGREDIENT;

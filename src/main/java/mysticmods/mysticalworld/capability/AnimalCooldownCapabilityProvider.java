@@ -1,8 +1,8 @@
 package mysticmods.mysticalworld.capability;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import net.minecraft.nbt.LongTag;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.LongTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;

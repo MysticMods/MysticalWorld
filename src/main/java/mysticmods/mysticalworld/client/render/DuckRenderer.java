@@ -2,9 +2,9 @@ package mysticmods.mysticalworld.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.entity.DuckEntity;
 import mysticmods.mysticalworld.client.model.DuckModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.entity.DuckEntity;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;

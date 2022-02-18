@@ -3,14 +3,12 @@ package mysticmods.mysticalworld.items.silver;
 import com.google.common.collect.Multimap;
 import mysticmods.mysticalworld.init.ModModifiers;
 import mysticmods.mysticalworld.items.ModifiedArmorItem;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import noobanidus.libs.noobutil.material.MaterialType;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class SilverArmorItem extends ModifiedArmorItem implements ISilverItem {
   public SilverArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {

@@ -2,6 +2,4 @@
 @MethodsReturnNonnullByDefault
 package mysticmods.mysticalworld;
 
-import mcp.MethodsReturnNonnullByDefault;
-
 import javax.annotation.ParametersAreNonnullByDefault;

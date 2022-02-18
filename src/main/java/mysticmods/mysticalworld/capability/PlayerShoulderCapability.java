@@ -2,11 +2,11 @@ package mysticmods.mysticalworld.capability;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.api.IPlayerShoulderCapability;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 

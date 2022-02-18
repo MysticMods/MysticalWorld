@@ -1,18 +1,16 @@
 package mysticmods.mysticalworld.entity.ai;
 
 import mysticmods.mysticalworld.config.ConfigManager;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.pathfinder.Path;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.InteractionHand;
 
 import java.util.EnumSet;
-
-import net.minecraft.world.entity.ai.goal.Goal.Flag;
 
 public class HealTargetGoal extends TargetGoal {
   private final PathfinderMob attacker;

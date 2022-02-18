@@ -12,29 +12,20 @@ import mysticmods.mysticalworld.items.quicksilver.*;
 import mysticmods.mysticalworld.items.sapphire.SapphireArmorItem;
 import mysticmods.mysticalworld.items.silver.*;
 import mysticmods.mysticalworld.items.tin.TinArmorItem;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.*;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 import noobanidus.libs.noobutil.data.generator.ItemGenerator;
 import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
 import noobanidus.libs.noobutil.item.BaseItems;
-
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.SwordItem;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class ModItems {

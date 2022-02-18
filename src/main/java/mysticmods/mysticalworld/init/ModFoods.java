@@ -1,8 +1,8 @@
 package mysticmods.mysticalworld.init;
 
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
 
 @SuppressWarnings("WeakerAccess")
 public class ModFoods {

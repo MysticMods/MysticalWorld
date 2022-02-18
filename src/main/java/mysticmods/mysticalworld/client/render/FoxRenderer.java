@@ -1,9 +1,9 @@
 package mysticmods.mysticalworld.client.render;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.entity.SilverFoxEntity;
 import mysticmods.mysticalworld.client.model.FoxModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.entity.SilverFoxEntity;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;

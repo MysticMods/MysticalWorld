@@ -3,10 +3,9 @@ package mysticmods.mysticalworld.init;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.loot.conditions.*;
 import mysticmods.mysticalworld.loot.functions.RandomPotion;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
-import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.core.Registry;
+import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 
 public class ModLoot {

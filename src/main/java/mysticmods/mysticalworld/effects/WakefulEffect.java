@@ -1,15 +1,15 @@
 package mysticmods.mysticalworld.effects;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.effect.InstantenousMobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.InstantenousMobEffect;
-import net.minecraft.stats.Stats;
-import net.minecraft.Util;
-import net.minecraft.network.chat.TextColor;
-import net.minecraft.network.chat.Style;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
 
 public class WakefulEffect extends InstantenousMobEffect {
   public WakefulEffect() {

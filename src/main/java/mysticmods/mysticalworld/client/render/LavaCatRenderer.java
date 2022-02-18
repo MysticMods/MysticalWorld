@@ -2,11 +2,11 @@ package mysticmods.mysticalworld.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.entity.LavaCatEntity;
 import mysticmods.mysticalworld.client.model.LavaCatModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.client.render.layers.LayerEyes;
 import mysticmods.mysticalworld.client.render.layers.LayerLava;
+import mysticmods.mysticalworld.entity.LavaCatEntity;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;

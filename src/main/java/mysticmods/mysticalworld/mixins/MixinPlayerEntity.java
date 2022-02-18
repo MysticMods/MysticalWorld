@@ -2,8 +2,8 @@ package mysticmods.mysticalworld.mixins;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.capability.PlayerShoulderCapability;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

@@ -1,15 +1,15 @@
 package mysticmods.mysticalworld.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.effects.SimpleEffect;
 import mysticmods.mysticalworld.effects.SlowRegenerationEffect;
 import mysticmods.mysticalworld.effects.WakefulEffect;
 import mysticmods.mysticalworld.potions.SupplierPotion;
-import mysticmods.mysticalworld.MysticalWorld;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.alchemy.Potion;
 
 public class ModEffects {

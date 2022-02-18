@@ -1,10 +1,10 @@
 package mysticmods.mysticalworld.events;
 
 import mysticmods.mysticalworld.init.ModModifiers;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 

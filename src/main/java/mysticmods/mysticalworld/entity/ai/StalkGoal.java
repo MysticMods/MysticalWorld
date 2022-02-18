@@ -1,15 +1,13 @@
 package mysticmods.mysticalworld.entity.ai;
 
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.pathfinder.Path;
 
 import java.util.EnumSet;
-
-import net.minecraft.world.entity.ai.goal.Goal.Flag;
 
 public class StalkGoal extends Goal {
   private final Level world;

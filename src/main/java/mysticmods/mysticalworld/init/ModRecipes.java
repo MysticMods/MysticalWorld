@@ -1,18 +1,12 @@
 package mysticmods.mysticalworld.init;
 
-import com.tterrag.registrate.providers.ProviderType;
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.recipe.BlazeRocketRecipe;
 import mysticmods.mysticalworld.recipe.EmptyRecipe;
 import mysticmods.mysticalworld.recipe.ShapedDamageRecipe;
 import mysticmods.mysticalworld.recipe.ShapelessDamageRecipe;
-import mysticmods.mysticalworld.MysticalWorld;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.item.crafting.ShapelessRecipe;
 import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
-import net.minecraft.util.ResourceLocation;
 import noobanidus.libs.noobutil.recipe.UniqueShapelessRecipe;
 
 public class ModRecipes {

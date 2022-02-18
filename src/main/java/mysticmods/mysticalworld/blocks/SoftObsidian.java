@@ -1,16 +1,12 @@
 package mysticmods.mysticalworld.blocks;
 
-import net.minecraft.block.*;
-import net.minecraft.world.level.material.PushReaction;
-import noobanidus.libs.noobutil.block.BaseBlocks;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.PushReaction;
+import noobanidus.libs.noobutil.block.BaseBlocks;
 
 public class SoftObsidian {
   public static class SoftObsidianBlock extends Block {

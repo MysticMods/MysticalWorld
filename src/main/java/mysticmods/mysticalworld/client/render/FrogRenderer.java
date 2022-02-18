@@ -1,9 +1,9 @@
 package mysticmods.mysticalworld.client.render;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.entity.FrogEntity;
 import mysticmods.mysticalworld.client.model.FrogModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.entity.FrogEntity;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;

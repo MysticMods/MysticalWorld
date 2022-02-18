@@ -1,9 +1,9 @@
 package mysticmods.mysticalworld.recipe;
 
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.core.NonNullList;
 import noobanidus.libs.noobutil.util.MathUtil;
 
 import java.util.ArrayList;

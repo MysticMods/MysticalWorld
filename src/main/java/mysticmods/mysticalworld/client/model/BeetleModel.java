@@ -1,21 +1,10 @@
 package mysticmods.mysticalworld.client.model;
 
 import com.google.common.collect.ImmutableSet;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.entity.BeetleEntity;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
-import net.minecraft.util.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 
 import javax.annotation.Nonnull;
 

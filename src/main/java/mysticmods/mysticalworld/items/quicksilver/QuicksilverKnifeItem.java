@@ -1,18 +1,16 @@
 package mysticmods.mysticalworld.items.quicksilver;
 
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import noobanidus.libs.noobutil.item.BaseItems;
 
 import java.util.Random;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class QuicksilverKnifeItem extends BaseItems.KnifeItem implements IQuicksilverItem {
 

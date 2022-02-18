@@ -1,14 +1,10 @@
 package mysticmods.mysticalworld.client.render.layers;
 
-import net.minecraft.client.renderer.RenderStateShard;
-import net.minecraft.client.renderer.RenderType;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.client.renderer.RenderStateShard;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-
-import net.minecraft.client.renderer.RenderStateShard.OffsetTexturingStateShard;
-import net.minecraft.client.renderer.RenderStateShard.TextureStateShard;
-import net.minecraft.client.renderer.RenderType.CompositeState;
 
 public class AdditionalRenderTypes extends RenderType {
   public AdditionalRenderTypes(String p_i225992_1_, VertexFormat p_i225992_2_, int p_i225992_3_, int p_i225992_4_, boolean p_i225992_5_, boolean p_i225992_6_, Runnable p_i225992_7_, Runnable p_i225992_8_) {

@@ -1,9 +1,9 @@
 package mysticmods.mysticalworld.client.render;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.entity.OwlEntity;
 import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.client.model.OwlModel;
+import mysticmods.mysticalworld.entity.OwlEntity;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;

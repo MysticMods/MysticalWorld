@@ -1,9 +1,9 @@
 package mysticmods.mysticalworld.client.model;
 
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.model.AgeableListModel;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 
 import java.util.function.Function;
 

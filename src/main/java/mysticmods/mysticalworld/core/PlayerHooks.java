@@ -1,8 +1,8 @@
 package mysticmods.mysticalworld.core;
 
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.world.entity.player.Player;
 
 @SuppressWarnings("unused")
 public class PlayerHooks {

@@ -1,8 +1,8 @@
 package mysticmods.mysticalworld.capability;
 
-import net.minecraft.nbt.Tag;
-import net.minecraft.nbt.LongTag;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.LongTag;
+import net.minecraft.nbt.Tag;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 
