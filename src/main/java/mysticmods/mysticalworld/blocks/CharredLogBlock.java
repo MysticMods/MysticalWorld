@@ -7,7 +7,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
@@ -19,7 +18,8 @@ public class CharredLogBlock extends RotatedPillarBlock {
     this.wood = wood;
   }
 
-  @Nullable
+  // TODO: How is stripping now handled?
+/*  @Nullable
   @Override
   public BlockState getToolModifiedState(BlockState state, Level world, BlockPos pos, Player player, ItemStack stack, ToolType toolType) {
     if (toolType == ToolType.AXE) {
@@ -30,5 +30,5 @@ public class CharredLogBlock extends RotatedPillarBlock {
       }
     }
     return super.getToolModifiedState(state, world, pos, player, stack, toolType);
-  }
+  }*/
 }

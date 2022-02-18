@@ -8,7 +8,8 @@ import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
 
-public class PlayerShoulderCapabilityStorage implements Capability.IStorage<IPlayerShoulderCapability> {
+// TODO: This got moved around in 1.17
+/*public class PlayerShoulderCapabilityStorage implements Capability.IStorage<IPlayerShoulderCapability> {
   @Nullable
   @Override
   public Tag writeNBT(Capability<IPlayerShoulderCapability> capability, IPlayerShoulderCapability instance, Direction side) {
@@ -21,4 +22,4 @@ public class PlayerShoulderCapabilityStorage implements Capability.IStorage<IPla
       instance.readNBT((CompoundTag) nbt);
     }
   }
-}
+}*/

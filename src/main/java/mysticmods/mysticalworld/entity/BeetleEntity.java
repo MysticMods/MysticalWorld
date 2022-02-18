@@ -8,14 +8,13 @@ import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.network.ShoulderRide;
 import net.minecraft.ChatFormatting;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.AgableMob;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.TamableAnimal;
@@ -30,7 +29,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
@@ -93,7 +93,7 @@ public class BeetleEntity extends TamableAnimal {
             }
           }
         } else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-          if (!player.abilities.instabuild) {
+          if (!player.isCreative()) {
             itemstack.shrink(1);
           }
 
@@ -115,7 +115,7 @@ public class BeetleEntity extends TamableAnimal {
 
         return actionresulttype;
       } else if (item == Items.MELON_SEEDS) {
-        if (!player.abilities.instabuild) {
+        if (!player.isCreative()) {
           itemstack.shrink(1);
         }
 
@@ -142,14 +142,13 @@ public class BeetleEntity extends TamableAnimal {
 
   @Override
   @Nonnull
-  public AgableMob getBreedOffspring(ServerLevel world, AgableMob ageable) {
-    return ModEntities.BEETLE.get().create(ageable.level);
-  }
-
-  @Override
-  @Nonnull
   public ResourceLocation getDefaultLootTable() {
     return new ResourceLocation(MysticalWorld.MODID, "entities/beetle");
   }
 
+  @Nullable
+  @Override
+  public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
+    return ModEntities.BEETLE.get().create(level);
+  }
 }

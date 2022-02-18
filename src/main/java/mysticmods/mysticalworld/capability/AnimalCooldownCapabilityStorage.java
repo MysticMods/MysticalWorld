@@ -4,11 +4,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.LongTag;
 import net.minecraft.nbt.Tag;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 
-public class AnimalCooldownCapabilityStorage implements Capability.IStorage<AnimalCooldownCapability> {
+// TODO: This got moved around in 1.17
+/*public class AnimalCooldownCapabilityStorage implements Capability.IStorage<AnimalCooldownCapability> {
   @Nullable
   @Override
   public Tag writeNBT(Capability<AnimalCooldownCapability> capability, AnimalCooldownCapability instance, Direction side) {
@@ -23,4 +23,4 @@ public class AnimalCooldownCapabilityStorage implements Capability.IStorage<Anim
       instance.setActualCooldown(0);
     }
   }
-}
+}*/
