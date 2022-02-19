@@ -1,26 +1,27 @@
-package mysticmods.mysticalworld.setup;
+package mysticmods.mysticalworld.events.mod;
 
 import com.tterrag.registrate.util.LazySpawnEggItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.client.model.ModelHolder;
-import mysticmods.mysticalworld.client.player.layer.ShoulderRenderLayer;
-import mysticmods.mysticalworld.client.render.*;
 import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import noobanidus.libs.noobutil.setup.ShadedClientSetup;
-import noobanidus.libs.shoulders.client.bootstrap.Bootstrap;
 
-@SuppressWarnings("deprecation")
+@Mod.EventBusSubscriber(modid= MysticalWorld.MODID, bus= Mod.EventBusSubscriber.Bus.MOD, value= Dist.CLIENT)
 public class ClientSetup {
+  @SubscribeEvent
   public static void init(FMLClientSetupEvent event) {
     ModelHolder.init();
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.BEETLE.get(), new BeetleRenderer.Factory());
+/*    RenderingRegistry.registerEntityRenderingHandler(ModEntities.BEETLE.get(), new BeetleRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.SILVER_FOX.get(), new FoxRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.FROG.get(), new FrogRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.SPROUT.get(), new SproutRenderer.Factory());
@@ -31,7 +32,7 @@ public class ClientSetup {
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.SILKWORM.get(), new SilkwormRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.HELL_SPROUT.get(), new HellSproutRenderer.Factory());
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.DUCK.get(), new DuckRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.CLAM.get(), new ClamRenderer.Factory());
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.CLAM.get(), new ClamRenderer.Factory());*/
 
     event.enqueueWork(() -> {
       RenderType rendertype = RenderType.cutoutMipped();
@@ -47,9 +48,9 @@ public class ClientSetup {
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNCANNY_MUSHROOM.get(), rendertype);
 
       ShadedClientSetup.init(event);
-      Bootstrap.init(Minecraft.getInstance());
+      /*      Bootstrap.init(Minecraft.getInstance());*/
 
-      Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values().forEach(o -> o.addLayer(new ShoulderRenderLayer<>(o)));
+      /*      Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values().forEach(o -> o.addLayer(new ShoulderRenderLayer<>(o)));*/
 
       // TODO: Fix this
       ItemColors c = Minecraft.getInstance().getItemColors();

@@ -2,7 +2,7 @@ package mysticmods.mysticalworld.entity;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
-import mysticmods.mysticalworld.events.LeafHandler;
+import mysticmods.mysticalworld.events.forge.LeafHandler;
 import mysticmods.mysticalworld.init.ModItems;
 import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.core.BlockPos;

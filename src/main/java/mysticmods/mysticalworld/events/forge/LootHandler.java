@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.events;
+package mysticmods.mysticalworld.events.forge;
 
 import com.google.common.collect.Sets;
 import mysticmods.mysticalworld.MysticalWorld;
@@ -12,18 +12,21 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Set;
 
-@SuppressWarnings("unused")
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class LootHandler {
   private static final Set<ResourceLocation> tables = Sets.newHashSet(BuiltInLootTables.SIMPLE_DUNGEON, BuiltInLootTables.ABANDONED_MINESHAFT, BuiltInLootTables.DESERT_PYRAMID, BuiltInLootTables.JUNGLE_TEMPLE, BuiltInLootTables.WOODLAND_MANSION);
   private static final ResourceLocation squid_table = new ResourceLocation("minecraft", "entities/squid");
 
+  // TODO: Global loot modifiers instead
+  @SubscribeEvent
   public static void onLootLoad(LootTableLoadEvent event) {
     if (tables.contains(event.getName())) {
-      event.getTable().addPool(
-          LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation(MysticalWorld.MODID, "chests/inject")).setWeight(1).setQuality(0)).name("mystical_world_chest_injection").build());
+      event.getTable().addPool(LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation(MysticalWorld.MODID, "chests/inject")).setWeight(1).setQuality(0)).name("mystical_world_chest_injection").build());
     }
 
     if (event.getName().equals(squid_table)) {
@@ -31,14 +34,11 @@ public class LootHandler {
     }
   }
 
+  @SubscribeEvent
   public static void onLooting(LootingLevelEvent event) {
     DamageSource source = event.getDamageSource();
-    if (source != null && source.getEntity() != null && source.getEntity() instanceof Player) {
-      Player player = (Player) source.getEntity();
-
-      int looting = event.getLootingLevel();
-
-      event.setLootingLevel(looting + Serendipity.calculateAdditional(player.getAttributeValue(ModModifiers.SERENDIPITY.get())));
+    if (source != null && source.getEntity() instanceof Player player) {
+      event.setLootingLevel(event.getLootingLevel() + Serendipity.calculateAdditional(player.getAttributeValue(ModModifiers.SERENDIPITY.get())));
     }
   }
 }

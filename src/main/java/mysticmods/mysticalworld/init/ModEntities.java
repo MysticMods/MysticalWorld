@@ -38,10 +38,13 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.*;
 
 @SuppressWarnings({"WeakerAccess", "ConstantConditions", "unchecked", "deprecation"})
+@Mod.EventBusSubscriber(modid=MysticalWorld.MODID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntities {
   private static <E extends Entity> NonNullFunction<Item.Properties, LazySpawnEggItem<E>> spawnEgg(RegistryEntry<EntityType<E>> entity, int color1, int color2) {
     return properties -> new LazySpawnEggItem<>(entity, color1, color2, properties);
@@ -332,9 +335,6 @@ public class ModEntities {
     }
   }
 
-  public static void load() {
-  }
-
   public static void registerEntities() {
     SpawnPlacements.register(DEER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     SpawnPlacements.register(FROG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
@@ -349,6 +349,7 @@ public class ModEntities {
     SpawnPlacements.register(CLAM.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ClamEntity::checkClamSpawnRules);
   }
 
+  @SubscribeEvent
   public static void registerAttributes(EntityAttributeCreationEvent event) {
     event.put(ModEntities.BEETLE.get(), BeetleEntity.attributes().build());
     event.put(ModEntities.DEER.get(), DeerEntity.attributes().build());
@@ -362,5 +363,8 @@ public class ModEntities {
     event.put(ModEntities.HELL_SPROUT.get(), HellSproutEntity.attributes().build());
     event.put(ModEntities.DUCK.get(), DuckEntity.attributes().build());
     event.put(ModEntities.CLAM.get(), ClamEntity.attributes().build());
+  }
+
+  public static void load() {
   }
 }

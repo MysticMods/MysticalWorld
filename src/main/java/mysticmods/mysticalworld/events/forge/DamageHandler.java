@@ -1,5 +1,6 @@
-package mysticmods.mysticalworld.events;
+package mysticmods.mysticalworld.events.forge;
 
+import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModModifiers;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -7,8 +8,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid= MysticalWorld.MODID)
 public class DamageHandler {
+  @SubscribeEvent
   public static void onAttackDamage(LivingDamageEvent event) {
     DamageSource source = event.getSource();
     LivingEntity target = event.getEntityLiving();
