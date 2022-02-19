@@ -10,7 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class PotionTagGenerator extends ForgeRegistryTagsProvider<Potion> {
   public PotionTagGenerator(DataGenerator generatorIn, ExistingFileHelper helper) {
-    super(generatorIn, ForgeRegistries.POTION_TYPES, MysticalWorld.MODID, helper);
+    super(generatorIn, ForgeRegistries.POTIONS, MysticalWorld.MODID, helper);
   }
 
   @Override
