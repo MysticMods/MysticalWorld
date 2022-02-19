@@ -16,7 +16,7 @@ public class ModMaterials {
   public static final String SAPPHIRE_NAME = "sapphire";
   public static final String COPPER_NAME = "copper";
   public static final String LEAD_NAME = "lead";
-  public static final String QUICKSILVER_NAME = "quicksilver";
+  public static final String ORICHALCUM_NAME = "orichalcum";
   public static final String SILVER_NAME = "silver";
   public static final String TIN_NAME = "tin";
   public static final String CACTUS_NAME = "cactus";
@@ -86,13 +86,12 @@ public class ModMaterials {
       )
       .setConfigProvider(ConfigManager::getArmorConfig);
 
-  public static MaterialType QUICKSILVER = new MaterialType(QUICKSILVER_NAME)
-      .itemMaterial(75, 6.0f, 2.5f, 3, 22, () -> MWTags.Items.QUICKSILVER_INGOT)
-      .item(() -> ModItems.QUICKSILVER_INGOT)
-      .nugget(() -> ModItems.QUICKSILVER_NUGGET)
-      .dust(() -> ModItems.QUICKSILVER_DUST)
-      .block(() -> ModBlocks.QUICKSILVER_BLOCK)
-      .ore(() -> ModBlocks.QUICKSILVER_ORE)
+  public static MaterialType ORICHALCUM = new MaterialType(ORICHALCUM_NAME)
+      .itemMaterial(75, 6.0f, 2.5f, 3, 22, () -> MWTags.Items.ORICHALCUM_INGOT)
+      .item(() -> ModItems.ORICHALCUM_INGOT)
+      .nugget(() -> ModItems.ORICHALCUM_NUGGET)
+      .dust(() -> ModItems.ORICHALCUM_DUST)
+      .block(() -> ModBlocks.ORICHALCUM_BLOCK)
       .armorMaterial(7, new int[]{1, 3, 5, 2}, SoundEvents.ARMOR_EQUIP_GOLD, 0.0f, 0f)
       .setModId(MysticalWorld.MODID)
       .putDamageSpeed(

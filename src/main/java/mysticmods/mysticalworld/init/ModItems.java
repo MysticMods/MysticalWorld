@@ -560,9 +560,9 @@ public class ModItems {
       .tag(MWTags.Items.LEAD_INGOT)
       .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.LEAD_BLOCK, () -> ModItems.LEAD_INGOT, MWTags.Items.LEAD_BLOCK, MWTags.Items.LEAD_INGOT, MWTags.Items.LEAD_ORE, () -> ModItems.LEAD_NUGGET, MWTags.Items.LEAD_NUGGET, MWTags.Items.LEAD_DUST))
       .register();
-  public static RegistryEntry<Item> QUICKSILVER_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getIngotName(), Item::new)
-      .tag(MWTags.Items.QUICKSILVER_INGOT)
-      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.QUICKSILVER_BLOCK, () -> ModItems.QUICKSILVER_INGOT, MWTags.Items.QUICKSILVER_BLOCK, MWTags.Items.QUICKSILVER_INGOT, MWTags.Items.QUICKSILVER_ORE, () -> ModItems.QUICKSILVER_NUGGET, MWTags.Items.QUICKSILVER_NUGGET, MWTags.Items.QUICKSILVER_DUST))
+  public static RegistryEntry<Item> ORICHALCUM_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getIngotName(), Item::new)
+      .tag(MWTags.Items.ORICHALCUM_INGOT)
+      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.ORICHALCUM_BLOCK, () -> ModItems.ORICHALCUM_INGOT, MWTags.Items.ORICHALCUM_BLOCK, MWTags.Items.ORICHALCUM_INGOT, null /* It has no ore */, () -> ModItems.ORICHALCUM_NUGGET, MWTags.Items.ORICHALCUM_NUGGET, MWTags.Items.ORICHALCUM_DUST))
       .register();
   public static RegistryEntry<Item> SILVER_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getIngotName(), Item::new)
       .tag(MWTags.Items.SILVER_INGOT)
@@ -579,7 +579,7 @@ public class ModItems {
       .recipe((ctx, p) -> {
         MysticalWorld.RECIPES.recycle(MWTags.Items.SILVER_ITEMS, ModItems.SILVER_NUGGET, 0.15f, p);
         MysticalWorld.RECIPES.recycle(MWTags.Items.COPPER_ITEMS, ModItems.COPPER_NUGGET, 0.15f, p);
-        MysticalWorld.RECIPES.recycle(MWTags.Items.QUICKSILVER_ITEMS, ModItems.QUICKSILVER_NUGGET, 0.15f, p);
+        MysticalWorld.RECIPES.recycle(MWTags.Items.ORICHALCUM, ModItems.ORICHALCUM_NUGGET, 0.15f, p);
         MysticalWorld.RECIPES.recycle(MWTags.Items.TIN_ITEMS, ModItems.TIN_NUGGET, 0.15f, p);
         MysticalWorld.RECIPES.recycle(MWTags.Items.LEAD_ITEMS, ModItems.LEAD_NUGGET, 0.15f, p);
         MysticalWorld.RECIPES.recycle(ModItems.GOLD_KNIFE, () -> Items.GOLD_NUGGET, 0.15f, MysticalWorld.MODID, p);
@@ -591,8 +591,8 @@ public class ModItems {
   public static RegistryEntry<Item> LEAD_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.nuggetName(), Item::new)
       .tag(MWTags.Items.LEAD_NUGGET)
       .register();
-  public static RegistryEntry<Item> QUICKSILVER_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.nuggetName(), Item::new)
-      .tag(MWTags.Items.QUICKSILVER_NUGGET)
+  public static RegistryEntry<Item> ORICHALCUM_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.nuggetName(), Item::new)
+      .tag(MWTags.Items.ORICHALCUM_NUGGET)
       .register();
   public static RegistryEntry<Item> SILVER_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.nuggetName(), Item::new)
       .tag(MWTags.Items.SILVER_NUGGET)
@@ -608,8 +608,8 @@ public class ModItems {
   public static RegistryEntry<Item> LEAD_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.dustName(), Item::new)
       .tag(MWTags.Items.LEAD_DUST)
       .register();
-  public static RegistryEntry<Item> QUICKSILVER_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.dustName(), Item::new)
-      .tag(MWTags.Items.QUICKSILVER_DUST)
+  public static RegistryEntry<Item> ORICHALCUM_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.dustName(), Item::new)
+      .tag(MWTags.Items.ORICHALCUM_DUST)
       .register();
   public static RegistryEntry<Item> SILVER_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.dustName(), Item::new)
       .tag(MWTags.Items.SILVER_DUST)
@@ -718,28 +718,28 @@ public class ModItems {
       .model((ctx, p) -> p.handheld(ModItems.LEAD_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.LEAD_SWORD, ModItems.LEAD_SPEAR, null, p)).register();
 
-  // QUICKSILVER
-  public static RegistryEntry<OrichalcumAxeItem> QUICKSILVER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_axe", ItemGenerator.axe(OrichalcumAxeItem::new, ModMaterials.QUICKSILVER))
-      .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_AXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_AXE, null, p)).register();
-  public static RegistryEntry<OrichalcumHoeItem> QUICKSILVER_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_hoe", ItemGenerator.hoe(OrichalcumHoeItem::new, ModMaterials.QUICKSILVER))
-      .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_HOE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HOE, null, p)).register();
-  public static RegistryEntry<OrichalcumKnifeItem> QUICKSILVER_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_knife", ItemGenerator.knife(OrichalcumKnifeItem::new, ModMaterials.QUICKSILVER))
-      .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_KNIFE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_KNIFE, null, p)).register();
-  public static RegistryEntry<OrichalcumPickaxeItem> QUICKSILVER_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(OrichalcumPickaxeItem::new, ModMaterials.QUICKSILVER))
-      .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_PICKAXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_PICKAXE, null, p)).register();
-  public static RegistryEntry<OrichalcumShovelItem> QUICKSILVER_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_shovel", ItemGenerator.shovel(OrichalcumShovelItem::new, ModMaterials.QUICKSILVER))
-      .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SHOVEL))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SHOVEL, null, p)).register();
-  public static RegistryEntry<OrichalcumSwordItem> QUICKSILVER_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_sword", ItemGenerator.sword(OrichalcumSwordItem::new, ModMaterials.QUICKSILVER))
-      .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SWORD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SWORD, null, p)).register();
-  public static RegistryEntry<OrichalcumSpearItem> QUICKSILVER_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_spear", ItemGenerator.spear(OrichalcumSpearItem::new, ModMaterials.QUICKSILVER))
-      .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SPEAR))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.QUICKSILVER_SWORD, ModItems.QUICKSILVER_SPEAR, null, p)).register();
+  // ORICHALCUM
+  public static RegistryEntry<OrichalcumAxeItem> ORICHALCUM_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_axe", ItemGenerator.axe(OrichalcumAxeItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_AXE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_AXE, null, p)).register();
+  public static RegistryEntry<OrichalcumHoeItem> ORICHALCUM_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_hoe", ItemGenerator.hoe(OrichalcumHoeItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_HOE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_HOE, null, p)).register();
+  public static RegistryEntry<OrichalcumKnifeItem> ORICHALCUM_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_knife", ItemGenerator.knife(OrichalcumKnifeItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_KNIFE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_KNIFE, null, p)).register();
+  public static RegistryEntry<OrichalcumPickaxeItem> ORICHALCUM_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(OrichalcumPickaxeItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_PICKAXE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_PICKAXE, null, p)).register();
+  public static RegistryEntry<OrichalcumShovelItem> ORICHALCUM_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_shovel", ItemGenerator.shovel(OrichalcumShovelItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_SHOVEL))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_SHOVEL, null, p)).register();
+  public static RegistryEntry<OrichalcumSwordItem> ORICHALCUM_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_sword", ItemGenerator.sword(OrichalcumSwordItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_SWORD))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_SWORD, null, p)).register();
+  public static RegistryEntry<OrichalcumSpearItem> ORICHALCUM_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_spear", ItemGenerator.spear(OrichalcumSpearItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_SPEAR))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.ORICHALCUM_SWORD, ModItems.ORICHALCUM_SPEAR, null, p)).register();
 
   // SILVER
   public static RegistryEntry<SilverAxeItem> SILVER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_axe", ItemGenerator.axe(SilverAxeItem::new, ModMaterials.SILVER))
@@ -871,18 +871,18 @@ public class ModItems {
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.LEAD_INGOT, ModItems.LEAD_BOOTS, null, p))
       .register();
 
-  // QUICKSILVER
-  public static RegistryEntry<OrichalcumArmorItem> QUICKSILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_helmet", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.HEAD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HELMET, null, p))
+  // ORICHALCUM
+  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_helmet", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.HEAD))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_HELMET, null, p))
       .register();
-  public static RegistryEntry<OrichalcumArmorItem> QUICKSILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_chestplate", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.CHEST))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_CHESTPLATE, null, p))
+  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_chestplate", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.CHEST))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<OrichalcumArmorItem> QUICKSILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_leggings", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.LEGS))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_LEGGINGS, null, p))
+  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_leggings", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.LEGS))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<OrichalcumArmorItem> QUICKSILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_boots", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.FEET))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_BOOTS, null, p))
+  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_boots", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.FEET))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_BOOTS, null, p))
       .register();
 
   // SILVER

@@ -1,0 +1,22 @@
+{
+  "name": "Orichalcum Weapons",
+  "icon": "mysticalworld:orichalcum_knife",
+  "category": "metals_weapons",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:orichalcum_ingot",
+      "text": "Orichalcum is a volatile metal magically contained in solid form. While they make excellent weapons that do not naturally take durability damage, they decay over time."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:orichalcum_knife",
+      "recipe2": "mysticalworld:orichalcum_spear",
+      "title": "Orichalcum Weapons"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:orichalcum_sword"
+    }
+  ]
+}

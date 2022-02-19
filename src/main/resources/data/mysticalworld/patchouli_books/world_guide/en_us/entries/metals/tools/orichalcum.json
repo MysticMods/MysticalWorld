@@ -1,0 +1,24 @@
+{
+  "name": "Orichalcum Tools",
+  "icon": "mysticalworld:orichalcum_axe",
+  "category": "metals_tools",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:orichalcum_ingot",
+      "text": "Orichalcum is an uncommon, magical metal that, while generally liquid, can be formed into a solid object that can be used to craft tools.$(br2)In addition to having the same harvest level as iron, these do not naturally take durability damage from use, instead decaying over time."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:orichalcum_axe",
+      "recipe2": "mysticalworld:orichalcum_hoe",
+      "title": "Orichalcum Tools"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:orichalcum_shovel",
+      "recipe2": "mysticalworld:orichalcum_pickaxe",
+      "title": "Orichalcum Tools"
+    }
+  ]
+}

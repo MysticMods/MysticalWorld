@@ -1,0 +1,20 @@
+{
+  "name": "Orichalcum Ore",
+  "icon": "mysticalworld:orichalcum_block",
+  "category": "metals",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "mysticalworld:orichalcum_block",
+      "text": "This fantastical, >> NOT AN ORE << mystical ore contains solidified orichalcum. It can be formed into ingots that mostly retain their solidity, and thus can be used for crafting purposes."
+    },
+    {
+      "type": "smelting",
+      "link_recipe": true,
+      "recipe": "mysticalworld:orichalcum_ingot_from_smelting",
+      "title": "Orichalcum Ingots",
+      "text": "Like all other ores, this can be smelted in a furnace or a blast furnace."
+    }
+  ]
+}

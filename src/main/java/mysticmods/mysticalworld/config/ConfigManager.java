@@ -68,7 +68,7 @@ public class ConfigManager {
     ARMOR_CONFIGS.put(ModMaterials.SAPPHIRE_NAME, new ArmorConfig(ModMaterials.SAPPHIRE_NAME, 3, 6, 8, 3, 2.0f));
     ARMOR_CONFIGS.put(ModMaterials.COPPER_NAME, new ArmorConfig(ModMaterials.COPPER_NAME, 2, 5, 6, 2, 0f));
     ARMOR_CONFIGS.put(ModMaterials.LEAD_NAME, new ArmorConfig(ModMaterials.LEAD_NAME, 2, 5, 6, 2, 1f));
-    ARMOR_CONFIGS.put(ModMaterials.QUICKSILVER_NAME, new ArmorConfig(ModMaterials.QUICKSILVER_NAME, 1, 3, 5, 2, 0f));
+    ARMOR_CONFIGS.put(ModMaterials.ORICHALCUM_NAME, new ArmorConfig(ModMaterials.ORICHALCUM_NAME, 1, 3, 5, 2, 0f));
     ARMOR_CONFIGS.put(ModMaterials.SILVER_NAME, new ArmorConfig(ModMaterials.SILVER_NAME, 1, 3, 5, 2, 0f));
     ARMOR_CONFIGS.put(ModMaterials.TIN_NAME, new ArmorConfig(ModMaterials.TIN_NAME, 1, 4, 5, 2, 0f));
     ARMOR_CONFIGS.put(ModMaterials.CARAPACE_NAME, new ArmorConfig(ModMaterials.CARAPACE_NAME, 2, 5, 6, 2, 0f));
@@ -99,7 +99,6 @@ public class ConfigManager {
     ORE_CONFIG.add(new OreConfig("Tin", 8, 24, 64, 8, defaultDimensions, () -> ModBlocks.TIN_ORE));
     ORE_CONFIG.add(new OreConfig("Silver", 4, 0, 24, 8, defaultDimensions, () -> ModBlocks.SILVER_ORE));
     ORE_CONFIG.add(new OreConfig("Lead", 4, 8, 32, 8, defaultDimensions, () -> ModBlocks.LEAD_ORE));
-    ORE_CONFIG.add(new OreConfig("Quicksilver", 3, 0, 16, 4, defaultDimensions, () -> ModBlocks.QUICKSILVER_ORE));
     ORE_CONFIG.add(new OreConfig("Sapphire", 4, 0, 24, 3, defaultDimensions, () -> ModBlocks.SAPPHIRE_ORE));
     ORE_CONFIG.add(new OreConfig("Quartz", 13, 24, 76, 4, defaultDimensions, () -> ModBlocks.GRANITE_QUARTZ_ORE, new TagMatchTest(MWTags.Blocks.BASE_STONE_GRANITE)));
 
