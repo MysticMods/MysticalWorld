@@ -61,6 +61,8 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Supplier;
 
+// TODO: PlacedFeature, etc.
+
 public class ModFeatures {
   public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
 

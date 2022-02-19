@@ -14,7 +14,6 @@ import mysticmods.mysticalworld.items.silver.*;
 import mysticmods.mysticalworld.items.tin.TinArmorItem;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.item.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -33,7 +32,7 @@ public class ModItems {
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ModItems.ENCYCLOPEDIA.get(), 1)
           .requires(Items.BOOK)
           .requires(MWTags.Items.AUBERGINE)
-          .unlockedBy("has_aubergine", RegistrateRecipeProvider.hasItem(MWTags.Items.AUBERGINE))
+          .unlockedBy("has_aubergine", RegistrateRecipeProvider.has(MWTags.Items.AUBERGINE))
           .save(p))
       .register();
 
@@ -73,7 +72,7 @@ public class ModItems {
           .pattern("XXX")
           .define('X', MWTags.Items.SILVER_INGOT)
           .define('H', ModItems.NAUTILUS_HORN.get())
-          .unlockedBy("has_horn", RegistrateRecipeProvider.hasItem(ModItems.NAUTILUS_HORN.get()))
+          .unlockedBy("has_horn", RegistrateRecipeProvider.has(ModItems.NAUTILUS_HORN.get()))
           .save(p))
       .model((ctx, p) -> p.withExistingParent(p.name(ModItems.GLISTERING_HORN), "item/handheld").texture("layer0", p.itemTexture(ModItems.NAUTILUS_HORN)))
       .register();
@@ -89,7 +88,7 @@ public class ModItems {
             .define('G', Tags.Items.NUGGETS_GOLD)
             .define('P', MWTags.Items.PEARL_GEM)
             .define('S', Tags.Items.RODS_WOODEN)
-            .unlockedBy("has_pearl", RegistrateRecipeProvider.hasItem(ModItems.PEARL_GEM.get()))
+            .unlockedBy("has_pearl", RegistrateRecipeProvider.has(ModItems.PEARL_GEM.get()))
             .save(p);
       })
       .register();
@@ -107,7 +106,7 @@ public class ModItems {
           .define('A', ModItems.ANTLERS.get())
           .define('W', ItemTags.WOOL)
           .define('S', Tags.Items.STRING)
-          .unlockedBy("has_antlers", RegistrateRecipeProvider.hasItem(ModItems.ANTLERS.get()))
+          .unlockedBy("has_antlers", RegistrateRecipeProvider.has(ModItems.ANTLERS.get()))
           .save(p))
       .register();
 
@@ -117,7 +116,7 @@ public class ModItems {
           .pattern("CCC")
           .pattern("C C")
           .define('C', MWTags.Items.CARAPACE)
-          .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(MWTags.Items.CARAPACE))
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
           .save(p))
       .register();
 
@@ -128,7 +127,7 @@ public class ModItems {
           .pattern("CCC")
           .pattern("CCC")
           .define('C', MWTags.Items.CARAPACE)
-          .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(MWTags.Items.CARAPACE))
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
           .save(p))
       .register();
 
@@ -138,7 +137,7 @@ public class ModItems {
           .pattern("C C")
           .pattern("C C")
           .define('C', MWTags.Items.CARAPACE)
-          .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(MWTags.Items.CARAPACE))
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
           .save(p))
       .register();
 
@@ -147,7 +146,7 @@ public class ModItems {
           .pattern("C C")
           .pattern("C C")
           .define('C', MWTags.Items.CARAPACE)
-          .unlockedBy("has_carapace", RegistrateRecipeProvider.hasItem(MWTags.Items.CARAPACE))
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
           .save(p))
       .register();
 
@@ -162,7 +161,7 @@ public class ModItems {
         ShapelessRecipeBuilder.shapeless(Items.STRING, 1)
             .requires(ctx.getEntry())
             .requires(ctx.getEntry())
-            .unlockedBy("has_silk_thread", RegistrateRecipeProvider.hasItem(ModItems.SILK_THREAD.get()))
+            .unlockedBy("has_silk_thread", RegistrateRecipeProvider.has(ModItems.SILK_THREAD.get()))
             .save(p, "string_from_two_silk_thread");
 
         // Properly tag Minecraft default recipes
@@ -172,7 +171,7 @@ public class ModItems {
             .pattern("X S")
             .define('X', Tags.Items.RODS_WOODEN)
             .define('S', Tags.Items.STRING)
-            .unlockedBy("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
+            .unlockedBy("has_string", RegistrateRecipeProvider.has(Tags.Items.STRING))
             .save(p);
 
         ShapedRecipeBuilder.shaped(Items.SCAFFOLDING, 6)
@@ -181,7 +180,7 @@ public class ModItems {
             .pattern("X X")
             .define('X', Items.BAMBOO)
             .define('S', Tags.Items.STRING)
-            .unlockedBy("has_bamboo", RegistrateRecipeProvider.hasItem(Items.BAMBOO))
+            .unlockedBy("has_bamboo", RegistrateRecipeProvider.has(Items.BAMBOO))
             .save(p);
 
         // String -> wool
@@ -189,7 +188,7 @@ public class ModItems {
             .pattern("XX")
             .pattern("XX")
             .define('X', Tags.Items.STRING)
-            .unlockedBy("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
+            .unlockedBy("has_string", RegistrateRecipeProvider.has(Tags.Items.STRING))
             .save(p);
 
         // Bow
@@ -199,7 +198,7 @@ public class ModItems {
             .pattern(" XS")
             .define('X', Tags.Items.RODS_WOODEN)
             .define('S', Tags.Items.STRING)
-            .unlockedBy("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
+            .unlockedBy("has_string", RegistrateRecipeProvider.has(Tags.Items.STRING))
             .save(p);
 
         // Loom
@@ -208,7 +207,7 @@ public class ModItems {
             .pattern("XX")
             .define('X', ItemTags.PLANKS)
             .define('S', Tags.Items.STRING)
-            .unlockedBy("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
+            .unlockedBy("has_string", RegistrateRecipeProvider.has(Tags.Items.STRING))
             .save(p);
 
         // Crossbow
@@ -220,8 +219,8 @@ public class ModItems {
             .define('S', Tags.Items.STRING)
             .define('I', Tags.Items.INGOTS_IRON)
             .define('T', Items.TRIPWIRE_HOOK)
-            .unlockedBy("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
-            .unlockedBy("has_iron", RegistrateRecipeProvider.hasItem(Tags.Items.INGOTS_IRON))
+            .unlockedBy("has_string", RegistrateRecipeProvider.has(Tags.Items.STRING))
+            .unlockedBy("has_iron", RegistrateRecipeProvider.has(Tags.Items.INGOTS_IRON))
             .save(p);
 
         // Lead
@@ -231,7 +230,7 @@ public class ModItems {
             .pattern("  S")
             .define('S', Tags.Items.STRING)
             .define('B', Tags.Items.SLIMEBALLS)
-            .unlockedBy("has_slime", RegistrateRecipeProvider.hasItem(Tags.Items.SLIMEBALLS))
+            .unlockedBy("has_slime", RegistrateRecipeProvider.has(Tags.Items.SLIMEBALLS))
             .save(p);
 
         // Book
@@ -240,7 +239,7 @@ public class ModItems {
             .requires(Items.PAPER)
             .requires(Items.PAPER)
             .requires(Tags.Items.STRING)
-            .unlockedBy("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
+            .unlockedBy("has_string", RegistrateRecipeProvider.has(Tags.Items.STRING))
             .save(p, new ResourceLocation(MysticalWorld.MODID, "shapeless_book_with_string"));
 
         ShapedRecipeBuilder.shaped(Items.BOOK, 1)
@@ -248,7 +247,7 @@ public class ModItems {
             .pattern("PS")
             .define('P', Items.PAPER)
             .define('S', Tags.Items.STRING)
-            .unlockedBy("has_string", RegistrateRecipeProvider.hasItem(Tags.Items.STRING))
+            .unlockedBy("has_string", RegistrateRecipeProvider.has(Tags.Items.STRING))
             .save(p, new ResourceLocation(MysticalWorld.MODID, "shaped_book_with_string"));
       })
       .register();
@@ -262,7 +261,7 @@ public class ModItems {
           .define('S', net.minecraftforge.common.Tags.Items.RODS_WOODEN)
           .define('X', ItemTags.WOODEN_SLABS)
           .define('T', Items.TRIPWIRE_HOOK)
-          .unlockedBy("has_slab", RegistrateRecipeProvider.hasItem(ItemTags.WOODEN_SLABS))
+          .unlockedBy("has_slab", RegistrateRecipeProvider.has(ItemTags.WOODEN_SLABS))
           .save(p))
       .register();
 
@@ -271,7 +270,7 @@ public class ModItems {
           .requires(Items.BONE_MEAL)
           .requires(Ingredient.of(MWTags.Items.SUGARS))
           .requires(Ingredient.of(MWTags.Items.PROTEINS))
-          .unlockedBy("has_bone_meal", RegistrateRecipeProvider.hasItem(Items.BONE_MEAL))
+          .unlockedBy("has_bone_meal", RegistrateRecipeProvider.has(Items.BONE_MEAL))
           .save(p)
       )
       .register();
@@ -284,7 +283,7 @@ public class ModItems {
                 .requires(Items.GLASS_BOTTLE)
                 .requires(Items.GLASS_BOTTLE)
                 .requires(Items.GLASS_BOTTLE)
-                .unlockedBy("has_gall_apple", RegistrateRecipeProvider.hasItem(ModItems.GALL_APPLE.get()))
+                .unlockedBy("has_gall_apple", RegistrateRecipeProvider.has(ModItems.GALL_APPLE.get()))
                 .save(p, new ResourceLocation(MysticalWorld.MODID, "tannin_vials_from_gall_apples"));
 
             ShapelessRecipeBuilder.shapeless(Items.LEATHER, 3)
@@ -292,23 +291,23 @@ public class ModItems {
                 .requires(Items.ROTTEN_FLESH)
                 .requires(Items.ROTTEN_FLESH)
                 .requires(Items.ROTTEN_FLESH)
-                .unlockedBy("has_tannins", RegistrateRecipeProvider.hasItem(ctx.getEntry()))
-                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.hasItem(Items.ROTTEN_FLESH))
+                .unlockedBy("has_tannins", RegistrateRecipeProvider.has(ctx.getEntry()))
+                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.has(Items.ROTTEN_FLESH))
                 .save(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x3"));
 
             ShapelessRecipeBuilder.shapeless(Items.LEATHER, 2)
                 .requires(ctx.getEntry())
                 .requires(Items.ROTTEN_FLESH)
                 .requires(Items.ROTTEN_FLESH)
-                .unlockedBy("has_tannins", RegistrateRecipeProvider.hasItem(ctx.getEntry()))
-                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.hasItem(Items.ROTTEN_FLESH))
+                .unlockedBy("has_tannins", RegistrateRecipeProvider.has(ctx.getEntry()))
+                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.has(Items.ROTTEN_FLESH))
                 .save(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x2"));
 
             ShapelessRecipeBuilder.shapeless(Items.LEATHER, 1)
                 .requires(ctx.getEntry())
                 .requires(Items.ROTTEN_FLESH)
-                .unlockedBy("has_tannins", RegistrateRecipeProvider.hasItem(ctx.getEntry()))
-                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.hasItem(Items.ROTTEN_FLESH))
+                .unlockedBy("has_tannins", RegistrateRecipeProvider.has(ctx.getEntry()))
+                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.has(Items.ROTTEN_FLESH))
                 .save(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x1"));
           }
       )
@@ -333,7 +332,7 @@ public class ModItems {
   public static RegistryEntry<Item> FISH_AND_CHIPS = MysticalWorld.REGISTRATE.item("fish_and_chips", Item::new)
       .properties(o -> o.food(ModFoods.FISH_AND_CHIPS))
       .recipe((ctx, p) ->
-          ShapelessRecipeBuilder.shapeless(ModItems.FISH_AND_CHIPS.get(), 2).requires(Items.BAKED_POTATO).requires(Items.BAKED_POTATO).requires(ModItems.VINEGAR.get()).requires(Ingredient.of(MWTags.Items.COOKED_SEAFOOD)).unlockedBy("has_cooked_seafood", RegistrateRecipeProvider.hasItem(MWTags.Items.COOKED_SEAFOOD)).save(p)
+          ShapelessRecipeBuilder.shapeless(ModItems.FISH_AND_CHIPS.get(), 2).requires(Items.BAKED_POTATO).requires(Items.BAKED_POTATO).requires(ModItems.VINEGAR.get()).requires(Ingredient.of(MWTags.Items.COOKED_SEAFOOD)).unlockedBy("has_cooked_seafood", RegistrateRecipeProvider.has(MWTags.Items.COOKED_SEAFOOD)).save(p)
       )
       .register();
 
@@ -362,8 +361,8 @@ public class ModItems {
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.SLICED_CARROT.get(), 4)
             .addIngredient(Tags.Items.CROPS_CARROT)
             .addIngredient(MWTags.Items.KNIVES)
-            .addCriterion("has_carrot", p.hasItem(Tags.Items.CROPS_CARROT))
-            .addCriterion("has_knives", p.hasItem(MWTags.Items.KNIVES))
+            .addCriterion("has_carrot", p.has(Tags.Items.CROPS_CARROT))
+            .addCriterion("has_knives", p.has(MWTags.Items.KNIVES))
             .build(p);
       })*/
       .register();
@@ -382,7 +381,7 @@ public class ModItems {
 
   public static RegistryEntry<Item> STUFFED_AUBERGINE = MysticalWorld.REGISTRATE.item("stuffed_aubergine", Item::new)
       .properties(o -> o.food(ModFoods.STUFFED_AUBERGINE))
-      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ModItems.STUFFED_AUBERGINE.get(), 1).requires(ModItems.COOKED_AUBERGINE.get()).requires(ExcludingIngredient.create(MWTags.Items.VEGETABLES, ModItems.AUBERGINE.get())).requires(ExcludingIngredient.create(MWTags.Items.VEGETABLES, ModItems.AUBERGINE.get())).requires(ExcludingIngredient.create(MWTags.Items.COOKED_VEGETABLES, ModItems.COOKED_AUBERGINE.get())).unlockedBy("has_cooked_aubergine", RegistrateRecipeProvider.hasItem(ModItems.COOKED_AUBERGINE.get())).save(p))
+      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ModItems.STUFFED_AUBERGINE.get(), 1).requires(ModItems.COOKED_AUBERGINE.get()).requires(ExcludingIngredient.create(MWTags.Items.VEGETABLES, ModItems.AUBERGINE.get())).requires(ExcludingIngredient.create(MWTags.Items.VEGETABLES, ModItems.AUBERGINE.get())).requires(ExcludingIngredient.create(MWTags.Items.COOKED_VEGETABLES, ModItems.COOKED_AUBERGINE.get())).unlockedBy("has_cooked_aubergine", RegistrateRecipeProvider.has(ModItems.COOKED_AUBERGINE.get())).save(p))
       .register();
 
   public static RegistryEntry<Item> RAW_SQUID = MysticalWorld.REGISTRATE.item("raw_squid", Item::new)
@@ -402,7 +401,7 @@ public class ModItems {
           .define('C', ModItems.COOKED_SQUID.get())
           .define('A', MWTags.Items.GEMS)
           .define('E', net.minecraftforge.common.Tags.Items.GEMS_EMERALD)
-          .unlockedBy("has_squid", RegistrateRecipeProvider.hasItem(ModItems.COOKED_SQUID.get()))
+          .unlockedBy("has_squid", RegistrateRecipeProvider.has(ModItems.COOKED_SQUID.get()))
           .save(p))
       .register();
 
@@ -450,7 +449,7 @@ public class ModItems {
           .pattern("BBB")
           .define('P', Items.SEA_PICKLE)
           .define('B', Items.GLASS_BOTTLE)
-          .unlockedBy("has_sea_pickle", RegistrateRecipeProvider.hasItem(Items.SEA_PICKLE))
+          .unlockedBy("has_sea_pickle", RegistrateRecipeProvider.has(Items.SEA_PICKLE))
           .save(p))
       .register();
 
@@ -466,10 +465,10 @@ public class ModItems {
           .define('P', Items.APPLE)
           .define('B', Items.GLASS_BOTTLE)
           .define('W', Items.WATER_BUCKET)
-          .unlockedBy("has_aubergine", RegistrateRecipeProvider.hasItem(MWTags.Items.AUBERGINE))
-          .unlockedBy("has_beetroot", RegistrateRecipeProvider.hasItem(Items.BEETROOT))
-          .unlockedBy("has_carrot", RegistrateRecipeProvider.hasItem(Items.CARROT))
-          .unlockedBy("has_apple", RegistrateRecipeProvider.hasItem(Items.APPLE))
+          .unlockedBy("has_aubergine", RegistrateRecipeProvider.has(MWTags.Items.AUBERGINE))
+          .unlockedBy("has_beetroot", RegistrateRecipeProvider.has(Items.BEETROOT))
+          .unlockedBy("has_carrot", RegistrateRecipeProvider.has(Items.CARROT))
+          .unlockedBy("has_apple", RegistrateRecipeProvider.has(Items.APPLE))
           .save(p))
       .register();
 
@@ -483,8 +482,8 @@ public class ModItems {
           .define('A', MWTags.Items.AUBERGINE)
           .define('B', Items.BOWL)
           .define('K', Items.KELP)
-          .unlockedBy("has_aubergine", RegistrateRecipeProvider.hasItem(MWTags.Items.AUBERGINE))
-          .unlockedBy("has_kelp", RegistrateRecipeProvider.hasItem(Items.KELP))
+          .unlockedBy("has_aubergine", RegistrateRecipeProvider.has(MWTags.Items.AUBERGINE))
+          .unlockedBy("has_kelp", RegistrateRecipeProvider.has(Items.KELP))
           .save(p))
       .register();
 
@@ -497,8 +496,8 @@ public class ModItems {
           .define('A', Items.BEETROOT)
           .define('B', Items.BOWL)
           .define('K', Items.KELP)
-          .unlockedBy("has_beetroot", RegistrateRecipeProvider.hasItem(Items.BEETROOT))
-          .unlockedBy("has_kelp", RegistrateRecipeProvider.hasItem(Items.KELP))
+          .unlockedBy("has_beetroot", RegistrateRecipeProvider.has(Items.BEETROOT))
+          .unlockedBy("has_kelp", RegistrateRecipeProvider.has(Items.KELP))
           .save(p))
       .register();
 
@@ -511,8 +510,8 @@ public class ModItems {
           .define('D', Items.DANDELION)
           .define('C', Items.CACTUS)
           .define('B', Items.BOWL)
-          .unlockedBy("has_dandelion", RegistrateRecipeProvider.hasItem(Items.DANDELION))
-          .unlockedBy("has_cactus", RegistrateRecipeProvider.hasItem(Items.CACTUS))
+          .unlockedBy("has_dandelion", RegistrateRecipeProvider.has(Items.DANDELION))
+          .unlockedBy("has_cactus", RegistrateRecipeProvider.has(Items.CACTUS))
           .save(p))
       .register();
 
@@ -525,8 +524,8 @@ public class ModItems {
           .define('D', Items.DANDELION)
           .define('C', Items.CORNFLOWER)
           .define('B', Items.BOWL)
-          .unlockedBy("has_dandelion", RegistrateRecipeProvider.hasItem(Items.DANDELION))
-          .unlockedBy("has_cornflower", RegistrateRecipeProvider.hasItem(Items.CORNFLOWER))
+          .unlockedBy("has_dandelion", RegistrateRecipeProvider.has(Items.DANDELION))
+          .unlockedBy("has_cornflower", RegistrateRecipeProvider.has(Items.CORNFLOWER))
           .save(p))
       .register();
 
@@ -540,7 +539,7 @@ public class ModItems {
           .define('B', Items.BOWL)
           .define('L', Items.ALLIUM)
           .define('M', Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM))
-          .unlockedBy("has_cooked_aubergine", RegistrateRecipeProvider.hasItem(ModItems.COOKED_AUBERGINE.get()))
+          .unlockedBy("has_cooked_aubergine", RegistrateRecipeProvider.has(ModItems.COOKED_AUBERGINE.get()))
           .save(p))
       .register();
 

@@ -17,8 +17,7 @@ import java.util.stream.Stream;
 
 import static mysticmods.mysticalworld.MysticalWorld.REGISTRATE;
 
-// TODO: IMPROVE THIS A LOT
-
+// TODO: Block tool types and tiers
 @SuppressWarnings("unchecked")
 public class ModTags {
   @FunctionalInterface
