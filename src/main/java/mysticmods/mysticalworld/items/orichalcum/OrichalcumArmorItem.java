@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.items.quicksilver;
+package mysticmods.mysticalworld.items.orichalcum;
 
 import com.google.common.collect.Multimap;
 import mysticmods.mysticalworld.items.ModifiedArmorItem;
@@ -16,11 +16,11 @@ import noobanidus.libs.noobutil.material.MaterialType;
 
 import java.util.Random;
 
-public class QuicksilverArmorItem extends ModifiedArmorItem implements IQuicksilverItem {
+public class OrichalcumArmorItem extends ModifiedArmorItem implements IOrichalcumItem {
   private int counter;
   private final Random random = new Random();
 
-  public QuicksilverArmorItem(ArmorMaterial material, EquipmentSlot slot, Properties props) {
+  public OrichalcumArmorItem(ArmorMaterial material, EquipmentSlot slot, Properties props) {
     super(material, slot, props);
   }
 

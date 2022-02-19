@@ -1,5 +1,6 @@
 package mysticmods.mysticalworld;
 
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -50,7 +51,7 @@ public class MWTags {
     }
 
     public static Tag<Block> resolve (ResourceLocation location) {
-      return SerializationTags.getInstance().getBlocks().getTag(location);
+      return SerializationTags.getInstance().getOrEmpty(Registry.BLOCK_REGISTRY).getTag(location);
     }
   }
 
@@ -134,7 +135,7 @@ public class MWTags {
     }
 
     public static Tag<Item> resolve (ResourceLocation location) {
-      return SerializationTags.getInstance().getItems().getTag(location);
+      return SerializationTags.getInstance().getOrEmpty(Registry.ITEM_REGISTRY).getTag(location);
     }
   }
 
@@ -142,11 +143,11 @@ public class MWTags {
     public static Tag.Named<Potion> RANDOM_BLACKLIST = compatTag("random_potion_blacklist");
 
     static Tag.Named<Potion> modTag (String name) {
-      return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTION_TYPES, new ResourceLocation(MysticalWorld.MODID, name));
+      return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTIONS, new ResourceLocation(MysticalWorld.MODID, name));
     }
 
     static Tag.Named<Potion> compatTag (String name) {
-      return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTION_TYPES, new ResourceLocation("forge", name));
+      return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTIONS, new ResourceLocation("forge", name));
     }
   }
 }

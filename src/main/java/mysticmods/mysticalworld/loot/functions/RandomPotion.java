@@ -37,7 +37,7 @@ public class RandomPotion extends LootItemConditionalFunction {
   public ItemStack run(ItemStack stack, LootContext context) {
     Random random = context.getRandom();
 
-    List<Potion> potions = ForgeRegistries.POTION_TYPES.getValues().stream().filter(potion -> !potion.isIn(getIgnoreTag())).collect(Collectors.toList());
+    List<Potion> potions = ForgeRegistries.POTIONS.getValues().stream().filter(potion -> !potion.is(getIgnoreTag())).collect(Collectors.toList());
     Potion potion = potions.get(random.nextInt(potions.size()));
     PotionUtils.setPotion(stack, potion);
     return stack;

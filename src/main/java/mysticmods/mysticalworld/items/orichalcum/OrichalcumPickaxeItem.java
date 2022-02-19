@@ -1,23 +1,23 @@
-package mysticmods.mysticalworld.items.quicksilver;
+package mysticmods.mysticalworld.items.orichalcum;
 
-import mysticmods.mysticalworld.items.ModifiedSpearItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Random;
 
-public class QuicksilverSpearItem extends ModifiedSpearItem implements IQuicksilverItem {
+public class OrichalcumPickaxeItem extends PickaxeItem implements IOrichalcumItem {
 
   private int counter;
   private final Random random = new Random();
 
-  public QuicksilverSpearItem(Tier tier, int attackDamage, float attackSpeed, Properties props) {
+  public OrichalcumPickaxeItem(Tier tier, int attackDamage, float attackSpeed, Properties props) {
     super(tier, attackDamage, attackSpeed, props);
   }
 

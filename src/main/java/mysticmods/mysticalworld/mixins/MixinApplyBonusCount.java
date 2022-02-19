@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import java.util.Random;
 
 @Mixin(ApplyBonusCount.class)
-public class MixinApplyBonus {
+public class MixinApplyBonusCount {
   @Unique
   private int serendipityValue = 0;
 

@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.items.quicksilver;
+package mysticmods.mysticalworld.items.orichalcum;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -12,12 +12,12 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Random;
 
-public class QuicksilverSwordItem extends SwordItem implements IQuicksilverItem {
+public class OrichalcumSwordItem extends SwordItem implements IOrichalcumItem {
 
   private int counter;
   private final Random random = new Random();
 
-  public QuicksilverSwordItem(Tier tier, int attackDamage, float attackSpeed, Properties props) {
+  public OrichalcumSwordItem(Tier tier, int attackDamage, float attackSpeed, Properties props) {
     super(tier, attackDamage, attackSpeed, props);
   }
 
