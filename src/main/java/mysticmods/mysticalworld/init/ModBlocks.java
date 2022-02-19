@@ -14,12 +14,10 @@ import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.blocks.*;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.block.*;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
-import net.minecraft.loot.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -33,17 +31,16 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.storage.loot.ConstantIntValue;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.RandomValueBounds;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 import noobanidus.libs.noobutil.data.generator.BlockGenerator;
@@ -98,7 +95,7 @@ public class ModBlocks {
   }
 
   public static <T extends Block> NonNullBiConsumer<RegistrateBlockLootTables, T> boneLoot() {
-    return (t, p) -> t.add(p, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantIntValue.exactly(1)).add(LootItem.lootTableItem(p).when(LootConditions.HAS_SILK_TOUCH).otherwise(LootItem.lootTableItem(Items.BONE).apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 4)))))));
+    return (t, p) -> t.add(p, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(p).when(LootConditions.HAS_SILK_TOUCH).otherwise(LootItem.lootTableItem(Items.BONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4)))))));
   }
 
   public static BlockEntry<UncannyGravelBlock> UNCANNY_GRAVEL = MysticalWorld.REGISTRATE.block("uncanny_gravel", Material.SAND, UncannyGravelBlock::new).properties(o -> o.strength(0.6f).sound(SoundType.GRAVEL))
@@ -113,8 +110,8 @@ public class ModBlocks {
           .pattern("GGG")
           .define('G', Tags.Items.GRAVEL)
           .define('P', Tags.Items.DYES_CYAN)
-          .unlockedBy("has_gravel", RegistrateRecipeProvider.hasItem(Tags.Items.GRAVEL))
-          .unlockedBy("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_CYAN))
+          .unlockedBy("has_gravel", RegistrateRecipeProvider.has(Tags.Items.GRAVEL))
+          .unlockedBy("has_purple_dye", RegistrateRecipeProvider.has(Tags.Items.DYES_CYAN))
           .save(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_gravel"))
       )
       .register();
@@ -132,8 +129,8 @@ public class ModBlocks {
             .pattern("GGG")
             .define('G', Tags.Items.SAND)
             .define('P', Tags.Items.DYES_PURPLE)
-            .unlockedBy("has_sand", RegistrateRecipeProvider.hasItem(Tags.Items.SAND))
-            .unlockedBy("has_purple_dye", RegistrateRecipeProvider.hasItem(Tags.Items.DYES_PURPLE))
+            .unlockedBy("has_sand", RegistrateRecipeProvider.has(Tags.Items.SAND))
+            .unlockedBy("has_purple_dye", RegistrateRecipeProvider.has(Tags.Items.DYES_PURPLE))
             .save(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_sand"));
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.UNCANNY_SAND.get()), Items.PURPLE_STAINED_GLASS, 0, 200);
       })
@@ -183,12 +180,12 @@ public class ModBlocks {
 
   public static BlockEntry<FlowerPotBlock> POTTED_STONEPETAL = MysticalWorld.REGISTRATE.block("potted_stonepetal", Material.DECORATION, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.STONEPETAL, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/stonepetal")))
-      .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.STONEPETAL.get())))
+      .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createPotFlowerItemTable(ModBlocks.STONEPETAL.get())))
       .register();
 
   public static BlockEntry<FlowerPotBlock> POTTED_UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("potted_uncanny_mushroom", Material.DECORATION, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.UNCANNY_MUSHROOM, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/uncanny_mushroom")))
-      .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.UNCANNY_MUSHROOM.get())))
+      .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createPotFlowerItemTable(ModBlocks.UNCANNY_MUSHROOM.get())))
       .register();
 
   private static final NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.strength(1f).sound(SoundType.GRASS);
@@ -203,8 +200,8 @@ public class ModBlocks {
           .pattern("YX")
           .define('X', Blocks.HAY_BLOCK)
           .define('Y', Tags.Items.CROPS_WHEAT)
-          .unlockedBy("has_hay", RegistrateRecipeProvider.hasItem(Blocks.HAY_BLOCK))
-          .unlockedBy("has_wheat", RegistrateRecipeProvider.hasItem(Items.WHEAT))
+          .unlockedBy("has_hay", RegistrateRecipeProvider.has(Blocks.HAY_BLOCK))
+          .unlockedBy("has_wheat", RegistrateRecipeProvider.has(Items.WHEAT))
           .save(p)
       )
       .register();
@@ -232,7 +229,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.THATCH), ModBlocks.THATCH_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.THATCH))
       .register();
 
@@ -299,7 +296,7 @@ public class ModBlocks {
       .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
       .loot((p, t) -> p.
           add(ModBlocks.GALL_APPLE.get(), RegistrateBlockLootTables.
-              droppingAndBonusWhen(ModBlocks.GALL_APPLE.get(), Items.AIR, ModItems.GALL_APPLE.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.GALL_APPLE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 3)))))
+              createCropDrops(ModBlocks.GALL_APPLE.get(), Items.AIR, ModItems.GALL_APPLE.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.GALL_APPLE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 3)))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
@@ -307,13 +304,13 @@ public class ModBlocks {
       .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
       .loot((p, t) -> p.
           add(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
-              droppingAndBonusWhen(ModBlocks.AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.AUBERGINE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7)))))
+              createCropDrops(ModBlocks.AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.AUBERGINE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7)))))
       .blockstate(NonNullBiConsumer.noop())
       .register();
 
   public static BlockEntry<WildCropBlock> WILD_AUBERGINE = MysticalWorld.REGISTRATE.block("wild_aubergine", WildCropBlock::new)
       .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
-      .loot((p, t) -> p.add(t, LootTable.lootTable().withPool(RegistrateBlockLootTables.withSurvivesExplosion(ModItems.AUBERGINE.get(), LootPool.lootPool().setRolls(RandomValueBounds.between(1, 3)).add(LootItem.lootTableItem(ModItems.AUBERGINE.get())))).withPool(RegistrateBlockLootTables.withSurvivesExplosion(ModItems.AUBERGINE_SEEDS.get(), LootPool.lootPool().setRolls(RandomValueBounds.between(1, 2)).add(LootItem.lootTableItem(ModItems.AUBERGINE_SEEDS.get()))))))
+      .loot((p, t) -> p.add(t, LootTable.lootTable().withPool(RegistrateBlockLootTables.applyExplosionCondition(ModItems.AUBERGINE.get(), LootPool.lootPool().setRolls(UniformGenerator.between(1, 3)).add(LootItem.lootTableItem(ModItems.AUBERGINE.get())))).withPool(RegistrateBlockLootTables.applyExplosionCondition(ModItems.AUBERGINE_SEEDS.get(), LootPool.lootPool().setRolls(UniformGenerator.between(1, 2)).add(LootItem.lootTableItem(ModItems.AUBERGINE_SEEDS.get()))))))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry())
               .partialState()
@@ -323,7 +320,7 @@ public class ModBlocks {
 
   public static BlockEntry<WildCropBlock> WILD_WART = MysticalWorld.REGISTRATE.block("wild_wart", WildCropBlock::new)
       .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
-      .loot((p, t) -> p.add(t, LootTable.lootTable().withPool(RegistrateBlockLootTables.withSurvivesExplosion(Items.NETHER_WART, LootPool.lootPool().setRolls(RandomValueBounds.between(1, 3)).add(LootItem.lootTableItem(Items.NETHER_WART)))).withPool(RegistrateBlockLootTables.withSurvivesExplosion(Items.NETHER_WART, LootPool.lootPool().setRolls(RandomValueBounds.between(1, 2)).add(LootItem.lootTableItem(Items.NETHER_WART))))))
+      .loot((p, t) -> p.add(t, LootTable.lootTable().withPool(RegistrateBlockLootTables.applyExplosionCondition(Items.NETHER_WART, LootPool.lootPool().setRolls(UniformGenerator.between(1, 3)).add(LootItem.lootTableItem(Items.NETHER_WART)))).withPool(RegistrateBlockLootTables.applyExplosionCondition(Items.NETHER_WART, LootPool.lootPool().setRolls(UniformGenerator.between(1, 2)).add(LootItem.lootTableItem(Items.NETHER_WART))))))
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry())
               .partialState()
@@ -333,7 +330,7 @@ public class ModBlocks {
 
   public static BlockEntry<HugeMushroomBlock> UNCANNY_MUSHROOM_BLOCK = MysticalWorld.REGISTRATE.block("uncanny_mushroom_block", Material.WOOD, HugeMushroomBlock::new)
       .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 8))
-      .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.droppingItemRarely(p, ModBlocks.UNCANNY_MUSHROOM.get())))
+      .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createMushroomBlockDrop(p, ModBlocks.UNCANNY_MUSHROOM.get())))
       .blockstate((ctx, p) -> {
         ModelFile model = p.models().withExistingParent(ctx.getName(), new ResourceLocation("minecraft", "block/template_single_face")).texture("texture", p.models().modLoc("block/uncanny_mushroom_block"));
         ModelFile inside = p.models().getExistingFile(new ResourceLocation("minecraft", "block/mushroom_block_inside"));
@@ -388,7 +385,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()), ModBlocks.UNCANNY_MUSHROOM_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.UNCANNY_MUSHROOM_FULL, () -> ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
       .register();
 
@@ -477,23 +474,23 @@ public class ModBlocks {
       .recipe((ctx, p) -> {
         ShapelessRecipeBuilder.shapeless(ModBlocks.UNCANNY_MUSHROOM_FULL.get(), 1)
             .requires(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get())
-            .unlockedBy("has_uncanny_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
+            .unlockedBy("has_uncanny_mushroom_block", RegistrateRecipeProvider.has(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "full_uncanny_mushroom_block_from_uncanny_mushroom"));
         ShapelessRecipeBuilder.shapeless(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get(), 1)
             .requires(ModBlocks.UNCANNY_MUSHROOM_FULL.get())
-            .unlockedBy("has_full_red_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM_FULL.get()))
+            .unlockedBy("has_full_red_mushroom_block", RegistrateRecipeProvider.has(ModBlocks.UNCANNY_MUSHROOM_FULL.get()))
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "plain_uncanny_mushroom_block_from_full_uncanny_mushroom_block"));
 
         ShapelessRecipeBuilder.shapeless(ModBlocks.RED_MUSHROOM_FULL.get(), 1)
             .requires(Blocks.RED_MUSHROOM_BLOCK)
-            .unlockedBy("has_vanilla_red_mushroom", RegistrateRecipeProvider.hasItem(Blocks.RED_MUSHROOM_BLOCK))
+            .unlockedBy("has_vanilla_red_mushroom", RegistrateRecipeProvider.has(Blocks.RED_MUSHROOM_BLOCK))
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "full_red_mushroom_block_from_red_mushroom"));
         ShapelessRecipeBuilder.shapeless(Blocks.RED_MUSHROOM_BLOCK, 1)
             .requires(ModBlocks.RED_MUSHROOM_FULL.get())
-            .unlockedBy("has_full_red_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.RED_MUSHROOM_FULL.get()))
+            .unlockedBy("has_full_red_mushroom_block", RegistrateRecipeProvider.has(ModBlocks.RED_MUSHROOM_FULL.get()))
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_red_mushroom_block_from_full_red_mushroom_block"));
 
@@ -502,40 +499,40 @@ public class ModBlocks {
             .pattern("XX")
             .define('X', ModBlocks.UNCANNY_MUSHROOM.get())
             .group("crafting")
-            .unlockedBy("has_uncanny_mushroom", RegistrateRecipeProvider.hasItem(ModBlocks.UNCANNY_MUSHROOM.get()))
+            .unlockedBy("has_uncanny_mushroom", RegistrateRecipeProvider.has(ModBlocks.UNCANNY_MUSHROOM.get()))
             .save(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_mushroom_block_from_mushrooms"));
         ShapedRecipeBuilder.shaped(Blocks.RED_MUSHROOM_BLOCK, 1)
             .pattern("XX")
             .pattern("XX")
             .define('X', Items.RED_MUSHROOM)
             .group("crafting")
-            .unlockedBy("has_red_mushroom", RegistrateRecipeProvider.hasItem(Items.RED_MUSHROOM))
+            .unlockedBy("has_red_mushroom", RegistrateRecipeProvider.has(Items.RED_MUSHROOM))
             .save(p, new ResourceLocation(MysticalWorld.MODID, "red_mushroom_block_from_mushrooms"));
         ShapedRecipeBuilder.shaped(Blocks.BROWN_MUSHROOM_BLOCK, 1)
             .pattern("XX")
             .pattern("XX")
             .define('X', Items.BROWN_MUSHROOM)
-            .unlockedBy("has_brown_mushroom", RegistrateRecipeProvider.hasItem(Items.BROWN_MUSHROOM))
+            .unlockedBy("has_brown_mushroom", RegistrateRecipeProvider.has(Items.BROWN_MUSHROOM))
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "brown_mushroom_block_from_mushrooms"));
         ShapelessRecipeBuilder.shapeless(ModBlocks.BROWN_MUSHROOM_FULL.get(), 1)
             .requires(Blocks.BROWN_MUSHROOM_BLOCK)
             .group("crafting")
-            .unlockedBy("has_vanilla_brown_mushroom", RegistrateRecipeProvider.hasItem(Blocks.BROWN_MUSHROOM_BLOCK))
+            .unlockedBy("has_vanilla_brown_mushroom", RegistrateRecipeProvider.has(Blocks.BROWN_MUSHROOM_BLOCK))
             .save(p, new ResourceLocation(MysticalWorld.MODID, "full_brown_mushroom_block_from_brown_mushroom"));
         ShapelessRecipeBuilder.shapeless(Blocks.BROWN_MUSHROOM_BLOCK, 1)
             .requires(ModBlocks.BROWN_MUSHROOM_FULL.get())
-            .unlockedBy("has_full_brown_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.BROWN_MUSHROOM_FULL.get()))
+            .unlockedBy("has_full_brown_mushroom_block", RegistrateRecipeProvider.has(ModBlocks.BROWN_MUSHROOM_FULL.get()))
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_brown_mushroom_block_from_full_brown_mushroom_block"));
         ShapelessRecipeBuilder.shapeless(ModBlocks.STEM_MUSHROOM_FULL.get(), 1)
             .requires(Blocks.MUSHROOM_STEM)
-            .unlockedBy("has_vanilla_stem_mushroom", RegistrateRecipeProvider.hasItem(Blocks.MUSHROOM_STEM))
+            .unlockedBy("has_vanilla_stem_mushroom", RegistrateRecipeProvider.has(Blocks.MUSHROOM_STEM))
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "full_stem_mushroom_block_from_stem_mushroom"));
         ShapelessRecipeBuilder.shapeless(Blocks.MUSHROOM_STEM, 1)
             .requires(ModBlocks.STEM_MUSHROOM_FULL.get())
-            .unlockedBy("has_full_stem_mushroom_block", RegistrateRecipeProvider.hasItem(ModBlocks.STEM_MUSHROOM_FULL.get()))
+            .unlockedBy("has_full_stem_mushroom_block", RegistrateRecipeProvider.has(ModBlocks.STEM_MUSHROOM_FULL.get()))
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_stem_mushroom_block_from_full_stem_mushroom_block"));
       })
@@ -564,7 +561,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.RED_MUSHROOM_FULL, () -> Blocks.RED_MUSHROOM_BLOCK))
       .register();
 
@@ -652,7 +649,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.BROWN_MUSHROOM_FULL, () -> Blocks.BROWN_MUSHROOM_BLOCK))
       .register();
 
@@ -740,7 +737,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.STEM_MUSHROOM_FULL, () -> Blocks.MUSHROOM_STEM))
       .register();
 
@@ -811,7 +808,7 @@ public class ModBlocks {
       .model((ctx, p) -> p.blockItem(ModBlocks.MUSHROOM_INSIDE))
       .build()
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_block_inside"))))
-      .recipe((ctx, p) -> SimpleCookingRecipeBuilder.smelting(Ingredient.of(MWTags.Items.MUSHROOM_BLOCKS), ctx.getEntry(), 0.125f, 200).unlockedBy("has_mushroom", RegistrateRecipeProvider.hasItem(MWTags.Items.MUSHROOM_BLOCKS)).save(p, "mushroom_inside_from_smelting"))
+      .recipe((ctx, p) -> SimpleCookingRecipeBuilder.smelting(Ingredient.of(MWTags.Items.MUSHROOM_BLOCKS), ctx.getEntry(), 0.125f, 200).unlockedBy("has_mushroom", RegistrateRecipeProvider.has(MWTags.Items.MUSHROOM_BLOCKS)).save(p, "mushroom_inside_from_smelting"))
       .register();
 
   public static BlockEntry<StairBlock> MUSHROOM_INSIDE_STAIRS = MysticalWorld.REGISTRATE.block("mushroom_inside_stairs", Material.WOOD, stairsBlock(ModBlocks.MUSHROOM_INSIDE))
@@ -837,7 +834,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.MUSHROOM_INSIDE))
       .register();
 
@@ -915,7 +912,7 @@ public class ModBlocks {
               .pattern("XXX")
               .define('X', Blocks.DIRT)
               .define('W', Items.WATER_BUCKET)
-              .unlockedBy("has_dirt", RegistrateRecipeProvider.hasItem(Blocks.DIRT))
+              .unlockedBy("has_dirt", RegistrateRecipeProvider.has(Blocks.DIRT))
               .save(p)
       )
       .register();
@@ -956,7 +953,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.MUD_BLOCK))
       .register();
 
@@ -1042,7 +1039,7 @@ public class ModBlocks {
         p.smelting(DataIngredient.items(ModBlocks.WET_MUD_BRICK), ModBlocks.MUD_BRICK, 0.15f);
         MysticalWorld.RECIPES.twoByTwo(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BRICK, null, p);
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.MUD_BLOCK.get()), ModBlocks.MUD_BRICK.get())
-            .unlocks("has_mud_block", RegistrateRecipeProvider.hasItem(ModBlocks.MUD_BLOCK.get()))
+            .unlockedBy("has_mud_block", RegistrateRecipeProvider.has(ModBlocks.MUD_BLOCK.get()))
             .save(p, "mud_bricks_from_mud_blocks_stonecutting");
       })
       .register();
@@ -1070,7 +1067,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.MUD_BRICK))
       .register();
 
@@ -1135,7 +1132,8 @@ public class ModBlocks {
 
   // CHARRED STUFF
 
-  private static final NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD).strength(2.0f).harvestTool(ToolType.AXE);
+  // TODO: TAGS
+  private static final NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD)/*.strength(2.0f).harvestTool(ToolType.AXE)*/;
 
   public static BlockEntry<CharredLogBlock> CHARRED_WOOD = MysticalWorld.REGISTRATE.block("charred_wood", (o) -> new CharredLogBlock(o, true))
       .properties(WOOD_PROPS)
@@ -1147,7 +1145,7 @@ public class ModBlocks {
       .build()
       .recipe((ctx, p) -> {
         DataIngredient log = DataIngredient.items(ModBlocks.CHARRED_LOG.get());
-        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3).requires(log).requires(log).requires(log).requires(log).unlockedBy("has_charred_log", RegistrateRecipeProvider.hasItem(ModBlocks.CHARRED_LOG.get())).save(p, new ResourceLocation("mysticalworld", "charred_wood_from_logs"));
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3).requires(log).requires(log).requires(log).requires(log).unlockedBy("has_charred_log", RegistrateRecipeProvider.has(ModBlocks.CHARRED_LOG.get())).save(p, new ResourceLocation("mysticalworld", "charred_wood_from_logs"));
       })
       .register();
 
@@ -1164,14 +1162,14 @@ public class ModBlocks {
   public static BlockEntry<RotatedPillarBlock> STRIPPED_CHARRED_WOOD = MysticalWorld.REGISTRATE.log("stripped_charred_wood")
       .properties(WOOD_PROPS)
       .tag(BlockTags.LOGS)
-      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getEntry().getRegistryName().getPath(), p.blockTexture(ModBlocks.STRIPPED_CHARRED_LOG.get()))))
+      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(Objects.requireNonNull(ctx.getEntry().getRegistryName()).getPath(), p.blockTexture(ModBlocks.STRIPPED_CHARRED_LOG.get()))))
       .item()
       .tag(ItemTags.LOGS)
       .model(ItemModelGenerator::itemModel)
       .build()
       .recipe((ctx, p) -> {
         DataIngredient log = DataIngredient.items(ModBlocks.STRIPPED_CHARRED_LOG.get());
-        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3).requires(log).requires(log).requires(log).requires(log).unlockedBy("has_stripped_charred_log", RegistrateRecipeProvider.hasItem(ModBlocks.STRIPPED_CHARRED_LOG.get())).save(p, new ResourceLocation("mysticalworld", "stripped_charred_wood_from_logs"));
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3).requires(log).requires(log).requires(log).requires(log).unlockedBy("has_stripped_charred_log", RegistrateRecipeProvider.has(ModBlocks.STRIPPED_CHARRED_LOG.get())).save(p, new ResourceLocation("mysticalworld", "stripped_charred_wood_from_logs"));
       })
       .register();
 
@@ -1220,7 +1218,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.CHARRED_PLANKS), ModBlocks.CHARRED_SLAB, null, false)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.CHARRED_PLANKS))
       .register();
 
@@ -1320,7 +1318,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
@@ -1419,7 +1417,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.IRON_BRICK), ModBlocks.IRON_BRICK_SLAB, null, false)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.IRON_BRICK))
       .register();
 
@@ -1500,7 +1498,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SOFT_STONE), ModBlocks.SOFT_STONE_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.SOFT_STONE))
       .register();
 
@@ -1551,7 +1549,7 @@ public class ModBlocks {
           .pattern("BA")
           .define('A', Tags.Items.STONE)
           .define('B', Ingredient.of(Items.COAL, Items.CHARCOAL))
-          .unlockedBy("has_stone", RegistrateRecipeProvider.hasItem(Tags.Items.STONE))
+          .unlockedBy("has_stone", RegistrateRecipeProvider.has(Tags.Items.STONE))
           .save(p))
       .tag(Tags.Blocks.STONE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
@@ -1580,7 +1578,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.BLACKENED_STONE), ModBlocks.BLACKENED_STONE_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.BLACKENED_STONE))
       .register();
 
@@ -1636,8 +1634,8 @@ public class ModBlocks {
           .pattern("BA")
           .define('A', Tags.Items.STONE)
           .define('B', ExcludingIngredient.create(Tags.Items.OBSIDIAN, ctx.getEntry()))
-          .unlockedBy("has_stone", RegistrateRecipeProvider.hasItem(Tags.Items.STONE))
-          .unlockedBy("has_obsidian", RegistrateRecipeProvider.hasItem(Tags.Items.OBSIDIAN))
+          .unlockedBy("has_stone", RegistrateRecipeProvider.has(Tags.Items.STONE))
+          .unlockedBy("has_obsidian", RegistrateRecipeProvider.has(Tags.Items.OBSIDIAN))
           .save(p))
       .register();
 
@@ -1664,7 +1662,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SOFT_OBSIDIAN), ModBlocks.SOFT_OBSIDIAN_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.SOFT_OBSIDIAN))
       .register();
 
@@ -1716,7 +1714,7 @@ public class ModBlocks {
       .tag(MWTags.Blocks.QUARTZ_ORE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .loot((p, t) ->
-          p.add(ModBlocks.GRANITE_QUARTZ_ORE.get(), RegistrateBlockLootTables.droppingItemWithFortune(t, Items.QUARTZ))
+          p.add(ModBlocks.GRANITE_QUARTZ_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, Items.QUARTZ))
       )
       .register();
 
@@ -1733,7 +1731,7 @@ public class ModBlocks {
       .tag(MWTags.Blocks.SAPPHIRE_ORE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .loot((p, t) ->
-          p.add(ModBlocks.SAPPHIRE_ORE.get(), RegistrateBlockLootTables.droppingItemWithFortune(t, ModItems.SAPPHIRE_GEM.get()))
+          p.add(ModBlocks.SAPPHIRE_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.SAPPHIRE_GEM.get()))
       )
       .register();
 
@@ -1779,7 +1777,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK), ModBlocks.SAPPHIRE_SLAB, null, false)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.SAPPHIRE_BLOCK))
       .register();
 
@@ -1883,7 +1881,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.COPPER_BLOCK), ModBlocks.COPPER_SLAB, null, false)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.COPPER_BLOCK))
       .register();
 
@@ -1990,7 +1988,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.LEAD_BLOCK), ModBlocks.LEAD_SLAB, null, false)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.LEAD_BLOCK))
       .register();
 
@@ -2095,7 +2093,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.QUICKSILVER_BLOCK), ModBlocks.QUICKSILVER_SLAB, null, false)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.QUICKSILVER_BLOCK))
       .register();
 
@@ -2199,7 +2197,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SILVER_BLOCK), ModBlocks.SILVER_SLAB, null, false)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.SILVER_BLOCK))
       .register();
 
@@ -2304,7 +2302,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.TIN_BLOCK), ModBlocks.TIN_SLAB, null, false)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.TIN_BLOCK))
       .register();
 
@@ -2352,7 +2350,8 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.TIN_BLOCK))
       .register();
 
-  public static NonNullUnaryOperator<Block.Properties> PEARL_PROPS = o -> o.strength(1.2F, 1.2F).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(1);
+  // TODO: Tags
+  public static NonNullUnaryOperator<Block.Properties> PEARL_PROPS = o -> o.strength(1.2F, 1.2F).sound(SoundType.STONE)/*.harvestTool(ToolType.PICKAXE).harvestLevel(1)*/;
 
   public static BlockEntry<Block> PEARL_BLOCK = MysticalWorld.REGISTRATE.block("pearl_block", Material.STONE, Block::new)
       .properties(PEARL_PROPS)
@@ -2387,7 +2386,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_SLAB, null, true)
       )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.droppingSlab(t)))
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
       .blockstate(BlockstateGenerator.slab(ModBlocks.PEARL_BLOCK))
       .register();
 
@@ -2461,9 +2460,9 @@ public class ModBlocks {
             .pattern("BB")
             .pattern("BB")
             .define('B', Tags.Items.BONES)
-            .unlockedBy("has_bones", RegistrateRecipeProvider.hasItem(Tags.Items.BONES))
+            .unlockedBy("has_bones", RegistrateRecipeProvider.has(Tags.Items.BONES))
             .save(p);
-        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_4.get()).unlockedBy("has_bone_pile_4", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_4.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "bone_pile_1_from_bone_pile_4"));
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_4.get()).unlockedBy("has_bone_pile_4", RegistrateRecipeProvider.has(ModBlocks.BONE_PILE_4.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "bone_pile_1_from_bone_pile_4"));
       })
       .loot(boneLoot())
       .register();
@@ -2479,7 +2478,7 @@ public class ModBlocks {
       .item()
       .model(ModBlocks::boneModel)
       .build()
-      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_1.get()).unlockedBy("has_bone_pile_1", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_1.get())).save(p))
+      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_1.get()).unlockedBy("has_bone_pile_1", RegistrateRecipeProvider.has(ModBlocks.BONE_PILE_1.get())).save(p))
       .loot(boneLoot())
       .register();
 
@@ -2494,7 +2493,7 @@ public class ModBlocks {
       .item()
       .model(ModBlocks::boneModel)
       .build()
-      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_2.get()).unlockedBy("has_bone_pile_2", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_2.get())).save(p))
+      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_2.get()).unlockedBy("has_bone_pile_2", RegistrateRecipeProvider.has(ModBlocks.BONE_PILE_2.get())).save(p))
       .loot(boneLoot())
       .register();
 
@@ -2509,7 +2508,7 @@ public class ModBlocks {
       .item()
       .model(ModBlocks::boneModel)
       .build()
-      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_3.get()).unlockedBy("has_bone_pile_3", RegistrateRecipeProvider.hasItem(ModBlocks.BONE_PILE_3.get())).save(p))
+      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_3.get()).unlockedBy("has_bone_pile_3", RegistrateRecipeProvider.has(ModBlocks.BONE_PILE_3.get())).save(p))
       .loot(boneLoot())
       .register();
 
@@ -2530,9 +2529,9 @@ public class ModBlocks {
             .pattern("BB ")
             .pattern("BBB")
             .define('B', Tags.Items.BONES)
-            .unlockedBy("has_bones", RegistrateRecipeProvider.hasItem(Tags.Items.BONES))
+            .unlockedBy("has_bones", RegistrateRecipeProvider.has(Tags.Items.BONES))
             .save(p);
-        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_3.get()).unlockedBy("has_skeleton_bottom_3", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_BOTTOM_3.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "skeleton_bottom_1_from_skeleton_bottom_4"));
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_3.get()).unlockedBy("has_skeleton_bottom_3", RegistrateRecipeProvider.has(ModBlocks.SKELETON_BOTTOM_3.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "skeleton_bottom_1_from_skeleton_bottom_4"));
       })
       .loot(boneLoot())
       .register();
@@ -2549,7 +2548,7 @@ public class ModBlocks {
       .model(ModBlocks::boneModel)
       .build()
       .recipe((ctx, p) ->
-          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_1.get()).unlockedBy("has_skeleton_bottom_1", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_BOTTOM_1.get())).save(p)
+          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_1.get()).unlockedBy("has_skeleton_bottom_1", RegistrateRecipeProvider.has(ModBlocks.SKELETON_BOTTOM_1.get())).save(p)
       )
       .loot(boneLoot())
       .register();
@@ -2566,7 +2565,7 @@ public class ModBlocks {
       .model(ModBlocks::boneModel)
       .build()
       .recipe((ctx, p) ->
-          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_2.get()).unlockedBy("has_skeleton_bottom_2", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_BOTTOM_2.get())).save(p)
+          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_2.get()).unlockedBy("has_skeleton_bottom_2", RegistrateRecipeProvider.has(ModBlocks.SKELETON_BOTTOM_2.get())).save(p)
       )
       .loot(boneLoot())
       .register();
@@ -2588,9 +2587,9 @@ public class ModBlocks {
             .pattern(" BB")
             .pattern("BBB")
             .define('B', Tags.Items.BONES)
-            .unlockedBy("has_bones", RegistrateRecipeProvider.hasItem(Tags.Items.BONES))
+            .unlockedBy("has_bones", RegistrateRecipeProvider.has(Tags.Items.BONES))
             .save(p);
-        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_4.get()).unlockedBy("has_skeleton_top_4", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_TOP_4.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "skeleton_top_1_from_skeleton_top_4"));
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_4.get()).unlockedBy("has_skeleton_top_4", RegistrateRecipeProvider.has(ModBlocks.SKELETON_TOP_4.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "skeleton_top_1_from_skeleton_top_4"));
       })
       .loot(boneLoot())
       .register();
@@ -2607,7 +2606,7 @@ public class ModBlocks {
       .model(ModBlocks::boneModel)
       .build()
       .recipe((ctx, p) ->
-          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_1.get()).unlockedBy("has_skeleton_top_1", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_TOP_1.get())).save(p)
+          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_1.get()).unlockedBy("has_skeleton_top_1", RegistrateRecipeProvider.has(ModBlocks.SKELETON_TOP_1.get())).save(p)
       )
       .loot(boneLoot())
       .register();
@@ -2624,7 +2623,7 @@ public class ModBlocks {
       .model(ModBlocks::boneModel)
       .build()
       .recipe((ctx, p) ->
-          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_2.get()).unlockedBy("has_skeleton_top_2", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_TOP_2.get())).save(p)
+          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_2.get()).unlockedBy("has_skeleton_top_2", RegistrateRecipeProvider.has(ModBlocks.SKELETON_TOP_2.get())).save(p)
       )
       .loot(boneLoot())
       .register();
@@ -2642,7 +2641,7 @@ public class ModBlocks {
       .model(ModBlocks::boneModel)
       .build()
       .recipe((ctx, p) ->
-          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_3.get()).unlockedBy("has_skeleton_top_3", RegistrateRecipeProvider.hasItem(ModBlocks.SKELETON_TOP_3.get())).save(p)
+          ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_3.get()).unlockedBy("has_skeleton_top_3", RegistrateRecipeProvider.has(ModBlocks.SKELETON_TOP_3.get())).save(p)
       )
       .loot(boneLoot())
       .register();

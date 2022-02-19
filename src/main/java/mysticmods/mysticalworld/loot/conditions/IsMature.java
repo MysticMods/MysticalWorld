@@ -9,6 +9,7 @@ import mysticmods.mysticalworld.init.ModLoot;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.Serializer;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -39,7 +40,7 @@ public class IsMature implements LootItemCondition {
     return ModLoot.IS_MATURE;
   }
 
-  public static class Serializer implements Serializer<IsMature> {
+  public static class MatureSerializer implements Serializer<IsMature> {
     @Override
     public void serialize(JsonObject json, IsMature value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);

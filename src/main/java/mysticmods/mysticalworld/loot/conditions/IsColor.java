@@ -8,6 +8,7 @@ import mysticmods.mysticalworld.init.ModLoot;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.Serializer;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -42,7 +43,7 @@ public class IsColor implements LootItemCondition {
     return ModLoot.IS_COLOR;
   }
 
-  public static class Serializer implements Serializer<IsColor> {
+  public static class ColorSerializer implements Serializer<IsColor> {
     @Override
     public void serialize(JsonObject json, IsColor value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);

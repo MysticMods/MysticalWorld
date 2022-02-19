@@ -14,12 +14,12 @@ public class ModLoot {
 
   public static final LootItemFunctionType RANDOM_POTION = FUNCTION_REGISTRY.register("random_potion", new LootItemFunctionType(new RandomPotion.Serializer()));
 
-  public static final LootItemConditionType HAS_HORNS = CONDITION_REGISTRY.register("has_horns", new LootItemConditionType(new HasHorns.Serializer()));
-  public static final LootItemConditionType IS_COLOR = CONDITION_REGISTRY.register("is_color", new LootItemConditionType(new IsColor.Serializer()));
-  public static final LootItemConditionType IS_OBSIDIAN = CONDITION_REGISTRY.register("is_lava", new LootItemConditionType(new IsObsidian.Serializer()));
-  public static final LootItemConditionType IS_LAVA = CONDITION_REGISTRY.register("is_obsidian", new LootItemConditionType(new IsLava.Serializer()));
-  public static final LootItemConditionType IS_MATURE = CONDITION_REGISTRY.register("is_mature", new LootItemConditionType(new IsMature.Serializer()));
-  public static final LootItemConditionType IS_ENDER = CONDITION_REGISTRY.register("is_ender", new LootItemConditionType(new IsEnder.Serializer()));
+  public static final LootItemConditionType HAS_HORNS = CONDITION_REGISTRY.register("has_horns", new LootItemConditionType(new HasHorns.HornSerializer()));
+  public static final LootItemConditionType IS_COLOR = CONDITION_REGISTRY.register("is_color", new LootItemConditionType(new IsColor.ColorSerializer()));
+  public static final LootItemConditionType IS_OBSIDIAN = CONDITION_REGISTRY.register("is_lava", new LootItemConditionType(new IsObsidian.ObsidianSerializer()));
+  public static final LootItemConditionType IS_LAVA = CONDITION_REGISTRY.register("is_obsidian", new LootItemConditionType(new IsLava.LavaSerializer()));
+  public static final LootItemConditionType IS_MATURE = CONDITION_REGISTRY.register("is_mature", new LootItemConditionType(new IsMature.MatureSerializer()));
+  public static final LootItemConditionType IS_ENDER = CONDITION_REGISTRY.register("is_ender", new LootItemConditionType(new IsEnder.EnderSerializer()));
 
   public static void load() {
   }
