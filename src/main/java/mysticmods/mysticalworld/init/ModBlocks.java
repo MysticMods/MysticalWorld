@@ -2037,36 +2037,23 @@ public class ModBlocks {
       .register();
 
 
-  // QUICKSILVER
-  public static BlockEntry<BaseBlocks.OreBlock> QUICKSILVER_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.QUICKSILVER.oreName(), BlockGenerator.oreBlock(ModMaterials.QUICKSILVER))
+  // ORICHALCUM
+  public static BlockEntry<Block> ORICHALCUM_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.ORICHALCUM.blockName(), Material.METAL, Block::new)
       .properties(o -> {
-        ModMaterials.QUICKSILVER.getOreBlockProperties(o);
+        ModMaterials.ORICHALCUM.getBlockProps(o);
         return o;
       })
       .item()
       .model(ItemModelGenerator::itemModel)
-      .tag(MWTags.Items.QUICKSILVER_ORE)
+      .tag(MWTags.Items.ORICHALCUM_BLOCK)
       .build()
-      .tag(MWTags.Blocks.QUICKSILVER_ORE)
+      .tag(MWTags.Blocks.ORICHALCUM_STORAGE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
-  public static BlockEntry<Block> QUICKSILVER_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.QUICKSILVER.blockName(), Material.METAL, Block::new)
+  public static BlockEntry<StairBlock> ORICHALCUM_STAIRS = MysticalWorld.REGISTRATE.block("orichalcum_stairs", Material.METAL, stairsBlock(ModBlocks.ORICHALCUM_BLOCK))
       .properties(o -> {
-        ModMaterials.QUICKSILVER.getBlockProps(o);
-        return o;
-      })
-      .item()
-      .model(ItemModelGenerator::itemModel)
-      .tag(MWTags.Items.QUICKSILVER_BLOCK)
-      .build()
-      .tag(MWTags.Blocks.QUICKSILVER_STORAGE)
-      .blockstate(BlockstateGenerator::simpleBlockstate)
-      .register();
-
-  public static BlockEntry<StairBlock> QUICKSILVER_STAIRS = MysticalWorld.REGISTRATE.block("quicksilver_stairs", Material.METAL, stairsBlock(ModBlocks.QUICKSILVER_BLOCK))
-      .properties(o -> {
-        ModMaterials.QUICKSILVER.getBlockProps(o);
+        ModMaterials.ORICHALCUM.getBlockProps(o);
         return o;
       })
       .tag(BlockTags.STAIRS)
@@ -2075,14 +2062,14 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .build()
       .recipe((ctx, p) ->
-          p.stairs(DataIngredient.items(ModBlocks.QUICKSILVER_BLOCK), ModBlocks.QUICKSILVER_STAIRS, null, false)
+          p.stairs(DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK), ModBlocks.ORICHALCUM_STAIRS, null, false)
       )
-      .blockstate(BlockstateGenerator.stairs(ModBlocks.QUICKSILVER_BLOCK))
+      .blockstate(BlockstateGenerator.stairs(ModBlocks.ORICHALCUM_BLOCK))
       .register();
 
-  public static BlockEntry<SlabBlock> QUICKSILVER_SLAB = MysticalWorld.REGISTRATE.block("quicksilver_slab", Material.METAL, SlabBlock::new)
+  public static BlockEntry<SlabBlock> ORICHALCUM_SLAB = MysticalWorld.REGISTRATE.block("orichalcum_slab", Material.METAL, SlabBlock::new)
       .properties(o -> {
-        ModMaterials.QUICKSILVER.getBlockProps(o);
+        ModMaterials.ORICHALCUM.getBlockProps(o);
         return o;
       })
       .item()
@@ -2091,15 +2078,15 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.SLABS)
       .recipe((ctx, p) ->
-          p.slab(DataIngredient.items(ModBlocks.QUICKSILVER_BLOCK), ModBlocks.QUICKSILVER_SLAB, null, false)
+          p.slab(DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK), ModBlocks.ORICHALCUM_SLAB, null, false)
       )
       .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
-      .blockstate(BlockstateGenerator.slab(ModBlocks.QUICKSILVER_BLOCK))
+      .blockstate(BlockstateGenerator.slab(ModBlocks.ORICHALCUM_BLOCK))
       .register();
 
-  public static BlockEntry<WallBlock> QUICKSILVER_WALL = MysticalWorld.REGISTRATE.block("quicksilver_wall", Material.METAL, WallBlock::new)
+  public static BlockEntry<WallBlock> ORICHALCUM_WALL = MysticalWorld.REGISTRATE.block("orichalcum_wall", Material.METAL, WallBlock::new)
       .properties(o -> {
-        ModMaterials.QUICKSILVER.getBlockProps(o);
+        ModMaterials.ORICHALCUM.getBlockProps(o);
         return o;
       })
       .item()
@@ -2108,37 +2095,37 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.WALLS)
       .recipe((ctx, p) ->
-          p.wall(DataIngredient.items(ModBlocks.QUICKSILVER_BLOCK), ModBlocks.QUICKSILVER_WALL)
+          p.wall(DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK), ModBlocks.ORICHALCUM_WALL)
       )
-      .blockstate(BlockstateGenerator.wall(ModBlocks.QUICKSILVER_BLOCK))
+      .blockstate(BlockstateGenerator.wall(ModBlocks.ORICHALCUM_BLOCK))
       .register();
 
-  public static BlockEntry<BaseBlocks.WidePostBlock> QUICKSILVER_WIDE_POST = MysticalWorld.REGISTRATE.block("quicksilver_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
+  public static BlockEntry<BaseBlocks.WidePostBlock> ORICHALCUM_WIDE_POST = MysticalWorld.REGISTRATE.block("orichalcum_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
       .properties(o -> {
-        ModMaterials.QUICKSILVER.getBlockProps(o);
+        ModMaterials.ORICHALCUM.getBlockProps(o);
         return o;
       })
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
       .recipe((ctx, p) ->
-          MysticalWorld.RECIPES.widePost(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_WIDE_POST, null, false, p)
+          MysticalWorld.RECIPES.widePost(ModBlocks.ORICHALCUM_BLOCK, ModBlocks.ORICHALCUM_WIDE_POST, null, false, p)
       )
-      .blockstate(BlockstateGenerator.widePost(ModBlocks.QUICKSILVER_BLOCK))
+      .blockstate(BlockstateGenerator.widePost(ModBlocks.ORICHALCUM_BLOCK))
       .register();
 
-  public static BlockEntry<BaseBlocks.NarrowPostBlock> QUICKSILVER_SMALL_POST = MysticalWorld.REGISTRATE.block("quicksilver_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
+  public static BlockEntry<BaseBlocks.NarrowPostBlock> ORICHALCUM_SMALL_POST = MysticalWorld.REGISTRATE.block("orichalcum_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
-        ModMaterials.QUICKSILVER.getBlockProps(o);
+        ModMaterials.ORICHALCUM.getBlockProps(o);
         return o;
       })
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
       .recipe((ctx, p) ->
-          MysticalWorld.RECIPES.narrowPost(ModBlocks.QUICKSILVER_BLOCK, ModBlocks.QUICKSILVER_SMALL_POST, null, false, p)
+          MysticalWorld.RECIPES.narrowPost(ModBlocks.ORICHALCUM_BLOCK, ModBlocks.ORICHALCUM_SMALL_POST, null, false, p)
       )
-      .blockstate(BlockstateGenerator.narrowPost(ModBlocks.QUICKSILVER_BLOCK))
+      .blockstate(BlockstateGenerator.narrowPost(ModBlocks.ORICHALCUM_BLOCK))
       .register();
 
   // SILVER

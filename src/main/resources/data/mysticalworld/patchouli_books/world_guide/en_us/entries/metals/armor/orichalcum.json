@@ -1,0 +1,22 @@
+{
+  "name": "Orichalcum Armor",
+  "icon": "mysticalworld:orichalcum_helmet",
+  "category": "metals_armor",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "mysticalworld:orichalcum_helmet",
+      "text": "Almost liquid in nature, the solidified form of this metal grants $(l:metals/modifiers/speedy)Speedy$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:orichalcum_helmet",
+      "recipe2": "mysticalworld:orichalcum_chestplate"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:orichalcum_leggings",
+      "recipe2": "mysticalworld:orichalcum_boots"
+    }
+  ]
+}

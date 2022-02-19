@@ -27,14 +27,13 @@ public class MWTags {
     public static Tags.IOptionalNamedTag<Block> SAPPHIRE_ORE = compatTag("ores/sapphire");
     public static Tags.IOptionalNamedTag<Block> COPPER_ORE = compatTag("ores/copper");
     public static Tags.IOptionalNamedTag<Block> LEAD_ORE = compatTag("ores/lead");
-    public static Tags.IOptionalNamedTag<Block> QUICKSILVER_ORE = compatTag("ores/quicksilver");
     public static Tags.IOptionalNamedTag<Block> SILVER_ORE = compatTag("ores/silver");
     public static Tags.IOptionalNamedTag<Block> TIN_ORE = compatTag("ores/tin");
 
     public static Tags.IOptionalNamedTag<Block> SAPPHIRE_STORAGE = compatTag("storage_blocks/sapphire");
     public static Tags.IOptionalNamedTag<Block> COPPER_STORAGE = compatTag("storage_blocks/copper");
     public static Tags.IOptionalNamedTag<Block> LEAD_STORAGE = compatTag("storage_blocks/lead");
-    public static Tags.IOptionalNamedTag<Block> QUICKSILVER_STORAGE = compatTag("storage_blocks/quicksilver");
+    public static Tags.IOptionalNamedTag<Block> ORICHALCUM_STORAGE = compatTag("storage_blocks/orichalcum");
     public static Tags.IOptionalNamedTag<Block> SILVER_STORAGE = compatTag("storage_blocks/silver");
     public static Tags.IOptionalNamedTag<Block> TIN_STORAGE = compatTag("storage_blocks/tin");
     public static Tags.IOptionalNamedTag<Block> PEARL_STORAGE = compatTag("storage_blocks/pearl");
@@ -72,20 +71,19 @@ public class MWTags {
 
     public static Tags.IOptionalNamedTag<Item> COPPER_ITEMS = modTag("copper_items");
     public static Tags.IOptionalNamedTag<Item> LEAD_ITEMS = modTag("lead_items");
-    public static Tags.IOptionalNamedTag<Item> QUICKSILVER_ITEMS = modTag("quicksilver_items");
+    public static Tags.IOptionalNamedTag<Item> ORICHALCUM = modTag("orichalcum_items");
     public static Tags.IOptionalNamedTag<Item> SILVER_ITEMS = modTag("silver_items");
     public static Tags.IOptionalNamedTag<Item> TIN_ITEMS = modTag("tin_items");
     public static Tags.IOptionalNamedTag<Item> QUARTZ_ORE = compatTag("ores/quartz");
     public static Tags.IOptionalNamedTag<Item> SAPPHIRE_ORE = compatTag("ores/sapphire");
     public static Tags.IOptionalNamedTag<Item> COPPER_ORE = compatTag("ores/copper");
     public static Tags.IOptionalNamedTag<Item> LEAD_ORE = compatTag("ores/lead");
-    public static Tags.IOptionalNamedTag<Item> QUICKSILVER_ORE = compatTag("ores/quicksilver");
     public static Tags.IOptionalNamedTag<Item> SILVER_ORE = compatTag("ores/silver");
     public static Tags.IOptionalNamedTag<Item> TIN_ORE = compatTag("ores/tin");
     public static Tags.IOptionalNamedTag<Item> SAPPHIRE_BLOCK = compatTag("storage_blocks/sapphire");
     public static Tags.IOptionalNamedTag<Item> COPPER_BLOCK = compatTag("storage_blocks/copper");
     public static Tags.IOptionalNamedTag<Item> LEAD_BLOCK = compatTag("storage_blocks/lead");
-    public static Tags.IOptionalNamedTag<Item> QUICKSILVER_BLOCK = compatTag("storage_blocks/quicksilver");
+    public static Tags.IOptionalNamedTag<Item> ORICHALCUM_BLOCK = compatTag("storage_blocks/orichalcum");
     public static Tags.IOptionalNamedTag<Item> SILVER_BLOCK = compatTag("storage_blocks/silver");
     public static Tags.IOptionalNamedTag<Item> TIN_BLOCK = compatTag("storage_blocks/tin");
     public static Tags.IOptionalNamedTag<Item> PEARL_BLOCK = compatTag("storage_blocks/pearl");
@@ -95,24 +93,23 @@ public class MWTags {
     public static Tags.IOptionalNamedTag<Item> SAPPHIRE_GEM = compatTag("gems/sapphire");
     public static Tags.IOptionalNamedTag<Item> COPPER_INGOT = compatTag("ingots/copper");
     public static Tags.IOptionalNamedTag<Item> LEAD_INGOT = compatTag("ingots/lead");
-    public static Tags.IOptionalNamedTag<Item> QUICKSILVER_INGOT = compatTag("ingots/quicksilver");
+    public static Tags.IOptionalNamedTag<Item> ORICHALCUM_INGOT = compatTag("ingots/orichalcum");
     public static Tags.IOptionalNamedTag<Item> SILVER_INGOT = compatTag("ingots/silver");
     public static Tags.IOptionalNamedTag<Item> TIN_INGOT = compatTag("ingots/tin");
     public static Tags.IOptionalNamedTag<Item> COPPER_NUGGET = compatTag("nuggets/copper");
     public static Tags.IOptionalNamedTag<Item> LEAD_NUGGET = compatTag("nuggets/lead");
-    public static Tags.IOptionalNamedTag<Item> QUICKSILVER_NUGGET = compatTag("nuggets/quicksilver");
+    public static Tags.IOptionalNamedTag<Item> ORICHALCUM_NUGGET = compatTag("nuggets/orichalcum");
     public static Tags.IOptionalNamedTag<Item> SILVER_NUGGET = compatTag("nuggets/silver");
     public static Tags.IOptionalNamedTag<Item> TIN_NUGGET = compatTag("nuggets/tin");
     public static Tags.IOptionalNamedTag<Item> COPPER_DUST = compatTag("dusts/copper");
     public static Tags.IOptionalNamedTag<Item> LEAD_DUST = compatTag("dusts/lead");
-    public static Tags.IOptionalNamedTag<Item> QUICKSILVER_DUST = compatTag("dusts/quicksilver");
+    public static Tags.IOptionalNamedTag<Item> ORICHALCUM_DUST = compatTag("dusts/orichalcum");
     public static Tags.IOptionalNamedTag<Item> SILVER_DUST = compatTag("dusts/silver");
     public static Tags.IOptionalNamedTag<Item> TIN_DUST = compatTag("dusts/tin");
     public static Tags.IOptionalNamedTag<Item> GOLD_DUST = compatTag("dusts/gold");
     public static Tags.IOptionalNamedTag<Item> IRON_DUST = compatTag("dusts/iron");
 
     public static Tags.IOptionalNamedTag<Item> SOFT_STONE = modTag("soft_stone");
-    /*    public static Tags.IOptionalNamedTag<Item> SOFT_OBSIDIAN = modTag("soft_obsidian");*/
 
     public static Tags.IOptionalNamedTag<Item> PURPUR = compatTag("purpur");
     public static Tags.IOptionalNamedTag<Item> NETHER_BRICKS = compatTag("nether_bricks");

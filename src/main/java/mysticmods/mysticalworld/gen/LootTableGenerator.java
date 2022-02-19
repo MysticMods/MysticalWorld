@@ -205,7 +205,7 @@ public class LootTableGenerator extends LootTableProvider {
                       .add(LootItem.lootTableItem(ModItems.LEAD_BOOTS.get()).setWeight(6).apply(EnchantRandomlyFunction.randomApplicableEnchantment()))
                       .add(LootItem.lootTableItem(ModItems.COPPER_HELMET.get()).setWeight(8).apply(EnchantRandomlyFunction.randomApplicableEnchantment()))
                       .add(LootItem.lootTableItem(ModItems.COPPER_CHESTPLATE.get()).setWeight(12).apply(EnchantRandomlyFunction.randomApplicableEnchantment()))
-                      .add(LootItem.lootTableItem(ModItems.QUICKSILVER_LEGGINGS.get()).setWeight(2).apply(EnchantRandomlyFunction.randomApplicableEnchantment()))
+                      .add(LootItem.lootTableItem(ModItems.ORICHALCUM_LEGGINGS.get()).setWeight(2).apply(EnchantRandomlyFunction.randomApplicableEnchantment()))
                       .add(LootItem.lootTableItem(Items.CROSSBOW).setWeight(3).apply(EnchantRandomlyFunction.randomApplicableEnchantment()))
                       .add(EmptyLootItem.emptyItem().setWeight(4))
               )
