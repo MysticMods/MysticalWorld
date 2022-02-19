@@ -50,8 +50,11 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 import noobanidus.libs.noobutil.type.LazySupplier;
 
@@ -63,6 +66,7 @@ import java.util.function.Supplier;
 
 // TODO: PlacedFeature, etc.
 
+@Mod.EventBusSubscriber(modid=MysticalWorld.MODID)
 public class ModFeatures {
   public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
 
@@ -145,6 +149,7 @@ public class ModFeatures {
     }
   }
 
+  @SubscribeEvent
   public static void onBiomeLoad(BiomeLoadingEvent event) {
     for (ConfiguredFeature<?, ?> ore : ORE_FEATURES) {
       event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(() -> ore);
@@ -163,10 +168,9 @@ public class ModFeatures {
     }
   }
 
-  private static MethodHandle GETCODEC_METHOD = null;
-
+  @SubscribeEvent
   public static void onWorldLoad(final WorldEvent.Load event) {
-    if (event.getWorld() instanceof ServerLevel) {
+/*    if (event.getWorld() instanceof ServerLevel) {
       ServerLevel world = (ServerLevel) event.getWorld();
       if (world.getChunkSource().getGenerator() instanceof FlatLevelSource && world.dimension().equals(Level.OVERWORLD)) {
         return;
@@ -203,6 +207,6 @@ public class ModFeatures {
         temp.put(ModStructures.SAND_HOUSE_STRUCTURE, StructureSettings.DEFAULTS.get(ModStructures.SAND_HOUSE_STRUCTURE));
         world.getChunkSource().generator.getSettings().structureConfig = temp;
       }
-    }
+    }*/
   }
 }

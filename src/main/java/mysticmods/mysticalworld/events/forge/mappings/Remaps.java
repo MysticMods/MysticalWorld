@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.events.mappings;
+package mysticmods.mysticalworld.events.forge.mappings;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.resources.ResourceLocation;
@@ -48,17 +48,6 @@ public class Remaps {
     remap(oldName, "ignore_remap", type);
   }
 
-  private static void remap(String oldName, String newName, RemapType type) {
-    Map<ResourceLocation, ResourceLocation> remapper = type.getMap().get();
-    String mapType = type.getName();
-    ResourceLocation oldRL = new ResourceLocation(MysticalWorld.MODID, oldName);
-    ResourceLocation newRL = new ResourceLocation(MysticalWorld.MODID, newName);
-    if (remapper.containsKey(oldRL)) {
-      MysticalWorld.LOG.error("Invalid " + mapType + " remap: " + oldRL.toString() + " already exists and remaps to " + remapper.get(oldRL).toString() + ", cannot also remap to " + newRL.toString(), new IllegalStateException("Duplicate " + mapType + " remap"));
-    }
-    remapper.put(oldRL, newRL);
-  }
-
   public static void remapItem(String o, String n) {
     remap(o, n, RemapType.ITEM);
   }
@@ -69,6 +58,17 @@ public class Remaps {
 
   public static void remapEntity(String o, String n) {
     remap(o, n, RemapType.ENTITY);
+  }
+
+  private static void remap(String oldName, String newName, RemapType type) {
+    Map<ResourceLocation, ResourceLocation> remapper = type.getMap().get();
+    String mapType = type.getName();
+    ResourceLocation oldRL = new ResourceLocation(MysticalWorld.MODID, oldName);
+    ResourceLocation newRL = new ResourceLocation(MysticalWorld.MODID, newName);
+    if (remapper.containsKey(oldRL)) {
+      MysticalWorld.LOG.error("Invalid " + mapType + " remap: " + oldRL.toString() + " already exists and remaps to " + remapper.get(oldRL).toString() + ", cannot also remap to " + newRL.toString(), new IllegalStateException("Duplicate " + mapType + " remap"));
+    }
+    remapper.put(oldRL, newRL);
   }
 
   @SubscribeEvent

@@ -3,6 +3,7 @@ package mysticmods.mysticalworld.config;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import mysticmods.mysticalworld.MWTags;
+import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ConfiguredStructures;
 import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModFeatures;
@@ -12,12 +13,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import noobanidus.libs.noobutil.config.IArmorConfig;
 
 import java.nio.file.Path;
 import java.util.*;
 
+@Mod.EventBusSubscriber(modid= MysticalWorld.MODID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class ConfigManager {
 
   private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
@@ -140,7 +145,17 @@ public class ConfigManager {
     spec.setConfig(configData);
   }
 
-  public static void configReload(ModConfig.ModConfigEvent event) {
+  public static void configReload(ModConfigEvent event) {
     CONFIGS.forEach(AbstractConfig::reset);
+  }
+
+  @SubscribeEvent
+  public static void onConfigReload (ModConfigEvent.Reloading event) {
+    configReload(event);
+  }
+
+  @SubscribeEvent
+  public static void onConfigLoaded (ModConfigEvent.Loading event) {
+    configReload(event);
   }
 }

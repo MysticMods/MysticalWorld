@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.events;
+package mysticmods.mysticalworld.events.forge;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.api.Capabilities;
@@ -11,6 +11,7 @@ import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.network.ShoulderRide;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -23,18 +24,23 @@ import net.minecraft.world.entity.animal.Squid;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BottleItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.fml.network.PacketDistributor;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.PacketDistributor;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class CapabilityHandler {
+
+  // TODO: Check to see what busses these are fired on
+  @SubscribeEvent
   public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
     ServerPlayer player = (ServerPlayer) event.getPlayer();
     // Shim to fix mismatched data from left/right switch.
-    if (player.getShoulderEntityRight().contains("id", Constants.NBT.TAG_STRING) && player.getShoulderEntityRight().getString("id").equals("mysticalworld:beetle")) {
+    if (player.getShoulderEntityRight().contains("id", Tag.TAG_STRING) && player.getShoulderEntityRight().getString("id").equals("mysticalworld:beetle")) {
       try {
         PlayerShoulderCapability.setRightShoulder.invokeExact((Player) player, new CompoundTag());
       } catch (Throwable e) {
@@ -47,7 +53,7 @@ public class CapabilityHandler {
         ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
         Networking.send(PacketDistributor.ALL.noArg(), message);
         try {
-          PlayerShoulderCapability.setLeftShoulder.invokeExact((Player)player, cap.generateShoulderNBT());
+          PlayerShoulderCapability.setLeftShoulder.invokeExact((Player) player, cap.generateShoulderNBT());
         } catch (Throwable throwable) {
           MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
         }
@@ -60,7 +66,7 @@ public class CapabilityHandler {
           ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
           Networking.sendTo(message, player);
           try {
-            PlayerShoulderCapability.setLeftShoulder.invokeExact((Player)other, cap.generateShoulderNBT());
+            PlayerShoulderCapability.setLeftShoulder.invokeExact((Player) other, cap.generateShoulderNBT());
           } catch (Throwable throwable) {
             MysticalWorld.LOG.error("Unable to fake player having a shoulder entity", throwable);
           }
@@ -69,6 +75,7 @@ public class CapabilityHandler {
     }
   }
 
+  @SubscribeEvent
   public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
     if (event.getObject() instanceof Squid) {
       event.addCapability(AnimalCooldownCapabilityProvider.IDENTIFIER, new AnimalCooldownCapabilityProvider());
@@ -77,6 +84,7 @@ public class CapabilityHandler {
     }
   }
 
+  @SubscribeEvent
   public static void onSquidMilked(PlayerInteractEvent.EntityInteract event) {
     Player player = (Player) event.getEntity();
     ItemStack heldItem = player.getItemInHand(event.getHand());
@@ -92,7 +100,7 @@ public class CapabilityHandler {
               if (!player.isCreative()) {
                 heldItem.shrink(1);
               }
-              player.inventory.add(new ItemStack(ModItems.INK_BOTTLE.get()));
+              player.getInventory().add(new ItemStack(ModItems.INK_BOTTLE.get()));
             } else {
               player.displayClientMessage(new TranslatableComponent("message.squid.cooldown").setStyle(Style.EMPTY.withColor(TextColor.fromLegacyFormat(ChatFormatting.BLUE)).withBold(true)), true);
             }

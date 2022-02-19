@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.events;
+package mysticmods.mysticalworld.events.forge;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.api.Capabilities;
@@ -20,10 +20,10 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod.EventBusSubscriber(modid=MysticalWorld.MODID)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class ShoulderHandler {
   @SubscribeEvent
   public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
@@ -64,8 +64,7 @@ public class ShoulderHandler {
   @SubscribeEvent
   public static void onDeath(LivingDeathEvent event) {
     LivingEntity living = event.getEntityLiving();
-    if (living instanceof Player) {
-      Player player = (Player) living;
+    if (living instanceof Player player) {
       Level world = player.level;
       LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY, null);
       if (laycap.isPresent()) {

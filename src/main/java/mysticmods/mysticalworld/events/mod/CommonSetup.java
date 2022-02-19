@@ -1,47 +1,38 @@
-package mysticmods.mysticalworld.setup;
+package mysticmods.mysticalworld.events.mod;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.api.IPlayerShoulderCapability;
-import mysticmods.mysticalworld.capability.AnimalCooldownCapability;
-import mysticmods.mysticalworld.capability.AnimalCooldownCapabilityStorage;
-import mysticmods.mysticalworld.capability.PlayerShoulderCapability;
-import mysticmods.mysticalworld.capability.PlayerShoulderCapabilityStorage;
-import mysticmods.mysticalworld.events.CapabilityHandler;
-import mysticmods.mysticalworld.events.DamageHandler;
-import mysticmods.mysticalworld.events.LootHandler;
 import mysticmods.mysticalworld.init.*;
 import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.potions.PotionRecipes;
 import mysticmods.mysticalworld.recipe.ingredients.SeedIngredient;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.PlantType;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
 import noobanidus.libs.noobutil.recipe.UniqueShapelessRecipe;
 import noobanidus.libs.noobutil.setup.ShadedCommonSetup;
 
 import java.util.Arrays;
 
-@SuppressWarnings("deprecation")
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommonSetup {
+  @SubscribeEvent
   public static void init(FMLCommonSetupEvent event) {
     MysticalWorld.STONE_PLANT = PlantType.get("stone");
-    CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
-    CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);
+    // TODO: Capabilities
+/*    CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
+    CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);*/
     Networking.INSTANCE.registerMessages();
 
     event.enqueueWork(() -> {
@@ -59,6 +50,7 @@ public class CommonSetup {
 
       Chicken.FOOD_ITEMS = Ingredient.merge(Arrays.asList(Chicken.FOOD_ITEMS, Ingredient.of(ModItems.AUBERGINE_SEEDS.get())));
 
+      // TODO: Improve this
       FireBlock fire = (FireBlock) Blocks.FIRE;
 
       fire.setFlammable(ModBlocks.THATCH_FENCE.get(), 5, 20);
@@ -91,28 +83,7 @@ public class CommonSetup {
 
       SpawnEggItem.BY_ID.remove(null);
       //noinspection unchecked
-      ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.BY_ID.put(o.get().getType(null), o.get()));
-    });
-  }
-
-  public static void serverStarting(FMLServerStartedEvent event) {
-  }
-
-  public static void serverAboutToStart(FMLServerAboutToStartEvent event) {
-  }
-
-  @SuppressWarnings("Duplicates")
-  public static void registerListeners() {
-    MinecraftForge.EVENT_BUS.addListener(DamageHandler::onAttackDamage);
-    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onPlayerJoin);
-    MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, true, LootHandler::onLootLoad);
-    MinecraftForge.EVENT_BUS.addListener(LootHandler::onLooting);
-    MinecraftForge.EVENT_BUS.addGenericListener(Entity.class, CapabilityHandler::attachCapability);
-    MinecraftForge.EVENT_BUS.addListener(CapabilityHandler::onSquidMilked);
-  }
-
-  public static void loadComplete(FMLLoadCompleteEvent event) {
-    event.enqueueWork(() -> {
+      ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.BY_ID.put((EntityType<? extends Mob>) o.get().getType(null), o.get()));
     });
   }
 }
