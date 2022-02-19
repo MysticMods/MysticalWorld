@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Player.class)
-public class MixinPlayerEntity {
+public class MixinPlayer {
   @Inject(method = "removeEntitiesOnShoulder", at = @At("HEAD"), cancellable = true)
   protected void avoidRemovingBeetles(CallbackInfo info) {
     Player player = (Player) (Object) this;

@@ -8,7 +8,7 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.items.*;
 import mysticmods.mysticalworld.items.copper.CopperArmorItem;
 import mysticmods.mysticalworld.items.lead.LeadArmorItem;
-import mysticmods.mysticalworld.items.quicksilver.*;
+import mysticmods.mysticalworld.items.orichalcum.*;
 import mysticmods.mysticalworld.items.sapphire.SapphireArmorItem;
 import mysticmods.mysticalworld.items.silver.*;
 import mysticmods.mysticalworld.items.tin.TinArmorItem;
@@ -719,25 +719,25 @@ public class ModItems {
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.LEAD_SWORD, ModItems.LEAD_SPEAR, null, p)).register();
 
   // QUICKSILVER
-  public static RegistryEntry<QuicksilverAxeItem> QUICKSILVER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_axe", ItemGenerator.axe(QuicksilverAxeItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<OrichalcumAxeItem> QUICKSILVER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_axe", ItemGenerator.axe(OrichalcumAxeItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_AXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_AXE, null, p)).register();
-  public static RegistryEntry<QuicksilverHoeItem> QUICKSILVER_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_hoe", ItemGenerator.hoe(QuicksilverHoeItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<OrichalcumHoeItem> QUICKSILVER_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_hoe", ItemGenerator.hoe(OrichalcumHoeItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_HOE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HOE, null, p)).register();
-  public static RegistryEntry<QuicksilverKnifeItem> QUICKSILVER_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_knife", ItemGenerator.knife(QuicksilverKnifeItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<OrichalcumKnifeItem> QUICKSILVER_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_knife", ItemGenerator.knife(OrichalcumKnifeItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_KNIFE, null, p)).register();
-  public static RegistryEntry<QuicksilverPickaxeItem> QUICKSILVER_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(QuicksilverPickaxeItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<OrichalcumPickaxeItem> QUICKSILVER_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(OrichalcumPickaxeItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_PICKAXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_PICKAXE, null, p)).register();
-  public static RegistryEntry<QuicksilverShovelItem> QUICKSILVER_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_shovel", ItemGenerator.shovel(QuicksilverShovelItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<OrichalcumShovelItem> QUICKSILVER_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_shovel", ItemGenerator.shovel(OrichalcumShovelItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SHOVEL))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SHOVEL, null, p)).register();
-  public static RegistryEntry<QuicksilverSwordItem> QUICKSILVER_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_sword", ItemGenerator.sword(QuicksilverSwordItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<OrichalcumSwordItem> QUICKSILVER_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_sword", ItemGenerator.sword(OrichalcumSwordItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_SWORD, null, p)).register();
-  public static RegistryEntry<QuicksilverSpearItem> QUICKSILVER_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_spear", ItemGenerator.spear(QuicksilverSpearItem::new, ModMaterials.QUICKSILVER))
+  public static RegistryEntry<OrichalcumSpearItem> QUICKSILVER_SPEAR = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_spear", ItemGenerator.spear(OrichalcumSpearItem::new, ModMaterials.QUICKSILVER))
       .model((ctx, p) -> p.handheld(ModItems.QUICKSILVER_SPEAR))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.spear(ModItems.QUICKSILVER_SWORD, ModItems.QUICKSILVER_SPEAR, null, p)).register();
 
@@ -872,16 +872,16 @@ public class ModItems {
       .register();
 
   // QUICKSILVER
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_helmet", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.HEAD))
+  public static RegistryEntry<OrichalcumArmorItem> QUICKSILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_helmet", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_HELMET, null, p))
       .register();
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_chestplate", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.CHEST))
+  public static RegistryEntry<OrichalcumArmorItem> QUICKSILVER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_chestplate", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.CHEST))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_leggings", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.LEGS))
+  public static RegistryEntry<OrichalcumArmorItem> QUICKSILVER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_leggings", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.LEGS))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<QuicksilverArmorItem> QUICKSILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_boots", ItemGenerator.armor(QuicksilverArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.FEET))
+  public static RegistryEntry<OrichalcumArmorItem> QUICKSILVER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.QUICKSILVER.getInternalName() + "_boots", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.QUICKSILVER, EquipmentSlot.FEET))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.QUICKSILVER_INGOT, ModItems.QUICKSILVER_BOOTS, null, p))
       .register();
 

@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.items.quicksilver;
+package mysticmods.mysticalworld.items.orichalcum;
 
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.Random;
 
-public interface IQuicksilverItem {
+public interface IOrichalcumItem {
 
   int CHANCE_BOUND = 100;
 
