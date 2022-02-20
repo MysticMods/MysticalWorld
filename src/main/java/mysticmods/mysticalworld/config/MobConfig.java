@@ -60,7 +60,7 @@ public class MobConfig extends AbstractConfig {
 
   public List<BiomeDictionary.Type> getBiomes() {
     if (cachedBiomes == null) {
-      cachedBiomes = Stream.of(configBiomes.get().split(",")).map(o -> BiomeDictionary.Type.getType(o)).collect(Collectors.toList());
+      cachedBiomes = Stream.of(configBiomes.get().split(",")).map(BiomeDictionary.Type::getType).collect(Collectors.toList());
     }
     return cachedBiomes;
   }

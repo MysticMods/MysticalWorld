@@ -10,12 +10,6 @@ public class ArmorConfig extends AbstractConfig implements IArmorConfig {
   protected ForgeConfigSpec.IntValue configHead;
   protected ForgeConfigSpec.DoubleValue configToughness;
 
-  private int feet = -9999;
-  private int legs = -9999;
-  private int chest = -9999;
-  private int head = -9999;
-  private float toughness = -9999;
-
   private final int defaultFeet;
   private final int defaultLegs;
   private final int defaultChest;
@@ -40,51 +34,32 @@ public class ArmorConfig extends AbstractConfig implements IArmorConfig {
     configFeet = builder.comment("Armor value for feet piece").defineInRange("feet_armor", this.defaultFeet, 0, Integer.MAX_VALUE);
     configHead = builder.comment("Armor value for head piece").defineInRange("head_armor", this.defaultHead, 0, Integer.MAX_VALUE);
     configLegs = builder.comment("Armor value for legs piece").defineInRange("legs_armor", this.defaultLegs, 0, Integer.MAX_VALUE);
-    configToughness = builder.comment("Toughness for armor made of this material").defineInRange("toughness", (double) this.defaultToughness, 0, Double.MAX_VALUE);
+    configToughness = builder.comment("Toughness for armor made of this material").defineInRange("toughness", this.defaultToughness, 0, Double.MAX_VALUE);
     builder.pop();
   }
 
   @Override
   public void reset() {
-    feet = -9999;
-    legs = -9999;
-    chest = -9999;
-    head = -9999;
-    toughness = -9999;
+
   }
 
   public int getFeet() {
-    if (feet == -9999) {
-      feet = configFeet.get();
-    }
-    return feet;
+    return configFeet.get();
   }
 
   public int getLegs() {
-    if (legs == -9999) {
-      legs = configLegs.get();
-    }
-    return legs;
+    return configLegs.get();
   }
 
   public int getChest() {
-    if (chest == -9999) {
-      chest = configChest.get();
-    }
-    return chest;
+    return configChest.get();
   }
 
   public int getHead() {
-    if (head == -9999) {
-      head = configHead.get();
-    }
-    return head;
+    return configHead.get();
   }
 
   public float getToughness() {
-    if (toughness == -9999) {
-      toughness = (float) (double) configToughness.get();
-    }
-    return toughness;
+    return (float) (double) configToughness.get();
   }
 }
