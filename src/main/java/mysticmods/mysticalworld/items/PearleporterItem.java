@@ -14,7 +14,6 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.text.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -87,17 +86,17 @@ public class PearleporterItem extends Item {
     ClamEntity clam = (ClamEntity) entity;
     if (clam.getEntityData().get(ClamEntity.age) >= ConfigManager.CLAM_CONFIG.getMaxAge()) {
       int luck = EnchantmentHelper.getEnchantmentLevel(Enchantments.FISHING_LUCK, playerIn) + (int) playerIn.getLuck();
-      int count = 1 + Serendipity.calculateAdditional(playerIn.getAttributeValue(ModModifiers.SERENDIPITY.get())) + (luck / 2) + random.nextInt(1 + luck);
+      int count = 1 + Serendipity.calculateAdditional(playerIn.getAttributeValue(ModModifiers.SERENDIPITY.get())) + (luck / 2) + clam.getRandom().nextInt(1 + luck);
       ItemStack result;
       if (clam.getEntityData().get(ClamEntity.isEnder)) {
         result = new ItemStack(Items.ENDER_PEARL, count);
       } else {
         result = new ItemStack(ModItems.PEARL_GEM.get(), count);
       }
-      clam.getEntityData().set(ClamEntity.age, random.nextInt(ConfigManager.CLAM_CONFIG.getInitialAge()));
+      clam.getEntityData().set(ClamEntity.age, clam.getRandom().nextInt(ConfigManager.CLAM_CONFIG.getInitialAge()));
       ItemEntity ent = entity.spawnAtLocation(result, 1.0F);
       if (ent != null) {
-        ent.setDeltaMovement(ent.getDeltaMovement().add((random.nextFloat() - random.nextFloat()) * 0.1F, random.nextFloat() * 0.05F, (random.nextFloat() - random.nextFloat()) * 0.1F));
+        ent.setDeltaMovement(ent.getDeltaMovement().add((clam.getRandom().nextFloat() - clam.getRandom().nextFloat()) * 0.1F, clam.getRandom().nextFloat() * 0.05F, (clam.getRandom().nextFloat() - clam.getRandom().nextFloat()) * 0.1F));
         if (!playerIn.isCreative()) {
           stack.hurtAndBreak(1, playerIn, e -> e.broadcastBreakEvent(hand));
         }
