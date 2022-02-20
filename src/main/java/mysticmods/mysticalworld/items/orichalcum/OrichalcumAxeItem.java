@@ -46,7 +46,8 @@ public class OrichalcumAxeItem extends AxeItem implements IOrichalcumItem {
     return true;
   }
 
-  @Override
+  // TODO: Update as to how axe stripping is now done
+/*  @Override
   public InteractionResult useOn(UseOnContext context) {
     Level world = context.getLevel();
     BlockPos blockpos = context.getClickedPos();
@@ -63,5 +64,5 @@ public class OrichalcumAxeItem extends AxeItem implements IOrichalcumItem {
     } else {
       return InteractionResult.PASS;
     }
-  }
+  }*/
 }
