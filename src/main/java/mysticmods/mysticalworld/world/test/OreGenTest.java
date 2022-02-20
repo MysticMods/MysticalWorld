@@ -10,7 +10,7 @@ import net.minecraftforge.common.Tags;
 
 import java.util.Random;
 
-public class OreGenTest extends RuleTest {
+/*public class OreGenTest extends RuleTest {
   public static final OreGenTest INSTANCE = new OreGenTest();
   public static final Codec<OreGenTest> CODEC = Codec.unit(() -> INSTANCE);
 
@@ -32,4 +32,4 @@ public class OreGenTest extends RuleTest {
   protected RuleTestType<?> getType() {
     return ModFeatures.ORE_GEN;
   }
-}
+}*/
