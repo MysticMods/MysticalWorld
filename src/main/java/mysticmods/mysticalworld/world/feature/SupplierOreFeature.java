@@ -14,7 +14,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import java.util.BitSet;
 import java.util.Random;
 
-public class SupplierOreFeature extends Feature<SupplierOreFeatureConfig> {
+/*public class SupplierOreFeature extends Feature<SupplierOreFeatureConfig> {
   public SupplierOreFeature(Codec<SupplierOreFeatureConfig> p_i231976_1_) {
     super(p_i231976_1_);
   }
@@ -133,4 +133,4 @@ public class SupplierOreFeature extends Feature<SupplierOreFeatureConfig> {
 
     return i > 0;
   }
-}
+}*/

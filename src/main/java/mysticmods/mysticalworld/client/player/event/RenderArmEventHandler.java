@@ -1,28 +1,12 @@
 package mysticmods.mysticalworld.client.player.event;
 
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import mysticmods.mysticalworld.client.model.armor.BeetleArmorModel;
-import mysticmods.mysticalworld.init.ModItems;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.player.AbstractClientPlayer;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.HumanoidArm;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.client.event.RenderArmEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import mysticmods.mysticalworld.MysticalWorld;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.Objects;
-
-import static net.minecraft.world.entity.EquipmentSlot.CHEST;
-
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, value = Dist.CLIENT)
 public class RenderArmEventHandler {
-  public static final BeetleArmorModel chestModel = new BeetleArmorModel(CHEST);
+/*  public static final BeetleArmorModel chestModel = new BeetleArmorModel(CHEST);
 
   static {
     chestModel.attackTime = 0f;
@@ -78,5 +62,5 @@ public class RenderArmEventHandler {
           return hand == HumanoidArm.RIGHT;
       }
     }
-  }
+  }*/
 }

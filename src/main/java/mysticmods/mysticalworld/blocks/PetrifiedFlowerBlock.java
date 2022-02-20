@@ -27,6 +27,7 @@ public class PetrifiedFlowerBlock extends FlowerBlock {
     super(MobEffects.JUMP, 50, propertiesIn);
   }
 
+  // TODO: Convert this into a supports_stonepetal_block tag
   @Override
   protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
     return state.is(Tags.Blocks.STONE) || state.is(Blocks.GRAVEL) || state.is(Tags.Blocks.ORES);

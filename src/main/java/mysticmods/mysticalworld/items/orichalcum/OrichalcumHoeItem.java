@@ -46,7 +46,8 @@ public class OrichalcumHoeItem extends HoeItem implements IOrichalcumItem {
     return true;
   }
 
-  @Override
+  // TODO: Re-synchronize with vanilla
+/*  @Override
   public InteractionResult useOn(UseOnContext context) {
     Level world = context.getLevel();
     BlockPos blockpos = context.getClickedPos();
@@ -67,5 +68,5 @@ public class OrichalcumHoeItem extends HoeItem implements IOrichalcumItem {
     }
 
     return InteractionResult.PASS;
-  }
+  }*/
 }

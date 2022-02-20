@@ -1,17 +1,6 @@
 package mysticmods.mysticalworld.client.render;
 
-import mysticmods.mysticalworld.client.model.DeerModel;
-import mysticmods.mysticalworld.client.model.ModelHolder;
-import mysticmods.mysticalworld.entity.DeerEntity;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-
-import javax.annotation.Nonnull;
-
-public class DeerRenderer extends MobRenderer<DeerEntity, DeerModel> {
+/*public class DeerRenderer extends MobRenderer<DeerEntity, DeerModel> {
 
   private DeerRenderer(@Nonnull EntityRenderDispatcher renderManager, @Nonnull DeerModel modelBase, float shadowSize) {
     super(renderManager, modelBase, shadowSize);
@@ -33,4 +22,4 @@ public class DeerRenderer extends MobRenderer<DeerEntity, DeerModel> {
       return new DeerRenderer(manager, ModelHolder.deerModel, 0.35f);
     }
   }
-}
+}*/

@@ -1,15 +1,6 @@
 package mysticmods.mysticalworld.world;
 
-import com.mojang.serialization.Codec;
-import mysticmods.mysticalworld.init.ModFeatures;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProviderType;
-import noobanidus.libs.noobutil.type.LazyStateSupplier;
-import noobanidus.libs.noobutil.world.gen.provider.AbstractSupplierBlockStateProvider;
-
-import javax.annotation.Nullable;
-import java.util.List;
-
+/*
 public class SupplierBlockStateProvider extends AbstractSupplierBlockStateProvider {
   public static final Codec<SupplierBlockStateProvider> CODEC = codecBuilder(SupplierBlockStateProvider::new);
 
@@ -34,3 +25,4 @@ public class SupplierBlockStateProvider extends AbstractSupplierBlockStateProvid
     return ModFeatures.SUPPLIER_STATE_PROVIDER.get();
   }
 }
+*/

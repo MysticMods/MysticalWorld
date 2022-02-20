@@ -34,7 +34,7 @@ public abstract class AbstractCookingRecipeSerializer<T extends AbstractCookingR
       throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
     ItemStack itemstack;
     if (json.get("result").isJsonObject())
-      itemstack = ShapedRecipe.itemFromJson(GsonHelper.getAsJsonObject(json, "result"));
+      itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
     else {
       String s1 = GsonHelper.getAsString(json, "result");
       ResourceLocation resourcelocation = new ResourceLocation(s1);

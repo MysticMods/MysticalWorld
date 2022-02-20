@@ -1,74 +1,13 @@
 package mysticmods.mysticalworld.init;
 
-import com.google.common.collect.Sets;
-import com.mojang.serialization.Codec;
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.config.ConfigManager;
-import mysticmods.mysticalworld.config.FeatureConfig;
-import mysticmods.mysticalworld.config.OreConfig;
-import mysticmods.mysticalworld.world.SupplierBlockStateProvider;
-import mysticmods.mysticalworld.world.feature.SupplierOreFeature;
-import mysticmods.mysticalworld.world.feature.SupplierOreFeatureConfig;
-import mysticmods.mysticalworld.world.placement.DimensionConfig;
-import mysticmods.mysticalworld.world.placement.DimensionCountPlacement;
-import mysticmods.mysticalworld.world.placement.DimensionCountRangeConfig;
-import mysticmods.mysticalworld.world.placement.DimensionPlacement;
-import mysticmods.mysticalworld.world.test.OreGenTest;
-import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.data.worldgen.Features;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.UniformInt;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.FlatLevelSource;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.StructureSettings;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.blockplacers.SimpleBlockPlacer;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.StructureFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
-import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProviderType;
-import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
-import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
-import net.minecraft.world.level.levelgen.placement.FrequencyWithExtraChanceDecoratorConfiguration;
-import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
-import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
-import noobanidus.libs.noobutil.type.LazySupplier;
-
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.function.Supplier;
 
 // TODO: PlacedFeature, etc.
 
 @Mod.EventBusSubscriber(modid=MysticalWorld.MODID)
 public class ModFeatures {
-  public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
+/*  public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
 
   public static final RuleTestType<OreGenTest> ORE_GEN = RuleTestType.register("ore_gen", OreGenTest.CODEC);
 
@@ -170,7 +109,7 @@ public class ModFeatures {
 
   @SubscribeEvent
   public static void onWorldLoad(final WorldEvent.Load event) {
-/*    if (event.getWorld() instanceof ServerLevel) {
+*//*    if (event.getWorld() instanceof ServerLevel) {
       ServerLevel world = (ServerLevel) event.getWorld();
       if (world.getChunkSource().getGenerator() instanceof FlatLevelSource && world.dimension().equals(Level.OVERWORLD)) {
         return;
@@ -207,6 +146,6 @@ public class ModFeatures {
         temp.put(ModStructures.SAND_HOUSE_STRUCTURE, StructureSettings.DEFAULTS.get(ModStructures.SAND_HOUSE_STRUCTURE));
         world.getChunkSource().generator.getSettings().structureConfig = temp;
       }
-    }*/
-  }
+    }*//*
+  }*/
 }

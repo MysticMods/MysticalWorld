@@ -1,7 +1,6 @@
 package mysticmods.mysticalworld.config;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import mysticmods.mysticalworld.world.test.OreGenTest;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -35,7 +34,7 @@ public class OreConfig extends AbstractConfig {
   private final RuleTest rule;
 
   public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
-    this(name, chance, minY, maxY, size, dimensions, ore, OreGenTest.INSTANCE);
+    this(name, chance, minY, maxY, size, dimensions, ore, /*OreGenTest.INSTANCE*/ null);
   }
 
   public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore, RuleTest test) {

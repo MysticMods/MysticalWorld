@@ -39,7 +39,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePrope
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.libs.noobutil.block.BaseBlocks;
@@ -150,21 +149,21 @@ public class ModBlocks {
       })
       .register();
 
-  public static BlockEntry<AnywhereMushroomBlock> ANYWHERE_RED_MUSHROOM = MysticalWorld.REGISTRATE.block("red_mushroom", Material.PLANT, AnywhereMushroomBlock::new)
+/*  public static BlockEntry<AnywhereMushroomBlock> ANYWHERE_RED_MUSHROOM = MysticalWorld.REGISTRATE.block("red_mushroom", Material.PLANT, AnywhereMushroomBlock::new)
       .properties(o -> o.noCollission().randomTicks().instabreak().sound(SoundType.GRASS).lightLevel((state) -> 1).hasPostProcess((a, b, c) -> true))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(Blocks.RED_MUSHROOM)))))
       .loot((ctx, p) -> ctx.dropOther(p, Blocks.RED_MUSHROOM))
       .tag(BlockTags.ENDERMAN_HOLDABLE)
-      .register();
+      .register();*/
 
-  public static BlockEntry<AnywhereMushroomBlock> ANYWHERE_BROWN_MUSHROOM = MysticalWorld.REGISTRATE.block("brown_mushroom", Material.PLANT, AnywhereMushroomBlock::new)
+/*  public static BlockEntry<AnywhereMushroomBlock> ANYWHERE_BROWN_MUSHROOM = MysticalWorld.REGISTRATE.block("brown_mushroom", Material.PLANT, AnywhereMushroomBlock::new)
       .properties(o -> o.noCollission().randomTicks().instabreak().sound(SoundType.GRASS).lightLevel((state) -> 1).hasPostProcess((a, b, c) -> true))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(Blocks.BROWN_MUSHROOM)))))
       .tag(BlockTags.ENDERMAN_HOLDABLE)
       .loot((ctx, p) -> ctx.dropOther(p, Blocks.BROWN_MUSHROOM))
-      .register();
+      .register();*/
 
-  public static BlockEntry<UncannyMushroomBlock> UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("uncanny_mushroom", Material.PLANT, UncannyMushroomBlock::new)
+/*  public static BlockEntry<UncannyMushroomBlock> UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("uncanny_mushroom", Material.PLANT, UncannyMushroomBlock::new)
       .properties(o -> o.noCollission().randomTicks().instabreak().sound(SoundType.GRASS).lightLevel((state) -> 9).hasPostProcess((a, b, c) -> true))
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cross(ctx.getName(), p.blockTexture(ModBlocks.UNCANNY_MUSHROOM.get())))))
       .item()
@@ -176,17 +175,17 @@ public class ModBlocks {
         DataIngredient a = DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM.get());
         ShapelessRecipeBuilder.shapeless(Items.PURPLE_DYE, 4).requires(ctx.getEntry()).unlockedBy("has_uncanny_mushroom", a.getCritereon(p)).save(p, new ResourceLocation(MysticalWorld.MODID, "purple_dye_from_uncanny_mushroom"));
       })
-      .register();
+      .register();*/
 
   public static BlockEntry<FlowerPotBlock> POTTED_STONEPETAL = MysticalWorld.REGISTRATE.block("potted_stonepetal", Material.DECORATION, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.STONEPETAL, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/stonepetal")))
       .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createPotFlowerItemTable(ModBlocks.STONEPETAL.get())))
       .register();
 
-  public static BlockEntry<FlowerPotBlock> POTTED_UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("potted_uncanny_mushroom", Material.DECORATION, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.UNCANNY_MUSHROOM, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)))
+/*  public static BlockEntry<FlowerPotBlock> POTTED_UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("potted_uncanny_mushroom", Material.DECORATION, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.UNCANNY_MUSHROOM, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/uncanny_mushroom")))
       .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createPotFlowerItemTable(ModBlocks.UNCANNY_MUSHROOM.get())))
-      .register();
+      .register();*/
 
   private static final NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.strength(1f).sound(SoundType.GRASS);
   private static final NonNullUnaryOperator<Block.Properties> MUSHROOM_PROPS = (o) -> o.strength(0.2F).sound(SoundType.WOOD);
@@ -328,7 +327,7 @@ public class ModBlocks {
       )
       .register();
 
-  public static BlockEntry<HugeMushroomBlock> UNCANNY_MUSHROOM_BLOCK = MysticalWorld.REGISTRATE.block("uncanny_mushroom_block", Material.WOOD, HugeMushroomBlock::new)
+/*  public static BlockEntry<HugeMushroomBlock> UNCANNY_MUSHROOM_BLOCK = MysticalWorld.REGISTRATE.block("uncanny_mushroom_block", Material.WOOD, HugeMushroomBlock::new)
       .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 8))
       .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createMushroomBlockDrop(p, ModBlocks.UNCANNY_MUSHROOM.get())))
       .blockstate((ctx, p) -> {
@@ -352,9 +351,9 @@ public class ModBlocks {
       .item()
       .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation(MysticalWorld.MODID, "block/uncanny_mushroom_block")))
       .build()
-      .register();
+      .register();*/
 
-  public static BlockEntry<Block> UNCANNY_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("uncanny_mushroom_full", Material.WOOD, Block::new)
+/*  public static BlockEntry<Block> UNCANNY_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("uncanny_mushroom_full", Material.WOOD, Block::new)
       .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 8))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), p.blockTexture(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))))
       .item()
@@ -446,7 +445,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.UNCANNY_MUSHROOM_BLOCK, ModBlocks.UNCANNY_MUSHROOM_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
-      .register();
+      .register();*/
 
   // MUSHROOM
   public static BlockEntry<Block> RED_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("red_mushroom_full", Material.WOOD, Block::new)
@@ -472,7 +471,7 @@ public class ModBlocks {
       .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_stem")))
       .build()
       .recipe((ctx, p) -> {
-        ShapelessRecipeBuilder.shapeless(ModBlocks.UNCANNY_MUSHROOM_FULL.get(), 1)
+/*        ShapelessRecipeBuilder.shapeless(ModBlocks.UNCANNY_MUSHROOM_FULL.get(), 1)
             .requires(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get())
             .unlockedBy("has_uncanny_mushroom_block", RegistrateRecipeProvider.has(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
             .group("crafting")
@@ -481,7 +480,7 @@ public class ModBlocks {
             .requires(ModBlocks.UNCANNY_MUSHROOM_FULL.get())
             .unlockedBy("has_full_red_mushroom_block", RegistrateRecipeProvider.has(ModBlocks.UNCANNY_MUSHROOM_FULL.get()))
             .group("crafting")
-            .save(p, new ResourceLocation(MysticalWorld.MODID, "plain_uncanny_mushroom_block_from_full_uncanny_mushroom_block"));
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "plain_uncanny_mushroom_block_from_full_uncanny_mushroom_block"));*/
 
         ShapelessRecipeBuilder.shapeless(ModBlocks.RED_MUSHROOM_FULL.get(), 1)
             .requires(Blocks.RED_MUSHROOM_BLOCK)
@@ -494,13 +493,13 @@ public class ModBlocks {
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_red_mushroom_block_from_full_red_mushroom_block"));
 
-        ShapedRecipeBuilder.shaped(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get().asItem(), 1)
+/*        ShapedRecipeBuilder.shaped(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get().asItem(), 1)
             .pattern("XX")
             .pattern("XX")
             .define('X', ModBlocks.UNCANNY_MUSHROOM.get())
             .group("crafting")
             .unlockedBy("has_uncanny_mushroom", RegistrateRecipeProvider.has(ModBlocks.UNCANNY_MUSHROOM.get()))
-            .save(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_mushroom_block_from_mushrooms"));
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_mushroom_block_from_mushrooms"));*/
         ShapedRecipeBuilder.shaped(Blocks.RED_MUSHROOM_BLOCK, 1)
             .pattern("XX")
             .pattern("XX")

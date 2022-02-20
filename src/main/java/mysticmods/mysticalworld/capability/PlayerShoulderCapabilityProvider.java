@@ -14,10 +14,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+// TODO: Update to the new capability system
 public class PlayerShoulderCapabilityProvider implements ICapabilityProvider, ICapabilitySerializable<CompoundTag> {
   public static final ResourceLocation IDENTIFIER = new ResourceLocation(MysticalWorld.MODID, "player_shoulder_capability");
 
-  private final IPlayerShoulderCapability instance = Capabilities.SHOULDER_CAPABILITY.getDefaultInstance();
+  private IPlayerShoulderCapability instance;
 
   @Override
   public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
@@ -26,11 +27,12 @@ public class PlayerShoulderCapabilityProvider implements ICapabilityProvider, IC
 
   @Override
   public CompoundTag serializeNBT() {
-    return (CompoundTag) Capabilities.SHOULDER_CAPABILITY.getStorage().writeNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null);
+    return null;
+/*    return (CompoundTag) Capabilities.SHOULDER_CAPABILITY.getStorage().writeNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null);*/
   }
 
   @Override
   public void deserializeNBT(CompoundTag nbt) {
-    Capabilities.SHOULDER_CAPABILITY.getStorage().readNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null, nbt);
+/*    Capabilities.SHOULDER_CAPABILITY.getStorage().readNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null, nbt);*/
   }
 }

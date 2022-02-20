@@ -1,17 +1,6 @@
 package mysticmods.mysticalworld.client.render;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.client.model.BeetleModel;
-import mysticmods.mysticalworld.client.model.ModelHolder;
-import mysticmods.mysticalworld.entity.BeetleEntity;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-
-import javax.annotation.Nonnull;
-
+/*
 public class BeetleRenderer extends MobRenderer<BeetleEntity, BeetleModel> {
 
   private BeetleRenderer(@Nonnull EntityRenderDispatcher renderManager, @Nonnull BeetleModel m, float f) {
@@ -38,3 +27,4 @@ public class BeetleRenderer extends MobRenderer<BeetleEntity, BeetleModel> {
     return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/beetle_blue.png");
   }
 }
+*/

@@ -306,7 +306,7 @@ public class LootTableGenerator extends LootTableProvider {
                       .add(LootItem.lootTableItem(Items.POTATO).setWeight(7).apply(SetItemCountFunction.setCount(UniformGenerator.between(8f, 15f))))
                       .add(LootItem.lootTableItem(Items.BROWN_MUSHROOM).setWeight(5).apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 10f))))
                       .add(LootItem.lootTableItem(Items.RED_MUSHROOM).setWeight(5).apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 10f))))
-                      .add(LootItem.lootTableItem(ModBlocks.UNCANNY_MUSHROOM.get()).setWeight(8).apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 12f))))
+/*                      .add(LootItem.lootTableItem(ModBlocks.UNCANNY_MUSHROOM.get()).setWeight(8).apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 12f))))*/
               ).withPool(
                   LootPool.lootPool()
                       .setRolls(UniformGenerator.between(0, 1))

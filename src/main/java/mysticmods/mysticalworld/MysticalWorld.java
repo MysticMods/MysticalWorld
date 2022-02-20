@@ -27,7 +27,7 @@ public class MysticalWorld {
   public static CustomRegistrate REGISTRATE;
   public static RecipeGenerator RECIPES = new RecipeGenerator(MODID);
 
-  public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab("mysticalworld") {
+  public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab(MODID) {
     @Override
     public ItemStack makeIcon() {
       return new ItemStack(ModBlocks.SAPPHIRE_BLOCK.get());
@@ -51,7 +51,6 @@ public class MysticalWorld {
     ModEffects.load();
     ModLang.load();
     ModTags.load();
-    ModFeatures.load();
 
     PlayerModifierRegistry.addModifier(ModModifiers.SERENDIPITY);
     PlayerModifierRegistry.addModifier(ModModifiers.BLESSED);

@@ -7,7 +7,7 @@ import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 
-public class SilkwormModel extends EntityModel<SilkwormEntity> {
+/*public class SilkwormModel extends EntityModel<SilkwormEntity> {
   private static final int[][] BODY_SIZES = new int[][]{{4, 3, 2}, {6, 4, 5}, {3, 3, 1}, {1, 2, 1}};
   private static final int[][] BODY_TEXS = new int[][]{{0, 0}, {0, 5}, {0, 14}, {0, 18}};
   private static final int BODY_COUNT = BODY_SIZES.length;
@@ -42,4 +42,4 @@ public class SilkwormModel extends EntityModel<SilkwormEntity> {
       p_228227_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
   }
-}
+}*/

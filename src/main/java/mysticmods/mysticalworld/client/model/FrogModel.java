@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
  * FrogModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class FrogModel extends AgeableListModel<FrogEntity> {
+/*public class FrogModel extends AgeableListModel<FrogEntity> {
 
   private final ModelPart body;
   private final ModelPart backR;
@@ -78,12 +78,12 @@ public class FrogModel extends AgeableListModel<FrogEntity> {
     this.head.yRot = netHeadYaw * 0.017453292F;
   }
 
-  /**
+  *//**
    * This is a helper function from Tabula to set the rotation of model parts
-   */
+   *//*
   private void setRotateAngle(@Nonnull ModelPart modelRenderer, float x, float y, float z) {
     modelRenderer.xRot = x;
     modelRenderer.yRot = y;
     modelRenderer.zRot = z;
   }
-}
+}*/

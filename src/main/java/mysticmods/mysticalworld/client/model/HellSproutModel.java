@@ -7,7 +7,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.phys.Vec3;
 
 
-public class HellSproutModel extends AgeableListModel<HellSproutEntity> {
+/*public class HellSproutModel extends AgeableListModel<HellSproutEntity> {
   private final ModelPart head;
   private final ModelPart legL;
   private final ModelPart legR;
@@ -73,4 +73,4 @@ public class HellSproutModel extends AgeableListModel<HellSproutEntity> {
     model.yRot = y;
     model.zRot = z;
   }
-}
+}*/

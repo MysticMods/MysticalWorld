@@ -12,6 +12,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 
+// TODO: Make this properly reflect the Firework recipe
 public class BlazeRocketRecipe extends CustomRecipe {
   private static final Ingredient INGREDIENT_PAPER = Ingredient.of(Items.PAPER);
   private static final Ingredient INGREDIENT_BLAZE_POWDER = Ingredient.of(Items.BLAZE_POWDER);

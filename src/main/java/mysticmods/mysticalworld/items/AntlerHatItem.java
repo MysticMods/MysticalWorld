@@ -71,11 +71,12 @@ public class AntlerHatItem extends ModifiedArmorItem {
     return MysticalWorld.MODID + ":textures/models/armor/antler_hat.png";
   }
 
-  @SuppressWarnings("unchecked")
+  // TODO: Handle how armor models are now associated
+/*  @SuppressWarnings("unchecked")
   @Nullable
   @Override
   @OnlyIn(Dist.CLIENT)
   public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
     return (A) ModelHolder.antlerHatModel;
-  }
+  }*/
 }

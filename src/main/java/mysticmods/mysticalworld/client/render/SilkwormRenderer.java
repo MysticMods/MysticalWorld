@@ -1,18 +1,6 @@
 package mysticmods.mysticalworld.client.render;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.client.model.ModelHolder;
-import mysticmods.mysticalworld.client.model.SilkwormModel;
-import mysticmods.mysticalworld.entity.SilkwormEntity;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-
-import javax.annotation.Nonnull;
-
-public class SilkwormRenderer extends MobRenderer<SilkwormEntity, SilkwormModel> {
+/*public class SilkwormRenderer extends MobRenderer<SilkwormEntity, SilkwormModel> {
   private static final ResourceLocation SILKWORM_TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/silkworm.png");
 
   public SilkwormRenderer(EntityRenderDispatcher rendermanagerIn, SilkwormModel model, float shadow) {
@@ -41,4 +29,4 @@ public class SilkwormRenderer extends MobRenderer<SilkwormEntity, SilkwormModel>
       return new SilkwormRenderer(manager, ModelHolder.silkwormModel, 0.15f);
     }
   }
-}
+}*/

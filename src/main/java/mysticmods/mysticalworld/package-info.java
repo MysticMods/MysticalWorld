@@ -1,5 +1,0 @@
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
-package mysticmods.mysticalworld;
-
-import javax.annotation.ParametersAreNonnullByDefault;

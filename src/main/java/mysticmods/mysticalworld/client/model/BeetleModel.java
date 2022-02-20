@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
  * BeetleModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
+/*public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
   private final ModelPart body;
   private final ModelPart wingL;
   private final ModelPart wingR;
@@ -173,5 +173,5 @@ public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
     modelRenderer.yRot = y;
     modelRenderer.zRot = z;
   }
-}
+}*/
 

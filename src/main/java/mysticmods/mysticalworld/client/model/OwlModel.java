@@ -9,6 +9,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 
+/*
 public class OwlModel extends AgeableListModel<OwlEntity> {
   private final ModelPart body;
   private final ModelPart footR;
@@ -162,4 +163,4 @@ public class OwlModel extends AgeableListModel<OwlEntity> {
     STANDING,
     SITTING
   }
-}
+}*/

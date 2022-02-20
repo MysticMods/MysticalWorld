@@ -133,7 +133,7 @@ public class StalkGoal extends Goal {
     double d0 = this.attacker.distanceToSqr(entitylivingbase.getX(), entitylivingbase.getBoundingBox().minY, entitylivingbase.getZ());
     --this.delayCounter;
 
-    if ((this.longMemory || this.attacker.getSensing().canSee(entitylivingbase)) && this.delayCounter <= 0 && (
+    if ((this.longMemory || this.attacker.getSensing().hasLineOfSight(entitylivingbase)) && this.delayCounter <= 0 && (
         this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D || entitylivingbase.distanceToSqr(this.targetX, this.targetY, this.targetZ) >= 1.0D
             || this.attacker.getRandom().nextFloat() < 0.05F)) {
       this.targetX = entitylivingbase.getX();

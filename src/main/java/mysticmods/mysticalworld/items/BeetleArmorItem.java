@@ -24,11 +24,12 @@ public class BeetleArmorItem extends ModifiedArmorItem {
     return MysticalWorld.MODID + ":textures/models/armor/beetle_armor.png";
   }
 
-  @SuppressWarnings("unchecked")
+  // TODO: Handle how custom armor models are handled
+/*  @SuppressWarnings("unchecked")
   @Nullable
   @Override
   @OnlyIn(Dist.CLIENT)
   public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
     return (A) ModelHolder.modelForSlot(slot);
-  }
+  }*/
 }

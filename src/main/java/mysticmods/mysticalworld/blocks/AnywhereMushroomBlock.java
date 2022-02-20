@@ -1,20 +1,17 @@
 package mysticmods.mysticalworld.blocks;
 
-import mysticmods.mysticalworld.init.ConfiguredFeatures;
-import mysticmods.mysticalworld.init.ModBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
-import java.util.Random;
+import java.util.function.Supplier;
 
 public class AnywhereMushroomBlock extends MushroomBlock {
-  public AnywhereMushroomBlock(Properties properties) {
-    super(properties);
+  public AnywhereMushroomBlock(Properties props, Supplier<ConfiguredFeature<?, ?>> feature) {
+    super(props, feature);
   }
 
   @Override
@@ -28,7 +25,8 @@ public class AnywhereMushroomBlock extends MushroomBlock {
     }
   }
 
-  @Override
+  // TODO: Implement with new placedfeatures
+/*  @Override
   public boolean growMushroom(ServerLevel world, BlockPos pos, BlockState state, Random rand) {
     world.removeBlock(pos, false);
     ConfiguredFeature<?, ?> configuredfeature;
@@ -51,5 +49,5 @@ public class AnywhereMushroomBlock extends MushroomBlock {
       world.setBlock(pos, state, 3);
       return false;
     }
-  }
+  }*/
 }
