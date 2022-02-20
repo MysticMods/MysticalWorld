@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -70,7 +71,7 @@ public class SilkwormEntity extends Animal {
     goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.5d, false));
     goalSelector.addGoal(3, new RandomStrollGoal(this, 0.5d));
     // TODO: TAG
-    goalSelector.addGoal(3, new TemptGoal(this, 0.9d, Ingredient.of(LeafHandler.getLeafItems().toArray(new Item[0])), false));
+    goalSelector.addGoal(3, new TemptGoal(this, 0.9d, Ingredient.of(ItemTags.LEAVES), false));
     goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, SilkwormEntity.class, false));
   }
@@ -133,7 +134,7 @@ public class SilkwormEntity extends Animal {
     if (!player.level.isClientSide) {
       ItemStack itemstack = player.getItemInHand(hand);
 
-      if (LeafHandler.getLeafItems().contains(itemstack.getItem())) {
+      if (itemstack.is(ItemTags.LEAVES)) {
         if (!player.isCreative()) {
           itemstack.shrink(1);
         }
