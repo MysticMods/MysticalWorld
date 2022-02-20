@@ -41,11 +41,11 @@ public class ClientSetup {
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.STONEPETAL.get(), rendertype);
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_STONEPETAL.get(), rendertype);
-      ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_UNCANNY_MUSHROOM.get(), rendertype);
+/*      ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_UNCANNY_MUSHROOM.get(), rendertype);*/
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_WART.get(), rendertype);
-      ItemBlockRenderTypes.setRenderLayer(ModBlocks.ANYWHERE_BROWN_MUSHROOM.get(), rendertype);
+/*      ItemBlockRenderTypes.setRenderLayer(ModBlocks.ANYWHERE_BROWN_MUSHROOM.get(), rendertype);
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.ANYWHERE_RED_MUSHROOM.get(), rendertype);
-      ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNCANNY_MUSHROOM.get(), rendertype);
+      ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNCANNY_MUSHROOM.get(), rendertype);*/
 
       ShadedClientSetup.init(event);
       /*      Bootstrap.init(Minecraft.getInstance());*/
