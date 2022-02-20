@@ -39,8 +39,8 @@ public class CommonSetup {
       ModLoot.load();
       ModEntities.registerEntities();
       ShadedCommonSetup.init(event);
-      ModStructures.setupStructures();
-      ConfiguredStructures.registerStructures();
+/*      ModStructures.setupStructures();
+      ConfiguredStructures.registerStructures();*/
       CraftingHelper.register(new ResourceLocation(MysticalWorld.MODID, "seeds"), SeedIngredient.Serializer.INSTANCE);
       CraftingHelper.register(new ResourceLocation(MysticalWorld.MODID, "excluding_ingredient"), ExcludingIngredient.Serializer.INSTANCE);
       UniqueShapelessRecipe.setStoredSerializer(ModRecipes.UNIQUE_SHAPELESS_RECIPE.get());
@@ -76,8 +76,8 @@ public class CommonSetup {
 
       ConfiguredFeatures.REGISTRY.registration();
       ConfiguredStructures.REGISTRY.registration();
-      ModFeatures.generateFeatures();
-      ModFeatures.REGISTRY.registration();
+/*      ModFeatures.generateFeatures();
+      ModFeatures.REGISTRY.registration();*/
       ModLoot.FUNCTION_REGISTRY.registration();
       ModLoot.CONDITION_REGISTRY.registration();
 

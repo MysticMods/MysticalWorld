@@ -51,7 +51,6 @@ public class MysticalWorld {
     ModEffects.load();
     ModLang.load();
     ModTags.load();
-    ModFeatures.load();
 
     PlayerModifierRegistry.addModifier(ModModifiers.SERENDIPITY);
     PlayerModifierRegistry.addModifier(ModModifiers.BLESSED);
