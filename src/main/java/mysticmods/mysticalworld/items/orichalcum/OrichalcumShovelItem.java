@@ -45,12 +45,13 @@ public class OrichalcumShovelItem extends ShovelItem implements IOrichalcumItem 
     return true;
   }
 
+  // TODO: Re-synchronzie with vanilla
   @Override
   public InteractionResult useOn(UseOnContext context) {
     Level world = context.getLevel();
     BlockPos blockpos = context.getClickedPos();
     BlockState upState = world.getBlockState(blockpos.above());
-    if (context.getClickedFace() != Direction.DOWN && upState.getBlock().isAir(upState, world, blockpos.above())) {
+    if (context.getClickedFace() != Direction.DOWN && upState.isAir()) {
       BlockState blockstate = FLATTENABLES.get(world.getBlockState(blockpos).getBlock());
       if (blockstate != null) {
         Player playerentity = context.getPlayer();
