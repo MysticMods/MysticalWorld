@@ -2,9 +2,8 @@ package mysticmods.mysticalworld.client.model.armor;
 
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.EquipmentSlot;
-import noobanidus.libs.noobutil.client.model.ArmorBaseModel;
 
-public class BeetleArmorModel extends ArmorBaseModel {
+/*public class BeetleArmorModel extends ArmorBaseModel {
   private final ModelPart headAnchor;
   private final ModelPart bodyAnchor;
   public final ModelPart armR;
@@ -148,4 +147,4 @@ public class BeetleArmorModel extends ArmorBaseModel {
     modelRenderer.yRot = y;
     modelRenderer.zRot = z;
   }
-}
+}*/

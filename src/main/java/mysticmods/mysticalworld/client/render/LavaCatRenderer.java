@@ -1,23 +1,6 @@
 package mysticmods.mysticalworld.client.render;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.client.model.LavaCatModel;
-import mysticmods.mysticalworld.client.model.ModelHolder;
-import mysticmods.mysticalworld.client.render.layers.LayerEyes;
-import mysticmods.mysticalworld.client.render.layers.LayerLava;
-import mysticmods.mysticalworld.entity.LavaCatEntity;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-
-import javax.annotation.Nonnull;
-
-@OnlyIn(Dist.CLIENT)
-public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel> {
+/*public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel> {
   private static final ResourceLocation OBSIDIAN_KITTY = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_eyes.png");
 
   public LavaCatRenderer(EntityRenderDispatcher rendermanagerIn, LavaCatModel model, float shadowsizeIn) {
@@ -47,5 +30,5 @@ public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel> {
     }
   }
 
-}
+}*/
 

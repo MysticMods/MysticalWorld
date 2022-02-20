@@ -1,19 +1,6 @@
 package mysticmods.mysticalworld.client.render;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.client.model.DuckModel;
-import mysticmods.mysticalworld.client.model.ModelHolder;
-import mysticmods.mysticalworld.entity.DuckEntity;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-
-import javax.annotation.Nonnull;
-
-public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel> {
+/*public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel> {
   private DuckRenderer(@Nonnull EntityRenderDispatcher renderManager, @Nonnull DuckModel m, float f) {
     super(renderManager, m, f);
   }
@@ -47,4 +34,4 @@ public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel> {
     float f1 = Mth.lerp(pPartialTicks, pLivingBase.oFlapSpeed, pLivingBase.flapSpeed);
     return (Mth.sin(f) + 1.0F) * f1;
   }
-}
+}*/

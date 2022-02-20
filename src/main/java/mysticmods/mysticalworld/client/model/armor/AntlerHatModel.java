@@ -4,9 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.EquipmentSlot;
-import noobanidus.libs.noobutil.client.model.ArmorBaseModel;
 
-public class AntlerHatModel extends ArmorBaseModel {
+/*public class AntlerHatModel {
   public ModelPart hat;
   public ModelPart horn1;
   public ModelPart horn1_1;
@@ -83,4 +82,4 @@ public class AntlerHatModel extends ArmorBaseModel {
     modelRenderer.yRot = y;
     modelRenderer.zRot = z;
   }
-}
+}*/

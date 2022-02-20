@@ -11,8 +11,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 
-@OnlyIn(Dist.CLIENT)
-public class LavaCatModel extends AgeableListModel<LavaCatEntity> {
+/*public class LavaCatModel extends AgeableListModel<LavaCatEntity> {
   public final ModelPart ocelotBackLeftLeg;
   public final ModelPart ocelotBackRightLeg;
   public final ModelPart ocelotFrontLeftLeg;
@@ -66,11 +65,11 @@ public class LavaCatModel extends AgeableListModel<LavaCatEntity> {
   }
 
 
-  /**
+  *//**
    * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
    * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
    * "far" arms and legs can swing at most.
-   */
+   *//*
   @Override
   public void setupAnim(@Nonnull LavaCatEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     this.ocelotHead.xRot = headPitch * 0.017453292F;
@@ -100,10 +99,10 @@ public class LavaCatModel extends AgeableListModel<LavaCatEntity> {
     }
   }
 
-  /**
+  *//**
    * Used for easily adding entity-dependent animations. The second and third float params here are the same second
    * and third as in the setRotationAngles method.
-   */
+   *//*
   @Override
   public void prepareMobModel(LavaCatEntity entityocelot, float limbSwing, float limbSwingAmount, float partialTickTime) {
     this.ocelotBody.y = 12.0F;
@@ -130,7 +129,7 @@ public class LavaCatModel extends AgeableListModel<LavaCatEntity> {
     this.ocelotBackLeftLeg.xRot = 0;
     this.ocelotBackRightLeg.xRot = 0;
 
-/*    if (entityocelot.isSneaking()) {
+*//*    if (entityocelot.isSneaking()) {
       ++this.ocelotBody.rotationPointY;
       this.ocelotHead.rotationPointY += 2.0F;
       ++this.ocelotTail.rotationPointY;
@@ -144,7 +143,7 @@ public class LavaCatModel extends AgeableListModel<LavaCatEntity> {
       this.ocelotTail2.rotationPointZ += 2.0F;
       this.ocelotTail.rotateAngleX = ((float) Math.PI / 2F);
       this.ocelotTail2.rotateAngleX = ((float) Math.PI / 2F);
-      this.state = 2;*/
+      this.state = 2;*//*
     if (entityocelot.isInSittingPose()) {
       this.ocelotBody.xRot = ((float) Math.PI / 4F);
       this.ocelotBody.y += -4.0F;
@@ -174,5 +173,5 @@ public class LavaCatModel extends AgeableListModel<LavaCatEntity> {
       this.state = 1;
     }
   }
-}
+}*/
 

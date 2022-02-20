@@ -8,7 +8,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import javax.annotation.Nonnull;
 import java.util.Collections;
 
-public class DeerModel extends AgeableListModel<DeerEntity> {
+/*public class DeerModel extends AgeableListModel<DeerEntity> {
 
   //fields
   private final ModelPart head;
@@ -188,4 +188,4 @@ public class DeerModel extends AgeableListModel<DeerEntity> {
     model.yRot = y;
     model.zRot = z;
   }
-}
+}*/

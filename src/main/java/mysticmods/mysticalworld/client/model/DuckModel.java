@@ -8,7 +8,7 @@ import net.minecraft.util.Mth;
 
 import java.util.Collections;
 
-public class DuckModel extends AgeableListModel<DuckEntity> {
+/*public class DuckModel extends AgeableListModel<DuckEntity> {
   private final ModelPart main;
   private final ModelPart neck;
   private final ModelPart head;
@@ -109,4 +109,4 @@ public class DuckModel extends AgeableListModel<DuckEntity> {
     modelRenderer.yRot = y;
     modelRenderer.zRot = z;
   }
-}
+}*/

@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
  * FoxModel - Elucent
  * Created using Tabula 5.1.0
  */
-public class FoxModel extends AgeableListModel<SilverFoxEntity> {
+/*public class FoxModel extends AgeableListModel<SilverFoxEntity> {
 
   private final ModelPart body1;
   private final ModelPart frontL;
@@ -181,12 +181,12 @@ public class FoxModel extends AgeableListModel<SilverFoxEntity> {
     super.prepareMobModel(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
   }
 
-  /**
+  *//**
    * This is a helper function from Tabula to set the rotation of model parts
-   */
+   *//*
   private void setRotateAngle(@Nonnull ModelPart ModelRenderer, float x, float y, float z) {
     ModelRenderer.xRot = x;
     ModelRenderer.yRot = y;
     ModelRenderer.zRot = z;
   }
-}
+}*/

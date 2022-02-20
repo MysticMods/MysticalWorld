@@ -8,7 +8,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import javax.annotation.Nonnull;
 import java.util.Collections;
 
-public class ClamModel extends AgeableListModel<ClamEntity> {
+/*public class ClamModel extends AgeableListModel<ClamEntity> {
 
   public ModelPart Bottom;
   public ModelPart Top;
@@ -152,4 +152,4 @@ public class ClamModel extends AgeableListModel<ClamEntity> {
     model.yRot = y;
     model.zRot = z;
   }
-}
+}*/

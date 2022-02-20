@@ -1,21 +1,6 @@
 package mysticmods.mysticalworld.client.render.layers;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.client.model.LavaCatModel;
-import mysticmods.mysticalworld.entity.LavaCatEntity;
-import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.RenderLayerParent;
-import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-@OnlyIn(Dist.CLIENT)
+/*
 public class LayerLava extends RenderLayer<LavaCatEntity, LavaCatModel> {
   private static final ResourceLocation MAGMA_TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_magma.png");
   private static final ResourceLocation OBSIDIAN_TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_obsidian.png");
@@ -52,3 +37,4 @@ public class LayerLava extends RenderLayer<LavaCatEntity, LavaCatModel> {
     return p_225634_1_ * 0.004F;
   }
 }
+*/

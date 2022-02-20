@@ -26,7 +26,8 @@ public class ShoulderRenderLayer<T extends Player> extends RenderLayer<T, Player
   @Nullable
   public ShoulderRidingModel<?> getModelFor(EntityType<?> type) {
     if (type == ModEntities.BEETLE.get()) {
-      return ModelHolder.beetleModel;
+      return null;
+/*      return ModelHolder.beetleModel;*/
     }
 
     return null;
