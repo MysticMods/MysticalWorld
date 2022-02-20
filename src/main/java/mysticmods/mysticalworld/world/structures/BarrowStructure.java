@@ -1,24 +1,6 @@
 package mysticmods.mysticalworld.world.structures;
 
-import com.mojang.serialization.Codec;
-import mysticmods.mysticalworld.MysticalWorld;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeSource;
-import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
-import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
-import noobanidus.libs.noobutil.world.gen.structure.SimpleStructure;
-import noobanidus.libs.noobutil.world.gen.structure.SimpleStructure.SimpleStart;
-
+/*
 public class BarrowStructure extends SimpleStructure {
   public BarrowStructure(Codec<NoneFeatureConfiguration> codec) {
     super(codec);
@@ -74,4 +56,4 @@ public class BarrowStructure extends SimpleStructure {
     protected void modifyStructure(RegistryAccess dynamicRegistries, ChunkGenerator chunkGenerator, StructureManager templateManager, Biome biome, NoneFeatureConfiguration noFeatureConfig, BlockPos blockPos) {
     }
   }
-}
+}*/
