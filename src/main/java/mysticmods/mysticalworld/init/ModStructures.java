@@ -25,7 +25,7 @@ import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModStructures {
-  private static final Set<StructureFeature<?>> STRUCTURES = new HashSet<>();
+/*  private static final Set<StructureFeature<?>> STRUCTURES = new HashSet<>();
 
   public static final StructureFeature<NoneFeatureConfiguration> HUT_STRUCTURE = register("hut", new HutStructure(NoneFeatureConfiguration.CODEC));
   public static final StructureFeature<NoneFeatureConfiguration> BARROW_STRUCTURE = register("barrow", new BarrowStructure(NoneFeatureConfiguration.CODEC));
@@ -71,5 +71,5 @@ public class ModStructures {
         structureMap.put(structure, structureSeparationSettings);
       }
     });
-  }
+  }*/
 }
