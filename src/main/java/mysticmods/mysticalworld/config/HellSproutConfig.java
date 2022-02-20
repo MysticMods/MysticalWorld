@@ -7,7 +7,6 @@ import java.util.List;
 
 public class HellSproutConfig extends MobConfig {
   protected int growChance;
-  private int cachedGrow = -9999;
 
   protected ForgeConfigSpec.IntValue configGrowChance;
 
@@ -17,21 +16,12 @@ public class HellSproutConfig extends MobConfig {
   }
 
   public int getGrowChance() {
-    if (cachedGrow == -9999) {
-      cachedGrow = configGrowChance.get();
-    }
-    return cachedGrow;
+    return configGrowChance.get();
   }
 
   @Override
   protected void doApply(ForgeConfigSpec.Builder builder) {
     super.doApply(builder);
     configGrowChance = builder.comment("how often a hell sprout should attempt to plant nether wart (1 in X, 0 for never)").defineInRange("chance", growChance, 0, Integer.MAX_VALUE);
-  }
-
-  @Override
-  public void reset() {
-    super.reset();
-    cachedGrow = -9999;
   }
 }

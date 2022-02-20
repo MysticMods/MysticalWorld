@@ -14,11 +14,6 @@ public class SilkwormConfig extends AbstractConfig {
   private ForgeConfigSpec.ConfigValue<Integer> configSuccessChance;
   private ForgeConfigSpec.ConfigValue<Integer> configGrowthChance;
 
-  private int cachedLeaf = -9999;
-  private int cachedDrop = -9999;
-  private int cachedSuccess = -9999;
-  private int cachedGrowth = -9999;
-
   public SilkwormConfig(boolean leafDrops, int leafDropChance, int successChance, int growthChance) {
     super();
     this.leafDrops = leafDrops;
@@ -28,31 +23,19 @@ public class SilkwormConfig extends AbstractConfig {
   }
 
   public boolean getLeafDropsEnabled() {
-    if (cachedDrop == -9999) {
-      cachedDrop = configLeafDrops.get() ? 1 : 0;
-    }
-    return cachedDrop == 1;
+    return configLeafDrops.get();
   }
 
   public int getLeafDropChance() {
-    if (cachedLeaf == -9999) {
-      cachedLeaf = configLeafDropChance.get();
-    }
-    return cachedLeaf;
+    return configLeafDropChance.get();
   }
 
   public int getSuccessChance() {
-    if (cachedSuccess == -9999) {
-      cachedSuccess = configSuccessChance.get();
-    }
-    return cachedSuccess;
+    return configSuccessChance.get();
   }
 
   public int getGrowthChance() {
-    if (cachedGrowth == -9999) {
-      cachedGrowth = configGrowthChance.get();
-    }
-    return cachedGrowth;
+    return configGrowthChance.get();
   }
 
   @Override
@@ -67,9 +50,5 @@ public class SilkwormConfig extends AbstractConfig {
 
   @Override
   public void reset() {
-    cachedLeaf = -9999;
-    cachedDrop = -9999;
-    cachedSuccess = -9999;
-    cachedGrowth = -9999;
   }
 }
