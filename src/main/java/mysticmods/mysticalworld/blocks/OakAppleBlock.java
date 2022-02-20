@@ -157,8 +157,10 @@ public class OakAppleBlock extends BaseBlocks.CropsBlock {
 
   @Override
   public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-    Direction enumfacing = Direction.fromYRot((double) placer.yRot);
-    worldIn.setBlock(pos, state.setValue(FACING, enumfacing), 2);
+    if (placer != null) {
+      Direction enumfacing = Direction.fromYRot(placer.getYRot());
+      worldIn.setBlock(pos, state.setValue(FACING, enumfacing), 2);
+    }
   }
 
   @Nullable
