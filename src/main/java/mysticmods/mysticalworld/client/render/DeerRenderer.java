@@ -1,9 +1,18 @@
 package mysticmods.mysticalworld.client.render;
 
-/*public class DeerRenderer extends MobRenderer<DeerEntity, DeerModel> {
+import mysticmods.mysticalworld.client.model.DeerModel;
+import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.entity.DeerEntity;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-  private DeerRenderer(@Nonnull EntityRenderDispatcher renderManager, @Nonnull DeerModel modelBase, float shadowSize) {
-    super(renderManager, modelBase, shadowSize);
+import javax.annotation.Nonnull;
+
+public class DeerRenderer extends MobRenderer<DeerEntity, DeerModel> {
+
+  public DeerRenderer(@Nonnull EntityRendererProvider.Context context) {
+    super(context, new DeerModel(context.bakeLayer(ModelHolder.DEER)), 0.35F);
   }
 
   @Override
@@ -14,12 +23,4 @@ package mysticmods.mysticalworld.client.render;
     }
     return new ResourceLocation("mysticalworld:textures/entity/deer.png");
   }
-
-  public static class Factory implements IRenderFactory<DeerEntity> {
-
-    @Override
-    public EntityRenderer<DeerEntity> createRenderFor(EntityRenderDispatcher manager) {
-      return new DeerRenderer(manager, ModelHolder.deerModel, 0.35f);
-    }
-  }
-}*/
+}

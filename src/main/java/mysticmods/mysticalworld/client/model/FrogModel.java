@@ -4,6 +4,11 @@ import com.google.common.collect.ImmutableSet;
 import mysticmods.mysticalworld.entity.FrogEntity;
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 
 import javax.annotation.Nonnull;
 
@@ -11,7 +16,7 @@ import javax.annotation.Nonnull;
  * FrogModel - Elucent
  * Created using Tabula 5.1.0
  */
-/*public class FrogModel extends AgeableListModel<FrogEntity> {
+public class FrogModel extends AgeableListModel<FrogEntity> {
 
   private final ModelPart body;
   private final ModelPart backR;
@@ -20,42 +25,45 @@ import javax.annotation.Nonnull;
   private final ModelPart frontL;
   private final ModelPart head;
 
-  public FrogModel() {
+  public FrogModel(ModelPart pRoot) {
     super(true, 5.0f, 2.0f);
-    this.texWidth = 16;
-    this.texHeight = 16;
-    this.head = new ModelPart(this, 4, 3);
-    this.head.setPos(0.0F, 0.0F, -3.0F);
-    this.head.addBox(-1.5F, -1.0F, -3.0F, 3, 2, 3, 0.0F);
-    this.setRotateAngle(head, 0.39269908169872414F, 0.0F, 0.0F);
-    this.backL = new ModelPart(this, 0, 0);
-    this.backL.setPos(1.0F, 0.5F, 1.5F);
-    this.backL.addBox(-1.0F, 0.0F, -0.5F, 2, 4, 1, 0.0F);
-    this.setRotateAngle(backL, -0.6981317007977318F, -0.5235987755982988F, -0.5235987755982988F);
-    this.frontL = new ModelPart(this, 0, 5);
-    this.frontL.mirror = true;
-    this.frontL.setPos(1.0F, -0.25F, -2.5F);
-    this.frontL.addBox(-0.5F, 0.0F, -0.5F, 1, 4, 1, 0.0F);
-    this.setRotateAngle(frontL, 0.2617993877991494F, 0.0F, -0.2617993877991494F);
-    this.body = new ModelPart(this, 0, 9);
-    this.body.setPos(0.0F, 22.0F, 0.0F);
-    this.body.addBox(-1.5F, -1.0F, -3.0F, 3, 2, 5, 0.0F);
-    this.setRotateAngle(body, -0.5235987755982988F, 0.0F, 0.0F);
-    this.backR = new ModelPart(this, 0, 0);
-    this.backR.mirror = true;
-    this.backR.setPos(-1.0F, 0.5F, 1.5F);
-    this.backR.addBox(-1.0F, 0.0F, -0.5F, 2, 4, 1, 0.0F);
-    this.setRotateAngle(backR, -0.6981317007977318F, 0.5235987755982988F, 0.5235987755982988F);
-    this.frontR = new ModelPart(this, 0, 5);
-    this.frontR.mirror = true;
-    this.frontR.setPos(-1.0F, -0.25F, -2.5F);
-    this.frontR.addBox(-0.5F, 0.0F, -0.5F, 1, 4, 1, 0.0F);
-    this.setRotateAngle(frontR, 0.2617993877991494F, 0.0F, 0.2617993877991494F);
-    this.body.addChild(this.head);
-    this.body.addChild(this.backL);
-    this.body.addChild(this.frontL);
-    this.body.addChild(this.backR);
-    this.body.addChild(this.frontR);
+    this.body = pRoot.getChild("body");
+    this.head = body.getChild("head");
+    this.backL = body.getChild("back_left_leg");
+    this.backR = body.getChild("back_right_leg");
+    this.frontL = body.getChild("front_left_leg");
+    this.frontR = body.getChild("front_right_leg");
+  }
+
+  public static LayerDefinition createBodyLayer() {
+    MeshDefinition meshdefinition = new MeshDefinition();
+    PartDefinition partdefinition = meshdefinition.getRoot();
+
+    PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().create()
+                    .texOffs(0, 9).addBox(-1.5F, -1.0F, -3.0F, 3.0F, 2.0F, 5.0F),
+            PartPose.offsetAndRotation(0.0F, 22.0F, 0.0F, -0.5236F, 0.0F, 0.0F));
+
+    PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create()
+                    .texOffs(4, 3).addBox(-1.5F, -1.0F, -3.0F, 3.0F, 2.0F, 3.0F),
+            PartPose.offsetAndRotation(0.0F, 0.0F, -3.0F, 0.3927F, 0.0F, 0.0F));
+
+    PartDefinition backL = body.addOrReplaceChild("back_left_leg", CubeListBuilder.create()
+                    .texOffs(0, 0).addBox(-1.0F, 0.0F, -0.5F, 2.0F, 4.0F, 1.0F),
+            PartPose.offsetAndRotation(1.0F, 0.5F, 1.5F, -0.6981F, -0.5236F, -0.5236F));
+
+    PartDefinition backR = body.addOrReplaceChild("back_right_leg", CubeListBuilder.create()
+                    .texOffs(0, 0).mirror().addBox(-1.0F, 0.0F, -0.5F, 2.0F, 4.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(-1.0F, 0.5F, 1.5F, -0.6981F, 0.5236F, 0.5236F));
+
+    PartDefinition frontL = body.addOrReplaceChild("front_left_leg", CubeListBuilder.create()
+                    .texOffs(0, 5).mirror().addBox(-0.5F, 0.0F, -0.5F, 1.0F, 4.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(1.0F, -0.25F, -2.5F, 0.2618F, 0.0F, -0.2618F));
+
+    PartDefinition frontR = body.addOrReplaceChild("front_right_leg", CubeListBuilder.create()
+                    .texOffs(0, 5).mirror().addBox(-0.5F, 0.0F, -0.5F, 1.0F, 4.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(-1.0F, -0.25F, -2.5F, 0.2618F, 0.0F, 0.2618F));
+
+    return LayerDefinition.create(meshdefinition, 16, 16);
   }
 
   @Nonnull
@@ -77,13 +85,4 @@ import javax.annotation.Nonnull;
     this.head.xRot = headPitch * 0.017453292F;
     this.head.yRot = netHeadYaw * 0.017453292F;
   }
-
-  *//**
-   * This is a helper function from Tabula to set the rotation of model parts
-   *//*
-  private void setRotateAngle(@Nonnull ModelPart modelRenderer, float x, float y, float z) {
-    modelRenderer.xRot = x;
-    modelRenderer.yRot = y;
-    modelRenderer.zRot = z;
-  }
-}*/
+}

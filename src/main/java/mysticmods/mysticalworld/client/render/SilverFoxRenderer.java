@@ -1,18 +1,19 @@
 package mysticmods.mysticalworld.client.render;
 
-/*public class SilverFoxRenderer extends MobRenderer<SilverFoxEntity, FoxModel> {
+import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.client.model.SilverFoxModel;
+import mysticmods.mysticalworld.entity.SilverFoxEntity;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-  private SilverFoxRenderer(@Nonnull EntityRenderDispatcher renderManager, @Nonnull FoxModel m, float f) {
-    super(renderManager, m, f);
-  }
+import javax.annotation.Nonnull;
 
-  public static class Factory implements IRenderFactory<SilverFoxEntity> {
+public class SilverFoxRenderer extends MobRenderer<SilverFoxEntity, SilverFoxModel> {
 
-    @Override
-    @Nonnull
-    public SilverFoxRenderer createRenderFor(@Nonnull EntityRenderDispatcher manager) {
-      return new SilverFoxRenderer(manager, ModelHolder.foxModel, 0.25f);
-    }
+  public SilverFoxRenderer(@Nonnull EntityRendererProvider.Context context) {
+    super(context, new SilverFoxModel(context.bakeLayer(ModelHolder.SILVER_FOX)), 0.25f);
   }
 
   @Override
@@ -20,4 +21,4 @@ package mysticmods.mysticalworld.client.render;
   public ResourceLocation getTextureLocation(@Nonnull SilverFoxEntity entity) {
     return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/fox.png");
   }
-}*/
+}
