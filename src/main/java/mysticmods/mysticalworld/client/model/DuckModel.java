@@ -4,11 +4,16 @@ import com.google.common.collect.ImmutableList;
 import mysticmods.mysticalworld.entity.DuckEntity;
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
 import java.util.Collections;
 
-/*public class DuckModel extends AgeableListModel<DuckEntity> {
+public class DuckModel extends AgeableListModel<DuckEntity> {
   private final ModelPart main;
   private final ModelPart neck;
   private final ModelPart head;
@@ -18,51 +23,57 @@ import java.util.Collections;
   private final ModelPart wing_L;
   private final ModelPart wing_R;
 
-  public DuckModel() {
-    texWidth = 64;
-    texHeight = 64;
+  public DuckModel(ModelPart pRoot) {
+    this.main = pRoot.getChild("main");
+    this.neck = main.getChild("neck");
+    this.head = neck.getChild("head");
 
-    main = new ModelPart(this);
-    main.setPos(0.0F, 17.0F, 0.0F);
-    main.texOffs(0, 0).addBox(-3.0F, -2.0F, -4.0F, 6.0F, 6.0F, 6.0F, 0.0F, false);
-    main.texOffs(0, 12).addBox(-3.0F, -2.0F, 2.0F, 6.0F, 5.0F, 3.0F, 0.0F, false);
+    this.tail = main.getChild("tail");
+    this.leg_L = main.getChild("leg_left");
+    this.leg_R = main.getChild("leg_right");
+    this.wing_L = main.getChild("wing_left");
+    this.wing_R = main.getChild("wing_right");
+  }
 
-    neck = new ModelPart(this);
-    neck.setPos(0.0F, 1.0F, -3.5F);
-    main.addChild(neck);
-    neck.texOffs(23, 23).addBox(-1.5F, -5.0F, -1.5F, 3.0F, 5.0F, 3.0F, 0.0F, false);
+  public static LayerDefinition createBodyLayer() {
+    MeshDefinition meshdefinition = new MeshDefinition();
+    PartDefinition partdefinition = meshdefinition.getRoot();
 
-    head = new ModelPart(this);
-    head.setPos(0.0F, -5.0F, 0.0F);
-    neck.addChild(head);
-    head.texOffs(20, 8).addBox(-2.0F, -4.0F, -2.5F, 4.0F, 4.0F, 4.0F, 0.0F, false);
-    head.texOffs(20, 16).addBox(-1.5F, -2.0F, -4.5F, 3.0F, 2.0F, 2.0F, 0.0F, false);
+    PartDefinition main = partdefinition.addOrReplaceChild("main", CubeListBuilder.create()
+                    .texOffs(0, 0).addBox(-3.0F, -2.0F, -4.0F, 6.0F, 6.0F, 6.0F)
+                    .texOffs(0, 23).addBox(-3.0F, -2.0F, 2.0F, 6.0F, 5.0F, 3.0F),
+            PartPose.offset(0.0F, 17.0F, 0.0F));
 
-    tail = new ModelPart(this);
-    tail.setPos(0.0F, -2.0F, 5.0F);
-    main.addChild(tail);
-    setRotationAngle(tail, 0.4363F, 0.0F, 0.0F);
-    tail.texOffs(18, 0).addBox(-2.0F, 0.0F, -1.0F, 4.0F, 2.0F, 2.0F, 0.0F, false);
+    PartDefinition neck = main.addOrReplaceChild("neck", CubeListBuilder.create()
+                    .texOffs(23, 23).addBox(-1.5F, -5.0F, -1.5F, 3.0F, 5.0F, 3.0F),
+            PartPose.offset(0.0F, 1.0F, -3.5F));
 
-    leg_L = new ModelPart(this);
-    leg_L.setPos(0.25F, 4.0F, 1.0F);
-    main.addChild(leg_L);
-    leg_L.texOffs(30, 0).addBox(-3.25F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F, 0.0F, false);
+    PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create()
+                    .texOffs(20, 8).addBox(-2.0F, -4.0F, -2.5F, 4.0F, 4.0F, 4.0F)
+                    .texOffs(20, 16).addBox(-1.5F, -2.0F, -4.5F, 3.0F, 2.0F, 2.0F),
+            PartPose.offset(0.0F, -5.0F, 0.0F));
 
-    leg_R = new ModelPart(this);
-    leg_R.setPos(3.0F, 4.0F, 1.0F);
-    main.addChild(leg_R);
-    leg_R.texOffs(30, 0).addBox(-3.0F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F, 0.0F, false);
+    PartDefinition tail = main.addOrReplaceChild("tail", CubeListBuilder.create()
+                    .texOffs(18, 0).addBox(-2.0F, 0.0F, -1.0F, 4.0F, 2.0F, 2.0F),
+            PartPose.offsetAndRotation(0.0F, -2.0F, 5.0F, 0.4363F, 0.0F, 0.0F));
 
-    wing_L = new ModelPart(this);
-    wing_L.setPos(-3.0F, -2.0F, 0.0F);
-    main.addChild(wing_L);
-    wing_L.texOffs(12, 14).addBox(-1.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F, 0.0F, false);
+    PartDefinition leg_L = main.addOrReplaceChild("leg_left", CubeListBuilder.create()
+                    .texOffs(30, 0).addBox(-3.25F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F),
+            PartPose.offset(0.25F, 4.0F, 1.0F));
 
-    wing_R = new ModelPart(this);
-    wing_R.setPos(3.0F, -2.0F, 0.0F);
-    main.addChild(wing_R);
-    wing_R.texOffs(0, 20).addBox(0.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F, 0.0F, false);
+    PartDefinition leg_R = main.addOrReplaceChild("leg_right", CubeListBuilder.create()
+                    .texOffs(30, 0).addBox(-3.0F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F),
+            PartPose.offset(3.0F, 4.0F, 1.0F));
+
+    PartDefinition wing_L = main.addOrReplaceChild("wing_left", CubeListBuilder.create()
+                    .texOffs(12, 14).addBox(-1.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F),
+            PartPose.offset(-3.0F, -2.0F, 0.0F));
+
+    PartDefinition wing_R = main.addOrReplaceChild("wing_right", CubeListBuilder.create()
+                    .texOffs(0, 20).addBox(0.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F),
+            PartPose.offset(3.0F, -2.0F, 0.0F));
+
+    return LayerDefinition.create(meshdefinition, 64, 64);
   }
 
   @Override
@@ -109,4 +120,4 @@ import java.util.Collections;
     modelRenderer.yRot = y;
     modelRenderer.zRot = z;
   }
-}*/
+}

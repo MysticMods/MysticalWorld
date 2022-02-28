@@ -4,16 +4,19 @@ import com.google.common.collect.ImmutableList;
 import mysticmods.mysticalworld.entity.DeerEntity;
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 
 import javax.annotation.Nonnull;
 import java.util.Collections;
 
-/*public class DeerModel extends AgeableListModel<DeerEntity> {
+public class DeerModel extends AgeableListModel<DeerEntity> {
 
   //fields
   private final ModelPart head;
-  private final ModelPart ear1;
-  private final ModelPart ear2;
   private final ModelPart neck;
   private final ModelPart body;
   private final ModelPart tail;
@@ -30,119 +33,106 @@ import java.util.Collections;
   private final ModelPart horn7;
   private final ModelPart horn8;
 
-  public DeerModel() {
+  public DeerModel(ModelPart pRoot) {
     super(true, 5.0f, 2.0f);
-    texWidth = 64;
-    texHeight = 64;
+    this.head = pRoot.getChild("head");
+    this.horn1 = pRoot.getChild("horn1");
+    this.horn2 = pRoot.getChild("horn2");
+    this.horn3 = pRoot.getChild("horn3");
+    this.horn4 = pRoot.getChild("horn4");
+    this.horn5 = pRoot.getChild("horn5");
+    this.horn6 = pRoot.getChild("horn6");
+    this.horn7 = pRoot.getChild("horn7");
+    this.horn8 = pRoot.getChild("horn8");
+    this.neck = pRoot.getChild("neck");
+    this.body = pRoot.getChild("body");
+    this.legRF = pRoot.getChild("legRF");
+    this.legLF = pRoot.getChild("legLF");
+    this.legLB = pRoot.getChild("legLB");
+    this.legRB = pRoot.getChild("legRB");
+    this.tail = pRoot.getChild("tail");
+  }
 
-    head = new ModelPart(this, 0, 16);
-    head.addBox(-2F, 0F, -2.5F, 4, 7, 4);
-    head.setPos(0F, 7F, -6.953333F);
-    head.setTexSize(64, 64);
-    head.mirror = true;
-    setRotation(head, 1.047198F, 0F, 0F);
-    ear1 = new ModelPart(this, 17, 0);
-    ear1.addBox(-1.5F, -4F, -0.5F, 3, 4, 1);
-    ear1.setPos(-2F, 5.5F, -6.5F);
-    ear1.setTexSize(64, 64);
-    ear1.mirror = true;
-    setRotation(ear1, -0.174532925F, -0.174532925F, -1.178097F);
-    ear2 = new ModelPart(this, 17, 0);
-    ear2.mirror = true;
-    ear2.addBox(-1.5F, -4F, -0.5F, 3, 4, 1);
-    ear2.setPos(2F, 5.5F, -6.5F);
-    ear2.setTexSize(64, 64);
-    setRotation(ear2, 0.174532925F, 0.174532925F, 1.178097F);
-    neck = new ModelPart(this, 0, 0);
-    neck.addBox(-2.5F, -2.5F, -7F, 5, 5, 7);
-    neck.setPos(0F, 6F, -5F);
-    neck.setTexSize(64, 64);
-    neck.mirror = true;
-    setRotation(neck, 0.3926991F, 0F, 0F);
-    body = new ModelPart(this, 16, 16);
-    body.addBox(-2.5F, 0F, 0F, 5, 7, 9);
-    body.setPos(0F, 8F, -3.953333F);
-    body.setTexSize(64, 64);
-    body.mirror = true;
-    setRotation(body, 0F, 0F, 0F);
-    tail = new ModelPart(this, 32, 0);
-    tail.addBox(-1.5F, -1.5F, 0F, 3, 3, 4);
-    tail.setPos(0F, 9F, 4F);
-    tail.setTexSize(64, 64);
-    tail.mirror = true;
-    setRotation(tail, 0.7853982F, 0F, 0F);
-    legRF = new ModelPart(this, 0, 32);
-    legRF.addBox(-1F, 0F, -1F, 2, 9, 2);
-    legRF.setPos(-1.5F, 15F, -2.953333F);
-    legRF.setTexSize(64, 64);
-    legRF.mirror = true;
-    setRotation(legRF, 0F, 0F, 0F);
-    legLF = new ModelPart(this, 0, 32);
-    legLF.addBox(-1F, 0F, -1F, 2, 9, 2);
-    legLF.setPos(1.5F, 15F, -2.953333F);
-    legLF.setTexSize(64, 64);
-    legLF.mirror = true;
-    setRotation(legLF, 0F, 0F, 0F);
-    legLB = new ModelPart(this, 0, 32);
-    legLB.addBox(-1F, 0F, -1F, 2, 9, 2);
-    legLB.setPos(-1.5F, 15F, 4F);
-    legLB.setTexSize(64, 64);
-    legLB.mirror = true;
-    setRotation(legLB, 0F, 0F, 0F);
-    legRB = new ModelPart(this, 0, 32);
-    legRB.addBox(-1F, 0F, -1F, 2, 9, 2);
-    legRB.setPos(1.5F, 15F, 4F);
-    legRB.setTexSize(64, 64);
-    legRB.mirror = true;
-    setRotation(legRB, 0F, 0F, 0F);
-    horn1 = new ModelPart(this, 16, 32);
-    horn1.addBox(-0.5F, -5F, -0.5F, 1, 5, 1);
-    horn1.setPos(1F, 4F, -6F);
-    horn1.setTexSize(64, 64);
-    horn1.mirror = true;
-    setRotation(horn1, 0F, 0F, 0.2617994F);
-    horn2 = new ModelPart(this, 16, 32);
-    horn2.addBox(-0.5F, -5F, -0.5F, 1, 5, 1);
-    horn2.setPos(-1F, 4F, -6F);
-    horn2.setTexSize(64, 64);
-    horn2.mirror = true;
-    setRotation(horn2, 0F, 0F, -0.2617994F);
-    horn3 = new ModelPart(this, 16, 32);
-    horn3.addBox(-0.5F, -5F, -0.5F, 1, 5, 1);
-    horn3.setPos(1.75F, 2F, -6F);
-    horn3.setTexSize(64, 64);
-    horn3.mirror = true;
-    setRotation(horn3, 0F, 0.0872665F, 1.047198F);
-    horn4 = new ModelPart(this, 16, 32);
-    horn4.addBox(-0.5F, -5F, -0.5F, 1, 5, 1);
-    horn4.setPos(-1.8F, 2F, -6F);
-    horn4.setTexSize(64, 64);
-    horn4.mirror = true;
-    setRotation(horn4, 0F, -0.0872665F, -1.047198F);
-    horn5 = new ModelPart(this, 16, 32);
-    horn5.addBox(-0.5F, -5F, -0.5F, 1, 5, 1);
-    horn5.setPos(-4.36F, 0.2F, -6.2F);
-    horn5.setTexSize(64, 64);
-    horn5.mirror = true;
-    setRotation(horn5, 0F, -0.0872665F, 0.2617994F);
-    horn6 = new ModelPart(this, 16, 32);
-    horn6.addBox(-0.5F, -5F, -0.5F, 1, 5, 1);
-    horn6.setPos(4.4F, 0.2F, -6.2F);
-    horn6.setTexSize(64, 64);
-    horn6.mirror = true;
-    setRotation(horn6, 0F, 0.0872665F, -0.2617994F);
-    horn7 = new ModelPart(this, 20, 32);
-    horn7.addBox(-0.5F, -3F, -0.5F, 1, 3, 1);
-    horn7.setPos(-3.8F, -2F, -6.2F);
-    horn7.setTexSize(64, 64);
-    horn7.mirror = true;
-    setRotation(horn7, 0F, -0.1745329F, -0.7853982F);
-    horn8 = new ModelPart(this, 20, 32);
-    horn8.addBox(-0.5F, -3F, -0.5F, 1, 3, 1);
-    horn8.setPos(3.8F, -2F, -6.2F);
-    horn8.setTexSize(64, 64);
-    horn8.mirror = true;
-    setRotation(horn8, 0F, 0.1745329F, 0.7853982F);
+  public static LayerDefinition createBodyLayer() {
+    MeshDefinition meshdefinition = new MeshDefinition();
+    PartDefinition partdefinition = meshdefinition.getRoot();
+
+    PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create(),
+            PartPose.offset(0.0F, 6.0F, -5.0F));
+
+    PartDefinition main = head.addOrReplaceChild("main", CubeListBuilder.create()
+            .texOffs(0, 0).mirror().addBox(-2.5F, -2.5F, -7.0F, 5.0F, 5.0F, 7.0F).mirror(false),
+            PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.3927F, 0.0F, 0.0F));
+
+    PartDefinition ear1 = head.addOrReplaceChild("ear1", CubeListBuilder.create()
+            .texOffs(17, 0).addBox(-1.5F, -4.0F, -0.5F, 3.0F, 4.0F, 1.0F),
+            PartPose.offsetAndRotation(-2.0F, -0.5F, -1.5F, -0.1745F, -0.1745F, -1.1781F));
+
+    PartDefinition ear2 = head.addOrReplaceChild("ear2", CubeListBuilder.create()
+            .texOffs(17, 0).mirror().addBox(-1.5F, -4.0F, -0.5F, 3.0F, 4.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(2.0F, -0.5F, -1.5F, 0.1745F, 0.1745F, 1.1781F));
+
+    PartDefinition horn1 = head.addOrReplaceChild("horn1", CubeListBuilder.create()
+            .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(1.0F, -2.0F, -1.0F, 0.0F, 0.0F, 0.2618F));
+
+    PartDefinition horn2 = head.addOrReplaceChild("horn2", CubeListBuilder.create()
+            .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(-1.0F, -2.0F, -1.0F, 0.0F, 0.0F, -0.2618F));
+
+    PartDefinition horn3 = head.addOrReplaceChild("horn3", CubeListBuilder.create()
+            .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(1.75F, -4.0F, -1.0F, 0.0F, 0.0873F, 1.0472F));
+
+    PartDefinition horn4 = head.addOrReplaceChild("horn4", CubeListBuilder.create()
+            .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(-1.8F, -4.0F, -1.0F, 0.0F, -0.0873F, -1.0472F));
+
+    PartDefinition horn5 = head.addOrReplaceChild("horn5", CubeListBuilder.create()
+            .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(-4.36F, -5.8F, -1.2F, 0.0F, -0.0873F, 0.2618F));
+
+    PartDefinition horn6 = head.addOrReplaceChild("horn6", CubeListBuilder.create()
+            .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(4.4F, -5.8F, -1.2F, 0.0F, 0.0873F, -0.2618F));
+
+    PartDefinition horn7 = head.addOrReplaceChild("horn7", CubeListBuilder.create()
+            .texOffs(20, 32).mirror().addBox(-0.5F, -3.0F, -0.5F, 1.0F, 3.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(-3.8F, -8.0F, -1.2F, 0.0F, -0.1745F, -0.7854F));
+
+    PartDefinition horn8 = head.addOrReplaceChild("horn8", CubeListBuilder.create()
+            .texOffs(20, 32).mirror().addBox(-0.5F, -3.0F, -0.5F, 1.0F, 3.0F, 1.0F).mirror(false),
+            PartPose.offsetAndRotation(3.8F, -8.0F, -1.2F, 0.0F, 0.1745F, 0.7854F));
+
+    PartDefinition neck = partdefinition.addOrReplaceChild("neck", CubeListBuilder.create()
+            .texOffs(0, 16).mirror().addBox(-2.0F, 0.0F, -2.5F, 4.0F, 7.0F, 4.0F).mirror(false),
+            PartPose.offsetAndRotation(0.0F, 7.0F, -6.9533F, 1.0472F, 0.0F, 0.0F));
+
+    PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create()
+            .texOffs(16, 16).mirror().addBox(-2.5F, 0.0F, 0.0F, 5.0F, 7.0F, 9.0F).mirror(false),
+            PartPose.offset(0.0F, 8.0F, -3.9533F));
+
+    PartDefinition legRF = partdefinition.addOrReplaceChild("legRF", CubeListBuilder.create()
+            .texOffs(0, 32).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 9.0F, 2.0F).mirror(false),
+            PartPose.offset(-1.5F, 15.0F, -2.9533F));
+
+    PartDefinition legLF = partdefinition.addOrReplaceChild("legLF", CubeListBuilder.create()
+            .texOffs(0, 32).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 9.0F, 2.0F).mirror(false),
+            PartPose.offset(1.5F, 15.0F, -2.9533F));
+
+    PartDefinition legLB = partdefinition.addOrReplaceChild("legLB", CubeListBuilder.create()
+            .texOffs(0, 32).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 9.0F, 2.0F).mirror(false),
+            PartPose.offset(-1.5F, 15.0F, 4.0F));
+
+    PartDefinition legRB = partdefinition.addOrReplaceChild("legRB", CubeListBuilder.create()
+            .texOffs(0, 32).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 9.0F, 2.0F).mirror(false),
+            PartPose.offset(1.5F, 15.0F, 4.0F));
+
+    PartDefinition tail = partdefinition.addOrReplaceChild("tail", CubeListBuilder.create()
+            .texOffs(32, 0).mirror().addBox(-1.5F, -1.5F, 0.0F, 3.0F, 3.0F, 4.0F).mirror(false),
+            PartPose.offsetAndRotation(0.0F, 9.0F, 4.0F, 0.7854F, 0.0F, 0.0F));
+
+    return LayerDefinition.create(meshdefinition, 64, 64);
   }
 
   @Override
@@ -152,7 +142,7 @@ import java.util.Collections;
 
   @Override
   protected Iterable<ModelPart> bodyParts() {
-    return ImmutableList.of(ear1, ear2, neck, body, tail, legRF, legLF, legLB, legRB, horn1, horn2, horn3, horn4, horn5, horn6, horn7, horn8, head);
+    return ImmutableList.of(neck, body, tail, legRF, legLF, legLB, legRB, head);
   }
 
   @Override
@@ -182,10 +172,4 @@ import java.util.Collections;
       horn8.visible = true;
     }
   }
-
-  private void setRotation(@Nonnull ModelPart model, float x, float y, float z) {
-    model.xRot = x;
-    model.yRot = y;
-    model.zRot = z;
-  }
-}*/
+}

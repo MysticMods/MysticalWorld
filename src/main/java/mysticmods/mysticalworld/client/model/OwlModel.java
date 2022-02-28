@@ -4,12 +4,16 @@ import com.google.common.collect.ImmutableSet;
 import mysticmods.mysticalworld.entity.OwlEntity;
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 
-/*
 public class OwlModel extends AgeableListModel<OwlEntity> {
   private final ModelPart body;
   private final ModelPart footR;
@@ -24,74 +28,74 @@ public class OwlModel extends AgeableListModel<OwlEntity> {
   private final ModelPart tuftL;
   private State state = State.STANDING;
 
-  public OwlModel() {
+  public OwlModel(ModelPart pRoot) {
     super(true, 5.0f, 2.0f);
-    texWidth = 64;
-    texHeight = 64;
+    this.body = pRoot.getChild("body");
+    this.footR = body.getChild("foot_right");
+    this.footL = body.getChild("foot_left");
+    this.wingR1 = body.getChild("wing_right1");
+    this.wingR2 = wingR1.getChild("wing_right2");
+    this.wingL1 = body.getChild("wing_left1");
+    this.wingL2 = wingL1.getChild("wing_left2");
+    this.tail = body.getChild("tail");
+    this.head = body.getChild("head");
+    this.tuftR = head.getChild("tuft_right");
+    this.tuftL = head.getChild("tuft_left");
+  }
 
-    body = new ModelPart(this);
-    body.setPos(0.0F, 24.0F, 0.0F);
-    body.texOffs(0, 0).addBox(-4.0F, -13.0F, -4.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
+  public static LayerDefinition createBodyLayer() {
+    MeshDefinition meshdefinition = new MeshDefinition();
+    PartDefinition partdefinition = meshdefinition.getRoot();
 
-    footR = new ModelPart(this);
-    footR.setPos(-1.5F, -4.0F, -0.5F);
-    body.addChild(footR);
-    footR.texOffs(0, 43).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F, 0.0F, false);
-    footR.texOffs(26, 48).addBox(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F, 0.0F, false);
-    footR.texOffs(0, 48).addBox(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F, 0.0F, false);
+    PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create()
+            .texOffs(0, 0).addBox(-4.0F, -13.0F, -4.0F, 8.0F, 9.0F, 8.0F), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-    footL = new ModelPart(this);
-    footL.setPos(1.5F, -4.0F, -0.5F);
-    body.addChild(footL);
-    footL.texOffs(12, 43).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F, 0.0F, false);
-    footL.texOffs(22, 48).addBox(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F, 0.0F, false);
-    footL.texOffs(8, 48).addBox(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F, 0.0F, false);
+    PartDefinition footR = body.addOrReplaceChild("foot_right", CubeListBuilder.create()
+            .texOffs(0, 43).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F)
+            .texOffs(26, 48).addBox(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F)
+            .texOffs(0, 48).addBox(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F),
+            PartPose.offset(-1.5F, -4.0F, -0.5F));
 
-    wingR1 = new ModelPart(this);
-    wingR1.setPos(-4.0F, -13.0F, -1.0F);
-    body.addChild(wingR1);
-    wingR1.texOffs(16, 17).addBox(-1.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F, 0.0F, false);
+    PartDefinition footL = body.addOrReplaceChild("foot_left", CubeListBuilder.create()
+            .texOffs(12, 43).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F)
+            .texOffs(22, 48).addBox(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F)
+            .texOffs(8, 48).addBox(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F),
+            PartPose.offset(1.5F, -4.0F, -0.5F));
 
-    wingR2 = new ModelPart(this);
-    wingR2.setPos(-1.0F, 7.0F, -2.0F);
-    wingR1.addChild(wingR2);
-    setRotationAngle(wingR2, 0.1745F, 0.0349F, -0.1745F);
-    wingR2.texOffs(14, 31).addBox(0.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F, 0.0F, false);
+    PartDefinition wingR1 = body.addOrReplaceChild("wing_right1", CubeListBuilder.create()
+            .texOffs(16, 17).addBox(-1.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F),
+            PartPose.offset(-4.0F, -13.0F, -1.0F));
 
-    wingL1 = new ModelPart(this);
-    wingL1.setPos(4.0F, -13.0F, -1.0F);
-    body.addChild(wingL1);
-    wingL1.texOffs(0, 17).addBox(0.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F, 0.0F, false);
+    PartDefinition wingR2 = wingR1.addOrReplaceChild("wing_right2", CubeListBuilder.create()
+            .texOffs(14, 31).addBox(0.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F),
+            PartPose.offsetAndRotation(-1.0F, 7.0F, -2.0F, 0.1745F, 0.0349F, -0.1745F));
 
-    wingL2 = new ModelPart(this);
-    wingL2.setPos(1.0F, 7.0F, -2.0F);
-    wingL1.addChild(wingL2);
-    setRotationAngle(wingL2, 0.1745F, -0.0349F, 0.1745F);
-    wingL2.texOffs(0, 31).addBox(-1.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F, 0.0F, false);
+    PartDefinition wingL1 = body.addOrReplaceChild("wing_left1", CubeListBuilder.create()
+            .texOffs(0, 17).addBox(0.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F),
+            PartPose.offset(4.0F, -13.0F, -1.0F));
 
-    tail = new ModelPart(this);
-    tail.setPos(0.0F, -5.0F, 4.0F);
-    body.addChild(tail);
-    setRotationAngle(tail, 0.5236F, 0.0F, 0.0F);
-    tail.texOffs(28, 31).addBox(-3.0F, 0.0F, -2.0F, 6.0F, 4.0F, 2.0F, 0.0F, false);
+    PartDefinition wingL2 = wingL1.addOrReplaceChild("wing_left2", CubeListBuilder.create()
+            .texOffs(0, 31).addBox(-1.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F),
+            PartPose.offsetAndRotation(1.0F, 7.0F, -2.0F, 0.1745F, -0.0349F, 0.1745F));
 
-    head = new ModelPart(this);
-    head.setPos(0.0F, -13.0F, 0.0F);
-    body.addChild(head);
-    head.texOffs(32, 0).addBox(-3.5F, -6.0F, -3.5F, 7.0F, 6.0F, 7.0F, 0.0F, false);
-    head.texOffs(16, 48).addBox(-1.0F, -3.0F, -4.5F, 2.0F, 2.0F, 1.0F, 0.0F, false);
+    PartDefinition tail = body.addOrReplaceChild("tail", CubeListBuilder.create()
+            .texOffs(28, 31).addBox(-3.0F, 0.0F, -2.0F, 6.0F, 4.0F, 2.0F),
+            PartPose.offsetAndRotation(0.0F, -5.0F, 4.0F, 0.5236F, 0.0F, 0.0F));
 
-    tuftR = new ModelPart(this);
-    tuftR.setPos(-2.0F, -6.0F, -3.0F);
-    head.addChild(tuftR);
-    setRotationAngle(tuftR, 0.4363F, -0.3491F, 0.0F);
-    tuftR.texOffs(24, 43).addBox(-2.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F, 0.0F, false);
+    PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create()
+            .texOffs(32, 0).addBox(-3.5F, -6.0F, -3.5F, 7.0F, 6.0F, 7.0F)
+            .texOffs(16, 48).addBox(-1.0F, -3.0F, -4.5F, 2.0F, 2.0F, 1.0F),
+            PartPose.offset(0.0F, -13.0F, 0.0F));
 
-    tuftL = new ModelPart(this);
-    tuftL.setPos(2.0F, -6.0F, -3.0F);
-    head.addChild(tuftL);
-    setRotationAngle(tuftL, 0.4363F, 0.3491F, 0.0F);
-    tuftL.texOffs(36, 43).addBox(0.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F, 0.0F, false);
+    PartDefinition tuftR = head.addOrReplaceChild("tuft_right", CubeListBuilder.create()
+            .texOffs(24, 43).addBox(-2.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F),
+            PartPose.offsetAndRotation(-2.0F, -6.0F, -3.0F, 0.4363F, -0.3491F, 0.0F));
+
+    PartDefinition tuftL = head.addOrReplaceChild("tuft_left", CubeListBuilder.create()
+            .texOffs(36, 43).addBox(0.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F),
+            PartPose.offsetAndRotation(2.0F, -6.0F, -3.0F, 0.4363F, 0.3491F, 0.0F));
+
+    return LayerDefinition.create(meshdefinition, 64, 64);
   }
 
   @Nonnull
@@ -163,4 +167,4 @@ public class OwlModel extends AgeableListModel<OwlEntity> {
     STANDING,
     SITTING
   }
-}*/
+}

@@ -1,17 +1,20 @@
 package mysticmods.mysticalworld.client.render;
 
-/*public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel> {
-  private DuckRenderer(@Nonnull EntityRenderDispatcher renderManager, @Nonnull DuckModel m, float f) {
-    super(renderManager, m, f);
-  }
+import com.mojang.blaze3d.vertex.PoseStack;
+import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.client.model.DuckModel;
+import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.entity.DuckEntity;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
-  public static class Factory implements IRenderFactory<DuckEntity> {
+import javax.annotation.Nonnull;
 
-    @Override
-    @Nonnull
-    public DuckRenderer createRenderFor(@Nonnull EntityRenderDispatcher manager) {
-      return new DuckRenderer(manager, ModelHolder.duckModel, 0.05f);
-    }
+public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel> {
+  public DuckRenderer(@Nonnull EntityRendererProvider.Context context) {
+    super(context, new DuckModel(context.bakeLayer(ModelHolder.DUCK)), 0.05F);
   }
 
   @Override
@@ -34,4 +37,4 @@ package mysticmods.mysticalworld.client.render;
     float f1 = Mth.lerp(pPartialTicks, pLivingBase.oFlapSpeed, pLivingBase.flapSpeed);
     return (Mth.sin(f) + 1.0F) * f1;
   }
-}*/
+}

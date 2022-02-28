@@ -1,18 +1,19 @@
 package mysticmods.mysticalworld.client.render;
 
-/*public class OwlRenderer extends MobRenderer<OwlEntity, OwlModel> {
+import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.client.model.OwlModel;
+import mysticmods.mysticalworld.entity.OwlEntity;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-  public OwlRenderer(EntityRenderDispatcher p_i50961_1_, OwlModel p_i50961_2_, float p_i50961_3_) {
-    super(p_i50961_1_, p_i50961_2_, p_i50961_3_);
-  }
+import javax.annotation.Nonnull;
 
-  public static class Factory implements IRenderFactory<OwlEntity> {
+public class OwlRenderer extends MobRenderer<OwlEntity, OwlModel> {
 
-    @Override
-    @Nonnull
-    public OwlRenderer createRenderFor(@Nonnull EntityRenderDispatcher manager) {
-      return new OwlRenderer(manager, ModelHolder.owlModel, 0.25f);
-    }
+  public OwlRenderer(@Nonnull EntityRendererProvider.Context context) {
+    super(context, new OwlModel(context.bakeLayer(ModelHolder.OWL)), 0.25f);
   }
 
   @Override
@@ -20,4 +21,4 @@ package mysticmods.mysticalworld.client.render;
   public ResourceLocation getTextureLocation(@Nonnull OwlEntity entity) {
     return new ResourceLocation(MysticalWorld.MODID + ":textures/entity/owl.png");
   }
-}*/
+}

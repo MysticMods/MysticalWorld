@@ -1,10 +1,21 @@
 package mysticmods.mysticalworld.client.render;
 
-/*public class SilkwormRenderer extends MobRenderer<SilkwormEntity, SilkwormModel> {
+import com.mojang.blaze3d.vertex.PoseStack;
+import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.client.model.SilkwormModel;
+import mysticmods.mysticalworld.entity.SilkwormEntity;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
+
+import javax.annotation.Nonnull;
+
+public class SilkwormRenderer extends MobRenderer<SilkwormEntity, SilkwormModel> {
   private static final ResourceLocation SILKWORM_TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/silkworm.png");
 
-  public SilkwormRenderer(EntityRenderDispatcher rendermanagerIn, SilkwormModel model, float shadow) {
-    super(rendermanagerIn, model, shadow);
+  public SilkwormRenderer(EntityRendererProvider.Context context) {
+	  super(context, new SilkwormModel(context.bakeLayer(ModelHolder.SILKWORM)), 0.15f);
   }
 
   @Override
@@ -21,12 +32,4 @@ package mysticmods.mysticalworld.client.render;
   public ResourceLocation getTextureLocation(@Nonnull SilkwormEntity entity) {
     return SILKWORM_TEXTURE;
   }
-
-  public static class Factory implements IRenderFactory<SilkwormEntity> {
-    @Override
-    @Nonnull
-    public SilkwormRenderer createRenderFor(@Nonnull EntityRenderDispatcher manager) {
-      return new SilkwormRenderer(manager, ModelHolder.silkwormModel, 0.15f);
-    }
-  }
-}*/
+}

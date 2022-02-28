@@ -1,11 +1,35 @@
 package mysticmods.mysticalworld.client.render;
 
-/*public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiModel<EnderminiEntity>> {
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
+import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.client.model.EnderminiModel;
+import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.entity.EnderminiEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.EyesLayer;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.model.data.EmptyModelData;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
+
+public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiModel<EnderminiEntity>> {
   private static final ResourceLocation ENDERMINI_TEXTURES = new ResourceLocation(MysticalWorld.MODID, "textures/entity/endermini.png");
   private final Random rnd = new Random();
 
-  public EnderminiRenderer(EntityRenderDispatcher renderManagerIn, EnderminiModel<EnderminiEntity> model, float size) {
-    super(renderManagerIn, model, size);
+  public EnderminiRenderer(EntityRendererProvider.Context context) {
+    super(context, new EnderminiModel<>(context.bakeLayer(ModelHolder.ENDERMINI)), 0.35f);
     this.addLayer(new EnderminiEyesLayer<>(this));
     this.addLayer(new HeldBlockLayer(this));
   }
@@ -38,22 +62,15 @@ package mysticmods.mysticalworld.client.render;
     return ENDERMINI_TEXTURES;
   }
 
-  @Nonnull
-  @Override
-  public EnderminiModel<EnderminiEntity> getModel() {
-    return ModelHolder.enderminiModel;
-  }
-
-  public static class Factory implements IRenderFactory<EnderminiEntity> {
-    @Override
-    public EntityRenderer<? super EnderminiEntity> createRenderFor(EntityRenderDispatcher manager) {
-      return new EnderminiRenderer(manager, ModelHolder.enderminiModel, 0.35f);
-    }
-  }
+//  @Nonnull
+//  @Override
+//  public EnderminiModel<EnderminiEntity> getModel() {
+//    return ModelHolder.enderminiModel;
+//  }
 
   public static class HeldBlockLayer extends RenderLayer<EnderminiEntity, EnderminiModel<EnderminiEntity>> {
-    public HeldBlockLayer(RenderLayerParent<EnderminiEntity, EnderminiModel<EnderminiEntity>> p_i50949_1_) {
-      super(p_i50949_1_);
+    public HeldBlockLayer(RenderLayerParent<EnderminiEntity, EnderminiModel<EnderminiEntity>> layerParent) {
+      super(layerParent);
     }
 
     @Override
@@ -67,7 +84,7 @@ package mysticmods.mysticalworld.client.render;
         pMatrixStack.translate(0.25D, 0.1875D, 0.25D);
         pMatrixStack.scale(-0.5F, -0.5F, 0.5F);
         pMatrixStack.mulPose(Vector3f.YP.rotationDegrees(90.0F));
-        Minecraft.getInstance().getBlockRenderer().renderBlock(blockstate, pMatrixStack, pBuffer, pPackedLight, OverlayTexture.NO_OVERLAY, EmptyModelData.INSTANCE);
+        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(blockstate, pMatrixStack, pBuffer, pPackedLight, OverlayTexture.NO_OVERLAY, EmptyModelData.INSTANCE);
         pMatrixStack.popPose();
       }
     }
@@ -85,4 +102,4 @@ package mysticmods.mysticalworld.client.render;
       return SKIN;
     }
   }
-}*/
+}
