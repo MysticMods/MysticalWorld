@@ -3,14 +3,16 @@ package mysticmods.mysticalworld.gen;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModItems;
 import mysticmods.mysticalworld.loot.functions.RandomPotion;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.LootTables;
+import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction;
@@ -306,7 +308,7 @@ public class LootTableGenerator extends LootTableProvider {
                       .add(LootItem.lootTableItem(Items.POTATO).setWeight(7).apply(SetItemCountFunction.setCount(UniformGenerator.between(8f, 15f))))
                       .add(LootItem.lootTableItem(Items.BROWN_MUSHROOM).setWeight(5).apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 10f))))
                       .add(LootItem.lootTableItem(Items.RED_MUSHROOM).setWeight(5).apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 10f))))
-/*                      .add(LootItem.lootTableItem(ModBlocks.UNCANNY_MUSHROOM.get()).setWeight(8).apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 12f))))*/
+                  /*                      .add(LootItem.lootTableItem(ModBlocks.UNCANNY_MUSHROOM.get()).setWeight(8).apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 12f))))*/
               ).withPool(
                   LootPool.lootPool()
                       .setRolls(UniformGenerator.between(0, 1))
