@@ -36,14 +36,14 @@ public class DeerModel extends AgeableListModel<DeerEntity> {
   public DeerModel(ModelPart pRoot) {
     super(true, 5.0f, 2.0f);
     this.head = pRoot.getChild("head");
-    this.horn1 = pRoot.getChild("horn1");
-    this.horn2 = pRoot.getChild("horn2");
-    this.horn3 = pRoot.getChild("horn3");
-    this.horn4 = pRoot.getChild("horn4");
-    this.horn5 = pRoot.getChild("horn5");
-    this.horn6 = pRoot.getChild("horn6");
-    this.horn7 = pRoot.getChild("horn7");
-    this.horn8 = pRoot.getChild("horn8");
+    this.horn1 = head.getChild("horn1");
+    this.horn2 = head.getChild("horn2");
+    this.horn3 = head.getChild("horn3");
+    this.horn4 = head.getChild("horn4");
+    this.horn5 = head.getChild("horn5");
+    this.horn6 = head.getChild("horn6");
+    this.horn7 = head.getChild("horn7");
+    this.horn8 = head.getChild("horn8");
     this.neck = pRoot.getChild("neck");
     this.body = pRoot.getChild("body");
     this.legRF = pRoot.getChild("legRF");

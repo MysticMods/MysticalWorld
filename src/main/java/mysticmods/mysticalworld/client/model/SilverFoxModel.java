@@ -47,7 +47,7 @@ public class SilverFoxModel extends AgeableListModel<SilverFoxEntity> {
     this.body2 = body1.getChild("body2");
     this.backL = body2.getChild("back_left_leg");
     this.backR = body2.getChild("back_right_leg");
-    this.tail1 = head.getChild("tail1");
+    this.tail1 = body2.getChild("tail1");
     this.tail2 = tail1.getChild("tail2");
     this.tail3 = tail2.getChild("tail3");
     this.tail4 = tail3.getChild("tail4");
@@ -61,11 +61,11 @@ public class SilverFoxModel extends AgeableListModel<SilverFoxEntity> {
                     .texOffs(12, 8).addBox(-2.5F, 0.0F, 0.0F, 5, 4, 5),
             PartPose.offset(0.0F, 15.5F, -2.0F));
 
-    PartDefinition neck = body1.addOrReplaceChild("head", CubeListBuilder.create()
+    PartDefinition neck = body1.addOrReplaceChild("neck", CubeListBuilder.create()
                     .texOffs(16, 0).addBox(-2.0F, -2.0F, -4.0F, 4, 4, 4),
             PartPose.offsetAndRotation(0.0F, 1.5F, 2.0F, -0.2617993877991494F, 0.0F, 0.0F));
 
-    PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create()
+    PartDefinition head = body1.addOrReplaceChild("head", CubeListBuilder.create()
                     .texOffs(0, 5).addBox(-2.5F, -2.0F, -3.0F, 5, 4, 3),
             PartPose.offsetAndRotation(0.0F, 0.0F, -4.0F, 0.2617993877991494F, 0.0F, 0.0F));
 
