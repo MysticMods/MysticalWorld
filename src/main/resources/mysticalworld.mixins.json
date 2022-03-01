@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "mysticmods.mysticalworld.mixins",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "refmap": "mysticalworld.refmap.json",
   "mixins": [
     "MixinApplyBonusCount",
