@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "mysticalworld:block/orichalcum_slab_top"
+    },
+    "type=bottom": {
+      "model": "mysticalworld:block/orichalcum_slab"
+    },
+    "type=double": {
+      "model": "mysticalworld:block/orichalcum_block"
+    }
+  }
+}

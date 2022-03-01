@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "forge:dusts/orichalcum"
+  },
+  "result": "mysticalworld:orichalcum_ingot",
+  "experience": 0.125,
+  "cookingtime": 100
+}

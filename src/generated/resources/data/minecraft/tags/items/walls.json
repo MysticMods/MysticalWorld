@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "mysticalworld:thatch_wall",
-    "mysticalworld:uncanny_mushroom_wall",
     "mysticalworld:red_mushroom_wall",
     "mysticalworld:brown_mushroom_wall",
     "mysticalworld:mushroom_stem_wall",
@@ -18,7 +17,7 @@
     "mysticalworld:sapphire_wall",
     "mysticalworld:copper_wall",
     "mysticalworld:lead_wall",
-    "mysticalworld:quicksilver_wall",
+    "mysticalworld:orichalcum_wall",
     "mysticalworld:silver_wall",
     "mysticalworld:tin_wall",
     "mysticalworld:pearl_wall",

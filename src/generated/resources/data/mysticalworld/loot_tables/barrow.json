@@ -3,9 +3,14 @@
   "pools": [
     {
       "rolls": {
+        "type": "minecraft:uniform",
         "min": 2.0,
-        "max": 5.0,
-        "type": "minecraft:uniform"
+        "max": 5.0
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 5.0
       },
       "entries": [
         {
@@ -15,10 +20,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 3.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:water_bucket"
@@ -30,10 +36,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 8.0,
-                "max": 15.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 15.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:clay_ball"
@@ -45,10 +52,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 3.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:lapis_lazuli"
@@ -60,10 +68,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 3.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:coal"
@@ -75,10 +84,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 9.0,
-                "max": 21.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 21.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:book"
@@ -90,10 +100,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 6.0,
-                "max": 15.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 15.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:bone"
@@ -114,10 +125,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 15.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 15.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:chain"
@@ -129,10 +141,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 15.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 15.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:arrow"
@@ -141,17 +154,18 @@
           "type": "minecraft:item",
           "name": "minecraft:saddle"
         }
-      ],
-      "bonus_rolls": {
-        "min": 1.0,
-        "max": 5.0
-      }
+      ]
     },
     {
       "rolls": {
+        "type": "minecraft:uniform",
         "min": 1.0,
-        "max": 2.0,
-        "type": "minecraft:uniform"
+        "max": 2.0
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 2.0
       },
       "entries": [
         {
@@ -161,10 +175,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 3.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:lava_bucket"
@@ -176,10 +191,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:prismarine_crystals"
@@ -191,10 +207,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:prismarine_shard"
@@ -206,10 +223,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 3.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:quartz"
@@ -221,10 +239,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:gold_ingot"
@@ -236,10 +255,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 3.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:redstone"
@@ -251,10 +271,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 6.0,
-                "max": 12.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 12.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:gunpowder"
@@ -266,10 +287,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 3.0,
-                "max": 6.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 6.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:glowstone_dust"
@@ -285,25 +307,27 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:magma_cream"
         }
-      ],
-      "bonus_rolls": {
-        "min": 1.0,
-        "max": 2.0
-      }
+      ]
     },
     {
       "rolls": {
+        "type": "minecraft:uniform",
         "min": 0.0,
-        "max": 2.0,
-        "type": "minecraft:uniform"
+        "max": 2.0
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 2.0
       },
       "entries": [
         {
@@ -312,10 +336,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 0.0,
-                "max": 5.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 5.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:ender_pearl"
@@ -327,10 +352,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:firework_rocket"
@@ -391,10 +417,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:obsidian"
@@ -406,10 +433,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:nether_wart_block"
@@ -457,7 +485,7 @@
               "function": "minecraft:enchant_randomly"
             }
           ],
-          "name": "mysticalworld:quicksilver_leggings"
+          "name": "mysticalworld:orichalcum_leggings"
         },
         {
           "type": "minecraft:item",
@@ -473,11 +501,7 @@
           "type": "minecraft:empty",
           "weight": 4
         }
-      ],
-      "bonus_rolls": {
-        "min": 1.0,
-        "max": 2.0
-      }
+      ]
     }
   ]
 }

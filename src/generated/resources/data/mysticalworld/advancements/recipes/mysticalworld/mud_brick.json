@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:mud_block"
+            "items": [
+              "mysticalworld:mud_block"
+            ]
           }
         ]
       }

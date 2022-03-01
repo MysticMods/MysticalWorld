@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:silver_block"
+            "items": [
+              "mysticalworld:silver_block"
+            ]
           }
         ]
       }

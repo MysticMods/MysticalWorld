@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:mushroom_inside_block"
+            "items": [
+              "mysticalworld:mushroom_inside_block"
+            ]
           }
         ]
       }

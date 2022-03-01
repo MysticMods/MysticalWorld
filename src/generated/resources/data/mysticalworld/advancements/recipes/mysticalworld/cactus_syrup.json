@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:cactus"
+            "items": [
+              "minecraft:cactus"
+            ]
           }
         ]
       }
@@ -21,7 +23,9 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:sugar"
+            "items": [
+              "minecraft:sugar"
+            ]
           }
         ]
       }

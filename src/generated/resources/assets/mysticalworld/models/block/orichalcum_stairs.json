@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "side": "mysticalworld:block/orichalcum_block",
+    "bottom": "mysticalworld:block/orichalcum_block",
+    "top": "mysticalworld:block/orichalcum_block"
+  }
+}

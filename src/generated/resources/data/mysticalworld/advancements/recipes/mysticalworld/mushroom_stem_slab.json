@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:mushroom_stem"
+            "items": [
+              "minecraft:mushroom_stem"
+            ]
           }
         ]
       }

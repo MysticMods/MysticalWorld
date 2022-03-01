@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:rose_bush"
+            "items": [
+              "minecraft:rose_bush"
+            ]
           }
         ]
       }
@@ -21,7 +23,9 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:sugar"
+            "items": [
+              "minecraft:sugar"
+            ]
           }
         ]
       }

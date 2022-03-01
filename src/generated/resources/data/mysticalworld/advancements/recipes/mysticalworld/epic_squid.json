@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:cooked_squid"
+            "items": [
+              "mysticalworld:cooked_squid"
+            ]
           }
         ]
       }

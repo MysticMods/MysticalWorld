@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:young_pearl"
+            "items": [
+              "mysticalworld:young_pearl"
+            ]
           }
         ]
       }

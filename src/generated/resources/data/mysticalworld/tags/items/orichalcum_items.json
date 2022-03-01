@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:orichalcum_sword",
+    "mysticalworld:orichalcum_knife",
+    "mysticalworld:orichalcum_axe",
+    "mysticalworld:orichalcum_hoe",
+    "mysticalworld:orichalcum_pickaxe",
+    "mysticalworld:orichalcum_shovel",
+    "mysticalworld:orichalcum_boots",
+    "mysticalworld:orichalcum_chestplate",
+    "mysticalworld:orichalcum_helmet",
+    "mysticalworld:orichalcum_leggings"
+  ]
+}

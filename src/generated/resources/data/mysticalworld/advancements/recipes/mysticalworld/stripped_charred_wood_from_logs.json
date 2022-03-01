@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:stripped_charred_log"
+            "items": [
+              "mysticalworld:stripped_charred_log"
+            ]
           }
         ]
       }

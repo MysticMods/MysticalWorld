@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:brown_mushroom_full"
+            "items": [
+              "mysticalworld:brown_mushroom_full"
+            ]
           }
         ]
       }

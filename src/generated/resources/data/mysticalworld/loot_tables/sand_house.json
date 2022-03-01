@@ -3,9 +3,14 @@
   "pools": [
     {
       "rolls": {
+        "type": "minecraft:uniform",
         "min": 3.0,
-        "max": 6.0,
-        "type": "minecraft:uniform"
+        "max": 6.0
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 2.0,
+        "max": 4.0
       },
       "entries": [
         {
@@ -15,10 +20,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 8.0,
-                "max": 15.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 15.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:grass"
@@ -30,10 +36,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 8.0,
-                "max": 15.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 15.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:fern"
@@ -45,10 +52,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 3.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:dried_kelp_block"
@@ -60,10 +68,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 5.0,
-                "max": 16.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 16.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:sweet_berries"
@@ -75,10 +84,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 3.0,
-                "max": 8.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 8.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:cactus"
@@ -90,10 +100,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 3.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:tall_grass"
@@ -105,10 +116,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 3.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:large_fern"
@@ -120,10 +132,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:blue_orchid"
@@ -135,10 +148,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 6.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 6.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:dead_bush"
@@ -150,10 +164,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 10.0,
-                "max": 20.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 20.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:string"
@@ -165,10 +180,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 10.0,
-                "max": 20.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 20.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:wheat_seeds"
@@ -180,10 +196,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 10.0,
-                "max": 20.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 20.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:beetroot_seeds"
@@ -195,10 +212,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 10.0,
-                "max": 20.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 20.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:pumpkin_seeds"
@@ -210,10 +228,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 10.0,
-                "max": 20.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 20.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:lily_pad"
@@ -225,25 +244,27 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 6.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 6.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:rabbit_foot"
         }
-      ],
-      "bonus_rolls": {
-        "min": 2.0,
-        "max": 4.0
-      }
+      ]
     },
     {
       "rolls": {
+        "type": "minecraft:uniform",
         "min": 1.0,
-        "max": 3.0,
-        "type": "minecraft:uniform"
+        "max": 3.0
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 2.0,
+        "max": 3.0
       },
       "entries": [
         {
@@ -253,10 +274,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:bamboo"
@@ -268,10 +290,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:seagrass"
@@ -283,10 +306,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:sea_pickle"
@@ -298,10 +322,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:bread"
@@ -313,10 +338,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:wheat"
@@ -328,10 +354,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:aubergine"
@@ -343,10 +370,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:cooked_aubergine"
@@ -358,10 +386,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:apple"
@@ -373,10 +402,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:carrot"
@@ -388,10 +418,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:potato"
@@ -403,10 +434,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:beetroot"
@@ -418,10 +450,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:spider_eye"
@@ -433,10 +466,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:aubergine_salad"
@@ -448,10 +482,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:dandelion_cornflower_salad"
@@ -463,10 +498,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:cactus_dandelion_salad"
@@ -478,10 +514,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:beetroot_salad"
@@ -493,10 +530,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:stewed_eggplant"
@@ -508,10 +546,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:vinegar"
@@ -523,10 +562,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:peony_cordial"
@@ -538,10 +578,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:rose_cordial"
@@ -553,10 +594,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:lilac_cordial"
@@ -568,10 +610,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:cactus_syrup"
@@ -583,10 +626,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:apple_cordial"
@@ -598,25 +642,27 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 9.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 9.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:dandelion_cordial"
         }
-      ],
-      "bonus_rolls": {
-        "min": 2.0,
-        "max": 3.0
-      }
+      ]
     },
     {
       "rolls": {
+        "type": "minecraft:uniform",
         "min": 0.0,
-        "max": 2.0,
-        "type": "minecraft:uniform"
+        "max": 2.0
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 2.0
       },
       "entries": [
         {
@@ -625,10 +671,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 0.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:wither_rose"
@@ -640,10 +687,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:carapace"
@@ -655,10 +703,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:antlers"
@@ -670,10 +719,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:silk_cocoon"
@@ -685,10 +735,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "mysticalworld:spindle"
@@ -700,10 +751,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:feather"
@@ -715,10 +767,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:flower_pot"
@@ -730,10 +783,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 6.0,
-                "max": 18.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 18.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:lapis_lazuli"
@@ -745,10 +799,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:tropical_fish"
@@ -760,10 +815,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:pufferfish"
@@ -775,10 +831,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:salmon"
@@ -790,10 +847,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:cod"
@@ -810,10 +868,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 6.0,
-                "max": 18.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 18.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:cookie"
@@ -825,10 +884,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 7.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:cocoa_beans"
@@ -840,10 +900,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 12.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 12.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:pumpkin_pie"
@@ -855,10 +916,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 5.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 5.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:experience_bottle"
@@ -870,10 +932,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 3.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:name_tag"
@@ -885,10 +948,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 3.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:honey_bottle"
@@ -900,10 +964,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:nautilus_shell"
@@ -912,11 +977,7 @@
           "type": "minecraft:empty",
           "weight": 8
         }
-      ],
-      "bonus_rolls": {
-        "min": 1.0,
-        "max": 2.0
-      }
+      ]
     }
   ]
 }

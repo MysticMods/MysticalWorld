@@ -3,9 +3,14 @@
   "pools": [
     {
       "rolls": {
+        "type": "minecraft:uniform",
         "min": 0.0,
-        "max": 2.0,
-        "type": "minecraft:uniform"
+        "max": 2.0
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 3.0
       },
       "entries": [
         {
@@ -20,10 +25,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 3.0,
-                "max": 10.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 10.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:sea_pickle"
@@ -35,10 +41,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 5.0,
-                "max": 25.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 25.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:wheat"
@@ -50,10 +57,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 8.0,
-                "max": 15.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 15.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:potato"
@@ -65,10 +73,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 10.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 10.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:brown_mushroom"
@@ -80,40 +89,27 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 10.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 10.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:red_mushroom"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 8,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 2.0,
-                "max": 12.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "mysticalworld:uncanny_mushroom"
         }
-      ],
-      "bonus_rolls": {
-        "min": 1.0,
-        "max": 3.0
-      }
+      ]
     },
     {
       "rolls": {
+        "type": "minecraft:uniform",
         "min": 0.0,
-        "max": 1.0,
-        "type": "minecraft:uniform"
+        "max": 1.0
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 3.0
       },
       "entries": [
         {
@@ -123,10 +119,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 6.0,
-                "max": 12.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 12.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:glowstone_dust"
@@ -138,10 +135,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 18.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 18.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:redstone"
@@ -153,10 +151,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 10.0,
-                "max": 35.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 35.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:sugar"
@@ -168,10 +167,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 4.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:nether_wart"
@@ -183,10 +183,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 8.0,
-                "max": 20.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 20.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:gunpowder"
@@ -198,25 +199,27 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 8.0
+              },
+              "add": false
             }
           ],
           "name": "minecraft:blaze_powder"
         }
-      ],
-      "bonus_rolls": {
-        "min": 1.0,
-        "max": 3.0
-      }
+      ]
     },
     {
       "rolls": {
+        "type": "minecraft:uniform",
         "min": 0.0,
-        "max": 1.0,
-        "type": "minecraft:uniform"
+        "max": 1.0
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 2.0
       },
       "entries": [
         {
@@ -229,11 +232,7 @@
           ],
           "name": "minecraft:potion"
         }
-      ],
-      "bonus_rolls": {
-        "min": 1.0,
-        "max": 2.0
-      }
+      ]
     }
   ]
 }

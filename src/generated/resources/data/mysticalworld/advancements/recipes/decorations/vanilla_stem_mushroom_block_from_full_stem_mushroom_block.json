@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:stem_mushroom_full"
+            "items": [
+              "mysticalworld:stem_mushroom_full"
+            ]
           }
         ]
       }

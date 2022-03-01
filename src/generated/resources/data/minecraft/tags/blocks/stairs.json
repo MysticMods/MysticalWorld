@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "mysticalworld:thatch_stairs",
-    "mysticalworld:uncanny_mushroom_stairs",
     "mysticalworld:red_mushroom_stairs",
     "mysticalworld:brown_mushroom_stairs",
     "mysticalworld:mushroom_stem_stairs",
@@ -17,7 +16,7 @@
     "mysticalworld:sapphire_stairs",
     "mysticalworld:copper_stairs",
     "mysticalworld:lead_stairs",
-    "mysticalworld:quicksilver_stairs",
+    "mysticalworld:orichalcum_stairs",
     "mysticalworld:silver_stairs",
     "mysticalworld:tin_stairs",
     "mysticalworld:pearl_stairs"

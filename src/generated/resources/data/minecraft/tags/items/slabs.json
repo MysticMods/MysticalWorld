@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "mysticalworld:thatch_slab",
-    "mysticalworld:uncanny_mushroom_slab",
     "mysticalworld:red_mushroom_slab",
     "mysticalworld:brown_mushroom_slab",
     "mysticalworld:mushroom_stem_slab",
@@ -17,7 +16,7 @@
     "mysticalworld:sapphire_slab",
     "mysticalworld:copper_slab",
     "mysticalworld:lead_slab",
-    "mysticalworld:quicksilver_slab",
+    "mysticalworld:orichalcum_slab",
     "mysticalworld:silver_slab",
     "mysticalworld:tin_slab",
     "mysticalworld:pearl_slab"
