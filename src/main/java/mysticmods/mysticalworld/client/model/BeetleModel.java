@@ -38,9 +38,9 @@ public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
     this.body = pRoot.getChild("body");
     this.head = body.getChild("head");
     this.antennaL1 = head.getChild("antenna_left");
-    this.antennaL2 = head.getChild("antenna_left2");
+    this.antennaL2 = antennaL1.getChild("antenna_left2");
     this.antennaR1 = head.getChild("antenna_right");
-    this.antennaR2 = head.getChild("antenna_right2");
+    this.antennaR2 = antennaR1.getChild("antenna_right2");
     this.legL1 = body.getChild("leg_left1");
     this.legL2 = body.getChild("leg_left2");
     this.legL3 = body.getChild("leg_left3");
