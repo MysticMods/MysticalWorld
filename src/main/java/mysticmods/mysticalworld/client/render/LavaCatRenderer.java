@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nonnull;
 
-public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel> {
+public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel<LavaCatEntity>> {
   private static final ResourceLocation OBSIDIAN_KITTY = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_eyes.png");
 
   public LavaCatRenderer(@Nonnull EntityRendererProvider.Context context) {
