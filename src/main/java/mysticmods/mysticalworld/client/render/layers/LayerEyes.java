@@ -24,12 +24,12 @@ public class LayerEyes<T extends LavaCatEntity> extends EyesLayer<T, LavaCatMode
 
 	@Override
 	public void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, T pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-		VertexConsumer vertexConsumer = pBuffer.getBuffer(AdditionalRenderTypes.getFullbrightEyes(new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_eyes.png")));
-//		if (pLivingEntity.getIsLava()) {
-//			vertexConsumer = pBuffer.getBuffer(LAVA_EYES);
-//		} else {
-//			vertexConsumer = pBuffer.getBuffer(OBSIDIAN_EYES);
-//		}
+		VertexConsumer vertexConsumer;
+		if (pLivingEntity.getIsLava()) {
+			vertexConsumer = pBuffer.getBuffer(LAVA_EYES);
+		} else {
+			vertexConsumer = pBuffer.getBuffer(OBSIDIAN_EYES);
+		}
 		this.getParentModel().renderToBuffer(pMatrixStack, vertexConsumer, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 	}
 
