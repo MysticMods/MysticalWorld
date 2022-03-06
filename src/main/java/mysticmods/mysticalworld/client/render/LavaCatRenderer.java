@@ -18,7 +18,7 @@ public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel<Lav
 
   public LavaCatRenderer(@Nonnull EntityRendererProvider.Context context) {
     super(context, new LavaCatModel(context.bakeLayer(ModelHolder.LAVA_CAT)), 0.5f);
-    this.addLayer(new LayerLava(this));
+    this.addLayer(new LayerLava(this, context.getModelSet()));
     this.addLayer(new LayerEyes(this));
   }
 

@@ -147,6 +147,8 @@ public class DeerModel extends AgeableListModel<DeerEntity> {
 
   @Override
   public void setupAnim(DeerEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    head.xRot = headPitch * ((float)Math.PI / 180F);
+    head.yRot = netHeadYaw * ((float)Math.PI / 180F);
     float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
     legRF.xRot = limbSwingAmount * sin;
     legLF.xRot = -limbSwingAmount * sin;

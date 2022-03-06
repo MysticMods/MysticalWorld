@@ -4,7 +4,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.client.model.LavaCatModel;
+import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.entity.LavaCatEntity;
+import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -16,13 +18,11 @@ public class LayerLava extends RenderLayer<LavaCatEntity, LavaCatModel<LavaCatEn
   private static final ResourceLocation MAGMA_TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_magma.png");
   private static final ResourceLocation OBSIDIAN_TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_obsidian.png");
 
-  private final RenderLayerParent<LavaCatEntity, LavaCatModel<LavaCatEntity>> renderer;
-  private final LavaCatModel mainModel;
+  private final LavaCatModel<LavaCatEntity> mainModel;
 
-  public LayerLava(RenderLayerParent<LavaCatEntity, LavaCatModel<LavaCatEntity>> entityRendererIn) {
+  public LayerLava(RenderLayerParent<LavaCatEntity, LavaCatModel<LavaCatEntity>> entityRendererIn, EntityModelSet modelSet) {
     super(entityRendererIn);
-    this.renderer = entityRendererIn;
-    this.mainModel = this.renderer.getModel();
+    this.mainModel = new LavaCatModel<>(modelSet.bakeLayer(ModelHolder.LAVA_CAT));
   }
 
   @Override
@@ -33,7 +33,6 @@ public class LayerLava extends RenderLayer<LavaCatEntity, LavaCatModel<LavaCatEn
       this.getParentModel().copyPropertiesTo(mainModel);
       VertexConsumer vertexConsumer = pBuffer.getBuffer(AdditionalRenderTypes.getFullbrightLayer(MAGMA_TEXTURE, 0, -f * 0.003f));
       mainModel.setupAnim(pLivingEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
-
       mainModel.renderToBuffer(pMatrixStack, vertexConsumer, 15728640, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
     } else {
       mainModel.prepareMobModel(pLivingEntity, pLimbSwing, pLimbSwingAmount, pPartialTicks);

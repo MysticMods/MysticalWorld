@@ -45,8 +45,8 @@ public class BeetleModel extends ShoulderRidingModel<BeetleEntity> {
     this.legL2 = body.getChild("leg_left2");
     this.legL3 = body.getChild("leg_left3");
     this.legR1 = body.getChild("leg_right1");
-    this.legR2 = body.getChild("leg_right1");
-    this.legR3 = body.getChild("leg_right1");
+    this.legR2 = body.getChild("leg_right2");
+    this.legR3 = body.getChild("leg_right3");
     this.wingL = body.getChild("wing_left");
     this.wingR = body.getChild("wing_right");
   }

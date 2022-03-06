@@ -41,7 +41,7 @@ public class DuckModel extends AgeableListModel<DuckEntity> {
 
     PartDefinition main = partdefinition.addOrReplaceChild("main", CubeListBuilder.create()
                     .texOffs(0, 0).addBox(-3.0F, -2.0F, -4.0F, 6.0F, 6.0F, 6.0F)
-                    .texOffs(0, 23).addBox(-3.0F, -2.0F, 2.0F, 6.0F, 5.0F, 3.0F),
+                    .texOffs(0, 12).addBox(-3.0F, -2.0F, 2.0F, 6.0F, 5.0F, 3.0F),
             PartPose.offset(0.0F, 17.0F, 0.0F));
 
     PartDefinition neck = main.addOrReplaceChild("neck", CubeListBuilder.create()
