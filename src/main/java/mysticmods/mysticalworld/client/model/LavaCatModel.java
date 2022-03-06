@@ -3,7 +3,6 @@ package mysticmods.mysticalworld.client.model;
 import com.google.common.collect.ImmutableList;
 import mysticmods.mysticalworld.entity.LavaCatEntity;
 import net.minecraft.client.model.AgeableListModel;
-import net.minecraft.client.model.OcelotModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -28,14 +27,14 @@ public class LavaCatModel<T extends LavaCatEntity> extends AgeableListModel<T> {
 
   public LavaCatModel(ModelPart pRoot) {
     super(true, 5.0f, 2.0f);
-	  this.head = pRoot.getChild("head");
-	  this.body = pRoot.getChild("body");
-	  this.tail1 = pRoot.getChild("tail1");
-	  this.tail2 = pRoot.getChild("tail2");
-	  this.leftHindLeg = pRoot.getChild("left_hind_leg");
-	  this.rightHindLeg = pRoot.getChild("right_hind_leg");
-	  this.leftFrontLeg = pRoot.getChild("left_front_leg");
-	  this.rightFrontLeg = pRoot.getChild("right_front_leg");
+    this.head = pRoot.getChild("head");
+    this.body = pRoot.getChild("body");
+    this.tail1 = pRoot.getChild("tail1");
+    this.tail2 = pRoot.getChild("tail2");
+    this.leftHindLeg = pRoot.getChild("left_hind_leg");
+    this.rightHindLeg = pRoot.getChild("right_hind_leg");
+    this.leftFrontLeg = pRoot.getChild("left_front_leg");
+    this.rightFrontLeg = pRoot.getChild("right_front_leg");
   }
 
   public static MeshDefinition createBodyMesh(CubeDeformation pCubeDeformation) {
@@ -60,12 +59,12 @@ public class LavaCatModel<T extends LavaCatEntity> extends AgeableListModel<T> {
 
   @Override
   protected Iterable<ModelPart> headParts() {
-    return ImmutableList.of(this.head);
+    return ImmutableList.of();
   }
 
   @Override
   protected Iterable<ModelPart> bodyParts() {
-    return ImmutableList.of(this.body, this.leftHindLeg, this.rightHindLeg, this.leftFrontLeg, this.rightFrontLeg, this.tail1, this.tail2);
+    return ImmutableList.of(this.body, this.leftHindLeg, this.rightHindLeg, this.leftFrontLeg, this.rightFrontLeg, this.tail1, this.tail2, this.head);
   }
 
   /**
