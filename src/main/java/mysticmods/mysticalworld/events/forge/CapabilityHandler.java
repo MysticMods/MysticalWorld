@@ -75,7 +75,7 @@ public class CapabilityHandler {
     }
   }
 
-  @SubscribeEvent
+/*  @SubscribeEvent
   public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
     if (event.getObject() instanceof Squid) {
       event.addCapability(AnimalCooldownCapabilityProvider.IDENTIFIER, new AnimalCooldownCapabilityProvider());
@@ -108,5 +108,5 @@ public class CapabilityHandler {
         }
       }
     }
-  }
+  }*/
 }
