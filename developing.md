@@ -1,6 +1,6 @@
 # Developer Guide
 
-The purpose of this file is to capture the steps required to participate in development of this mod as well as document any particular standards, decisions, etc. relevant to this repository. Please note that the contributors on this project span several operating systems, and 
+The purpose of this file is to capture the steps required to participate in development of this mod as well as document any particular standards, decisions, etc. relevant to this repository.
 
 ## Version Control (git)
 
