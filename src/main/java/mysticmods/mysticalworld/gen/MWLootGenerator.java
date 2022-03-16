@@ -35,6 +35,7 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class MWLootGenerator extends LootTableProvider {
   private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> tables = ImmutableList.of(Pair.of(MWBlockLoot::new, LootContextParamSets.BLOCK));
@@ -56,7 +57,7 @@ public class MWLootGenerator extends LootTableProvider {
   public static class MWBlockLoot extends BlockLoot {
     private final Set<RegistryObject<? extends Block>> doneBlocks = new HashSet<>();
 
-    private void boneLoot (RegistryObject<? extends Block> block) {
+    private void boneLoot(RegistryObject<? extends Block> block) {
       add(block.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block.get()).when(LootConditions.HAS_SILK_TOUCH).otherwise(LootItem.lootTableItem(Items.BONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4)))))));
     }
 
@@ -82,14 +83,21 @@ public class MWLootGenerator extends LootTableProvider {
     }
 
     @Override
-    public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
-      add(ModBlocks.POTTED_STONEPETAL.get(), createPotFlowerItemTable(ModBlocks.STONEPETAL.get())); gen(ModBlocks.POTTED_STONEPETAL);
-      add(ModBlocks.GALL_APPLE.get(), createCropDrops(ModBlocks.GALL_APPLE.get(), Items.AIR, ModItems.GALL_APPLE.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.GALL_APPLE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 3)))); gen(ModBlocks.GALL_APPLE);
-      add(ModBlocks.AUBERGINE_CROP.get(), createCropDrops(ModBlocks.AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.AUBERGINE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7)))); gen(ModBlocks.AUBERGINE_CROP);
-      add(ModBlocks.WILD_AUBERGINE_CROP.get(), LootTable.lootTable().withPool(applyExplosionCondition(ModItems.AUBERGINE.get(), LootPool.lootPool().setRolls(UniformGenerator.between(1, 3)).add(LootItem.lootTableItem(ModItems.AUBERGINE.get())))).withPool(applyExplosionCondition(ModItems.AUBERGINE_SEEDS.get(), LootPool.lootPool().setRolls(UniformGenerator.between(1, 2)).add(LootItem.lootTableItem(ModItems.AUBERGINE_SEEDS.get()))))); gen(ModBlocks.WILD_AUBERGINE_CROP);
-      add(ModBlocks.WILD_WART.get(), LootTable.lootTable().withPool(applyExplosionCondition(Items.NETHER_WART, LootPool.lootPool().setRolls(UniformGenerator.between(1, 3)).add(LootItem.lootTableItem(Items.NETHER_WART)))).withPool(applyExplosionCondition(Items.NETHER_WART, LootPool.lootPool().setRolls(UniformGenerator.between(1, 2)).add(LootItem.lootTableItem(Items.NETHER_WART))))); gen(ModBlocks.WILD_WART);
-      add(ModBlocks.SAPPHIRE_ORE.get(), createOreDrop(ModBlocks.SAPPHIRE_ORE.get(), ModItems.SAPPHIRE_GEM.get())); gen(ModBlocks.SAPPHIRE_ORE);
-      add(ModBlocks.GRANITE_QUARTZ_ORE.get(), createOreDrop(ModBlocks.GRANITE_QUARTZ_ORE.get(), Items.QUARTZ)); gen(ModBlocks.GRANITE_QUARTZ_ORE);
+    protected void addTables() {
+      add(ModBlocks.POTTED_STONEPETAL.get(), createPotFlowerItemTable(ModBlocks.STONEPETAL.get()));
+      gen(ModBlocks.POTTED_STONEPETAL);
+      add(ModBlocks.GALL_APPLE.get(), createCropDrops(ModBlocks.GALL_APPLE.get(), Items.AIR, ModItems.GALL_APPLE.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.GALL_APPLE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 3))));
+      gen(ModBlocks.GALL_APPLE);
+      add(ModBlocks.AUBERGINE_CROP.get(), createCropDrops(ModBlocks.AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.AUBERGINE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
+      gen(ModBlocks.AUBERGINE_CROP);
+      add(ModBlocks.WILD_AUBERGINE_CROP.get(), LootTable.lootTable().withPool(applyExplosionCondition(ModItems.AUBERGINE.get(), LootPool.lootPool().setRolls(UniformGenerator.between(1, 3)).add(LootItem.lootTableItem(ModItems.AUBERGINE.get())))).withPool(applyExplosionCondition(ModItems.AUBERGINE_SEEDS.get(), LootPool.lootPool().setRolls(UniformGenerator.between(1, 2)).add(LootItem.lootTableItem(ModItems.AUBERGINE_SEEDS.get())))));
+      gen(ModBlocks.WILD_AUBERGINE_CROP);
+      add(ModBlocks.WILD_WART.get(), LootTable.lootTable().withPool(applyExplosionCondition(Items.NETHER_WART, LootPool.lootPool().setRolls(UniformGenerator.between(1, 3)).add(LootItem.lootTableItem(Items.NETHER_WART)))).withPool(applyExplosionCondition(Items.NETHER_WART, LootPool.lootPool().setRolls(UniformGenerator.between(1, 2)).add(LootItem.lootTableItem(Items.NETHER_WART)))));
+      gen(ModBlocks.WILD_WART);
+      add(ModBlocks.SAPPHIRE_ORE.get(), createOreDrop(ModBlocks.SAPPHIRE_ORE.get(), ModItems.SAPPHIRE_GEM.get()));
+      gen(ModBlocks.SAPPHIRE_ORE);
+      add(ModBlocks.GRANITE_QUARTZ_ORE.get(), createOreDrop(ModBlocks.GRANITE_QUARTZ_ORE.get(), Items.QUARTZ));
+      gen(ModBlocks.GRANITE_QUARTZ_ORE);
 
       boneLoot(ModBlocks.BONE_PILE_1);
       gen(ModBlocks.BONE_PILE_1);
@@ -119,10 +127,16 @@ public class MWLootGenerator extends LootTableProvider {
           continue;
         }
 
-        dropSelf(block.get()); gen(block);
+        dropSelf(block.get());
+        gen(block);
       }
 
       validate();
+    }
+
+    @Override
+    protected Iterable<Block> getKnownBlocks() {
+      return doneBlocks.stream().map(RegistryObject::get).collect(Collectors.toList());
     }
   }
 }
