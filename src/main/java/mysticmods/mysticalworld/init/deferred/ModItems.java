@@ -143,13 +143,13 @@ public class ModItems {
 
   public static final RegistryObject<Item> SAPPHIRE_GEM = register(ModMaterials.SAPPHIRE.getInternalName(), () -> new Item(p()));
 
-  public static final RegistryObject<Item> LEAD_INGOT = register(ModMaterials.LEAD.getInternalName(), () -> new Item(p()));
+  public static final RegistryObject<Item> LEAD_INGOT = register(ModMaterials.LEAD.getIngotName(), () -> new Item(p()));
 
-  public static final RegistryObject<Item> ORICHALCUM_INGOT = register(ModMaterials.ORICHALCUM.getInternalName(), () -> new Item(p()));
+  public static final RegistryObject<Item> ORICHALCUM_INGOT = register(ModMaterials.ORICHALCUM.getIngotName(), () -> new Item(p()));
 
-  public static final RegistryObject<Item> TIN_INGOT = register(ModMaterials.TIN.getInternalName(), () -> new Item(p()));
+  public static final RegistryObject<Item> TIN_INGOT = register(ModMaterials.TIN.getIngotName(), () -> new Item(p()));
 
-  public static final RegistryObject<Item> SILVER_INGOT = register(ModMaterials.SILVER.getInternalName(), () -> new Item(p()));
+  public static final RegistryObject<Item> SILVER_INGOT = register(ModMaterials.SILVER.getIngotName(), () -> new Item(p()));
 
   // NUGGETS
 
@@ -279,7 +279,7 @@ public class ModItems {
 
   // VANILLA KNIVES
 
-  public static final RegistryObject<BaseItems.KnifeItem> WOODEN_KNIFE = register("wooden_knife", () -> new BaseItems.KnifeItem(ModMaterials.WOODEN.getItemMaterial(), ModMaterials.WOODEN.getDamage(WeaponType.KNIFE), ModMaterials.WOODEN.getSpeed(WeaponType.KNIFE), p()));
+  public static final RegistryObject<BaseItems.KnifeItem> WOODEN_KNIFE = register("wood_knife", () -> new BaseItems.KnifeItem(ModMaterials.WOODEN.getItemMaterial(), ModMaterials.WOODEN.getDamage(WeaponType.KNIFE), ModMaterials.WOODEN.getSpeed(WeaponType.KNIFE), p()));
 
   public static final RegistryObject<BaseItems.KnifeItem> STONE_KNIFE = register("stone_knife", () -> new BaseItems.KnifeItem(ModMaterials.STONE.getItemMaterial(), ModMaterials.STONE.getDamage(WeaponType.KNIFE), ModMaterials.STONE.getSpeed(WeaponType.KNIFE), p()));
 

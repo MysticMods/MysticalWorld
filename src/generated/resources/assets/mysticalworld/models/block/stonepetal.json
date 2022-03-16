@@ -1,7 +1,6 @@
 {
-  "parent": "minecraft:block/flower_pot_cross",
+  "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "mysticalworld:block/stonepetal",
-    "plant": "mysticalworld:block/stonepetal"
+    "cross": "mysticalworld:block/stonepetal"
   }
 }

@@ -48,7 +48,7 @@ public class MWBlockStateGenerator extends BlockStateProvider {
   protected void registerStatesAndModels() {
     getVariantBuilder(ModBlocks.STONEPETAL.get()).partialState().setModels(new ConfiguredModel(models().cross(ModBlocks.STONEPETAL.getId().getPath(), blockTexture(ModBlocks.STONEPETAL.get()))));
     gen(ModBlocks.STONEPETAL);
-    simpleBlock(ModBlocks.POTTED_STONEPETAL.get(), models().withExistingParent(ModBlocks.STONEPETAL.getId().getPath(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/stonepetal"));
+    simpleBlock(ModBlocks.POTTED_STONEPETAL.get(), models().withExistingParent(ModBlocks.POTTED_STONEPETAL.getId().getPath(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/stonepetal"));
     gen(ModBlocks.POTTED_STONEPETAL);
     getVariantBuilder(ModBlocks.WILD_AUBERGINE_CROP.get()).partialState().addModels(new ConfiguredModel(models().crop(ModBlocks.WILD_AUBERGINE_CROP.getId().getPath(), blockTexture(ModBlocks.WILD_AUBERGINE_CROP.get()))));
     gen(ModBlocks.WILD_AUBERGINE_CROP);
