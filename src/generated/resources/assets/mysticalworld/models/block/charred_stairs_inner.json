@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "mysticalworld:block/charred_planks",
-    "bottom": "mysticalworld:block/charred_planks",
-    "top": "mysticalworld:block/charred_planks"
-  }
-}

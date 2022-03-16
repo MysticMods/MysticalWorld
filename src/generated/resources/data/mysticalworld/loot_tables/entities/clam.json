@@ -31,32 +31,7 @@
     {
       "rolls": 1.0,
       "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "mysticalworld:is_mature",
-              "inverse": false
-            },
-            {
-              "condition": "minecraft:inverted",
-              "term": {
-                "condition": "mysticalworld:is_ender",
-                "inverse": false
-              }
-            }
-          ],
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1.0,
-              "add": false
-            }
-          ],
-          "name": "mysticalworld:lustrous_pearl"
-        }
-      ]
+      "entries": []
     }
   ]
 }

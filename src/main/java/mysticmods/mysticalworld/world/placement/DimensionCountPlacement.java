@@ -1,13 +1,5 @@
 package mysticmods.mysticalworld.world.placement;
 
-import com.mojang.serialization.Codec;
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-
-import java.util.Random;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
 /*public class DimensionCountPlacement extends FeatureDecorator<DimensionCountRangeConfig> {
   public DimensionCountPlacement(Codec<DimensionCountRangeConfig> codec) {
     super(codec);

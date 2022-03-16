@@ -3,6 +3,8 @@ package mysticmods.mysticalworld.init;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
+import mysticmods.mysticalworld.init.deferred.ModBlocks;
+import mysticmods.mysticalworld.init.deferred.ModItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
@@ -25,6 +27,7 @@ public class ModMaterials {
   public static final String IRON_NAME = "iron";
   public static final String GOLD_NAME = "gold";
   public static final String DIAMOND_NAME = "diamond";
+  public static final String NETHERITE_NAME = "netherite";
   public static final String CARAPACE_NAME = "carapace";
   public static final String ANTLER_NAME = "antler";
   public static final String QUARTZ_NAME = "quartz";
@@ -58,11 +61,10 @@ public class ModMaterials {
 
   public static MaterialType COPPER = new MaterialType(COPPER_NAME)
       .itemMaterial(200, 4.0f, 2.0f, 2, 7, () -> MWTags.Items.COPPER_INGOT)
-      .item(() -> ModItems.COPPER_INGOT)
       .nugget(() -> ModItems.COPPER_NUGGET)
       .dust(() -> ModItems.COPPER_DUST)
-      .block(() -> ModBlocks.COPPER_BLOCK)
-      .ore(() -> ModBlocks.COPPER_ORE)
+/*      .block(() -> ModBlocks.COPPER_BLOCK)
+      .ore(() -> ModBlocks.COPPER_ORE)*/
       .armorMaterial(15, new int[]{2, 5, 6, 2}, SoundEvents.ARMOR_EQUIP_IRON, 0.0f, 0f)
       .setModId(MysticalWorld.MODID)
       .putDamageSpeed(
@@ -181,5 +183,12 @@ public class ModMaterials {
       .setModId(MysticalWorld.MODID)
       .putDamageSpeed(
           WeaponType.KNIFE, 0.5f, -1.2f
+      );
+
+  public static MaterialType NETHERITE = new MaterialType(NETHERITE_NAME)
+      .setItemTier(Tiers.NETHERITE)
+      .setModId(MysticalWorld.MODID)
+      .putDamageSpeed(
+          WeaponType.KNIFE, 1f, -1.2f
       );
 }

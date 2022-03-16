@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:ores/tin"
-  },
-  "result": "mysticalworld:tin_ingot",
-  "experience": 0.125,
-  "cookingtime": 200
-}

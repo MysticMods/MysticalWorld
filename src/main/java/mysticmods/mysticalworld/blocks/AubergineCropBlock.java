@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.blocks;
 
-import mysticmods.mysticalworld.init.ModItems;
+import mysticmods.mysticalworld.init.deferred.ModItems;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.CropBlock;
 

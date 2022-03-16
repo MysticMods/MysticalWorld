@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:mushroom_stem"
-  },
-  "result": "mysticalworld:mushroom_stem_wall",
-  "count": 1
-}

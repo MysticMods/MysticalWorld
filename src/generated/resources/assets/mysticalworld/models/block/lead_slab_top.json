@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "mysticalworld:block/lead_block",
-    "bottom": "mysticalworld:block/lead_block",
-    "top": "mysticalworld:block/lead_block"
-  }
-}

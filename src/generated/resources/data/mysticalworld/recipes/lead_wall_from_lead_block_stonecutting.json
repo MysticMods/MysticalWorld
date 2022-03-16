@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:lead_block"
-  },
-  "result": "mysticalworld:lead_wall",
-  "count": 1
-}

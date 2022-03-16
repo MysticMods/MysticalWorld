@@ -4,10 +4,8 @@ import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.ConfiguredStructures;
-import mysticmods.mysticalworld.init.ModBlocks;
-import mysticmods.mysticalworld.init.ModFeatures;
 import mysticmods.mysticalworld.init.ModMaterials;
+import mysticmods.mysticalworld.init.deferred.ModBlocks;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -15,7 +13,6 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import noobanidus.libs.noobutil.config.IArmorConfig;
 
@@ -100,7 +97,6 @@ public class ConfigManager {
 
   private static void registerOreGeneration() {
     List<ResourceKey<Level>> defaultDimensions = Collections.singletonList(Level.OVERWORLD);
-    ORE_CONFIG.add(new OreConfig("Copper", 8, 32, 76, 12, defaultDimensions, () -> ModBlocks.COPPER_ORE));
     ORE_CONFIG.add(new OreConfig("Tin", 8, 24, 64, 8, defaultDimensions, () -> ModBlocks.TIN_ORE));
     ORE_CONFIG.add(new OreConfig("Silver", 4, 0, 24, 8, defaultDimensions, () -> ModBlocks.SILVER_ORE));
     ORE_CONFIG.add(new OreConfig("Lead", 4, 8, 32, 8, defaultDimensions, () -> ModBlocks.LEAD_ORE));

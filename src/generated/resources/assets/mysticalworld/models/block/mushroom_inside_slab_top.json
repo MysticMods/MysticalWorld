@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "mysticalworld:block/mushroom_inside_block",
-    "bottom": "mysticalworld:block/mushroom_inside_block",
-    "top": "mysticalworld:block/mushroom_inside_block"
-  }
-}

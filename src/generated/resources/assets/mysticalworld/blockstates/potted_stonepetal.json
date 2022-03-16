@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "mysticalworld:block/potted_stonepetal"
+      "model": "mysticalworld:block/stonepetal"
     }
   }
 }

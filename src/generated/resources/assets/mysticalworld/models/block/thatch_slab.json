@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "mysticalworld:block/thatch",
-    "bottom": "mysticalworld:block/thatch",
-    "top": "mysticalworld:block/thatch"
-  }
-}

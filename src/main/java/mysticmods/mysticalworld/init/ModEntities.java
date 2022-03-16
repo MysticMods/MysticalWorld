@@ -9,6 +9,7 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.config.MobConfig;
 import mysticmods.mysticalworld.entity.*;
+import mysticmods.mysticalworld.init.deferred.ModItems;
 import mysticmods.mysticalworld.loot.conditions.*;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
@@ -273,7 +274,7 @@ public class ModEntities {
               .setRolls(ConstantValue.exactly(1))
           )
           .withPool(LootPool.lootPool()
-              .add(LootItem.lootTableItem(ModItems.PEARL_GEM.get())
+              .add(LootItem.lootTableItem(ModItems.LUSTROUS_PEARL.get())
                   .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
                   .when(IsMature.builder())
                   .when(IsEnder.builder().invert()))

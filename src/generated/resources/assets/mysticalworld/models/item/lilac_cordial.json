@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "mysticalworld:item/lilac_cordial"
-  }
-}

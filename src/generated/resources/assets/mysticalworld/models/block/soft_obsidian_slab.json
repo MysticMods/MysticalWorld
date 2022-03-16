@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "mysticalworld:block/soft_obsidian",
-    "bottom": "mysticalworld:block/soft_obsidian",
-    "top": "mysticalworld:block/soft_obsidian"
-  }
-}

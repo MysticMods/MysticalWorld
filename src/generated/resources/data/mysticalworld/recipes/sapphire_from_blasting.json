@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "forge:ores/sapphire"
-  },
-  "result": "mysticalworld:sapphire",
-  "experience": 0.125,
-  "cookingtime": 100
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "mysticalworld:block/tin_block",
-    "bottom": "mysticalworld:block/tin_block",
-    "top": "mysticalworld:block/tin_block"
-  }
-}

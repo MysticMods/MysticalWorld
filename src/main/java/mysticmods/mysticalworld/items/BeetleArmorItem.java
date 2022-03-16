@@ -1,15 +1,10 @@
 package mysticmods.mysticalworld.items;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.init.ModMaterials;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 

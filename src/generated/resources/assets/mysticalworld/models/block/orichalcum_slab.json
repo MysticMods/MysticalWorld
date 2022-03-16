@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "mysticalworld:block/orichalcum_block",
-    "bottom": "mysticalworld:block/orichalcum_block",
-    "top": "mysticalworld:block/orichalcum_block"
-  }
-}

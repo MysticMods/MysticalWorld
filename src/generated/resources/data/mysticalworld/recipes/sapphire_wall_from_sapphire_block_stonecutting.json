@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:sapphire_block"
-  },
-  "result": "mysticalworld:sapphire_wall",
-  "count": 1
-}

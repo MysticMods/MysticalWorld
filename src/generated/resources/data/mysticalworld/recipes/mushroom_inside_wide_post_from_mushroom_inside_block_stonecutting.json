@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:mushroom_inside_block"
-  },
-  "result": "mysticalworld:mushroom_inside_wide_post",
-  "count": 2
-}

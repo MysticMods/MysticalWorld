@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "mysticalworld:orichalcum_items"
-  },
-  "result": "mysticalworld:orichalcum_nugget",
-  "experience": 0.15,
-  "cookingtime": 100
-}

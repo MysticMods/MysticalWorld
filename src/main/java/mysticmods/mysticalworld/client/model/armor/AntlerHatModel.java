@@ -1,10 +1,5 @@
 package mysticmods.mysticalworld.client.model.armor;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.world.entity.EquipmentSlot;
-
 /*public class AntlerHatModel {
   public ModelPart hat;
   public ModelPart horn1;

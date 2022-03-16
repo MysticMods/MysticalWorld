@@ -3,7 +3,6 @@ package mysticmods.mysticalworld.client.player.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mysticmods.mysticalworld.api.Capabilities;
-import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.client.model.ModelState;
 import mysticmods.mysticalworld.client.model.ShoulderRidingModel;
 import mysticmods.mysticalworld.init.ModEntities;

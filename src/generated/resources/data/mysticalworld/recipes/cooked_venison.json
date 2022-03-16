@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "mysticalworld:venison"
-  },
-  "result": "mysticalworld:cooked_venison",
-  "experience": 0.15,
-  "cookingtime": 200
-}

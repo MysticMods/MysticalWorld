@@ -1,8 +1,11 @@
+/*
 package mysticmods.mysticalworld.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import mysticmods.mysticalworld.MWTags;
+import mysticmods.mysticalworld.init.deferred.ModBlocks;
+import mysticmods.mysticalworld.init.deferred.ModItems;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
@@ -126,7 +129,7 @@ public class ModTags {
       p.copy(MWTags.Blocks.TERRACOTTA, MWTags.Items.TERRACOTTA);
       p.copy(MWTags.Blocks.MUSHROOM_BLOCKS, MWTags.Items.MUSHROOM_BLOCKS);
 
-      p.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(ModItems.SAPPHIRE_GEM.get(), ModItems.COPPER_INGOT.get(), ModItems.LEAD_INGOT.get(), ModItems.ORICHALCUM_INGOT.get(), ModItems.SILVER_INGOT.get(), ModItems.TIN_INGOT.get(), ModItems.PEARL_GEM.get());
+      p.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(ModItems.SAPPHIRE_GEM.get(), ModItems.LEAD_INGOT.get(), ModItems.ORICHALCUM_INGOT.get(), ModItems.SILVER_INGOT.get(), ModItems.TIN_INGOT.get(), ModItems.LUSTROUS_PEARL.get());
     });
 
     REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, p -> {
@@ -142,7 +145,9 @@ public class ModTags {
       b.add(MWTags.Blocks.MUSHROOM_BLOCKS, ModBlocks.MUSHROOM_INSIDE.get());
       b.add(MWTags.Blocks.BASE_STONE_GRANITE, Blocks.GRANITE);
       b.additional(Tags.Blocks.STORAGE_BLOCKS).add(MWTags.Blocks.SAPPHIRE_STORAGE, MWTags.Blocks.COPPER_STORAGE, MWTags.Blocks.LEAD_STORAGE, MWTags.Blocks.ORICHALCUM_STORAGE, MWTags.Blocks.SILVER_STORAGE, MWTags.Blocks.TIN_STORAGE, MWTags.Blocks.PEARL_STORAGE);
-      p.tag(BlockTags.BEACON_BASE_BLOCKS).add(ModBlocks.SAPPHIRE_BLOCK.get(), ModBlocks.COPPER_BLOCK.get(), ModBlocks.LEAD_BLOCK.get(), ModBlocks.ORICHALCUM_BLOCK.get(), ModBlocks.SILVER_BLOCK.get(), ModBlocks.TIN_BLOCK.get(), ModBlocks.PEARL_BLOCK.get());
+*/
+/*      p.tag(BlockTags.BEACON_BASE_BLOCKS).add(ModBlocks.SAPPHIRE_BLOCK.get(), ModBlocks.COPPER_BLOCK.get(), ModBlocks.LEAD_BLOCK.get(), ModBlocks.ORICHALCUM_BLOCK.get(), ModBlocks.SILVER_BLOCK.get(), ModBlocks.TIN_BLOCK.get(), ModBlocks.PEARL_BLOCK.get());*//*
+
       b.add(MWTags.Blocks.CROPS, ModBlocks.AUBERGINE_CROP.get());
       b.add(MWTags.Blocks.AUBERGINE_CROP, ModBlocks.AUBERGINE_CROP.get());
       b.add(MWTags.Blocks.EGGPLANT_CROP, ModBlocks.AUBERGINE_CROP.get());
@@ -155,3 +160,4 @@ public class ModTags {
 
   }
 }
+*/

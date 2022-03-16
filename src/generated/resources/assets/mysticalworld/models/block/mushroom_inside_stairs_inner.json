@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "mysticalworld:block/mushroom_inside_block",
-    "bottom": "mysticalworld:block/mushroom_inside_block",
-    "top": "mysticalworld:block/mushroom_inside_block"
-  }
-}

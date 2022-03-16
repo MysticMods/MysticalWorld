@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "mysticalworld:copper_items"
-  },
-  "result": "mysticalworld:copper_nugget",
-  "experience": 0.15,
-  "cookingtime": 100
-}

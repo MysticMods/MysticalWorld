@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "mysticalworld:gold_knife"
-  },
-  "result": "minecraft:gold_nugget",
-  "experience": 0.15,
-  "cookingtime": 100
-}

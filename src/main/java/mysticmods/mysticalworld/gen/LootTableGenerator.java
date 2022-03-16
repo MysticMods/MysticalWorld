@@ -3,7 +3,7 @@ package mysticmods.mysticalworld.gen;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.ModItems;
+import mysticmods.mysticalworld.init.deferred.ModItems;
 import mysticmods.mysticalworld.loot.functions.RandomPotion;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;

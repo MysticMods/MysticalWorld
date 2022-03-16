@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:red_mushroom_block"
-  },
-  "result": "mysticalworld:red_mushroom_stairs",
-  "count": 1
-}

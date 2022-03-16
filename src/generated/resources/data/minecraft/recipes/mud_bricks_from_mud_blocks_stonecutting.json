@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mysticalworld:mud_block"
-  },
-  "result": "mysticalworld:mud_brick",
-  "count": 1
-}

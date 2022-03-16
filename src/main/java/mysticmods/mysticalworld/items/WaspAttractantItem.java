@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.items;
 
-import mysticmods.mysticalworld.init.ModBlocks;
+import mysticmods.mysticalworld.init.deferred.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;

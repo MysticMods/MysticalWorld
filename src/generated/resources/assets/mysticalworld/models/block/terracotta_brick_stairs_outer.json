@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "mysticalworld:block/terracotta_brick",
-    "bottom": "mysticalworld:block/terracotta_brick",
-    "top": "mysticalworld:block/terracotta_brick"
-  }
-}
