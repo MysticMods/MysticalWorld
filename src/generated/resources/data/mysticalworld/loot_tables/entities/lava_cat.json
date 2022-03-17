@@ -1,0 +1,66 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "mysticalworld:is_lava",
+              "inverse": false
+            },
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.7
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1.0,
+              "add": false
+            }
+          ],
+          "name": "minecraft:obsidian"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "mysticalworld:is_lava",
+              "inverse": false
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1.0,
+              "add": false
+            }
+          ],
+          "name": "minecraft:cobblestone"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "mysticalworld:is_obsidian",
+              "inverse": false
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1.0,
+              "add": false
+            }
+          ],
+          "name": "minecraft:cobblestone"
+        }
+      ]
+    }
+  ]
+}

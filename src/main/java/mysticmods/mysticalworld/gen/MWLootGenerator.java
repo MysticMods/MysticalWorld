@@ -45,7 +45,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class MWLootGenerator extends LootTableProvider {
-  private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> tables = ImmutableList.of(Pair.of(MWBlockLoot::new, LootContextParamSets.BLOCK));
+  private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> tables = ImmutableList.of(Pair.of(MWBlockLoot::new, LootContextParamSets.BLOCK), Pair.of(MWEntityLoot::new, LootContextParamSets.ENTITY));
 
   public MWLootGenerator(DataGenerator pGenerator) {
     super(pGenerator);
