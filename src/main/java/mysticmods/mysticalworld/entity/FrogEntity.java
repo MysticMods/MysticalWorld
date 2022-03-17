@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.entity;
 
-import mysticmods.mysticalworld.init.ModSounds;
+import mysticmods.mysticalworld.init.deferred.ModSounds;
 import mysticmods.mysticalworld.init.deferred.ModEntities;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;

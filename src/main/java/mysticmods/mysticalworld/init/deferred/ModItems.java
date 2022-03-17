@@ -1,7 +1,7 @@
 package mysticmods.mysticalworld.init.deferred;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.ModFoods;
+import mysticmods.mysticalworld.init.mod.ModFoods;
 import mysticmods.mysticalworld.init.deferred.data.ItemData;
 import mysticmods.mysticalworld.init.mod.ModMaterials;
 import mysticmods.mysticalworld.items.*;

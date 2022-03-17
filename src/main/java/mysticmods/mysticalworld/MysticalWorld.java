@@ -2,7 +2,7 @@ package mysticmods.mysticalworld;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import mysticmods.mysticalworld.config.ConfigManager;
-import mysticmods.mysticalworld.init.ModSounds;
+import mysticmods.mysticalworld.init.deferred.ModSounds;
 import mysticmods.mysticalworld.init.deferred.*;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;

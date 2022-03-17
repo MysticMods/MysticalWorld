@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.init;
+package mysticmods.mysticalworld.init.deferred;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.resources.ResourceLocation;

@@ -3,7 +3,7 @@ package mysticmods.mysticalworld.items;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.entity.ClamEntity;
-import mysticmods.mysticalworld.init.ModSounds;
+import mysticmods.mysticalworld.init.deferred.ModSounds;
 import mysticmods.mysticalworld.init.deferred.ModEntities;
 import mysticmods.mysticalworld.init.deferred.ModItems;
 import mysticmods.mysticalworld.init.deferred.ModModifiers;

@@ -1,7 +1,7 @@
 package mysticmods.mysticalworld.entity;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.ModSounds;
+import mysticmods.mysticalworld.init.deferred.ModSounds;
 import mysticmods.mysticalworld.init.deferred.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
