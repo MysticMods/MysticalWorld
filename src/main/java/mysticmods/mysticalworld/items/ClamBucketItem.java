@@ -1,7 +1,7 @@
 package mysticmods.mysticalworld.items;
 
 import mysticmods.mysticalworld.entity.ClamEntity;
-import mysticmods.mysticalworld.init.ModEntities;
+import mysticmods.mysticalworld.init.deferred.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;

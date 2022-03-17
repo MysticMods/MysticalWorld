@@ -84,7 +84,7 @@ public class AnimalSpawnInfo implements IComponentProcessor {
             joiner.add(WordUtils.capitalize(biomeName.getName().toLowerCase()));
           }
         }
-        return IVariable.wrap("Biomes tagged with: " + joiner.toString());
+        return IVariable.wrap("Biomes tagged with: " + joiner);
       }
     }
     if (s.startsWith("title")) {

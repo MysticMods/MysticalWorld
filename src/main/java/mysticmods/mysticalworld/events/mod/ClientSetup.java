@@ -1,14 +1,10 @@
 package mysticmods.mysticalworld.events.mod;
 
-import com.tterrag.registrate.util.LazySpawnEggItem;
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.client.model.*;
 import mysticmods.mysticalworld.client.render.*;
-import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.deferred.ModBlocks;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.item.ItemColors;
+import mysticmods.mysticalworld.init.deferred.ModEntities;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,7 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import noobanidus.libs.noobutil.setup.ShadedClientSetup;
 
-@Mod.EventBusSubscriber(modid= MysticalWorld.MODID, bus= Mod.EventBusSubscriber.Bus.MOD, value= Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientSetup {
   @SubscribeEvent
   public static void init(FMLClientSetupEvent event) {
@@ -33,7 +29,7 @@ public class ClientSetup {
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.STONEPETAL.get(), rendertype);
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_STONEPETAL.get(), rendertype);
-/*      ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_UNCANNY_MUSHROOM.get(), rendertype);*/
+      /*      ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_UNCANNY_MUSHROOM.get(), rendertype);*/
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_WART.get(), rendertype);
 /*      ItemBlockRenderTypes.setRenderLayer(ModBlocks.ANYWHERE_BROWN_MUSHROOM.get(), rendertype);
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.ANYWHERE_RED_MUSHROOM.get(), rendertype);
@@ -43,12 +39,6 @@ public class ClientSetup {
       /*      Bootstrap.init(Minecraft.getInstance());*/
 
       /*      Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values().forEach(o -> o.addLayer(new ShoulderRenderLayer<>(o)));*/
-
-      // TODO: Fix this
-      ItemColors c = Minecraft.getInstance().getItemColors();
-      for (RegistryEntry<? extends LazySpawnEggItem<?>> egg : ModEntities.SPAWN_EGGS) {
-        c.register((a, layer) -> egg.get().getColor(layer), egg.get());
-      }
     });
   }
 

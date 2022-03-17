@@ -1,8 +1,8 @@
 package mysticmods.mysticalworld.potions;
 
 import mysticmods.mysticalworld.MWTags;
-import mysticmods.mysticalworld.init.ModEffects;
 import mysticmods.mysticalworld.init.deferred.ModBlocks;
+import mysticmods.mysticalworld.init.deferred.ModEffects;
 import mysticmods.mysticalworld.init.deferred.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;

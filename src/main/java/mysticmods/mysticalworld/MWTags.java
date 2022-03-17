@@ -49,7 +49,7 @@ public class MWTags {
       return BlockTags.createOptional(new ResourceLocation("forge", name));
     }
 
-    public static Tag<Block> resolve (ResourceLocation location) {
+    public static Tag<Block> resolve(ResourceLocation location) {
       return SerializationTags.getInstance().getOrEmpty(Registry.BLOCK_REGISTRY).getTag(location);
     }
   }
@@ -131,7 +131,7 @@ public class MWTags {
       return ItemTags.createOptional(new ResourceLocation("forge", name));
     }
 
-    public static Tag<Item> resolve (ResourceLocation location) {
+    public static Tag<Item> resolve(ResourceLocation location) {
       return SerializationTags.getInstance().getOrEmpty(Registry.ITEM_REGISTRY).getTag(location);
     }
   }
@@ -139,11 +139,11 @@ public class MWTags {
   public static class Potions extends MWTags {
     public static Tag.Named<Potion> RANDOM_BLACKLIST = compatTag("random_potion_blacklist");
 
-    static Tag.Named<Potion> modTag (String name) {
+    static Tag.Named<Potion> modTag(String name) {
       return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTIONS, new ResourceLocation(MysticalWorld.MODID, name));
     }
 
-    static Tag.Named<Potion> compatTag (String name) {
+    static Tag.Named<Potion> compatTag(String name) {
       return ForgeTagHandler.createOptionalTag(ForgeRegistries.POTIONS, new ResourceLocation("forge", name));
     }
   }

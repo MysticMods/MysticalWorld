@@ -101,7 +101,7 @@ public class MWBlockStateGenerator extends BlockStateProvider {
     gen(ModBlocks.GALL_APPLE);
     gen(ModBlocks.AUBERGINE_CROP);
 
-    for (RegistryObject<? extends Block> block : simpleBlocks){
+    for (RegistryObject<? extends Block> block : simpleBlocks) {
       simpleBlock(block.get());
       gen(block);
     }

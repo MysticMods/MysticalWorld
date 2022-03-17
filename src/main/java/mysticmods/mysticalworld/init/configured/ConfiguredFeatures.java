@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.init;
+package mysticmods.mysticalworld.init.configured;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.data.BuiltinRegistries;

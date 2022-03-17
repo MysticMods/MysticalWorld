@@ -12,7 +12,9 @@
       "type": "image",
       "title": "A desert house",
       "text": "Some houses have rooftops, some have cellars.",
-      "images": ["mysticalworld:textures/desert_house.png"]
+      "images": [
+        "mysticalworld:textures/desert_house.png"
+      ]
     }
   ]
 }

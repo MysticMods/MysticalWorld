@@ -2,8 +2,8 @@ package mysticmods.mysticalworld.init.deferred;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.blocks.*;
-import mysticmods.mysticalworld.init.ModMaterials;
 import mysticmods.mysticalworld.init.deferred.data.BlockData;
+import mysticmods.mysticalworld.init.mod.ModMaterials;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 
@@ -18,10 +19,10 @@ import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-  private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Block.class, MysticalWorld.MODID);
-  private static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(Item.class, MysticalWorld.MODID);
+  private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MysticalWorld.MODID);
+  private static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MysticalWorld.MODID);
 
-  public static void register (IEventBus modBus) {
+  public static void register(IEventBus modBus) {
     BLOCKS.register(modBus);
     BLOCK_ITEMS.register(modBus);
   }
@@ -96,7 +97,7 @@ public class ModBlocks {
 
   // POTTED PLANTS
 
-  public static final RegistryObject<FlowerPotBlock> POTTED_STONEPETAL = registerWithBlockItem("potted_stonepetal", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, STONEPETAL, Block.Properties.copy(Blocks.OAK_SAPLING)));
+  public static final RegistryObject<FlowerPotBlock> POTTED_STONEPETAL = registerWithoutBlockItem("potted_stonepetal", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, STONEPETAL, Block.Properties.copy(Blocks.OAK_SAPLING)));
 
   // HAS DECORATIVE VARIANTS
 
@@ -108,7 +109,7 @@ public class ModBlocks {
 
   public static final RegistryObject<Block> STEM_MUSHROOM_FULL = registerWithBlockItem("stem_mushroom_full", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.GRASS)));
 
-  public static final RegistryObject<Block> MUSHROOM_INSIDE = registerWithBlockItem("mushroom_inside_block", () ->new Block(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.GRASS)));
+  public static final RegistryObject<Block> MUSHROOM_INSIDE = registerWithBlockItem("mushroom_inside_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.GRASS)));
 
   public static final RegistryObject<Block> MUD_BLOCK = registerWithBlockItem("mud_block", () -> new Block(BlockProperties.STONE));
 

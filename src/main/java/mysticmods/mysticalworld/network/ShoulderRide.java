@@ -18,8 +18,8 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 public class ShoulderRide {
-  private CompoundTag tag;
-  private UUID id;
+  private final CompoundTag tag;
+  private final UUID id;
 
   public ShoulderRide(FriendlyByteBuf buffer) {
     long uuid1 = buffer.readLong();

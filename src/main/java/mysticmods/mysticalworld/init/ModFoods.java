@@ -1,5 +1,6 @@
 package mysticmods.mysticalworld.init;
 
+import mysticmods.mysticalworld.init.deferred.ModEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;

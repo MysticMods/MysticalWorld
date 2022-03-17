@@ -1,8 +1,8 @@
 package mysticmods.mysticalworld.entity;
 
 import mysticmods.mysticalworld.MWTags;
-import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModSounds;
+import mysticmods.mysticalworld.init.deferred.ModEntities;
 import mysticmods.mysticalworld.init.deferred.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

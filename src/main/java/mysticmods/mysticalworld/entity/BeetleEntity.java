@@ -4,7 +4,7 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.api.Capabilities;
 import mysticmods.mysticalworld.api.IPlayerShoulderCapability;
 import mysticmods.mysticalworld.capability.PlayerShoulderCapability;
-import mysticmods.mysticalworld.init.ModEntities;
+import mysticmods.mysticalworld.init.deferred.ModEntities;
 import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.network.ShoulderRide;
 import net.minecraft.ChatFormatting;

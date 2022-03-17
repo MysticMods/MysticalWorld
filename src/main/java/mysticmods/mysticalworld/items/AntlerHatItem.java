@@ -3,7 +3,7 @@ package mysticmods.mysticalworld.items;
 import com.google.common.collect.Multimap;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
-import mysticmods.mysticalworld.init.ModMaterials;
+import mysticmods.mysticalworld.init.mod.ModMaterials;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;

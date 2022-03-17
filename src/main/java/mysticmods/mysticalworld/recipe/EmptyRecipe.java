@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.recipe;
 
-import mysticmods.mysticalworld.init.ModRecipes;
+import mysticmods.mysticalworld.init.deferred.ModRecipes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;

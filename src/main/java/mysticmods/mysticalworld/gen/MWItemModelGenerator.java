@@ -3,6 +3,7 @@ package mysticmods.mysticalworld.gen;
 import com.google.common.collect.Sets;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.deferred.ModBlocks;
+import mysticmods.mysticalworld.init.deferred.ModEntities;
 import mysticmods.mysticalworld.init.deferred.ModItems;
 import mysticmods.mysticalworld.init.deferred.data.BlockData;
 import mysticmods.mysticalworld.init.deferred.data.ItemData;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -158,6 +160,7 @@ public class MWItemModelGenerator extends ItemModelProvider {
     genBlock(ModBlocks.AUBERGINE_CROP);
     genBlock(ModBlocks.WILD_AUBERGINE_CROP);
     genBlock(ModBlocks.WILD_WART);
+    genBlock(ModBlocks.POTTED_STONEPETAL);
 
     for (RegistryObject<? extends Block> block : BlockData.getAllBlocks()) {
       if (doneBlocks.contains(block)) {
@@ -175,7 +178,8 @@ public class MWItemModelGenerator extends ItemModelProvider {
       genItem(item);
     }
 
-    withExistingParent(name(ModItems.GLISTERING_HORN.get()), "item/handheld").texture("layer0", itemTexture(ModItems.NAUTILUS_HORN.get())); genItem(ModItems.GLISTERING_HORN);
+    withExistingParent(name(ModItems.GLISTERING_HORN.get()), "item/handheld").texture("layer0", itemTexture(ModItems.NAUTILUS_HORN.get()));
+    genItem(ModItems.GLISTERING_HORN);
 
     for (RegistryObject<? extends Item> item : ItemData.getAllItems()) {
       if (doneItems.contains(item)) {
@@ -184,6 +188,10 @@ public class MWItemModelGenerator extends ItemModelProvider {
 
       generated(item.get());
       genItem(item);
+    }
+
+    for (RegistryObject<ForgeSpawnEggItem> egg : ModEntities.getSpawnEggs()) {
+      withExistingParent(egg.getId().getPath(), new ResourceLocation("item/template_spawn_egg"));
     }
 
     validate();

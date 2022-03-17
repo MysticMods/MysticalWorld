@@ -105,6 +105,6 @@ public class BonesBlock extends HorizontalDirectionalBlock {
   }
 
   public enum BoneType {
-    PILE, TOP, BOTTOM;
+    PILE, TOP, BOTTOM
   }
 }

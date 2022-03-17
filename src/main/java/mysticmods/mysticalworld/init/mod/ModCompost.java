@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.init;
+package mysticmods.mysticalworld.init.mod;
 
 import mysticmods.mysticalworld.init.deferred.ModItems;
 import net.minecraft.world.level.block.ComposterBlock;

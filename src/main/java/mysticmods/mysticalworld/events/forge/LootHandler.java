@@ -2,7 +2,7 @@ package mysticmods.mysticalworld.events.forge;
 
 import com.google.common.collect.Sets;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.ModModifiers;
+import mysticmods.mysticalworld.init.deferred.ModModifiers;
 import mysticmods.mysticalworld.loot.Serendipity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;

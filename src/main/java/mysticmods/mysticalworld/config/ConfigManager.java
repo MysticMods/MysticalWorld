@@ -4,8 +4,8 @@ import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.ModMaterials;
 import mysticmods.mysticalworld.init.deferred.ModBlocks;
+import mysticmods.mysticalworld.init.mod.ModMaterials;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -19,7 +19,7 @@ import noobanidus.libs.noobutil.config.IArmorConfig;
 import java.nio.file.Path;
 import java.util.*;
 
-@Mod.EventBusSubscriber(modid= MysticalWorld.MODID, bus= Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ConfigManager {
 
   private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
@@ -146,12 +146,12 @@ public class ConfigManager {
   }
 
   @SubscribeEvent
-  public static void onConfigReload (ModConfigEvent.Reloading event) {
+  public static void onConfigReload(ModConfigEvent.Reloading event) {
     configReload(event);
   }
 
   @SubscribeEvent
-  public static void onConfigLoaded (ModConfigEvent.Loading event) {
+  public static void onConfigLoaded(ModConfigEvent.Loading event) {
     configReload(event);
   }
 }

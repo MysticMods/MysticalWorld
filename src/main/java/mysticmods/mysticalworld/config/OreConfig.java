@@ -1,6 +1,5 @@
 package mysticmods.mysticalworld.config;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

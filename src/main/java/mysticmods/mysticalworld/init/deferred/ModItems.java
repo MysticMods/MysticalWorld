@@ -2,8 +2,8 @@ package mysticmods.mysticalworld.init.deferred;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModFoods;
-import mysticmods.mysticalworld.init.ModMaterials;
 import mysticmods.mysticalworld.init.deferred.data.ItemData;
+import mysticmods.mysticalworld.init.mod.ModMaterials;
 import mysticmods.mysticalworld.items.*;
 import mysticmods.mysticalworld.items.copper.CopperArmorItem;
 import mysticmods.mysticalworld.items.lead.LeadArmorItem;
@@ -16,6 +16,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import noobanidus.libs.noobutil.item.BaseItems;
 import noobanidus.libs.noobutil.item.WeaponType;
@@ -23,7 +24,7 @@ import noobanidus.libs.noobutil.item.WeaponType;
 import java.util.function.Supplier;
 
 public class ModItems {
-  private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Item.class, MysticalWorld.MODID);
+  private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MysticalWorld.MODID);
 
   public static void register(IEventBus modBus) {
     ITEMS.register(modBus);

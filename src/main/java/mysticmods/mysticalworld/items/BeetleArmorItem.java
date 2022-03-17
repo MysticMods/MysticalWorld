@@ -1,7 +1,7 @@
 package mysticmods.mysticalworld.items;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.ModMaterials;
+import mysticmods.mysticalworld.init.mod.ModMaterials;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;

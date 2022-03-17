@@ -1,9 +1,14 @@
 package mysticmods.mysticalworld.events.mod;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.*;
+import mysticmods.mysticalworld.init.configured.ConfiguredFeatures;
+import mysticmods.mysticalworld.init.configured.ConfiguredStructures;
+import mysticmods.mysticalworld.init.configured.ModLoot;
 import mysticmods.mysticalworld.init.deferred.ModBlocks;
+import mysticmods.mysticalworld.init.deferred.ModEntities;
 import mysticmods.mysticalworld.init.deferred.ModItems;
+import mysticmods.mysticalworld.init.deferred.ModRecipes;
+import mysticmods.mysticalworld.init.mod.ModCompost;
 import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.potions.PotionRecipes;
 import mysticmods.mysticalworld.recipe.ingredients.SeedIngredient;
@@ -74,7 +79,7 @@ public class CommonSetup {
       fire.setFlammable(ModBlocks.CHARRED_WIDE_POST.get(), 1, 1);*/
       fire.setFlammable(ModBlocks.CHARRED_WOOD.get(), 1, 1);
       ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.STONEPETAL.getId(), () -> ModBlocks.POTTED_STONEPETAL.get());
-/*      ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.UNCANNY_MUSHROOM.getId(), () -> ModBlocks.POTTED_UNCANNY_MUSHROOM.get());*/
+      /*      ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.UNCANNY_MUSHROOM.getId(), () -> ModBlocks.POTTED_UNCANNY_MUSHROOM.get());*/
 
       ConfiguredFeatures.REGISTRY.registration();
       ConfiguredStructures.REGISTRY.registration();
@@ -82,10 +87,6 @@ public class CommonSetup {
       ModFeatures.REGISTRY.registration();*/
       ModLoot.FUNCTION_REGISTRY.registration();
       ModLoot.CONDITION_REGISTRY.registration();
-
-      SpawnEggItem.BY_ID.remove(null);
-      //noinspection unchecked
-      ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.BY_ID.put((EntityType<? extends Mob>) o.get().getType(null), o.get()));
     });
   }
 }

@@ -4,25 +4,32 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.deferred.ModBlocks;
+import mysticmods.mysticalworld.init.deferred.ModEntities;
 import mysticmods.mysticalworld.init.deferred.ModItems;
 import mysticmods.mysticalworld.init.deferred.data.BlockData;
+import mysticmods.mysticalworld.loot.conditions.*;
+import net.minecraft.advancements.critereon.EntityFlagsPredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.data.loot.EntityLoot;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.LootTables;
-import net.minecraft.world.level.storage.loot.ValidationContext;
+import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
@@ -52,6 +59,187 @@ public class MWLootGenerator extends LootTableProvider {
   @Override
   protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
     map.forEach((id, table) -> LootTables.validate(validationtracker, id, table));
+  }
+
+  public static class MWEntityLoot extends EntityLoot {
+    @Override
+    protected void addTables() {
+      add(ModEntities.BEETLE.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(ModItems.CARAPACE.get())
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(2, 4)))
+              )
+              .add(LootItem.lootTableItem(Items.SLIME_BALL)
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 2)))
+              )
+              .setRolls(ConstantValue.exactly(1))
+          ));
+      add(ModEntities.DEER.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(Items.LEATHER)
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0, 3)))
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(ModItems.VENISON.get())
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0, 1)))
+                  .apply(SmeltItemFunction.smelted()
+                      .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(ModItems.ANTLERS.get())
+                  .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
+                  .when(HasHorns.builder())
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+      );
+      add(ModEntities.FROG.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(Items.SLIME_BALL)
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 2)))
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+      );
+      add(ModEntities.SILVER_FOX.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(ModItems.PELT.get())
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 2)))
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+      );
+      add(ModEntities.HELL_SPROUT.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(Items.NETHER_WART)
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+      );
+      add(ModEntities.SPROUT.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(Items.MELON_SLICE)
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
+              )
+              .when(IsColor.builder("green"))
+              .setRolls(ConstantValue.exactly(1))
+          )
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(ModItems.AUBERGINE.get())
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
+                  .apply(SmeltItemFunction.smelted()
+                      .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
+              )
+              .when(IsColor.builder("purple"))
+              .setRolls(ConstantValue.exactly(1))
+          )
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(Items.BEETROOT)
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
+                  .apply(SmeltItemFunction.smelted()
+                      .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
+              )
+              .when(IsColor.builder("red"))
+              .setRolls(ConstantValue.exactly(1))
+          )
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(Items.POTATO)
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
+                  .apply(SmeltItemFunction.smelted()
+                      .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
+              )
+              .when(IsColor.builder("tan"))
+              .setRolls(ConstantValue.exactly(1))
+          )
+      );
+      add(ModEntities.ENDERMINI.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(ModItems.YOUNG_PEARL.get())
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0, 3)))
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+      );
+      add(ModEntities.LAVA_CAT.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(Items.OBSIDIAN)
+                  .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
+                  .when(IsObsidian.builder())
+                  .when(LootItemRandomChanceCondition.randomChance(0.7f)))
+              .add(LootItem.lootTableItem(Items.COBBLESTONE)
+                  .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
+                  .when(IsObsidian.builder()))
+              .add(LootItem.lootTableItem(Items.COBBLESTONE)
+                  .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
+                  .when(IsLava.builder()))
+              .setRolls(ConstantValue.exactly(1))
+          )
+      );
+      add(ModEntities.OWL.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(Items.FEATHER)
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 3)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+      );
+      add(ModEntities.SILKWORM.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(ModItems.SILKWORM_EGG.get())
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+      );
+      add(ModEntities.DUCK.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(Items.FEATHER)
+                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 3)))
+                  .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+      );
+      add(ModEntities.CLAM.get(), LootTable.lootTable()
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(Items.ENDER_PEARL)
+                  .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
+                  .when(IsMature.builder())
+                  .when(IsEnder.builder())
+              )
+              .setRolls(ConstantValue.exactly(1))
+          )
+          .withPool(LootPool.lootPool()
+              .add(LootItem.lootTableItem(ModItems.LUSTROUS_PEARL.get())
+                  .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
+                  .when(IsMature.builder())
+                  .when(IsEnder.builder().invert()))
+              .setRolls(ConstantValue.exactly(1)))
+      );
+    }
+
+    @Override
+    protected Iterable<EntityType<?>> getKnownEntities() {
+      return ModEntities.getEntities().stream().map(RegistryObject::get).collect(Collectors.toSet());
+    }
   }
 
   public static class MWBlockLoot extends BlockLoot {

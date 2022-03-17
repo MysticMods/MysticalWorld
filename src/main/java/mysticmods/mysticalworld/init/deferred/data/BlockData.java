@@ -11,10 +11,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class BlockData {
-  private static Map<RegistryObject<? extends Block>, RegistryObject<? extends Item>> BLOCK_TO_ITEM_MAP = new HashMap<>();
-  private static Set<RegistryObject<? extends Block>> BLOCKS = new HashSet<>();
+  private static final Map<RegistryObject<? extends Block>, RegistryObject<? extends Item>> BLOCK_TO_ITEM_MAP = new HashMap<>();
+  private static final Set<RegistryObject<? extends Block>> BLOCKS = new HashSet<>();
 
-  public static <T extends Block> void storeBlock (RegistryObject<T> block) {
+  public static <T extends Block> void storeBlock(RegistryObject<T> block) {
     BLOCKS.add(block);
   }
 
@@ -22,11 +22,11 @@ public class BlockData {
     BLOCK_TO_ITEM_MAP.put(result, blockItem);
   }
 
-  public static Item item (RegistryObject<? extends Block> block) {
+  public static Item item(RegistryObject<? extends Block> block) {
     return BLOCK_TO_ITEM_MAP.get(block).get();
   }
 
-  public static Set<RegistryObject<? extends Block>> getAllBlocks () {
+  public static Set<RegistryObject<? extends Block>> getAllBlocks() {
     return BLOCKS;
   }
 }

@@ -1,7 +1,7 @@
 package mysticmods.mysticalworld.items.sapphire;
 
 import com.google.common.collect.Multimap;
-import mysticmods.mysticalworld.init.ModModifiers;
+import mysticmods.mysticalworld.init.deferred.ModModifiers;
 import mysticmods.mysticalworld.items.ModifiedArmorItem;
 import mysticmods.mysticalworld.items.lead.ILeadItem;
 import net.minecraft.world.entity.EquipmentSlot;

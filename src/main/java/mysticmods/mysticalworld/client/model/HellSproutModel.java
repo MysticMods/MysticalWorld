@@ -32,24 +32,24 @@ public class HellSproutModel extends AgeableListModel<HellSproutEntity> {
     PartDefinition partdefinition = meshdefinition.getRoot();
 
     partdefinition.addOrReplaceChild("head", CubeListBuilder.create()
-                    .texOffs(12, 0).addBox(-2.5F, 0F, -2.5F, 5, 5, 5).mirror(),
-            PartPose.offset(0F, 11F, 0F));
+            .texOffs(12, 0).addBox(-2.5F, 0F, -2.5F, 5, 5, 5).mirror(),
+        PartPose.offset(0F, 11F, 0F));
 
     partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create()
-                    .texOffs(0, 0).addBox(-1F, 0F, -1F, 2, 8, 2).mirror(),
-            PartPose.offset(1.5F, 16F, 0F));
+            .texOffs(0, 0).addBox(-1F, 0F, -1F, 2, 8, 2).mirror(),
+        PartPose.offset(1.5F, 16F, 0F));
 
     partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create()
-                    .texOffs(0, 0).addBox(-1F, 0F, -1F, 2, 8, 2).mirror(),
-            PartPose.offset(-1.5F, 16F, 0F));
+            .texOffs(0, 0).addBox(-1F, 0F, -1F, 2, 8, 2).mirror(),
+        PartPose.offset(-1.5F, 16F, 0F));
 
     partdefinition.addOrReplaceChild("leaf_top", CubeListBuilder.create()
-                    .texOffs(8, 0).addBox(-0.5F, 0F, -0.5F, 1, 2, 1).mirror(),
-            PartPose.offset(0F, 9F, -1F));
+            .texOffs(8, 0).addBox(-0.5F, 0F, -0.5F, 1, 2, 1).mirror(),
+        PartPose.offset(0F, 9F, -1F));
 
     partdefinition.addOrReplaceChild("leaf_bottom", CubeListBuilder.create()
-                    .texOffs(0, 10).addBox(-1.5F, -0.5F, -0.5F, 3, 4, 1).mirror(),
-            PartPose.offsetAndRotation(0F, 9F, -1F, 1.963495F, 0.5235988F, 0F));
+            .texOffs(0, 10).addBox(-1.5F, -0.5F, -0.5F, 3, 4, 1).mirror(),
+        PartPose.offsetAndRotation(0F, 9F, -1F, 1.963495F, 0.5235988F, 0F));
 
     return LayerDefinition.create(meshdefinition, 32, 32);
   }

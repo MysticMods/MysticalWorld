@@ -2,9 +2,8 @@ package mysticmods.mysticalworld;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import mysticmods.mysticalworld.config.ConfigManager;
-import mysticmods.mysticalworld.init.*;
-import mysticmods.mysticalworld.init.deferred.ModBlocks;
-import mysticmods.mysticalworld.init.deferred.ModItems;
+import mysticmods.mysticalworld.init.ModSounds;
+import mysticmods.mysticalworld.init.deferred.*;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.PlantType;
@@ -51,13 +50,11 @@ public class MysticalWorld {
     final IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
     ModBlocks.register(modBus);
     ModItems.register(modBus);
-
-    ModEntities.load();
-    ModRecipes.load();
-    ModModifiers.load();
-    ModSounds.load();
-    ModEffects.load();
-    ModLang.load();
+    ModEffects.register(modBus);
+    ModModifiers.register(modBus);
+    ModRecipes.register(modBus);
+    ModSounds.register(modBus);
+    ModEntities.register(modBus);
 
     PlayerModifierRegistry.addModifier(ModModifiers.SERENDIPITY);
     PlayerModifierRegistry.addModifier(ModModifiers.BLESSED);
