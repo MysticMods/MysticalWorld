@@ -5,7 +5,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.init.configured.ModLoot;
+import net.minecraft.core.Holder;
 import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
@@ -18,6 +20,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -30,14 +33,14 @@ public class RandomPotion extends LootItemConditionalFunction {
     return ModLoot.RANDOM_POTION;
   }
 
-  protected Tag.Named<Potion> getIgnoreTag() {
+  protected TagKey<Potion> getIgnoreTag() {
     return MWTags.Potions.RANDOM_BLACKLIST;
   }
 
   public ItemStack run(ItemStack stack, LootContext context) {
     Random random = context.getRandom();
 
-    List<Potion> potions = ForgeRegistries.POTIONS.getValues().stream().filter(potion -> !potion.is(getIgnoreTag())).collect(Collectors.toList());
+    List<Potion> potions = ForgeRegistries.POTIONS.getValues().stream().filter(potion -> ForgeRegistries.POTIONS.getHolder(potion).map(potionHolder -> potionHolder.is(getIgnoreTag())).orElse(false)).collect(Collectors.toList());
     Potion potion = potions.get(random.nextInt(potions.size()));
     PotionUtils.setPotion(stack, potion);
     return stack;

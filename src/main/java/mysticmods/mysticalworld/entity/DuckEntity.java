@@ -6,6 +6,7 @@ import mysticmods.mysticalworld.init.deferred.ModEntities;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
@@ -106,7 +107,7 @@ public class DuckEntity extends Animal {
   }
 
   @Override
-  protected void jumpInLiquid(Tag<Fluid> pFluidTag) {
+  protected void jumpInLiquid(TagKey<Fluid> pFluidTag) {
     this.setDeltaMovement(this.getDeltaMovement().add(0, this.getNavigation().canFloat() ? 0.039 : 0.2, 0.0));
   }
 

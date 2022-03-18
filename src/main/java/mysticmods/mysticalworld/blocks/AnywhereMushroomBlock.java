@@ -1,6 +1,7 @@
 package mysticmods.mysticalworld.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.MushroomBlock;
@@ -10,8 +11,8 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import java.util.function.Supplier;
 
 public class AnywhereMushroomBlock extends MushroomBlock {
-  public AnywhereMushroomBlock(Properties props, Supplier<ConfiguredFeature<?, ?>> feature) {
-    super(props, feature);
+  public AnywhereMushroomBlock(Properties p_153983_, Supplier<Holder<? extends ConfiguredFeature<?, ?>>> p_153984_) {
+    super(p_153983_, p_153984_);
   }
 
   @Override
