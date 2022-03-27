@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.entity;
 
-import mysticmods.mysticalworld.init.deferred.ModEntities;
+import mysticmods.mysticalworld.init.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;

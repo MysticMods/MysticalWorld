@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:dusts/copper",
+    "#forge:dusts/lead",
+    "#forge:dusts/orichalcum",
+    "#forge:dusts/silver",
+    "#forge:dusts/tin",
+    "#forge:dusts/gold",
+    "#forge:dusts/iron"
+  ]
+}

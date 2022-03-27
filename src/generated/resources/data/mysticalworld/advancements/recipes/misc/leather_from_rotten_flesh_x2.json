@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:leather_from_rotten_flesh_x2"
+    ]
+  },
+  "criteria": {
+    "has_tannins": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:tannin_vial"
+            ]
+          }
+        ]
+      }
+    },
+    "has_rotten_Flesh": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:rotten_flesh"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:leather_from_rotten_flesh_x2"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tannins",
+      "has_rotten_Flesh",
+      "has_the_recipe"
+    ]
+  ]
+}

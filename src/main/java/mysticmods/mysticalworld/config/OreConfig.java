@@ -1,5 +1,6 @@
 package mysticmods.mysticalworld.config;
 
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -7,7 +8,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.registries.RegistryObject;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class OreConfig extends AbstractConfig {
   private final int maxY;
   private final int size;
   private final List<ResourceKey<Level>> dimensions;
-  private final Supplier<RegistryObject<BaseBlocks.OreBlock>> ore;
+  private final Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore;
 
   private ForgeConfigSpec.IntValue configChance;
   private ForgeConfigSpec.IntValue configMinY;
@@ -33,11 +33,11 @@ public class OreConfig extends AbstractConfig {
 
   private final RuleTest rule;
 
-  public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions, Supplier<RegistryObject<BaseBlocks.OreBlock>> ore) {
+  public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
     this(name, chance, minY, maxY, size, dimensions, ore, /*OreGenTest.INSTANCE*/ null);
   }
 
-  public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions, Supplier<RegistryObject<BaseBlocks.OreBlock>> ore, RuleTest test) {
+  public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore, RuleTest test) {
     super();
     this.name = name;
     this.chance = chance;

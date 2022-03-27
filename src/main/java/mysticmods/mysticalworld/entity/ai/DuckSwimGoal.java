@@ -18,12 +18,12 @@ public class DuckSwimGoal extends Goal {
   }
 
   @Override
-  public boolean canUse() {
+  public boolean canUse () {
     return entity.isInWater() && entity.getFluidHeight(FluidTags.WATER) > (entity.isBaby() ? 0.1d : 0.2d) || entity.isInLava();
   }
 
   @Override
-  public void tick() {
+  public void tick () {
     if (entity.getRandom().nextFloat() < 0.8f) {
       entity.getJumpControl().jump();
     }

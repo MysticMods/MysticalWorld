@@ -3,10 +3,10 @@ package mysticmods.mysticalworld.items;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.entity.ClamEntity;
-import mysticmods.mysticalworld.init.deferred.ModSounds;
-import mysticmods.mysticalworld.init.deferred.ModEntities;
-import mysticmods.mysticalworld.init.deferred.ModItems;
-import mysticmods.mysticalworld.init.deferred.ModModifiers;
+import mysticmods.mysticalworld.init.ModEntities;
+import mysticmods.mysticalworld.init.ModItems;
+import mysticmods.mysticalworld.init.ModModifiers;
+import mysticmods.mysticalworld.init.ModSounds;
 import mysticmods.mysticalworld.loot.Serendipity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -91,7 +91,7 @@ public class PearleporterItem extends Item {
       if (clam.getEntityData().get(ClamEntity.isEnder)) {
         result = new ItemStack(Items.ENDER_PEARL, count);
       } else {
-        result = new ItemStack(ModItems.LUSTROUS_PEARL.get(), count);
+        result = new ItemStack(ModItems.PEARL_GEM.get(), count);
       }
       clam.getEntityData().set(ClamEntity.age, clam.getRandom().nextInt(ConfigManager.CLAM_CONFIG.getInitialAge()));
       ItemEntity ent = entity.spawnAtLocation(result, 1.0F);

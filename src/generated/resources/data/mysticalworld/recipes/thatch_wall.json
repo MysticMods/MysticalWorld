@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:thatch"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:thatch_wall",
+    "count": 6
+  }
+}

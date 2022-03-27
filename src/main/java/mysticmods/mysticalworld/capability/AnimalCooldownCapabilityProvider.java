@@ -23,12 +23,12 @@ public class AnimalCooldownCapabilityProvider implements ICapabilityProvider, IC
   @Override
   public LongTag serializeNBT() {
     return null;
-    /*    return (LongTag) ANIMAL_COOLDOWN_CAPABILITY.getStorage().writeNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null);*/
+/*    return (LongTag) ANIMAL_COOLDOWN_CAPABILITY.getStorage().writeNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null);*/
   }
 
   @Override
   public void deserializeNBT(LongTag nbt) {
-    /*    ANIMAL_COOLDOWN_CAPABILITY.getStorage().readNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null, nbt);*/
+/*    ANIMAL_COOLDOWN_CAPABILITY.getStorage().readNBT(ANIMAL_COOLDOWN_CAPABILITY, this.instance, null, nbt);*/
   }
 
   @Nonnull

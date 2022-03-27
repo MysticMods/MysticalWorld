@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class HellSproutRenderer extends MobRenderer<HellSproutEntity, HellSproutModel> {
   public HellSproutRenderer(EntityRendererProvider.Context context) {
-    super(context, new HellSproutModel(context.bakeLayer(ModelHolder.HELL_SPROUT)), 0.15f);
+	  super(context, new HellSproutModel(context.bakeLayer(ModelHolder.HELL_SPROUT)), 0.15f);
   }
 
   public static ResourceLocation TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/sprout_hell.png");

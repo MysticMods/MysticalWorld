@@ -60,7 +60,7 @@ public abstract class ShoulderRidingModel<T extends Entity> extends AgeableListM
     }
   }
 
-  protected ModelState getStateFor(T entity) {
+  protected ModelState getStateFor (T entity) {
     if (entity instanceof TamableAnimal) {
       TamableAnimal tameable = (TamableAnimal) entity;
       if (tameable.isInSittingPose()) {
@@ -76,5 +76,5 @@ public abstract class ShoulderRidingModel<T extends Entity> extends AgeableListM
 
   protected abstract void prepare(ModelState state);
 
-  public abstract ResourceLocation getTexture(ModelState state);
+  public abstract ResourceLocation getTexture (ModelState state);
 }

@@ -35,7 +35,7 @@ public class StructureConfig extends FeatureConfig<StructureConfig> {
     builder.comment("Structure Generation").push(name);
     StringJoiner sb = new StringJoiner(",");
     biomes.forEach(o -> sb.add(o.getName()));
-    configBiomes = builder.comment("List of biome types to spawn (default [" + sb + "], pass empty list for every biome").define("biomes", sb.toString());
+    configBiomes = builder.comment("List of biome types to spawn (default [" + sb.toString() + "], pass empty list for every biome").define("biomes", sb.toString());
     StringJoiner sb2 = new StringJoiner(",");
     biomeRestrictions.forEach(biome -> sb2.add(biome.getName()));
     configBiomeRestrictions = builder.comment("Which biome types this structure shouldn't spawn in (default END, NETHER)").define("biomeRestrictions", sb2.toString());

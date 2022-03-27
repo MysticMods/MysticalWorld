@@ -3,9 +3,10 @@ package mysticmods.mysticalworld.client.player.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mysticmods.mysticalworld.api.Capabilities;
+import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.client.model.ModelState;
 import mysticmods.mysticalworld.client.model.ShoulderRidingModel;
-import mysticmods.mysticalworld.init.deferred.ModEntities;
+import mysticmods.mysticalworld.init.ModEntities;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -26,7 +27,7 @@ public class ShoulderRenderLayer<T extends Player> extends RenderLayer<T, Player
   public ShoulderRidingModel<?> getModelFor(EntityType<?> type) {
     if (type == ModEntities.BEETLE.get()) {
       return null;
-      /*      return ModelHolder.beetleModel;*/
+/*      return ModelHolder.beetleModel;*/
     }
 
     return null;

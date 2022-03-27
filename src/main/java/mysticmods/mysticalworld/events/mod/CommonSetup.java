@@ -1,14 +1,7 @@
 package mysticmods.mysticalworld.events.mod;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.configured.ConfiguredFeatures;
-import mysticmods.mysticalworld.init.configured.ConfiguredStructures;
-import mysticmods.mysticalworld.init.configured.ModLoot;
-import mysticmods.mysticalworld.init.deferred.ModBlocks;
-import mysticmods.mysticalworld.init.deferred.ModEntities;
-import mysticmods.mysticalworld.init.deferred.ModItems;
-import mysticmods.mysticalworld.init.deferred.ModRecipes;
-import mysticmods.mysticalworld.init.mod.ModCompost;
+import mysticmods.mysticalworld.init.*;
 import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.potions.PotionRecipes;
 import mysticmods.mysticalworld.recipe.ingredients.SeedIngredient;
@@ -60,26 +53,26 @@ public class CommonSetup {
       // TODO: Improve this
       FireBlock fire = (FireBlock) Blocks.FIRE;
 
-/*      fire.setFlammable(ModBlocks.THATCH_FENCE.get(), 5, 20);
+      fire.setFlammable(ModBlocks.THATCH_FENCE.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH_FENCE_GATE.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH_SLAB.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH_SMALL_POST.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH_WIDE_POST.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH_STAIRS.get(), 5, 20);
-      fire.setFlammable(ModBlocks.THATCH_WALL.get(), 5, 20);*/
+      fire.setFlammable(ModBlocks.THATCH_WALL.get(), 5, 20);
       fire.setFlammable(ModBlocks.THATCH.get(), 5, 20);
       fire.setFlammable(ModBlocks.CHARRED_PLANKS.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_LOG.get(), 1, 1);
-/*      fire.setFlammable(ModBlocks.CHARRED_FENCE.get(), 1, 1);
+      fire.setFlammable(ModBlocks.CHARRED_FENCE.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_FENCE_GATE.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_SLAB.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_SMALL_POST.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_STAIRS.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_WALL.get(), 1, 1);
-      fire.setFlammable(ModBlocks.CHARRED_WIDE_POST.get(), 1, 1);*/
+      fire.setFlammable(ModBlocks.CHARRED_WIDE_POST.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_WOOD.get(), 1, 1);
       ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.STONEPETAL.getId(), () -> ModBlocks.POTTED_STONEPETAL.get());
-      /*      ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.UNCANNY_MUSHROOM.getId(), () -> ModBlocks.POTTED_UNCANNY_MUSHROOM.get());*/
+/*      ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.UNCANNY_MUSHROOM.getId(), () -> ModBlocks.POTTED_UNCANNY_MUSHROOM.get());*/
 
       ConfiguredFeatures.REGISTRY.registration();
       ConfiguredStructures.REGISTRY.registration();
@@ -87,6 +80,10 @@ public class CommonSetup {
       ModFeatures.REGISTRY.registration();*/
       ModLoot.FUNCTION_REGISTRY.registration();
       ModLoot.CONDITION_REGISTRY.registration();
+
+      SpawnEggItem.BY_ID.remove(null);
+      //noinspection unchecked
+      ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.BY_ID.put((EntityType<? extends Mob>) o.get().getType(null), o.get()));
     });
   }
 }

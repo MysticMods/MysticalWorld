@@ -48,52 +48,52 @@ public class OwlModel extends AgeableListModel<OwlEntity> {
     PartDefinition partdefinition = meshdefinition.getRoot();
 
     PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create()
-        .texOffs(0, 0).addBox(-4.0F, -13.0F, -4.0F, 8.0F, 9.0F, 8.0F), PartPose.offset(0.0F, 24.0F, 0.0F));
+            .texOffs(0, 0).addBox(-4.0F, -13.0F, -4.0F, 8.0F, 9.0F, 8.0F), PartPose.offset(0.0F, 24.0F, 0.0F));
 
     PartDefinition footR = body.addOrReplaceChild("foot_right", CubeListBuilder.create()
             .texOffs(0, 43).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F)
             .texOffs(26, 48).addBox(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F)
             .texOffs(0, 48).addBox(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F),
-        PartPose.offset(-1.5F, -4.0F, -0.5F));
+            PartPose.offset(-1.5F, -4.0F, -0.5F));
 
     PartDefinition footL = body.addOrReplaceChild("foot_left", CubeListBuilder.create()
             .texOffs(12, 43).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F)
             .texOffs(22, 48).addBox(-1.0F, 2.0F, 0.5F, 2.0F, 2.0F, 0.0F)
             .texOffs(8, 48).addBox(-1.0F, 4.0F, -1.5F, 2.0F, 0.0F, 2.0F),
-        PartPose.offset(1.5F, -4.0F, -0.5F));
+            PartPose.offset(1.5F, -4.0F, -0.5F));
 
     PartDefinition wingR1 = body.addOrReplaceChild("wing_right1", CubeListBuilder.create()
             .texOffs(16, 17).addBox(-1.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F),
-        PartPose.offset(-4.0F, -13.0F, -1.0F));
+            PartPose.offset(-4.0F, -13.0F, -1.0F));
 
     PartDefinition wingR2 = wingR1.addOrReplaceChild("wing_right2", CubeListBuilder.create()
             .texOffs(14, 31).addBox(0.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F),
-        PartPose.offsetAndRotation(-1.0F, 7.0F, -2.0F, 0.1745F, 0.0349F, -0.1745F));
+            PartPose.offsetAndRotation(-1.0F, 7.0F, -2.0F, 0.1745F, 0.0349F, -0.1745F));
 
     PartDefinition wingL1 = body.addOrReplaceChild("wing_left1", CubeListBuilder.create()
             .texOffs(0, 17).addBox(0.0F, 0.0F, -2.0F, 1.0F, 7.0F, 7.0F),
-        PartPose.offset(4.0F, -13.0F, -1.0F));
+            PartPose.offset(4.0F, -13.0F, -1.0F));
 
     PartDefinition wingL2 = wingL1.addOrReplaceChild("wing_left2", CubeListBuilder.create()
             .texOffs(0, 31).addBox(-1.0F, 0.0F, 0.0F, 1.0F, 6.0F, 6.0F),
-        PartPose.offsetAndRotation(1.0F, 7.0F, -2.0F, 0.1745F, -0.0349F, 0.1745F));
+            PartPose.offsetAndRotation(1.0F, 7.0F, -2.0F, 0.1745F, -0.0349F, 0.1745F));
 
     PartDefinition tail = body.addOrReplaceChild("tail", CubeListBuilder.create()
             .texOffs(28, 31).addBox(-3.0F, 0.0F, -2.0F, 6.0F, 4.0F, 2.0F),
-        PartPose.offsetAndRotation(0.0F, -5.0F, 4.0F, 0.5236F, 0.0F, 0.0F));
+            PartPose.offsetAndRotation(0.0F, -5.0F, 4.0F, 0.5236F, 0.0F, 0.0F));
 
     PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create()
             .texOffs(32, 0).addBox(-3.5F, -6.0F, -3.5F, 7.0F, 6.0F, 7.0F)
             .texOffs(16, 48).addBox(-1.0F, -3.0F, -4.5F, 2.0F, 2.0F, 1.0F),
-        PartPose.offset(0.0F, -13.0F, 0.0F));
+            PartPose.offset(0.0F, -13.0F, 0.0F));
 
     PartDefinition tuftR = head.addOrReplaceChild("tuft_right", CubeListBuilder.create()
             .texOffs(24, 43).addBox(-2.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F),
-        PartPose.offsetAndRotation(-2.0F, -6.0F, -3.0F, 0.4363F, -0.3491F, 0.0F));
+            PartPose.offsetAndRotation(-2.0F, -6.0F, -3.0F, 0.4363F, -0.3491F, 0.0F));
 
     PartDefinition tuftL = head.addOrReplaceChild("tuft_left", CubeListBuilder.create()
             .texOffs(36, 43).addBox(0.0F, 0.0F, 0.0F, 2.0F, 0.0F, 4.0F),
-        PartPose.offsetAndRotation(2.0F, -6.0F, -3.0F, 0.4363F, 0.3491F, 0.0F));
+            PartPose.offsetAndRotation(2.0F, -6.0F, -3.0F, 0.4363F, 0.3491F, 0.0F));
 
     return LayerDefinition.create(meshdefinition, 64, 64);
   }
@@ -116,7 +116,10 @@ public class OwlModel extends AgeableListModel<OwlEntity> {
     this.head.yRot = netHeadYaw * 0.017453292F;
     this.head.zRot = 0.0F;
 
-    boolean hootfire = entityIn.hasCustomName() && entityIn.getCustomName() != null && entityIn.getCustomName().getString().equals("Hootfire");
+    boolean hootfire = false;
+    if (entityIn.hasCustomName() && entityIn.getCustomName() != null && entityIn.getCustomName().getString().equals("Hootfire")) {
+      hootfire = true;
+    }
 
     if (this.state == State.FLYING && !hootfire) {
       setRotationAngle(this.body, 0.45f, 0, 0);

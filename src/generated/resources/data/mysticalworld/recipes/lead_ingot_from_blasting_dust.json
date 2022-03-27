@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "forge:dusts/lead"
+  },
+  "result": "mysticalworld:lead_ingot",
+  "experience": 0.125,
+  "cookingtime": 100
+}

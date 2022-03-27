@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:bone_pile_2"
+    ]
+  },
+  "criteria": {
+    "has_bone_pile_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:bone_pile_1"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:bone_pile_2"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bone_pile_1",
+      "has_the_recipe"
+    ]
+  ]
+}

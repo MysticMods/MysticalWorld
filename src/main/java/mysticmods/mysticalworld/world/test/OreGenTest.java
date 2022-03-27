@@ -1,5 +1,15 @@
 package mysticmods.mysticalworld.world.test;
 
+import com.mojang.serialization.Codec;
+import mysticmods.mysticalworld.init.ModFeatures;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
+import net.minecraftforge.common.Tags;
+
+import java.util.Random;
+
 /*public class OreGenTest extends RuleTest {
   public static final OreGenTest INSTANCE = new OreGenTest();
   public static final Codec<OreGenTest> CODEC = Codec.unit(() -> INSTANCE);

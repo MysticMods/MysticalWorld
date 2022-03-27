@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:orichalcum_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:orichalcum_stairs",
+    "count": 4
+  }
+}

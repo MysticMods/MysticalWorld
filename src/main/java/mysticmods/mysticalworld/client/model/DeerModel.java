@@ -10,6 +10,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+import javax.annotation.Nonnull;
 import java.util.Collections;
 
 public class DeerModel extends AgeableListModel<DeerEntity> {
@@ -57,79 +58,79 @@ public class DeerModel extends AgeableListModel<DeerEntity> {
     PartDefinition partdefinition = meshdefinition.getRoot();
 
     PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create(),
-        PartPose.offset(0.0F, 6.0F, -5.0F));
+            PartPose.offset(0.0F, 6.0F, -5.0F));
 
     PartDefinition main = head.addOrReplaceChild("main", CubeListBuilder.create()
             .texOffs(0, 0).mirror().addBox(-2.5F, -2.5F, -7.0F, 5.0F, 5.0F, 7.0F).mirror(false),
-        PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.3927F, 0.0F, 0.0F));
+            PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.3927F, 0.0F, 0.0F));
 
     PartDefinition ear1 = head.addOrReplaceChild("ear1", CubeListBuilder.create()
             .texOffs(17, 0).addBox(-1.5F, -4.0F, -0.5F, 3.0F, 4.0F, 1.0F),
-        PartPose.offsetAndRotation(-2.0F, -0.5F, -1.5F, -0.1745F, -0.1745F, -1.1781F));
+            PartPose.offsetAndRotation(-2.0F, -0.5F, -1.5F, -0.1745F, -0.1745F, -1.1781F));
 
     PartDefinition ear2 = head.addOrReplaceChild("ear2", CubeListBuilder.create()
             .texOffs(17, 0).mirror().addBox(-1.5F, -4.0F, -0.5F, 3.0F, 4.0F, 1.0F).mirror(false),
-        PartPose.offsetAndRotation(2.0F, -0.5F, -1.5F, 0.1745F, 0.1745F, 1.1781F));
+            PartPose.offsetAndRotation(2.0F, -0.5F, -1.5F, 0.1745F, 0.1745F, 1.1781F));
 
     PartDefinition horn1 = head.addOrReplaceChild("horn1", CubeListBuilder.create()
             .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
-        PartPose.offsetAndRotation(1.0F, -2.0F, -1.0F, 0.0F, 0.0F, 0.2618F));
+            PartPose.offsetAndRotation(1.0F, -2.0F, -1.0F, 0.0F, 0.0F, 0.2618F));
 
     PartDefinition horn2 = head.addOrReplaceChild("horn2", CubeListBuilder.create()
             .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
-        PartPose.offsetAndRotation(-1.0F, -2.0F, -1.0F, 0.0F, 0.0F, -0.2618F));
+            PartPose.offsetAndRotation(-1.0F, -2.0F, -1.0F, 0.0F, 0.0F, -0.2618F));
 
     PartDefinition horn3 = head.addOrReplaceChild("horn3", CubeListBuilder.create()
             .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
-        PartPose.offsetAndRotation(1.75F, -4.0F, -1.0F, 0.0F, 0.0873F, 1.0472F));
+            PartPose.offsetAndRotation(1.75F, -4.0F, -1.0F, 0.0F, 0.0873F, 1.0472F));
 
     PartDefinition horn4 = head.addOrReplaceChild("horn4", CubeListBuilder.create()
             .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
-        PartPose.offsetAndRotation(-1.8F, -4.0F, -1.0F, 0.0F, -0.0873F, -1.0472F));
+            PartPose.offsetAndRotation(-1.8F, -4.0F, -1.0F, 0.0F, -0.0873F, -1.0472F));
 
     PartDefinition horn5 = head.addOrReplaceChild("horn5", CubeListBuilder.create()
             .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
-        PartPose.offsetAndRotation(-4.36F, -5.8F, -1.2F, 0.0F, -0.0873F, 0.2618F));
+            PartPose.offsetAndRotation(-4.36F, -5.8F, -1.2F, 0.0F, -0.0873F, 0.2618F));
 
     PartDefinition horn6 = head.addOrReplaceChild("horn6", CubeListBuilder.create()
             .texOffs(16, 32).mirror().addBox(-0.5F, -5.0F, -0.5F, 1.0F, 5.0F, 1.0F).mirror(false),
-        PartPose.offsetAndRotation(4.4F, -5.8F, -1.2F, 0.0F, 0.0873F, -0.2618F));
+            PartPose.offsetAndRotation(4.4F, -5.8F, -1.2F, 0.0F, 0.0873F, -0.2618F));
 
     PartDefinition horn7 = head.addOrReplaceChild("horn7", CubeListBuilder.create()
             .texOffs(20, 32).mirror().addBox(-0.5F, -3.0F, -0.5F, 1.0F, 3.0F, 1.0F).mirror(false),
-        PartPose.offsetAndRotation(-3.8F, -8.0F, -1.2F, 0.0F, -0.1745F, -0.7854F));
+            PartPose.offsetAndRotation(-3.8F, -8.0F, -1.2F, 0.0F, -0.1745F, -0.7854F));
 
     PartDefinition horn8 = head.addOrReplaceChild("horn8", CubeListBuilder.create()
             .texOffs(20, 32).mirror().addBox(-0.5F, -3.0F, -0.5F, 1.0F, 3.0F, 1.0F).mirror(false),
-        PartPose.offsetAndRotation(3.8F, -8.0F, -1.2F, 0.0F, 0.1745F, 0.7854F));
+            PartPose.offsetAndRotation(3.8F, -8.0F, -1.2F, 0.0F, 0.1745F, 0.7854F));
 
     PartDefinition neck = partdefinition.addOrReplaceChild("neck", CubeListBuilder.create()
             .texOffs(0, 16).mirror().addBox(-2.0F, 0.0F, -2.5F, 4.0F, 7.0F, 4.0F).mirror(false),
-        PartPose.offsetAndRotation(0.0F, 7.0F, -6.9533F, 1.0472F, 0.0F, 0.0F));
+            PartPose.offsetAndRotation(0.0F, 7.0F, -6.9533F, 1.0472F, 0.0F, 0.0F));
 
     PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create()
             .texOffs(16, 16).mirror().addBox(-2.5F, 0.0F, 0.0F, 5.0F, 7.0F, 9.0F).mirror(false),
-        PartPose.offset(0.0F, 8.0F, -3.9533F));
+            PartPose.offset(0.0F, 8.0F, -3.9533F));
 
     PartDefinition legRF = partdefinition.addOrReplaceChild("legRF", CubeListBuilder.create()
             .texOffs(0, 32).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 9.0F, 2.0F).mirror(false),
-        PartPose.offset(-1.5F, 15.0F, -2.9533F));
+            PartPose.offset(-1.5F, 15.0F, -2.9533F));
 
     PartDefinition legLF = partdefinition.addOrReplaceChild("legLF", CubeListBuilder.create()
             .texOffs(0, 32).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 9.0F, 2.0F).mirror(false),
-        PartPose.offset(1.5F, 15.0F, -2.9533F));
+            PartPose.offset(1.5F, 15.0F, -2.9533F));
 
     PartDefinition legLB = partdefinition.addOrReplaceChild("legLB", CubeListBuilder.create()
             .texOffs(0, 32).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 9.0F, 2.0F).mirror(false),
-        PartPose.offset(-1.5F, 15.0F, 4.0F));
+            PartPose.offset(-1.5F, 15.0F, 4.0F));
 
     PartDefinition legRB = partdefinition.addOrReplaceChild("legRB", CubeListBuilder.create()
             .texOffs(0, 32).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 9.0F, 2.0F).mirror(false),
-        PartPose.offset(1.5F, 15.0F, 4.0F));
+            PartPose.offset(1.5F, 15.0F, 4.0F));
 
     PartDefinition tail = partdefinition.addOrReplaceChild("tail", CubeListBuilder.create()
             .texOffs(32, 0).mirror().addBox(-1.5F, -1.5F, 0.0F, 3.0F, 3.0F, 4.0F).mirror(false),
-        PartPose.offsetAndRotation(0.0F, 9.0F, 4.0F, 0.7854F, 0.0F, 0.0F));
+            PartPose.offsetAndRotation(0.0F, 9.0F, 4.0F, 0.7854F, 0.0F, 0.0F));
 
     return LayerDefinition.create(meshdefinition, 64, 64);
   }
@@ -146,8 +147,8 @@ public class DeerModel extends AgeableListModel<DeerEntity> {
 
   @Override
   public void setupAnim(DeerEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-    head.xRot = headPitch * ((float) Math.PI / 180F);
-    head.yRot = netHeadYaw * ((float) Math.PI / 180F);
+    head.xRot = headPitch * ((float)Math.PI / 180F);
+    head.yRot = netHeadYaw * ((float)Math.PI / 180F);
     float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
     legRF.xRot = limbSwingAmount * sin;
     legLF.xRot = -limbSwingAmount * sin;

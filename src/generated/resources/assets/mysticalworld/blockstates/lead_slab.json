@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "mysticalworld:block/lead_slab_top"
+    },
+    "type=bottom": {
+      "model": "mysticalworld:block/lead_slab"
+    },
+    "type=double": {
+      "model": "mysticalworld:block/lead_block"
+    }
+  }
+}

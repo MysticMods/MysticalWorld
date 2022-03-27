@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ARC",
+    "BPB",
+    "BWB"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:crops/aubergine"
+    },
+    "R": {
+      "item": "minecraft:beetroot"
+    },
+    "C": {
+      "item": "minecraft:carrot"
+    },
+    "P": {
+      "item": "minecraft:apple"
+    },
+    "B": {
+      "item": "minecraft:glass_bottle"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:vegetable_juice",
+    "count": 4
+  }
+}

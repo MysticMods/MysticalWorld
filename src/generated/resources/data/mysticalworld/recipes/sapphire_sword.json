@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X",
+    "S"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:gems/sapphire"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:sapphire_sword"
+  }
+}

@@ -2,7 +2,7 @@ package mysticmods.mysticalworld.events.forge;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
-import mysticmods.mysticalworld.init.deferred.ModItems;
+import mysticmods.mysticalworld.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.item.ItemEntity;

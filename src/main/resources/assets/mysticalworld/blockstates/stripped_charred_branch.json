@@ -1,7 +1,5 @@
 {
   "variants": {
-    "": {
-      "model": "mysticalworld:block/stripped_charred_branch"
-    }
+    "": {"model": "mysticalworld:block/stripped_charred_branch"}
   }
 }

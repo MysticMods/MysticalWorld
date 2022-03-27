@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "mysticalworld:assorted_seeds"
+  },
+  "result": "mysticalworld:cooked_seeds",
+  "experience": 0.05,
+  "cookingtime": 100
+}

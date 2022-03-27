@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:gray_dye_from_stonepetal"
+    ]
+  },
+  "criteria": {
+    "has_stonepetal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:stonepetal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:gray_dye_from_stonepetal"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stonepetal",
+      "has_the_recipe"
+    ]
+  ]
+}

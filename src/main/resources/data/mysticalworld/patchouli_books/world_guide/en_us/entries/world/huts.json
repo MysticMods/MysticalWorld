@@ -12,17 +12,13 @@
       "type": "image",
       "title": "Huts in the Wild!",
       "text": "A nice place to call home.",
-      "images": [
-        "mysticalworld:textures/hut.png"
-      ]
+      "images": ["mysticalworld:textures/hut.png"]
     },
     {
       "type": "image",
       "title": "A ruined hut",
       "text": "Fire has ruined this hut.",
-      "images": [
-        "mysticalworld:textures/ruined_hut.png"
-      ]
+      "images": ["mysticalworld:textures/ruined_hut.png"]
     }
   ]
 }

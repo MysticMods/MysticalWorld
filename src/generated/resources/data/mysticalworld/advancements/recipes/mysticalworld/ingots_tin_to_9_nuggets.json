@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:ingots_tin_to_9_nuggets"
+    ]
+  },
+  "criteria": {
+    "has_ingot_ingots_tin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/tin"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:ingots_tin_to_9_nuggets"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingot_ingots_tin",
+      "has_the_recipe"
+    ]
+  ]
+}

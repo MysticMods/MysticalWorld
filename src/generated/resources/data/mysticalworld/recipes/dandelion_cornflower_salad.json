@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CDC",
+    "DCD",
+    "BBB"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:dandelion"
+    },
+    "C": {
+      "item": "minecraft:cornflower"
+    },
+    "B": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:dandelion_cornflower_salad",
+    "count": 3
+  }
+}

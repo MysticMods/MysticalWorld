@@ -2,14 +2,10 @@ package mysticmods.mysticalworld;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
-import net.minecraft.tags.TagKey;
+import net.minecraft.tags.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class MWTags {
   public static class Blocks extends MWTags {
@@ -23,13 +19,11 @@ public class MWTags {
 
     public static TagKey<Block> QUARTZ_ORE = compatTag("ores/quartz");
     public static TagKey<Block> SAPPHIRE_ORE = compatTag("ores/sapphire");
-    public static TagKey<Block> COPPER_ORE = compatTag("ores/copper");
     public static TagKey<Block> LEAD_ORE = compatTag("ores/lead");
     public static TagKey<Block> SILVER_ORE = compatTag("ores/silver");
     public static TagKey<Block> TIN_ORE = compatTag("ores/tin");
 
     public static TagKey<Block> SAPPHIRE_STORAGE = compatTag("storage_blocks/sapphire");
-    public static TagKey<Block> COPPER_STORAGE = compatTag("storage_blocks/copper");
     public static TagKey<Block> LEAD_STORAGE = compatTag("storage_blocks/lead");
     public static TagKey<Block> ORICHALCUM_STORAGE = compatTag("storage_blocks/orichalcum");
     public static TagKey<Block> SILVER_STORAGE = compatTag("storage_blocks/silver");
@@ -38,6 +32,9 @@ public class MWTags {
     public static TagKey<Block> MUSHROOM_BLOCKS = compatTag("mushroom_blocks");
 
     public static TagKey<Block> BASE_STONE_GRANITE = compatTag("base_stone_granite");
+
+    public static TagKey<Block> SOFT_STONE = modTag("soft_stone");
+    public static TagKey<Block> STONEPETAL = compatTag("flowers/stonepetal");
 
     static TagKey<Block> modTag(String name) {
       return BlockTags.create(new ResourceLocation(MysticalWorld.MODID, name));
@@ -65,17 +62,15 @@ public class MWTags {
 
     public static TagKey<Item> COPPER_ITEMS = modTag("copper_items");
     public static TagKey<Item> LEAD_ITEMS = modTag("lead_items");
-    public static TagKey<Item> ORICHALCUM = modTag("orichalcum_items");
+    public static TagKey<Item> ORICHALCUM_ITEMS = modTag("orichalcum_items");
     public static TagKey<Item> SILVER_ITEMS = modTag("silver_items");
     public static TagKey<Item> TIN_ITEMS = modTag("tin_items");
     public static TagKey<Item> QUARTZ_ORE = compatTag("ores/quartz");
     public static TagKey<Item> SAPPHIRE_ORE = compatTag("ores/sapphire");
-    public static TagKey<Item> COPPER_ORE = compatTag("ores/copper");
     public static TagKey<Item> LEAD_ORE = compatTag("ores/lead");
     public static TagKey<Item> SILVER_ORE = compatTag("ores/silver");
     public static TagKey<Item> TIN_ORE = compatTag("ores/tin");
     public static TagKey<Item> SAPPHIRE_BLOCK = compatTag("storage_blocks/sapphire");
-    public static TagKey<Item> COPPER_BLOCK = compatTag("storage_blocks/copper");
     public static TagKey<Item> LEAD_BLOCK = compatTag("storage_blocks/lead");
     public static TagKey<Item> ORICHALCUM_BLOCK = compatTag("storage_blocks/orichalcum");
     public static TagKey<Item> SILVER_BLOCK = compatTag("storage_blocks/silver");
@@ -85,7 +80,6 @@ public class MWTags {
     public static TagKey<Item> SLIME = compatTag("slime");
     public static TagKey<Item> PEARL_GEM = compatTag("gems/pearl");
     public static TagKey<Item> SAPPHIRE_GEM = compatTag("gems/sapphire");
-    public static TagKey<Item> COPPER_INGOT = compatTag("ingots/copper");
     public static TagKey<Item> LEAD_INGOT = compatTag("ingots/lead");
     public static TagKey<Item> ORICHALCUM_INGOT = compatTag("ingots/orichalcum");
     public static TagKey<Item> SILVER_INGOT = compatTag("ingots/silver");

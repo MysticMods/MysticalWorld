@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:mushroom_inside_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:mushroom_inside_stairs",
+    "count": 4
+  }
+}

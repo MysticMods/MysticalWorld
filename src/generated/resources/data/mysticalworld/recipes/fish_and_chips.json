@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:baked_potato"
+    },
+    {
+      "item": "minecraft:baked_potato"
+    },
+    {
+      "item": "mysticalworld:vinegar"
+    },
+    {
+      "tag": "forge:cooked_seafood"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:fish_and_chips",
+    "count": 2
+  }
+}

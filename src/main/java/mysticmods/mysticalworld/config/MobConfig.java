@@ -26,7 +26,7 @@ public class MobConfig extends AbstractConfig {
     this(name, chance, min, max, biomes, BiomeDictionary.Type.OVERWORLD);
   }
 
-  public MobCategory getClassification() {
+  public MobCategory getClassification () {
     return MobCategory.CREATURE;
   }
 

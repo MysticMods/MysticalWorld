@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:mud_brick_from_wet_mud_brick_smelting"
+    ]
+  },
+  "criteria": {
+    "has_wet_mud_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:wet_mud_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:mud_brick_from_wet_mud_brick_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wet_mud_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

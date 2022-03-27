@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:uncanny_gravel"
+    ]
+  },
+  "criteria": {
+    "has_gravel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gravel"
+          }
+        ]
+      }
+    },
+    "has_purple_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:dyes/cyan"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:uncanny_gravel"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gravel",
+      "has_purple_dye",
+      "has_the_recipe"
+    ]
+  ]
+}

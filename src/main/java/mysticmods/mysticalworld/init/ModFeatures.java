@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.Mod;
 
 // TODO: PlacedFeature, etc.
 
-@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
+@Mod.EventBusSubscriber(modid=MysticalWorld.MODID)
 public class ModFeatures {
 /*  public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
 

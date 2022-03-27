@@ -1,4 +1,3 @@
-/*
 package mysticmods.mysticalworld.init;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
@@ -6,7 +5,6 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.deferred.ModBlocks;
 import mysticmods.mysticalworld.items.*;
 import mysticmods.mysticalworld.items.copper.CopperArmorItem;
 import mysticmods.mysticalworld.items.lead.LeadArmorItem;
@@ -344,6 +342,7 @@ public class ModItems {
 
   public static RegistryEntry<ItemNameBlockItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRATE.item("aubergine_seeds", ItemGenerator.blockNamedItem(ModBlocks.AUBERGINE_CROP))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.singleItem(ModItems.AUBERGINE, ModItems.AUBERGINE_SEEDS, 1, 1, p))
+      .tag(MWTags.Items.SEEDS)
       .register();
 
   public static RegistryEntry<Item> ASSORTED_SEEDS = MysticalWorld.REGISTRATE.item("assorted_seeds", Item::new)
@@ -359,15 +358,14 @@ public class ModItems {
 
   public static RegistryEntry<BaseItems.FastFoodItem> SLICED_CARROT = MysticalWorld.REGISTRATE.item("sliced_carrot", BaseItems.FastFoodItem::new)
       .properties(o -> o.food(ModFoods.SLICED_CARROT))
-      .recipe((ctx, p) -> {
+/*      .recipe((ctx, p) -> {
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.SLICED_CARROT.get(), 4)
             .addIngredient(Tags.Items.CROPS_CARROT)
             .addIngredient(MWTags.Items.KNIVES)
             .addCriterion("has_carrot", p.has(Tags.Items.CROPS_CARROT))
             .addCriterion("has_knives", p.has(MWTags.Items.KNIVES))
             .build(p);
-      })
-
+      })*/
       .register();
 
   public static RegistryEntry<Item> COOKED_CARROT = MysticalWorld.REGISTRATE.item("cooked_carrot", Item::new)
@@ -376,6 +374,7 @@ public class ModItems {
 
   public static RegistryEntry<Item> AUBERGINE = MysticalWorld.REGISTRATE.item("aubergine", Item::new)
       .properties(o -> o.food(ModFoods.AUBERGINE))
+      .tag(MWTags.Items.AUBERGINE)
       .register();
 
   public static RegistryEntry<Item> COOKED_AUBERGINE = MysticalWorld.REGISTRATE.item("cooked_aubergine", Item::new)
@@ -555,15 +554,18 @@ public class ModItems {
       .tag(MWTags.Items.SAPPHIRE_GEM)
       .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.SAPPHIRE_BLOCK, () -> ModItems.SAPPHIRE_GEM, MWTags.Items.SAPPHIRE_BLOCK, MWTags.Items.SAPPHIRE_GEM, MWTags.Items.SAPPHIRE_ORE, null, null, null))
       .register();
+  // TODO: Copper underthings
+/*  public static RegistryEntry<Item> COPPER_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getIngotName(), Item::new)
+      .tag(Tags.Items.INGOTS_COPPER)
+      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.COPPER_BLOCK, () -> ModItems.COPPER_INGOT, MWTags.Items.COPPER_BLOCK, Tags.Items.INGOTS_COPPER, MWTags.Items.COPPER_ORE, () -> ModItems.COPPER_NUGGET, MWTags.Items.COPPER_NUGGET, MWTags.Items.COPPER_DUST))
+      .register();*/
   public static RegistryEntry<Item> LEAD_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getIngotName(), Item::new)
       .tag(MWTags.Items.LEAD_INGOT)
       .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.LEAD_BLOCK, () -> ModItems.LEAD_INGOT, MWTags.Items.LEAD_BLOCK, MWTags.Items.LEAD_INGOT, MWTags.Items.LEAD_ORE, () -> ModItems.LEAD_NUGGET, MWTags.Items.LEAD_NUGGET, MWTags.Items.LEAD_DUST))
       .register();
   public static RegistryEntry<Item> ORICHALCUM_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getIngotName(), Item::new)
       .tag(MWTags.Items.ORICHALCUM_INGOT)
-      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.ORICHALCUM_BLOCK, () -> ModItems.ORICHALCUM_INGOT, MWTags.Items.ORICHALCUM_BLOCK, MWTags.Items.ORICHALCUM_INGOT, null
- It has no ore
-, () -> ModItems.ORICHALCUM_NUGGET, MWTags.Items.ORICHALCUM_NUGGET, MWTags.Items.ORICHALCUM_DUST))
+      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.ORICHALCUM_BLOCK, () -> ModItems.ORICHALCUM_INGOT, MWTags.Items.ORICHALCUM_BLOCK, MWTags.Items.ORICHALCUM_INGOT, null /* It has no ore */, () -> ModItems.ORICHALCUM_NUGGET, MWTags.Items.ORICHALCUM_NUGGET, MWTags.Items.ORICHALCUM_DUST))
       .register();
   public static RegistryEntry<Item> SILVER_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getIngotName(), Item::new)
       .tag(MWTags.Items.SILVER_INGOT)
@@ -580,7 +582,7 @@ public class ModItems {
       .recipe((ctx, p) -> {
         MysticalWorld.RECIPES.recycle(MWTags.Items.SILVER_ITEMS, ModItems.SILVER_NUGGET, 0.15f, p);
         MysticalWorld.RECIPES.recycle(MWTags.Items.COPPER_ITEMS, ModItems.COPPER_NUGGET, 0.15f, p);
-        MysticalWorld.RECIPES.recycle(MWTags.Items.ORICHALCUM, ModItems.ORICHALCUM_NUGGET, 0.15f, p);
+        MysticalWorld.RECIPES.recycle(MWTags.Items.ORICHALCUM_ITEMS, ModItems.ORICHALCUM_NUGGET, 0.15f, p);
         MysticalWorld.RECIPES.recycle(MWTags.Items.TIN_ITEMS, ModItems.TIN_NUGGET, 0.15f, p);
         MysticalWorld.RECIPES.recycle(MWTags.Items.LEAD_ITEMS, ModItems.LEAD_NUGGET, 0.15f, p);
         MysticalWorld.RECIPES.recycle(ModItems.GOLD_KNIFE, () -> Items.GOLD_NUGGET, 0.15f, MysticalWorld.MODID, p);
@@ -668,22 +670,22 @@ public class ModItems {
   // COPPER
   public static RegistryEntry<AxeItem> COPPER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_AXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_AXE, null, p)).register();
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(Tags.Items.INGOTS_COPPER, ModItems.COPPER_AXE, null, p)).register();
   public static RegistryEntry<HoeItem> COPPER_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_HOE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_HOE, null, p)).register();
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(Tags.Items.INGOTS_COPPER, ModItems.COPPER_HOE, null, p)).register();
   public static RegistryEntry<BaseItems.KnifeItem> COPPER_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_KNIFE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.COPPER_INGOT, ModItems.COPPER_KNIFE, null, p)).register();
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(Tags.Items.INGOTS_COPPER, ModItems.COPPER_KNIFE, null, p)).register();
   public static RegistryEntry<PickaxeItem> COPPER_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_PICKAXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.COPPER_INGOT, ModItems.COPPER_PICKAXE, null, p)).register();
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(Tags.Items.INGOTS_COPPER, ModItems.COPPER_PICKAXE, null, p)).register();
   public static RegistryEntry<ShovelItem> COPPER_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_SHOVEL))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.COPPER_INGOT, ModItems.COPPER_SHOVEL, null, p)).register();
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(Tags.Items.INGOTS_COPPER, ModItems.COPPER_SHOVEL, null, p)).register();
   public static RegistryEntry<SwordItem> COPPER_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.COPPER))
       .model((ctx, p) -> p.handheld(ModItems.COPPER_SWORD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.COPPER_INGOT, ModItems.COPPER_SWORD, null, p)).register();
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(Tags.Items.INGOTS_COPPER, ModItems.COPPER_SWORD, null, p)).register();
 
   // LEAD
   public static RegistryEntry<AxeItem> LEAD_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.LEAD))
@@ -804,16 +806,16 @@ public class ModItems {
 
   // COPPER
   public static RegistryEntry<CopperArmorItem> COPPER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_helmet", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlot.HEAD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.COPPER_INGOT, ModItems.COPPER_HELMET, null, p))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(Tags.Items.INGOTS_COPPER, ModItems.COPPER_HELMET, null, p))
       .register();
   public static RegistryEntry<CopperArmorItem> COPPER_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_chestplate", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlot.CHEST))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.COPPER_INGOT, ModItems.COPPER_CHESTPLATE, null, p))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(Tags.Items.INGOTS_COPPER, ModItems.COPPER_CHESTPLATE, null, p))
       .register();
   public static RegistryEntry<CopperArmorItem> COPPER_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_leggings", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlot.LEGS))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.COPPER_INGOT, ModItems.COPPER_LEGGINGS, null, p))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(Tags.Items.INGOTS_COPPER, ModItems.COPPER_LEGGINGS, null, p))
       .register();
   public static RegistryEntry<CopperArmorItem> COPPER_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_boots", ItemGenerator.armor(CopperArmorItem::new, ModMaterials.COPPER, EquipmentSlot.FEET))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.COPPER_INGOT, ModItems.COPPER_BOOTS, null, p))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(Tags.Items.INGOTS_COPPER, ModItems.COPPER_BOOTS, null, p))
       .register();
 
   // LEAD
@@ -875,4 +877,3 @@ public class ModItems {
   public static void load() {
   }
 }
-*/

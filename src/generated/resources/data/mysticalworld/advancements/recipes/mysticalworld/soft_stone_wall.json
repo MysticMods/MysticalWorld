@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:soft_stone_wall"
+    ]
+  },
+  "criteria": {
+    "has_soft_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:soft_stone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:soft_stone_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_soft_stone",
+      "has_the_recipe"
+    ]
+  ]
+}

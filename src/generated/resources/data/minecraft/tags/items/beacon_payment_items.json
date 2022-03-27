@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:sapphire",
+    "mysticalworld:lead_ingot",
+    "mysticalworld:orichalcum_ingot",
+    "mysticalworld:silver_ingot",
+    "mysticalworld:tin_ingot",
+    "mysticalworld:lustrous_pearl"
+  ]
+}

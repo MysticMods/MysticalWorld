@@ -55,7 +55,7 @@ public class TreeConfig extends FeatureConfig<TreeConfig> {
     configChance = builder.comment("Number of charred trees per chunk (set to 0 to disable).").defineInRange("chance", chance, 0, 256);
     StringJoiner sb = new StringJoiner(",");
     biomes.forEach(o -> sb.add(o.getName()));
-    configBiomes = builder.comment("List of biome types to spawn (default [" + sb + "], pass empty list for every biome").define("biomes", sb.toString());
+    configBiomes = builder.comment("List of biome types to spawn (default [" + sb.toString() + "], pass empty list for every biome").define("biomes", sb.toString());
     StringJoiner sb2 = new StringJoiner(",");
     biomeRestrictions.forEach(biome -> sb2.add(biome.getName()));
     configBiomeRestrictions = builder.comment("Which biome types this tree shouldn't spawn in (default END, NETHER)").define("biomeRestrictions", sb2.toString());

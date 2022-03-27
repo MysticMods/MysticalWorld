@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ingots/lead",
+    "#forge:ingots/orichalcum",
+    "#forge:ingots/silver",
+    "#forge:ingots/tin"
+  ]
+}

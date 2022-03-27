@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.entity.ClamEntity;
-import mysticmods.mysticalworld.init.configured.ModLoot;
+import mysticmods.mysticalworld.init.ModLoot;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.storage.loot.LootContext;

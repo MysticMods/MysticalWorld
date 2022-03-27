@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:blue_dye"
+    ]
+  },
+  "criteria": {
+    "has_carapace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:carapace"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:blue_dye"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_carapace",
+      "has_the_recipe"
+    ]
+  ]
+}

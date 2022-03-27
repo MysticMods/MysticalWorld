@@ -1,5 +1,8 @@
 package mysticmods.mysticalworld.client.model.armor;
 
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.world.entity.EquipmentSlot;
+
 /*public class BeetleArmorModel extends ArmorBaseModel {
   private final ModelPart headAnchor;
   private final ModelPart bodyAnchor;

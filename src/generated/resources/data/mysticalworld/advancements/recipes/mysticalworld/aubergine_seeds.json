@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:aubergine_seeds"
+    ]
+  },
+  "criteria": {
+    "has_aubergine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:aubergine"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:aubergine_seeds"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_aubergine",
+      "has_the_recipe"
+    ]
+  ]
+}

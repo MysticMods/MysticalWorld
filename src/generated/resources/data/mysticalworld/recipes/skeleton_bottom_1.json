@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BB ",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "tag": "forge:bones"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:skeleton_bottom_1"
+  }
+}

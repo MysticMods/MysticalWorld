@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:orichalcum_pickaxe"
+    ]
+  },
+  "criteria": {
+    "has_ingots_orichalcum": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/orichalcum"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:orichalcum_pickaxe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingots_orichalcum",
+      "has_the_recipe"
+    ]
+  ]
+}

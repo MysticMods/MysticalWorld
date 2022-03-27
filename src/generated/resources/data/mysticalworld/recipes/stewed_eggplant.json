@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "MLM",
+    "BBB"
+  ],
+  "key": {
+    "A": {
+      "item": "mysticalworld:cooked_aubergine"
+    },
+    "B": {
+      "item": "minecraft:bowl"
+    },
+    "L": {
+      "item": "minecraft:allium"
+    },
+    "M": [
+      {
+        "item": "minecraft:red_mushroom"
+      },
+      {
+        "item": "minecraft:brown_mushroom"
+      }
+    ]
+  },
+  "result": {
+    "item": "mysticalworld:stewed_eggplant",
+    "count": 3
+  }
+}

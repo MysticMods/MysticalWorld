@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:silver_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:silver_wall",
+    "count": 6
+  }
+}

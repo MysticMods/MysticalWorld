@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.recipe;
 
-import mysticmods.mysticalworld.init.deferred.ModRecipes;
+import mysticmods.mysticalworld.init.ModRecipes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;

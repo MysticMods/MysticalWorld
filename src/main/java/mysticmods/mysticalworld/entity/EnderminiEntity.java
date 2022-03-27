@@ -3,7 +3,7 @@ package mysticmods.mysticalworld.entity;
 import com.google.common.collect.Sets;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.entity.ai.StalkGoal;
-import mysticmods.mysticalworld.init.deferred.ModSounds;
+import mysticmods.mysticalworld.init.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;

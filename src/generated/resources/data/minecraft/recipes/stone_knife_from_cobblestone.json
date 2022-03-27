@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X",
+    "S "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:cobblestone"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:stone_knife"
+  }
+}

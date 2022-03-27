@@ -53,7 +53,7 @@ public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
     configRepeats = builder.comment("Number of times per chunk to repeat trying to place stonepetals on stone").defineInRange("repeats", repeats, 1, 256);
     StringJoiner sb = new StringJoiner(",");
     biomes.forEach(o -> sb.add(o.getName()));
-    configBiomes = builder.comment("List of biome types to spawn (default [" + sb + "], pass empty list for every biome").define("biomes", sb.toString());
+    configBiomes = builder.comment("List of biome types to spawn (default [" + sb.toString() + "], pass empty list for every biome").define("biomes", sb.toString());
     StringJoiner sb2 = new StringJoiner(",");
     biomeRestrictions.forEach(biome -> sb2.add(biome.getName()));
     configBiomeRestrictions = builder.comment("Which biome types this tree shouldn't spawn in (default END, NETHER)").define("biomeRestrictions", sb2.toString());

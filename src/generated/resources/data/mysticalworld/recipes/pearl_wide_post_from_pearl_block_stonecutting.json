@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:pearl_block"
+  },
+  "result": "mysticalworld:pearl_wide_post",
+  "count": 2
+}

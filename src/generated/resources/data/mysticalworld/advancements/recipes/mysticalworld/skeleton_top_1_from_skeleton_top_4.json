@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:skeleton_top_1_from_skeleton_top_4"
+    ]
+  },
+  "criteria": {
+    "has_skeleton_top_4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:skeleton_top_4"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:skeleton_top_1_from_skeleton_top_4"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_skeleton_top_4",
+      "has_the_recipe"
+    ]
+  ]
+}

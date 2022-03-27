@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:gems_sapphire_to_storage_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_gems_sapphire": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/sapphire"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:gems_sapphire_to_storage_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_gems_sapphire",
+      "has_the_recipe"
+    ]
+  ]
+}

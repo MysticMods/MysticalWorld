@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:cactus_shovel"
+    ]
+  },
+  "criteria": {
+    "has_cactus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cactus"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:cactus_shovel"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cactus",
+      "has_the_recipe"
+    ]
+  ]
+}

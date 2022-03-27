@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "mysticalworld:block/tin_slab_top"
+    },
+    "type=bottom": {
+      "model": "mysticalworld:block/tin_slab"
+    },
+    "type=double": {
+      "model": "mysticalworld:block/tin_block"
+    }
+  }
+}

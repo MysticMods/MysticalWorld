@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:thatch_slab",
+    "mysticalworld:red_mushroom_slab",
+    "mysticalworld:brown_mushroom_slab",
+    "mysticalworld:mushroom_stem_slab",
+    "mysticalworld:mushroom_inside_slab",
+    "mysticalworld:mud_block_slab",
+    "mysticalworld:mud_brick_slab",
+    "mysticalworld:terracotta_brick_slab",
+    "mysticalworld:iron_brick_slab",
+    "mysticalworld:soft_stone_slab",
+    "mysticalworld:blackened_stone_slab",
+    "mysticalworld:soft_obsidian_slab",
+    "mysticalworld:sapphire_slab",
+    "mysticalworld:lead_slab",
+    "mysticalworld:orichalcum_slab",
+    "mysticalworld:silver_slab",
+    "mysticalworld:tin_slab",
+    "mysticalworld:pearl_slab"
+  ]
+}

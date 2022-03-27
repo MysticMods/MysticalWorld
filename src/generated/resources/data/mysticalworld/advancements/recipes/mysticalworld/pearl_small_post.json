@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:pearl_small_post"
+    ]
+  },
+  "criteria": {
+    "has_pearl_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:pearl_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:pearl_small_post"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pearl_block",
+      "has_the_recipe"
+    ]
+  ]
+}

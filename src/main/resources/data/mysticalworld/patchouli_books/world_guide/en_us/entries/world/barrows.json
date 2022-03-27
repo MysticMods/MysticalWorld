@@ -12,9 +12,7 @@
       "type": "image",
       "title": "A Barrow",
       "text": "Something to explore.",
-      "images": [
-        "mysticalworld:textures/barrow.png"
-      ]
+      "images": ["mysticalworld:textures/barrow.png"]
     }
   ]
 }

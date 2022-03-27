@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "tag": "forge:crops/carrot"
+  },
+  "result": "mysticalworld:cooked_carrot",
+  "experience": 0.15,
+  "cookingtime": 100
+}

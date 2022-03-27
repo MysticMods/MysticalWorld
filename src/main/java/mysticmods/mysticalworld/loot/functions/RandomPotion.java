@@ -4,8 +4,8 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import mysticmods.mysticalworld.MWTags;
-import mysticmods.mysticalworld.init.configured.ModLoot;
-import net.minecraft.core.Holder;
+import mysticmods.mysticalworld.init.ModLoot;
+import net.minecraft.core.Registry;
 import net.minecraft.tags.Tag;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
@@ -19,9 +19,10 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RandomPotion extends LootItemConditionalFunction {
@@ -40,7 +41,10 @@ public class RandomPotion extends LootItemConditionalFunction {
   public ItemStack run(ItemStack stack, LootContext context) {
     Random random = context.getRandom();
 
-    List<Potion> potions = ForgeRegistries.POTIONS.getValues().stream().filter(potion -> ForgeRegistries.POTIONS.getHolder(potion).map(potionHolder -> potionHolder.is(getIgnoreTag())).orElse(false)).collect(Collectors.toList());
+    Set<Potion> blacklisted = new HashSet<>();
+    Registry.POTION.getTagOrEmpty(getIgnoreTag()).forEach(o -> blacklisted.add(o.value()));
+
+    List<Potion> potions = ForgeRegistries.POTIONS.getValues().stream().filter(potion -> !blacklisted.contains(potion)).collect(Collectors.toList());
     Potion potion = potions.get(random.nextInt(potions.size()));
     PotionUtils.setPotion(stack, potion);
     return stack;

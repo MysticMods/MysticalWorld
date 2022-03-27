@@ -1,5 +1,12 @@
 package mysticmods.mysticalworld.capability;
 
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.LongTag;
+import net.minecraft.nbt.Tag;
+import net.minecraftforge.common.capabilities.Capability;
+
+import javax.annotation.Nullable;
+
 // TODO: This got moved around in 1.17
 /*public class AnimalCooldownCapabilityStorage implements Capability.IStorage<AnimalCooldownCapability> {
   @Nullable

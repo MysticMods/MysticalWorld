@@ -3,7 +3,7 @@ package mysticmods.mysticalworld.events.forge.global;
 import com.google.gson.JsonObject;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
-import mysticmods.mysticalworld.init.deferred.ModItems;
+import mysticmods.mysticalworld.init.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:soft_obsidian_wall"
+    ]
+  },
+  "criteria": {
+    "has_soft_obsidian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:soft_obsidian"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:soft_obsidian_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_soft_obsidian",
+      "has_the_recipe"
+    ]
+  ]
+}

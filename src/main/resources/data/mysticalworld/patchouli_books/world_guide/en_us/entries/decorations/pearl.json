@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "spotlight",
-      "item": "mysticalworld:lustrous_pearl",
+      "item":  "mysticalworld:lustrous_pearl",
       "link_recipe": true,
       "text": "Pearls can be obtained from clams."
     },

@@ -3,13 +3,14 @@ package mysticmods.mysticalworld.init.mod;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
-import mysticmods.mysticalworld.init.deferred.ModBlocks;
-import mysticmods.mysticalworld.init.deferred.ModItems;
+import mysticmods.mysticalworld.init.ModBlocks;
+import mysticmods.mysticalworld.init.ModItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import noobanidus.libs.noobutil.ingredient.LazyIngredient;
 import noobanidus.libs.noobutil.item.WeaponType;
 import noobanidus.libs.noobutil.material.MaterialType;
@@ -60,7 +61,7 @@ public class ModMaterials {
       .setConfigProvider(ConfigManager::getArmorConfig);
 
   public static MaterialType COPPER = new MaterialType(COPPER_NAME)
-      .itemMaterial(200, 4.0f, 2.0f, 2, 7, () -> MWTags.Items.COPPER_INGOT)
+      .itemMaterial(200, 4.0f, 2.0f, 2, 7, () -> Tags.Items.INGOTS_COPPER)
       .nugget(() -> ModItems.COPPER_NUGGET)
       .dust(() -> ModItems.COPPER_DUST)
 /*      .block(() -> ModBlocks.COPPER_BLOCK)

@@ -17,7 +17,7 @@ public interface IDamageRecipe {
     List<ItemStack> matchingStacks = new ArrayList<>();
     for (ItemStack stack : ingredient.getItems()) {
       if (!stack.isDamageableItem()) {
-        throw new IllegalArgumentException("Invalid itemstack '" + stack + "' for DamageRecipe: flagged as damage item, but not damageable.");
+        throw new IllegalArgumentException("Invalid itemstack '" + stack.toString() + "' for DamageRecipe: flagged as damage item, but not damageable.");
       }
       for (int i = 0; i < stack.getMaxDamage(); i++) {
         ItemStack copy = stack.copy();

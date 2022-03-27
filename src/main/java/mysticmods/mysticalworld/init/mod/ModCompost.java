@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.init.mod;
 
-import mysticmods.mysticalworld.init.deferred.ModItems;
+import mysticmods.mysticalworld.init.ModItems;
 import net.minecraft.world.level.block.ComposterBlock;
 
 // TODO: Is there a new way to do compostables?

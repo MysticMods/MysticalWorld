@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:stewed_eggplant"
+    ]
+  },
+  "criteria": {
+    "has_cooked_aubergine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:cooked_aubergine"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:stewed_eggplant"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cooked_aubergine",
+      "has_the_recipe"
+    ]
+  ]
+}

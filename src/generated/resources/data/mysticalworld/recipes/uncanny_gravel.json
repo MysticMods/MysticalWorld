@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GPG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:gravel"
+    },
+    "P": {
+      "tag": "forge:dyes/cyan"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:uncanny_gravel",
+    "count": 8
+  }
+}

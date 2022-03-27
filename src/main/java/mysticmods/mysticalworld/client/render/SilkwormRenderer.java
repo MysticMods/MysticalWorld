@@ -15,7 +15,7 @@ public class SilkwormRenderer extends MobRenderer<SilkwormEntity, SilkwormModel>
   private static final ResourceLocation SILKWORM_TEXTURE = new ResourceLocation(MysticalWorld.MODID, "textures/entity/silkworm.png");
 
   public SilkwormRenderer(EntityRendererProvider.Context context) {
-    super(context, new SilkwormModel(context.bakeLayer(ModelHolder.SILKWORM)), 0.15f);
+	  super(context, new SilkwormModel(context.bakeLayer(ModelHolder.SILKWORM)), 0.15f);
   }
 
   @Override

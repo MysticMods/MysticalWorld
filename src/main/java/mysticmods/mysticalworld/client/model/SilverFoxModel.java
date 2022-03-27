@@ -58,59 +58,59 @@ public class SilverFoxModel extends AgeableListModel<SilverFoxEntity> {
     PartDefinition partdefinition = meshdefinition.getRoot();
 
     PartDefinition body1 = partdefinition.addOrReplaceChild("body1", CubeListBuilder.create()
-            .texOffs(12, 8).addBox(-2.5F, 0.0F, 0.0F, 5, 4, 5),
-        PartPose.offset(0.0F, 15.5F, -2.0F));
+                    .texOffs(12, 8).addBox(-2.5F, 0.0F, 0.0F, 5, 4, 5),
+            PartPose.offset(0.0F, 15.5F, -2.0F));
 
     PartDefinition neck = body1.addOrReplaceChild("neck", CubeListBuilder.create()
-            .texOffs(16, 0).addBox(-2.0F, -2.0F, -4.0F, 4, 4, 4),
-        PartPose.offsetAndRotation(0.0F, 1.5F, 2.0F, -0.2617993877991494F, 0.0F, 0.0F));
+                    .texOffs(16, 0).addBox(-2.0F, -2.0F, -4.0F, 4, 4, 4),
+            PartPose.offsetAndRotation(0.0F, 1.5F, 2.0F, -0.2617993877991494F, 0.0F, 0.0F));
 
     PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create()
-            .texOffs(0, 5).addBox(-2.5F, -2.0F, -3.0F, 5, 4, 3),
-        PartPose.offsetAndRotation(0.0F, 0.0F, -4.0F, 0.2617993877991494F, 0.0F, 0.0F));
+                    .texOffs(0, 5).addBox(-2.5F, -2.0F, -3.0F, 5, 4, 3),
+            PartPose.offsetAndRotation(0.0F, 0.0F, -4.0F, 0.2617993877991494F, 0.0F, 0.0F));
 
     CubeListBuilder earCubeList = CubeListBuilder.create()
-        .texOffs(0, 12).addBox(-1.0F, -3.0F, -0.5F, 2, 3, 1);
+            .texOffs(0, 12).addBox(-1.0F, -3.0F, -0.5F, 2, 3, 1);
     PartDefinition earR = head.addOrReplaceChild("ear_right", earCubeList,
-        PartPose.offsetAndRotation(-1.5F, -1.0F, -1.0F, 0.0F, 0.2617993877991494F, -0.5235987755982988F));
+            PartPose.offsetAndRotation(-1.5F, -1.0F, -1.0F, 0.0F, 0.2617993877991494F, -0.5235987755982988F));
     PartDefinition earL = head.addOrReplaceChild("ear_left", earCubeList.mirror(),
-        PartPose.offsetAndRotation(1.5F, -1.0F, -1.0F, 0.0F, -0.2617993877991494F, 0.5235987755982988F));
+            PartPose.offsetAndRotation(1.5F, -1.0F, -1.0F, 0.0F, -0.2617993877991494F, 0.5235987755982988F));
 
     PartDefinition snout = head.addOrReplaceChild("snout", CubeListBuilder.create()
-            .texOffs(0, 0).addBox(-1.5F, 0.0F, -3.0F, 3, 2, 3),
-        PartPose.offsetAndRotation(0.0F, 0.0F, -3.0F, 0.17453292519943295F, 0.0F, 0.0F));
+                    .texOffs(0, 0).addBox(-1.5F, 0.0F, -3.0F, 3, 2, 3),
+            PartPose.offsetAndRotation(0.0F, 0.0F, -3.0F, 0.17453292519943295F, 0.0F, 0.0F));
 
     CubeListBuilder legCubeList = CubeListBuilder.create()
-        .texOffs(0, 16).addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2);
+            .texOffs(0, 16).addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2);
     PartDefinition frontL = body1.addOrReplaceChild("front_left_leg", legCubeList.mirror(),
-        PartPose.offset(1.0F, 4.0F, 1.0F));
+            PartPose.offset(1.0F, 4.0F, 1.0F));
     PartDefinition frontR = body1.addOrReplaceChild("front_right_leg", legCubeList,
-        PartPose.offset(-1.0F, 4.0F, 1.0F));
+            PartPose.offset(-1.0F, 4.0F, 1.0F));
 
     PartDefinition body2 = body1.addOrReplaceChild("body2", CubeListBuilder.create()
-            .texOffs(16, 17).addBox(-2.0F, 0.0F, 0.0F, 4, 4, 3),
-        PartPose.offset(0.0F, 0.0F, 5.0F));
+                    .texOffs(16, 17).addBox(-2.0F, 0.0F, 0.0F, 4, 4, 3),
+            PartPose.offset(0.0F, 0.0F, 5.0F));
 
     PartDefinition backL = body2.addOrReplaceChild("back_left_leg", legCubeList.mirror(),
-        PartPose.offset(1.0F, 4.0F, 1.5F));
+            PartPose.offset(1.0F, 4.0F, 1.5F));
     PartDefinition backR = body2.addOrReplaceChild("back_right_leg", legCubeList,
-        PartPose.offset(-1.0F, 4.0F, 1.5F));
+            PartPose.offset(-1.0F, 4.0F, 1.5F));
 
     PartDefinition tail1 = body2.addOrReplaceChild("tail1", CubeListBuilder.create()
-            .texOffs(12, 0).addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2),
-        PartPose.offsetAndRotation(0.0F, 1.0F, 2.5F, 1.1780972450961724F, 0.0F, 0.0F));
+                    .texOffs(12, 0).addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2),
+            PartPose.offsetAndRotation(0.0F, 1.0F, 2.5F, 1.1780972450961724F, 0.0F, 0.0F));
 
     PartDefinition tail2 = tail1.addOrReplaceChild("tail2", CubeListBuilder.create()
-            .texOffs(16, 24).addBox(-1.5F, 0.0F, -1.5F, 3, 3, 3),
-        PartPose.offsetAndRotation(0.0F, 1.5F, 0.0F, -0.39269908169872414F, 0.0F, 0.0F));
+                    .texOffs(16, 24).addBox(-1.5F, 0.0F, -1.5F, 3, 3, 3),
+            PartPose.offsetAndRotation(0.0F, 1.5F, 0.0F, -0.39269908169872414F, 0.0F, 0.0F));
 
     PartDefinition tail3 = tail2.addOrReplaceChild("tail3", CubeListBuilder.create()
-            .texOffs(0, 24).addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4),
-        PartPose.offset(0.0F, 3.0F, 0.0F));
+                    .texOffs(0, 24).addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4),
+            PartPose.offset(0.0F, 3.0F, 0.0F));
 
     PartDefinition tail4 = tail3.addOrReplaceChild("tail4", CubeListBuilder.create()
-            .texOffs(8, 18).addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2),
-        PartPose.offsetAndRotation(0.0F, 3.5F, 0.0F, 0.39269908169872414F, 0.0F, 0.0F));
+                    .texOffs(8, 18).addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2),
+            PartPose.offsetAndRotation(0.0F, 3.5F, 0.0F, 0.39269908169872414F, 0.0F, 0.0F));
 
     return LayerDefinition.create(meshdefinition, 32, 32);
   }
