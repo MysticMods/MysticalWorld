@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:red_mushroom_button",
+    "mysticalworld:brown_mushroom_button",
+    "mysticalworld:mushroom_stem_button",
+    "mysticalworld:mushroom_inside_button",
+    "mysticalworld:charred_button"
+  ]
+}

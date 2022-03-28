@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:red_mushroom_pressure_plate",
+    "mysticalworld:brown_mushroom_pressure_plate",
+    "mysticalworld:mushroom_stem_pressure_plate",
+    "mysticalworld:mushroom_inside_pressure_plate",
+    "mysticalworld:charred_pressure_plate"
+  ]
+}

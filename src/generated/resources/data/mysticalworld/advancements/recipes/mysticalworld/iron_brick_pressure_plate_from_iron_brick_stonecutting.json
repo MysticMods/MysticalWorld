@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:iron_brick_pressure_plate_from_iron_brick_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_iron_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:iron_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:iron_brick_pressure_plate_from_iron_brick_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_iron_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

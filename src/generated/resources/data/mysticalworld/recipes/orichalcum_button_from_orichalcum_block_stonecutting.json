@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:orichalcum_block"
+  },
+  "result": "mysticalworld:orichalcum_button",
+  "count": 1
+}

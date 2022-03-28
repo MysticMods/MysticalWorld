@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "mysticalworld:block/mud_brick_pressure_plate"
+    },
+    "powered=true": {
+      "model": "mysticalworld:block/mud_brick_pressure_plate_down"
+    }
+  }
+}

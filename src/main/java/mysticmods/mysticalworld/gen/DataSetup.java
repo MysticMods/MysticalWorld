@@ -13,9 +13,6 @@ public class DataSetup {
   @SubscribeEvent
   public static void onDataGen(GatherDataEvent event) {
     if (event.includeServer()) {
-      ModLoot.load();
-      ModLoot.CONDITION_REGISTRY.registration();
-      ModLoot.FUNCTION_REGISTRY.registration();
       UniqueShapelessRecipe.setStoredSerializer(ModRecipes.UNIQUE_SHAPELESS_RECIPE.get());
 
       event.getGenerator().addProvider(new LootTableGenerator(event.getGenerator()));

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:sapphire_block"
+  },
+  "result": "mysticalworld:sapphire_button",
+  "count": 1
+}

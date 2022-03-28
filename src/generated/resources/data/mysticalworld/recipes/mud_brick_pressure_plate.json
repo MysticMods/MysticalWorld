@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:mud_brick"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:mud_brick_pressure_plate"
+  }
+}

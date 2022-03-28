@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:blackened_stone"
+  },
+  "result": "mysticalworld:blackened_stone_button",
+  "count": 1
+}

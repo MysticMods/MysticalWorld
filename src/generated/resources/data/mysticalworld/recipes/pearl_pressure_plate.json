@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:pearl_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:pearl_pressure_plate"
+  }
+}

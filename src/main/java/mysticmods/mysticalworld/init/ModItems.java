@@ -545,6 +545,19 @@ public class ModItems {
           .save(p))
       .register();
 
+  public static RegistryEntry<Item> RAW_LEAD = MysticalWorld.REGISTRATE.item("raw_lead", Item::new)
+      .tag(MWTags.Items.RAW_LEAD)
+      .register();
+  public static RegistryEntry<Item> ORICHALCUM_BLEND = MysticalWorld.REGISTRATE.item("orichalcum_blend", Item::new)
+      .tag(MWTags.Items.RAW_ORICHALCUM)
+      .register();
+  public static RegistryEntry<Item> RAW_SILVER = MysticalWorld.REGISTRATE.item("raw_silver", Item::new)
+      .tag(MWTags.Items.RAW_SILVER)
+      .register();
+  public static RegistryEntry<Item> RAW_TIN = MysticalWorld.REGISTRATE.item("raw_tin", Item::new)
+      .tag(MWTags.Items.RAW_TIN)
+      .register();
+
   // Ingots/gems
   public static RegistryEntry<Item> PEARL_GEM = MysticalWorld.REGISTRATE.item("lustrous_pearl", Item::new)
       .tag(MWTags.Items.PEARL_GEM)

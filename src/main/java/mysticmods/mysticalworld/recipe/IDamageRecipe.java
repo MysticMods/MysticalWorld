@@ -4,6 +4,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import noobanidus.libs.noobutil.ingredient.LazyIngredient;
 import noobanidus.libs.noobutil.util.MathUtil;
 
 import java.util.ArrayList;
@@ -13,19 +14,21 @@ public interface IDamageRecipe {
   String TAG = "damage_item";
   String DAMAGE = "damage_amount";
 
-  default Ingredient createDamageIngredient(Ingredient ingredient) {
-    List<ItemStack> matchingStacks = new ArrayList<>();
-    for (ItemStack stack : ingredient.getItems()) {
-      if (!stack.isDamageableItem()) {
-        throw new IllegalArgumentException("Invalid itemstack '" + stack.toString() + "' for DamageRecipe: flagged as damage item, but not damageable.");
+  default LazyIngredient createDamageIngredient(Ingredient ingredient) {
+    return new LazyIngredient(() -> {
+      List<ItemStack> matchingStacks = new ArrayList<>();
+      for (ItemStack stack : ingredient.getItems()) {
+        if (!stack.isDamageableItem()) {
+          throw new IllegalArgumentException("Invalid itemstack '" + stack + "' for DamageRecipe: flagged as damage item, but not damageable.");
+        }
+        for (int i = 0; i < stack.getMaxDamage(); i++) {
+          ItemStack copy = stack.copy();
+          copy.setDamageValue(i);
+          matchingStacks.add(copy);
+        }
       }
-      for (int i = 0; i < stack.getMaxDamage(); i++) {
-        ItemStack copy = stack.copy();
-        copy.setDamageValue(i);
-        matchingStacks.add(copy);
-      }
-    }
-    return Ingredient.of(matchingStacks.toArray(new ItemStack[0]));
+      return Ingredient.of(matchingStacks.toArray(new ItemStack[0]));
+    });
   }
 
   default NonNullList<ItemStack> getRemainingItems(CraftingContainer inv, Ingredient damageIngredient, int damageAmount) {

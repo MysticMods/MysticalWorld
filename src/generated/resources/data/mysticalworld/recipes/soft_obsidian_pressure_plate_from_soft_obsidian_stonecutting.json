@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:soft_obsidian"
+  },
+  "result": "mysticalworld:soft_obsidian_pressure_plate",
+  "count": 1
+}

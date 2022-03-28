@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:thatch_pressure_plate",
+    "mysticalworld:mud_block_pressure_plate",
+    "mysticalworld:mud_brick_pressure_plate",
+    "mysticalworld:terracotta_brick_pressure_plate",
+    "mysticalworld:iron_brick_pressure_plate",
+    "mysticalworld:soft_stone_pressure_plate",
+    "mysticalworld:blackened_stone_pressure_plate",
+    "mysticalworld:soft_obsidian_pressure_plate",
+    "mysticalworld:sapphire_pressure_plate",
+    "mysticalworld:copper_pressure_plate",
+    "mysticalworld:lead_pressure_plate",
+    "mysticalworld:orichalcum_pressure_plate",
+    "mysticalworld:silver_pressure_plate",
+    "mysticalworld:tin_pressure_plate",
+    "mysticalworld:pearl_pressure_plate"
+  ]
+}

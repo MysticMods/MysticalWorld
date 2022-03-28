@@ -75,4 +75,26 @@ public class SoftObsidian {
       return PushReaction.BLOCK;
     }
   }
+
+  public static class SoftObsidianButtonBlock extends BaseBlocks.StoneButtonBlock {
+    public SoftObsidianButtonBlock(Properties properties) {
+      super(properties);
+    }
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState pState) {
+      return PushReaction.BLOCK;
+    }
+  }
+
+  public static class SoftObsidianPressurePlateBlock extends BaseBlocks.PressurePlateBlock {
+    public SoftObsidianPressurePlateBlock(Sensitivity sensitivityIn, Properties propertiesIn) {
+      super(sensitivityIn, propertiesIn);
+    }
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState pState) {
+      return PushReaction.BLOCK;
+    }
+  }
 }

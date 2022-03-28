@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "mysticalworld:block/mushroom_inside_block"
+  }
+}

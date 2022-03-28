@@ -154,11 +154,6 @@ public class ModBlocks {
       .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createPotFlowerItemTable(ModBlocks.STONEPETAL.get())))
       .register();
 
-/*  public static BlockEntry<FlowerPotBlock> POTTED_UNCANNY_MUSHROOM = MysticalWorld.REGISTRATE.block("potted_uncanny_mushroom", Material.DECORATION, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.UNCANNY_MUSHROOM, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)))
-      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/uncanny_mushroom")))
-      .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createPotFlowerItemTable(ModBlocks.UNCANNY_MUSHROOM.get())))
-      .register();*/
-
   private static final NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.strength(1f).sound(SoundType.GRASS);
   private static final NonNullUnaryOperator<Block.Properties> MUSHROOM_PROPS = (o) -> o.strength(0.2F).sound(SoundType.WOOD);
 
@@ -263,6 +258,36 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.THATCH))
       .register();
 
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> THATCH_BUTTON = MysticalWorld.REGISTRATE.block("thatch_button", Material.WOOD, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.THATCH))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.THATCH), ModBlocks.THATCH_BUTTON, 1, 1);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> THATCH_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("thatch_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.THATCH))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.THATCH))
+            .unlockedBy("has_thatch_block", DataIngredient.items(ModBlocks.THATCH).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
+
+
   public static BlockEntry<OakAppleBlock> GALL_APPLE = MysticalWorld.REGISTRATE.block("gall_apple_crop", OakAppleBlock::new)
       .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
       .loot((p, t) -> p.
@@ -299,126 +324,6 @@ public class ModBlocks {
       )
       .register();
 
-/*  public static BlockEntry<HugeMushroomBlock> UNCANNY_MUSHROOM_BLOCK = MysticalWorld.REGISTRATE.block("uncanny_mushroom_block", Material.WOOD, HugeMushroomBlock::new)
-      .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 8))
-      .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createMushroomBlockDrop(p, ModBlocks.UNCANNY_MUSHROOM.get())))
-      .blockstate((ctx, p) -> {
-        ModelFile model = p.models().withExistingParent(ctx.getName(), new ResourceLocation("minecraft", "block/template_single_face")).texture("texture", p.models().modLoc("block/uncanny_mushroom_block"));
-        ModelFile inside = p.models().getExistingFile(new ResourceLocation("minecraft", "block/mushroom_block_inside"));
-
-        p.getMultipartBuilder(ctx.getEntry())
-            .part().modelFile(model).addModel().condition(HugeMushroomBlock.NORTH, true).end()
-            .part().modelFile(model).uvLock(true).rotationY(90).addModel().condition(HugeMushroomBlock.EAST, true).end()
-            .part().modelFile(model).uvLock(true).rotationY(180).addModel().condition(HugeMushroomBlock.SOUTH, true).end()
-            .part().modelFile(model).uvLock(true).rotationY(270).addModel().condition(HugeMushroomBlock.WEST, true).end()
-            .part().modelFile(model).uvLock(true).rotationX(270).addModel().condition(HugeMushroomBlock.UP, true).end()
-            .part().modelFile(model).uvLock(true).rotationX(90).addModel().condition(HugeMushroomBlock.DOWN, true).end()
-            .part().modelFile(inside).addModel().condition(HugeMushroomBlock.NORTH, false).end()
-            .part().modelFile(inside).uvLock(false).rotationY(90).addModel().condition(HugeMushroomBlock.EAST, false).end()
-            .part().modelFile(inside).uvLock(false).rotationY(180).addModel().condition(HugeMushroomBlock.SOUTH, false).end()
-            .part().modelFile(inside).uvLock(false).rotationY(270).addModel().condition(HugeMushroomBlock.WEST, false).end()
-            .part().modelFile(inside).uvLock(false).rotationX(270).addModel().condition(HugeMushroomBlock.UP, false).end()
-            .part().modelFile(inside).uvLock(false).rotationX(90).addModel().condition(HugeMushroomBlock.DOWN, false).end();
-      })
-      .item()
-      .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation(MysticalWorld.MODID, "block/uncanny_mushroom_block")))
-      .build()
-      .register();*/
-
-/*  public static BlockEntry<Block> UNCANNY_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("uncanny_mushroom_full", Material.WOOD, Block::new)
-      .properties(o -> o.strength(0.2F).sound(SoundType.WOOD).lightLevel(q -> 8))
-      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), p.blockTexture(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))))
-      .item()
-      .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation(MysticalWorld.MODID, "block/uncanny_mushroom_block")))
-      .build()
-      .register();
-
-  public static BlockEntry<StairBlock> UNCANNY_MUSHROOM_STAIRS = MysticalWorld.REGISTRATE.block("uncanny_mushroom_stairs", Material.WOOD, stairsBlock(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
-      .properties(MUSHROOM_PROPS)
-      .tag(BlockTags.STAIRS)
-      .item()
-      .tag(ItemTags.STAIRS)
-      .model(ItemModelGenerator::itemModel)
-      .build()
-      .recipe((ctx, p) ->
-          p.stairs(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK), ModBlocks.UNCANNY_MUSHROOM_STAIRS, null, true)
-      )
-      .blockstate(BlockstateGenerator.stairs(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
-      .register();
-
-  public static BlockEntry<SlabBlock> UNCANNY_MUSHROOM_SLAB = MysticalWorld.REGISTRATE.block("uncanny_mushroom_slab", Material.WOOD, SlabBlock::new)
-      .properties(MUSHROOM_PROPS)
-      .item()
-      .tag(ItemTags.SLABS)
-      .model(ItemModelGenerator::itemModel)
-      .build()
-      .tag(BlockTags.SLABS)
-      .recipe((ctx, p) ->
-          p.slab(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()), ModBlocks.UNCANNY_MUSHROOM_SLAB, null, true)
-      )
-      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
-      .blockstate(BlockstateGenerator.slab(ModBlocks.UNCANNY_MUSHROOM_FULL, () -> ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
-      .register();
-
-  public static BlockEntry<WallBlock> UNCANNY_MUSHROOM_WALL = MysticalWorld.REGISTRATE.block("uncanny_mushroom_wall", Material.WOOD, WallBlock::new)
-      .properties(MUSHROOM_PROPS)
-      .item()
-      .tag(ItemTags.WALLS)
-      .model(ItemModelGenerator::inventoryModel)
-      .build()
-      .tag(BlockTags.WALLS)
-      .recipe((ctx, p) ->
-          p.wall(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()), ModBlocks.UNCANNY_MUSHROOM_WALL)
-      )
-      .blockstate(BlockstateGenerator.wall(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
-      .register();
-
-  public static BlockEntry<FenceBlock> UNCANNY_MUSHROOM_FENCE = MysticalWorld.REGISTRATE.block("uncanny_mushroom_fence", Material.WOOD, FenceBlock::new)
-      .properties(MUSHROOM_PROPS)
-      .item()
-      .tag(ItemTags.WOODEN_FENCES)
-      .model(ItemModelGenerator::inventoryModel)
-      .build()
-      .tag(BlockTags.WOODEN_FENCES)
-      .recipe((ctx, p) ->
-          p.fence(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK), ModBlocks.UNCANNY_MUSHROOM_FENCE, null)
-      )
-      .blockstate(BlockstateGenerator.fence(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
-      .register();
-
-  public static BlockEntry<FenceGateBlock> UNCANNY_MUSHROOM_FENCE_GATE = MysticalWorld.REGISTRATE.block("uncanny_mushroom_fence_gate", Material.WOOD, FenceGateBlock::new)
-      .properties(MUSHROOM_PROPS)
-      .item()
-      .model(ItemModelGenerator::itemModel)
-      .build()
-      .recipe((ctx, p) ->
-          p.fenceGate(DataIngredient.items(ModBlocks.UNCANNY_MUSHROOM_BLOCK), ModBlocks.UNCANNY_MUSHROOM_FENCE_GATE, null)
-      )
-      .blockstate(BlockstateGenerator.gate(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
-      .register();
-
-  public static BlockEntry<BaseBlocks.WidePostBlock> UNCANNY_MUSHROOM_WIDE_POST = MysticalWorld.REGISTRATE.block("uncanny_mushroom_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
-      .properties(MUSHROOM_PROPS)
-      .item()
-      .model(ItemModelGenerator::itemModel)
-      .build()
-      .recipe((ctx, p) ->
-          MysticalWorld.RECIPES.widePost(ModBlocks.UNCANNY_MUSHROOM_BLOCK, ModBlocks.UNCANNY_MUSHROOM_WIDE_POST, null, true, p)
-      )
-      .blockstate(BlockstateGenerator.widePost(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
-      .register();
-
-  public static BlockEntry<BaseBlocks.NarrowPostBlock> UNCANNY_MUSHROOM_SMALL_POST = MysticalWorld.REGISTRATE.block("uncanny_mushroom_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
-      .properties(MUSHROOM_PROPS)
-      .item()
-      .model(ItemModelGenerator::itemModel)
-      .build()
-      .recipe((ctx, p) ->
-          MysticalWorld.RECIPES.narrowPost(ModBlocks.UNCANNY_MUSHROOM_BLOCK, ModBlocks.UNCANNY_MUSHROOM_SMALL_POST, null, true, p)
-      )
-      .blockstate(BlockstateGenerator.narrowPost(ModBlocks.UNCANNY_MUSHROOM_BLOCK))
-      .register();*/
-
   // MUSHROOM
   public static BlockEntry<Block> RED_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("red_mushroom_full", Material.WOOD, Block::new)
       .properties(o -> Block.Properties.of(Material.WOOD).sound(SoundType.GRASS))
@@ -443,17 +348,6 @@ public class ModBlocks {
       .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_stem")))
       .build()
       .recipe((ctx, p) -> {
-/*        ShapelessRecipeBuilder.shapeless(ModBlocks.UNCANNY_MUSHROOM_FULL.get(), 1)
-            .requires(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get())
-            .unlockedBy("has_uncanny_mushroom_block", RegistrateRecipeProvider.has(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get()))
-            .group("crafting")
-            .save(p, new ResourceLocation(MysticalWorld.MODID, "full_uncanny_mushroom_block_from_uncanny_mushroom"));
-        ShapelessRecipeBuilder.shapeless(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get(), 1)
-            .requires(ModBlocks.UNCANNY_MUSHROOM_FULL.get())
-            .unlockedBy("has_full_red_mushroom_block", RegistrateRecipeProvider.has(ModBlocks.UNCANNY_MUSHROOM_FULL.get()))
-            .group("crafting")
-            .save(p, new ResourceLocation(MysticalWorld.MODID, "plain_uncanny_mushroom_block_from_full_uncanny_mushroom_block"));*/
-
         ShapelessRecipeBuilder.shapeless(ModBlocks.RED_MUSHROOM_FULL.get(), 1)
             .requires(Blocks.RED_MUSHROOM_BLOCK)
             .unlockedBy("has_vanilla_red_mushroom", RegistrateRecipeProvider.has(Blocks.RED_MUSHROOM_BLOCK))
@@ -464,14 +358,6 @@ public class ModBlocks {
             .unlockedBy("has_full_red_mushroom_block", RegistrateRecipeProvider.has(ModBlocks.RED_MUSHROOM_FULL.get()))
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_red_mushroom_block_from_full_red_mushroom_block"));
-
-/*        ShapedRecipeBuilder.shaped(ModBlocks.UNCANNY_MUSHROOM_BLOCK.get().asItem(), 1)
-            .pattern("XX")
-            .pattern("XX")
-            .define('X', ModBlocks.UNCANNY_MUSHROOM.get())
-            .group("crafting")
-            .unlockedBy("has_uncanny_mushroom", RegistrateRecipeProvider.has(ModBlocks.UNCANNY_MUSHROOM.get()))
-            .save(p, new ResourceLocation(MysticalWorld.MODID, "uncanny_mushroom_block_from_mushrooms"));*/
         ShapedRecipeBuilder.shaped(Blocks.RED_MUSHROOM_BLOCK, 1)
             .pattern("XX")
             .pattern("XX")
@@ -595,6 +481,36 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(() -> Blocks.RED_MUSHROOM_BLOCK))
       .register();
 
+  public static BlockEntry<BaseBlocks.WoodButtonBlock> RED_MUSHROOM_BUTTON = MysticalWorld.REGISTRATE.block("red_mushroom_button", Material.WOOD, BaseBlocks.WoodButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.WOODEN_BUTTONS)
+      .build()
+      .tag(BlockTags.WOODEN_BUTTONS)
+      .blockstate(BlockstateGenerator.button(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_BUTTON, 1, 1);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> RED_MUSHROOM_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("red_mushroom_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).noCollission().strength(0.5f).sound(SoundType.WOOD))
+      .blockstate(BlockstateGenerator.pressurePlate(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK))
+            .unlockedBy("has_red_mushroom_block", DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.WOODEN_PRESSURE_PLATES)
+      .register();
+
+
   // BROWN
 
   public static BlockEntry<StairBlock> BROWN_MUSHROOM_STAIRS = MysticalWorld.REGISTRATE.block("brown_mushroom_stairs", Material.WOOD, stairsBlock(() -> Blocks.BROWN_MUSHROOM_BLOCK))
@@ -683,6 +599,35 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(() -> Blocks.BROWN_MUSHROOM_BLOCK))
       .register();
 
+  public static BlockEntry<BaseBlocks.WoodButtonBlock> BROWN_MUSHROOM_BUTTON = MysticalWorld.REGISTRATE.block("brown_mushroom_button", Material.WOOD, BaseBlocks.WoodButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.WOODEN_BUTTONS)
+      .build()
+      .tag(BlockTags.WOODEN_BUTTONS)
+      .blockstate(BlockstateGenerator.button(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_BUTTON, 1, 1);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> BROWN_MUSHROOM_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("brown_mushroom_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).noCollission().strength(0.5f).sound(SoundType.WOOD))
+      .blockstate(BlockstateGenerator.pressurePlate(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK))
+            .unlockedBy("has_brown_mushroom_block", DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.WOODEN_PRESSURE_PLATES)
+      .register();
+
   // STEM
 
   public static BlockEntry<StairBlock> MUSHROOM_STEM_STAIRS = MysticalWorld.REGISTRATE.block("mushroom_stem_stairs", Material.WOOD, stairsBlock(() -> Blocks.MUSHROOM_STEM))
@@ -769,6 +714,35 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(() -> Blocks.MUSHROOM_STEM, ModBlocks.MUSHROOM_STEM_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(() -> Blocks.MUSHROOM_STEM))
+      .register();
+
+  public static BlockEntry<BaseBlocks.WoodButtonBlock> MUSHROOM_STEM_BUTTON = MysticalWorld.REGISTRATE.block("mushroom_stem_button", Material.WOOD, BaseBlocks.WoodButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.WOODEN_BUTTONS)
+      .build()
+      .tag(BlockTags.WOODEN_BUTTONS)
+      .blockstate(BlockstateGenerator.button(() -> Blocks.MUSHROOM_STEM))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_BUTTON, 1, 1);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> MUSHROOM_STEM_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("mushroom_stem_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_LIGHT_GRAY).noCollission().strength(0.5f).sound(SoundType.WOOD))
+      .blockstate(BlockstateGenerator.pressurePlate(() -> Blocks.MUSHROOM_STEM))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(Blocks.MUSHROOM_STEM))
+            .unlockedBy("has_mushroom_sem_block", DataIngredient.items(Blocks.MUSHROOM_STEM).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.WOODEN_PRESSURE_PLATES)
       .register();
 
   // INSIDE
@@ -867,6 +841,36 @@ public class ModBlocks {
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.MUSHROOM_INSIDE))
       .register();
+
+  public static BlockEntry<BaseBlocks.WoodButtonBlock> MUSHROOM_INSIDE_BUTTON = MysticalWorld.REGISTRATE.block("mushroom_inside_button", Material.WOOD, BaseBlocks.WoodButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.WOODEN_BUTTONS)
+      .build()
+      .tag(BlockTags.WOODEN_BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.MUSHROOM_INSIDE))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_BUTTON, 1, 1);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> MUSHROOM_INSIDE_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("mushroom_inside_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).noCollission().strength(0.5f).sound(SoundType.WOOD))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.MUSHROOM_INSIDE))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.MUSHROOM_INSIDE))
+            .unlockedBy("has_mushroom_inside_block", DataIngredient.items(ModBlocks.MUSHROOM_INSIDE).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.WOODEN_PRESSURE_PLATES)
+      .register();
+
 
   // MUD BLOCK
 
@@ -987,6 +991,37 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.MUD_BLOCK))
       .register();
 
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> MUD_BLOCK_BUTTON = MysticalWorld.REGISTRATE.block("mud_block_button", Material.STONE, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.MUD_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> MUD_BLOCK_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("mud_block_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.MUD_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.MUD_BLOCK))
+            .unlockedBy("has_mud_block", DataIngredient.items(ModBlocks.MUD_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
+
   // MUD BRICK
 
   public static BlockEntry<WetMudBrick> WET_MUD_BRICK = MysticalWorld.REGISTRATE.block("wet_mud_brick", Material.DIRT, WetMudBrick::new)
@@ -1100,6 +1135,38 @@ public class ModBlocks {
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.MUD_BRICK))
       .register();
+
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> MUD_BRICK_BUTTON = MysticalWorld.REGISTRATE.block("mud_brick_button", Material.STONE, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.MUD_BRICK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> MUD_BRICK_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("mud_brick_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.MUD_BRICK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.MUD_BRICK))
+            .unlockedBy("has_mud_brick", DataIngredient.items(ModBlocks.MUD_BRICK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
+
 
   // CHARRED STUFF
 
@@ -1252,6 +1319,35 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.CHARRED_PLANKS))
       .register();
 
+  public static BlockEntry<BaseBlocks.WoodButtonBlock> CHARRED_BUTTON = MysticalWorld.REGISTRATE.block("charred_button", Material.WOOD, BaseBlocks.WoodButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.WOODEN_BUTTONS)
+      .build()
+      .tag(BlockTags.WOODEN_BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.CHARRED_PLANKS))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.CHARRED_PLANKS), ModBlocks.CHARRED_BUTTON, 1, 1);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> CHARRED_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("charred_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).noCollission().strength(0.5f).sound(SoundType.WOOD))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.CHARRED_PLANKS))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.CHARRED_PLANKS))
+            .unlockedBy("has_charred_block", DataIngredient.items(ModBlocks.CHARRED_PLANKS).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.WOODEN_PRESSURE_PLATES)
+      .register();
+
   // TERRACOTTA BRICK
 
   public static BlockEntry<Block> TERRACOTTA_BRICK = MysticalWorld.REGISTRATE.block("terracotta_brick", Material.STONE, Block::new)
@@ -1352,6 +1448,37 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.TERRACOTTA_BRICK))
       .register();
 
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> TERRACOTTA_BRICK_BUTTON = MysticalWorld.REGISTRATE.block("terracotta_brick_button", Material.STONE, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.TERRACOTTA_BRICK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> TERRACOTTA_BRICK_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("terracotta_brick_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.TERRACOTTA_BRICK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.TERRACOTTA_BRICK))
+            .unlockedBy("has_terracotta_brick", DataIngredient.items(ModBlocks.TERRACOTTA_BRICK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
+
   // IRON BRICK
 
   private static final NonNullUnaryOperator<Block.Properties> IRON_PROPS = (o) -> o.sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.2f);
@@ -1425,6 +1552,37 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SMALL_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.IRON_BRICK))
+      .register();
+
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> IRON_BRICK_BUTTON = MysticalWorld.REGISTRATE.block("iron_brick_button", Material.METAL, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.IRON_BRICK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.IRON_BRICK), ModBlocks.IRON_BRICK_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.IRON_BRICK), ModBlocks.IRON_BRICK_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> IRON_BRICK_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("iron_brick_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.IRON_BRICK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.IRON_BRICK))
+            .unlockedBy("has_iron_brick_block", DataIngredient.items(ModBlocks.IRON_BRICK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.IRON_BRICK), ModBlocks.IRON_BRICK_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
       .register();
 
   // SOFT STONE
@@ -1508,6 +1666,37 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.SOFT_STONE))
       .register();
 
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> SOFT_STONE_BUTTON = MysticalWorld.REGISTRATE.block("soft_stone_button", Material.STONE, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.SOFT_STONE))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.SOFT_STONE), ModBlocks.SOFT_STONE_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.SOFT_STONE), ModBlocks.SOFT_STONE_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> SOFT_STONE_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("soft_stone_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_GRAY).noCollission().strength(0.5f).sound(SoundType.STONE))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.SOFT_STONE))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.SOFT_STONE))
+            .unlockedBy("has_soft_stone", DataIngredient.items(ModBlocks.SOFT_STONE).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.SOFT_STONE), ModBlocks.SOFT_STONE_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
+
   // BLACKENED STONE
   public static BlockEntry<Block> BLACKENED_STONE = MysticalWorld.REGISTRATE.block("blackened_stone", Block::new)
       .properties(BLACKENED_STONE_PROPS)
@@ -1586,6 +1775,37 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.BLACKENED_STONE, ModBlocks.BLACKENED_STONE_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.BLACKENED_STONE))
+      .register();
+
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> BLACKENED_STONE_BUTTON = MysticalWorld.REGISTRATE.block("blackened_stone_button", Material.STONE, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.BLACKENED_STONE))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.BLACKENED_STONE), ModBlocks.BLACKENED_STONE_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.BLACKENED_STONE), ModBlocks.BLACKENED_STONE_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> BLACKENED_STONE_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("blackened_stone_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_GRAY).noCollission().strength(0.5f).sound(SoundType.STONE))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.BLACKENED_STONE))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.BLACKENED_STONE))
+            .unlockedBy("has_blackened_stone", DataIngredient.items(ModBlocks.BLACKENED_STONE).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.BLACKENED_STONE), ModBlocks.BLACKENED_STONE_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
       .register();
 
   // SMOOTH OBSIDIAN
@@ -1670,6 +1890,37 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.SOFT_OBSIDIAN))
+      .register();
+
+  public static BlockEntry<SoftObsidian.SoftObsidianButtonBlock> SOFT_OBSIDIAN_BUTTON = MysticalWorld.REGISTRATE.block("soft_obsidian_button", Material.STONE, SoftObsidian.SoftObsidianButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.SOFT_OBSIDIAN))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.SOFT_OBSIDIAN), ModBlocks.SOFT_OBSIDIAN_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.SOFT_OBSIDIAN), ModBlocks.SOFT_OBSIDIAN_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<SoftObsidian.SoftObsidianPressurePlateBlock> SOFT_OBSIDIAN_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("soft_obsidian_pressure_plate", (p) -> new SoftObsidian.SoftObsidianPressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_GRAY).noCollission().strength(0.5f).sound(SoundType.STONE))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.SOFT_OBSIDIAN))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.SOFT_OBSIDIAN))
+            .unlockedBy("has_soft_obsidian", DataIngredient.items(ModBlocks.SOFT_OBSIDIAN).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.SOFT_OBSIDIAN), ModBlocks.SOFT_OBSIDIAN_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
       .register();
 
   // GRANITE QUARTZ
@@ -1796,7 +2047,52 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.SAPPHIRE_BLOCK))
       .register();
 
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> SAPPHIRE_BUTTON = MysticalWorld.REGISTRATE.block("sapphire_button", Material.METAL, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.SAPPHIRE_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK), ModBlocks.SAPPHIRE_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK), ModBlocks.SAPPHIRE_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> SAPPHIRE_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("sapphire_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.SAPPHIRE_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK))
+            .unlockedBy("has_sapphire_block", DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK), ModBlocks.SAPPHIRE_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
+
   // COPPER
+  public static BlockEntry<BaseBlocks.WidePostBlock> COPPER_WIDE_POST = MysticalWorld.REGISTRATE.block("copper_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
+      .properties(o -> {
+        ModMaterials.COPPER.getBlockProps(o);
+        return o;
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          MysticalWorld.RECIPES.widePost(() -> Blocks.COPPER_BLOCK, ModBlocks.COPPER_WIDE_POST, null, false, p)
+      )
+      .blockstate(BlockstateGenerator.widePost(() -> Blocks.COPPER_BLOCK))
+      .register();
+
   public static BlockEntry<BaseBlocks.NarrowPostBlock> COPPER_SMALL_POST = MysticalWorld.REGISTRATE.block("copper_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
       .properties(o -> {
         ModMaterials.COPPER.getBlockProps(o);
@@ -1811,6 +2107,36 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(() -> Blocks.COPPER_BLOCK))
       .register();
 
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> COPPER_BUTTON = MysticalWorld.REGISTRATE.block("copper_button", Material.METAL, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(() -> Blocks.COPPER_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(Blocks.COPPER_BLOCK), ModBlocks.COPPER_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(Blocks.COPPER_BLOCK), ModBlocks.COPPER_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> COPPER_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("copper_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(() -> Blocks.COPPER_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(Blocks.COPPER_BLOCK))
+            .unlockedBy("has_copper_block", DataIngredient.items(Blocks.COPPER_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(Blocks.COPPER_BLOCK), ModBlocks.COPPER_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
 
   // LEAD
   public static BlockEntry<BaseBlocks.OreBlock> LEAD_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.LEAD.oreName(), BlockGenerator.oreBlock(ModMaterials.LEAD))
@@ -1918,6 +2244,36 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.LEAD_BLOCK))
       .register();
 
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> LEAD_BUTTON = MysticalWorld.REGISTRATE.block("lead_button", Material.METAL, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.LEAD_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.LEAD_BLOCK), ModBlocks.LEAD_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.LEAD_BLOCK), ModBlocks.LEAD_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> LEAD_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("lead_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.LEAD_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.LEAD_BLOCK))
+            .unlockedBy("has_lead_block", DataIngredient.items(ModBlocks.LEAD_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.LEAD_BLOCK), ModBlocks.LEAD_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
 
   // ORICHALCUM
   public static BlockEntry<Block> ORICHALCUM_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.ORICHALCUM.blockName(), Material.METAL, Block::new)
@@ -2008,6 +2364,37 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.ORICHALCUM_BLOCK, ModBlocks.ORICHALCUM_SMALL_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.ORICHALCUM_BLOCK))
+      .register();
+
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> ORICHALCUM_BUTTON = MysticalWorld.REGISTRATE.block("orichalcum_button", Material.METAL, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.ORICHALCUM_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK), ModBlocks.ORICHALCUM_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK), ModBlocks.ORICHALCUM_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> ORICHALCUM_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("orichalcum_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.ORICHALCUM_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK))
+            .unlockedBy("has_orichalcum_block", DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK), ModBlocks.ORICHALCUM_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
       .register();
 
   // SILVER
@@ -2114,6 +2501,36 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.SILVER_BLOCK))
       .register();
 
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> SILVER_BUTTON = MysticalWorld.REGISTRATE.block("silver_button", Material.METAL, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.SILVER_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.SILVER_BLOCK), ModBlocks.SILVER_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.SILVER_BLOCK), ModBlocks.SILVER_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> SILVER_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("silver_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.SILVER_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.SILVER_BLOCK))
+            .unlockedBy("has_silver_block", DataIngredient.items(ModBlocks.SILVER_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.SILVER_BLOCK), ModBlocks.SILVER_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
 
   // TIN
   public static BlockEntry<BaseBlocks.OreBlock> TIN_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.TIN.oreName(), BlockGenerator.oreBlock(ModMaterials.TIN))
@@ -2219,8 +2636,43 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.TIN_BLOCK))
       .register();
 
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> TIN_BUTTON = MysticalWorld.REGISTRATE.block("tin_button", Material.METAL, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.TIN_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.TIN_BLOCK), ModBlocks.TIN_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.TIN_BLOCK), ModBlocks.TIN_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> TIN_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("tin_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.TIN_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.TIN_BLOCK))
+            .unlockedBy("has_tin_block", DataIngredient.items(ModBlocks.TIN_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.TIN_BLOCK), ModBlocks.TIN_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
+
   // TODO: Tags
   public static NonNullUnaryOperator<Block.Properties> PEARL_PROPS = o -> o.strength(1.2F, 1.2F).sound(SoundType.STONE)/*.harvestTool(ToolType.PICKAXE).harvestLevel(1)*/;
+
+  static {
+    Blocks.DEEPSLATE_COAL_ORE
+  }
 
   public static BlockEntry<Block> PEARL_BLOCK = MysticalWorld.REGISTRATE.block("pearl_block", Material.STONE, Block::new)
       .properties(PEARL_PROPS)
@@ -2308,6 +2760,37 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.PEARL_BLOCK, ModBlocks.PEARL_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.PEARL_BLOCK))
+      .register();
+
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> PEARL_BUTTON = MysticalWorld.REGISTRATE.block("pearl_button", Material.METAL, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.PEARL_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> PEARL_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("pearl_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.PEARL_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.PEARL_BLOCK))
+            .unlockedBy("has_tin_block", DataIngredient.items(ModBlocks.PEARL_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
       .register();
 
   protected static NonNullUnaryOperator<BlockBehaviour.Properties> BONE_PROPS = (o) -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).strength(0.2F).sound(SoundType.BONE_BLOCK);

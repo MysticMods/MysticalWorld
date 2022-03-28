@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:tin_button"
+    ]
+  },
+  "criteria": {
+    "has_tin_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:tin_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:tin_button"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tin_block",
+      "has_the_recipe"
+    ]
+  ]
+}

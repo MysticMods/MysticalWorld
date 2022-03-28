@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:lead_block"
+  },
+  "result": "mysticalworld:lead_button",
+  "count": 1
+}

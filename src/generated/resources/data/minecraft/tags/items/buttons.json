@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:thatch_button",
+    "mysticalworld:mud_block_button",
+    "mysticalworld:mud_brick_button",
+    "mysticalworld:terracotta_brick_button",
+    "mysticalworld:iron_brick_button",
+    "mysticalworld:soft_stone_button",
+    "mysticalworld:blackened_stone_button",
+    "mysticalworld:soft_obsidian_button",
+    "mysticalworld:sapphire_button",
+    "mysticalworld:copper_button",
+    "mysticalworld:lead_button",
+    "mysticalworld:orichalcum_button",
+    "mysticalworld:silver_button",
+    "mysticalworld:tin_button",
+    "mysticalworld:pearl_button"
+  ]
+}

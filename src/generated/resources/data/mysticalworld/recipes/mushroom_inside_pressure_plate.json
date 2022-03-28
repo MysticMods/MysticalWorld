@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "mysticalworld:mushroom_inside_block"
+    }
+  },
+  "result": {
+    "item": "mysticalworld:mushroom_inside_pressure_plate"
+  }
+}

@@ -4,10 +4,19 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.loot.conditions.*;
 import mysticmods.mysticalworld.loot.functions.RandomPotion;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
+import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
 import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 
+@Mod.EventBusSubscriber(modid=MysticalWorld.MODID, bus=Mod.EventBusSubscriber.Bus.MOD)
 public class ModLoot {
   public static final ConfiguredRegistry<LootItemFunctionType> FUNCTION_REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, Registry.LOOT_FUNCTION_TYPE);
   public static final ConfiguredRegistry<LootItemConditionType> CONDITION_REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, Registry.LOOT_CONDITION_TYPE);
@@ -21,6 +30,14 @@ public class ModLoot {
   public static final LootItemConditionType IS_MATURE = CONDITION_REGISTRY.register("is_mature", new LootItemConditionType(new IsMature.MatureSerializer()));
   public static final LootItemConditionType IS_ENDER = CONDITION_REGISTRY.register("is_ender", new LootItemConditionType(new IsEnder.EnderSerializer()));
 
-  public static void load() {
+  @SubscribeEvent
+  public static void registerLootData(RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
+    FUNCTION_REGISTRY.registration();
+    CONDITION_REGISTRY.registration();
+  }
+
+  @SubscribeEvent
+  public static void registerRecipes (RegistryEvent.Register<RecipeSerializer<?>> event) {
+    CraftingHelper.register(new ResourceLocation(MysticalWorld.MODID, "excluding_ingredient"), ExcludingIngredient.Serializer.INSTANCE);
   }
 }

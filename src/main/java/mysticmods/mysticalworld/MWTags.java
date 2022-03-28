@@ -25,11 +25,17 @@ public class MWTags {
 
     public static TagKey<Block> SAPPHIRE_STORAGE = compatTag("storage_blocks/sapphire");
     public static TagKey<Block> LEAD_STORAGE = compatTag("storage_blocks/lead");
+    public static TagKey<Block> RAW_LEAD_STORAGE = compatTag("storage_blocks/raw_lead");
     public static TagKey<Block> ORICHALCUM_STORAGE = compatTag("storage_blocks/orichalcum");
     public static TagKey<Block> SILVER_STORAGE = compatTag("storage_blocks/silver");
+    public static TagKey<Block> RAW_SILVER_STORAGE = compatTag("storage_blocks/raw_silver");
     public static TagKey<Block> TIN_STORAGE = compatTag("storage_blocks/tin");
+    public static TagKey<Block> RAW_TIN_STORAGE = compatTag("storage_blocks/raw_tin");
     public static TagKey<Block> PEARL_STORAGE = compatTag("storage_blocks/pearl");
     public static TagKey<Block> MUSHROOM_BLOCKS = compatTag("mushroom_blocks");
+    public static TagKey<Block> CARAPACE_STORAGE = compatTag("storage_blocks/carapace");
+
+    public static TagKey<Block> CARAPACE_BLOCK = modTag("carapace_block");
 
     public static TagKey<Block> BASE_STONE_GRANITE = compatTag("base_stone_granite");
 
@@ -96,6 +102,10 @@ public class MWTags {
     public static TagKey<Item> TIN_DUST = compatTag("dusts/tin");
     public static TagKey<Item> GOLD_DUST = compatTag("dusts/gold");
     public static TagKey<Item> IRON_DUST = compatTag("dusts/iron");
+    public static TagKey<Item> RAW_LEAD = compatTag("raw_materials/lead");
+    public static TagKey<Item> RAW_SILVER = compatTag("raw_materials/silver");
+    public static TagKey<Item> RAW_ORICHALCUM = compatTag("raw_materials/orichalcum");
+    public static TagKey<Item> RAW_TIN = compatTag("raw_materials/tin");
 
     public static TagKey<Item> SOFT_STONE = modTag("soft_stone");
 

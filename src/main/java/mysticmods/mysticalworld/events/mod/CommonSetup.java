@@ -4,7 +4,6 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.*;
 import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.potions.PotionRecipes;
-import mysticmods.mysticalworld.recipe.ingredients.SeedIngredient;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -15,6 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.PlantType;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -36,13 +36,10 @@ public class CommonSetup {
     Networking.INSTANCE.registerMessages();
 
     event.enqueueWork(() -> {
-      ModLoot.load();
       ModEntities.registerEntities();
       ShadedCommonSetup.init(event);
 /*      ModStructures.setupStructures();
       ConfiguredStructures.registerStructures();*/
-      CraftingHelper.register(new ResourceLocation(MysticalWorld.MODID, "seeds"), SeedIngredient.Serializer.INSTANCE);
-      CraftingHelper.register(new ResourceLocation(MysticalWorld.MODID, "excluding_ingredient"), ExcludingIngredient.Serializer.INSTANCE);
       UniqueShapelessRecipe.setStoredSerializer(ModRecipes.UNIQUE_SHAPELESS_RECIPE.get());
       ModCompost.init();
 

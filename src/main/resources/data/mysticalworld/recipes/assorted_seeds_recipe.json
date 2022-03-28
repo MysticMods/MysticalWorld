@@ -6,9 +6,6 @@
   "key": {
     "A": [
       {
-        "type": "mysticalworld:seeds"
-      },
-      {
         "tag": "forge:seeds"
       }
     ]

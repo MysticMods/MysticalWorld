@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mysticalworld:orichalcum_block"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:orichalcum_button"
+  }
+}
