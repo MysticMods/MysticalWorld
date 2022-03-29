@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:carapace_to_storage_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_carapace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "mysticalworld:carapace"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:carapace_to_storage_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_carapace",
+      "has_the_recipe"
+    ]
+  ]
+}

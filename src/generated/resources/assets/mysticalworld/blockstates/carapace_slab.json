@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "mysticalworld:block/carapace_slab_top"
+    },
+    "type=bottom": {
+      "model": "mysticalworld:block/carapace_slab"
+    },
+    "type=double": {
+      "model": "mysticalworld:block/carapace_block"
+    }
+  }
+}

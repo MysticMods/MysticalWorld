@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:carapace_pressure_plate_from_carapace_block_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_carapace_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticalworld:carapace_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:carapace_pressure_plate_from_carapace_block_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_carapace_block",
+      "has_the_recipe"
+    ]
+  ]
+}

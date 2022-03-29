@@ -56,8 +56,9 @@ public class ModBlocks {
   private static final NonNullUnaryOperator<Block.Properties> THATCH_PROPS = (o) -> o.strength(1f).sound(SoundType.GRASS);
   private static final NonNullUnaryOperator<Block.Properties> MUSHROOM_PROPS = (o) -> o.strength(0.2F).sound(SoundType.WOOD);
   private static final NonNullUnaryOperator<Block.Properties> STONE_PROPS = (o) -> o.sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2f);
-  // TODO: TAGS
-  private static final NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD)/*.strength(2.0f).harvestTool(ToolType.AXE)*/;
+  private static final NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD);
+  public static NonNullUnaryOperator<Block.Properties> PEARL_PROPS = o -> o.strength(1.2F, 1.2F).sound(SoundType.STONE);
+  public static NonNullUnaryOperator<Block.Properties> CARAPACE_PROPS = o->o.strength(1f, 1f).sound(SoundType.CALCITE);
 
   private static <T extends IForgeRegistryEntry<?>> String boneName(T block) {
     String[] init = Objects.requireNonNull(block.getRegistryName()).getPath().split("_");
@@ -122,6 +123,7 @@ public class ModBlocks {
           add(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
               createCropDrops(ModBlocks.AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.AUBERGINE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7)))))
       .blockstate(NonNullBiConsumer.noop())
+      .tag(MWTags.Blocks.CROPS, MWTags.Blocks.AUBERGINE_CROP)
       .register();
 
   public static BlockEntry<WildCropBlock> WILD_AUBERGINE = MysticalWorld.REGISTRATE.block("wild_aubergine", WildCropBlock::new)
@@ -162,6 +164,55 @@ public class ModBlocks {
       )
       .register();
 
+  public static BlockEntry<BaseBlocks.OreBlock> TIN_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.TIN.oreName(), BlockGenerator.oreBlock(ModMaterials.TIN))
+      .properties(o -> {
+        ModMaterials.TIN.getOreBlockProperties(o);
+        return o;
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .tag(MWTags.Items.TIN_ORE)
+      .build()
+      .tag(MWTags.Blocks.TIN_ORE)
+      .blockstate(BlockstateGenerator::simpleBlockstate)
+      .loot((p, t) ->
+          p.add(ModBlocks.TIN_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_TIN.get()))
+      )
+      .register();
+
+  public static BlockEntry<BaseBlocks.OreBlock> LEAD_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.LEAD.oreName(), BlockGenerator.oreBlock(ModMaterials.LEAD))
+      .properties(o -> {
+        ModMaterials.LEAD.getOreBlockProperties(o);
+        return o;
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .tag(MWTags.Items.LEAD_ORE)
+      .build()
+      .blockstate(BlockstateGenerator::simpleBlockstate)
+      .tag(MWTags.Blocks.LEAD_ORE)
+      .loot((p, t) ->
+          p.add(ModBlocks.LEAD_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_LEAD.get()))
+      )
+      .register();
+
+  public static BlockEntry<BaseBlocks.OreBlock> SILVER_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.SILVER.oreName(), BlockGenerator.oreBlock(ModMaterials.SILVER))
+      .properties(o -> {
+        ModMaterials.SILVER.getOreBlockProperties(o);
+        return o;
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .tag(MWTags.Items.SILVER_ORE)
+      .build()
+      .tag(MWTags.Blocks.SILVER_ORE)
+      .blockstate(BlockstateGenerator::simpleBlockstate)
+      .loot((p, t) ->
+          p.add(ModBlocks.SILVER_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_SILVER.get()))
+      )
+      .register();
+
+
   public static BlockEntry<BaseBlocks.OreBlock> SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.SAPPHIRE.oreName(), BlockGenerator.oreBlock(ModMaterials.SAPPHIRE))
       .properties(o -> {
         ModMaterials.SAPPHIRE.getOreBlockProperties(o);
@@ -178,45 +229,29 @@ public class ModBlocks {
       )
       .register();
 
-  public static BlockEntry<BaseBlocks.OreBlock> LEAD_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.LEAD.oreName(), BlockGenerator.oreBlock(ModMaterials.LEAD))
-      .properties(o -> {
-        ModMaterials.LEAD.getOreBlockProperties(o);
-        return o;
-      })
+  public static BlockEntry<Block> RAW_TIN_BLOCK = MysticalWorld.REGISTRATE.block("raw_tin_block", Material.METAL, Block::new)
       .item()
       .model(ItemModelGenerator::itemModel)
-      .tag(MWTags.Items.LEAD_ORE)
       .build()
-      .blockstate(BlockstateGenerator::simpleBlockstate)
-      .tag(MWTags.Blocks.LEAD_ORE)
-      .register();
-
-  public static BlockEntry<BaseBlocks.OreBlock> SILVER_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.SILVER.oreName(), BlockGenerator.oreBlock(ModMaterials.SILVER))
-      .properties(o -> {
-        ModMaterials.SILVER.getOreBlockProperties(o);
-        return o;
-      })
-      .item()
-      .model(ItemModelGenerator::itemModel)
-      .tag(MWTags.Items.SILVER_ORE)
-      .build()
-      .tag(MWTags.Blocks.SILVER_ORE)
+      .tag(MWTags.Blocks.RAW_TIN_STORAGE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
-  public static BlockEntry<BaseBlocks.OreBlock> TIN_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.TIN.oreName(), BlockGenerator.oreBlock(ModMaterials.TIN))
-      .properties(o -> {
-        ModMaterials.TIN.getOreBlockProperties(o);
-        return o;
-      })
+  public static BlockEntry<Block> RAW_LEAD_BLOCK = MysticalWorld.REGISTRATE.block("raw_lead_block", Material.METAL, Block::new)
       .item()
       .model(ItemModelGenerator::itemModel)
-      .tag(MWTags.Items.TIN_ORE)
       .build()
-      .tag(MWTags.Blocks.TIN_ORE)
+      .tag(MWTags.Blocks.RAW_LEAD_STORAGE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
+  public static BlockEntry<Block> RAW_SILVER_BLOCK = MysticalWorld.REGISTRATE.block("raw_silver_block", Material.METAL, Block::new)
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(MWTags.Blocks.RAW_SILVER_STORAGE)
+      .blockstate(BlockstateGenerator::simpleBlockstate)
+      .register();
 
   public static BlockEntry<ThatchBlock> THATCH = MysticalWorld.REGISTRATE.block("thatch", Material.WOOD, ThatchBlock::new)
       .item()
@@ -311,6 +346,7 @@ public class ModBlocks {
       .build()
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_block_inside"))))
       .recipe((ctx, p) -> SimpleCookingRecipeBuilder.smelting(Ingredient.of(MWTags.Items.MUSHROOM_BLOCKS), ctx.getEntry(), 0.125f, 200).unlockedBy("has_mushroom", RegistrateRecipeProvider.has(MWTags.Items.MUSHROOM_BLOCKS)).save(p, "mushroom_inside_from_smelting"))
+      .tag(MWTags.Blocks.MUSHROOM_BLOCKS)
       .register();
 
   public static BlockEntry<WetMudBlock> WET_MUD_BLOCK = MysticalWorld.REGISTRATE.block("wet_mud_block", Material.DIRT, WetMudBlock::new)
@@ -412,7 +448,7 @@ public class ModBlocks {
         p.stonecutting(DataIngredient.items(Items.SMOOTH_STONE), ModBlocks.SOFT_STONE);
         MysticalWorld.RECIPES.twoByTwo(() -> Items.SMOOTH_STONE, ModBlocks.SOFT_STONE, null, p);
       })
-      .tag(MWTags.Blocks.SOFT_STONE)
+      .tag(MWTags.Blocks.SOFT_STONE, BlockTags.BASE_STONE_OVERWORLD)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -531,7 +567,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.SAPPHIRE_BLOCK)
       .build()
-      .tag(MWTags.Blocks.SAPPHIRE_STORAGE)
+      .tag(MWTags.Blocks.SAPPHIRE_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -552,7 +588,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.LEAD_BLOCK)
       .build()
-      .tag(MWTags.Blocks.LEAD_STORAGE)
+      .tag(MWTags.Blocks.LEAD_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -567,7 +603,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.ORICHALCUM_BLOCK)
       .build()
-      .tag(MWTags.Blocks.ORICHALCUM_STORAGE)
+      .tag(MWTags.Blocks.ORICHALCUM_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -583,7 +619,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.SILVER_BLOCK)
       .build()
-      .tag(MWTags.Blocks.SILVER_STORAGE)
+      .tag(MWTags.Blocks.SILVER_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -599,13 +635,9 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.TIN_BLOCK)
       .build()
-      .tag(MWTags.Blocks.TIN_STORAGE)
+      .tag(MWTags.Blocks.TIN_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
-
-
-  // TODO: Tags
-  public static NonNullUnaryOperator<Block.Properties> PEARL_PROPS = o -> o.strength(1.2F, 1.2F).sound(SoundType.STONE)/*.harvestTool(ToolType.PICKAXE).harvestLevel(1)*/;
 
   public static BlockEntry<Block> PEARL_BLOCK = MysticalWorld.REGISTRATE.block("pearl_block", Material.STONE, Block::new)
       .properties(PEARL_PROPS)
@@ -613,10 +645,19 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.PEARL_BLOCK)
       .build()
-      .tag(MWTags.Blocks.PEARL_STORAGE)
+      .tag(MWTags.Blocks.PEARL_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
+  public static BlockEntry<Block> CARAPACE_BLOCK = MysticalWorld.REGISTRATE.block("carapace_block", Material.WOOL, Block::new)
+      .properties(CARAPACE_PROPS)
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .tag(MWTags.Items.CARAPACE_BLOCK)
+      .build()
+      .tag(MWTags.Blocks.CARAPACE_STORAGE)
+      .blockstate(BlockstateGenerator::simpleBlockstate)
+      .register();
 
   public static BlockEntry<SlabBlock> THATCH_SLAB = MysticalWorld.REGISTRATE.block("thatch_slab", Material.WOOD, SlabBlock::new)
       .properties(THATCH_PROPS)
@@ -899,6 +940,20 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.slab(ModBlocks.PEARL_BLOCK))
       .register();
 
+  public static BlockEntry<SlabBlock> CARAPACE_SLAB = MysticalWorld.REGISTRATE.block("carapace_slab", Material.STONE, SlabBlock::new)
+      .properties(CARAPACE_PROPS)
+      .item()
+      .tag(ItemTags.SLABS)
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.SLABS)
+      .recipe((ctx, p) ->
+          p.slab(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_SLAB, null, true)
+      )
+      .loot((p, t) -> p.add(t, RegistrateBlockLootTables.createSlabItemTable(t)))
+      .blockstate(BlockstateGenerator.slab(ModBlocks.CARAPACE_BLOCK))
+      .register();
+
 
   public static BlockEntry<StairBlock> THATCH_STAIRS = MysticalWorld.REGISTRATE.block("thatch_stairs", Material.WOOD, stairsBlock(ModBlocks.THATCH))
       .properties(THATCH_PROPS)
@@ -1162,6 +1217,19 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.stairs(ModBlocks.PEARL_BLOCK))
       .register();
 
+  public static BlockEntry<StairBlock> CARAPACE_STAIRS = MysticalWorld.REGISTRATE.block("carapace_stairs", Material.STONE, stairsBlock(ModBlocks.CARAPACE_BLOCK))
+      .properties(CARAPACE_PROPS)
+      .tag(BlockTags.STAIRS)
+      .item()
+      .tag(ItemTags.STAIRS)
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          p.stairs(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_STAIRS, null, true)
+      )
+      .blockstate(BlockstateGenerator.stairs(ModBlocks.CARAPACE_BLOCK))
+      .register();
+
   // FENCES HERE
   public static BlockEntry<FenceBlock> THATCH_FENCE = MysticalWorld.REGISTRATE.block("thatch_fence", Material.WOOD, FenceBlock::new)
       .properties(THATCH_PROPS)
@@ -1295,6 +1363,18 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.fence(ModBlocks.PEARL_BLOCK))
       .register();
 
+  public static BlockEntry<FenceBlock> CARAPACE_FENCE = MysticalWorld.REGISTRATE.block("carapace_fence", Material.STONE, FenceBlock::new)
+      .properties(STONE_PROPS)
+      .item()
+      .tag(ItemTags.FENCES)
+      .model(ItemModelGenerator::inventoryModel)
+      .build()
+      .tag(BlockTags.FENCES)
+      .recipe((ctx, p) ->
+          p.fence(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_FENCE, null)
+      )
+      .blockstate(BlockstateGenerator.fence(ModBlocks.CARAPACE_BLOCK))
+      .register();
 
   public static BlockEntry<WallBlock> THATCH_WALL = MysticalWorld.REGISTRATE.block("thatch_wall", Material.WOOD, WallBlock::new)
       .properties(THATCH_PROPS)
@@ -1556,6 +1636,19 @@ public class ModBlocks {
           p.wall(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_WALL)
       )
       .blockstate(BlockstateGenerator.wall(ModBlocks.PEARL_BLOCK))
+      .register();
+
+  public static BlockEntry<WallBlock> CARAPACE_WALL = MysticalWorld.REGISTRATE.block("carapace_wall", Material.STONE, WallBlock::new)
+      .properties(CARAPACE_PROPS)
+      .item()
+      .tag(ItemTags.WALLS)
+      .model(ItemModelGenerator::inventoryModel)
+      .build()
+      .tag(BlockTags.WALLS)
+      .recipe((ctx, p) ->
+          p.wall(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_WALL)
+      )
+      .blockstate(BlockstateGenerator.wall(ModBlocks.CARAPACE_BLOCK))
       .register();
 
   public static BlockEntry<BaseBlocks.StoneButtonBlock> THATCH_BUTTON = MysticalWorld.REGISTRATE.block("thatch_button", Material.WOOD, BaseBlocks.StoneButtonBlock::new)
@@ -1829,6 +1922,20 @@ public class ModBlocks {
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_BUTTON, 1, 1);
         p.stonecutting(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_BUTTON);
+      })
+      .register();
+
+  public static BlockEntry<BaseBlocks.StoneButtonBlock> CARAPACE_BUTTON = MysticalWorld.REGISTRATE.block("carapace_button", Material.METAL, BaseBlocks.StoneButtonBlock::new)
+      .properties(o -> BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).sound(SoundType.METAL))
+      .item()
+      .model(ItemModelGenerator::inventoryModel)
+      .tag(ItemTags.BUTTONS)
+      .build()
+      .tag(BlockTags.BUTTONS)
+      .blockstate(BlockstateGenerator.button(ModBlocks.CARAPACE_BLOCK))
+      .recipe((ctx, p) -> {
+        p.singleItem(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_BUTTON, 1, 1);
+        p.stonecutting(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_BUTTON);
       })
       .register();
 
@@ -2150,7 +2257,7 @@ public class ModBlocks {
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> PEARL_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("pearl_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
-      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.METAL))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.STONE))
       .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.PEARL_BLOCK))
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
@@ -2159,6 +2266,23 @@ public class ModBlocks {
             .unlockedBy("has_tin_block", DataIngredient.items(ModBlocks.PEARL_BLOCK).getCritereon(p))
             .save(p, p.safeId(ctx.getEntry()));
         p.stonecutting(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_PRESSURE_PLATE);
+      })
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .register();
+
+  public static BlockEntry<BaseBlocks.PressurePlateBlock> CARAPACE_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("carapace_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
+      .properties(o -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE).noCollission().strength(0.5f).sound(SoundType.STONE))
+      .blockstate(BlockstateGenerator.pressurePlate(ModBlocks.CARAPACE_BLOCK))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+            .pattern("XX")
+            .define('X', DataIngredient.items(ModBlocks.CARAPACE_BLOCK))
+            .unlockedBy("has_tin_block", DataIngredient.items(ModBlocks.CARAPACE_BLOCK).getCritereon(p))
+            .save(p, p.safeId(ctx.getEntry()));
+        p.stonecutting(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_PRESSURE_PLATE);
       })
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -2504,6 +2628,17 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.widePost(ModBlocks.PEARL_BLOCK))
       .register();
 
+  public static BlockEntry<BaseBlocks.WidePostBlock> CARAPACE_WIDE_POST = MysticalWorld.REGISTRATE.block("carapace_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
+      .properties(CARAPACE_PROPS)
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          MysticalWorld.RECIPES.widePost(ModBlocks.CARAPACE_BLOCK, ModBlocks.CARAPACE_WIDE_POST, null, true, p)
+      )
+      .blockstate(BlockstateGenerator.widePost(ModBlocks.CARAPACE_BLOCK))
+      .register();
+
   public static BlockEntry<BaseBlocks.NarrowPostBlock> THATCH_SMALL_POST = MysticalWorld.REGISTRATE.block("thatch_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
       .properties(THATCH_PROPS)
       .item()
@@ -2742,6 +2877,16 @@ public class ModBlocks {
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.PEARL_BLOCK))
       .register();
 
+  public static BlockEntry<BaseBlocks.NarrowPostBlock> CARAPACE_SMALL_POST = MysticalWorld.REGISTRATE.block("carapace_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
+      .properties(CARAPACE_PROPS)
+      .item()
+      .model(ItemModelGenerator::itemModel)
+      .build()
+      .recipe((ctx, p) ->
+          MysticalWorld.RECIPES.narrowPost(ModBlocks.CARAPACE_BLOCK, ModBlocks.CARAPACE_SMALL_POST, null, true, p)
+      )
+      .blockstate(BlockstateGenerator.narrowPost(ModBlocks.CARAPACE_BLOCK))
+      .register();
 
   protected static NonNullUnaryOperator<BlockBehaviour.Properties> BONE_PROPS = (o) -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).strength(0.2F).sound(SoundType.BONE_BLOCK);
 

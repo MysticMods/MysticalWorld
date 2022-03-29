@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:carapace_block"
+  },
+  "result": "mysticalworld:carapace_pressure_plate",
+  "count": 1
+}

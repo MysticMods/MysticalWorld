@@ -35,8 +35,6 @@ public class MWTags {
     public static TagKey<Block> MUSHROOM_BLOCKS = compatTag("mushroom_blocks");
     public static TagKey<Block> CARAPACE_STORAGE = compatTag("storage_blocks/carapace");
 
-    public static TagKey<Block> CARAPACE_BLOCK = modTag("carapace_block");
-
     public static TagKey<Block> BASE_STONE_GRANITE = compatTag("base_stone_granite");
 
     public static TagKey<Block> SOFT_STONE = modTag("soft_stone");
@@ -82,6 +80,7 @@ public class MWTags {
     public static TagKey<Item> SILVER_BLOCK = compatTag("storage_blocks/silver");
     public static TagKey<Item> TIN_BLOCK = compatTag("storage_blocks/tin");
     public static TagKey<Item> PEARL_BLOCK = compatTag("storage_blocks/pearl");
+    public static TagKey<Item> CARAPACE_BLOCK = compatTag("storage_blocks/carapace");
     public static TagKey<Item> SLIME_BLOCK = compatTag("storage_blocks/slime");
     public static TagKey<Item> SLIME = compatTag("slime");
     public static TagKey<Item> PEARL_GEM = compatTag("gems/pearl");

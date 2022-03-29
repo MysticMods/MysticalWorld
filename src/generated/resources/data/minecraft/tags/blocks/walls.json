@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "mysticalworld:pearl_fence",
     "mysticalworld:thatch_wall",
     "mysticalworld:red_mushroom_wall",
     "mysticalworld:brown_mushroom_wall",
@@ -20,6 +21,6 @@
     "mysticalworld:silver_wall",
     "mysticalworld:tin_wall",
     "mysticalworld:pearl_wall",
-    "mysticalworld:pearl_fence"
+    "mysticalworld:carapace_wall"
   ]
 }

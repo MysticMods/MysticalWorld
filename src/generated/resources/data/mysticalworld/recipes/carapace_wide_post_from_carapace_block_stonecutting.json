@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mysticalworld:carapace_block"
+  },
+  "result": "mysticalworld:carapace_wide_post",
+  "count": 2
+}

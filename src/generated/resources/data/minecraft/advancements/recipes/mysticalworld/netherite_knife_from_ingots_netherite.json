@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:netherite_knife_from_ingots_netherite"
+    ]
+  },
+  "criteria": {
+    "has_ingots_netherite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/netherite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:netherite_knife_from_ingots_netherite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingots_netherite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -3,6 +3,7 @@
   "values": [
     "mysticalworld:mud_block_fence",
     "mysticalworld:mud_brick_fence",
-    "mysticalworld:terracotta_brick_fence"
+    "mysticalworld:terracotta_brick_fence",
+    "mysticalworld:carapace_fence"
   ]
 }
