@@ -152,6 +152,7 @@ public class ModItems {
             .unlockedBy("has_string", RegistrateRecipeProvider.has(Tags.Items.STRING))
             .save(p, new ResourceLocation(MysticalWorld.MODID, "shaped_book_with_string"));
       })
+      .tag(Tags.Items.STRING)
       .register();
 
   public static RegistryEntry<ItemNameBlockItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRATE.item("aubergine_seeds", ItemGenerator.blockNamedItem(ModBlocks.AUBERGINE_CROP))
@@ -856,7 +857,6 @@ public class ModItems {
           .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
           .save(p))
       .register();
-
 
   // TIN
   public static RegistryEntry<TinArmorItem> TIN_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_helmet", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.HEAD))

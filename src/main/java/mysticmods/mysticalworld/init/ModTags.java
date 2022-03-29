@@ -24,7 +24,6 @@ public class ModTags {
       b.tag(Tags.Items.GEMS).addTag(MWTags.Items.SAPPHIRE_GEM);
       b.tag(MWTags.Items.FORGE_KNIVES).addTag(MWTags.Items.KNIVES);
 
-      b.tag(Tags.Items.STRING).add(ModItems.SILK_THREAD.get());
       b.tag(MWTags.Items.SLIME_BLOCK).add(Items.SLIME_BLOCK);
       b.tag(MWTags.Items.SLIME).add(Items.SLIME_BALL);
       b.tag(MWTags.Items.GEMS).add(Items.DIAMOND);
@@ -49,7 +48,7 @@ public class ModTags {
       b.tag(MWTags.Blocks.PURPUR).add(Blocks.PURPUR_BLOCK, Blocks.PURPUR_PILLAR);
       b.tag(MWTags.Blocks.NETHER_BRICKS).add(Blocks.NETHER_BRICKS);
       b.tag(MWTags.Blocks.RED_NETHER_BRICKS).add(Blocks.RED_NETHER_BRICKS);
-      b.tag(MWTags.Blocks.TERRACOTTA).add(Blocks.WHITE_TERRACOTTA, Blocks.ORANGE_TERRACOTTA, Blocks.MAGENTA_TERRACOTTA, Blocks.LIGHT_BLUE_TERRACOTTA, Blocks.YELLOW_TERRACOTTA, Blocks.LIME_TERRACOTTA, Blocks.PINK_TERRACOTTA, Blocks.GRAY_TERRACOTTA, Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.CYAN_TERRACOTTA, Blocks.PURPLE_TERRACOTTA, Blocks.BLUE_TERRACOTTA, Blocks.BROWN_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.BLACK_TERRACOTTA, Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK.get());
+      b.tag(MWTags.Blocks.TERRACOTTA).add(Blocks.WHITE_TERRACOTTA, Blocks.ORANGE_TERRACOTTA, Blocks.MAGENTA_TERRACOTTA, Blocks.LIGHT_BLUE_TERRACOTTA, Blocks.YELLOW_TERRACOTTA, Blocks.LIME_TERRACOTTA, Blocks.PINK_TERRACOTTA, Blocks.GRAY_TERRACOTTA, Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.CYAN_TERRACOTTA, Blocks.PURPLE_TERRACOTTA, Blocks.BLUE_TERRACOTTA, Blocks.BROWN_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.BLACK_TERRACOTTA, Blocks.TERRACOTTA);
       b.tag(MWTags.Blocks.MUSHROOM_BLOCKS).add(Blocks.MUSHROOM_STEM, Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM_BLOCK);
       b.tag(MWTags.Blocks.BASE_STONE_GRANITE).add(Blocks.GRANITE);
       b.tag(MWTags.Blocks.EGGPLANT_CROP).addTag(MWTags.Blocks.AUBERGINE_CROP);

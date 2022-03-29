@@ -416,6 +416,7 @@ public class ModBlocks {
         p.stonecutting(DataIngredient.items(Items.TERRACOTTA), ModBlocks.TERRACOTTA_BRICK);
         MysticalWorld.RECIPES.twoByTwo(() -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK, null, p);
       })
+      .tag(MWTags.Blocks.TERRACOTTA)
       .register();
 
 
