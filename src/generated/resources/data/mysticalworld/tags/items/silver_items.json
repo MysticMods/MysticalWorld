@@ -1,15 +1,11 @@
 {
   "replace": false,
   "values": [
-    "mysticalworld:silver_sword",
-    "mysticalworld:silver_knife",
     "mysticalworld:silver_axe",
     "mysticalworld:silver_hoe",
+    "mysticalworld:silver_knife",
     "mysticalworld:silver_pickaxe",
     "mysticalworld:silver_shovel",
-    "mysticalworld:silver_boots",
-    "mysticalworld:silver_chestplate",
-    "mysticalworld:silver_helmet",
-    "mysticalworld:silver_leggings"
+    "mysticalworld:silver_sword"
   ]
 }

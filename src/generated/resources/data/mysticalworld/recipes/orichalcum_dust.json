@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:dusts/silver"
+    },
+    {
+      "tag": "forge:dusts/copper"
+    },
+    {
+      "tag": "forge:dusts/gold"
+    }
+  ],
+  "result": {
+    "item": "mysticalworld:orichalcum_dust",
+    "count": 3
+  }
+}

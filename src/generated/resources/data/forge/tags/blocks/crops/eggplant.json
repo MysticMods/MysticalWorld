@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "mysticalworld:aubergine_crop"
+    "#forge:crops/aubergine"
   ]
 }

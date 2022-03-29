@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
+    "mysticalworld:aubergine",
     "minecraft:carrot",
-    "minecraft:beetroot",
-    "mysticalworld:aubergine"
+    "minecraft:beetroot"
   ]
 }

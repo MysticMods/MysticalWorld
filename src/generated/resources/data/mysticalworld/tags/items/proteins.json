@@ -1,6 +1,11 @@
 {
   "replace": false,
   "values": [
+    "mysticalworld:venison",
+    "mysticalworld:cooked_venison",
+    "mysticalworld:raw_squid",
+    "mysticalworld:cooked_squid",
+    "mysticalworld:fish_and_chips",
     "minecraft:rotten_flesh",
     "minecraft:porkchop",
     "minecraft:beef",
@@ -18,11 +23,6 @@
     "minecraft:cooked_beef",
     "minecraft:cooked_cod",
     "minecraft:cooked_salmon",
-    "minecraft:egg",
-    "mysticalworld:venison",
-    "mysticalworld:cooked_venison",
-    "mysticalworld:raw_squid",
-    "mysticalworld:cooked_squid",
-    "mysticalworld:epic_squid"
+    "minecraft:egg"
   ]
 }
