@@ -49,108 +49,8 @@ public class ModItems {
       .recipe((ctx, p) -> MysticalWorld.RECIPES.singleItemUnfinished(ModItems.ANTLERS, () -> Items.BONE_MEAL, 1, 9).save(p, new ResourceLocation(MysticalWorld.MODID, "antlers_to_bonemeal")))
       .register();
 
-  public static RegistryEntry<Item> INK_BOTTLE = MysticalWorld.REGISTRATE.item("ink_bottle", Item::new)
-      .properties(o -> o.craftRemainder(Items.GLASS_BOTTLE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.dye(ModItems.INK_BOTTLE, Items.BLACK_DYE.delegate, 1, 2, p))
+  public static RegistryEntry<Item> GALL_APPLE = MysticalWorld.REGISTRATE.item("gall_apple", Item::new)
       .register();
-
-  public static RegistryEntry<UnripePearlItem> YOUNG_PEARL = MysticalWorld.REGISTRATE.item("young_pearl", UnripePearlItem::new)
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.singleItemUnfinished(ModItems.YOUNG_PEARL, () -> Items.ENDER_PEARL, 9, 1).save(p, new ResourceLocation(MysticalWorld.MODID, "ender_pearl_from_unripe_pearls")))
-      .register();
-
-  public static RegistryEntry<NautilusHornBase.NautilusHorn> NAUTILUS_HORN = MysticalWorld.REGISTRATE.item("nautilus_horn", NautilusHornBase.NautilusHorn::new)
-      .model((ctx, p) -> p.handheld(ModItems.NAUTILUS_HORN))
-      .properties(o -> o.durability(32).rarity(Rarity.RARE))
-      .register();
-
-  public static RegistryEntry<NautilusHornBase.GlisteringHorn> GLISTERING_HORN = MysticalWorld.REGISTRATE.item("glistering_horn", NautilusHornBase.GlisteringHorn::new)
-      .properties(o -> o.durability(64).rarity(Rarity.EPIC))
-      .model((ctx, p) -> p.handheld(ModItems.GLISTERING_HORN))
-      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ModItems.GLISTERING_HORN.get(), 1)
-          .pattern("XXX")
-          .pattern("XHX")
-          .pattern("XXX")
-          .define('X', MWTags.Items.SILVER_INGOT)
-          .define('H', ModItems.NAUTILUS_HORN.get())
-          .unlockedBy("has_horn", RegistrateRecipeProvider.has(ModItems.NAUTILUS_HORN.get()))
-          .save(p))
-      .model((ctx, p) -> p.withExistingParent(p.name(ModItems.GLISTERING_HORN), "item/handheld").texture("layer0", p.itemTexture(ModItems.NAUTILUS_HORN)))
-      .register();
-
-  public static RegistryEntry<PearleporterItem> PEARLEPORTER = MysticalWorld.REGISTRATE.item("pearleporter", PearleporterItem::new)
-      .properties(o -> o.durability(211).rarity(Rarity.EPIC))
-      .model((ctx, p) -> p.handheld(ModItems.PEARLEPORTER))
-      .recipe((ctx, p) -> {
-        ShapedRecipeBuilder.shaped(ModItems.PEARLEPORTER.get(), 1)
-            .pattern(" GP")
-            .pattern(" SG")
-            .pattern("S  ")
-            .define('G', Tags.Items.NUGGETS_GOLD)
-            .define('P', MWTags.Items.PEARL_GEM)
-            .define('S', Tags.Items.RODS_WOODEN)
-            .unlockedBy("has_pearl", RegistrateRecipeProvider.has(ModItems.PEARL_GEM.get()))
-            .save(p);
-      })
-      .register();
-
-  public static RegistryEntry<ClamBucketItem> CLAM_BUCKET = MysticalWorld.REGISTRATE.item("clam_bucket", (p) -> new ClamBucketItem(() -> Fluids.WATER, p))
-      .properties(o -> o.stacksTo(1))
-      .register();
-
-  public static RegistryEntry<AntlerHatItem> ANTLER_HAT = MysticalWorld.REGISTRATE.item("antler_hat", AntlerHatItem::new)
-      .properties(o -> o.durability(399).rarity(Rarity.RARE))
-      .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
-          .pattern("AWA")
-          .pattern("WWW")
-          .pattern("S S")
-          .define('A', ModItems.ANTLERS.get())
-          .define('W', ItemTags.WOOL)
-          .define('S', Tags.Items.STRING)
-          .unlockedBy("has_antlers", RegistrateRecipeProvider.has(ModItems.ANTLERS.get()))
-          .save(p))
-      .register();
-
-  public static RegistryEntry<BeetleArmorItem> BEETLE_HELMET = MysticalWorld.REGISTRATE.item("beetle_helmet", (b) -> new BeetleArmorItem(b, EquipmentSlot.HEAD))
-      .properties(o -> o.rarity(Rarity.RARE))
-      .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
-          .pattern("CCC")
-          .pattern("C C")
-          .define('C', MWTags.Items.CARAPACE)
-          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
-          .save(p))
-      .register();
-
-  public static RegistryEntry<BeetleArmorItem> BEETLE_CHESTPLATE = MysticalWorld.REGISTRATE.item("beetle_chestplate", (b) -> new BeetleArmorItem(b, EquipmentSlot.CHEST))
-      .properties(o -> o.rarity(Rarity.RARE))
-      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-          .pattern("C C")
-          .pattern("CCC")
-          .pattern("CCC")
-          .define('C', MWTags.Items.CARAPACE)
-          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
-          .save(p))
-      .register();
-
-  public static RegistryEntry<BeetleArmorItem> BEETLE_LEGGINGS = MysticalWorld.REGISTRATE.item("beetle_leggings", (b) -> new BeetleArmorItem(b, EquipmentSlot.LEGS))
-      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-          .pattern("CCC")
-          .pattern("C C")
-          .pattern("C C")
-          .define('C', MWTags.Items.CARAPACE)
-          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
-          .save(p))
-      .register();
-
-  public static RegistryEntry<BeetleArmorItem> BEETLE_BOOTS = MysticalWorld.REGISTRATE.item("beetle_boots", (b) -> new BeetleArmorItem(b, EquipmentSlot.FEET))
-      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-          .pattern("C C")
-          .pattern("C C")
-          .define('C', MWTags.Items.CARAPACE)
-          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
-          .save(p))
-      .register();
-
-  public static RegistryEntry<SilkwormEgg> SILKWORM_EGG = MysticalWorld.REGISTRATE.item("silkworm_egg", SilkwormEgg::new).register();
 
   public static RegistryEntry<Item> SILK_COCOON = MysticalWorld.REGISTRATE.item("silk_cocoon", Item::new)
       .recipe((ctx, p) -> MysticalWorld.RECIPES.singleItem(ModItems.SILK_COCOON, ModItems.SILK_THREAD, 1, 3, p))
@@ -252,17 +152,9 @@ public class ModItems {
       })
       .register();
 
-  public static RegistryEntry<Item> SPINDLE = MysticalWorld.REGISTRATE.item("spindle", Item::new)
-      .properties(o -> o.durability(64))
-      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ModItems.SPINDLE.get(), 1)
-          .pattern(" S ")
-          .pattern("XXX")
-          .pattern(" T ")
-          .define('S', net.minecraftforge.common.Tags.Items.RODS_WOODEN)
-          .define('X', ItemTags.WOODEN_SLABS)
-          .define('T', Items.TRIPWIRE_HOOK)
-          .unlockedBy("has_slab", RegistrateRecipeProvider.has(ItemTags.WOODEN_SLABS))
-          .save(p))
+  public static RegistryEntry<ItemNameBlockItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRATE.item("aubergine_seeds", ItemGenerator.blockNamedItem(ModBlocks.AUBERGINE_CROP))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.singleItem(ModItems.AUBERGINE, ModItems.AUBERGINE_SEEDS, 1, 1, p))
+      .tag(MWTags.Items.SEEDS)
       .register();
 
   public static RegistryEntry<WaspAttractantItem> WASP_ATTRACTANT = MysticalWorld.REGISTRATE.item("wasp_attractant", WaspAttractantItem::new)
@@ -273,48 +165,6 @@ public class ModItems {
           .unlockedBy("has_bone_meal", RegistrateRecipeProvider.has(Items.BONE_MEAL))
           .save(p)
       )
-      .register();
-
-  public static RegistryEntry<Item> TANNIN_VIAL = MysticalWorld.REGISTRATE.item("tannin_vial", Item::new)
-      .properties(o -> o.craftRemainder(Items.GLASS_BOTTLE))
-      .recipe((ctx, p) -> {
-            ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3)
-                .requires(ModItems.GALL_APPLE.get())
-                .requires(Items.GLASS_BOTTLE)
-                .requires(Items.GLASS_BOTTLE)
-                .requires(Items.GLASS_BOTTLE)
-                .unlockedBy("has_gall_apple", RegistrateRecipeProvider.has(ModItems.GALL_APPLE.get()))
-                .save(p, new ResourceLocation(MysticalWorld.MODID, "tannin_vials_from_gall_apples"));
-
-            ShapelessRecipeBuilder.shapeless(Items.LEATHER, 3)
-                .requires(ctx.getEntry())
-                .requires(Items.ROTTEN_FLESH)
-                .requires(Items.ROTTEN_FLESH)
-                .requires(Items.ROTTEN_FLESH)
-                .unlockedBy("has_tannins", RegistrateRecipeProvider.has(ctx.getEntry()))
-                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.has(Items.ROTTEN_FLESH))
-                .save(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x3"));
-
-            ShapelessRecipeBuilder.shapeless(Items.LEATHER, 2)
-                .requires(ctx.getEntry())
-                .requires(Items.ROTTEN_FLESH)
-                .requires(Items.ROTTEN_FLESH)
-                .unlockedBy("has_tannins", RegistrateRecipeProvider.has(ctx.getEntry()))
-                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.has(Items.ROTTEN_FLESH))
-                .save(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x2"));
-
-            ShapelessRecipeBuilder.shapeless(Items.LEATHER, 1)
-                .requires(ctx.getEntry())
-                .requires(Items.ROTTEN_FLESH)
-                .unlockedBy("has_tannins", RegistrateRecipeProvider.has(ctx.getEntry()))
-                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.has(Items.ROTTEN_FLESH))
-                .save(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x1"));
-          }
-      )
-      .lang("Vial of Tannin")
-      .register();
-
-  public static RegistryEntry<Item> GALL_APPLE = MysticalWorld.REGISTRATE.item("gall_apple", Item::new)
       .register();
 
   public static RegistryEntry<Item> VENISON = MysticalWorld.REGISTRATE.item("venison", Item::new)
@@ -329,20 +179,24 @@ public class ModItems {
       })
       .register();
 
-  public static RegistryEntry<Item> FISH_AND_CHIPS = MysticalWorld.REGISTRATE.item("fish_and_chips", Item::new)
-      .properties(o -> o.food(ModFoods.FISH_AND_CHIPS))
-      .recipe((ctx, p) ->
-          ShapelessRecipeBuilder.shapeless(ModItems.FISH_AND_CHIPS.get(), 2).requires(Items.BAKED_POTATO).requires(Items.BAKED_POTATO).requires(ModItems.VINEGAR.get()).requires(Ingredient.of(MWTags.Items.COOKED_SEAFOOD)).unlockedBy("has_cooked_seafood", RegistrateRecipeProvider.has(MWTags.Items.COOKED_SEAFOOD)).save(p)
-      )
-      .register();
 
   public static RegistryEntry<Item> COOKED_VENISON = MysticalWorld.REGISTRATE.item("cooked_venison", Item::new)
       .properties(o -> o.food(ModFoods.COOKED_VENISON))
       .register();
 
-  public static RegistryEntry<ItemNameBlockItem> AUBERGINE_SEEDS = MysticalWorld.REGISTRATE.item("aubergine_seeds", ItemGenerator.blockNamedItem(ModBlocks.AUBERGINE_CROP))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.singleItem(ModItems.AUBERGINE, ModItems.AUBERGINE_SEEDS, 1, 1, p))
-      .tag(MWTags.Items.SEEDS)
+  public static RegistryEntry<Item> RAW_SQUID = MysticalWorld.REGISTRATE.item("raw_squid", Item::new)
+      .properties(o -> o.food(ModFoods.RAW_SQUID))
+      .register();
+
+  public static RegistryEntry<Item> COOKED_SQUID = MysticalWorld.REGISTRATE.item("cooked_squid", Item::new)
+      .properties(o -> o.food(ModFoods.COOKED_SQUID))
+      .register();
+
+  public static RegistryEntry<Item> FISH_AND_CHIPS = MysticalWorld.REGISTRATE.item("fish_and_chips", Item::new)
+      .properties(o -> o.food(ModFoods.FISH_AND_CHIPS))
+      .recipe((ctx, p) ->
+          ShapelessRecipeBuilder.shapeless(ModItems.FISH_AND_CHIPS.get(), 2).requires(Items.BAKED_POTATO).requires(Items.BAKED_POTATO).requires(ModItems.VINEGAR.get()).requires(Ingredient.of(MWTags.Items.COOKED_SEAFOOD)).unlockedBy("has_cooked_seafood", RegistrateRecipeProvider.has(MWTags.Items.COOKED_SEAFOOD)).save(p)
+      )
       .register();
 
   public static RegistryEntry<Item> ASSORTED_SEEDS = MysticalWorld.REGISTRATE.item("assorted_seeds", Item::new)
@@ -386,14 +240,6 @@ public class ModItems {
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ModItems.STUFFED_AUBERGINE.get(), 1).requires(ModItems.COOKED_AUBERGINE.get()).requires(ExcludingIngredient.create(MWTags.Items.VEGETABLES, ModItems.AUBERGINE.get())).requires(ExcludingIngredient.create(MWTags.Items.VEGETABLES, ModItems.AUBERGINE.get())).requires(ExcludingIngredient.create(MWTags.Items.COOKED_VEGETABLES, ModItems.COOKED_AUBERGINE.get())).unlockedBy("has_cooked_aubergine", RegistrateRecipeProvider.has(ModItems.COOKED_AUBERGINE.get())).save(p))
       .register();
 
-  public static RegistryEntry<Item> RAW_SQUID = MysticalWorld.REGISTRATE.item("raw_squid", Item::new)
-      .properties(o -> o.food(ModFoods.RAW_SQUID))
-      .register();
-
-  public static RegistryEntry<Item> COOKED_SQUID = MysticalWorld.REGISTRATE.item("cooked_squid", Item::new)
-      .properties(o -> o.food(ModFoods.COOKED_SQUID))
-      .register();
-
   public static RegistryEntry<BaseItems.EffectItem> EPIC_SQUID = MysticalWorld.REGISTRATE.item("epic_squid", BaseItems.EffectItem::new)
       .properties(o -> o.food(ModFoods.EPIC_SQUID).rarity(Rarity.EPIC))
       .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ModItems.EPIC_SQUID.get(), 2)
@@ -407,72 +253,6 @@ public class ModItems {
           .save(p))
       .register();
 
-  public static NonNullFunction<Item.Properties, TooltipDrinkItem> tooltipDrink(String translationKey) {
-    return (b) -> new TooltipDrinkItem(b, translationKey);
-  }
-
-  // Drinkies
-  // TODO: More tags
-  public static RegistryEntry<TooltipDrinkItem> APPLE_CORDIAL = MysticalWorld.REGISTRATE.item("apple_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.APPLE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
-      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.APPLE_CORDIAL, Items.APPLE))
-      .register();
-
-  public static RegistryEntry<TooltipDrinkItem> CACTUS_SYRUP = MysticalWorld.REGISTRATE.item("cactus_syrup", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.CACTUS_SYRUP).craftRemainder(Items.GLASS_BOTTLE))
-      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.CACTUS_SYRUP, Items.CACTUS))
-      .register();
-
-  public static RegistryEntry<TooltipDrinkItem> DANDELION_CORDIAL = MysticalWorld.REGISTRATE.item("dandelion_cordial", tooltipDrink("mysticalworld.drinks.wakefulness"))
-      .properties(o -> o.food(ModFoods.DANDELION_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
-      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.DANDELION_CORDIAL, Items.DANDELION))
-      .register();
-
-  public static RegistryEntry<TooltipDrinkItem> LILAC_CORDIAL = MysticalWorld.REGISTRATE.item("lilac_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.LILAC_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
-      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.LILAC_CORDIAL, Items.LILAC))
-      .register();
-
-  public static RegistryEntry<TooltipDrinkItem> PEONY_CORDIAL = MysticalWorld.REGISTRATE.item("peony_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.PEONY_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
-      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.PEONY_CORDIAL, Items.PEONY))
-      .register();
-
-  public static RegistryEntry<TooltipDrinkItem> ROSE_CORDIAL = MysticalWorld.REGISTRATE.item("rose_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.ROSE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
-      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.ROSE_CORDIAL, Items.ROSE_BUSH))
-      .register();
-
-  public static RegistryEntry<TooltipDrinkItem> VINEGAR = MysticalWorld.REGISTRATE.item("vinegar", tooltipDrink("mysticalworld.drinks.sour"))
-      .properties(o -> o.food(ModFoods.VINEGAR).craftRemainder(Items.GLASS_BOTTLE))
-      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ModItems.VINEGAR.get(), 6)
-          .pattern("BBB")
-          .pattern("PPP")
-          .pattern("BBB")
-          .define('P', Items.SEA_PICKLE)
-          .define('B', Items.GLASS_BOTTLE)
-          .unlockedBy("has_sea_pickle", RegistrateRecipeProvider.has(Items.SEA_PICKLE))
-          .save(p))
-      .register();
-
-  public static RegistryEntry<TooltipDrinkItem> VEGETABLE_JUICE = MysticalWorld.REGISTRATE.item("vegetable_juice", tooltipDrink("mysticalworld.drinks.slow_regen"))
-      .properties(o -> o.food(ModFoods.VEGETABLE_JUICE).craftRemainder(Items.GLASS_BOTTLE))
-      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ModItems.VEGETABLE_JUICE.get(), 4)
-          .pattern("ARC")
-          .pattern("BPB")
-          .pattern("BWB")
-          .define('A', MWTags.Items.AUBERGINE)
-          .define('R', Items.BEETROOT)
-          .define('C', Items.CARROT)
-          .define('P', Items.APPLE)
-          .define('B', Items.GLASS_BOTTLE)
-          .define('W', Items.WATER_BUCKET)
-          .unlockedBy("has_aubergine", RegistrateRecipeProvider.has(MWTags.Items.AUBERGINE))
-          .unlockedBy("has_beetroot", RegistrateRecipeProvider.has(Items.BEETROOT))
-          .unlockedBy("has_carrot", RegistrateRecipeProvider.has(Items.CARROT))
-          .unlockedBy("has_apple", RegistrateRecipeProvider.has(Items.APPLE))
-          .save(p))
-      .register();
 
   // Salads
   public static RegistryEntry<BaseItems.BowlItem> AUBERGINE_SALAD = MysticalWorld.REGISTRATE.item("aubergine_salad", BaseItems.BowlItem::new)
@@ -545,17 +325,184 @@ public class ModItems {
           .save(p))
       .register();
 
+  public static NonNullFunction<Item.Properties, TooltipDrinkItem> tooltipDrink(String translationKey) {
+    return (b) -> new TooltipDrinkItem(b, translationKey);
+  }
+
+  // Drinkies
+  // TODO: More tags
+  public static RegistryEntry<TooltipDrinkItem> APPLE_CORDIAL = MysticalWorld.REGISTRATE.item("apple_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
+      .properties(o -> o.food(ModFoods.APPLE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
+      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.APPLE_CORDIAL, Items.APPLE))
+      .register();
+
+  public static RegistryEntry<TooltipDrinkItem> CACTUS_SYRUP = MysticalWorld.REGISTRATE.item("cactus_syrup", tooltipDrink("mysticalworld.drinks.slow_regen"))
+      .properties(o -> o.food(ModFoods.CACTUS_SYRUP).craftRemainder(Items.GLASS_BOTTLE))
+      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.CACTUS_SYRUP, Items.CACTUS))
+      .register();
+
+  public static RegistryEntry<TooltipDrinkItem> DANDELION_CORDIAL = MysticalWorld.REGISTRATE.item("dandelion_cordial", tooltipDrink("mysticalworld.drinks.wakefulness"))
+      .properties(o -> o.food(ModFoods.DANDELION_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
+      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.DANDELION_CORDIAL, Items.DANDELION))
+      .register();
+
+  public static RegistryEntry<TooltipDrinkItem> LILAC_CORDIAL = MysticalWorld.REGISTRATE.item("lilac_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
+      .properties(o -> o.food(ModFoods.LILAC_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
+      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.LILAC_CORDIAL, Items.LILAC))
+      .register();
+
+  public static RegistryEntry<TooltipDrinkItem> PEONY_CORDIAL = MysticalWorld.REGISTRATE.item("peony_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
+      .properties(o -> o.food(ModFoods.PEONY_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
+      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.PEONY_CORDIAL, Items.PEONY))
+      .register();
+
+  public static RegistryEntry<TooltipDrinkItem> ROSE_CORDIAL = MysticalWorld.REGISTRATE.item("rose_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
+      .properties(o -> o.food(ModFoods.ROSE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
+      .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.ROSE_CORDIAL, Items.ROSE_BUSH))
+      .register();
+
+  public static RegistryEntry<TooltipDrinkItem> VINEGAR = MysticalWorld.REGISTRATE.item("vinegar", tooltipDrink("mysticalworld.drinks.sour"))
+      .properties(o -> o.food(ModFoods.VINEGAR).craftRemainder(Items.GLASS_BOTTLE))
+      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ModItems.VINEGAR.get(), 6)
+          .pattern("BBB")
+          .pattern("PPP")
+          .pattern("BBB")
+          .define('P', Items.SEA_PICKLE)
+          .define('B', Items.GLASS_BOTTLE)
+          .unlockedBy("has_sea_pickle", RegistrateRecipeProvider.has(Items.SEA_PICKLE))
+          .save(p))
+      .register();
+
+  public static RegistryEntry<TooltipDrinkItem> VEGETABLE_JUICE = MysticalWorld.REGISTRATE.item("vegetable_juice", tooltipDrink("mysticalworld.drinks.slow_regen"))
+      .properties(o -> o.food(ModFoods.VEGETABLE_JUICE).craftRemainder(Items.GLASS_BOTTLE))
+      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ModItems.VEGETABLE_JUICE.get(), 4)
+          .pattern("ARC")
+          .pattern("BPB")
+          .pattern("BWB")
+          .define('A', MWTags.Items.AUBERGINE)
+          .define('R', Items.BEETROOT)
+          .define('C', Items.CARROT)
+          .define('P', Items.APPLE)
+          .define('B', Items.GLASS_BOTTLE)
+          .define('W', Items.WATER_BUCKET)
+          .unlockedBy("has_aubergine", RegistrateRecipeProvider.has(MWTags.Items.AUBERGINE))
+          .unlockedBy("has_beetroot", RegistrateRecipeProvider.has(Items.BEETROOT))
+          .unlockedBy("has_carrot", RegistrateRecipeProvider.has(Items.CARROT))
+          .unlockedBy("has_apple", RegistrateRecipeProvider.has(Items.APPLE))
+          .save(p))
+      .register();
+
+  public static RegistryEntry<Item> INK_BOTTLE = MysticalWorld.REGISTRATE.item("ink_bottle", Item::new)
+      .properties(o -> o.craftRemainder(Items.GLASS_BOTTLE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.dye(ModItems.INK_BOTTLE, Items.BLACK_DYE.delegate, 1, 2, p))
+      .register();
+
+  public static RegistryEntry<Item> TANNIN_VIAL = MysticalWorld.REGISTRATE.item("tannin_vial", Item::new)
+      .properties(o -> o.craftRemainder(Items.GLASS_BOTTLE))
+      .recipe((ctx, p) -> {
+            ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3)
+                .requires(ModItems.GALL_APPLE.get())
+                .requires(Items.GLASS_BOTTLE)
+                .requires(Items.GLASS_BOTTLE)
+                .requires(Items.GLASS_BOTTLE)
+                .unlockedBy("has_gall_apple", RegistrateRecipeProvider.has(ModItems.GALL_APPLE.get()))
+                .save(p, new ResourceLocation(MysticalWorld.MODID, "tannin_vials_from_gall_apples"));
+
+            ShapelessRecipeBuilder.shapeless(Items.LEATHER, 3)
+                .requires(ctx.getEntry())
+                .requires(Items.ROTTEN_FLESH)
+                .requires(Items.ROTTEN_FLESH)
+                .requires(Items.ROTTEN_FLESH)
+                .unlockedBy("has_tannins", RegistrateRecipeProvider.has(ctx.getEntry()))
+                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.has(Items.ROTTEN_FLESH))
+                .save(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x3"));
+
+            ShapelessRecipeBuilder.shapeless(Items.LEATHER, 2)
+                .requires(ctx.getEntry())
+                .requires(Items.ROTTEN_FLESH)
+                .requires(Items.ROTTEN_FLESH)
+                .unlockedBy("has_tannins", RegistrateRecipeProvider.has(ctx.getEntry()))
+                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.has(Items.ROTTEN_FLESH))
+                .save(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x2"));
+
+            ShapelessRecipeBuilder.shapeless(Items.LEATHER, 1)
+                .requires(ctx.getEntry())
+                .requires(Items.ROTTEN_FLESH)
+                .unlockedBy("has_tannins", RegistrateRecipeProvider.has(ctx.getEntry()))
+                .unlockedBy("has_rotten_Flesh", RegistrateRecipeProvider.has(Items.ROTTEN_FLESH))
+                .save(p, new ResourceLocation(MysticalWorld.MODID, "leather_from_rotten_flesh_x1"));
+          }
+      )
+      .lang("Vial of Tannin")
+      .register();
+
+
+  public static RegistryEntry<NautilusHornBase.NautilusHorn> NAUTILUS_HORN = MysticalWorld.REGISTRATE.item("nautilus_horn", NautilusHornBase.NautilusHorn::new)
+      .model((ctx, p) -> p.handheld(ModItems.NAUTILUS_HORN))
+      .properties(o -> o.durability(32).rarity(Rarity.RARE))
+      .register();
+
+  public static RegistryEntry<NautilusHornBase.GlisteringHorn> GLISTERING_HORN = MysticalWorld.REGISTRATE.item("glistering_horn", NautilusHornBase.GlisteringHorn::new)
+      .properties(o -> o.durability(64).rarity(Rarity.EPIC))
+      .model((ctx, p) -> p.handheld(ModItems.GLISTERING_HORN))
+      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ModItems.GLISTERING_HORN.get(), 1)
+          .pattern("XXX")
+          .pattern("XHX")
+          .pattern("XXX")
+          .define('X', MWTags.Items.SILVER_INGOT)
+          .define('H', ModItems.NAUTILUS_HORN.get())
+          .unlockedBy("has_horn", RegistrateRecipeProvider.has(ModItems.NAUTILUS_HORN.get()))
+          .save(p))
+      .model((ctx, p) -> p.withExistingParent(p.name(ModItems.GLISTERING_HORN), "item/handheld").texture("layer0", p.itemTexture(ModItems.NAUTILUS_HORN)))
+      .register();
+
+  public static RegistryEntry<PearleporterItem> PEARLEPORTER = MysticalWorld.REGISTRATE.item("pearleporter", PearleporterItem::new)
+      .properties(o -> o.durability(211).rarity(Rarity.EPIC))
+      .model((ctx, p) -> p.handheld(ModItems.PEARLEPORTER))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shaped(ModItems.PEARLEPORTER.get(), 1)
+            .pattern(" GP")
+            .pattern(" SG")
+            .pattern("S  ")
+            .define('G', Tags.Items.NUGGETS_GOLD)
+            .define('P', MWTags.Items.PEARL_GEM)
+            .define('S', Tags.Items.RODS_WOODEN)
+            .unlockedBy("has_pearl", RegistrateRecipeProvider.has(ModItems.PEARL_GEM.get()))
+            .save(p);
+      })
+      .register();
+
+  public static RegistryEntry<Item> SPINDLE = MysticalWorld.REGISTRATE.item("spindle", Item::new)
+      .properties(o -> o.durability(64))
+      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ModItems.SPINDLE.get(), 1)
+          .pattern(" S ")
+          .pattern("XXX")
+          .pattern(" T ")
+          .define('S', net.minecraftforge.common.Tags.Items.RODS_WOODEN)
+          .define('X', ItemTags.WOODEN_SLABS)
+          .define('T', Items.TRIPWIRE_HOOK)
+          .unlockedBy("has_slab", RegistrateRecipeProvider.has(ItemTags.WOODEN_SLABS))
+          .save(p))
+      .register();
+
+  public static RegistryEntry<Item> RAW_TIN = MysticalWorld.REGISTRATE.item("raw_tin", Item::new)
+      .tag(MWTags.Items.RAW_TIN)
+      .register();
+
   public static RegistryEntry<Item> RAW_LEAD = MysticalWorld.REGISTRATE.item("raw_lead", Item::new)
       .tag(MWTags.Items.RAW_LEAD)
       .register();
-  public static RegistryEntry<Item> ORICHALCUM_BLEND = MysticalWorld.REGISTRATE.item("orichalcum_blend", Item::new)
-      .tag(MWTags.Items.RAW_ORICHALCUM)
-      .register();
+
   public static RegistryEntry<Item> RAW_SILVER = MysticalWorld.REGISTRATE.item("raw_silver", Item::new)
       .tag(MWTags.Items.RAW_SILVER)
       .register();
-  public static RegistryEntry<Item> RAW_TIN = MysticalWorld.REGISTRATE.item("raw_tin", Item::new)
-      .tag(MWTags.Items.RAW_TIN)
+
+  public static RegistryEntry<Item> ORICHALCUM_BLEND = MysticalWorld.REGISTRATE.item("orichalcum_blend", Item::new)
+      .tag(MWTags.Items.RAW_ORICHALCUM)
+      .register();
+
+  public static RegistryEntry<UnripePearlItem> YOUNG_PEARL = MysticalWorld.REGISTRATE.item("young_pearl", UnripePearlItem::new)
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.singleItemUnfinished(ModItems.YOUNG_PEARL, () -> Items.ENDER_PEARL, 9, 1).save(p, new ResourceLocation(MysticalWorld.MODID, "ender_pearl_from_unripe_pearls")))
       .register();
 
   // Ingots/gems
@@ -563,31 +510,31 @@ public class ModItems {
       .tag(MWTags.Items.PEARL_GEM)
       .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.PEARL_BLOCK, () -> ModItems.PEARL_GEM, MWTags.Items.PEARL_BLOCK, MWTags.Items.PEARL_GEM, null, null, null, null))
       .register();
-  public static RegistryEntry<Item> SAPPHIRE_GEM = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName(), Item::new)
-      .tag(MWTags.Items.SAPPHIRE_GEM)
-      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.SAPPHIRE_BLOCK, () -> ModItems.SAPPHIRE_GEM, MWTags.Items.SAPPHIRE_BLOCK, MWTags.Items.SAPPHIRE_GEM, MWTags.Items.SAPPHIRE_ORE, null, null, null))
+
+  public static RegistryEntry<Item> TIN_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getIngotName(), Item::new)
+      .tag(MWTags.Items.TIN_INGOT)
+      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.TIN_BLOCK, () -> ModItems.TIN_INGOT, MWTags.Items.TIN_BLOCK, MWTags.Items.TIN_INGOT, MWTags.Items.TIN_ORE, () -> ModItems.TIN_NUGGET, MWTags.Items.TIN_NUGGET, MWTags.Items.TIN_DUST))
       .register();
-  // TODO: Copper underthings
-/*  public static RegistryEntry<Item> COPPER_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getIngotName(), Item::new)
-      .tag(Tags.Items.INGOTS_COPPER)
-      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.COPPER_BLOCK, () -> ModItems.COPPER_INGOT, MWTags.Items.COPPER_BLOCK, Tags.Items.INGOTS_COPPER, MWTags.Items.COPPER_ORE, () -> ModItems.COPPER_NUGGET, MWTags.Items.COPPER_NUGGET, MWTags.Items.COPPER_DUST))
-      .register();*/
+
   public static RegistryEntry<Item> LEAD_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.getIngotName(), Item::new)
       .tag(MWTags.Items.LEAD_INGOT)
       .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.LEAD_BLOCK, () -> ModItems.LEAD_INGOT, MWTags.Items.LEAD_BLOCK, MWTags.Items.LEAD_INGOT, MWTags.Items.LEAD_ORE, () -> ModItems.LEAD_NUGGET, MWTags.Items.LEAD_NUGGET, MWTags.Items.LEAD_DUST))
-      .register();
-  public static RegistryEntry<Item> ORICHALCUM_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getIngotName(), Item::new)
-      .tag(MWTags.Items.ORICHALCUM_INGOT)
-      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.ORICHALCUM_BLOCK, () -> ModItems.ORICHALCUM_INGOT, MWTags.Items.ORICHALCUM_BLOCK, MWTags.Items.ORICHALCUM_INGOT, null /* It has no ore */, () -> ModItems.ORICHALCUM_NUGGET, MWTags.Items.ORICHALCUM_NUGGET, MWTags.Items.ORICHALCUM_DUST))
       .register();
   public static RegistryEntry<Item> SILVER_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getIngotName(), Item::new)
       .tag(MWTags.Items.SILVER_INGOT)
       .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.SILVER_BLOCK, () -> ModItems.SILVER_INGOT, MWTags.Items.SILVER_BLOCK, MWTags.Items.SILVER_INGOT, MWTags.Items.SILVER_ORE, () -> ModItems.SILVER_NUGGET, MWTags.Items.SILVER_NUGGET, MWTags.Items.SILVER_DUST))
       .register();
-  public static RegistryEntry<Item> TIN_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getIngotName(), Item::new)
-      .tag(MWTags.Items.TIN_INGOT)
-      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.TIN_BLOCK, () -> ModItems.TIN_INGOT, MWTags.Items.TIN_BLOCK, MWTags.Items.TIN_INGOT, MWTags.Items.TIN_ORE, () -> ModItems.TIN_NUGGET, MWTags.Items.TIN_NUGGET, MWTags.Items.TIN_DUST))
+
+  public static RegistryEntry<Item> ORICHALCUM_INGOT = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getIngotName(), Item::new)
+      .tag(MWTags.Items.ORICHALCUM_INGOT)
+      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.ORICHALCUM_BLOCK, () -> ModItems.ORICHALCUM_INGOT, MWTags.Items.ORICHALCUM_BLOCK, MWTags.Items.ORICHALCUM_INGOT, null /* It has no ore */, () -> ModItems.ORICHALCUM_NUGGET, MWTags.Items.ORICHALCUM_NUGGET, MWTags.Items.ORICHALCUM_DUST))
       .register();
+
+  public static RegistryEntry<Item> SAPPHIRE_GEM = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName(), Item::new)
+      .tag(MWTags.Items.SAPPHIRE_GEM)
+      .recipe(MysticalWorld.RECIPES.storage(() -> ModBlocks.SAPPHIRE_BLOCK, () -> ModItems.SAPPHIRE_GEM, MWTags.Items.SAPPHIRE_BLOCK, MWTags.Items.SAPPHIRE_GEM, MWTags.Items.SAPPHIRE_ORE, null, null, null))
+      .register();
+
 
   // Nuggets
   public static RegistryEntry<Item> COPPER_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.nuggetName(), Item::new)
@@ -602,63 +549,43 @@ public class ModItems {
         MysticalWorld.RECIPES.recycle(ModItems.IRON_KNIFE, () -> Items.IRON_NUGGET, 0.15f, MysticalWorld.MODID, p);
       })
       .register();
+  public static RegistryEntry<Item> TIN_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.nuggetName(), Item::new)
+      .tag(MWTags.Items.TIN_NUGGET)
+      .register();
   public static RegistryEntry<Item> LEAD_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.nuggetName(), Item::new)
       .tag(MWTags.Items.LEAD_NUGGET)
-      .register();
-  public static RegistryEntry<Item> ORICHALCUM_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.nuggetName(), Item::new)
-      .tag(MWTags.Items.ORICHALCUM_NUGGET)
       .register();
   public static RegistryEntry<Item> SILVER_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.nuggetName(), Item::new)
       .tag(MWTags.Items.SILVER_NUGGET)
       .register();
-  public static RegistryEntry<Item> TIN_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.nuggetName(), Item::new)
-      .tag(MWTags.Items.TIN_NUGGET)
+  public static RegistryEntry<Item> ORICHALCUM_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.nuggetName(), Item::new)
+      .tag(MWTags.Items.ORICHALCUM_NUGGET)
       .register();
 
   // Dusts
   public static RegistryEntry<Item> COPPER_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.dustName(), Item::new)
       .tag(MWTags.Items.COPPER_DUST)
       .register();
-  public static RegistryEntry<Item> LEAD_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.dustName(), Item::new)
-      .tag(MWTags.Items.LEAD_DUST)
-      .register();
-  public static RegistryEntry<Item> ORICHALCUM_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.dustName(), Item::new)
-      .tag(MWTags.Items.ORICHALCUM_DUST)
-      .register();
-  public static RegistryEntry<Item> SILVER_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.dustName(), Item::new)
-      .tag(MWTags.Items.SILVER_DUST)
-      .register();
   public static RegistryEntry<Item> TIN_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.dustName(), Item::new)
       .tag(MWTags.Items.TIN_DUST)
-      .register();
-  public static RegistryEntry<Item> GOLD_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.GOLD.dustName(), Item::new)
-      .tag(MWTags.Items.GOLD_DUST)
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.dust(MWTags.Items.GOLD_DUST, () -> Items.GOLD_INGOT, 0.125f, p))
       .register();
   public static RegistryEntry<Item> IRON_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.IRON.dustName(), Item::new)
       .tag(MWTags.Items.IRON_DUST)
       .recipe((ctx, p) -> MysticalWorld.RECIPES.dust(MWTags.Items.IRON_DUST, () -> Items.IRON_INGOT, 0.125f, p))
       .register();
-
-  // Sapphire Tools
-  public static RegistryEntry<AxeItem> SAPPHIRE_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.SAPPHIRE))
-      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_AXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_AXE, null, p)).register();
-  public static RegistryEntry<HoeItem> SAPPHIRE_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.SAPPHIRE))
-      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_HOE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_HOE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> SAPPHIRE_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.SAPPHIRE))
-      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_KNIFE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_KNIFE, null, p)).register();
-  public static RegistryEntry<PickaxeItem> SAPPHIRE_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.SAPPHIRE))
-      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_PICKAXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_PICKAXE, null, p)).register();
-  public static RegistryEntry<ShovelItem> SAPPHIRE_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.SAPPHIRE))
-      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_SHOVEL))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_SHOVEL, null, p)).register();
-  public static RegistryEntry<SwordItem> SAPPHIRE_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.SAPPHIRE))
-      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_SWORD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_SWORD, null, p)).register();
+  public static RegistryEntry<Item> LEAD_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.LEAD.dustName(), Item::new)
+      .tag(MWTags.Items.LEAD_DUST)
+      .register();
+  public static RegistryEntry<Item> SILVER_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.dustName(), Item::new)
+      .tag(MWTags.Items.SILVER_DUST)
+      .register();
+  public static RegistryEntry<Item> GOLD_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.GOLD.dustName(), Item::new)
+      .tag(MWTags.Items.GOLD_DUST)
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.dust(MWTags.Items.GOLD_DUST, () -> Items.GOLD_INGOT, 0.125f, p))
+      .register();
+  public static RegistryEntry<Item> ORICHALCUM_DUST = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.dustName(), Item::new)
+      .tag(MWTags.Items.ORICHALCUM_DUST)
+      .register();
 
   // Cactus
   public static RegistryEntry<AxeItem> CACTUS_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.CACTUS))
@@ -679,6 +606,27 @@ public class ModItems {
   public static RegistryEntry<SwordItem> CACTUS_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.CACTUS.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.CACTUS))
       .model((ctx, p) -> p.handheld(ModItems.CACTUS_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(() -> Items.CACTUS, ModItems.CACTUS_SWORD, null, p)).register();
+
+  // TIN
+  public static RegistryEntry<AxeItem> TIN_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.TIN))
+      .model((ctx, p) -> p.handheld(ModItems.TIN_AXE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.TIN_INGOT, ModItems.TIN_AXE, null, p)).register();
+  public static RegistryEntry<HoeItem> TIN_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.TIN))
+      .model((ctx, p) -> p.handheld(ModItems.TIN_HOE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.TIN_INGOT, ModItems.TIN_HOE, null, p)).register();
+  public static RegistryEntry<BaseItems.KnifeItem> TIN_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.TIN))
+      .model((ctx, p) -> p.handheld(ModItems.TIN_KNIFE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.TIN_INGOT, ModItems.TIN_KNIFE, null, p)).register();
+  public static RegistryEntry<PickaxeItem> TIN_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.TIN))
+      .model((ctx, p) -> p.handheld(ModItems.TIN_PICKAXE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.TIN_INGOT, ModItems.TIN_PICKAXE, null, p)).register();
+  public static RegistryEntry<ShovelItem> TIN_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.TIN))
+      .model((ctx, p) -> p.handheld(ModItems.TIN_SHOVEL))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.TIN_INGOT, ModItems.TIN_SHOVEL, null, p)).register();
+  public static RegistryEntry<SwordItem> TIN_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.TIN))
+      .model((ctx, p) -> p.handheld(ModItems.TIN_SWORD))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.TIN_INGOT, ModItems.TIN_SWORD, null, p)).register();
+
 
   // COPPER
   public static RegistryEntry<AxeItem> COPPER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.COPPER.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.COPPER))
@@ -720,25 +668,6 @@ public class ModItems {
       .model((ctx, p) -> p.handheld(ModItems.LEAD_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.LEAD_INGOT, ModItems.LEAD_SWORD, null, p)).register();
 
-  // ORICHALCUM
-  public static RegistryEntry<OrichalcumAxeItem> ORICHALCUM_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_axe", ItemGenerator.axe(OrichalcumAxeItem::new, ModMaterials.ORICHALCUM))
-      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_AXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_AXE, null, p)).register();
-  public static RegistryEntry<OrichalcumHoeItem> ORICHALCUM_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_hoe", ItemGenerator.hoe(OrichalcumHoeItem::new, ModMaterials.ORICHALCUM))
-      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_HOE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_HOE, null, p)).register();
-  public static RegistryEntry<OrichalcumKnifeItem> ORICHALCUM_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_knife", ItemGenerator.knife(OrichalcumKnifeItem::new, ModMaterials.ORICHALCUM))
-      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_KNIFE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_KNIFE, null, p)).register();
-  public static RegistryEntry<OrichalcumPickaxeItem> ORICHALCUM_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(OrichalcumPickaxeItem::new, ModMaterials.ORICHALCUM))
-      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_PICKAXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_PICKAXE, null, p)).register();
-  public static RegistryEntry<OrichalcumShovelItem> ORICHALCUM_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_shovel", ItemGenerator.shovel(OrichalcumShovelItem::new, ModMaterials.ORICHALCUM))
-      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_SHOVEL))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_SHOVEL, null, p)).register();
-  public static RegistryEntry<OrichalcumSwordItem> ORICHALCUM_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_sword", ItemGenerator.sword(OrichalcumSwordItem::new, ModMaterials.ORICHALCUM))
-      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_SWORD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_SWORD, null, p)).register();
 
   // SILVER
   public static RegistryEntry<SilverAxeItem> SILVER_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_axe", ItemGenerator.axe(SilverAxeItem::new, ModMaterials.SILVER))
@@ -760,27 +689,47 @@ public class ModItems {
       .model((ctx, p) -> p.handheld(ModItems.SILVER_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.SILVER_INGOT, ModItems.SILVER_SWORD, null, p)).register();
 
-  // TIN
-  public static RegistryEntry<AxeItem> TIN_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.TIN))
-      .model((ctx, p) -> p.handheld(ModItems.TIN_AXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.TIN_INGOT, ModItems.TIN_AXE, null, p)).register();
-  public static RegistryEntry<HoeItem> TIN_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.TIN))
-      .model((ctx, p) -> p.handheld(ModItems.TIN_HOE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.TIN_INGOT, ModItems.TIN_HOE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> TIN_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.TIN))
-      .model((ctx, p) -> p.handheld(ModItems.TIN_KNIFE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.TIN_INGOT, ModItems.TIN_KNIFE, null, p)).register();
-  public static RegistryEntry<PickaxeItem> TIN_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.TIN))
-      .model((ctx, p) -> p.handheld(ModItems.TIN_PICKAXE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.TIN_INGOT, ModItems.TIN_PICKAXE, null, p)).register();
-  public static RegistryEntry<ShovelItem> TIN_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.TIN))
-      .model((ctx, p) -> p.handheld(ModItems.TIN_SHOVEL))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.TIN_INGOT, ModItems.TIN_SHOVEL, null, p)).register();
-  public static RegistryEntry<SwordItem> TIN_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.TIN))
-      .model((ctx, p) -> p.handheld(ModItems.TIN_SWORD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.TIN_INGOT, ModItems.TIN_SWORD, null, p)).register();
+  // ORICHALCUM
+  public static RegistryEntry<OrichalcumAxeItem> ORICHALCUM_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_axe", ItemGenerator.axe(OrichalcumAxeItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_AXE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_AXE, null, p)).register();
+  public static RegistryEntry<OrichalcumHoeItem> ORICHALCUM_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_hoe", ItemGenerator.hoe(OrichalcumHoeItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_HOE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_HOE, null, p)).register();
+  public static RegistryEntry<OrichalcumKnifeItem> ORICHALCUM_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_knife", ItemGenerator.knife(OrichalcumKnifeItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_KNIFE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_KNIFE, null, p)).register();
+  public static RegistryEntry<OrichalcumPickaxeItem> ORICHALCUM_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(OrichalcumPickaxeItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_PICKAXE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_PICKAXE, null, p)).register();
+  public static RegistryEntry<OrichalcumShovelItem> ORICHALCUM_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_shovel", ItemGenerator.shovel(OrichalcumShovelItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_SHOVEL))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_SHOVEL, null, p)).register();
+  public static RegistryEntry<OrichalcumSwordItem> ORICHALCUM_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_sword", ItemGenerator.sword(OrichalcumSwordItem::new, ModMaterials.ORICHALCUM))
+      .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_SWORD))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_SWORD, null, p)).register();
 
-  // VANILLA
+
+  // Sapphire Tools
+  public static RegistryEntry<AxeItem> SAPPHIRE_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_AXE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_AXE, null, p)).register();
+  public static RegistryEntry<HoeItem> SAPPHIRE_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_HOE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_HOE, null, p)).register();
+  public static RegistryEntry<BaseItems.KnifeItem> SAPPHIRE_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_KNIFE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_KNIFE, null, p)).register();
+  public static RegistryEntry<PickaxeItem> SAPPHIRE_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_PICKAXE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_PICKAXE, null, p)).register();
+  public static RegistryEntry<ShovelItem> SAPPHIRE_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_SHOVEL))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_SHOVEL, null, p)).register();
+  public static RegistryEntry<SwordItem> SAPPHIRE_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.SAPPHIRE))
+      .model((ctx, p) -> p.handheld(ModItems.SAPPHIRE_SWORD))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_SWORD, null, p)).register();
+
   // Knives
   public static RegistryEntry<BaseItems.KnifeItem> STONE_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.STONE.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.STONE))
       .model((ctx, p) -> p.handheld(ModItems.STONE_KNIFE))
@@ -791,30 +740,87 @@ public class ModItems {
   public static RegistryEntry<BaseItems.KnifeItem> WOODEN_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.WOODEN.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.WOODEN))
       .model((ctx, p) -> p.handheld(ModItems.WOODEN_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(ItemTags.PLANKS, ModItems.WOODEN_KNIFE, null, p)).register();
-  public static RegistryEntry<BaseItems.KnifeItem> DIAMOND_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.DIAMOND.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.DIAMOND))
-      .model((ctx, p) -> p.handheld(ModItems.DIAMOND_KNIFE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(Tags.Items.GEMS_DIAMOND, ModItems.DIAMOND_KNIFE, null, p)).register();
+  public static RegistryEntry<BaseItems.KnifeItem> IRON_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.IRON.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.IRON))
+      .model((ctx, p) -> p.handheld(ModItems.IRON_KNIFE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(Tags.Items.INGOTS_IRON, ModItems.IRON_KNIFE, null, p)).register();
   public static RegistryEntry<BaseItems.KnifeItem> GOLD_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.GOLD.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.GOLD))
       .model((ctx, p) -> p.handheld(ModItems.GOLD_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(Tags.Items.INGOTS_GOLD, ModItems.GOLD_KNIFE, null, p))
       .tag(ItemTags.PIGLIN_LOVED)
       .register();
-  public static RegistryEntry<BaseItems.KnifeItem> IRON_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.IRON.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.IRON))
-      .model((ctx, p) -> p.handheld(ModItems.IRON_KNIFE))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(Tags.Items.INGOTS_IRON, ModItems.IRON_KNIFE, null, p)).register();
+  public static RegistryEntry<BaseItems.KnifeItem> DIAMOND_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.DIAMOND.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.DIAMOND))
+      .model((ctx, p) -> p.handheld(ModItems.DIAMOND_KNIFE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(Tags.Items.GEMS_DIAMOND, ModItems.DIAMOND_KNIFE, null, p)).register();
+  public static RegistryEntry<BaseItems.KnifeItem> NETHERITE_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.NETHERITE.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.NETHERITE))
+      .model((ctx, p) -> p.handheld(ModItems.NETHERITE_KNIFE))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(Tags.Items.INGOTS_NETHERITE, ModItems.NETHERITE_KNIFE, null, p)).register();
 
-  // Armors
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_helmet", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.HEAD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_HELMET, null, p))
+  public static RegistryEntry<AntlerHatItem> ANTLER_HAT = MysticalWorld.REGISTRATE.item("antler_hat", AntlerHatItem::new)
+      .properties(o -> o.durability(399).rarity(Rarity.RARE))
+      .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
+          .pattern("AWA")
+          .pattern("WWW")
+          .pattern("S S")
+          .define('A', ModItems.ANTLERS.get())
+          .define('W', ItemTags.WOOL)
+          .define('S', Tags.Items.STRING)
+          .unlockedBy("has_antlers", RegistrateRecipeProvider.has(ModItems.ANTLERS.get()))
+          .save(p))
       .register();
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_chestplate", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.CHEST))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_CHESTPLATE, null, p))
+
+  public static RegistryEntry<BeetleArmorItem> BEETLE_HELMET = MysticalWorld.REGISTRATE.item("beetle_helmet", (b) -> new BeetleArmorItem(b, EquipmentSlot.HEAD))
+      .properties(o -> o.rarity(Rarity.RARE))
+      .recipe((o, p) -> ShapedRecipeBuilder.shaped(o.getEntry(), 1)
+          .pattern("CCC")
+          .pattern("C C")
+          .define('C', MWTags.Items.CARAPACE)
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
+          .save(p))
       .register();
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_leggings", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.LEGS))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_LEGGINGS, null, p))
+
+  public static RegistryEntry<BeetleArmorItem> BEETLE_CHESTPLATE = MysticalWorld.REGISTRATE.item("beetle_chestplate", (b) -> new BeetleArmorItem(b, EquipmentSlot.CHEST))
+      .properties(o -> o.rarity(Rarity.RARE))
+      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+          .pattern("C C")
+          .pattern("CCC")
+          .pattern("CCC")
+          .define('C', MWTags.Items.CARAPACE)
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
+          .save(p))
       .register();
-  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_boots", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.FEET))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_BOOTS, null, p))
+
+  public static RegistryEntry<BeetleArmorItem> BEETLE_LEGGINGS = MysticalWorld.REGISTRATE.item("beetle_leggings", (b) -> new BeetleArmorItem(b, EquipmentSlot.LEGS))
+      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+          .pattern("CCC")
+          .pattern("C C")
+          .pattern("C C")
+          .define('C', MWTags.Items.CARAPACE)
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
+          .save(p))
+      .register();
+
+  public static RegistryEntry<BeetleArmorItem> BEETLE_BOOTS = MysticalWorld.REGISTRATE.item("beetle_boots", (b) -> new BeetleArmorItem(b, EquipmentSlot.FEET))
+      .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+          .pattern("C C")
+          .pattern("C C")
+          .define('C', MWTags.Items.CARAPACE)
+          .unlockedBy("has_carapace", RegistrateRecipeProvider.has(MWTags.Items.CARAPACE))
+          .save(p))
+      .register();
+
+
+  // TIN
+  public static RegistryEntry<TinArmorItem> TIN_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_helmet", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.HEAD))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.TIN_INGOT, ModItems.TIN_HELMET, null, p))
+      .register();
+  public static RegistryEntry<TinArmorItem> TIN_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_chestplate", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.CHEST))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.TIN_INGOT, ModItems.TIN_CHESTPLATE, null, p))
+      .register();
+  public static RegistryEntry<TinArmorItem> TIN_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_leggings", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.LEGS))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.TIN_INGOT, ModItems.TIN_LEGGINGS, null, p))
+      .register();
+  public static RegistryEntry<TinArmorItem> TIN_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_boots", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.FEET))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.TIN_INGOT, ModItems.TIN_BOOTS, null, p))
       .register();
 
   // COPPER
@@ -845,20 +851,6 @@ public class ModItems {
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.LEAD_INGOT, ModItems.LEAD_BOOTS, null, p))
       .register();
 
-  // ORICHALCUM
-  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_helmet", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.HEAD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_HELMET, null, p))
-      .register();
-  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_chestplate", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.CHEST))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_CHESTPLATE, null, p))
-      .register();
-  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_leggings", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.LEGS))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_LEGGINGS, null, p))
-      .register();
-  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_boots", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.FEET))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_BOOTS, null, p))
-      .register();
-
   // SILVER
   public static RegistryEntry<SilverArmorItem> SILVER_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SILVER.getInternalName() + "_helmet", ItemGenerator.armor(SilverArmorItem::new, ModMaterials.SILVER, EquipmentSlot.HEAD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.SILVER_INGOT, ModItems.SILVER_HELMET, null, p))
@@ -873,19 +865,40 @@ public class ModItems {
       .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.SILVER_INGOT, ModItems.SILVER_BOOTS, null, p))
       .register();
 
-  // TIN
-  public static RegistryEntry<TinArmorItem> TIN_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_helmet", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.HEAD))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.TIN_INGOT, ModItems.TIN_HELMET, null, p))
+  // ORICHALCUM
+  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_helmet", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.HEAD))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_HELMET, null, p))
       .register();
-  public static RegistryEntry<TinArmorItem> TIN_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_chestplate", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.CHEST))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.TIN_INGOT, ModItems.TIN_CHESTPLATE, null, p))
+  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_chestplate", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.CHEST))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_CHESTPLATE, null, p))
       .register();
-  public static RegistryEntry<TinArmorItem> TIN_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_leggings", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.LEGS))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.TIN_INGOT, ModItems.TIN_LEGGINGS, null, p))
+  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_leggings", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.LEGS))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_LEGGINGS, null, p))
       .register();
-  public static RegistryEntry<TinArmorItem> TIN_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.getInternalName() + "_boots", ItemGenerator.armor(TinArmorItem::new, ModMaterials.TIN, EquipmentSlot.FEET))
-      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.TIN_INGOT, ModItems.TIN_BOOTS, null, p))
+  public static RegistryEntry<OrichalcumArmorItem> ORICHALCUM_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_boots", ItemGenerator.armor(OrichalcumArmorItem::new, ModMaterials.ORICHALCUM, EquipmentSlot.FEET))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_BOOTS, null, p))
       .register();
+
+  // Armors
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_HELMET = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_helmet", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.HEAD))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.helmet(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_HELMET, null, p))
+      .register();
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_CHESTPLATE = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_chestplate", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.CHEST))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.chest(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_CHESTPLATE, null, p))
+      .register();
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_LEGGINGS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_leggings", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.LEGS))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.legs(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_LEGGINGS, null, p))
+      .register();
+  public static RegistryEntry<SapphireArmorItem> SAPPHIRE_BOOTS = MysticalWorld.REGISTRATE.item(ModMaterials.SAPPHIRE.getInternalName() + "_boots", ItemGenerator.armor(SapphireArmorItem::new, ModMaterials.SAPPHIRE, EquipmentSlot.FEET))
+      .recipe((ctx, p) -> MysticalWorld.RECIPES.boots(MWTags.Items.SAPPHIRE_GEM, ModItems.SAPPHIRE_BOOTS, null, p))
+      .register();
+
+  public static RegistryEntry<SilkwormEgg> SILKWORM_EGG = MysticalWorld.REGISTRATE.item("silkworm_egg", SilkwormEgg::new).register();
+
+  public static RegistryEntry<ClamBucketItem> CLAM_BUCKET = MysticalWorld.REGISTRATE.item("clam_bucket", (p) -> new ClamBucketItem(() -> Fluids.WATER, p))
+      .properties(o -> o.stacksTo(1))
+      .register();
+
 
   public static void load() {
   }

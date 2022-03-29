@@ -29,6 +29,7 @@ public class ModMaterials {
   public static final String CARAPACE_NAME = "carapace";
   public static final String ANTLER_NAME = "antler";
   public static final String QUARTZ_NAME = "quartz";
+  public static final String NETHERITE_NAME = "netherite";
 
   public static MaterialType ANTLER = new MaterialType(ANTLER_NAME)
       .item(() -> ModItems.ANTLERS)
@@ -176,6 +177,13 @@ public class ModMaterials {
 
   public static MaterialType DIAMOND = new MaterialType(DIAMOND_NAME)
       .setItemTier(Tiers.DIAMOND)
+      .setModId(MysticalWorld.MODID)
+      .putDamageSpeed(
+          WeaponType.KNIFE, 0.5f, -1.2f
+      );
+
+  public static MaterialType NETHERITE = new MaterialType(NETHERITE_NAME)
+      .setItemTier(Tiers.NETHERITE)
       .setModId(MysticalWorld.MODID)
       .putDamageSpeed(
           WeaponType.KNIFE, 0.5f, -1.2f
