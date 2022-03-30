@@ -57,8 +57,12 @@ public class ModBlocks {
   private static final NonNullUnaryOperator<Block.Properties> MUSHROOM_PROPS = (o) -> o.strength(0.2F).sound(SoundType.WOOD);
   private static final NonNullUnaryOperator<Block.Properties> STONE_PROPS = (o) -> o.sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2f);
   private static final NonNullUnaryOperator<Block.Properties> WOOD_PROPS = (o) -> o.sound(SoundType.WOOD);
-  public static NonNullUnaryOperator<Block.Properties> PEARL_PROPS = o -> o.strength(1.2F, 1.2F).sound(SoundType.STONE);
-  public static NonNullUnaryOperator<Block.Properties> CARAPACE_PROPS = o->o.strength(1f, 1f).sound(SoundType.CALCITE);
+  private static final NonNullUnaryOperator<Block.Properties> PEARL_PROPS = o -> o.strength(1.2F, 1.2F).sound(SoundType.STONE);
+  private static final NonNullUnaryOperator<Block.Properties> CARAPACE_PROPS = o -> o.strength(1f, 1f).sound(SoundType.CALCITE);
+  private static final NonNullUnaryOperator<Block.Properties> IRON_PROPS = (o) -> o.sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.2f);
+  private static final NonNullUnaryOperator<Block.Properties> SOFT_STONE_PROPS = o -> o.sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1f);
+  private static final NonNullUnaryOperator<Block.Properties> BLACKENED_STONE_PROPS = SOFT_STONE_PROPS;
+  private static final NonNullUnaryOperator<Block.Properties> SOFT_OBSIDIAN_PROPS = o -> o.sound(SoundType.STONE).strength(25f, 600f);
 
   private static <T extends IForgeRegistryEntry<?>> String boneName(T block) {
     String[] init = Objects.requireNonNull(block.getRegistryName()).getPath().split("_");
@@ -107,6 +111,7 @@ public class ModBlocks {
   public static BlockEntry<FlowerPotBlock> POTTED_STONEPETAL = MysticalWorld.REGISTRATE.block("potted_stonepetal", Material.DECORATION, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.STONEPETAL, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)))
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "mysticalworld:block/stonepetal")))
       .loot((ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createPotFlowerItemTable(ModBlocks.STONEPETAL.get())))
+      .tag(BlockTags.FLOWER_POTS)
       .register();
 
   public static BlockEntry<OakAppleBlock> GALL_APPLE = MysticalWorld.REGISTRATE.block("gall_apple_crop", OakAppleBlock::new)
@@ -115,6 +120,7 @@ public class ModBlocks {
           add(ModBlocks.GALL_APPLE.get(), RegistrateBlockLootTables.
               createCropDrops(ModBlocks.GALL_APPLE.get(), Items.AIR, ModItems.GALL_APPLE.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.GALL_APPLE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 3)))))
       .blockstate(NonNullBiConsumer.noop())
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<AubergineCropBlock> AUBERGINE_CROP = MysticalWorld.REGISTRATE.block("aubergine_crop", AubergineCropBlock::new)
@@ -123,7 +129,7 @@ public class ModBlocks {
           add(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
               createCropDrops(ModBlocks.AUBERGINE_CROP.get(), ModItems.AUBERGINE.get(), ModItems.AUBERGINE_SEEDS.get(), new LootItemBlockStatePropertyCondition.Builder(ModBlocks.AUBERGINE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7)))))
       .blockstate(NonNullBiConsumer.noop())
-      .tag(MWTags.Blocks.CROPS, MWTags.Blocks.AUBERGINE_CROP)
+      .tag(MWTags.Blocks.CROPS, MWTags.Blocks.AUBERGINE_CROP, BlockTags.CROPS, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<WildCropBlock> WILD_AUBERGINE = MysticalWorld.REGISTRATE.block("wild_aubergine", WildCropBlock::new)
@@ -134,6 +140,7 @@ public class ModBlocks {
               .partialState()
               .addModels(new ConfiguredModel(p.models().crop(ctx.getName(), p.blockTexture(ctx.getEntry()))))
       )
+      .tag(BlockTags.CROPS, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<WildCropBlock> WILD_WART = MysticalWorld.REGISTRATE.block("wild_wart", WildCropBlock::new)
@@ -144,6 +151,7 @@ public class ModBlocks {
               .partialState()
               .addModels(new ConfiguredModel(p.models().crop(ctx.getName(), p.blockTexture(ctx.getEntry()))))
       )
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   // ** WITH BLOCK ITEM **
@@ -157,7 +165,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.QUARTZ_ORE)
       .build()
-      .tag(MWTags.Blocks.QUARTZ_ORE)
+      .tag(MWTags.Blocks.QUARTZ_ORE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .loot((p, t) ->
           p.add(ModBlocks.GRANITE_QUARTZ_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, Items.QUARTZ))
@@ -173,7 +181,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.TIN_ORE)
       .build()
-      .tag(MWTags.Blocks.TIN_ORE)
+      .tag(MWTags.Blocks.TIN_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_STONE_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .loot((p, t) ->
           p.add(ModBlocks.TIN_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_TIN.get()))
@@ -190,7 +198,7 @@ public class ModBlocks {
       .tag(MWTags.Items.LEAD_ORE)
       .build()
       .blockstate(BlockstateGenerator::simpleBlockstate)
-      .tag(MWTags.Blocks.LEAD_ORE)
+      .tag(MWTags.Blocks.LEAD_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
       .loot((p, t) ->
           p.add(ModBlocks.LEAD_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_LEAD.get()))
       )
@@ -205,7 +213,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.SILVER_ORE)
       .build()
-      .tag(MWTags.Blocks.SILVER_ORE)
+      .tag(MWTags.Blocks.SILVER_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .loot((p, t) ->
           p.add(ModBlocks.SILVER_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_SILVER.get()))
@@ -222,7 +230,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.SAPPHIRE_ORE)
       .build()
-      .tag(MWTags.Blocks.SAPPHIRE_ORE)
+      .tag(MWTags.Blocks.SAPPHIRE_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .loot((p, t) ->
           p.add(ModBlocks.SAPPHIRE_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.SAPPHIRE_GEM.get()))
@@ -233,7 +241,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(MWTags.Blocks.RAW_TIN_STORAGE)
+      .tag(MWTags.Blocks.RAW_TIN_STORAGE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -241,7 +249,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(MWTags.Blocks.RAW_LEAD_STORAGE)
+      .tag(MWTags.Blocks.RAW_LEAD_STORAGE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -249,7 +257,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(MWTags.Blocks.RAW_SILVER_STORAGE)
+      .tag(MWTags.Blocks.RAW_SILVER_STORAGE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -266,6 +274,7 @@ public class ModBlocks {
           .unlockedBy("has_wheat", RegistrateRecipeProvider.has(Items.WHEAT))
           .save(p)
       )
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   // MUSHROOM
@@ -275,6 +284,7 @@ public class ModBlocks {
       .item()
       .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/red_mushroom_block")))
       .build()
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<Block> BROWN_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("brown_mushroom_full", Material.WOOD, Block::new)
@@ -283,6 +293,7 @@ public class ModBlocks {
       .item()
       .model((ctx, p) -> p.cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/brown_mushroom_block")))
       .build()
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<Block> STEM_MUSHROOM_FULL = MysticalWorld.REGISTRATE.block("stem_mushroom_full", Material.WOOD, Block::new)
@@ -337,6 +348,7 @@ public class ModBlocks {
             .group("crafting")
             .save(p, new ResourceLocation(MysticalWorld.MODID, "vanilla_stem_mushroom_block_from_full_stem_mushroom_block"));
       })
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<Block> MUSHROOM_INSIDE = MysticalWorld.REGISTRATE.block("mushroom_inside_block", Material.WOOD, Block::new)
@@ -346,7 +358,7 @@ public class ModBlocks {
       .build()
       .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getName(), new ResourceLocation("minecraft", "block/mushroom_block_inside"))))
       .recipe((ctx, p) -> SimpleCookingRecipeBuilder.smelting(Ingredient.of(MWTags.Items.MUSHROOM_BLOCKS), ctx.getEntry(), 0.125f, 200).unlockedBy("has_mushroom", RegistrateRecipeProvider.has(MWTags.Items.MUSHROOM_BLOCKS)).save(p, "mushroom_inside_from_smelting"))
-      .tag(MWTags.Blocks.MUSHROOM_BLOCKS)
+      .tag(MWTags.Blocks.MUSHROOM_BLOCKS, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<WetMudBlock> WET_MUD_BLOCK = MysticalWorld.REGISTRATE.block("wet_mud_block", Material.DIRT, WetMudBlock::new)
@@ -365,6 +377,7 @@ public class ModBlocks {
               .unlockedBy("has_dirt", RegistrateRecipeProvider.has(Blocks.DIRT))
               .save(p)
       )
+      .tag(BlockTags.MINEABLE_WITH_SHOVEL)
       .register();
 
   public static BlockEntry<WetMudBrick> WET_MUD_BRICK = MysticalWorld.REGISTRATE.block("wet_mud_brick", Material.DIRT, WetMudBrick::new)
@@ -376,8 +389,8 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           MysticalWorld.RECIPES.twoByTwo(ModBlocks.WET_MUD_BLOCK, ModBlocks.WET_MUD_BRICK, null, p)
       )
+      .tag(BlockTags.MINEABLE_WITH_SHOVEL)
       .register();
-
 
 
   public static BlockEntry<Block> MUD_BLOCK = MysticalWorld.REGISTRATE.block("mud_block", Material.STONE, Block::new)
@@ -389,6 +402,7 @@ public class ModBlocks {
       .recipe((ctx, p) ->
           p.smelting(DataIngredient.items(ModBlocks.WET_MUD_BLOCK), ModBlocks.MUD_BLOCK, 0.15f)
       )
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<Block> MUD_BRICK = MysticalWorld.REGISTRATE.block("mud_brick", Material.STONE, Block::new)
@@ -404,6 +418,7 @@ public class ModBlocks {
             .unlockedBy("has_mud_block", RegistrateRecipeProvider.has(ModBlocks.MUD_BLOCK.get()))
             .save(p, "mud_bricks_from_mud_blocks_stonecutting");
       })
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<Block> TERRACOTTA_BRICK = MysticalWorld.REGISTRATE.block("terracotta_brick", Material.STONE, Block::new)
@@ -416,13 +431,8 @@ public class ModBlocks {
         p.stonecutting(DataIngredient.items(Items.TERRACOTTA), ModBlocks.TERRACOTTA_BRICK);
         MysticalWorld.RECIPES.twoByTwo(() -> Blocks.TERRACOTTA, ModBlocks.TERRACOTTA_BRICK, null, p);
       })
-      .tag(MWTags.Blocks.TERRACOTTA)
+      .tag(MWTags.Blocks.TERRACOTTA, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
-
-
-  // IRON BRICK
-
-  private static final NonNullUnaryOperator<Block.Properties> IRON_PROPS = (o) -> o.sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.2f);
 
   public static BlockEntry<Block> IRON_BRICK = MysticalWorld.REGISTRATE.block("iron_brick", Material.METAL, Block::new)
       .properties(IRON_PROPS)
@@ -431,13 +441,11 @@ public class ModBlocks {
       .build()
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .recipe((ctx, p) -> MysticalWorld.RECIPES.twoByTwo(() -> Items.IRON_NUGGET, ModBlocks.IRON_BRICK, null, 1, p))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
 
   // SOFT STONE
-
-  private static final NonNullUnaryOperator<Block.Properties> SOFT_STONE_PROPS = o -> o.sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1f);
-  private static final NonNullUnaryOperator<Block.Properties> BLACKENED_STONE_PROPS = SOFT_STONE_PROPS;
 
   public static BlockEntry<Block> SOFT_STONE = MysticalWorld.REGISTRATE.block("soft_stone", Block::new)
       .properties(SOFT_STONE_PROPS)
@@ -449,7 +457,7 @@ public class ModBlocks {
         p.stonecutting(DataIngredient.items(Items.SMOOTH_STONE), ModBlocks.SOFT_STONE);
         MysticalWorld.RECIPES.twoByTwo(() -> Items.SMOOTH_STONE, ModBlocks.SOFT_STONE, null, p);
       })
-      .tag(MWTags.Blocks.SOFT_STONE, BlockTags.BASE_STONE_OVERWORLD)
+      .tag(MWTags.Blocks.SOFT_STONE, BlockTags.BASE_STONE_OVERWORLD, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -468,22 +476,19 @@ public class ModBlocks {
           .define('B', Ingredient.of(Items.COAL, Items.CHARCOAL))
           .unlockedBy("has_stone", RegistrateRecipeProvider.has(Tags.Items.STONE))
           .save(p))
-      .tag(Tags.Blocks.STONE)
+      .tag(Tags.Blocks.STONE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
 
   // SMOOTH OBSIDIAN
-
-  private static final NonNullUnaryOperator<Block.Properties> SOFT_OBSIDIAN_PROPS = o -> o.sound(SoundType.STONE).strength(25f, 600f);
-
   public static BlockEntry<SoftObsidian.SoftObsidianBlock> SOFT_OBSIDIAN = MysticalWorld.REGISTRATE.block("soft_obsidian", SoftObsidian.SoftObsidianBlock::new)
       .properties(SOFT_OBSIDIAN_PROPS)
       .item()
       .tag(Tags.Items.OBSIDIAN)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(Tags.Blocks.OBSIDIAN)
+      .tag(Tags.Blocks.OBSIDIAN, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .recipe((ctx, p) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 4)
           .pattern("AB")
@@ -508,6 +513,7 @@ public class ModBlocks {
         DataIngredient log = DataIngredient.items(ModBlocks.CHARRED_LOG.get());
         ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3).requires(log).requires(log).requires(log).requires(log).unlockedBy("has_charred_log", RegistrateRecipeProvider.has(ModBlocks.CHARRED_LOG.get())).save(p, new ResourceLocation("mysticalworld", "charred_wood_from_logs"));
       })
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<CharredLogBlock> CHARRED_LOG = MysticalWorld.REGISTRATE.block("charred_log", (o) -> new CharredLogBlock(o, false))
@@ -518,6 +524,7 @@ public class ModBlocks {
       .tag(ItemTags.LOGS)
       .model(ItemModelGenerator::itemModel)
       .build()
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<RotatedPillarBlock> STRIPPED_CHARRED_WOOD = MysticalWorld.REGISTRATE.log("stripped_charred_wood")
@@ -532,6 +539,7 @@ public class ModBlocks {
         DataIngredient log = DataIngredient.items(ModBlocks.STRIPPED_CHARRED_LOG.get());
         ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3).requires(log).requires(log).requires(log).requires(log).unlockedBy("has_stripped_charred_log", RegistrateRecipeProvider.has(ModBlocks.STRIPPED_CHARRED_LOG.get())).save(p, new ResourceLocation("mysticalworld", "stripped_charred_wood_from_logs"));
       })
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<RotatedPillarBlock> STRIPPED_CHARRED_LOG = MysticalWorld.REGISTRATE.log("stripped_charred_log")
@@ -542,6 +550,7 @@ public class ModBlocks {
       .tag(ItemTags.LOGS)
       .model(ItemModelGenerator::itemModel)
       .build()
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<Block> CHARRED_PLANKS = MysticalWorld.REGISTRATE.block("charred_planks", Material.WOOD, Block::new)
@@ -553,11 +562,8 @@ public class ModBlocks {
       .build()
       .recipe((ctx, p) -> p.planks(DataIngredient.items(ModBlocks.CHARRED_LOG), ctx::getEntry))
       .blockstate(BlockstateGenerator::simpleBlockstate)
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
-
-  // GRANITE QUARTZ
-
-  // SAPPHIRE
 
   public static BlockEntry<Block> SAPPHIRE_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.SAPPHIRE.blockName(), Material.METAL, Block::new)
       .properties(o -> {
@@ -568,17 +574,9 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.SAPPHIRE_BLOCK)
       .build()
-      .tag(MWTags.Blocks.SAPPHIRE_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
+      .tag(MWTags.Blocks.SAPPHIRE_STORAGE, BlockTags.BEACON_BASE_BLOCKS, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
-
-
-  // COPPER
-
-
-  // LEAD
-
-  public static ResourceLocation RL = new ResourceLocation("mysticalworld:item/copper");
 
   public static BlockEntry<Block> LEAD_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.LEAD.blockName(), Material.METAL, Block::new)
       .properties(o -> {
@@ -589,12 +587,10 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.LEAD_BLOCK)
       .build()
-      .tag(MWTags.Blocks.LEAD_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
+      .tag(MWTags.Blocks.LEAD_STORAGE, BlockTags.BEACON_BASE_BLOCKS, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
-
-  // ORICHALCUM
   public static BlockEntry<Block> ORICHALCUM_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.ORICHALCUM.blockName(), Material.METAL, Block::new)
       .properties(o -> {
         ModMaterials.ORICHALCUM.getBlockProps(o);
@@ -604,12 +600,9 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.ORICHALCUM_BLOCK)
       .build()
-      .tag(MWTags.Blocks.ORICHALCUM_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
+      .tag(MWTags.Blocks.ORICHALCUM_STORAGE, BlockTags.BEACON_BASE_BLOCKS, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
-
-
-  // SILVER
 
   public static BlockEntry<Block> SILVER_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.SILVER.blockName(), Material.METAL, Block::new)
       .properties(o -> {
@@ -620,12 +613,9 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.SILVER_BLOCK)
       .build()
-      .tag(MWTags.Blocks.SILVER_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
+      .tag(MWTags.Blocks.SILVER_STORAGE, BlockTags.BEACON_BASE_BLOCKS, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
-
-
-  // TIN
 
   public static BlockEntry<Block> TIN_BLOCK = MysticalWorld.REGISTRATE.block(ModMaterials.TIN.blockName(), Material.METAL, Block::new)
       .properties(o -> {
@@ -636,7 +626,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.TIN_BLOCK)
       .build()
-      .tag(MWTags.Blocks.TIN_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
+      .tag(MWTags.Blocks.TIN_STORAGE, BlockTags.BEACON_BASE_BLOCKS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -646,7 +636,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.PEARL_BLOCK)
       .build()
-      .tag(MWTags.Blocks.PEARL_STORAGE, BlockTags.BEACON_BASE_BLOCKS)
+      .tag(MWTags.Blocks.PEARL_STORAGE, BlockTags.BEACON_BASE_BLOCKS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -656,7 +646,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.CARAPACE_BLOCK)
       .build()
-      .tag(MWTags.Blocks.CARAPACE_STORAGE)
+      .tag(MWTags.Blocks.CARAPACE_STORAGE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .register();
 
@@ -666,7 +656,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.THATCH), ModBlocks.THATCH_SLAB, null, true)
       )
@@ -680,7 +670,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_SLAB, null, true)
       )
@@ -694,7 +684,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_SLAB, null, true)
       )
@@ -708,7 +698,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_SLAB, null, true)
       )
@@ -722,7 +712,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_SLAB, null, true)
       )
@@ -736,7 +726,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_SLAB, null, true)
       )
@@ -750,7 +740,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_SLAB, null, true)
       )
@@ -764,7 +754,7 @@ public class ModBlocks {
       .tag(ItemTags.WOODEN_SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.WOODEN_SLABS)
+      .tag(BlockTags.WOODEN_SLABS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.CHARRED_PLANKS), ModBlocks.CHARRED_SLAB, null, false)
       )
@@ -778,7 +768,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_SLAB, null, true)
       )
@@ -792,7 +782,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.IRON_BRICK), ModBlocks.IRON_BRICK_SLAB, null, false)
       )
@@ -806,7 +796,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SOFT_STONE), ModBlocks.SOFT_STONE_SLAB, null, true)
       )
@@ -820,7 +810,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.BLACKENED_STONE), ModBlocks.BLACKENED_STONE_SLAB, null, true)
       )
@@ -834,7 +824,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SOFT_OBSIDIAN), ModBlocks.SOFT_OBSIDIAN_SLAB, null, true)
       )
@@ -851,7 +841,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK), ModBlocks.SAPPHIRE_SLAB, null, false)
       )
@@ -868,7 +858,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.LEAD_BLOCK), ModBlocks.LEAD_SLAB, null, false)
       )
@@ -885,7 +875,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK), ModBlocks.ORICHALCUM_SLAB, null, false)
       )
@@ -902,7 +892,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.SILVER_BLOCK), ModBlocks.SILVER_SLAB, null, false)
       )
@@ -919,7 +909,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.TIN_BLOCK), ModBlocks.TIN_SLAB, null, false)
       )
@@ -933,7 +923,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_SLAB, null, true)
       )
@@ -947,7 +937,7 @@ public class ModBlocks {
       .tag(ItemTags.SLABS)
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.SLABS)
+      .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.slab(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_SLAB, null, true)
       )
@@ -958,7 +948,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> THATCH_STAIRS = MysticalWorld.REGISTRATE.block("thatch_stairs", Material.WOOD, stairsBlock(ModBlocks.THATCH))
       .properties(THATCH_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_AXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -971,7 +961,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> RED_MUSHROOM_STAIRS = MysticalWorld.REGISTRATE.block("red_mushroom_stairs", Material.WOOD, stairsBlock(() -> Blocks.RED_MUSHROOM_BLOCK))
       .properties(MUSHROOM_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_AXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -984,7 +974,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> BROWN_MUSHROOM_STAIRS = MysticalWorld.REGISTRATE.block("brown_mushroom_stairs", Material.WOOD, stairsBlock(() -> Blocks.BROWN_MUSHROOM_BLOCK))
       .properties(MUSHROOM_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_AXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -997,7 +987,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> MUSHROOM_STEM_STAIRS = MysticalWorld.REGISTRATE.block("mushroom_stem_stairs", Material.WOOD, stairsBlock(() -> Blocks.MUSHROOM_STEM))
       .properties(MUSHROOM_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_AXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1010,7 +1000,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> MUSHROOM_INSIDE_STAIRS = MysticalWorld.REGISTRATE.block("mushroom_inside_stairs", Material.WOOD, stairsBlock(ModBlocks.MUSHROOM_INSIDE))
       .properties(MUSHROOM_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_AXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1023,7 +1013,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> MUD_BLOCK_STAIRS = MysticalWorld.REGISTRATE.block("mud_block_stairs", Material.STONE, stairsBlock(ModBlocks.MUD_BLOCK))
       .properties(STONE_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1036,7 +1026,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> MUD_BRICK_STAIRS = MysticalWorld.REGISTRATE.block("mud_brick_stairs", Material.STONE, stairsBlock(ModBlocks.MUD_BRICK))
       .properties(STONE_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1049,7 +1039,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> CHARRED_STAIRS = MysticalWorld.REGISTRATE.block("charred_stairs", Material.WOOD, stairsBlock(ModBlocks.CHARRED_PLANKS))
       .properties(WOOD_PROPS)
-      .tag(BlockTags.WOODEN_STAIRS)
+      .tag(BlockTags.WOODEN_STAIRS, BlockTags.MINEABLE_WITH_AXE)
       .item()
       .tag(ItemTags.WOODEN_STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1062,7 +1052,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> TERRACOTTA_BRICK_STAIRS = MysticalWorld.REGISTRATE.block("terracotta_brick_stairs", Material.STONE, stairsBlock(ModBlocks.TERRACOTTA_BRICK))
       .properties(STONE_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1075,7 +1065,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> IRON_BRICK_STAIRS = MysticalWorld.REGISTRATE.block("iron_brick_stairs", Material.METAL, stairsBlock(ModBlocks.IRON_BRICK))
       .properties(IRON_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1088,7 +1078,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> SOFT_STONE_STAIRS = MysticalWorld.REGISTRATE.block("soft_stone_stairs", Material.STONE, stairsBlock(ModBlocks.SOFT_STONE))
       .properties(SOFT_STONE_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1101,7 +1091,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> BLACKENED_STONE_STAIRS = MysticalWorld.REGISTRATE.block("blackened_stone_stairs", Material.STONE, stairsBlock(ModBlocks.BLACKENED_STONE))
       .properties(BLACKENED_STONE_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1114,7 +1104,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> SOFT_OBSIDIAN_STAIRS = MysticalWorld.REGISTRATE.block("soft_obsidian_stairs", Material.STONE, stairsBlock(ModBlocks.SOFT_OBSIDIAN))
       .properties(SOFT_OBSIDIAN_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1130,7 +1120,7 @@ public class ModBlocks {
         ModMaterials.SAPPHIRE.getBlockProps(o);
         return o;
       })
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1146,7 +1136,7 @@ public class ModBlocks {
         ModMaterials.LEAD.getBlockProps(o);
         return o;
       })
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1162,7 +1152,7 @@ public class ModBlocks {
         ModMaterials.ORICHALCUM.getBlockProps(o);
         return o;
       })
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1178,7 +1168,7 @@ public class ModBlocks {
         ModMaterials.SILVER.getBlockProps(o);
         return o;
       })
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1194,7 +1184,7 @@ public class ModBlocks {
         ModMaterials.TIN.getBlockProps(o);
         return o;
       })
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1207,7 +1197,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> PEARL_STAIRS = MysticalWorld.REGISTRATE.block("pearl_stairs", Material.STONE, stairsBlock(ModBlocks.PEARL_BLOCK))
       .properties(PEARL_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1220,7 +1210,7 @@ public class ModBlocks {
 
   public static BlockEntry<StairBlock> CARAPACE_STAIRS = MysticalWorld.REGISTRATE.block("carapace_stairs", Material.STONE, stairsBlock(ModBlocks.CARAPACE_BLOCK))
       .properties(CARAPACE_PROPS)
-      .tag(BlockTags.STAIRS)
+      .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
       .item()
       .tag(ItemTags.STAIRS)
       .model(ItemModelGenerator::itemModel)
@@ -1238,7 +1228,7 @@ public class ModBlocks {
       .tag(ItemTags.WOODEN_FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WOODEN_FENCES)
+      .tag(BlockTags.WOODEN_FENCES, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.fence(DataIngredient.items(ModBlocks.THATCH), ModBlocks.THATCH_FENCE, null)
       )
@@ -1251,7 +1241,7 @@ public class ModBlocks {
       .tag(ItemTags.WOODEN_FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WOODEN_FENCES)
+      .tag(BlockTags.WOODEN_FENCES, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.fence(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_FENCE, null)
       )
@@ -1264,7 +1254,7 @@ public class ModBlocks {
       .tag(ItemTags.WOODEN_FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WOODEN_FENCES)
+      .tag(BlockTags.WOODEN_FENCES, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.fence(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_FENCE, null)
       )
@@ -1277,7 +1267,7 @@ public class ModBlocks {
       .tag(ItemTags.WOODEN_FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WOODEN_FENCES)
+      .tag(BlockTags.WOODEN_FENCES, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.fence(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_FENCE, null)
       )
@@ -1290,7 +1280,7 @@ public class ModBlocks {
       .tag(ItemTags.WOODEN_FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WOODEN_FENCES)
+      .tag(BlockTags.WOODEN_FENCES, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.fence(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_FENCE, null)
       )
@@ -1303,7 +1293,7 @@ public class ModBlocks {
       .tag(ItemTags.FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.FENCES)
+      .tag(BlockTags.FENCES, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.fence(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_FENCE, null)
       )
@@ -1316,7 +1306,7 @@ public class ModBlocks {
       .tag(ItemTags.FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.FENCES)
+      .tag(BlockTags.FENCES, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.fence(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_FENCE, null)
       )
@@ -1329,7 +1319,7 @@ public class ModBlocks {
       .tag(ItemTags.WOODEN_FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WOODEN_FENCES)
+      .tag(BlockTags.WOODEN_FENCES, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.fence(DataIngredient.items(ModBlocks.CHARRED_PLANKS), ModBlocks.CHARRED_FENCE, null)
       )
@@ -1342,7 +1332,7 @@ public class ModBlocks {
       .tag(ItemTags.FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.FENCES)
+      .tag(BlockTags.FENCES, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.fence(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_FENCE, null)
       )
@@ -1352,10 +1342,10 @@ public class ModBlocks {
   public static BlockEntry<FenceBlock> PEARL_FENCE = MysticalWorld.REGISTRATE.block("pearl_fence", Material.STONE, FenceBlock::new)
       .properties(PEARL_PROPS)
       .item()
-      .tag(ItemTags.WALLS)
+      .tag(ItemTags.FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.FENCES, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) -> {
             p.fence(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_FENCE, null);
             p.stonecutting(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_FENCE, 2);
@@ -1370,7 +1360,7 @@ public class ModBlocks {
       .tag(ItemTags.FENCES)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.FENCES)
+      .tag(BlockTags.FENCES, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.fence(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_FENCE, null)
       )
@@ -1383,7 +1373,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.THATCH), ModBlocks.THATCH_WALL)
       )
@@ -1396,7 +1386,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_WALL)
       )
@@ -1409,7 +1399,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_WALL)
       )
@@ -1422,7 +1412,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_WALL)
       )
@@ -1435,7 +1425,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_WALL)
       )
@@ -1448,7 +1438,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_WALL)
       )
@@ -1461,7 +1451,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_WALL)
       )
@@ -1474,7 +1464,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_AXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.CHARRED_PLANKS), ModBlocks.CHARRED_WALL)
       )
@@ -1487,7 +1477,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_WALL)
       )
@@ -1500,7 +1490,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.IRON_BRICK), ModBlocks.IRON_BRICK_WALL)
       )
@@ -1513,7 +1503,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.SOFT_STONE), ModBlocks.SOFT_STONE_WALL)
       )
@@ -1526,7 +1516,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.BLACKENED_STONE), ModBlocks.BLACKENED_STONE_WALL)
       )
@@ -1539,7 +1529,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.SOFT_OBSIDIAN), ModBlocks.SOFT_OBSIDIAN_WALL)
       )
@@ -1555,7 +1545,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK), ModBlocks.SAPPHIRE_WALL)
       )
@@ -1571,7 +1561,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.LEAD_BLOCK), ModBlocks.LEAD_WALL)
       )
@@ -1587,7 +1577,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK), ModBlocks.ORICHALCUM_WALL)
       )
@@ -1603,7 +1593,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.SILVER_BLOCK), ModBlocks.SILVER_WALL)
       )
@@ -1619,7 +1609,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.TIN_BLOCK), ModBlocks.TIN_WALL)
       )
@@ -1632,7 +1622,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_WALL)
       )
@@ -1645,7 +1635,7 @@ public class ModBlocks {
       .tag(ItemTags.WALLS)
       .model(ItemModelGenerator::inventoryModel)
       .build()
-      .tag(BlockTags.WALLS)
+      .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
       .recipe((ctx, p) ->
           p.wall(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_WALL)
       )
@@ -1658,7 +1648,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_AXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.THATCH))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.THATCH), ModBlocks.THATCH_BUTTON, 1, 1);
@@ -1671,7 +1661,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.WOODEN_BUTTONS)
       .build()
-      .tag(BlockTags.WOODEN_BUTTONS)
+      .tag(BlockTags.WOODEN_BUTTONS, BlockTags.MINEABLE_WITH_AXE)
       .blockstate(BlockstateGenerator.button(() -> Blocks.RED_MUSHROOM_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_BUTTON, 1, 1);
@@ -1684,7 +1674,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.WOODEN_BUTTONS)
       .build()
-      .tag(BlockTags.WOODEN_BUTTONS)
+      .tag(BlockTags.WOODEN_BUTTONS, BlockTags.MINEABLE_WITH_AXE)
       .blockstate(BlockstateGenerator.button(() -> Blocks.BROWN_MUSHROOM_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_BUTTON, 1, 1);
@@ -1697,7 +1687,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.WOODEN_BUTTONS)
       .build()
-      .tag(BlockTags.WOODEN_BUTTONS)
+      .tag(BlockTags.WOODEN_BUTTONS, BlockTags.MINEABLE_WITH_AXE)
       .blockstate(BlockstateGenerator.button(() -> Blocks.MUSHROOM_STEM))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_BUTTON, 1, 1);
@@ -1710,7 +1700,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.WOODEN_BUTTONS)
       .build()
-      .tag(BlockTags.WOODEN_BUTTONS)
+      .tag(BlockTags.WOODEN_BUTTONS, BlockTags.MINEABLE_WITH_AXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.MUSHROOM_INSIDE))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_BUTTON, 1, 1);
@@ -1723,7 +1713,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.MUD_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_BUTTON, 1, 1);
@@ -1737,7 +1727,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.MUD_BRICK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_BUTTON, 1, 1);
@@ -1751,7 +1741,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.WOODEN_BUTTONS)
       .build()
-      .tag(BlockTags.WOODEN_BUTTONS)
+      .tag(BlockTags.WOODEN_BUTTONS, BlockTags.MINEABLE_WITH_AXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.CHARRED_PLANKS))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.CHARRED_PLANKS), ModBlocks.CHARRED_BUTTON, 1, 1);
@@ -1764,7 +1754,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.TERRACOTTA_BRICK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_BUTTON, 1, 1);
@@ -1778,7 +1768,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.IRON_BRICK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.IRON_BRICK), ModBlocks.IRON_BRICK_BUTTON, 1, 1);
@@ -1792,7 +1782,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.SOFT_STONE))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.SOFT_STONE), ModBlocks.SOFT_STONE_BUTTON, 1, 1);
@@ -1806,7 +1796,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.BLACKENED_STONE))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.BLACKENED_STONE), ModBlocks.BLACKENED_STONE_BUTTON, 1, 1);
@@ -1820,7 +1810,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.SOFT_OBSIDIAN))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.SOFT_OBSIDIAN), ModBlocks.SOFT_OBSIDIAN_BUTTON, 1, 1);
@@ -1834,7 +1824,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.SAPPHIRE_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.SAPPHIRE_BLOCK), ModBlocks.SAPPHIRE_BUTTON, 1, 1);
@@ -1848,7 +1838,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(() -> Blocks.COPPER_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(Blocks.COPPER_BLOCK), ModBlocks.COPPER_BUTTON, 1, 1);
@@ -1862,7 +1852,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.LEAD_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.LEAD_BLOCK), ModBlocks.LEAD_BUTTON, 1, 1);
@@ -1876,7 +1866,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.ORICHALCUM_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.ORICHALCUM_BLOCK), ModBlocks.ORICHALCUM_BUTTON, 1, 1);
@@ -1890,7 +1880,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.SILVER_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.SILVER_BLOCK), ModBlocks.SILVER_BUTTON, 1, 1);
@@ -1904,7 +1894,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.TIN_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.TIN_BLOCK), ModBlocks.TIN_BUTTON, 1, 1);
@@ -1918,7 +1908,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.PEARL_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.PEARL_BLOCK), ModBlocks.PEARL_BUTTON, 1, 1);
@@ -1932,7 +1922,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::inventoryModel)
       .tag(ItemTags.BUTTONS)
       .build()
-      .tag(BlockTags.BUTTONS)
+      .tag(BlockTags.BUTTONS, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator.button(ModBlocks.CARAPACE_BLOCK))
       .recipe((ctx, p) -> {
         p.singleItem(DataIngredient.items(ModBlocks.CARAPACE_BLOCK), ModBlocks.CARAPACE_BUTTON, 1, 1);
@@ -1953,7 +1943,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> RED_MUSHROOM_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("red_mushroom_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p))
@@ -1969,7 +1959,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.WOODEN_PRESSURE_PLATES)
+      .tag(BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> BROWN_MUSHROOM_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("brown_mushroom_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p))
@@ -1985,7 +1975,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.WOODEN_PRESSURE_PLATES)
+      .tag(BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> MUSHROOM_STEM_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("mushroom_stem_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p))
@@ -2001,7 +1991,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.WOODEN_PRESSURE_PLATES)
+      .tag(BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> MUSHROOM_INSIDE_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("mushroom_inside_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p))
@@ -2017,7 +2007,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.WOODEN_PRESSURE_PLATES)
+      .tag(BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> MUD_BLOCK_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("mud_block_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2034,7 +2024,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> MUD_BRICK_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("mud_brick_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2051,7 +2041,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> CHARRED_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("charred_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p))
@@ -2067,7 +2057,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.WOODEN_PRESSURE_PLATES)
+      .tag(BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> TERRACOTTA_BRICK_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("terracotta_brick_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2084,7 +2074,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> IRON_BRICK_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("iron_brick_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2101,7 +2091,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> SOFT_STONE_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("soft_stone_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2118,7 +2108,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> BLACKENED_STONE_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("blackened_stone_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2135,7 +2125,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<SoftObsidian.SoftObsidianPressurePlateBlock> SOFT_OBSIDIAN_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("soft_obsidian_pressure_plate", (p) -> new SoftObsidian.SoftObsidianPressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2152,7 +2142,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> SAPPHIRE_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("sapphire_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2169,7 +2159,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> COPPER_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("copper_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2186,7 +2176,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> LEAD_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("lead_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2203,7 +2193,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> ORICHALCUM_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("orichalcum_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2220,7 +2210,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> SILVER_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("silver_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2237,7 +2227,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> TIN_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("tin_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2254,7 +2244,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> PEARL_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("pearl_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2271,7 +2261,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.PressurePlateBlock> CARAPACE_PRESSURE_PLATE = MysticalWorld.REGISTRATE.block("carapace_pressure_plate", (p) -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, p))
@@ -2288,7 +2278,7 @@ public class ModBlocks {
       .item()
       .model(ItemModelGenerator::itemModel)
       .build()
-      .tag(BlockTags.STONE_PRESSURE_PLATES)
+      .tag(BlockTags.STONE_PRESSURE_PLATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<FenceGateBlock> THATCH_FENCE_GATE = MysticalWorld.REGISTRATE.block("thatch_fence_gate", Material.WOOD, FenceGateBlock::new)
@@ -2300,6 +2290,7 @@ public class ModBlocks {
           p.fenceGate(DataIngredient.items(ModBlocks.THATCH), ModBlocks.THATCH_FENCE_GATE, null)
       )
       .blockstate(BlockstateGenerator.gate(ModBlocks.THATCH))
+      .tag(BlockTags.FENCE_GATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<FenceGateBlock> RED_MUSHROOM_FENCE_GATE = MysticalWorld.REGISTRATE.block("red_mushroom_fence_gate", Material.WOOD, FenceGateBlock::new)
@@ -2311,6 +2302,7 @@ public class ModBlocks {
           p.fenceGate(DataIngredient.items(Blocks.RED_MUSHROOM_BLOCK), ModBlocks.RED_MUSHROOM_FENCE_GATE, null)
       )
       .blockstate(BlockstateGenerator.gate(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .tag(BlockTags.FENCE_GATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<FenceGateBlock> BROWN_MUSHROOM_FENCE_GATE = MysticalWorld.REGISTRATE.block("brown_mushroom_fence_gate", Material.WOOD, FenceGateBlock::new)
@@ -2322,6 +2314,7 @@ public class ModBlocks {
           p.fenceGate(DataIngredient.items(Blocks.BROWN_MUSHROOM_BLOCK), ModBlocks.BROWN_MUSHROOM_FENCE_GATE, null)
       )
       .blockstate(BlockstateGenerator.gate(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .tag(BlockTags.FENCE_GATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<FenceGateBlock> MUSHROOM_STEM_FENCE_GATE = MysticalWorld.REGISTRATE.block("mushroom_stem_fence_gate", Material.WOOD, FenceGateBlock::new)
@@ -2333,6 +2326,7 @@ public class ModBlocks {
           p.fenceGate(DataIngredient.items(Blocks.MUSHROOM_STEM), ModBlocks.MUSHROOM_STEM_FENCE_GATE, null)
       )
       .blockstate(BlockstateGenerator.gate(() -> Blocks.MUSHROOM_STEM))
+      .tag(BlockTags.FENCE_GATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<FenceGateBlock> MUSHROOM_INSIDE_FENCE_GATE = MysticalWorld.REGISTRATE.block("mushroom_inside_fence_gate", Material.WOOD, FenceGateBlock::new)
@@ -2344,6 +2338,7 @@ public class ModBlocks {
           p.fenceGate(DataIngredient.items(ModBlocks.MUSHROOM_INSIDE), ModBlocks.MUSHROOM_INSIDE_FENCE_GATE, null)
       )
       .blockstate(BlockstateGenerator.gate(ModBlocks.MUSHROOM_INSIDE))
+      .tag(BlockTags.FENCE_GATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<FenceGateBlock> MUD_BLOCK_FENCE_GATE = MysticalWorld.REGISTRATE.block("mud_block_fence_gate", Material.STONE, FenceGateBlock::new)
@@ -2355,6 +2350,7 @@ public class ModBlocks {
           p.fenceGate(DataIngredient.items(ModBlocks.MUD_BLOCK), ModBlocks.MUD_BLOCK_FENCE_GATE, null)
       )
       .blockstate(BlockstateGenerator.gate(ModBlocks.MUD_BLOCK))
+      .tag(BlockTags.FENCE_GATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<FenceGateBlock> MUD_BRICK_FENCE_GATE = MysticalWorld.REGISTRATE.block("mud_brick_fence_gate", Material.STONE, FenceGateBlock::new)
@@ -2366,6 +2362,7 @@ public class ModBlocks {
           p.fenceGate(DataIngredient.items(ModBlocks.MUD_BRICK), ModBlocks.MUD_BRICK_FENCE_GATE, null)
       )
       .blockstate(BlockstateGenerator.gate(ModBlocks.MUD_BRICK))
+      .tag(BlockTags.FENCE_GATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<FenceGateBlock> CHARRED_FENCE_GATE = MysticalWorld.REGISTRATE.block("charred_fence_gate", Material.WOOD, FenceGateBlock::new)
@@ -2377,6 +2374,7 @@ public class ModBlocks {
           p.fenceGate(DataIngredient.items(ModBlocks.CHARRED_PLANKS), ModBlocks.CHARRED_FENCE_GATE, null)
       )
       .blockstate(BlockstateGenerator.gate(ModBlocks.CHARRED_PLANKS))
+      .tag(BlockTags.FENCE_GATES, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<FenceGateBlock> TERRACOTTA_BRICK_FENCE_GATE = MysticalWorld.REGISTRATE.block("terracotta_brick_fence_gate", Material.STONE, FenceGateBlock::new)
@@ -2388,6 +2386,7 @@ public class ModBlocks {
           p.fenceGate(DataIngredient.items(ModBlocks.TERRACOTTA_BRICK), ModBlocks.TERRACOTTA_BRICK_FENCE_GATE, null)
       )
       .blockstate(BlockstateGenerator.gate(ModBlocks.TERRACOTTA_BRICK))
+      .tag(BlockTags.FENCE_GATES, BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
 
@@ -2400,6 +2399,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.THATCH, ModBlocks.THATCH_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.THATCH))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> RED_MUSHROOM_WIDE_POST = MysticalWorld.REGISTRATE.block("red_mushroom_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
@@ -2411,6 +2411,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(() -> Blocks.RED_MUSHROOM_BLOCK, ModBlocks.RED_MUSHROOM_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> BROWN_MUSHROOM_WIDE_POST = MysticalWorld.REGISTRATE.block("brown_mushroom_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
@@ -2422,6 +2423,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(() -> Blocks.BROWN_MUSHROOM_BLOCK, ModBlocks.BROWN_MUSHROOM_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> MUSHROOM_STEM_WIDE_POST = MysticalWorld.REGISTRATE.block("mushroom_stem_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
@@ -2433,6 +2435,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(() -> Blocks.MUSHROOM_STEM, ModBlocks.MUSHROOM_STEM_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(() -> Blocks.MUSHROOM_STEM))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> MUSHROOM_INSIDE_WIDE_POST = MysticalWorld.REGISTRATE.block("mushroom_inside_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
@@ -2444,6 +2447,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.MUSHROOM_INSIDE, ModBlocks.MUSHROOM_INSIDE_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.MUSHROOM_INSIDE))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> MUD_BLOCK_WIDE_POST = MysticalWorld.REGISTRATE.block("mud_block_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
@@ -2455,6 +2459,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.MUD_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> MUD_BRICK_WIDE_POST = MysticalWorld.REGISTRATE.block("mud_brick_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
@@ -2466,6 +2471,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.MUD_BRICK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> CHARRED_WIDE_POST = MysticalWorld.REGISTRATE.block("charred_wide_post", Material.WOOD, BaseBlocks.WidePostBlock::new)
@@ -2477,6 +2483,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_WIDE_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.CHARRED_PLANKS))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> TERRACOTTA_BRICK_WIDE_POST = MysticalWorld.REGISTRATE.block("terracotta_brick_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
@@ -2488,6 +2495,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.TERRACOTTA_BRICK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> IRON_BRICK_WIDE_POST = MysticalWorld.REGISTRATE.block("iron_brick_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
@@ -2499,6 +2507,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_WIDE_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.IRON_BRICK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> SOFT_STONE_WIDE_POST = MysticalWorld.REGISTRATE.block("soft_stone_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
@@ -2510,6 +2519,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.SOFT_STONE))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> BLACKENED_STONE_WIDE_POST = MysticalWorld.REGISTRATE.block("blackened_stone_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
@@ -2521,6 +2531,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.BLACKENED_STONE, ModBlocks.BLACKENED_STONE_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.BLACKENED_STONE))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<SoftObsidian.SoftObsidianWidePostBlock> SOFT_OBSIDIAN_WIDE_POST = MysticalWorld.REGISTRATE.block("soft_obsidian_wide_post", Material.STONE, SoftObsidian.SoftObsidianWidePostBlock::new)
@@ -2532,6 +2543,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.SOFT_OBSIDIAN))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> SAPPHIRE_WIDE_POST = MysticalWorld.REGISTRATE.block("sapphire_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
@@ -2546,6 +2558,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.SAPPHIRE_BLOCK, ModBlocks.SAPPHIRE_WIDE_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.SAPPHIRE_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> COPPER_WIDE_POST = MysticalWorld.REGISTRATE.block("copper_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
@@ -2560,6 +2573,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(() -> Blocks.COPPER_BLOCK, ModBlocks.COPPER_WIDE_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.widePost(() -> Blocks.COPPER_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> LEAD_WIDE_POST = MysticalWorld.REGISTRATE.block("lead_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
@@ -2574,6 +2588,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_WIDE_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.LEAD_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> ORICHALCUM_WIDE_POST = MysticalWorld.REGISTRATE.block("orichalcum_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
@@ -2588,6 +2603,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.ORICHALCUM_BLOCK, ModBlocks.ORICHALCUM_WIDE_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.ORICHALCUM_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> SILVER_WIDE_POST = MysticalWorld.REGISTRATE.block("silver_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
@@ -2602,6 +2618,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_WIDE_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.SILVER_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> TIN_WIDE_POST = MysticalWorld.REGISTRATE.block("tin_wide_post", Material.METAL, BaseBlocks.WidePostBlock::new)
@@ -2616,6 +2633,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.TIN_BLOCK, ModBlocks.TIN_WIDE_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.TIN_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> PEARL_WIDE_POST = MysticalWorld.REGISTRATE.block("pearl_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
@@ -2627,6 +2645,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.PEARL_BLOCK, ModBlocks.PEARL_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.PEARL_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.WidePostBlock> CARAPACE_WIDE_POST = MysticalWorld.REGISTRATE.block("carapace_wide_post", Material.STONE, BaseBlocks.WidePostBlock::new)
@@ -2638,6 +2657,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.widePost(ModBlocks.CARAPACE_BLOCK, ModBlocks.CARAPACE_WIDE_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.widePost(ModBlocks.CARAPACE_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> THATCH_SMALL_POST = MysticalWorld.REGISTRATE.block("thatch_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
@@ -2649,6 +2669,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.THATCH, ModBlocks.THATCH_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.THATCH))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> RED_MUSHROOM_SMALL_POST = MysticalWorld.REGISTRATE.block("red_mushroom_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
@@ -2660,6 +2681,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(() -> Blocks.RED_MUSHROOM_BLOCK, ModBlocks.RED_MUSHROOM_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(() -> Blocks.RED_MUSHROOM_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> BROWN_MUSHROOM_SMALL_POST = MysticalWorld.REGISTRATE.block("brown_mushroom_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
@@ -2671,6 +2693,9 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(() -> Blocks.BROWN_MUSHROOM_BLOCK, ModBlocks.BROWN_MUSHROOM_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(() -> Blocks.BROWN_MUSHROOM_BLOCK))
+
+      .tag(BlockTags.MINEABLE_WITH_AXE)
+
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> MUSHROOM_STEM_SMALL_POST = MysticalWorld.REGISTRATE.block("mushroom_stem_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
@@ -2682,6 +2707,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(() -> Blocks.MUSHROOM_STEM, ModBlocks.MUSHROOM_STEM_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(() -> Blocks.MUSHROOM_STEM))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> MUSHROOM_INSIDE_SMALL_POST = MysticalWorld.REGISTRATE.block("mushroom_inside_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
@@ -2693,6 +2719,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.MUSHROOM_INSIDE, ModBlocks.MUSHROOM_INSIDE_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.MUSHROOM_INSIDE))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> MUD_BLOCK_SMALL_POST = MysticalWorld.REGISTRATE.block("mud_block_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
@@ -2704,6 +2731,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.MUD_BLOCK, ModBlocks.MUD_BLOCK_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.MUD_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> MUD_BRICK_SMALL_POST = MysticalWorld.REGISTRATE.block("mud_brick_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
@@ -2715,6 +2743,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.MUD_BRICK, ModBlocks.MUD_BRICK_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.MUD_BRICK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> CHARRED_SMALL_POST = MysticalWorld.REGISTRATE.block("charred_small_post", Material.WOOD, BaseBlocks.NarrowPostBlock::new)
@@ -2726,6 +2755,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.CHARRED_PLANKS, ModBlocks.CHARRED_SMALL_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.CHARRED_PLANKS))
+      .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> TERRACOTTA_BRICK_SMALL_POST = MysticalWorld.REGISTRATE.block("terracotta_brick_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
@@ -2737,6 +2767,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.TERRACOTTA_BRICK, ModBlocks.TERRACOTTA_BRICK_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.TERRACOTTA_BRICK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> IRON_BRICK_SMALL_POST = MysticalWorld.REGISTRATE.block("iron_brick_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
@@ -2748,6 +2779,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.IRON_BRICK, ModBlocks.IRON_BRICK_SMALL_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.IRON_BRICK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> SOFT_STONE_SMALL_POST = MysticalWorld.REGISTRATE.block("soft_stone_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
@@ -2759,6 +2791,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.SOFT_STONE, ModBlocks.SOFT_STONE_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.SOFT_STONE))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> BLACKENED_STONE_SMALL_POST = MysticalWorld.REGISTRATE.block("blackened_stone_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
@@ -2770,6 +2803,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.BLACKENED_STONE, ModBlocks.BLACKENED_STONE_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.BLACKENED_STONE))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<SoftObsidian.SoftObsidianNarrowPostBlock> SOFT_OBSIDIAN_SMALL_POST = MysticalWorld.REGISTRATE.block("soft_obsidian_small_post", Material.STONE, SoftObsidian.SoftObsidianNarrowPostBlock::new)
@@ -2781,6 +2815,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.SOFT_OBSIDIAN, ModBlocks.SOFT_OBSIDIAN_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.SOFT_OBSIDIAN))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> SAPPHIRE_SMALL_POST = MysticalWorld.REGISTRATE.block("sapphire_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
@@ -2795,6 +2830,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.SAPPHIRE_BLOCK, ModBlocks.SAPPHIRE_SMALL_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.SAPPHIRE_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> COPPER_SMALL_POST = MysticalWorld.REGISTRATE.block("copper_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
@@ -2809,6 +2845,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(() -> Blocks.COPPER_BLOCK, ModBlocks.COPPER_SMALL_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(() -> Blocks.COPPER_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> LEAD_SMALL_POST = MysticalWorld.REGISTRATE.block("lead_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
@@ -2823,6 +2860,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_SMALL_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.LEAD_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> ORICHALCUM_SMALL_POST = MysticalWorld.REGISTRATE.block("orichalcum_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
@@ -2837,6 +2875,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.ORICHALCUM_BLOCK, ModBlocks.ORICHALCUM_SMALL_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.ORICHALCUM_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> SILVER_SMALL_POST = MysticalWorld.REGISTRATE.block("silver_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
@@ -2851,6 +2890,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.SILVER_BLOCK, ModBlocks.SILVER_SMALL_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.SILVER_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> TIN_SMALL_POST = MysticalWorld.REGISTRATE.block("tin_small_post", Material.METAL, BaseBlocks.NarrowPostBlock::new)
@@ -2865,6 +2905,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.TIN_BLOCK, ModBlocks.TIN_SMALL_POST, null, false, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.TIN_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> PEARL_SMALL_POST = MysticalWorld.REGISTRATE.block("pearl_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
@@ -2876,7 +2917,9 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.PEARL_BLOCK, ModBlocks.PEARL_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.PEARL_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
+
 
   public static BlockEntry<BaseBlocks.NarrowPostBlock> CARAPACE_SMALL_POST = MysticalWorld.REGISTRATE.block("carapace_small_post", Material.STONE, BaseBlocks.NarrowPostBlock::new)
       .properties(CARAPACE_PROPS)
@@ -2887,6 +2930,7 @@ public class ModBlocks {
           MysticalWorld.RECIPES.narrowPost(ModBlocks.CARAPACE_BLOCK, ModBlocks.CARAPACE_SMALL_POST, null, true, p)
       )
       .blockstate(BlockstateGenerator.narrowPost(ModBlocks.CARAPACE_BLOCK))
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   protected static NonNullUnaryOperator<BlockBehaviour.Properties> BONE_PROPS = (o) -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).strength(0.2F).sound(SoundType.BONE_BLOCK);
@@ -2913,6 +2957,7 @@ public class ModBlocks {
         ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_4.get()).unlockedBy("has_bone_pile_4", RegistrateRecipeProvider.has(ModBlocks.BONE_PILE_4.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "bone_pile_1_from_bone_pile_4"));
       })
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BonesBlock> BONE_PILE_2 = MysticalWorld.REGISTRATE.block("bone_pile_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
@@ -2928,6 +2973,7 @@ public class ModBlocks {
       .build()
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_1.get()).unlockedBy("has_bone_pile_1", RegistrateRecipeProvider.has(ModBlocks.BONE_PILE_1.get())).save(p))
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BonesBlock> BONE_PILE_3 = MysticalWorld.REGISTRATE.block("bone_pile_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
@@ -2943,6 +2989,7 @@ public class ModBlocks {
       .build()
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_2.get()).unlockedBy("has_bone_pile_2", RegistrateRecipeProvider.has(ModBlocks.BONE_PILE_2.get())).save(p))
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BonesBlock> BONE_PILE_4 = MysticalWorld.REGISTRATE.block("bone_pile_4", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
@@ -2958,6 +3005,7 @@ public class ModBlocks {
       .build()
       .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.BONE_PILE_3.get()).unlockedBy("has_bone_pile_3", RegistrateRecipeProvider.has(ModBlocks.BONE_PILE_3.get())).save(p))
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_BOTTOM_1 = MysticalWorld.REGISTRATE.block("skeleton_bottom_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM))
@@ -2982,6 +3030,7 @@ public class ModBlocks {
         ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_3.get()).unlockedBy("has_skeleton_bottom_3", RegistrateRecipeProvider.has(ModBlocks.SKELETON_BOTTOM_3.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "skeleton_bottom_1_from_skeleton_bottom_4"));
       })
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_BOTTOM_2 = MysticalWorld.REGISTRATE.block("skeleton_bottom_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM))
@@ -2999,6 +3048,7 @@ public class ModBlocks {
           ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_1.get()).unlockedBy("has_skeleton_bottom_1", RegistrateRecipeProvider.has(ModBlocks.SKELETON_BOTTOM_1.get())).save(p)
       )
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_BOTTOM_3 = MysticalWorld.REGISTRATE.block("skeleton_bottom_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.BOTTOM))
@@ -3016,6 +3066,7 @@ public class ModBlocks {
           ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_BOTTOM_2.get()).unlockedBy("has_skeleton_bottom_2", RegistrateRecipeProvider.has(ModBlocks.SKELETON_BOTTOM_2.get())).save(p)
       )
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_TOP_1 = MysticalWorld.REGISTRATE.block("skeleton_top_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
@@ -3040,6 +3091,7 @@ public class ModBlocks {
         ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_4.get()).unlockedBy("has_skeleton_top_4", RegistrateRecipeProvider.has(ModBlocks.SKELETON_TOP_4.get())).save(p, new ResourceLocation(MysticalWorld.MODID, "skeleton_top_1_from_skeleton_top_4"));
       })
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_TOP_2 = MysticalWorld.REGISTRATE.block("skeleton_top_2", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
@@ -3057,6 +3109,7 @@ public class ModBlocks {
           ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_1.get()).unlockedBy("has_skeleton_top_1", RegistrateRecipeProvider.has(ModBlocks.SKELETON_TOP_1.get())).save(p)
       )
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_TOP_3 = MysticalWorld.REGISTRATE.block("skeleton_top_3", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
@@ -3074,6 +3127,7 @@ public class ModBlocks {
           ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_2.get()).unlockedBy("has_skeleton_top_2", RegistrateRecipeProvider.has(ModBlocks.SKELETON_TOP_2.get())).save(p)
       )
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<BonesBlock> SKELETON_TOP_4 = MysticalWorld.REGISTRATE.block("skeleton_top_4", (p) -> new BonesBlock(p, BonesBlock.BoneType.TOP))
@@ -3092,6 +3146,7 @@ public class ModBlocks {
           ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 1).requires(ModBlocks.SKELETON_TOP_3.get()).unlockedBy("has_skeleton_top_3", RegistrateRecipeProvider.has(ModBlocks.SKELETON_TOP_3.get())).save(p)
       )
       .loot(boneLoot())
+      .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
   public static BlockEntry<PetrifiedFlowerBlock> STONEPETAL = MysticalWorld.REGISTRATE.block("stonepetal", Material.PLANT, PetrifiedFlowerBlock::new)
@@ -3101,7 +3156,7 @@ public class ModBlocks {
       .model(ItemModelGenerator::generated)
       .tag(MWTags.Items.STONEPETAL)
       .build()
-      .tag(MWTags.Blocks.STONEPETAL)
+      .tag(MWTags.Blocks.STONEPETAL, BlockTags.MINEABLE_WITH_HOE)
       .recipe((ctx, p) -> {
         DataIngredient a = DataIngredient.items(ModBlocks.STONEPETAL.get());
         ShapelessRecipeBuilder.shapeless(Items.GRAY_DYE, 4).requires(ctx.getEntry()).unlockedBy("has_stonepetal", a.getCritereon(p)).save(p, new ResourceLocation(MysticalWorld.MODID, "gray_dye_from_stonepetal"));

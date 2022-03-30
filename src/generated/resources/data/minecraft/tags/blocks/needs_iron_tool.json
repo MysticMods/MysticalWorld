@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:lead_ore",
+    "mysticalworld:silver_ore",
+    "mysticalworld:sapphire_block",
+    "mysticalworld:lead_block",
+    "mysticalworld:orichalcum_block",
+    "mysticalworld:silver_block"
+  ]
+}

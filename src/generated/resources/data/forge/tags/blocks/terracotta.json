@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "mysticalworld:terracotta_brick",
     "minecraft:white_terracotta",
     "minecraft:orange_terracotta",
     "minecraft:magenta_terracotta",
@@ -17,7 +18,6 @@
     "minecraft:green_terracotta",
     "minecraft:red_terracotta",
     "minecraft:black_terracotta",
-    "minecraft:terracotta",
-    "mysticalworld:terracotta_brick"
+    "minecraft:terracotta"
   ]
 }

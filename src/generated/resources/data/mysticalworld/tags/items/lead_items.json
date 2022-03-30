@@ -6,6 +6,10 @@
     "mysticalworld:lead_knife",
     "mysticalworld:lead_pickaxe",
     "mysticalworld:lead_shovel",
-    "mysticalworld:lead_sword"
+    "mysticalworld:lead_sword",
+    "mysticalworld:lead_helmet",
+    "mysticalworld:lead_chestplate",
+    "mysticalworld:lead_leggings",
+    "mysticalworld:lead_boots"
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalworld:thatch_fence_gate",
+    "mysticalworld:red_mushroom_fence_gate",
+    "mysticalworld:brown_mushroom_fence_gate",
+    "mysticalworld:mushroom_stem_fence_gate",
+    "mysticalworld:mushroom_inside_fence_gate",
+    "mysticalworld:mud_block_fence_gate",
+    "mysticalworld:mud_brick_fence_gate",
+    "mysticalworld:charred_fence_gate",
+    "mysticalworld:terracotta_brick_fence_gate"
+  ]
+}

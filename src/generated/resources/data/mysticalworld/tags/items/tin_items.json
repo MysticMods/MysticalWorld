@@ -6,6 +6,10 @@
     "mysticalworld:tin_knife",
     "mysticalworld:tin_pickaxe",
     "mysticalworld:tin_shovel",
-    "mysticalworld:tin_sword"
+    "mysticalworld:tin_sword",
+    "mysticalworld:tin_helmet",
+    "mysticalworld:tin_chestplate",
+    "mysticalworld:tin_leggings",
+    "mysticalworld:tin_boots"
   ]
 }

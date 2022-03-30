@@ -6,6 +6,10 @@
     "mysticalworld:copper_knife",
     "mysticalworld:copper_pickaxe",
     "mysticalworld:copper_shovel",
-    "mysticalworld:copper_sword"
+    "mysticalworld:copper_sword",
+    "mysticalworld:copper_helmet",
+    "mysticalworld:copper_chestplate",
+    "mysticalworld:copper_leggings",
+    "mysticalworld:copper_boots"
   ]
 }
