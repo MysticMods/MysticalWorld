@@ -77,10 +77,6 @@ public class CommonSetup {
       ModFeatures.REGISTRY.registration();*/
       ModLoot.FUNCTION_REGISTRY.registration();
       ModLoot.CONDITION_REGISTRY.registration();
-
-      SpawnEggItem.BY_ID.remove(null);
-      //noinspection unchecked
-      ModEntities.SPAWN_EGGS.forEach(o -> SpawnEggItem.BY_ID.put((EntityType<? extends Mob>) o.get().getType(null), o.get()));
     });
   }
 }

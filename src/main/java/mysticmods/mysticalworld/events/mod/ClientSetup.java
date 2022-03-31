@@ -66,12 +66,6 @@ public class ClientSetup {
       /*      Bootstrap.init(Minecraft.getInstance());*/
 
       /*      Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values().forEach(o -> o.addLayer(new ShoulderRenderLayer<>(o)));*/
-
-      // TODO: Fix this
-      ItemColors c = Minecraft.getInstance().getItemColors();
-      for (RegistryEntry<? extends LazySpawnEggItem<?>> egg : ModEntities.SPAWN_EGGS) {
-        c.register((a, layer) -> egg.get().getColor(layer), egg.get());
-      }
     });
   }
 

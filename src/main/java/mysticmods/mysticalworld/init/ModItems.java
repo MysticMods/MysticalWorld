@@ -1,7 +1,8 @@
 package mysticmods.mysticalworld.init;
 
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import mysticmods.mysticalworld.MWTags;
@@ -22,6 +23,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.common.Tags;
 import noobanidus.libs.noobutil.data.generator.ItemGenerator;
 import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
@@ -967,6 +970,15 @@ public class ModItems {
 
   public static RegistryEntry<ClamBucketItem> CLAM_BUCKET = MysticalWorld.REGISTRATE.item("clam_bucket", (p) -> new ClamBucketItem(() -> Fluids.WATER, p))
       .properties(o -> o.stacksTo(1))
+      .register();
+
+  private static <T extends Item> ItemModelBuilder spawnEggModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider p) {
+    return p.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"));
+  }
+
+  public static RegistryEntry<ForgeSpawnEggItem> BEETLE_SPAWN_EGG = MysticalWorld.REGISTRATE.item("beetle_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.BEETLE, 0x418594, 0x211D15, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
       .register();
 
   public static void load() {
