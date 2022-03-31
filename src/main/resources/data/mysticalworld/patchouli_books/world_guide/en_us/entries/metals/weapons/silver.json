@@ -1,7 +1,7 @@
 {
   "name": "Silver Weapons",
   "icon": "mysticalworld:silver_knife",
-  "category": "metals_weapons",
+  "category": "mysticalworld:metals_weapons",
   "pages": [
     {
       "type": "spotlight",

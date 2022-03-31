@@ -1,7 +1,7 @@
 {
   "name": "Squid",
   "icon": "minecraft:ink_sac",
-  "category": "creatures",
+  "category": "mysticalworld:creatures",
   "pages": [
     {
       "type": "animal_spawn_info",

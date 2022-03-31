@@ -1,7 +1,7 @@
 {
   "name": "Pearl",
   "icon": "mysticalworld:lustrous_pearl",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "spotlight",

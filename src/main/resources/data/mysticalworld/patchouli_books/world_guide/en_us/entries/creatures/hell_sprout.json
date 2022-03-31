@@ -1,7 +1,7 @@
 {
   "name": "Hell Sprout",
   "icon": "minecraft:magma_cream",
-  "category": "creatures",
+  "category": "mysticalworld:creatures",
   "pages": [
     {
       "type": "animal_spawn_info",

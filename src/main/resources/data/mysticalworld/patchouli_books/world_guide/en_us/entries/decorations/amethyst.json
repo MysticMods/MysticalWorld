@@ -1,7 +1,7 @@
 {
   "name": "Sapphire Decoration",
   "icon": "mysticalworld:sapphire_stairs",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "crafting",

@@ -1,7 +1,7 @@
 {
   "name": "Nautilus & Glistering Horn",
   "icon": "mysticalworld:nautilus_horn",
-  "category": "items",
+  "category": "mysticalworld:items",
   "pages": [
     {
       "type": "crafting",

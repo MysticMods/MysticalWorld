@@ -1,7 +1,7 @@
 {
   "name": "Silver Fox",
   "icon": "mysticalworld:pelt",
-  "category": "creatures",
+  "category": "mysticalworld:creatures",
   "pages": [
     {
       "type": "animal_spawn_info",

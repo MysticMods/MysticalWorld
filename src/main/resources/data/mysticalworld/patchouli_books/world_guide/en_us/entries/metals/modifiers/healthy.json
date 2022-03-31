@@ -1,7 +1,7 @@
 {
   "name": "Healthy",
   "icon": "mysticalworld:copper_leggings",
-  "category": "metals_modifiers",
+  "category": "mysticalworld:metals_modifiers",
   "pages": [
     {
       "type": "text",

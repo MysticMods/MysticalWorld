@@ -1,7 +1,7 @@
 {
   "name": "Clam Bucket",
   "icon": "mysticalworld:clam_bucket",
-  "category": "items",
+  "category": "mysticalworld:items",
   "pages": [
     {
       "type": "spotlight",

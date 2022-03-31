@@ -1,7 +1,7 @@
 {
   "name": "Antlers",
   "icon": "mysticalworld:antlers",
-  "category": "items",
+  "category": "mysticalworld:items",
   "pages": [
     {
       "type": "crafting",

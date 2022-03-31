@@ -1,7 +1,7 @@
 {
   "name": "Speedy",
   "icon": "mysticalworld:orichalcum_chestplate",
-  "category": "metals_modifiers",
+  "category": "mysticalworld:metals_modifiers",
   "pages": [
     {
       "type": "text",

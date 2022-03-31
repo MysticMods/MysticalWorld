@@ -1,7 +1,7 @@
 {
   "name": "Orichalcum Decoration",
   "icon": "mysticalworld:orichalcum_stairs",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "crafting",

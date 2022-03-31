@@ -1,7 +1,7 @@
 {
   "name": "Extension",
   "icon": "mysticalworld:tin_helmet",
-  "category": "metals_modifiers",
+  "category": "mysticalworld:metals_modifiers",
   "pages": [
     {
       "type": "text",

@@ -1,7 +1,7 @@
 {
   "name": "Copper Decoration",
   "icon": "mysticalworld:copper_stairs",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "crafting",

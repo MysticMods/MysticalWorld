@@ -1,7 +1,7 @@
 {
   "name": "Barrows",
   "icon": "minecraft:skeleton_skull",
-  "category": "world",
+  "category": "mysticalworld:world",
   "pages": [
     {
       "type": "text",

@@ -1,7 +1,7 @@
 {
   "name": "Lead Ore",
   "icon": "mysticalworld:lead_ore",
-  "category": "metals",
+  "category": "mysticalworld:metals",
   "pages": [
     {
       "type": "spotlight",

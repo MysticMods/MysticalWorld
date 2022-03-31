@@ -1,7 +1,7 @@
 {
   "name": "Squid",
   "icon": "mysticalworld:raw_squid",
-  "category": "cuisine",
+  "category": "mysticalworld:cuisine",
   "pages": [
     {
       "type": "spotlight",

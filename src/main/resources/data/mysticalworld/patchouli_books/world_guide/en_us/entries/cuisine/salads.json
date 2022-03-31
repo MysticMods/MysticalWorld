@@ -1,7 +1,7 @@
 {
   "name": "Salad",
   "icon": "mysticalworld:aubergine_salad",
-  "category": "cuisine",
+  "category": "mysticalworld:cuisine",
   "pages": [
     {
       "type": "crafting",

@@ -1,7 +1,7 @@
 {
   "name": "Fish & Chips",
   "icon": "mysticalworld:fish_and_chips",
-  "category": "cuisine",
+  "category": "mysticalworld:cuisine",
   "pages": [
     {
       "type": "crafting",

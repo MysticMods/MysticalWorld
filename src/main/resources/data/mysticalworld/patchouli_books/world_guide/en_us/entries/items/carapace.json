@@ -1,7 +1,7 @@
 {
   "name": "Carapace",
   "icon": "mysticalworld:carapace",
-  "category": "items",
+  "category": "mysticalworld:items",
   "pages": [
     {
       "type": "crafting",

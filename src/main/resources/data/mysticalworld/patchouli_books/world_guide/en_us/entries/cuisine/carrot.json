@@ -1,7 +1,7 @@
 {
   "name": "Carrot Recipes",
   "icon": "mysticalworld:cooked_carrot",
-  "category": "cuisine",
+  "category": "mysticalworld:cuisine",
   "pages": [
     {
       "type": "spotlight",

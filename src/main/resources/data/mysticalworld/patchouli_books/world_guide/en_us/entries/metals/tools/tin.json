@@ -1,7 +1,7 @@
 {
   "name": "Tin Tools",
   "icon": "mysticalworld:tin_axe",
-  "category": "metals_tools",
+  "category": "mysticalworld:metals_tools",
   "pages": [
     {
       "type": "spotlight",

@@ -1,7 +1,7 @@
 {
   "name": "Terracotta Bricks",
   "icon": "mysticalworld:terracotta_brick",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "crafting",

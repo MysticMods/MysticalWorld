@@ -1,7 +1,7 @@
 {
   "name": "Weighty",
   "icon": "mysticalworld:lead_helmet",
-  "category": "metals_modifiers",
+  "category": "mysticalworld:metals_modifiers",
   "pages": [
     {
       "type": "text",

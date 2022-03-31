@@ -1,7 +1,7 @@
 {
   "name": "Beetle",
   "icon": "mysticalworld:carapace",
-  "category": "creatures",
+  "category": "mysticalworld:creatures",
   "pages": [
     {
       "type": "animal_spawn_info",

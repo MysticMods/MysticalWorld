@@ -1,7 +1,7 @@
 {
   "name": "Tin Decoration",
   "icon": "mysticalworld:tin_stairs",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "crafting",

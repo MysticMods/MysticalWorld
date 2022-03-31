@@ -1,7 +1,7 @@
 {
   "name": "Sprout",
   "icon": "mysticalworld:aubergine",
-  "category": "creatures",
+  "category": "mysticalworld:creatures",
   "pages": [
     {
       "type": "animal_spawn_info",

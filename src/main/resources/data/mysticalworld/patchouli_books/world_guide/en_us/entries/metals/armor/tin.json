@@ -1,7 +1,7 @@
 {
   "name": "Tin Armor",
   "icon": "mysticalworld:tin_helmet",
-  "category": "metals_armor",
+  "category": "mysticalworld:metals_armor",
   "pages": [
     {
       "type": "spotlight",

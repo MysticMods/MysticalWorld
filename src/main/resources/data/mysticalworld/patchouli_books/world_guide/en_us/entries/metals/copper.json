@@ -1,7 +1,7 @@
 {
   "name": "Copper Ore",
   "icon": "mysticalworld:copper_ore",
-  "category": "metals",
+  "category": "mysticalworld:metals",
   "flags": "roots:copper",
   "pages": [
     {

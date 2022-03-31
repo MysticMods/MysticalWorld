@@ -1,7 +1,7 @@
 {
   "name": "Soft Stone",
   "icon": "mysticalworld:soft_stone",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "crafting",

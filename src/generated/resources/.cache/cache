@@ -1099,7 +1099,7 @@ c7d770d5a5a0c47fb54f62c7229f64510bc33440 data/forge/tags/items/storage_blocks/sl
 45414894b7ca69a60699773e1bc47c5e18462e04 data/forge/tags/items/terracotta.json
 bae0a1528c0498c6312740c062a469dbb0f6909f data/forge/tags/items/tools/knife.json
 c66121d110a671ea0ab73acfa15c83c857d1e28d data/forge/tags/items/vegetables.json
-74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/potions/random_potion_blacklist.json
+74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/potion/random_potion_blacklist.json
 32b8be680724e41926c9fc67ac06076d16b22947 data/minecraft/advancements/recipes/building_blocks/white_wool.json
 3db6e092f91c7afb33b4add37eaa31487b18a858 data/minecraft/advancements/recipes/combat/bow.json
 960267182f6e448669e79ee218998020e691c9ce data/minecraft/advancements/recipes/combat/crossbow.json

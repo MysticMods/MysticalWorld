@@ -1,7 +1,7 @@
 {
   "name": "Spindle",
   "icon": "mysticalworld:spindle",
-  "category": "items",
+  "category": "mysticalworld:items",
   "pages": [
     {
       "type": "crafting",

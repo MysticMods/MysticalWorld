@@ -1,7 +1,7 @@
 {
   "name": "Silk Thread",
   "icon": "mysticalworld:silk_thread",
-  "category": "items",
+  "category": "mysticalworld:items",
   "pages": [
     {
       "type": "crafting",

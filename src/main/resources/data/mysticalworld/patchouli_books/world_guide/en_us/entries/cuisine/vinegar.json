@@ -1,7 +1,7 @@
 {
   "name": "Vinegar",
   "icon": "mysticalworld:vinegar",
-  "category": "cuisine",
+  "category": "mysticalworld:cuisine",
   "pages": [
     {
       "type": "crafting",

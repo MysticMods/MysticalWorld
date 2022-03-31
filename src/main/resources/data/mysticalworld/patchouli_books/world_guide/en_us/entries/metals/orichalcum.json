@@ -1,7 +1,7 @@
 {
   "name": "Orichalcum Ore",
   "icon": "mysticalworld:orichalcum_block",
-  "category": "metals",
+  "category": "mysticalworld:metals",
   "pages": [
     {
       "type": "spotlight",

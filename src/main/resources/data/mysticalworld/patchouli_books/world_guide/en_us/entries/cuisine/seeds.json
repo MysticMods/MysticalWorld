@@ -1,7 +1,7 @@
 {
   "name": "Assorted & Cooked Seeds",
   "icon": "mysticalworld:assorted_seeds",
-  "category": "cuisine",
+  "category": "mysticalworld:cuisine",
   "pages": [
     {
       "type": "crafting",

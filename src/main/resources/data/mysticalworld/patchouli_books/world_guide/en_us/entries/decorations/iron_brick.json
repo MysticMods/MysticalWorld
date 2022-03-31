@@ -1,7 +1,7 @@
 {
   "name": "Iron Bricks",
   "icon": "mysticalworld:iron_brick",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "crafting",

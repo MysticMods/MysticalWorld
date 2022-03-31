@@ -1,7 +1,7 @@
 {
   "name": "Young Pearls",
   "icon": "mysticalworld:young_pearl",
-  "category": "items",
+  "category": "mysticalworld:items",
   "pages": [
     {
       "type": "spotlight",

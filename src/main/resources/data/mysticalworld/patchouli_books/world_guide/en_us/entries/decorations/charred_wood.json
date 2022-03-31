@@ -1,7 +1,7 @@
 {
   "name": "Charred Wood",
   "icon": "mysticalworld:charred_log",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "spotlight",

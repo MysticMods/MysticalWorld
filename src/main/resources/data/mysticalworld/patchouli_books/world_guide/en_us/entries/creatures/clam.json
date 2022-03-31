@@ -1,7 +1,7 @@
 {
   "name": "Clam",
   "icon": "mysticalworld:clam_bucket",
-  "category": "creatures",
+  "category": "mysticalworld:creatures",
   "pages": [
     {
       "type": "animal_spawn_info",

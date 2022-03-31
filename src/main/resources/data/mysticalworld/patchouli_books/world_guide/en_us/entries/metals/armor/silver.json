@@ -1,7 +1,7 @@
 {
   "name": "Silver Armor",
   "icon": "mysticalworld:silver_helmet",
-  "category": "metals_armor",
+  "category": "mysticalworld:metals_armor",
   "pages": [
     {
       "type": "spotlight",

@@ -1,7 +1,7 @@
 {
   "name": "Cooked Beetroot",
   "icon": "mysticalworld:cooked_beetroot",
-  "category": "cuisine",
+  "category": "mysticalworld:cuisine",
   "pages": [
     {
       "type": "spotlight",

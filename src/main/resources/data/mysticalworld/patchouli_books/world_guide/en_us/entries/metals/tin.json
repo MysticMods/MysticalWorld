@@ -1,7 +1,7 @@
 {
   "name": "Tin Ore",
   "icon": "mysticalworld:tin_ore",
-  "category": "metals",
+  "category": "mysticalworld:metals",
   "pages": [
     {
       "type": "spotlight",

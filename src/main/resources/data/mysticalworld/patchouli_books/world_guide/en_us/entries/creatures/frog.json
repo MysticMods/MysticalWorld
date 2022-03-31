@@ -1,7 +1,7 @@
 {
   "name": "Frog",
   "icon": "minecraft:slime_ball",
-  "category": "creatures",
+  "category": "mysticalworld:creatures",
   "pages": [
     {
       "type": "animal_spawn_info",

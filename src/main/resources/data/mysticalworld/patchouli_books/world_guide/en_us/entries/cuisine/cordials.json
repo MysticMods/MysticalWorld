@@ -1,7 +1,7 @@
 {
   "name": "Cordials",
   "icon": "mysticalworld:dandelion_cordial",
-  "category": "cuisine",
+  "category": "mysticalworld:cuisine",
   "pages": [
     {
       "type": "crafting",

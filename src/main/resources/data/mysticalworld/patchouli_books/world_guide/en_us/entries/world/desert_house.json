@@ -1,7 +1,7 @@
 {
   "name": "Desert House",
   "icon": "minecraft:sandstone",
-  "category": "world",
+  "category": "mysticalworld:world",
   "pages": [
     {
       "type": "text",

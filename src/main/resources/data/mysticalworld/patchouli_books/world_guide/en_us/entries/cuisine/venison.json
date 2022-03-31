@@ -1,7 +1,7 @@
 {
   "name": "Venison",
   "icon": "mysticalworld:cooked_venison",
-  "category": "cuisine",
+  "category": "mysticalworld:cuisine",
   "pages": [
     {
       "type": "spotlight",

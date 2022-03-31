@@ -1,7 +1,7 @@
 {
   "name": "Lead Armor",
   "icon": "mysticalworld:lead_helmet",
-  "category": "metals_armor",
+  "category": "mysticalworld:metals_armor",
   "pages": [
     {
       "type": "spotlight",

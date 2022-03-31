@@ -1,7 +1,7 @@
 {
   "name": "Ink Bottle",
   "icon": "mysticalworld:ink_bottle",
-  "category": "items",
+  "category": "mysticalworld:items",
   "pages": [
     {
       "type": "spotlight",

@@ -1,7 +1,7 @@
 {
   "name": "Sapphire Ore",
   "icon": "mysticalworld:sapphire_ore",
-  "category": "metals",
+  "category": "mysticalworld:metals",
   "flag": "roots:sapphire",
   "pages": [
     {

@@ -1,7 +1,7 @@
 {
   "name": "Serendipity",
   "icon": "mysticalworld:sapphire",
-  "category": "metals_modifiers",
+  "category": "mysticalworld:metals_modifiers",
   "pages": [
     {
       "type": "text",

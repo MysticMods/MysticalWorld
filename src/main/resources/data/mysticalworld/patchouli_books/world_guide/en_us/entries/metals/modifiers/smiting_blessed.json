@@ -1,7 +1,7 @@
 {
   "name": "Smiting & Blessed",
   "icon": "mysticalworld:silver_knife",
-  "category": "metals_modifiers",
+  "category": "mysticalworld:metals_modifiers",
   "pages": [
     {
       "title": "Smiting",

@@ -1,7 +1,7 @@
 {
   "name": "Thatch",
   "icon": "mysticalworld:thatch",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "crafting",

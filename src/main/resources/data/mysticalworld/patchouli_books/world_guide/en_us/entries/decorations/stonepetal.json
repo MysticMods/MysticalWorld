@@ -1,7 +1,7 @@
 {
   "name": "Stonepetal",
   "icon": "mysticalworld:stonepetal",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "text",

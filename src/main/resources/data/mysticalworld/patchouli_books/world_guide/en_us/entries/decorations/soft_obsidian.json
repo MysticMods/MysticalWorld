@@ -1,7 +1,7 @@
 {
   "name": "Soft Obsidian",
   "icon": "mysticalworld:soft_obsidian",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "crafting",

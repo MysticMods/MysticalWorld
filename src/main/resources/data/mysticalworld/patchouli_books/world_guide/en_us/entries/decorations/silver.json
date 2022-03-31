@@ -1,7 +1,7 @@
 {
   "name": "Silver Decoration",
   "icon": "mysticalworld:silver_stairs",
-  "category": "decorations",
+  "category": "mysticalworld:decorations",
   "pages": [
     {
       "type": "crafting",

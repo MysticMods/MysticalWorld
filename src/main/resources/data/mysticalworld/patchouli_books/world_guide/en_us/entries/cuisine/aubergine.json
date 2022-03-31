@@ -1,7 +1,7 @@
 {
   "name": "Aubergine",
   "icon": "mysticalworld:aubergine",
-  "category": "cuisine",
+  "category": "mysticalworld:cuisine",
   "pages": [
     {
       "type": "spotlight",

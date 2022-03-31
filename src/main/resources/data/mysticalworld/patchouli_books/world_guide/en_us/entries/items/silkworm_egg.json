@@ -1,7 +1,7 @@
 {
   "name": "Silkworm Egg",
   "icon": "mysticalworld:silkworm_egg",
-  "category": "items",
+  "category": "mysticalworld:items",
   "pages": [
     {
       "type": "spotlight",

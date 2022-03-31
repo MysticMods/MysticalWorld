@@ -1,7 +1,7 @@
 {
   "name": "Tin Weapons",
   "icon": "mysticalworld:tin_knife",
-  "category": "metals_weapons",
+  "category": "mysticalworld:metals_weapons",
   "pages": [
     {
       "type": "spotlight",
