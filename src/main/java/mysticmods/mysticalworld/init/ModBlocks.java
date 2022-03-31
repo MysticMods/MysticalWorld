@@ -156,6 +156,8 @@ public class ModBlocks {
 
   // ** WITH BLOCK ITEM **
 
+  // TODO: The rest of the XP for ores
+  // TODO: Deepslate ore
   public static BlockEntry<BaseBlocks.OreBlock> GRANITE_QUARTZ_ORE = MysticalWorld.REGISTRATE.block("granite_quartz_ore", BlockGenerator.oreBlock(ModMaterials.QUARTZ))
       .properties(o -> {
         ModMaterials.QUARTZ.getOreBlockProperties(o);
