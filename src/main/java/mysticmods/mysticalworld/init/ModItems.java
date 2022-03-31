@@ -981,6 +981,61 @@ public class ModItems {
       .model(ModItems::spawnEggModel)
       .register();
 
+  public static RegistryEntry<ForgeSpawnEggItem> DEER_SPAWN_EGG = MysticalWorld.REGISTRATE.item("deer_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.DEER, 0xa18458, 0x5e4d33, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> FROG_SPAWN_EGG = MysticalWorld.REGISTRATE.item("frog_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.FROG, 0x285234, 0xDBE697, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> SILVER_FOX_SPAWN_EGG = MysticalWorld.REGISTRATE.item("silver_fox_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.SILVER_FOX, 0x9e9088, 0xF5E0D3, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> SPROUT_SPAWN_EGG = MysticalWorld.REGISTRATE.item("sprout_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.SPROUT, 0xe8f442, 0xd11f5a, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> ENDERMINI_SPAWN_EGG = MysticalWorld.REGISTRATE.item("endermini_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.ENDERMINI, 0xa11e78, 0x650cbe, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> LAVA_CAT_SPAWN_EGG = MysticalWorld.REGISTRATE.item("lava_cat_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.LAVA_CAT, 0xde3535, 0xe89613, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> OWL_SPAWN_EGG = MysticalWorld.REGISTRATE.item("owl_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.OWL, 0x8c654a, 0xdec9ba, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> SILKWORM_SPAWN_EGG = MysticalWorld.REGISTRATE.item("silkworm_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.SILKWORM, 0xd1cecd, 0x635e5b, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> HELL_SPROUT_SPAWN_EGG = MysticalWorld.REGISTRATE.item("hell_sprout_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.HELL_SPROUT, 0x8a0303, 0xe8f442, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> DUCK_SPAWN_EGG = MysticalWorld.REGISTRATE.item("duck_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.DUCK, 0xe4d6a5, 0xe9ad36, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> CLAM_SPAWN_EGG = MysticalWorld.REGISTRATE.item("clam_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.CLAM, 0xfffdd0, 0xfadadd, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
   public static void load() {
   }
 }
