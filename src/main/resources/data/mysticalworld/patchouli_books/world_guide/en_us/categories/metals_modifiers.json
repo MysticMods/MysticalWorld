@@ -1,6 +1,6 @@
 {
   "name": "Modifiers",
-  "parent": "metals",
+  "parent": "mysticalworld:metals",
   "description": "Each of these mystical metals have a variety of modifiers associated with them, whether in tool form, in weapon form or in armor form.",
   "icon": "mysticalworld:sapphire"
 }

@@ -1,6 +1,6 @@
 {
   "name": "Armor",
-  "parent": "metals",
+  "parent": "mysticalworld:metals",
   "description": "As with the tools and weapons, each of the armors grant special effects in addition to the base armor value & toughness.",
   "icon": "mysticalworld:sapphire_chestplate"
 }
