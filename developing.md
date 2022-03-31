@@ -53,7 +53,7 @@ Builds should be performed through the gradle wrapper, eg `./gradlew compileJava
 ## Codebase Notes
 
 ### gradlehax submodule
-This mod project makes use of a git submodule, which is fairly simple to initialize but none the less must be initialized before you can build the project for the first time.
+This mod project makes use of a git submodule, which is fairly simple to initialize but none the less must be initialized before you can build the project for the first time. You can find the submodule repo [here](https://github.com/noobanidus/gradlehax).
 
 ```bash
 $ git submodule init
