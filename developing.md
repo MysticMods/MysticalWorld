@@ -28,7 +28,7 @@ OpenJDK Runtime Environment (build 17.0.1+12-Ubuntu-120.04)
 OpenJDK 64-Bit Server VM (build 17.0.1+12-Ubuntu-120.04, mixed mode, sharing)
 ```
 
-You will also need a functional gradle installation, and while you can usually rpm/apt/etc. your way into a functional gradle install, we recommend either relying on your IDE or following the instructions at [gradle's website](https://docs.gradle.org/current/userguide/installation.html) to create a functional gradle install. You should expect to require gradle 7.3 or later for the 18.x branches.
+You will also need a functional gradle installation, and while you can usually rpm/apt/etc. your way into a functional gradle install, we recommend either relying on your IDE or following the instructions at [gradle's website](https://docs.gradle.org/current/userguide/installation.html) to create a functional gradle install. You should expect to require gradle 7.3.3 or later for any version that targets Java 17, eg the 18.x branches. Please note that if you use the gradle wrapper, that will manage the version of gradle for you - the inclusion of gradle setup in this document is provided as reference for bootstrapping dev from zero.
 
 You can verify your gradle version as follows:
 ```bash
@@ -48,8 +48,11 @@ JVM:          17.0.1 (Private Build 17.0.1+12-Ubuntu-120.04)
 OS:           Linux 5.10.16.3-microsoft-standard-WSL2 amd64
 ```
 
+Builds should be performed through the gradle wrapper, eg `./gradlew compileJava`. You may need to chmod u+x the gradle wrapper script in your fork. This approach will allow the wrapper to manage your gradle version, among other benefits.
+
 ## Codebase Notes
 
+### gradlehax submodule
 This mod project makes use of a git submodule, which is fairly simple to initialize but none the less must be initialized before you can build the project for the first time.
 
 ```bash
@@ -67,4 +70,8 @@ Submodule path 'gradle': checked out '8b5b4f65de958167e313b1ca94072a287c44fe17'
 $
 ```
 
-Builds should be performed through the gradle wrapper, eg `./gradlew compileJava`. You may need to chmod u+x the gradle wrapper script in your fork.
+**Warning!**
+Please be aware that (as of the time of writing), Github Desktop's submodule support has some usability challenges. You can see their tracking issue [here](https://github.com/desktop/desktop/issues/7523). GitKraken's client and the straight git cli seem more straightforward, although this is purely opinion.
+
+### Noobutil
+This project has a dependency, [NoobUtil](https://github.com/MysticMods/NoobUtil) that is pulled in by dependency management. This project shades and minimizes this dependency via the [shadow plugin](https://github.com/johnrengelman/shadow), which means that this is ultimately invisible to people trying to run the mod.
