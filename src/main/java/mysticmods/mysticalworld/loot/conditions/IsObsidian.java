@@ -35,7 +35,7 @@ public class IsObsidian implements LootItemCondition {
 
   @Override
   public LootItemConditionType getType() {
-    return ModLoot.IS_OBSIDIAN;
+    return ModLoot.IS_OBSIDIAN.get();
   }
 
   public static class ObsidianSerializer implements Serializer<IsObsidian> {

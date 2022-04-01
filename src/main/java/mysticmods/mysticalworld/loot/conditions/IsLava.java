@@ -35,7 +35,7 @@ public class IsLava implements LootItemCondition {
 
   @Override
   public LootItemConditionType getType() {
-    return ModLoot.IS_LAVA;
+    return ModLoot.IS_LAVA.get();
   }
 
   public static class LavaSerializer implements Serializer<IsLava> {

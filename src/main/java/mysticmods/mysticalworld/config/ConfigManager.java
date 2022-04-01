@@ -4,9 +4,7 @@ import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.init.ConfiguredStructures;
 import mysticmods.mysticalworld.init.ModBlocks;
-import mysticmods.mysticalworld.init.ModFeatures;
 import mysticmods.mysticalworld.init.ModMaterials;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
@@ -15,7 +13,6 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import noobanidus.libs.noobutil.config.IArmorConfig;
 

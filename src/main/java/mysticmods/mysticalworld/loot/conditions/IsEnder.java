@@ -36,7 +36,7 @@ public class IsEnder implements LootItemCondition {
 
   @Override
   public LootItemConditionType getType() {
-    return ModLoot.IS_ENDER;
+    return ModLoot.IS_ENDER.get();
   }
 
   public static class EnderSerializer implements Serializer<IsEnder> {

@@ -37,7 +37,7 @@ public class IsMature implements LootItemCondition {
 
   @Override
   public LootItemConditionType getType() {
-    return ModLoot.IS_MATURE;
+    return ModLoot.IS_MATURE.get();
   }
 
   public static class MatureSerializer implements Serializer<IsMature> {

@@ -2,7 +2,6 @@ package mysticmods.mysticalworld.gen;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModRecipes;
-import mysticmods.mysticalworld.init.configured.ModLoot;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;

@@ -35,7 +35,7 @@ public class HasHorns implements LootItemCondition {
 
   @Override
   public LootItemConditionType getType() {
-    return ModLoot.HAS_HORNS;
+    return ModLoot.HAS_HORNS.get();
   }
 
   public static class HornSerializer implements Serializer<HasHorns> {

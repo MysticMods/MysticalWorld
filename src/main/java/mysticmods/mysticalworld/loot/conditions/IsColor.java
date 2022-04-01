@@ -40,7 +40,7 @@ public class IsColor implements LootItemCondition {
 
   @Override
   public LootItemConditionType getType() {
-    return ModLoot.IS_COLOR;
+    return ModLoot.IS_COLOR.get();
   }
 
   public static class ColorSerializer implements Serializer<IsColor> {

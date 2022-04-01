@@ -31,7 +31,7 @@ public class RandomPotion extends LootItemConditionalFunction {
   }
 
   public LootItemFunctionType getType() {
-    return ModLoot.RANDOM_POTION;
+    return ModLoot.RANDOM_POTION.get();
   }
 
   protected TagKey<Potion> getIgnoreTag() {
