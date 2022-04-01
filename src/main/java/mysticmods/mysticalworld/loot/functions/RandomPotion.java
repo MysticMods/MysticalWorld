@@ -6,7 +6,6 @@ import com.google.gson.JsonSerializationContext;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.init.ModLoot;
 import net.minecraft.core.Registry;
-import net.minecraft.tags.Tag;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;

@@ -1,4 +1,6 @@
 {
   "primitive_soil": "mysticalworld:uncanny_gravel",
-  "acceptable_soils": [ "gravel_like" ]
+  "acceptable_soils": [
+    "gravel_like"
+  ]
 }

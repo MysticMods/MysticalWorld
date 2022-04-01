@@ -3,7 +3,6 @@ package mysticmods.mysticalworld.events.mod;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.gen.LootTableGenerator;
 import mysticmods.mysticalworld.gen.PotionTagGenerator;
-import mysticmods.mysticalworld.init.ModLoot;
 import mysticmods.mysticalworld.init.ModRecipes;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

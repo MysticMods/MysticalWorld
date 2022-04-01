@@ -9,11 +9,9 @@ import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.UUID;
-
 import static mysticmods.mysticalworld.MysticalWorld.REGISTRATE;
 
-@Mod.EventBusSubscriber(modid= MysticalWorld.MODID, bus=Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModModifiers {
   public static final RegistryEntry<Attribute> BLESSED = REGISTRATE.simple("blessed", Attribute.class, () -> new RangedAttribute("mysticalworld.blessed", 0D, 0D, 10D).setSyncable(true));
   public static final RegistryEntry<Attribute> SMITE = REGISTRATE.simple("smite", Attribute.class, () -> new RangedAttribute("mysticalworld.smite", 0D, 0D, 5D).setSyncable(true));
@@ -24,7 +22,7 @@ public class ModModifiers {
   }
 
   @SubscribeEvent
-  public static void onEntityAttributeModification (EntityAttributeModificationEvent event) {
+  public static void onEntityAttributeModification(EntityAttributeModificationEvent event) {
     event.add(EntityType.PLAYER, BLESSED.get());
     event.add(EntityType.PLAYER, SMITE.get());
     event.add(EntityType.PLAYER, SERENDIPITY.get());

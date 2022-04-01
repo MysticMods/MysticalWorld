@@ -11,7 +11,7 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid= MysticalWorld.MODID)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class DamageHandler {
   @SubscribeEvent
   public static void onAttackDamage(LivingDamageEvent event) {

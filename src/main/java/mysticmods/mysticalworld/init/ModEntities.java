@@ -12,13 +12,11 @@ import mysticmods.mysticalworld.entity.*;
 import mysticmods.mysticalworld.loot.conditions.*;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.biome.Biome;
@@ -44,7 +42,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.*;
 
 @SuppressWarnings({"WeakerAccess", "ConstantConditions", "unchecked", "deprecation"})
-@Mod.EventBusSubscriber(modid=MysticalWorld.MODID, bus= Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntities {
   private static <E extends Entity> NonNullFunction<Item.Properties, LazySpawnEggItem<E>> spawnEgg(RegistryEntry<EntityType<E>> entity, int color1, int color2) {
     return properties -> new LazySpawnEggItem<>(entity, color1, color2, properties);

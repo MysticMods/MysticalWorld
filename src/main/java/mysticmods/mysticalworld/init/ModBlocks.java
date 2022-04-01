@@ -220,7 +220,7 @@ public class ModBlocks {
       )
       .register();
 
-      public static BlockEntry<BaseBlocks.OreBlock> DEEPSLATE_LEAD_ORE = MysticalWorld.REGISTRATE.block("lead_ore_deepslate", BlockGenerator.oreBlock(ModMaterials.LEAD))
+  public static BlockEntry<BaseBlocks.OreBlock> DEEPSLATE_LEAD_ORE = MysticalWorld.REGISTRATE.block("lead_ore_deepslate", BlockGenerator.oreBlock(ModMaterials.LEAD))
       .properties(DEEPSLATE_PROPS)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -278,7 +278,7 @@ public class ModBlocks {
       )
       .register();
 
-    public static BlockEntry<BaseBlocks.OreBlock> DEEPSLATE_SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("sapphire_ore_deepslate", BlockGenerator.oreBlock(ModMaterials.SAPPHIRE))
+  public static BlockEntry<BaseBlocks.OreBlock> DEEPSLATE_SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("sapphire_ore_deepslate", BlockGenerator.oreBlock(ModMaterials.SAPPHIRE))
       .properties(DEEPSLATE_PROPS)
       .item()
       .model(ItemModelGenerator::itemModel)

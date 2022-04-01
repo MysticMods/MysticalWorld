@@ -8,6 +8,7 @@ import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.potions.PotionRecipes;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -39,7 +40,7 @@ public class CommonSetup {
       ShadedCommonSetup.init(event);
 /*      ModStructures.setupStructures();
       ConfiguredStructures.registerStructures();*/
-      UniqueShapelessRecipe.setStoredSerializer(ModRecipes.UNIQUE_SHAPELESS_RECIPE.get());
+
       ModCompost.init();
 
       PotionRecipes.registerRecipes();
@@ -68,18 +69,23 @@ public class CommonSetup {
       fire.setFlammable(ModBlocks.CHARRED_WIDE_POST.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_WOOD.get(), 1, 1);
       ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.STONEPETAL.getId(), () -> ModBlocks.POTTED_STONEPETAL.get());
-/*      ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.UNCANNY_MUSHROOM.getId(), () -> ModBlocks.POTTED_UNCANNY_MUSHROOM.get());*/
+      /*      ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.UNCANNY_MUSHROOM.getId(), () -> ModBlocks.POTTED_UNCANNY_MUSHROOM.get());*/
     });
   }
 
   @SubscribeEvent
-  public static void registerFeatures (RegistryEvent.Register<Feature<?>> event) {
+  public static void registerRecipes(RegistryEvent.Register<RecipeSerializer<?>> event) {
+    UniqueShapelessRecipe.setStoredSerializer(ModRecipes.UNIQUE_SHAPELESS_RECIPE.get());
+  }
+
+  @SubscribeEvent
+  public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
     ConfiguredFeatures.REGISTRY.register();
     /*ModFeatures.REGISTRY.registration();*/
   }
 
   @SubscribeEvent
-  public static void registerStructures (RegistryEvent.Register<StructureFeature<?>> event) {
+  public static void registerStructures(RegistryEvent.Register<StructureFeature<?>> event) {
     ConfiguredStructures.REGISTRY.register();
   }
 

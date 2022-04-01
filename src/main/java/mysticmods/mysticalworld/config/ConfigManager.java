@@ -19,7 +19,7 @@ import noobanidus.libs.noobutil.config.IArmorConfig;
 import java.nio.file.Path;
 import java.util.*;
 
-@Mod.EventBusSubscriber(modid= MysticalWorld.MODID, bus= Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ConfigManager {
 
   private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
@@ -146,12 +146,12 @@ public class ConfigManager {
   }
 
   @SubscribeEvent
-  public static void onConfigReload (ModConfigEvent.Reloading event) {
+  public static void onConfigReload(ModConfigEvent.Reloading event) {
     configReload(event);
   }
 
   @SubscribeEvent
-  public static void onConfigLoaded (ModConfigEvent.Loading event) {
+  public static void onConfigLoaded(ModConfigEvent.Loading event) {
     configReload(event);
   }
 }

@@ -39,29 +39,29 @@ public class FrogModel extends AgeableListModel<FrogEntity> {
     MeshDefinition meshdefinition = new MeshDefinition();
     PartDefinition partdefinition = meshdefinition.getRoot();
 
-    PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().create()
-                    .texOffs(0, 9).addBox(-1.5F, -1.0F, -3.0F, 3.0F, 2.0F, 5.0F),
-            PartPose.offsetAndRotation(0.0F, 22.0F, 0.0F, -0.5236F, 0.0F, 0.0F));
+    PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create()
+            .texOffs(0, 9).addBox(-1.5F, -1.0F, -3.0F, 3.0F, 2.0F, 5.0F),
+        PartPose.offsetAndRotation(0.0F, 22.0F, 0.0F, -0.5236F, 0.0F, 0.0F));
 
     PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create()
-                    .texOffs(4, 3).addBox(-1.5F, -1.0F, -3.0F, 3.0F, 2.0F, 3.0F),
-            PartPose.offsetAndRotation(0.0F, 0.0F, -3.0F, 0.3927F, 0.0F, 0.0F));
+            .texOffs(4, 3).addBox(-1.5F, -1.0F, -3.0F, 3.0F, 2.0F, 3.0F),
+        PartPose.offsetAndRotation(0.0F, 0.0F, -3.0F, 0.3927F, 0.0F, 0.0F));
 
     PartDefinition backL = body.addOrReplaceChild("back_left_leg", CubeListBuilder.create()
-                    .texOffs(0, 0).addBox(-1.0F, 0.0F, -0.5F, 2.0F, 4.0F, 1.0F),
-            PartPose.offsetAndRotation(1.0F, 0.5F, 1.5F, -0.6981F, -0.5236F, -0.5236F));
+            .texOffs(0, 0).addBox(-1.0F, 0.0F, -0.5F, 2.0F, 4.0F, 1.0F),
+        PartPose.offsetAndRotation(1.0F, 0.5F, 1.5F, -0.6981F, -0.5236F, -0.5236F));
 
     PartDefinition backR = body.addOrReplaceChild("back_right_leg", CubeListBuilder.create()
-                    .texOffs(0, 0).mirror().addBox(-1.0F, 0.0F, -0.5F, 2.0F, 4.0F, 1.0F).mirror(false),
-            PartPose.offsetAndRotation(-1.0F, 0.5F, 1.5F, -0.6981F, 0.5236F, 0.5236F));
+            .texOffs(0, 0).mirror().addBox(-1.0F, 0.0F, -0.5F, 2.0F, 4.0F, 1.0F).mirror(false),
+        PartPose.offsetAndRotation(-1.0F, 0.5F, 1.5F, -0.6981F, 0.5236F, 0.5236F));
 
     PartDefinition frontL = body.addOrReplaceChild("front_left_leg", CubeListBuilder.create()
-                    .texOffs(0, 5).mirror().addBox(-0.5F, 0.0F, -0.5F, 1.0F, 4.0F, 1.0F).mirror(false),
-            PartPose.offsetAndRotation(1.0F, -0.25F, -2.5F, 0.2618F, 0.0F, -0.2618F));
+            .texOffs(0, 5).mirror().addBox(-0.5F, 0.0F, -0.5F, 1.0F, 4.0F, 1.0F).mirror(false),
+        PartPose.offsetAndRotation(1.0F, -0.25F, -2.5F, 0.2618F, 0.0F, -0.2618F));
 
     PartDefinition frontR = body.addOrReplaceChild("front_right_leg", CubeListBuilder.create()
-                    .texOffs(0, 5).mirror().addBox(-0.5F, 0.0F, -0.5F, 1.0F, 4.0F, 1.0F).mirror(false),
-            PartPose.offsetAndRotation(-1.0F, -0.25F, -2.5F, 0.2618F, 0.0F, 0.2618F));
+            .texOffs(0, 5).mirror().addBox(-0.5F, 0.0F, -0.5F, 1.0F, 4.0F, 1.0F).mirror(false),
+        PartPose.offsetAndRotation(-1.0F, -0.25F, -2.5F, 0.2618F, 0.0F, 0.2618F));
 
     return LayerDefinition.create(meshdefinition, 16, 16);
   }

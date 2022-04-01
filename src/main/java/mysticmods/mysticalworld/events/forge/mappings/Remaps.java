@@ -66,7 +66,7 @@ public class Remaps {
     ResourceLocation oldRL = new ResourceLocation(MysticalWorld.MODID, oldName);
     ResourceLocation newRL = new ResourceLocation(MysticalWorld.MODID, newName);
     if (remapper.containsKey(oldRL)) {
-      MysticalWorld.LOG.error("Invalid " + mapType + " remap: " + oldRL.toString() + " already exists and remaps to " + remapper.get(oldRL).toString() + ", cannot also remap to " + newRL.toString(), new IllegalStateException("Duplicate " + mapType + " remap"));
+      MysticalWorld.LOG.error("Invalid " + mapType + " remap: " + oldRL + " already exists and remaps to " + remapper.get(oldRL).toString() + ", cannot also remap to " + newRL, new IllegalStateException("Duplicate " + mapType + " remap"));
     }
     remapper.put(oldRL, newRL);
   }

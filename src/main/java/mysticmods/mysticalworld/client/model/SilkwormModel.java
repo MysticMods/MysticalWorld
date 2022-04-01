@@ -29,27 +29,27 @@ public class SilkwormModel extends EntityModel<SilkwormEntity> {
   }
 
   private static String getSegmentName(int pIndex) {
-		return "segment" + pIndex;
-	}
+    return "segment" + pIndex;
+  }
 
   public static LayerDefinition createBodyLayer() {
-	MeshDefinition meshdefinition = new MeshDefinition();
-	PartDefinition partdefinition = meshdefinition.getRoot();
-	float[] afloat = new float[BODY_COUNT];
-	float f = -3.5F;
+    MeshDefinition meshdefinition = new MeshDefinition();
+    PartDefinition partdefinition = meshdefinition.getRoot();
+    float[] afloat = new float[BODY_COUNT];
+    float f = -3.5F;
 
-	for(int i = 0; i < BODY_COUNT; ++i) {
-	  partdefinition.addOrReplaceChild(getSegmentName(i), CubeListBuilder.create()
-			  .texOffs(BODY_TEXS[i][0], BODY_TEXS[i][1])
-			  .addBox((float) BODY_SIZES[i][0] * -0.5F, 0.0F, (float) BODY_SIZES[i][2] * -0.5F, BODY_SIZES[i][0], BODY_SIZES[i][1], BODY_SIZES[i][2]),
-			  PartPose.offset(0.0F, (float) (24 - BODY_SIZES[i][1]), f));
-	  afloat[i] = f;
+    for (int i = 0; i < BODY_COUNT; ++i) {
+      partdefinition.addOrReplaceChild(getSegmentName(i), CubeListBuilder.create()
+              .texOffs(BODY_TEXS[i][0], BODY_TEXS[i][1])
+              .addBox((float) BODY_SIZES[i][0] * -0.5F, 0.0F, (float) BODY_SIZES[i][2] * -0.5F, BODY_SIZES[i][0], BODY_SIZES[i][1], BODY_SIZES[i][2]),
+          PartPose.offset(0.0F, (float) (24 - BODY_SIZES[i][1]), f));
+      afloat[i] = f;
       if (i < BODY_COUNT - 1) {
-      	f += (float) (BODY_SIZES[i][2] + BODY_SIZES[i + 1][2]) * 0.5F;
+        f += (float) (BODY_SIZES[i][2] + BODY_SIZES[i + 1][2]) * 0.5F;
       }
-	}
+    }
 
-	return LayerDefinition.create(meshdefinition, 64, 32);
+    return LayerDefinition.create(meshdefinition, 64, 32);
   }
 
   @Override

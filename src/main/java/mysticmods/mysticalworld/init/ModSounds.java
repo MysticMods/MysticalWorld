@@ -38,7 +38,7 @@ public class ModSounds {
 
   // Lava cat
   public static final RegistryEntry<SoundEvent> LAVA_CAT_SIZZLE = MysticalWorld.REGISTRATE.soundEvent("mob.lava_cat.sizzle").register();
-  public static  final RegistryEntry<SoundEvent> LAVA_CAT_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.lava_cat.ambient").register();
+  public static final RegistryEntry<SoundEvent> LAVA_CAT_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.lava_cat.ambient").register();
   public static final RegistryEntry<SoundEvent> LAVA_CAT_DEATH = MysticalWorld.REGISTRATE.soundEvent("mob.lava_cat.death").register();
   public static final RegistryEntry<SoundEvent> LAVA_CAT_HURT = MysticalWorld.REGISTRATE.soundEvent("mob.lava_cat.hurt").register();
   public static final RegistryEntry<SoundEvent> LAVA_CAT_PURR = MysticalWorld.REGISTRATE.soundEvent("mob.lava_cat.purr").register();

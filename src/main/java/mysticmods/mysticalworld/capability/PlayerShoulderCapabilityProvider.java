@@ -28,11 +28,11 @@ public class PlayerShoulderCapabilityProvider implements ICapabilityProvider, IC
   @Override
   public CompoundTag serializeNBT() {
     return null;
-/*    return (CompoundTag) Capabilities.SHOULDER_CAPABILITY.getStorage().writeNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null);*/
+    /*    return (CompoundTag) Capabilities.SHOULDER_CAPABILITY.getStorage().writeNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null);*/
   }
 
   @Override
   public void deserializeNBT(CompoundTag nbt) {
-/*    Capabilities.SHOULDER_CAPABILITY.getStorage().readNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null, nbt);*/
+    /*    Capabilities.SHOULDER_CAPABILITY.getStorage().readNBT(Capabilities.SHOULDER_CAPABILITY, this.instance, null, nbt);*/
   }
 }

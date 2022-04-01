@@ -5,11 +5,7 @@ import mysticmods.mysticalworld.entity.LavaCatEntity;
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 
 import javax.annotation.Nonnull;
@@ -41,7 +37,7 @@ public class LavaCatModel<T extends LavaCatEntity> extends AgeableListModel<T> {
     MeshDefinition meshdefinition = new MeshDefinition();
     PartDefinition partdefinition = meshdefinition.getRoot();
     partdefinition.addOrReplaceChild("head", CubeListBuilder.create().addBox("main", -2.5F, -2.0F, -3.0F, 5.0F, 4.0F, 5.0F, pCubeDeformation).addBox("nose", -1.5F, 0.0F, -4.0F, 3, 2, 2, pCubeDeformation, 0, 24).addBox("ear1", -2.0F, -3.0F, 0.0F, 1, 1, 2, pCubeDeformation, 0, 10).addBox("ear2", 1.0F, -3.0F, 0.0F, 1, 1, 2, pCubeDeformation, 6, 10), PartPose.offset(0.0F, 15.0F, -9.0F));
-    partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(20, 0).addBox(-2.0F, 3.0F, -8.0F, 4.0F, 16.0F, 6.0F, pCubeDeformation), PartPose.offsetAndRotation(0.0F, 12.0F, -10.0F, ((float)Math.PI / 2F), 0.0F, 0.0F));
+    partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(20, 0).addBox(-2.0F, 3.0F, -8.0F, 4.0F, 16.0F, 6.0F, pCubeDeformation), PartPose.offsetAndRotation(0.0F, 12.0F, -10.0F, ((float) Math.PI / 2F), 0.0F, 0.0F));
     partdefinition.addOrReplaceChild("tail1", CubeListBuilder.create().texOffs(0, 15).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 8.0F, 1.0F, pCubeDeformation), PartPose.offsetAndRotation(0.0F, 15.0F, 8.0F, 0.9F, 0.0F, 0.0F));
     partdefinition.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(4, 15).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 8.0F, 1.0F, pCubeDeformation), PartPose.offset(0.0F, 20.0F, 14.0F));
     CubeListBuilder cubelistbuilder = CubeListBuilder.create().texOffs(8, 13).addBox(-1.0F, 0.0F, 1.0F, 2.0F, 6.0F, 2.0F, pCubeDeformation);
@@ -74,23 +70,23 @@ public class LavaCatModel<T extends LavaCatEntity> extends AgeableListModel<T> {
    */
   @Override
   public void setupAnim(@Nonnull T entityIn, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-    this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
-    this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
+    this.head.xRot = pHeadPitch * ((float) Math.PI / 180F);
+    this.head.yRot = pNetHeadYaw * ((float) Math.PI / 180F);
     if (this.state != 3) {
-      this.body.xRot = ((float)Math.PI / 2F);
+      this.body.xRot = ((float) Math.PI / 2F);
       if (this.state == 2) {
         this.leftHindLeg.xRot = Mth.cos(pLimbSwing * 0.6662F) * pLimbSwingAmount;
         this.rightHindLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + 0.3F) * pLimbSwingAmount;
-        this.leftFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI + 0.3F) * pLimbSwingAmount;
-        this.rightFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * pLimbSwingAmount;
-        this.tail2.xRot = 1.7278761F + ((float)Math.PI / 10F) * Mth.cos(pLimbSwing) * pLimbSwingAmount;
+        this.leftFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float) Math.PI + 0.3F) * pLimbSwingAmount;
+        this.rightFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float) Math.PI) * pLimbSwingAmount;
+        this.tail2.xRot = 1.7278761F + ((float) Math.PI / 10F) * Mth.cos(pLimbSwing) * pLimbSwingAmount;
       } else {
         this.leftHindLeg.xRot = Mth.cos(pLimbSwing * 0.6662F) * pLimbSwingAmount;
-        this.rightHindLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * pLimbSwingAmount;
-        this.leftFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * pLimbSwingAmount;
+        this.rightHindLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float) Math.PI) * pLimbSwingAmount;
+        this.leftFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float) Math.PI) * pLimbSwingAmount;
         this.rightFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F) * pLimbSwingAmount;
         if (this.state == 1) {
-          this.tail2.xRot = 1.7278761F + ((float)Math.PI / 4F) * Mth.cos(pLimbSwing) * pLimbSwingAmount;
+          this.tail2.xRot = 1.7278761F + ((float) Math.PI / 4F) * Mth.cos(pLimbSwing) * pLimbSwingAmount;
         } else {
           this.tail2.xRot = 1.7278761F + 0.47123894F * Mth.cos(pLimbSwing) * pLimbSwingAmount;
         }

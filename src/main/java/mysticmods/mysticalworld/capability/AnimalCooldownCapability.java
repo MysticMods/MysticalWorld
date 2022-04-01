@@ -1,4 +1,4 @@
 package mysticmods.mysticalworld.capability;
 
-public class AnimalCooldownCapability  {
+public class AnimalCooldownCapability {
 }

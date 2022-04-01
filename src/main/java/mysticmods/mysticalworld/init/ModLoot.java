@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
 import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 
-@Mod.EventBusSubscriber(modid=MysticalWorld.MODID, bus=Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModLoot {
   public static final ConfiguredRegistry<LootItemFunctionType> FUNCTION_REGISTRY = new ConfiguredRegistry<>(Registry.LOOT_FUNCTION_TYPE);
   public static final ConfiguredRegistry<LootItemConditionType> CONDITION_REGISTRY = new ConfiguredRegistry<>(Registry.LOOT_CONDITION_TYPE);
@@ -30,9 +30,8 @@ public class ModLoot {
   public static final ConfiguredRegistry.Entry<LootItemConditionType> IS_ENDER = CONDITION_REGISTRY.register("is_ender", () -> new LootItemConditionType(new IsEnder.EnderSerializer()));
 
 
-
   @SubscribeEvent
-  public static void registerRecipes (RegistryEvent.Register<RecipeSerializer<?>> event) {
+  public static void registerRecipes(RegistryEvent.Register<RecipeSerializer<?>> event) {
     CraftingHelper.register(new ResourceLocation(MysticalWorld.MODID, "excluding_ingredient"), ExcludingIngredient.Serializer.INSTANCE);
   }
 }
