@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "mysticalworld:lead_ore"
+    "mysticalworld:lead_ore",
+    "mysticalworld:lead_ore_deepslate"
   ]
 }

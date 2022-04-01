@@ -3,9 +3,13 @@
   "values": [
     "mysticalworld:granite_quartz_ore",
     "mysticalworld:tin_ore",
+    "mysticalworld:tin_ore_deepslate",
     "mysticalworld:lead_ore",
+    "mysticalworld:lead_ore_deepslate",
     "mysticalworld:silver_ore",
+    "mysticalworld:silver_ore_deepslate",
     "mysticalworld:sapphire_ore",
+    "mysticalworld:sapphire_ore_deepslate",
     "mysticalworld:raw_tin_block",
     "mysticalworld:raw_lead_block",
     "mysticalworld:raw_silver_block",
