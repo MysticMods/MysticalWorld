@@ -21,6 +21,7 @@ import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -63,7 +64,8 @@ public class ModBlocks {
   private static final NonNullUnaryOperator<Block.Properties> SOFT_STONE_PROPS = o -> o.sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1f);
   private static final NonNullUnaryOperator<Block.Properties> BLACKENED_STONE_PROPS = SOFT_STONE_PROPS;
   private static final NonNullUnaryOperator<Block.Properties> SOFT_OBSIDIAN_PROPS = o -> o.sound(SoundType.STONE).strength(25f, 600f);
-  private static final NonNullUnaryOperator<Block.Properties> DEEPSLATE_PROPS = o -> o.strength(4.5f, 3.0f).sound(SoundType.DEEPSLATE).color(MaterialColor.DEEPSLATE).requiresCorrectToolForDrops();
+  private static final NonNullUnaryOperator<Block.Properties> ORE_PROPERTIES = o -> BlockBehaviour.Properties.copy(Blocks.IRON_ORE);
+  private static final NonNullUnaryOperator<Block.Properties> DEEPSLATE_ORE_PROPERTIES = o -> BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE);
 
   private static <T extends IForgeRegistryEntry<?>> String boneName(T block) {
     String[] init = Objects.requireNonNull(block.getRegistryName()).getPath().split("_");
@@ -156,139 +158,110 @@ public class ModBlocks {
       .register();
 
   // ** WITH BLOCK ITEM **
+  private static <T extends Block> NonNullBiConsumer<RegistrateBlockLootTables, T> oreLoot (Supplier<Item> drops) {
+    return (ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createOreDrop(p, drops.get()));
+  }
+
 
   // TODO: The rest of the XP for ores
   // TODO: Deepslate ore
-  public static BlockEntry<BaseBlocks.OreBlock> GRANITE_QUARTZ_ORE = MysticalWorld.REGISTRATE.block("granite_quartz_ore", BlockGenerator.oreBlock(ModMaterials.QUARTZ))
-      .properties(o -> {
-        ModMaterials.QUARTZ.getOreBlockProperties(o);
-        return o;
-      })
+  public static BlockEntry<OreBlock> GRANITE_QUARTZ_ORE = MysticalWorld.REGISTRATE.block("granite_quartz_ore", (p) -> new OreBlock(p, UniformInt.of(2, 5)))
+      .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.QUARTZ_ORE)
       .build()
       .tag(MWTags.Blocks.QUARTZ_ORE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
-      .loot((p, t) ->
-          p.add(ModBlocks.GRANITE_QUARTZ_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, Items.QUARTZ))
-      )
+      .loot(oreLoot(() -> Items.QUARTZ))
       .register();
 
-  public static BlockEntry<BaseBlocks.OreBlock> TIN_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.TIN.oreName(), BlockGenerator.oreBlock(ModMaterials.TIN))
-      .properties(o -> {
-        ModMaterials.TIN.getOreBlockProperties(o);
-        return o;
-      })
+  public static BlockEntry<OreBlock> TIN_ORE = MysticalWorld.REGISTRATE.block("tin_ore", OreBlock::new)
+      .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.TIN_ORE)
       .build()
       .tag(MWTags.Blocks.TIN_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_STONE_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
-      .loot((p, t) ->
-          p.add(ModBlocks.TIN_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_TIN.get()))
-      )
+      .loot(oreLoot(ModItems.RAW_TIN))
       .register();
 
-  public static BlockEntry<BaseBlocks.OreBlock> DEEPSLATE_TIN_ORE = MysticalWorld.REGISTRATE.block("tin_ore_deepslate", BlockGenerator.oreBlock(ModMaterials.TIN))
-      .properties(DEEPSLATE_PROPS)
+  public static BlockEntry<OreBlock> DEEPSLATE_TIN_ORE = MysticalWorld.REGISTRATE.block("deepslate_tin_ore", OreBlock::new)
+      .properties(DEEPSLATE_ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.TIN_ORE)
       .build()
-      .tag(MWTags.Blocks.TIN_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_STONE_TOOL)
+      .tag(MWTags.Blocks.TIN_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_STONE_TOOL, Tags.Blocks.ORES_IN_GROUND_DEEPSLATE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
-      .loot((p, t) ->
-          p.add(ModBlocks.DEEPSLATE_TIN_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_TIN.get()))
-      )
+      .loot(oreLoot(ModItems.RAW_TIN))
       .register();
 
-  public static BlockEntry<BaseBlocks.OreBlock> LEAD_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.LEAD.oreName(), BlockGenerator.oreBlock(ModMaterials.LEAD))
-      .properties(o -> {
-        ModMaterials.LEAD.getOreBlockProperties(o);
-        return o;
-      })
+  public static BlockEntry<OreBlock> LEAD_ORE = MysticalWorld.REGISTRATE.block("lead_ore", OreBlock::new)
+      .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.LEAD_ORE)
       .build()
       .blockstate(BlockstateGenerator::simpleBlockstate)
-      .tag(MWTags.Blocks.LEAD_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
-      .loot((p, t) ->
-          p.add(ModBlocks.LEAD_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_LEAD.get()))
-      )
+      .tag(MWTags.Blocks.LEAD_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_STONE_TOOL)
+      .loot(oreLoot(ModItems.RAW_LEAD))
       .register();
 
-  public static BlockEntry<BaseBlocks.OreBlock> DEEPSLATE_LEAD_ORE = MysticalWorld.REGISTRATE.block("lead_ore_deepslate", BlockGenerator.oreBlock(ModMaterials.LEAD))
-      .properties(DEEPSLATE_PROPS)
+  public static BlockEntry<OreBlock> DEEPSLATE_LEAD_ORE = MysticalWorld.REGISTRATE.block("deepslate_lead_ore", OreBlock::new)
+      .properties(DEEPSLATE_ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.LEAD_ORE)
       .build()
       .blockstate(BlockstateGenerator::simpleBlockstate)
-      .tag(MWTags.Blocks.LEAD_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
-      .loot((p, t) ->
-          p.add(ModBlocks.DEEPSLATE_LEAD_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_LEAD.get()))
-      )
+      .tag(MWTags.Blocks.LEAD_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_STONE_TOOL)
+      .loot(oreLoot(ModItems.RAW_LEAD))
       .register();
 
-  public static BlockEntry<BaseBlocks.OreBlock> SILVER_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.SILVER.oreName(), BlockGenerator.oreBlock(ModMaterials.SILVER))
-      .properties(o -> {
-        ModMaterials.SILVER.getOreBlockProperties(o);
-        return o;
-      })
+  public static BlockEntry<OreBlock> SILVER_ORE = MysticalWorld.REGISTRATE.block("silver_ore", OreBlock::new)
+      .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.SILVER_ORE)
       .build()
       .tag(MWTags.Blocks.SILVER_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
-      .loot((p, t) ->
-          p.add(ModBlocks.SILVER_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_SILVER.get()))
-      )
+      .loot(oreLoot(ModItems.RAW_SILVER))
       .register();
 
-  public static BlockEntry<BaseBlocks.OreBlock> DEEPSLATE_SILVER_ORE = MysticalWorld.REGISTRATE.block("silver_ore_deepslate", BlockGenerator.oreBlock(ModMaterials.SILVER))
-      .properties(DEEPSLATE_PROPS)
+  public static BlockEntry<OreBlock> DEEPSLATE_SILVER_ORE = MysticalWorld.REGISTRATE.block("deepslate_silver_ore", OreBlock::new)
+      .properties(DEEPSLATE_ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.SILVER_ORE)
       .build()
       .tag(MWTags.Blocks.SILVER_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
-      .loot((p, t) ->
-          p.add(ModBlocks.DEEPSLATE_SILVER_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.RAW_SILVER.get()))
-      )
+      .loot(oreLoot(ModItems.RAW_SILVER))
       .register();
 
-  public static BlockEntry<BaseBlocks.OreBlock> SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block(ModMaterials.SAPPHIRE.oreName(), BlockGenerator.oreBlock(ModMaterials.SAPPHIRE))
-      .properties(o -> {
-        ModMaterials.SAPPHIRE.getOreBlockProperties(o);
-        return o;
-      })
+  public static BlockEntry<OreBlock> SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("sapphire_ore",(p) -> new OreBlock(p, UniformInt.of(3, 7)))
+      .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.SAPPHIRE_ORE)
       .build()
-      .tag(MWTags.Blocks.SAPPHIRE_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL)
+      .tag(MWTags.Blocks.SAPPHIRE_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
-      .loot((p, t) ->
-          p.add(ModBlocks.SAPPHIRE_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.SAPPHIRE_GEM.get()))
-      )
+      .loot(oreLoot(ModItems.SAPPHIRE_GEM))
       .register();
 
-  public static BlockEntry<BaseBlocks.OreBlock> DEEPSLATE_SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("sapphire_ore_deepslate", BlockGenerator.oreBlock(ModMaterials.SAPPHIRE))
-      .properties(DEEPSLATE_PROPS)
+  public static BlockEntry<OreBlock> DEEPSLATE_SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("deepslate_sapphire_ore", (p) -> new OreBlock(p, UniformInt.of(3, 7)))
+      .properties(DEEPSLATE_ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
       .tag(MWTags.Items.SAPPHIRE_ORE)
       .build()
-      .tag(MWTags.Blocks.SAPPHIRE_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL)
+      .tag(MWTags.Blocks.SAPPHIRE_ORE, BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_IRON_TOOL)
       .blockstate(BlockstateGenerator::simpleBlockstate)
-      .loot((p, t) ->
-          p.add(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), RegistrateBlockLootTables.createOreDrop(t, ModItems.SAPPHIRE_GEM.get()))
-      )
+      .loot(oreLoot(ModItems.SAPPHIRE_GEM))
       .register();
 
   public static BlockEntry<Block> RAW_TIN_BLOCK = MysticalWorld.REGISTRATE.block("raw_tin_block", Material.METAL, Block::new)

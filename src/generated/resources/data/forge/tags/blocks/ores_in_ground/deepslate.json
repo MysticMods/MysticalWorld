@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "mysticalworld:tin_ore",
     "mysticalworld:deepslate_tin_ore"
   ]
 }

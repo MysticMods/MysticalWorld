@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "mysticalworld:lead_ore",
-    "mysticalworld:lead_ore_deepslate",
     "mysticalworld:silver_ore",
-    "mysticalworld:silver_ore_deepslate",
+    "mysticalworld:deepslate_silver_ore",
+    "mysticalworld:sapphire_ore",
+    "mysticalworld:deepslate_sapphire_ore",
     "mysticalworld:sapphire_block",
     "mysticalworld:lead_block",
     "mysticalworld:orichalcum_block",

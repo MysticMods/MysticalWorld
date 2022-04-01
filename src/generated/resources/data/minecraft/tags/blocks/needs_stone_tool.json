@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "mysticalworld:tin_ore",
-    "mysticalworld:tin_ore_deepslate"
+    "mysticalworld:deepslate_tin_ore",
+    "mysticalworld:lead_ore",
+    "mysticalworld:deepslate_lead_ore"
   ]
 }

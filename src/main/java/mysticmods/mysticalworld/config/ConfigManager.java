@@ -97,11 +97,11 @@ public class ConfigManager {
 
   private static void registerOreGeneration() {
     List<ResourceKey<Level>> defaultDimensions = Collections.singletonList(Level.OVERWORLD);
-    ORE_CONFIG.add(new OreConfig("Tin", 8, 24, 64, 8, defaultDimensions, () -> ModBlocks.TIN_ORE));
+/*    ORE_CONFIG.add(new OreConfig("Tin", 8, 24, 64, 8, defaultDimensions, () -> ModBlocks.TIN_ORE));
     ORE_CONFIG.add(new OreConfig("Silver", 4, 0, 24, 8, defaultDimensions, () -> ModBlocks.SILVER_ORE));
     ORE_CONFIG.add(new OreConfig("Lead", 4, 8, 32, 8, defaultDimensions, () -> ModBlocks.LEAD_ORE));
     ORE_CONFIG.add(new OreConfig("Sapphire", 4, 0, 24, 3, defaultDimensions, () -> ModBlocks.SAPPHIRE_ORE));
-    ORE_CONFIG.add(new OreConfig("Quartz", 13, 24, 76, 4, defaultDimensions, () -> ModBlocks.GRANITE_QUARTZ_ORE, new TagMatchTest(MWTags.Blocks.BASE_STONE_GRANITE)));
+    ORE_CONFIG.add(new OreConfig("Quartz", 13, 24, 76, 4, defaultDimensions, () -> ModBlocks.GRANITE_QUARTZ_ORE, new TagMatchTest(MWTags.Blocks.BASE_STONE_GRANITE)));*/
 
     ORE_CONFIG.forEach(ore -> ore.apply(COMMON_BUILDER));
   }
