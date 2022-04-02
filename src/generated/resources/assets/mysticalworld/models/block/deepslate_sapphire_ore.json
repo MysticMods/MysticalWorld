@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "mysticalworld:block/lead_ore_deepslate"
+    "all": "mysticalworld:block/deepslate_sapphire_ore"
   }
 }
