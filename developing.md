@@ -75,3 +75,42 @@ Please be aware that (as of the time of writing), Github Desktop's submodule sup
 
 ### Noobutil
 This project has a dependency, [NoobUtil](https://github.com/MysticMods/NoobUtil) that is pulled in by dependency management. This project shades and minimizes this dependency via the [shadow plugin](https://github.com/johnrengelman/shadow), which means that this is ultimately invisible to people trying to run the mod.
+
+## Common Tasks
+
+### Datagen
+If you add new items, blocks, etc. - anything with a texture, for example, you will need to run the data generator job to ensure that the proper json files are created so that, in turn, they can be loaded with the rest of the mod.
+
+The command to do this is simply to run the `MysticalWorldData` build goal for gradle, like so:
+```bash
+$ ./gradlew MysticalWorldData
+. . .
+[10:56:33] [main/INFO] [minecraft/DataGenerator]: Registrate Provider for mysticalworld [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)] finished after 3090 ms
+[10:56:33] [main/INFO] [minecraft/DataGenerator]: Starting provider: LootTables
+[10:56:33] [main/INFO] [minecraft/DataGenerator]: LootTables finished after 11 ms
+[10:56:33] [main/INFO] [minecraft/DataGenerator]: Starting provider: Potion Tag Provider
+[10:56:33] [main/INFO] [minecraft/DataGenerator]: Potion Tag Provider finished after 0 ms
+[10:56:33] [main/INFO] [minecraft/DataGenerator]: Starting provider: LootTables
+[10:56:33] [main/INFO] [minecraft/DataGenerator]: LootTables finished after 8 ms
+[10:56:33] [main/INFO] [minecraft/DataGenerator]: Starting provider: Potion Tag Provider
+[10:56:33] [main/INFO] [minecraft/DataGenerator]: Potion Tag Provider finished after 0 ms
+[10:56:33] [main/INFO] [minecraft/DataGenerator]: All providers took: 3119 ms
+```
+
+If you run into problems such as:
+```
+Caused by: java.lang.IllegalArgumentException: Texture mysticalworld:block/stonepetal does not exist in any known resource pack
+```
+There are one of two things going on:
+Firstly, you may have a typo in your texture name, or the texture name doesn't match the name you supplied the block constructor inside the java source. Ensure the names are all lined up, the texture is in the right folder, etc.
+
+Secondly, your build environment may be misparsing the datagen arguments in gradle/forge.gradle. If you run a debugger and notice the resource pack's file path includes "" where it should just be ", consider changing this line:
+```bash
+ args '--mod', modId, '--all', '--output', '"' + rootProject.file('src/generated/resources/') + '"', '--existing', '"' + rootProject.file('src/main/resources') + '"'
+```
+to this:
+```bash
+args '--mod', modId, '--all', '--output', rootProject.file('src/generated/resources/'), '--existing',  rootProject.file('src/main/resources') 
+```
+
+This will allow you to run the datagen scripts as expected.
