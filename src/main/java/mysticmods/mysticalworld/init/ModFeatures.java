@@ -1,6 +1,7 @@
 package mysticmods.mysticalworld.init;
 
 import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.world.test.OreGenTest;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
@@ -13,15 +14,12 @@ import net.minecraftforge.registries.DeferredRegister;
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class ModFeatures {
   private static final DeferredRegister<ConfiguredFeature<?, ?>> FEATURES = DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, MysticalWorld.MODID);
-  private static final DeferredRegister<RuleTestType<?>> RULES = DeferredRegister.create(Registry.RULE_TEST_REGISTRY, MysticalWorld.MODID);
 
   public static void register (IEventBus bus) {
     FEATURES.register(bus);
   }
 
 /*  public static final ConfiguredRegistry<ConfiguredFeature<?, ?>> REGISTRY = new ConfiguredRegistry<>(MysticalWorld.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
-
-  public static final RuleTestType<OreGenTest> ORE_GEN = RuleTestType.register("ore_gen", OreGenTest.CODEC);
 
   public static ConfiguredFeature<?, ?> CHARRED_TREE = Feature.TREE.configured((new TreeConfiguration.TreeConfigurationBuilder(new SupplierBlockStateProvider(MysticalWorld.MODID, "charred_log"), new SimpleStateProvider(Blocks.AIR.defaultBlockState()), new FancyFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Types.MOTION_BLOCKING).build()).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1)));
 
