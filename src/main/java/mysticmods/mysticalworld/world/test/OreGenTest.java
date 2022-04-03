@@ -1,6 +1,16 @@
 package mysticmods.mysticalworld.world.test;
 
-/*public class OreGenTest extends RuleTest {
+import com.mojang.serialization.Codec;
+import mysticmods.mysticalworld.init.ModFeatures;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
+import net.minecraftforge.common.Tags;
+
+import java.util.Random;
+
+public class OreGenTest extends RuleTest {
   public static final OreGenTest INSTANCE = new OreGenTest();
   public static final Codec<OreGenTest> CODEC = Codec.unit(() -> INSTANCE);
 
@@ -15,11 +25,11 @@ package mysticmods.mysticalworld.world.test;
       return false;
     }
 
-    return Tags.Blocks.END_STONES.contains(q.getBlock());
+    return q.is(Tags.Blocks.END_STONES);
   }
 
   @Override
   protected RuleTestType<?> getType() {
-    return ModFeatures.ORE_GEN;
+    return ModFeatures.ORE_GEN.get();
   }
-}*/
+}

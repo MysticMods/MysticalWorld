@@ -6,9 +6,11 @@ import mysticmods.mysticalworld.init.*;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.PlantType;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import noobanidus.libs.noobutil.data.generator.RecipeGenerator;
 import noobanidus.libs.noobutil.reference.ModData;
@@ -41,6 +43,9 @@ public class MysticalWorld {
     REGISTRATE = CustomRegistrate.create(MODID);
     REGISTRATE.creativeModeTab(NonNullSupplier.of(() -> ITEM_GROUP));
 
+
+    IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+
     ModBlocks.load();
     ModItems.load();
     ModEntities.load();
@@ -50,5 +55,7 @@ public class MysticalWorld {
     ModEffects.load();
     ModLang.load();
     ModTags.load();
+    ModLoot.register(modBus);
+    ModFeatures.register(modBus);
   }
 }

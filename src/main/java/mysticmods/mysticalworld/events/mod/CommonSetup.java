@@ -2,8 +2,6 @@ package mysticmods.mysticalworld.events.mod;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.*;
-import mysticmods.mysticalworld.init.configured.ConfiguredFeatures;
-import mysticmods.mysticalworld.init.configured.ConfiguredStructures;
 import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.potions.PotionRecipes;
 import net.minecraft.world.entity.animal.Chicken;
@@ -12,10 +10,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraftforge.common.PlantType;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -69,29 +64,11 @@ public class CommonSetup {
       fire.setFlammable(ModBlocks.CHARRED_WIDE_POST.get(), 1, 1);
       fire.setFlammable(ModBlocks.CHARRED_WOOD.get(), 1, 1);
       ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.STONEPETAL.getId(), () -> ModBlocks.POTTED_STONEPETAL.get());
-      /*      ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.UNCANNY_MUSHROOM.getId(), () -> ModBlocks.POTTED_UNCANNY_MUSHROOM.get());*/
     });
   }
 
   @SubscribeEvent
   public static void registerRecipes(RegistryEvent.Register<RecipeSerializer<?>> event) {
     UniqueShapelessRecipe.setStoredSerializer(ModRecipes.UNIQUE_SHAPELESS_RECIPE.get());
-  }
-
-  @SubscribeEvent
-  public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
-    ConfiguredFeatures.REGISTRY.register();
-    /*ModFeatures.REGISTRY.registration();*/
-  }
-
-  @SubscribeEvent
-  public static void registerStructures(RegistryEvent.Register<StructureFeature<?>> event) {
-    ConfiguredStructures.REGISTRY.register();
-  }
-
-  @SubscribeEvent
-  public static void registerLootData(RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
-    ModLoot.FUNCTION_REGISTRY.register();
-    ModLoot.CONDITION_REGISTRY.register();
   }
 }
