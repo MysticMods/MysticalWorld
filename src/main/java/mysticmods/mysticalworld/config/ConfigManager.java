@@ -79,7 +79,7 @@ public class ConfigManager {
 
     COMMON_BUILDER.pop();
     COMMON_BUILDER.comment("Feature Spawn Configuration").push("feature_spawns");
-    DEAD_TREE_CONFIG = new TreeConfig(0.04, Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.WASTELAND), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions).setFeature(() -> /*ModFeatures.CHARRED_TREE*/ null);
+    DEAD_TREE_CONFIG = new TreeConfig(0.02, Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.WASTELAND), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions);
     DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
     STONEPETAL_CONFIG = new StonepetalConfig(1, 7, Arrays.asList(BiomeDictionary.Type.MOUNTAIN), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions).setSupplierFeature(() -> /*ModFeatures.STONEPETAL_PATCH*/ null);
     STONEPETAL_CONFIG.apply(COMMON_BUILDER);
