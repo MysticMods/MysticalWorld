@@ -23,7 +23,6 @@ public class OreConfig extends AbstractConfig {
   private final int maxY;
   private final int size;
   private final List<ResourceKey<Level>> dimensions;
-  private final Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore;
 
   private ForgeConfigSpec.IntValue configChance;
   private ForgeConfigSpec.IntValue configMinY;
@@ -31,22 +30,14 @@ public class OreConfig extends AbstractConfig {
   private ForgeConfigSpec.IntValue configSize;
   private ForgeConfigSpec.ConfigValue<List<? extends String>> configDimensions;
 
-  private final RuleTest rule;
-
-  public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore) {
-    this(name, chance, minY, maxY, size, dimensions, ore, /*OreGenTest.INSTANCE*/ null);
-  }
-
-  public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions, Supplier<RegistryEntry<BaseBlocks.OreBlock>> ore, RuleTest test) {
+  public OreConfig(String name, int chance, int minY, int maxY, int size, List<ResourceKey<Level>> dimensions) {
     super();
     this.name = name;
     this.chance = chance;
     this.minY = minY;
     this.maxY = maxY;
     this.size = size;
-    this.ore = ore;
     this.dimensions = dimensions;
-    this.rule = test;
   }
 
   public String getName() {
@@ -67,18 +58,6 @@ public class OreConfig extends AbstractConfig {
 
   public int getSize() {
     return configSize.get();
-  }
-
-  public Block getOre() {
-    return ore.get().get();
-  }
-
-  public RuleTest getRule() {
-    return rule;
-  }
-
-  public ResourceLocation getOreKey() {
-    return ore.get().getId();
   }
 
   private Set<ResourceKey<Level>> storedDimension = null;

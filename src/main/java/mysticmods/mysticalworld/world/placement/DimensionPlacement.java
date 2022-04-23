@@ -1,21 +1,52 @@
 package mysticmods.mysticalworld.world.placement;
 
-/*public class DimensionPlacement extends FeatureDecorator<DimensionConfig> {
-  public DimensionPlacement(Codec<DimensionConfig> codec) {
-    super(codec);
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.init.ModFeatures;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.placement.PlacementContext;
+import net.minecraft.world.level.levelgen.placement.PlacementFilter;
+import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
+
+import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class DimensionPlacement extends PlacementFilter {
+  public static final Codec<DimensionPlacement> CODEC = RecordCodecBuilder.create((codec) -> codec.group(
+      ResourceLocation.CODEC.listOf().fieldOf("dimensions").forGetter(o -> o.dimensions.stream().map(ResourceKey::location).collect(Collectors.toList()))).apply(codec, (r) -> new DimensionPlacement(r.stream().map(o -> ResourceKey.create(Registry.DIMENSION_REGISTRY, o)).collect(Collectors.toSet()))));
+
+  private final Set<ResourceKey<Level>> dimensions;
+
+  protected DimensionPlacement(Set<ResourceKey<Level>> dimensions) {
+    this.dimensions = dimensions;
   }
 
-  public static DimensionPlacement create() {
-    return new DimensionPlacement(DimensionConfig.CODEC);
+  public static DimensionPlacement of(Set<ResourceKey<Level>> dimensions) {
+    return new DimensionPlacement(dimensions);
   }
 
   @Override
-  public Stream<BlockPos> getPositions(DecorationContext helper, Random rand, DimensionConfig config, BlockPos pos) {
-    ServerLevel world = helper.level.getLevel();
-    if (config.dimensions.contains(world.dimension())) {
-      return Stream.of(pos);
-    } else {
-      return Stream.empty();
+  protected boolean shouldPlace(PlacementContext p_191835_, Random p_191836_, BlockPos p_191837_) {
+    ServerLevel level = p_191835_.getLevel().getLevel();
+    return dimensions.contains(level.dimension());
+  }
+
+  @Override
+  public PlacementModifierType<?> type() {
+    return ModFeatures.DIMENSION_PLACEMENT.get();
+  }
+
+  public static class Type implements PlacementModifierType<DimensionPlacement> {
+    @Override
+    public Codec<DimensionPlacement> codec() {
+      return DimensionPlacement.CODEC;
     }
   }
-}*/
+}

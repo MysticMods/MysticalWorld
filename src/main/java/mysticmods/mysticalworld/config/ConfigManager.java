@@ -25,7 +25,6 @@ public class ConfigManager {
   private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
 
   public static ForgeConfigSpec COMMON_CONFIG;
-  public static List<OreConfig> ORE_CONFIG = new ArrayList<>();
   public static MobConfig DEER_CONFIG;
   public static MobConfig SPROUT_CONFIG;
   public static HellSproutConfig HELL_SPROUT_CONFIG;
@@ -45,6 +44,11 @@ public class ConfigManager {
   public static ForgeConfigSpec.BooleanValue SEED_INJECTION;
   public static MobConfig DUCK_CONFIG;
   public static ClamConfig CLAM_CONFIG;
+  public static OreConfig TIN_ORE;
+  public static OreConfig SILVER_ORE;
+  public static OreConfig LEAD_ORE;
+  public static OreConfig SAPPHIRE_ORE;
+  public static OreConfig GRANITE_QUARTZ_ORE;
 
   public static List<AbstractConfig> CONFIGS = new ArrayList<>();
 
@@ -57,7 +61,17 @@ public class ConfigManager {
   static {
     List<ResourceKey<Level>> defaultDimensions = Collections.singletonList(Level.OVERWORLD);
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
-    registerOreGeneration();
+    TIN_ORE = new OreConfig("Tin", 80, -64, 180, 8, defaultDimensions);
+    SILVER_ORE = new OreConfig("Silver", 40, -64, 64, 8, defaultDimensions);
+    LEAD_ORE = new OreConfig("Lead", 40, -16, 64, 8, defaultDimensions);
+    SAPPHIRE_ORE = new OreConfig("Sapphire", 40, -80, 80, 3, defaultDimensions);
+    GRANITE_QUARTZ_ORE = new OreConfig("Quartz", 130, -64, 180, 4, defaultDimensions);
+
+    TIN_ORE.apply(COMMON_BUILDER);
+    SILVER_ORE.apply(COMMON_BUILDER);
+    LEAD_ORE.apply(COMMON_BUILDER);
+    SAPPHIRE_ORE.apply(COMMON_BUILDER);
+    GRANITE_QUARTZ_ORE.apply(COMMON_BUILDER);
     COMMON_BUILDER.pop();
     COMMON_BUILDER.comment("Mob Spawn Configuration").push("mob_spawns");
     registerMobConfigs();
@@ -96,14 +110,7 @@ public class ConfigManager {
   }
 
   private static void registerOreGeneration() {
-    List<ResourceKey<Level>> defaultDimensions = Collections.singletonList(Level.OVERWORLD);
-/*    ORE_CONFIG.add(new OreConfig("Tin", 8, 24, 64, 8, defaultDimensions, () -> ModBlocks.TIN_ORE));
-    ORE_CONFIG.add(new OreConfig("Silver", 4, 0, 24, 8, defaultDimensions, () -> ModBlocks.SILVER_ORE));
-    ORE_CONFIG.add(new OreConfig("Lead", 4, 8, 32, 8, defaultDimensions, () -> ModBlocks.LEAD_ORE));
-    ORE_CONFIG.add(new OreConfig("Sapphire", 4, 0, 24, 3, defaultDimensions, () -> ModBlocks.SAPPHIRE_ORE));
-    ORE_CONFIG.add(new OreConfig("Quartz", 13, 24, 76, 4, defaultDimensions, () -> ModBlocks.GRANITE_QUARTZ_ORE, new TagMatchTest(MWTags.Blocks.BASE_STONE_GRANITE)));*/
 
-    ORE_CONFIG.forEach(ore -> ore.apply(COMMON_BUILDER));
   }
 
   private static void registerMobConfigs() {
