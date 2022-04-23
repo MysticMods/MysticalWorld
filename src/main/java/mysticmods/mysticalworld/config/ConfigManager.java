@@ -5,6 +5,7 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModBlocks;
+import mysticmods.mysticalworld.init.ModFeatures;
 import mysticmods.mysticalworld.init.ModMaterials;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
@@ -153,6 +154,7 @@ public class ConfigManager {
 
   public static void configReload(ModConfigEvent event) {
     CONFIGS.forEach(AbstractConfig::reset);
+    ModFeatures.ORE_FEATURES = null;
   }
 
   @SubscribeEvent

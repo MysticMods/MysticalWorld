@@ -138,7 +138,7 @@ public class ModFeatures {
     }*/
   }
 
-  private static List<Holder<PlacedFeature>> ORE_FEATURES = null;
+  public static List<Holder<PlacedFeature>> ORE_FEATURES = null;
 
   @SubscribeEvent
   public static void onBiomeLoad(BiomeLoadingEvent event) {
