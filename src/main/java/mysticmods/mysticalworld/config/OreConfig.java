@@ -60,6 +60,10 @@ public class OreConfig extends AbstractConfig {
     return configSize.get();
   }
 
+  public boolean shouldGenerate () {
+    return getChance() > 0;
+  }
+
   private Set<ResourceKey<Level>> storedDimension = null;
 
   public Set<ResourceKey<Level>> getDimensions() {

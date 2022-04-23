@@ -58,6 +58,8 @@ public class ConfigManager {
     return ARMOR_CONFIGS.get(name);
   }
 
+  public static List<OreConfig> ORE_CONFIGS;
+
   static {
     List<ResourceKey<Level>> defaultDimensions = Collections.singletonList(Level.OVERWORLD);
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
@@ -66,6 +68,7 @@ public class ConfigManager {
     LEAD_ORE = new OreConfig("Lead", 4, -16, 50, 8, defaultDimensions);
     SAPPHIRE_ORE = new OreConfig("Sapphire", 4, -64, 50, 3, defaultDimensions);
     GRANITE_QUARTZ_ORE = new OreConfig("Quartz", 30, -64, 256, 2, defaultDimensions);
+    ORE_CONFIGS = List.of(TIN_ORE, SILVER_ORE, LEAD_ORE, SAPPHIRE_ORE, GRANITE_QUARTZ_ORE);
 
     TIN_ORE.apply(COMMON_BUILDER);
     SILVER_ORE.apply(COMMON_BUILDER);

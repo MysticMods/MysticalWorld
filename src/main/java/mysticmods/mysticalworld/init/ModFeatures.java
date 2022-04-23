@@ -8,6 +8,7 @@ import mysticmods.mysticalworld.config.FeatureConfig;
 import mysticmods.mysticalworld.config.OreConfig;
 import mysticmods.mysticalworld.world.placement.DimensionPlacement;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.data.worldgen.placement.OrePlacements;
@@ -42,6 +43,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 import java.util.Set;
@@ -136,9 +138,29 @@ public class ModFeatures {
     }*/
   }
 
+  private static List<Holder<PlacedFeature>> ORE_FEATURES = null;
+
   @SubscribeEvent
   public static void onBiomeLoad(BiomeLoadingEvent event) {
-    event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).addAll(List.of(TIN_ORE.getHolder().get(), SILVER_ORE.getHolder().get(), SAPPHIRE_ORE.getHolder().get(), GRANITE_QUARTZ_ORE.getHolder().get(), LEAD_ORE.getHolder().get()));
+    if (ORE_FEATURES == null) {
+      ORE_FEATURES = new ArrayList<>();
+      if (ConfigManager.TIN_ORE.shouldGenerate()) {
+        ORE_FEATURES.add(TIN_ORE.getHolder().get());
+      }
+      if (ConfigManager.SILVER_ORE.shouldGenerate()) {
+        ORE_FEATURES.add(SILVER_ORE.getHolder().get());
+      }
+      if (ConfigManager.LEAD_ORE.shouldGenerate()) {
+        ORE_FEATURES.add(LEAD_ORE.getHolder().get());
+      }
+      if (ConfigManager.SAPPHIRE_ORE.shouldGenerate()) {
+        ORE_FEATURES.add(SAPPHIRE_ORE.getHolder().get());
+      }
+      if (ConfigManager.GRANITE_QUARTZ_ORE.shouldGenerate()) {
+        ORE_FEATURES.add(GRANITE_QUARTZ_ORE.getHolder().get());
+      }
+    }
+    event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).addAll(ORE_FEATURES);
     if (event.getName() != null) {
       ResourceKey<Biome> key = ResourceKey.create(Registry.BIOME_REGISTRY, event.getName());
       Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
