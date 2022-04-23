@@ -12,12 +12,12 @@
   },
   "parent": "mysticalworld:root",
   "criteria": {
-    "book": {
+    "sapphire": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalworld:sapphire"
+            "items": [ "mysticalworld:sapphire" ]
           }
         ]
       }

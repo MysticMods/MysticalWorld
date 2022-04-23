@@ -16,8 +16,8 @@
     "squid": {
       "trigger": "minecraft:consume_item",
       "conditions": {
-        "item": {
-          "item": "mysticalworld:epic_squid"
+        "items": {
+          "items": "mysticalworld:epic_squid"
         }
       }
     }
