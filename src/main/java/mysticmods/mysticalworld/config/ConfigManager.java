@@ -61,11 +61,11 @@ public class ConfigManager {
   static {
     List<ResourceKey<Level>> defaultDimensions = Collections.singletonList(Level.OVERWORLD);
     COMMON_BUILDER.comment("Ore Generation").push("oregen");
-    TIN_ORE = new OreConfig("Tin", 80, -64, 180, 8, defaultDimensions);
-    SILVER_ORE = new OreConfig("Silver", 40, -64, 64, 8, defaultDimensions);
-    LEAD_ORE = new OreConfig("Lead", 40, -16, 64, 8, defaultDimensions);
-    SAPPHIRE_ORE = new OreConfig("Sapphire", 40, -80, 80, 3, defaultDimensions);
-    GRANITE_QUARTZ_ORE = new OreConfig("Quartz", 130, -64, 180, 4, defaultDimensions);
+    TIN_ORE = new OreConfig("Tin", 7, 40, 180, 8, defaultDimensions);
+    SILVER_ORE = new OreConfig("Silver", 4, -32, 64, 8, defaultDimensions);
+    LEAD_ORE = new OreConfig("Lead", 4, -16, 50, 8, defaultDimensions);
+    SAPPHIRE_ORE = new OreConfig("Sapphire", 4, -64, 50, 3, defaultDimensions);
+    GRANITE_QUARTZ_ORE = new OreConfig("Quartz", 30, -64, 256, 2, defaultDimensions);
 
     TIN_ORE.apply(COMMON_BUILDER);
     SILVER_ORE.apply(COMMON_BUILDER);
