@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:lead_ingot_from_raw_lead_smelting"
+    ]
+  },
+  "criteria": {
+    "has_raw_lead": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:raw_materials/lead"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:lead_ingot_from_raw_lead_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_lead",
+      "has_the_recipe"
+    ]
+  ]
+}

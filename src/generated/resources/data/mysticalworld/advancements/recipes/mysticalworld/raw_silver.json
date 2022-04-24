@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:raw_silver"
+    ]
+  },
+  "criteria": {
+    "has_raw_silver_storage": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:storage_blocks/raw_silver"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:raw_silver"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_silver_storage",
+      "has_the_recipe"
+    ]
+  ]
+}

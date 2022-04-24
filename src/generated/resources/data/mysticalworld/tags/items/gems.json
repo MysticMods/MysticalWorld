@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "mysticalworld:lustrous_pearl",
-    "minecraft:diamond"
+    "minecraft:diamond",
+    "#forge:gems/sapphire",
+    "#forge:gems/pearl"
   ]
 }

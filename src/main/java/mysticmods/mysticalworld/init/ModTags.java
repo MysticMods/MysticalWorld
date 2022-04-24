@@ -24,7 +24,7 @@ public class ModTags {
 
       b.tag(MWTags.Items.SLIME_BLOCK).add(Items.SLIME_BLOCK);
       b.tag(MWTags.Items.SLIME).add(Items.SLIME_BALL);
-      b.tag(MWTags.Items.GEMS).add(Items.DIAMOND);
+      b.tag(MWTags.Items.GEMS).add(Items.DIAMOND).addTag(MWTags.Items.SAPPHIRE_GEM).addTag(MWTags.Items.PEARL_GEM);
       b.tag(MWTags.Items.VEGETABLES).add(Items.CARROT, Items.BEETROOT);
       b.tag(MWTags.Items.COOKED_VEGETABLES).add(Items.BAKED_POTATO);
       b.tag(MWTags.Items.COOKED_SEAFOOD).add(Items.COOKED_COD, Items.COOKED_SALMON);
@@ -39,6 +39,9 @@ public class ModTags {
       b.copy(MWTags.Blocks.RED_NETHER_BRICKS, MWTags.Items.RED_NETHER_BRICKS);
       b.copy(MWTags.Blocks.TERRACOTTA, MWTags.Items.TERRACOTTA);
       b.copy(MWTags.Blocks.MUSHROOM_BLOCKS, MWTags.Items.MUSHROOM_BLOCKS);
+      b.copy(MWTags.Blocks.RAW_TIN_STORAGE, MWTags.Items.RAW_TIN_STORAGE);
+      b.copy(MWTags.Blocks.RAW_LEAD_STORAGE, MWTags.Items.RAW_LEAD_STORAGE);
+      b.copy(MWTags.Blocks.RAW_SILVER_STORAGE, MWTags.Items.RAW_SILVER_STORAGE);
     });
 
     REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, b -> {

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:orichalcum_ingot_from_raw_orichalcum_blasting"
+    ]
+  },
+  "criteria": {
+    "has_raw_orichalcum": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:raw_materials/orichalcum"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:orichalcum_ingot_from_raw_orichalcum_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_orichalcum",
+      "has_the_recipe"
+    ]
+  ]
+}

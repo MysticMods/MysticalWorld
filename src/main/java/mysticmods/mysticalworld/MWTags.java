@@ -81,6 +81,9 @@ public class MWTags {
     public static TagKey<Item> ORICHALCUM_BLOCK = compatTag("storage_blocks/orichalcum");
     public static TagKey<Item> SILVER_BLOCK = compatTag("storage_blocks/silver");
     public static TagKey<Item> TIN_BLOCK = compatTag("storage_blocks/tin");
+    public static TagKey<Item> RAW_LEAD_STORAGE = compatTag("storage_blocks/raw_lead");
+    public static TagKey<Item> RAW_SILVER_STORAGE = compatTag("storage_blocks/raw_silver");
+    public static TagKey<Item> RAW_TIN_STORAGE = compatTag("storage_blocks/raw_tin");
     public static TagKey<Item> PEARL_BLOCK = compatTag("storage_blocks/pearl");
     public static TagKey<Item> CARAPACE_BLOCK = compatTag("storage_blocks/carapace");
     public static TagKey<Item> SLIME_BLOCK = compatTag("storage_blocks/slime");

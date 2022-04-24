@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:raw_tin"
+    ]
+  },
+  "criteria": {
+    "has_raw_tin_storage": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:storage_blocks/raw_tin"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:raw_tin"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_tin_storage",
+      "has_the_recipe"
+    ]
+  ]
+}

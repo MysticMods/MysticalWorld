@@ -16,11 +16,13 @@ import mysticmods.mysticalworld.items.silver.*;
 import mysticmods.mysticalworld.items.tin.TinArmorItem;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
@@ -262,7 +264,7 @@ public class ModItems {
           .pattern("CAC")
           .define('C', ModItems.COOKED_SQUID.get())
           .define('A', MWTags.Items.GEMS)
-          .define('E', net.minecraftforge.common.Tags.Items.GEMS_EMERALD)
+          .define('E', Tags.Items.GEMS_EMERALD)
           .unlockedBy("has_squid", RegistrateRecipeProvider.has(ModItems.COOKED_SQUID.get()))
           .save(p))
       .register();
@@ -501,19 +503,63 @@ public class ModItems {
 
   public static RegistryEntry<Item> RAW_TIN = MysticalWorld.REGISTRATE.item("raw_tin", Item::new)
       .tag(MWTags.Items.RAW_TIN)
+      .recipe((ctx, p) -> {
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MWTags.Items.RAW_TIN), ModItems.TIN_INGOT.get(), 0.7f, 200)
+            .unlockedBy("has_raw_tin", RegistrateRecipeProvider.has(MWTags.Items.RAW_TIN))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "tin_ingot_from_raw_tin_smelting"));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MWTags.Items.RAW_TIN), ModItems.TIN_INGOT.get(), 0.7f, 100)
+            .unlockedBy("has_raw_tin", RegistrateRecipeProvider.has(MWTags.Items.RAW_TIN))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "tin_ingot_from_raw_tin_blasting"));
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 9)
+            .requires(MWTags.Items.RAW_TIN_STORAGE)
+            .unlockedBy("has_raw_tin_storage", RegistrateRecipeProvider.has(MWTags.Items.RAW_TIN_STORAGE))
+            .save(p);
+      })
       .register();
 
   public static RegistryEntry<Item> RAW_LEAD = MysticalWorld.REGISTRATE.item("raw_lead", Item::new)
       .tag(MWTags.Items.RAW_LEAD)
+      .recipe((ctx, p) -> {
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MWTags.Items.RAW_LEAD), ModItems.LEAD_INGOT.get(), 0.7f, 200)
+            .unlockedBy("has_raw_lead", RegistrateRecipeProvider.has(MWTags.Items.RAW_LEAD))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "lead_ingot_from_raw_lead_smelting"));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MWTags.Items.RAW_LEAD), ModItems.LEAD_INGOT.get(), 0.7f, 100)
+            .unlockedBy("has_raw_lead", RegistrateRecipeProvider.has(MWTags.Items.RAW_LEAD))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "lead_ingot_from_raw_lead_blasting"));
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 9)
+            .requires(MWTags.Items.RAW_LEAD_STORAGE)
+            .unlockedBy("has_raw_lead_storage", RegistrateRecipeProvider.has(MWTags.Items.RAW_LEAD_STORAGE))
+            .save(p);
+      })
       .register();
 
   public static RegistryEntry<Item> RAW_SILVER = MysticalWorld.REGISTRATE.item("raw_silver", Item::new)
       .tag(MWTags.Items.RAW_SILVER)
+      .recipe((ctx, p) -> {
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MWTags.Items.RAW_SILVER), ModItems.SILVER_INGOT.get(), 0.7f, 200)
+            .unlockedBy("has_raw_silver", RegistrateRecipeProvider.has(MWTags.Items.RAW_SILVER))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "silver_ingot_from_raw_silver_smelting"));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MWTags.Items.RAW_SILVER), ModItems.SILVER_INGOT.get(), 0.7f, 100)
+            .unlockedBy("has_raw_silver", RegistrateRecipeProvider.has(MWTags.Items.RAW_SILVER))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "silver_ingot_from_raw_silver_blasting"));
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 9)
+            .requires(MWTags.Items.RAW_SILVER_STORAGE)
+            .unlockedBy("has_raw_silver_storage", RegistrateRecipeProvider.has(MWTags.Items.RAW_SILVER_STORAGE))
+            .save(p);
+      })
       .register();
 
   public static RegistryEntry<Item> ORICHALCUM_BLEND = MysticalWorld.REGISTRATE.item("orichalcum_blend", Item::new)
       .tag(MWTags.Items.RAW_ORICHALCUM)
-      .recipe((ctx, p) -> ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3).requires(MWTags.Items.RAW_SILVER).requires(Items.RAW_COPPER).requires(Items.RAW_GOLD).unlockedBy("has_silver", RegistrateRecipeProvider.has(MWTags.Items.RAW_SILVER)).save(p))
+      .recipe((ctx, p) -> {
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 3).requires(MWTags.Items.RAW_SILVER).requires(Items.RAW_COPPER).requires(Items.RAW_GOLD).unlockedBy("has_silver", RegistrateRecipeProvider.has(MWTags.Items.RAW_SILVER)).save(p);
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MWTags.Items.RAW_ORICHALCUM), ModItems.ORICHALCUM_INGOT.get(), 0.7f, 200)
+            .unlockedBy("has_raw_orichalcum", RegistrateRecipeProvider.has(MWTags.Items.RAW_ORICHALCUM))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "orichalcum_ingot_from_raw_orichalcum_smelting"));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MWTags.Items.RAW_ORICHALCUM), ModItems.ORICHALCUM_INGOT.get(), 0.7f, 100)
+            .unlockedBy("has_raw_orichalcum", RegistrateRecipeProvider.has(MWTags.Items.RAW_ORICHALCUM))
+            .save(p, new ResourceLocation(MysticalWorld.MODID, "orichalcum_ingot_from_raw_orichalcum_blasting"));
+      })
       .register();
 
   public static RegistryEntry<UnripePearlItem> YOUNG_PEARL = MysticalWorld.REGISTRATE.item("young_pearl", UnripePearlItem::new)
@@ -562,6 +608,10 @@ public class ModItems {
         MysticalWorld.RECIPES.recycle(MWTags.Items.LEAD_ITEMS, ModItems.LEAD_NUGGET, 0.15f, p);
         MysticalWorld.RECIPES.recycle(ModItems.GOLD_KNIFE, () -> Items.GOLD_NUGGET, 0.15f, MysticalWorld.MODID, p);
         MysticalWorld.RECIPES.recycle(ModItems.IRON_KNIFE, () -> Items.IRON_NUGGET, 0.15f, MysticalWorld.MODID, p);
+        ShapelessRecipeBuilder.shapeless(ctx.getEntry(), 9)
+            .requires(Tags.Items.INGOTS_COPPER)
+            .unlockedBy("has_copper_ingot", RegistrateRecipeProvider.has(Tags.Items.INGOTS_COPPER))
+            .save(p, "copper_nugget_from_ingot");
       })
       .register();
   public static RegistryEntry<Item> TIN_NUGGET = MysticalWorld.REGISTRATE.item(ModMaterials.TIN.nuggetName(), Item::new)

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalworld:silver_ingot_from_raw_silver_smelting"
+    ]
+  },
+  "criteria": {
+    "has_raw_silver": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:raw_materials/silver"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalworld:silver_ingot_from_raw_silver_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_silver",
+      "has_the_recipe"
+    ]
+  ]
+}

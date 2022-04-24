@@ -270,6 +270,15 @@ public class ModBlocks {
       .build()
       .tag(MWTags.Blocks.RAW_TIN_STORAGE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
+      .recipe((ctx, p) ->
+        ShapedRecipeBuilder.shaped(ctx.getEntry())
+            .pattern("###")
+            .pattern("###")
+            .pattern("###")
+            .define('#', MWTags.Items.RAW_TIN)
+            .unlockedBy("has_raw_tin", RegistrateRecipeProvider.has(MWTags.Items.RAW_TIN))
+            .save(p)
+      )
       .register();
 
   public static BlockEntry<Block> RAW_LEAD_BLOCK = MysticalWorld.REGISTRATE.block("raw_lead_block", Material.METAL, Block::new)
@@ -278,6 +287,15 @@ public class ModBlocks {
       .build()
       .tag(MWTags.Blocks.RAW_LEAD_STORAGE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
+      .recipe((ctx, p) ->
+          ShapedRecipeBuilder.shaped(ctx.getEntry())
+              .pattern("###")
+              .pattern("###")
+              .pattern("###")
+              .define('#', MWTags.Items.RAW_LEAD)
+              .unlockedBy("has_raw_tin", RegistrateRecipeProvider.has(MWTags.Items.RAW_LEAD))
+              .save(p)
+      )
       .register();
 
   public static BlockEntry<Block> RAW_SILVER_BLOCK = MysticalWorld.REGISTRATE.block("raw_silver_block", Material.METAL, Block::new)
@@ -286,6 +304,15 @@ public class ModBlocks {
       .build()
       .tag(MWTags.Blocks.RAW_SILVER_STORAGE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
+      .recipe((ctx, p) ->
+          ShapedRecipeBuilder.shaped(ctx.getEntry())
+              .pattern("###")
+              .pattern("###")
+              .pattern("###")
+              .define('#', MWTags.Items.RAW_SILVER)
+              .unlockedBy("has_raw_tin", RegistrateRecipeProvider.has(MWTags.Items.RAW_SILVER))
+              .save(p)
+      )
       .register();
 
   public static BlockEntry<ThatchBlock> THATCH = MysticalWorld.REGISTRATE.block("thatch", Material.WOOD, ThatchBlock::new)
