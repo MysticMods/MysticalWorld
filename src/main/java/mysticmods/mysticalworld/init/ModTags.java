@@ -29,6 +29,8 @@ public class ModTags {
       b.tag(MWTags.Items.COOKED_VEGETABLES).add(Items.BAKED_POTATO);
       b.tag(MWTags.Items.COOKED_SEAFOOD).add(Items.COOKED_COD, Items.COOKED_SALMON);
 
+      b.tag(MWTags.Items.BOTTLES).add(Items.GLASS_BOTTLE);
+
       b.tag(MWTags.Items.SUGARS).add(Items.SUGAR, Items.APPLE, Items.COOKIE, Items.MELON_SLICE, Items.CAKE, Items.PUMPKIN_PIE);
       b.tag(MWTags.Items.PROTEINS).add(Items.ROTTEN_FLESH, Items.PORKCHOP, Items.BEEF, Items.CHICKEN, Items.TROPICAL_FISH, Items.PUFFERFISH, Items.COD, Items.SALMON, Items.RABBIT, Items.COOKED_RABBIT, Items.COOKED_PORKCHOP, Items.COOKED_MUTTON, Items.MUTTON, Items.COOKED_CHICKEN, Items.COOKED_BEEF, Items.COOKED_COD, Items.COOKED_SALMON, Items.EGG);
 

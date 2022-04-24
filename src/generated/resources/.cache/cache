@@ -1056,6 +1056,7 @@ ef5fae8baae7a93730c00b6aeaf771d7451a8408 data/forge/tags/blocks/storage_blocks/s
 abb365f8a958011f0f481575708f3ac62620f9b0 data/forge/tags/blocks/storage_blocks/silver.json
 70365f3dab7784a64eafeba5de12b37e54e46c30 data/forge/tags/blocks/storage_blocks/tin.json
 45414894b7ca69a60699773e1bc47c5e18462e04 data/forge/tags/blocks/terracotta.json
+fe60c763bfe0afa0a266b7390edfc62bde8941b7 data/forge/tags/items/bottles.json
 5c5581173a8d666033d057b174a090d9841e3301 data/forge/tags/items/cooked_seafood.json
 8d204015b083c0f80c3bb407a22f8db961d546b8 data/forge/tags/items/cooked_vegetables.json
 e5493cf6597b8b4793cf05e409ba4c9ca838a13d data/forge/tags/items/crops/aubergine.json

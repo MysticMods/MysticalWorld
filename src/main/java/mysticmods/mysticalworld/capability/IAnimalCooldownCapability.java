@@ -1,11 +1,11 @@
 package mysticmods.mysticalworld.capability;
 
 public interface IAnimalCooldownCapability {
-  boolean canHarvest();
+  long getExpiry();
 
-  int getExpiry();
+  void setExpiry(long value);
 
-  void setCooldown(int cooldown);
+  void setCooldown(int value);
 
-  void setExpiry(int expiry);
+  boolean hasExpired();
 }

@@ -122,6 +122,8 @@ public class MWTags {
     public static TagKey<Item> SUGARS = modTag("sugars");
     public static TagKey<Item> PROTEINS = modTag("proteins");
 
+    public static TagKey<Item> BOTTLES = compatTag("bottles");
+
     static TagKey<Item> modTag(String name) {
       return ItemTags.create(new ResourceLocation(MysticalWorld.MODID, name));
     }
