@@ -2,22 +2,27 @@ package mysticmods.mysticalworld.items;
 
 import com.google.common.collect.Multimap;
 import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.client.model.armor.ArmorModel;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.init.ModMaterials;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.client.IItemRenderProperties;
 import noobanidus.libs.noobutil.material.MaterialType;
 
 import javax.annotation.Nullable;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class AntlerHatItem extends ModifiedArmorItem {
   public AntlerHatItem(Properties builder) {
@@ -66,7 +71,18 @@ public class AntlerHatItem extends ModifiedArmorItem {
     return MysticalWorld.MODID + ":textures/models/armor/antler_hat.png";
   }
 
-  // TODO: Handle how armor models are now associated
+  @Override
+  public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+    consumer.accept(new IItemRenderProperties() {
+      @Nullable
+      @Override
+      public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
+        return ArmorModel.getModel(itemStack);
+      }
+    });
+  }
+
+// TODO: Handle how armor models are now associated
 /*  @SuppressWarnings("unchecked")
   @Nullable
   @Override

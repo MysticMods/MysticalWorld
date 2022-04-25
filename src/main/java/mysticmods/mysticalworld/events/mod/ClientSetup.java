@@ -2,6 +2,7 @@ package mysticmods.mysticalworld.events.mod;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.client.model.*;
+import mysticmods.mysticalworld.client.model.armor.AntlerHatModel;
 import mysticmods.mysticalworld.client.render.*;
 import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModEntities;
@@ -19,8 +20,6 @@ public class ClientSetup {
   @SubscribeEvent
   public static void init(FMLClientSetupEvent event) {
     ModelHolder.init();
-/*    RenderingRegistry.registerEntityRenderingHandler(ModEntities.FROG.get(), new FrogRenderer.Factory());
-    RenderingRegistry.registerEntityRenderingHandler(ModEntities.OWL.get(), new OwlRenderer.Factory());*/
 
     event.enqueueWork(() -> {
       RenderType rendertype = RenderType.cutoutMipped();
@@ -29,11 +28,7 @@ public class ClientSetup {
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.THATCH.get(), rendertype);
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.STONEPETAL.get(), rendertype);
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_STONEPETAL.get(), rendertype);
-      /*      ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_UNCANNY_MUSHROOM.get(), rendertype);*/
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_WART.get(), rendertype);
-/*      ItemBlockRenderTypes.setRenderLayer(ModBlocks.ANYWHERE_BROWN_MUSHROOM.get(), rendertype);
-      ItemBlockRenderTypes.setRenderLayer(ModBlocks.ANYWHERE_RED_MUSHROOM.get(), rendertype);
-      ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNCANNY_MUSHROOM.get(), rendertype);*/
 
       ShadedClientSetup.init(event);
       /*      Bootstrap.init(Minecraft.getInstance());*/
@@ -72,5 +67,7 @@ public class ClientSetup {
     event.registerLayerDefinition(ModelHolder.SILKWORM, SilkwormModel::createBodyLayer);
     event.registerLayerDefinition(ModelHolder.SILVER_FOX, SilverFoxModel::createBodyLayer);
     event.registerLayerDefinition(ModelHolder.SPROUT, SproutModel::createBodyLayer);
+    event.registerLayerDefinition(ModelHolder.ANTLER_ARMOR, AntlerHatModel::createBodyLayer);
+    //event.registerLayerDefinition(ModelHolder.BEETLE_ARMOR, BeetleArmorModel::createBodyLayer);
   }
 }
