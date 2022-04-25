@@ -11,12 +11,8 @@
     {
       "type": "crafting",
       "recipe": "mysticalworld:copper_knife",
-      "recipe2": "mysticalworld:copper_spear",
+      "recipe2": "mysticalworld:copper_sword",
       "title": "Copper Weapons"
-    },
-    {
-      "type": "crafting",
-      "recipe": "mysticalworld:copper_sword"
     }
   ]
 }

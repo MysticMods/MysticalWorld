@@ -11,12 +11,8 @@
     {
       "type": "crafting",
       "recipe": "mysticalworld:sapphire_knife",
-      "recipe2": "mysticalworld:sapphire_spear",
+      "recipe2": "mysticalworld:sapphire_sword",
       "title": "Sapphire Weapons"
-    },
-    {
-      "type": "crafting",
-      "recipe": "mysticalworld:sapphire_sword"
     }
   ]
 }

@@ -11,12 +11,8 @@
     {
       "type": "crafting",
       "recipe": "mysticalworld:lead_knife",
-      "recipe2": "mysticalworld:lead_spear",
+      "recipe2": "mysticalworld:lead_sword",
       "title": "Lead Weapons"
-    },
-    {
-      "type": "crafting",
-      "recipe": "mysticalworld:lead_sword"
     }
   ]
 }

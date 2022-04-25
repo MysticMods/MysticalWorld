@@ -11,12 +11,8 @@
     {
       "type": "crafting",
       "recipe": "mysticalworld:silver_knife",
-      "recipe2": "mysticalworld:silver_spear",
+      "recipe2": "mysticalworld:silver_sword",
       "title": "Silver Weapons"
-    },
-    {
-      "type": "crafting",
-      "recipe": "mysticalworld:silver_sword"
     }
   ]
 }

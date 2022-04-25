@@ -11,12 +11,7 @@
     {
       "type": "crafting",
       "recipe": "mysticalworld:tin_knife",
-      "recipe2": "mysticalworld:tin_spear",
-      "title": "Tin Weapons"
-    },
-    {
-      "type": "crafting",
-      "recipe": "mysticalworld:tin_sword"
+      "recipe2": "mysticalworld:tin_sword"
     }
   ]
 }

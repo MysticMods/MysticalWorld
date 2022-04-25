@@ -11,12 +11,8 @@
     {
       "type": "crafting",
       "recipe": "mysticalworld:orichalcum_knife",
-      "recipe2": "mysticalworld:orichalcum_spear",
+      "recipe2": "mysticalworld:orichalcum_sword",
       "title": "Orichalcum Weapons"
-    },
-    {
-      "type": "crafting",
-      "recipe": "mysticalworld:orichalcum_sword"
     }
   ]
 }
