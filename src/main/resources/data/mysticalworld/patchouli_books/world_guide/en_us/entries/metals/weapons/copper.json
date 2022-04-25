@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "spotlight",
-      "item": "mysticalworld:copper_ingot",
+      "item": "minecraft:copper_ingot",
       "text": "Copper ingots can be crafted into a variety of weapons."
     },
     {

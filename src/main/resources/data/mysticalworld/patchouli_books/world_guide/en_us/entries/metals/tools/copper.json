@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "spotlight",
-      "item": "mysticalworld:copper_ingot",
+      "item": "minecraft:copper_ingot",
       "text": "Copper is a common metal that can be smelted into ingots and then crafted into durable tools.$(br2)These tools have the same harvest level as iron tools."
     },
     {
