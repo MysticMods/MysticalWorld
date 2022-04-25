@@ -52,8 +52,7 @@ public class AntlerHatModel extends ArmorModel {
     partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
     partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
 
-    PartDefinition hat = partdefinition.addOrReplaceChild("head:w" +
-        "", CubeListBuilder.create().texOffs(64, 0).addBox(-3.0F, -10.0F, -3.0F, 6f, 3f, 6f), PartPose.offsetAndRotation(0f, 0f, 0f, 0f, 0f, 0f));
+    PartDefinition hat = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(64, 0).addBox(-3.0F, -10.0F, -3.0F, 6f, 3f, 6f), PartPose.offsetAndRotation(0f, 0f, 0f, 0f, 0f, 0f));
     PartDefinition horn1_1 = hat.addOrReplaceChild("horn1_1", CubeListBuilder.create().texOffs(66, 32).addBox(-0.5F, -5.0F, -0.5F, 1, 5, 1), PartPose.offsetAndRotation(-2.0F, -9.0F, 0.0F, 0.0F, 0.0F, -0.08726646259971647F));
     PartDefinition horn3_1 = horn1_1.addOrReplaceChild("horn3_1", CubeListBuilder.create().texOffs(66, 32).addBox(-0.5F, -5.0F, -0.5F, 1, 5, 1), PartPose.offsetAndRotation(-0.15F, -2.5F, 0.0F, 0.0F, -0.08726646259971647F, -1.0471975511965976F));
     PartDefinition horn6_1 = horn3_1.addOrReplaceChild("horn6_1", CubeListBuilder.create().texOffs(66, 32).addBox(-0.5F, -5.0F, -0.5F, 1, 5, 1), PartPose.offsetAndRotation(0.3F, -3.2F, -0.2F, 0.0F, 0.08726646259971647F, 1.0471975511965976F));
