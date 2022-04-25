@@ -3,11 +3,17 @@ package mysticmods.mysticalworld.events.mod;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.client.model.*;
 import mysticmods.mysticalworld.client.model.armor.AntlerHatModel;
+import mysticmods.mysticalworld.client.player.layer.ShoulderRenderLayer;
 import mysticmods.mysticalworld.client.render.*;
 import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModEntities;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,8 +38,6 @@ public class ClientSetup {
 
       ShadedClientSetup.init(event);
       /*      Bootstrap.init(Minecraft.getInstance());*/
-
-      /*      Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values().forEach(o -> o.addLayer(new ShoulderRenderLayer<>(o)));*/
     });
   }
 
@@ -69,5 +73,15 @@ public class ClientSetup {
     event.registerLayerDefinition(ModelHolder.SPROUT, SproutModel::createBodyLayer);
     event.registerLayerDefinition(ModelHolder.ANTLER_ARMOR, AntlerHatModel::createBodyLayer);
     //event.registerLayerDefinition(ModelHolder.BEETLE_ARMOR, BeetleArmorModel::createBodyLayer);
+  }
+
+  @SubscribeEvent
+  public static void registerLayers (EntityRenderersEvent.AddLayers event) {
+    for (String skin : event.getSkins()) {
+      LivingEntityRenderer<Player, PlayerModel<Player>> skinRenderer = event.getSkin(skin);
+      if (skinRenderer != null) {
+        skinRenderer.addLayer(new ShoulderRenderLayer<>(skinRenderer));
+      }
+    }
   }
 }

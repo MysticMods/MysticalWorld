@@ -1,30 +1,37 @@
 package mysticmods.mysticalworld.capability;
 
 import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.api.Capabilities;
 import mysticmods.mysticalworld.api.IPlayerShoulderCapability;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Method;
 
-public class PlayerShoulderCapability implements IPlayerShoulderCapability {
+public class PlayerShoulderCapability implements IPlayerShoulderCapability, ICapabilitySerializable<CompoundTag>, ICapabilityProvider {
   public static MethodHandle setRightShoulder = null;
   public static MethodHandle setLeftShoulder = null;
 
   static {
     MethodHandles.Lookup lookup = MethodHandles.lookup();
-    Method setLeft = ObfuscationReflectionHelper.findMethod(Player.class, "func_192029_h", CompoundTag.class);
+    Method setLeft = ObfuscationReflectionHelper.findMethod(Player.class, "m_36362_", CompoundTag.class);
 
     setLeft.setAccessible(true);
-    Method setRight = ObfuscationReflectionHelper.findMethod(Player.class, "func_192031_i", CompoundTag.class);
+    Method setRight = ObfuscationReflectionHelper.findMethod(Player.class, "m_36364_", CompoundTag.class);
     try {
       setLeftShoulder = lookup.unreflect(setLeft);
       setRightShoulder = lookup.unreflect(setRight);
@@ -51,7 +58,7 @@ public class PlayerShoulderCapability implements IPlayerShoulderCapability {
   }
 
   @Override
-  public ResourceLocation getRegistryName() {
+  public ResourceLocation getEntityName() {
     return registryName;
   }
 
@@ -64,7 +71,7 @@ public class PlayerShoulderCapability implements IPlayerShoulderCapability {
   @Override
   @Nullable
   public EntityType<?> getEntityType() {
-    return getEntityType(getRegistryName());
+    return getEntityType(getEntityName());
   }
 
   @Override
@@ -83,7 +90,21 @@ public class PlayerShoulderCapability implements IPlayerShoulderCapability {
   }
 
   @Override
-  public CompoundTag writeNBT() {
+  public CompoundTag generateShoulderNBT() {
+    CompoundTag result = new CompoundTag();
+    result.putBoolean("Silent", true);
+    result.putString("id", registryName == null ? "minecraft:pig" : registryName.toString());
+    return result;
+  }
+
+  @NotNull
+  @Override
+  public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @org.jetbrains.annotations.Nullable Direction side) {
+    return Capabilities.PLAYER_SHOULDER.orEmpty(cap, LazyOptional.of(() -> this));
+  }
+
+  @Override
+  public CompoundTag serializeNBT() {
     CompoundTag result = new CompoundTag();
     result.put("animalSerialized", animalSerialized);
     result.putBoolean("shouldered", shouldered);
@@ -92,15 +113,7 @@ public class PlayerShoulderCapability implements IPlayerShoulderCapability {
   }
 
   @Override
-  public CompoundTag generateShoulderNBT() {
-    CompoundTag result = new CompoundTag();
-    result.putBoolean("Silent", true);
-    result.putString("id", registryName == null ? "minecraft:pig" : registryName.toString());
-    return result;
-  }
-
-  @Override
-  public void readNBT(CompoundTag incoming) {
+  public void deserializeNBT(CompoundTag incoming) {
     if (incoming.contains("animalSerialized")) {
       this.animalSerialized = incoming.getCompound("animalSerialized");
     }

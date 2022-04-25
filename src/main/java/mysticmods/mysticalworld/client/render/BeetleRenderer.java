@@ -5,6 +5,7 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.client.model.BeetleModel;
 import mysticmods.mysticalworld.client.model.ModelHolder;
 import mysticmods.mysticalworld.client.model.armor.ArmorModel;
+import mysticmods.mysticalworld.client.player.layer.ShoulderRenderLayer;
 import mysticmods.mysticalworld.entity.BeetleEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -17,6 +18,7 @@ public class BeetleRenderer extends MobRenderer<BeetleEntity, BeetleModel> {
   public BeetleRenderer(@Nonnull EntityRendererProvider.Context context) {
     super(context, new BeetleModel(context.bakeLayer(ModelHolder.BEETLE)), 0.05f);
     ArmorModel.init(context);
+    ShoulderRenderLayer.beetleModel = getModel();
   }
 
   @Override

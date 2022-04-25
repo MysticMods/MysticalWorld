@@ -1,6 +1,7 @@
+/*
 package mysticmods.mysticalworld.client.model.armor;
 
-/*public class BeetleArmorModel extends ArmorBaseModel {
+public class BeetleArmorModel extends ArmorBaseModel {
   private final ModelPart headAnchor;
   private final ModelPart bodyAnchor;
   public final ModelPart armR;
@@ -144,4 +145,5 @@ package mysticmods.mysticalworld.client.model.armor;
     modelRenderer.yRot = y;
     modelRenderer.zRot = z;
   }
-}*/
+}
+*/

@@ -1,6 +1,7 @@
 package mysticmods.mysticalworld.capability;
 
-import mysticmods.mysticalworld.init.ModCapabilities;
+import mysticmods.mysticalworld.api.Capabilities;
+import mysticmods.mysticalworld.api.IAnimalCooldownCapability;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.LongTag;
 import net.minecraft.world.level.Level;
@@ -47,7 +48,7 @@ public class AnimalCooldownCapability implements IAnimalCooldownCapability, ICap
   @NotNull
   @Override
   public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-    return ModCapabilities.ANIMAL_COOLDOWN.orEmpty(cap, LazyOptional.of(() -> this));
+    return Capabilities.ANIMAL_COOLDOWN.orEmpty(cap, LazyOptional.of(() -> this));
   }
 
   @Override

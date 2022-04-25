@@ -69,7 +69,7 @@ public class BeetleEntity extends TamableAnimal {
     } else {
       if (this.isTame()) {
         if (this.isOwnedBy(player) && itemstack.isEmpty() && player.isCrouching()) {
-          LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY);
+          LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.PLAYER_SHOULDER);
           if (laycap.isPresent()) {
             IPlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
             if (!cap.isShouldered() && player.getShoulderEntityRight().isEmpty()) {

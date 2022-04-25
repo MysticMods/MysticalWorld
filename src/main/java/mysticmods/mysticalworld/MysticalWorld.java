@@ -1,6 +1,7 @@
 package mysticmods.mysticalworld;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import mysticmods.mysticalworld.api.Capabilities;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.init.*;
 import net.minecraft.world.item.CreativeModeTab;
@@ -46,6 +47,7 @@ public class MysticalWorld {
 
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+    Capabilities.load();
     ModBlocks.load();
     ModItems.load();
     ModEntities.load();

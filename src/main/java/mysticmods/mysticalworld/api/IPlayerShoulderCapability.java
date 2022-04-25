@@ -4,15 +4,16 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
 import javax.annotation.Nullable;
 
-public interface IPlayerShoulderCapability {
+public interface IPlayerShoulderCapability extends ICapabilitySerializable<CompoundTag> {
   CompoundTag getAnimalSerialized();
 
   boolean isShouldered();
 
-  ResourceLocation getRegistryName();
+  ResourceLocation getEntityName();
 
   @Nullable
   EntityType<?> getEntityType(ResourceLocation registryName);
@@ -24,9 +25,5 @@ public interface IPlayerShoulderCapability {
 
   void shoulder(Entity entity);
 
-  CompoundTag writeNBT();
-
   CompoundTag generateShoulderNBT();
-
-  void readNBT(CompoundTag incoming);
 }

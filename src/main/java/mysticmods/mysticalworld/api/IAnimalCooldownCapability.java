@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.capability;
+package mysticmods.mysticalworld.api;
 
 public interface IAnimalCooldownCapability {
   long getExpiry();

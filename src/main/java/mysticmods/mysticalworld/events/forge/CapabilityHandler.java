@@ -5,7 +5,6 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.api.Capabilities;
 import mysticmods.mysticalworld.capability.AnimalCooldownCapability;
 import mysticmods.mysticalworld.capability.PlayerShoulderCapability;
-import mysticmods.mysticalworld.init.ModCapabilities;
 import mysticmods.mysticalworld.init.ModItems;
 import mysticmods.mysticalworld.init.ModSounds;
 import mysticmods.mysticalworld.network.Networking;
@@ -23,9 +22,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BottleItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -37,7 +34,7 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class CapabilityHandler {
 
-/*  // TODO: Check to see what busses these are fired on
+  // TODO: Check to see what busses these are fired on
   @SubscribeEvent
   public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
     ServerPlayer player = (ServerPlayer) event.getPlayer();
@@ -50,7 +47,7 @@ public class CapabilityHandler {
       }
     }
 
-    player.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
+    player.getCapability(Capabilities.PLAYER_SHOULDER).ifPresent((cap) -> {
       if (cap.isShouldered()) {
         ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
         Networking.send(PacketDistributor.ALL.noArg(), message);
@@ -63,7 +60,7 @@ public class CapabilityHandler {
     });
     MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
     for (ServerPlayer other : server.getPlayerList().getPlayers()) {
-      other.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
+      other.getCapability(Capabilities.PLAYER_SHOULDER).ifPresent((cap) -> {
         if (cap.isShouldered()) {
           ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
           Networking.sendTo(message, player);
@@ -75,24 +72,17 @@ public class CapabilityHandler {
         }
       });
     }
-  }*/
+  }
 
   // TODO: Glow squid ink?
   @SubscribeEvent
   public static void attachCapability (AttachCapabilitiesEvent<Entity> event) {
     if (event.getObject().getType() == EntityType.SQUID || event.getObject().getType() == EntityType.GLOW_SQUID) {
-      event.addCapability(ModCapabilities.ANIMAL_COOLDOWN_ID, new AnimalCooldownCapability());
+      event.addCapability(Capabilities.ANIMAL_COOLDOWN_ID, new AnimalCooldownCapability());
+    } else if (event.getObject().getType() == EntityType.PLAYER) {
+      event.addCapability(Capabilities.PLAYER_SHOULDER_ID, new PlayerShoulderCapability());
     }
   }
-
-/*  @SubscribeEvent
-  public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
-    if (event.getObject() instanceof Squid) {
-      event.addCapability(AnimalCooldownCapabilityProvider.IDENTIFIER, new AnimalCooldownCapabilityProvider());
-    } else if (event.getObject() instanceof Player) {
-      event.addCapability(PlayerShoulderCapabilityProvider.IDENTIFIER, new PlayerShoulderCapabilityProvider());
-    }
-  }*/
 
   @SubscribeEvent
   public static void onSquidMilked(PlayerInteractEvent.EntityInteract event) {
@@ -103,7 +93,7 @@ public class CapabilityHandler {
         event.setCanceled(true);
         event.setCancellationResult(InteractionResult.SUCCESS);
         if (!event.getWorld().isClientSide) {
-          event.getTarget().getCapability(ModCapabilities.ANIMAL_COOLDOWN).ifPresent(cap -> {
+          event.getTarget().getCapability(Capabilities.ANIMAL_COOLDOWN).ifPresent(cap -> {
             if (cap.hasExpired()) {
               cap.setCooldown(20 * 15);
               event.getWorld().playLocalSound(player.getX(), player.getY(), player.getZ(), ModSounds.SQUID_MILK.get(), SoundSource.PLAYERS, 0.5F, event.getWorld().random.nextFloat() * 0.25F + 0.6F, true);

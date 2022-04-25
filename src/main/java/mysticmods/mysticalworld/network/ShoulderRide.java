@@ -29,7 +29,7 @@ public class ShoulderRide {
   }
 
   public ShoulderRide(Player player, IPlayerShoulderCapability cap) {
-    this.tag = cap.writeNBT();
+    this.tag = cap.serializeNBT();
     this.id = player.getUUID();
   }
 
@@ -54,6 +54,9 @@ public class ShoulderRide {
   @OnlyIn(Dist.CLIENT)
   private static void handle(ShoulderRide message, Supplier<NetworkEvent.Context> context) {
     Player target = Minecraft.getInstance().player;
+    if (target == null) {
+      return;
+    }
     Level world = target.level;
     if (!target.getUUID().equals(message.getId())) {
       target = world.getPlayerByUUID(message.getId());
@@ -65,8 +68,8 @@ public class ShoulderRide {
 
     final Player player = target;
 
-    target.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent((cap) -> {
-      cap.readNBT(message.getTag());
+    target.getCapability(Capabilities.PLAYER_SHOULDER).ifPresent((cap) -> {
+      cap.deserializeNBT(message.getTag());
       try {
         PlayerShoulderCapability.setLeftShoulder.invokeExact(player, cap.generateShoulderNBT());
       } catch (Throwable throwable) {

@@ -34,9 +34,9 @@ public class ShoulderHandler {
     }
 
     if (!world.isClientSide() && event.getHand() == InteractionHand.MAIN_HAND && player.isCrouching() && player.getMainHandItem().isEmpty()) {
-      player.getCapability(Capabilities.SHOULDER_CAPABILITY).ifPresent(cap -> {
+      player.getCapability(Capabilities.PLAYER_SHOULDER).ifPresent(cap -> {
         if (cap.isShouldered()) {
-          EntityType<?> type = ForgeRegistries.ENTITIES.getValue(cap.getRegistryName());
+          EntityType<?> type = cap.getEntityType();
           if (type != null) {
             Entity animal = type.create(world);
             if (animal != null) {
@@ -66,11 +66,11 @@ public class ShoulderHandler {
     LivingEntity living = event.getEntityLiving();
     if (living instanceof Player player) {
       Level world = player.level;
-      LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.SHOULDER_CAPABILITY, null);
+      LazyOptional<IPlayerShoulderCapability> laycap = player.getCapability(Capabilities.PLAYER_SHOULDER, null);
       if (laycap.isPresent()) {
         IPlayerShoulderCapability cap = laycap.orElseThrow(IllegalStateException::new);
         if (cap.isShouldered()) {
-          EntityType<?> type = ForgeRegistries.ENTITIES.getValue(cap.getRegistryName());
+          EntityType<?> type = cap.getEntityType();
           if (type != null) {
             Entity animal = type.create(world);
             if (animal != null) {
