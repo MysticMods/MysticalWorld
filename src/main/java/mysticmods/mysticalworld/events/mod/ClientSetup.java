@@ -3,6 +3,7 @@ package mysticmods.mysticalworld.events.mod;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.client.model.*;
 import mysticmods.mysticalworld.client.model.armor.AntlerHatModel;
+import mysticmods.mysticalworld.client.model.armor.BeetleArmorModel;
 import mysticmods.mysticalworld.client.player.layer.ShoulderRenderLayer;
 import mysticmods.mysticalworld.client.render.*;
 import mysticmods.mysticalworld.init.ModBlocks;
@@ -72,7 +73,7 @@ public class ClientSetup {
     event.registerLayerDefinition(ModelHolder.SILVER_FOX, SilverFoxModel::createBodyLayer);
     event.registerLayerDefinition(ModelHolder.SPROUT, SproutModel::createBodyLayer);
     event.registerLayerDefinition(ModelHolder.ANTLER_ARMOR, AntlerHatModel::createBodyLayer);
-    //event.registerLayerDefinition(ModelHolder.BEETLE_ARMOR, BeetleArmorModel::createBodyLayer);
+    event.registerLayerDefinition(ModelHolder.BEETLE_ARMOR, BeetleArmorModel::createBodyLayer);
   }
 
   @SubscribeEvent

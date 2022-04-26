@@ -1,12 +1,17 @@
 package mysticmods.mysticalworld.items;
 
 import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.client.model.armor.ArmorModel;
 import mysticmods.mysticalworld.init.ModMaterials;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.IItemRenderProperties;
 
 import javax.annotation.Nullable;
+import java.util.function.Consumer;
 
 public class BeetleArmorItem extends ModifiedArmorItem {
   public BeetleArmorItem(Properties builder, EquipmentSlot slot) {
@@ -19,12 +24,14 @@ public class BeetleArmorItem extends ModifiedArmorItem {
     return MysticalWorld.MODID + ":textures/models/armor/beetle_armor.png";
   }
 
-  // TODO: Handle how custom armor models are handled
-/*  @SuppressWarnings("unchecked")
-  @Nullable
   @Override
-  @OnlyIn(Dist.CLIENT)
-  public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
-    return (A) ModelHolder.modelForSlot(slot);
-  }*/
+  public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+    consumer.accept(new IItemRenderProperties() {
+      @Nullable
+      @Override
+      public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
+        return ArmorModel.getModel(itemStack);
+      }
+    });
+  }
 }

@@ -7,6 +7,8 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +23,12 @@ public abstract class ModifiedArmorItem extends ArmorItem implements IModifiable
 
   public ModifiedArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
     super(materialIn, slot, builder);
+  }
+
+  @Nullable
+  @Override
+  public EquipmentSlot getEquipmentSlot(ItemStack stack) {
+    return getSlot();
   }
 
   @Override

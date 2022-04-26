@@ -22,9 +22,9 @@ public class ArmorModel extends HumanoidModel<LivingEntity> {
   public static void init(EntityRendererProvider.Context context) {
     antlerModel = new AntlerHatModel(context.bakeLayer(ModelHolder.ANTLER_ARMOR));
     beetleModels = new EnumMap<>(EquipmentSlot.class);
-/*    for (EquipmentSlot slot : EquipmentSlot.values()) {
+    for (EquipmentSlot slot : EquipmentSlot.values()) {
       beetleModels.put(slot, new BeetleArmorModel(context.bakeLayer(ModelHolder.BEETLE_ARMOR), slot));
-    }*/
+    }
   }
 
   @Nullable
@@ -32,7 +32,7 @@ public class ArmorModel extends HumanoidModel<LivingEntity> {
     if (stack.is(ModItems.ANTLER_HAT.get())) {
       return antlerModel;
     } else if (stack.is(ModItems.BEETLE_BOOTS.get()) || stack.is(ModItems.BEETLE_HELMET.get()) || stack.is(ModItems.BEETLE_CHESTPLATE.get()) || stack.is(ModItems.BEETLE_LEGGINGS.get())) {
-      //return beetleModels.get(stack.getEquipmentSlot());
+      return beetleModels.get(stack.getEquipmentSlot());
     }
 
     return null;
