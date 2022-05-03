@@ -1,20 +1,16 @@
 package mysticmods.mysticalworld.init;
 
-import com.mojang.serialization.Codec;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.config.FeatureConfig;
-import mysticmods.mysticalworld.config.OreConfig;
-import mysticmods.mysticalworld.world.placement.DimensionPlacement;
+import mysticmods.mysticalworld.world.DimensionPlacement;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.OreFeatures;
-import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;

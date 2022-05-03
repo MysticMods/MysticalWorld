@@ -1,7 +1,7 @@
 package mysticmods.mysticalworld.items.silver;
 
 import com.google.common.collect.Multimap;
-import mysticmods.mysticalworld.items.ModifiedShovelItem;
+import mysticmods.mysticalworld.items.modified.ModifiedShovelItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

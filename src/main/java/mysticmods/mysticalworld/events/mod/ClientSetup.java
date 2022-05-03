@@ -38,6 +38,7 @@ public class ClientSetup {
       ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_WART.get(), rendertype);
 
       ShadedClientSetup.init(event);
+      // TODO: Shoulders -- how?
       /*      Bootstrap.init(Minecraft.getInstance());*/
     });
   }

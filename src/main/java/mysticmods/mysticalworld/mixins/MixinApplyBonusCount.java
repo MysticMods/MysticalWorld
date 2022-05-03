@@ -26,7 +26,7 @@ public class MixinApplyBonusCount {
   private int serendipityValue = 0;
 
   @Inject(method = "run", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;getItemEnchantmentLevel(Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/item/ItemStack;)I"), locals = LocalCapture.CAPTURE_FAILHARD)
-  protected void applySerendipity(ItemStack stack, LootContext context, CallbackInfoReturnable<ItemStack> cir, ItemStack stack2, int enchantmentLevel) {
+  protected void MysticalWorldApplySerendipity(ItemStack stack, LootContext context, CallbackInfoReturnable<ItemStack> cir, ItemStack stack2, int enchantmentLevel) {
     Enchantment enchantment = ((ApplyBonusCount) (Object) this).enchantment;
     if (enchantment == Enchantments.BLOCK_FORTUNE) {
       Entity entity = context.getParamOrNull(LootContextParams.THIS_ENTITY);

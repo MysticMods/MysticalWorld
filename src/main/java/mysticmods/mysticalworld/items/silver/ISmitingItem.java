@@ -2,7 +2,7 @@ package mysticmods.mysticalworld.items.silver;
 
 import com.google.common.collect.Multimap;
 import mysticmods.mysticalworld.init.ModModifiers;
-import mysticmods.mysticalworld.items.IModifiable;
+import mysticmods.mysticalworld.items.modified.IModifiable;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.items;
+package mysticmods.mysticalworld.items.modified;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;

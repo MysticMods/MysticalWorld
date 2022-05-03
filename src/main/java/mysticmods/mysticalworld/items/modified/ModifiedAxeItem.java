@@ -1,17 +1,17 @@
-package mysticmods.mysticalworld.items;
+package mysticmods.mysticalworld.items.modified;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Tier;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class ModifiedSwordItem extends SwordItem implements IModifiable {
+public abstract class ModifiedAxeItem extends AxeItem implements IModifiable {
   protected Map<Attribute, AttributeModifier> modifiers = new HashMap<>();
 
   @Override
@@ -19,7 +19,7 @@ public abstract class ModifiedSwordItem extends SwordItem implements IModifiable
     return modifiers;
   }
 
-  public ModifiedSwordItem(Tier tier, int attackDamageIn, float attackSpeedIn, Properties builder) {
+  public ModifiedAxeItem(Tier tier, float attackDamageIn, float attackSpeedIn, Properties builder) {
     super(tier, attackDamageIn, attackSpeedIn, builder);
   }
 

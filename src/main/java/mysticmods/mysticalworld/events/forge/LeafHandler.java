@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class LeafHandler {
-  // TODO: Improve this
+  // TODO: Should be a global loot modifier?
 
   @SubscribeEvent
   public static void onBlockDrops(BlockEvent.BreakEvent event) {

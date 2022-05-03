@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.PlantType;
+import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -25,22 +26,17 @@ public class CommonSetup {
   @SubscribeEvent
   public static void init(FMLCommonSetupEvent event) {
     MysticalWorld.STONE_PLANT = PlantType.get("stone");
-    // TODO: Capabilities
-/*    CapabilityManager.INSTANCE.register(AnimalCooldownCapability.class, new AnimalCooldownCapabilityStorage(), AnimalCooldownCapability::new);
-    CapabilityManager.INSTANCE.register(IPlayerShoulderCapability.class, new PlayerShoulderCapabilityStorage(), PlayerShoulderCapability::new);*/
     Networking.INSTANCE.registerMessages();
 
     event.enqueueWork(() -> {
       ModEntities.registerEntities();
       ShadedCommonSetup.init(event);
-/*      ModStructures.setupStructures();
-      ConfiguredStructures.registerStructures();*/
 
       ModCompost.init();
 
       PotionRecipes.registerRecipes();
 
-      Chicken.FOOD_ITEMS = Ingredient.merge(Arrays.asList(Chicken.FOOD_ITEMS, Ingredient.of(ModItems.AUBERGINE_SEEDS.get())));
+      Chicken.FOOD_ITEMS = CompoundIngredient.of(Chicken.FOOD_ITEMS, Ingredient.of(ModItems.AUBERGINE_SEEDS.get()));
 
       // TODO: Improve this
       FireBlock fire = (FireBlock) Blocks.FIRE;

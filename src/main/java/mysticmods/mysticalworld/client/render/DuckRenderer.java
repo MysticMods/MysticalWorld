@@ -19,7 +19,6 @@ public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel> {
 
   @Override
   protected void scale(DuckEntity entity, PoseStack matrix, float partialTickTime) {
-    // TODO: matrix.scale(0.45f, 0.45f, 0.45f);
   }
 
   @Override

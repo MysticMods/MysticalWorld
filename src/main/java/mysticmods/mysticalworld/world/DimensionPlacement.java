@@ -1,8 +1,7 @@
-package mysticmods.mysticalworld.world.placement;
+package mysticmods.mysticalworld.world;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;

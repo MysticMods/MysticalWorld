@@ -1,6 +1,7 @@
 package mysticmods.mysticalworld.events.mod;
 
 import mysticmods.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.gen.BiomeTagGenerator;
 import mysticmods.mysticalworld.gen.LootTableGenerator;
 import mysticmods.mysticalworld.gen.PotionTagGenerator;
 import mysticmods.mysticalworld.init.ModRecipes;
@@ -17,6 +18,7 @@ public class DataSetup {
       UniqueShapelessRecipe.setStoredSerializer(ModRecipes.UNIQUE_SHAPELESS_RECIPE.get());
       event.getGenerator().addProvider(new LootTableGenerator(event.getGenerator()));
       event.getGenerator().addProvider(new PotionTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
+      event.getGenerator().addProvider(new BiomeTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
     }
   }
 }

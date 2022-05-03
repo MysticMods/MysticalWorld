@@ -53,9 +53,4 @@ public class WildCropBlock extends BushBlock {
     }
     return this.mayPlaceOn(worldIn.getBlockState(blockpos), worldIn, blockpos);
   }
-
-  @SuppressWarnings("deprecation")
-  @Override
-  public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
-  }
 }

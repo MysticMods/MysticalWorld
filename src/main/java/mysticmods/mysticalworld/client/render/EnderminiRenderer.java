@@ -62,12 +62,6 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
     return ENDERMINI_TEXTURES;
   }
 
-//  @Nonnull
-//  @Override
-//  public EnderminiModel<EnderminiEntity> getModel() {
-//    return ModelHolder.enderminiModel;
-//  }
-
   public static class HeldBlockLayer extends RenderLayer<EnderminiEntity, EnderminiModel<EnderminiEntity>> {
     public HeldBlockLayer(RenderLayerParent<EnderminiEntity, EnderminiModel<EnderminiEntity>> layerParent) {
       super(layerParent);

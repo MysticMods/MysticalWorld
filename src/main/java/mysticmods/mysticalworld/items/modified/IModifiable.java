@@ -1,4 +1,4 @@
-package mysticmods.mysticalworld.items;
+package mysticmods.mysticalworld.items.modified;
 
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

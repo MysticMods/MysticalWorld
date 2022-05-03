@@ -1,19 +1,17 @@
-package mysticmods.mysticalworld.items;
+package mysticmods.mysticalworld.items.modified;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tier;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class ModifiedArmorItem extends ArmorItem implements IModifiable {
+public abstract class ModifiedPickaxeItem extends PickaxeItem implements IModifiable {
   protected Map<Attribute, AttributeModifier> modifiers = new HashMap<>();
 
   @Override
@@ -21,14 +19,8 @@ public abstract class ModifiedArmorItem extends ArmorItem implements IModifiable
     return modifiers;
   }
 
-  public ModifiedArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
-    super(materialIn, slot, builder);
-  }
-
-  @Nullable
-  @Override
-  public EquipmentSlot getEquipmentSlot(ItemStack stack) {
-    return getSlot();
+  public ModifiedPickaxeItem(Tier tier, int attackDamageIn, float attackSpeedIn, Properties builder) {
+    super(tier, attackDamageIn, attackSpeedIn, builder);
   }
 
   @Override

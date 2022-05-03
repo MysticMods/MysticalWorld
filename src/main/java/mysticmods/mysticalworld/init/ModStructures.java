@@ -2,7 +2,7 @@ package mysticmods.mysticalworld.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.world.structures.MWStructure;
+import mysticmods.mysticalworld.world.MWStructure;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 
 public class ModStructures {

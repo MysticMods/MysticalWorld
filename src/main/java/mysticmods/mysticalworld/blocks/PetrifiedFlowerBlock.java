@@ -52,8 +52,7 @@ public class PetrifiedFlowerBlock extends FlowerBlock {
   @Override
   public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
     if (!worldIn.isClientSide) {
-      if (entityIn instanceof LivingEntity) {
-        LivingEntity livingentity = (LivingEntity) entityIn;
+      if (entityIn instanceof LivingEntity livingentity) {
         livingentity.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 2));
       }
     }

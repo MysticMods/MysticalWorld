@@ -43,7 +43,7 @@ public class RandomPotion extends LootItemConditionalFunction {
     Set<Potion> blacklisted = new HashSet<>();
     Registry.POTION.getTagOrEmpty(getIgnoreTag()).forEach(o -> blacklisted.add(o.value()));
 
-    List<Potion> potions = ForgeRegistries.POTIONS.getValues().stream().filter(potion -> !blacklisted.contains(potion)).collect(Collectors.toList());
+    List<Potion> potions = ForgeRegistries.POTIONS.getValues().stream().filter(potion -> !blacklisted.contains(potion)).toList();
     Potion potion = potions.get(random.nextInt(potions.size()));
     PotionUtils.setPotion(stack, potion);
     return stack;

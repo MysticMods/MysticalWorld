@@ -17,9 +17,9 @@ public class LavaCatRenderer extends MobRenderer<LavaCatEntity, LavaCatModel<Lav
   private static final ResourceLocation OBSIDIAN_KITTY = new ResourceLocation(MysticalWorld.MODID, "textures/entity/magma_cat_eyes.png");
 
   public LavaCatRenderer(@Nonnull EntityRendererProvider.Context context) {
-    super(context, new LavaCatModel(context.bakeLayer(ModelHolder.LAVA_CAT)), 0.5f);
+    super(context, new LavaCatModel<>(context.bakeLayer(ModelHolder.LAVA_CAT)), 0.5f);
     this.addLayer(new LayerLava(this, context.getModelSet()));
-    this.addLayer(new LayerEyes(this));
+    this.addLayer(new LayerEyes<>(this));
   }
 
   @Nonnull

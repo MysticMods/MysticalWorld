@@ -10,7 +10,6 @@ import net.minecraft.world.level.pathfinder.Path;
 import java.util.EnumSet;
 
 public class StalkGoal extends Goal {
-  private final Level world;
   protected PathfinderMob attacker;
   /**
    * An amount of decrementing ticks that allows the entity to attack once the tick reaches 0.
@@ -38,7 +37,6 @@ public class StalkGoal extends Goal {
 
   public StalkGoal(PathfinderMob creature, double speedIn, boolean useLongMemory) {
     this.attacker = creature;
-    this.world = creature.level;
     this.speedTowardsTarget = speedIn;
     this.longMemory = useLongMemory;
 

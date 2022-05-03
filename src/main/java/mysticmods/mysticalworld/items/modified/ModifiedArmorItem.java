@@ -1,27 +1,34 @@
-package mysticmods.mysticalworld.items;
+package mysticmods.mysticalworld.items.modified;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class ModifiedHoeItem extends HoeItem implements IModifiable {
+public abstract class ModifiedArmorItem extends ArmorItem implements IModifiable {
   protected Map<Attribute, AttributeModifier> modifiers = new HashMap<>();
-
-  public ModifiedHoeItem(Tier itemTier, int attackDamage, float attackSpeed, Properties properties) {
-    super(itemTier, attackDamage, attackSpeed, properties);
-  }
-
 
   @Override
   public Map<Attribute, AttributeModifier> getModifiers() {
     return modifiers;
+  }
+
+  public ModifiedArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
+    super(materialIn, slot, builder);
+  }
+
+  @Nullable
+  @Override
+  public EquipmentSlot getEquipmentSlot(ItemStack stack) {
+    return getSlot();
   }
 
   @Override

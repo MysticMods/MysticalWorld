@@ -3,6 +3,7 @@ package mysticmods.mysticalworld.client.model.armor;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mysticmods.mysticalworld.client.model.ModelHolder;
+import mysticmods.mysticalworld.client.player.event.RenderArmEventHandler;
 import mysticmods.mysticalworld.init.ModItems;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -25,6 +26,7 @@ public class ArmorModel extends HumanoidModel<LivingEntity> {
     for (EquipmentSlot slot : EquipmentSlot.values()) {
       beetleModels.put(slot, new BeetleArmorModel(context.bakeLayer(ModelHolder.BEETLE_ARMOR), slot));
     }
+    RenderArmEventHandler.init(context);
   }
 
   @Nullable

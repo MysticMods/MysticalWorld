@@ -5,6 +5,7 @@ import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.client.model.armor.ArmorModel;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.init.ModMaterials;
+import mysticmods.mysticalworld.items.modified.ModifiedArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

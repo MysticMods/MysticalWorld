@@ -4,19 +4,23 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import noobanidus.libs.noobutil.util.VoxelUtil;
 
 import javax.annotation.Nullable;
 
-public class BonesBlock extends HorizontalDirectionalBlock {
+public class BonesBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+  protected static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
   // TODO: Just make these into blocks
   private static final VoxelShape bone_pile_south_shape = Block.box(4, 0, 4, 12, 13, 12);
   private static final VoxelShape bone_pile_north_shape = VoxelUtil.rotateHorizontal(bone_pile_south_shape, Direction.SOUTH);
@@ -48,6 +52,8 @@ public class BonesBlock extends HorizontalDirectionalBlock {
 
   @Override
   protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    super.createBlockStateDefinition(builder);
+    builder.add(WATERLOGGED);
     builder.add(FACING);
   }
 
@@ -101,7 +107,27 @@ public class BonesBlock extends HorizontalDirectionalBlock {
   @Nullable
   @Override
   public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-    return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+    BlockState state = this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+    FluidState fluidState = pContext.getLevel().getFluidState(pContext.getClickedPos());
+    if (fluidState.getType() == Fluids.WATER) {
+      state = state.setValue(WATERLOGGED, true);
+    }
+
+    return state;
+  }
+
+  @Override
+  public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    if (stateIn.getValue(WATERLOGGED)) {
+      worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+    }
+
+    return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+  }
+
+  @Override
+  public FluidState getFluidState(BlockState state) {
+    return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
   }
 
   public enum BoneType {
