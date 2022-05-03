@@ -66,10 +66,6 @@ public class MWStructure extends StructureFeature<JigsawConfiguration> {
         false
     );
 
-    if (pieceGenerator.isPresent()) {
-      MysticalWorld.LOG.info("Structure at {}", position);
-    }
-
     return pieceGenerator;
   }
 }
