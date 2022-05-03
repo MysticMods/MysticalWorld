@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-public class StonepetalConfig extends FeatureConfig<StonepetalConfig> {
+public class StonepetalConfig extends FeatureConfig {
   private final int repeats;
   private final int tries;
   private final List<ResourceKey<Level>> dimensions;

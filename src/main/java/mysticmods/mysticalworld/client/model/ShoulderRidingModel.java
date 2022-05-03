@@ -44,8 +44,6 @@ public abstract class ShoulderRidingModel<T extends Entity> extends AgeableListM
         pMatrixStack.scale(f, f, f);
       }
 
-      // TODO: Synchronize this with the standard ageable model
-      // pMatrixStack.translate(0.0D, this.yHeadOffset / 16.0F, this.zHeadOffset / 16.0F);
       this.headParts().forEach((part) -> part.render(pMatrixStack, pBuffer, pPackedLight, pPackedOverlay));
       pMatrixStack.popPose();
       pMatrixStack.pushPose();

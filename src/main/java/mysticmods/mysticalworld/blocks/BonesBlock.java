@@ -22,7 +22,6 @@ import javax.annotation.Nullable;
 public class BonesBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
   protected static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-  // TODO: Just make these into blocks
   private static final VoxelShape bone_pile_south_shape = Block.box(4, 0, 4, 12, 13, 12);
   private static final VoxelShape bone_pile_north_shape = VoxelUtil.rotateHorizontal(bone_pile_south_shape, Direction.SOUTH);
   private static final VoxelShape bone_pile_west_shape = VoxelUtil.rotateHorizontal(bone_pile_south_shape, Direction.EAST);

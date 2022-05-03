@@ -46,6 +46,7 @@ import java.util.Set;
 
 // TODO: PlacedFeature, etc.
 
+@SuppressWarnings("OptionalGetWithoutIsPresent")
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class ModFeatures {
   private static final DeferredRegister<ConfiguredFeature<?, ?>> FEATURES = DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, MysticalWorld.MODID);
@@ -94,12 +95,13 @@ public class ModFeatures {
     PLACEMENT_MODIFIERS.register(bus);
   }
 
-  /*  public static Supplier<ConfiguredFeature<?, ?>> STONEPETAL_PATCH = new LazySupplier<>(() -> Feature.RANDOM_PATCH.configured((new RandomPatchConfiguration.GrassConfigurationBuilder(new SimpleStateProvider(ModBlocks.STONEPETAL.get().defaultBlockState()), SimpleBlockPlacer.INSTANCE)).tries(ConfigManager.STONEPETAL_CONFIG.getTries()).whitelist(Sets.newHashSet(Blocks.STONE)).build()).decorated(Features.Decorators.ADD_32).decorated(Features.Decorators.HEIGHTMAP_SQUARE).count(ConfigManager.STONEPETAL_CONFIG.getRepeats()));*/
-
   public static void load() {
   }
 
-  private static void tryPlaceFeature(BiomeLoadingEvent event, Set<BiomeDictionary.Type> types, FeatureConfig<?> config, RegistryObject<PlacedFeature> feature) {
+  private static void tryPlaceFeature(BiomeLoadingEvent event, Set<BiomeDictionary.Type> types, FeatureConfig config, RegistryObject<PlacedFeature> feature) {
+    if (!config.shouldSpawn()) {
+      return;
+    }
     for (BiomeDictionary.Type rest : config.getBiomeRestrictions()) {
       if (types.contains(rest)) {
         return;
@@ -122,16 +124,7 @@ public class ModFeatures {
     }
     if (config.isFeature()) {
       event.getGeneration().getFeatures(config.getStage()).add(feature.getHolder().get());
-    }/* else {
-      Supplier<ConfiguredStructureFeature<?, ?>> sup = config.getStructure();
-      if (sup == null) {
-        return;
-      }
-      event.getGeneration().getStructures().add(sup);
-      if (config == ConfigManager.HUT_CONFIG) {
-        event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_RUINED_HUT);
-      }
-    }*/
+    }
   }
 
   public static List<Holder<PlacedFeature>> ORE_FEATURES = null;
@@ -165,51 +158,6 @@ public class ModFeatures {
         tryPlaceFeature(event, types, ConfigManager.DEAD_TREE_CONFIG, CHARRED_TREE);
       }
       tryPlaceFeature(event, types, ConfigManager.STONEPETAL_CONFIG, STONEPETAL_PATCH);
-/*      tryPlaceFeature(event, types, ConfigManager.HUT_CONFIG);
-      tryPlaceFeature(event, types, ConfigManager.BARROW_CONFIG);
-      tryPlaceFeature(event, types, ConfigManager.SAND_HOUSE_CONFIG);*/
     }
   }
-
-/*  @SubscribeEvent
-  public static void onWorldLoad(final WorldEvent.Load event) {
-    if (event.getWorld() instanceof ServerLevel) {
-      ServerLevel world = (ServerLevel) event.getWorld();
-      if (world.getChunkSource().getGenerator() instanceof FlatLevelSource && world.dimension().equals(Level.OVERWORLD)) {
-        return;
-      }
-
-      if (GETCODEC_METHOD == null) {
-        Method codec = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
-        MethodHandles.Lookup l = MethodHandles.lookup();
-        try {
-          GETCODEC_METHOD = l.unreflect(codec);
-        } catch (IllegalAccessException e) {
-          MysticalWorld.LOG.error("Unable to unreflect codec getter.", e);
-          return;
-        }
-      }
-
-      ResourceLocation chunkGen;
-      try {
-        //noinspection unchecked
-        chunkGen = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invokeExact(world.getChunkSource().generator));
-      } catch (Throwable throwable) {
-        MysticalWorld.LOG.error("Unable to look up chunk provider's generator", throwable);
-        return;
-      }
-      if (chunkGen != null && chunkGen.getNamespace().equals("terraforrged")) {
-        return;
-      }
-
-      if (world.dimension().equals(Level.OVERWORLD)) {
-        Map<StructureFeature<?>, StructureFeatureConfiguration> temp = new HashMap<>(world.getChunkSource().generator.getSettings().structureConfig());
-        temp.put(ModStructures.BARROW_STRUCTURE, StructureSettings.DEFAULTS.get(ModStructures.BARROW_STRUCTURE));
-        temp.put(ModStructures.HUT_STRUCTURE, StructureSettings.DEFAULTS.get(ModStructures.HUT_STRUCTURE));
-        temp.put(ModStructures.RUINED_HUT_STRUCTURE, StructureSettings.DEFAULTS.get(ModStructures.RUINED_HUT_STRUCTURE));
-        temp.put(ModStructures.SAND_HOUSE_STRUCTURE, StructureSettings.DEFAULTS.get(ModStructures.SAND_HOUSE_STRUCTURE));
-        world.getChunkSource().generator.getSettings().structureConfig = temp;
-      }
-    }
-  }*/
 }

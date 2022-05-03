@@ -99,7 +99,6 @@ public class DuckModel extends AgeableListModel<DuckEntity> {
     }
     this.head.xRot = pHeadPitch * ((float) Math.PI / 180F);
     this.head.yRot = pNetHeadYaw * ((float) Math.PI / 180F);
-    // TODO: CHECK THESE
     this.leg_L.xRot = Mth.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
     this.leg_R.xRot = Mth.cos(pLimbSwing * 0.6662F + (float) Math.PI) * 1.4F * pLimbSwingAmount;
     this.wing_L.zRot = pAgeInTicks;

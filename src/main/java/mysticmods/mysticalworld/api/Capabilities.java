@@ -6,7 +6,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 
-// TODO: Re-do cap
 public class Capabilities {
   public static final ResourceLocation ANIMAL_COOLDOWN_ID = new ResourceLocation(MysticalWorld.MODID, "animal_cooldown");
   public static final ResourceLocation PLAYER_SHOULDER_ID = new ResourceLocation(MysticalWorld.MODID, "player_shoulder");

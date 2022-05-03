@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-public class TreeConfig extends FeatureConfig<TreeConfig> {
+public class TreeConfig extends FeatureConfig {
   private final double chance;
   private final List<ResourceKey<Level>> dimensions;
   private ForgeConfigSpec.DoubleValue configChance;

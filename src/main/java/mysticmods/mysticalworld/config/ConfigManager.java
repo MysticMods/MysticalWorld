@@ -36,10 +36,6 @@ public class ConfigManager {
   public static HatConfig HAT_CONFIG;
   public static TreeConfig DEAD_TREE_CONFIG;
   public static StonepetalConfig STONEPETAL_CONFIG;
-  public static StructureConfig HUT_CONFIG;
-  public static StructureConfig BARROW_CONFIG;
-  public static StructureConfig SAND_HOUSE_CONFIG;
-  public static ForgeConfigSpec.BooleanValue SEED_INJECTION;
   public static MobConfig DUCK_CONFIG;
   public static ClamConfig CLAM_CONFIG;
   public static OreConfig TIN_ORE;
@@ -47,6 +43,8 @@ public class ConfigManager {
   public static OreConfig LEAD_ORE;
   public static OreConfig SAPPHIRE_ORE;
   public static OreConfig GRANITE_QUARTZ_ORE;
+
+  public static ForgeConfigSpec.BooleanValue SEED_INJECTION;
 
   public static List<AbstractConfig> CONFIGS = new ArrayList<>();
 
@@ -96,22 +94,12 @@ public class ConfigManager {
     COMMON_BUILDER.comment("Feature Spawn Configuration").push("feature_spawns");
     DEAD_TREE_CONFIG = new TreeConfig(0.02, Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.WASTELAND), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions);
     DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
-    STONEPETAL_CONFIG = new StonepetalConfig(1, 7, Arrays.asList(BiomeDictionary.Type.MOUNTAIN), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions).setSupplierFeature(() -> /*ModFeatures.STONEPETAL_PATCH*/ null);
+    STONEPETAL_CONFIG = new StonepetalConfig(1, 7, Arrays.asList(BiomeDictionary.Type.MOUNTAIN), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions);
     STONEPETAL_CONFIG.apply(COMMON_BUILDER);
-    HUT_CONFIG = new StructureConfig("hut", Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.PLAINS), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setStructure(() -> /*ConfiguredStructures.CONFIGURED_HUT*/ null);
-    HUT_CONFIG.apply(COMMON_BUILDER);
-    BARROW_CONFIG = new StructureConfig("barrow", Arrays.asList(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.PLAINS), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setStructure(() -> /*ConfiguredStructures.CONFIGURED_BARROW*/ null);
-    BARROW_CONFIG.apply(COMMON_BUILDER);
-    SAND_HOUSE_CONFIG = new StructureConfig("sand_house", Arrays.asList(BiomeDictionary.Type.SANDY), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END)).setStructure(() -> /*ConfiguredStructures.CONFIGURED_SAND_HOUSE*/ null);
-    SAND_HOUSE_CONFIG.apply(COMMON_BUILDER);
     SEED_INJECTION = COMMON_BUILDER.comment("Whether or not the aubergine loot table is injected into the grass seed table").define("seed_injection", true);
     COMMON_BUILDER.pop();
 
     COMMON_CONFIG = COMMON_BUILDER.build();
-  }
-
-  private static void registerOreGeneration() {
-
   }
 
   private static void registerMobConfigs() {
