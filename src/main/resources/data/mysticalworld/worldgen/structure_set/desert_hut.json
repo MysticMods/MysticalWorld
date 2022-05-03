@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "mysticalworld:desert_hut",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 11496812,
+    "spacing": 90,
+    "separation": 40,
+    "type": "minecraft:random_spread"
+  }
+}

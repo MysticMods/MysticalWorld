@@ -59,5 +59,6 @@ public class MysticalWorld {
     ModTags.load();
     ModLoot.register(modBus);
     ModFeatures.register(modBus);
+    ModStructures.load();
   }
 }

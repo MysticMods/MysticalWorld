@@ -2440,3 +2440,7 @@ c629300f0afd449abf69c75296a2f8493227e4c1 data/mysticalworld/tags/items/orichalcu
 eb15eb173d13f845467a9fc45b41b917fe154cf0 data/mysticalworld/tags/items/stonepetal.json
 08f7f16ed807a5ff52291151f5035d3a61f22047 data/mysticalworld/tags/items/sugars.json
 146a3b1b56bc883ff13a1f6393ab169fb6e2d982 data/mysticalworld/tags/items/tin_items.json
+decd2705508d559fb72cfe9f852f1dfd3bdc7660 data/mysticalworld/tags/worldgen/biome/has_structure/barrow.json
+2d7bb792b86a5ab3c8d226bd3cbb7e515e7f515d data/mysticalworld/tags/worldgen/biome/has_structure/desert_hut.json
+decd2705508d559fb72cfe9f852f1dfd3bdc7660 data/mysticalworld/tags/worldgen/biome/has_structure/hut.json
+decd2705508d559fb72cfe9f852f1dfd3bdc7660 data/mysticalworld/tags/worldgen/biome/has_structure/ruined_hut.json

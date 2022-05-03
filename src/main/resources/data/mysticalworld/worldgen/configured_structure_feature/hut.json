@@ -1,0 +1,11 @@
+{
+  "type": "mysticalworld:hut",
+  "config": {
+    "start_pool": "mysticalworld:hut_pool/start_pool",
+    "size": 1
+  },
+  "biomes": "#mysticalworld:has_structure/hut",
+  "adapt_noise": true,
+  "spawn_overrides": {
+  }
+}

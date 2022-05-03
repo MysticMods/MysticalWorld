@@ -12,6 +12,7 @@ public class DataSetup {
     if (event.includeServer()) {
       event.getGenerator().addProvider(new LootTableGenerator(event.getGenerator()));
       event.getGenerator().addProvider(new PotionTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
+      event.getGenerator().addProvider(new BiomeTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
     }
   }
 }

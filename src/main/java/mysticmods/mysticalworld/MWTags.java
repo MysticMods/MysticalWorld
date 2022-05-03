@@ -7,6 +7,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
 public class MWTags {
@@ -147,4 +148,21 @@ public class MWTags {
       return TagKey.create(Registry.POTION_REGISTRY, new ResourceLocation("forge", name));
     }
   }
+
+  public static class Biomes extends MWTags {
+    public static TagKey<Biome> HAS_HUT = modTag("has_structure/hut");
+    public static TagKey<Biome> HAS_RUINED_HUT = modTag("has_structure/ruined_hut");
+    public static TagKey<Biome> HAS_BARROW = modTag("has_structure/barrow");
+    public static TagKey<Biome> HAS_DESERT_HUT = modTag("has_structure/desert_hut");
+
+    static TagKey<Biome> modTag(String name) {
+      return TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(MysticalWorld.MODID, name));
+    }
+
+    static TagKey<Biome> compatTag(String name) {
+      return TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("forge", name));
+    }
+  }
+
+
 }

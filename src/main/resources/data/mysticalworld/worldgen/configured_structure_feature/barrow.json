@@ -1,0 +1,11 @@
+{
+  "type": "mysticalworld:barrow",
+  "config": {
+    "start_pool": "mysticalworld:barrow_pool/start_pool",
+    "size": 1
+  },
+  "biomes": "#mysticalworld:has_structure/barrow",
+  "adapt_noise": true,
+  "spawn_overrides": {
+  }
+}
