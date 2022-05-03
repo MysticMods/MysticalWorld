@@ -23,13 +23,11 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Objects;
 
-import static net.minecraft.world.item.Items.CHEST;
-
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID, value = Dist.CLIENT)
 public class RenderArmEventHandler {
   public static BeetleArmorModel chestModel;
 
-  public static void init (EntityRendererProvider.Context context) {
+  public static void init(EntityRendererProvider.Context context) {
     chestModel = new BeetleArmorModel(context.bakeLayer(ModelHolder.BEETLE_ARMOR), EquipmentSlot.CHEST);
     chestModel.attackTime = 0f;
     chestModel.crouching = false;
@@ -73,7 +71,7 @@ public class RenderArmEventHandler {
     RIGHT,
     BOTH;
 
-    public boolean shouldRender (HumanoidArm hand) {
+    public boolean shouldRender(HumanoidArm hand) {
       switch (this) {
         default:
         case BOTH:

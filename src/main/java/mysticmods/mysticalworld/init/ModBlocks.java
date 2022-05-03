@@ -43,7 +43,6 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.libs.noobutil.block.BaseBlocks;
-import noobanidus.libs.noobutil.data.generator.BlockGenerator;
 import noobanidus.libs.noobutil.data.generator.BlockstateGenerator;
 import noobanidus.libs.noobutil.data.generator.ItemModelGenerator;
 import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
@@ -158,7 +157,7 @@ public class ModBlocks {
       .register();
 
   // ** WITH BLOCK ITEM **
-  private static <T extends Block> NonNullBiConsumer<RegistrateBlockLootTables, T> oreLoot (Supplier<Item> drops) {
+  private static <T extends Block> NonNullBiConsumer<RegistrateBlockLootTables, T> oreLoot(Supplier<Item> drops) {
     return (ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createOreDrop(p, drops.get()));
   }
 
@@ -242,7 +241,7 @@ public class ModBlocks {
       .loot(oreLoot(ModItems.RAW_SILVER))
       .register();
 
-  public static BlockEntry<OreBlock> SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("sapphire_ore",(p) -> new OreBlock(p, UniformInt.of(3, 7)))
+  public static BlockEntry<OreBlock> SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("sapphire_ore", (p) -> new OreBlock(p, UniformInt.of(3, 7)))
       .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -271,13 +270,13 @@ public class ModBlocks {
       .tag(MWTags.Blocks.RAW_TIN_STORAGE, BlockTags.MINEABLE_WITH_PICKAXE)
       .blockstate(BlockstateGenerator::simpleBlockstate)
       .recipe((ctx, p) ->
-        ShapedRecipeBuilder.shaped(ctx.getEntry())
-            .pattern("###")
-            .pattern("###")
-            .pattern("###")
-            .define('#', MWTags.Items.RAW_TIN)
-            .unlockedBy("has_raw_tin", RegistrateRecipeProvider.has(MWTags.Items.RAW_TIN))
-            .save(p)
+          ShapedRecipeBuilder.shaped(ctx.getEntry())
+              .pattern("###")
+              .pattern("###")
+              .pattern("###")
+              .define('#', MWTags.Items.RAW_TIN)
+              .unlockedBy("has_raw_tin", RegistrateRecipeProvider.has(MWTags.Items.RAW_TIN))
+              .save(p)
       )
       .register();
 

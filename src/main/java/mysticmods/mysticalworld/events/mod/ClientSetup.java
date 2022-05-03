@@ -8,11 +8,9 @@ import mysticmods.mysticalworld.client.player.layer.ShoulderRenderLayer;
 import mysticmods.mysticalworld.client.render.*;
 import mysticmods.mysticalworld.init.ModBlocks;
 import mysticmods.mysticalworld.init.ModEntities;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -78,7 +76,7 @@ public class ClientSetup {
   }
 
   @SubscribeEvent
-  public static void registerLayers (EntityRenderersEvent.AddLayers event) {
+  public static void registerLayers(EntityRenderersEvent.AddLayers event) {
     for (String skin : event.getSkins()) {
       LivingEntityRenderer<Player, PlayerModel<Player>> skinRenderer = event.getSkin(skin);
       if (skinRenderer != null) {

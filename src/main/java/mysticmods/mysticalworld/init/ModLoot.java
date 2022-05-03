@@ -16,7 +16,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
-import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModLoot {
@@ -32,7 +31,7 @@ public class ModLoot {
   public static final RegistryObject<LootItemConditionType> IS_MATURE = CONDITIONS.register("is_mature", () -> new LootItemConditionType(new IsMature.MatureSerializer()));
   public static final RegistryObject<LootItemConditionType> IS_ENDER = CONDITIONS.register("is_ender", () -> new LootItemConditionType(new IsEnder.EnderSerializer()));
 
-  public static void register (IEventBus bus) {
+  public static void register(IEventBus bus) {
     FUNCTIONS.register(bus);
     CONDITIONS.register(bus);
   }

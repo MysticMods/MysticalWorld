@@ -19,8 +19,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import noobanidus.libs.noobutil.recipe.UniqueShapelessRecipe;
 import noobanidus.libs.noobutil.setup.ShadedCommonSetup;
 
-import java.util.Arrays;
-
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommonSetup {
   @SubscribeEvent

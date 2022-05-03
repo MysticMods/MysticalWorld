@@ -3,8 +3,6 @@ package mysticmods.mysticalworld.gen;
 import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.data.ExistingFileHelper;

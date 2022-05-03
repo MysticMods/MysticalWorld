@@ -41,7 +41,7 @@ public class AntlerHatModel extends ArmorModel {
     super.renderToBuffer(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
   }
 
-  public static LayerDefinition createBodyLayer () {
+  public static LayerDefinition createBodyLayer() {
     MeshDefinition meshdefinition = new MeshDefinition();
     PartDefinition partdefinition = meshdefinition.getRoot();
 

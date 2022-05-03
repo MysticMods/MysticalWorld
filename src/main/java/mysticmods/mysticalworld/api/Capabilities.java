@@ -16,6 +16,6 @@ public class Capabilities {
   public static final Capability<IPlayerShoulderCapability> PLAYER_SHOULDER = CapabilityManager.get(new CapabilityToken<>() {
   });
 
-  public static void load () {
+  public static void load() {
   }
 }

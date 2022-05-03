@@ -2,7 +2,6 @@ package mysticmods.mysticalworld.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import mysticmods.mysticalworld.MWTags;
-import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;

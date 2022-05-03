@@ -1,18 +1,13 @@
 package mysticmods.mysticalworld.config;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraftforge.common.ForgeConfigSpec;
-import noobanidus.libs.noobutil.block.BaseBlocks;
 
 import java.util.List;
 import java.util.Set;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class OreConfig extends AbstractConfig {
@@ -60,7 +55,7 @@ public class OreConfig extends AbstractConfig {
     return configSize.get();
   }
 
-  public boolean shouldGenerate () {
+  public boolean shouldGenerate() {
     return getChance() > 0;
   }
 

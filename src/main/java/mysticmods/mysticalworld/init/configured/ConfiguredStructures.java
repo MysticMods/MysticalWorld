@@ -2,16 +2,13 @@ package mysticmods.mysticalworld.init.configured;
 
 import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraftforge.registries.DeferredRegister;
 import noobanidus.libs.noobutil.registry.ConfiguredRegistry;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 public class ConfiguredStructures {
   private static final DeferredRegister<ConfiguredStructureFeature<?, ?>> STRUCTURES = DeferredRegister.create(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY, MysticalWorld.MODID);

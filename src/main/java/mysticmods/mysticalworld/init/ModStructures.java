@@ -11,6 +11,6 @@ public class ModStructures {
   public static final RegistryEntry<StructureFeature<?>> RUINED_HUT_STRUCTURE = MysticalWorld.REGISTRATE.simple("ruined_hut", StructureFeature.class, MWStructure::new);
   public static final RegistryEntry<StructureFeature<?>> HUT_STRUCTURE = MysticalWorld.REGISTRATE.simple("hut", StructureFeature.class, MWStructure::new);
 
-  public static void load () {
+  public static void load() {
   }
 }

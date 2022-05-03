@@ -76,7 +76,7 @@ public class CapabilityHandler {
 
   // TODO: Glow squid ink?
   @SubscribeEvent
-  public static void attachCapability (AttachCapabilitiesEvent<Entity> event) {
+  public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
     if (event.getObject().getType() == EntityType.SQUID || event.getObject().getType() == EntityType.GLOW_SQUID) {
       event.addCapability(Capabilities.ANIMAL_COOLDOWN_ID, new AnimalCooldownCapability());
     } else if (event.getObject().getType() == EntityType.PLAYER) {
