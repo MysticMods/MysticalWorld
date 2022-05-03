@@ -433,7 +433,7 @@ public class ModBlocks {
       .tag(BlockTags.MINEABLE_WITH_SHOVEL)
       .register();
 
-  public static BlockEntry<WetMudBrick> WET_MUD_BRICK = MysticalWorld.REGISTRATE.block("wet_mud_brick", Material.DIRT, WetMudBrick::new)
+  public static BlockEntry<Block> WET_MUD_BRICK = MysticalWorld.REGISTRATE.block("wet_mud_brick", Material.DIRT, Block::new)
       .properties(o -> o.sound(SoundType.SLIME_BLOCK).strength(1f))
       .item()
       .model(ItemModelGenerator::itemModel)

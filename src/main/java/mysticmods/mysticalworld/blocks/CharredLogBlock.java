@@ -2,6 +2,7 @@ package mysticmods.mysticalworld.blocks;
 
 import net.minecraft.world.level.block.RotatedPillarBlock;
 
+// TODO: Stripping
 public class CharredLogBlock extends RotatedPillarBlock {
   private final boolean wood;
 
@@ -10,7 +11,6 @@ public class CharredLogBlock extends RotatedPillarBlock {
     this.wood = wood;
   }
 
-  // TODO: How is stripping now handled?
 /*  @Nullable
   @Override
   public BlockState getToolModifiedState(BlockState state, Level world, BlockPos pos, Player player, ItemStack stack, ToolType toolType) {

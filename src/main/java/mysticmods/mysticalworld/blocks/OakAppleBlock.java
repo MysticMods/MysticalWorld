@@ -87,6 +87,7 @@ public class OakAppleBlock extends BaseBlocks.CropsBlock {
     }
   }
 
+  // TODO: Oak logs tag
   public boolean canBlockStay(Level worldIn, BlockPos pos, BlockState state) {
     pos = pos.relative(state.getValue(FACING));
     BlockState iblockstate = worldIn.getBlockState(pos);

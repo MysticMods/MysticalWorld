@@ -18,6 +18,7 @@ import noobanidus.libs.noobutil.util.VoxelUtil;
 
 import javax.annotation.Nullable;
 
+// TODO: Adjust models where they exceed 16x16 voxels
 public class BonesBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
   protected static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
