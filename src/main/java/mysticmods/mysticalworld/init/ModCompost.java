@@ -2,7 +2,6 @@ package mysticmods.mysticalworld.init;
 
 import net.minecraft.world.level.block.ComposterBlock;
 
-// TODO: Is there a new way to do compostables?
 public class ModCompost {
   public static void init() {
     ComposterBlock.COMPOSTABLES.put(ModItems.AUBERGINE.get(), 0.65f);
