@@ -36,7 +36,7 @@ public class CommonSetup {
 
       Chicken.FOOD_ITEMS = CompoundIngredient.of(Chicken.FOOD_ITEMS, Ingredient.of(ModItems.AUBERGINE_SEEDS.get()));
 
-      // TODO: Improve this
+      // So, this is ugly, but at the same time, implementing flammable fences/etc blocks is kind of annoying so I'm happy to leave it like this.
       FireBlock fire = (FireBlock) Blocks.FIRE;
 
       fire.setFlammable(ModBlocks.THATCH_FENCE.get(), 5, 20);
