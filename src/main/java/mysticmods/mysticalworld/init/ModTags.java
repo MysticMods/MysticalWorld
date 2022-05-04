@@ -8,7 +8,6 @@ import net.minecraftforge.common.Tags;
 
 import static mysticmods.mysticalworld.MysticalWorld.REGISTRATE;
 
-// TODO: Block tool types and tiers
 @SuppressWarnings("unchecked")
 public class ModTags {
   static {
