@@ -345,7 +345,6 @@ public class ModItems {
   }
 
   // Drinkies
-  // TODO: More tags
   public static RegistryEntry<TooltipDrinkItem> APPLE_CORDIAL = MysticalWorld.REGISTRATE.item("apple_cordial", tooltipDrink("mysticalworld.drinks.slow_regen"))
       .properties(o -> o.food(ModFoods.APPLE_CORDIAL).craftRemainder(Items.GLASS_BOTTLE))
       .recipe(MysticalWorld.RECIPES.cordial(() -> ModItems.APPLE_CORDIAL, Items.APPLE))
