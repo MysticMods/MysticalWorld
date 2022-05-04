@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:gravel",
+    "#forge:stone",
+    "#forge:ores"
+  ]
+}

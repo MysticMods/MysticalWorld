@@ -1,17 +1,32 @@
 {
   "variants": {
-    "facing=north": {
+    "facing=north,waterlogged=false": {
       "model": "mysticalworld:block/bone_pile2"
     },
-    "facing=south": {
+    "facing=south,waterlogged=false": {
       "model": "mysticalworld:block/bone_pile2",
       "y": 180
     },
-    "facing=west": {
+    "facing=west,waterlogged=false": {
       "model": "mysticalworld:block/bone_pile2",
       "y": 270
     },
-    "facing=east": {
+    "facing=east,waterlogged=false": {
+      "model": "mysticalworld:block/bone_pile2",
+      "y": 90
+    },
+    "facing=north,waterlogged=true": {
+      "model": "mysticalworld:block/bone_pile2"
+    },
+    "facing=south,waterlogged=true": {
+      "model": "mysticalworld:block/bone_pile2",
+      "y": 180
+    },
+    "facing=west,waterlogged=true": {
+      "model": "mysticalworld:block/bone_pile2",
+      "y": 270
+    },
+    "facing=east,waterlogged=true": {
       "model": "mysticalworld:block/bone_pile2",
       "y": 90
     }

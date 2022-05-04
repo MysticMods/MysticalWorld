@@ -54,6 +54,8 @@ public class ModTags {
       b.tag(MWTags.Blocks.MUSHROOM_BLOCKS).add(Blocks.MUSHROOM_STEM, Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM_BLOCK);
       b.tag(MWTags.Blocks.BASE_STONE_GRANITE).add(Blocks.GRANITE);
       b.tag(MWTags.Blocks.EGGPLANT_CROP).addTag(MWTags.Blocks.AUBERGINE_CROP);
+      b.tag(MWTags.Blocks.SUPPORTS_WILD_AUBERGINE).add(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.FARMLAND);
+      b.tag(MWTags.Blocks.SUPPORTS_STONEPETAL).add(Blocks.GRAVEL).addTag(Tags.Blocks.STONE).addTag(Tags.Blocks.ORES);
     });
   }
 

@@ -1,5 +1,6 @@
 package mysticmods.mysticalworld.blocks;
 
+import mysticmods.mysticalworld.MWTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
@@ -28,10 +29,9 @@ public class WildCropBlock extends BushBlock {
     return SHAPE;
   }
 
-  // TODO: Convert to "supports_wild_aubergine_crop" tag
   @Override
   protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-    return state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT) || state.is(Blocks.PODZOL) || state.is(Blocks.FARMLAND);
+    return state.is(MWTags.Blocks.SUPPORTS_WILD_AUBERGINE);
   }
 
   @Override
