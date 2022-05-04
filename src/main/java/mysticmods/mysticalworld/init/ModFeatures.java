@@ -44,8 +44,6 @@ import java.util.List;
 import java.util.OptionalInt;
 import java.util.Set;
 
-// TODO: PlacedFeature, etc.
-
 @SuppressWarnings("OptionalGetWithoutIsPresent")
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class ModFeatures {
@@ -93,9 +91,6 @@ public class ModFeatures {
     FEATURES.register(bus);
     PLACED_FEATURES.register(bus);
     PLACEMENT_MODIFIERS.register(bus);
-  }
-
-  public static void load() {
   }
 
   private static void tryPlaceFeature(BiomeLoadingEvent event, Set<BiomeDictionary.Type> types, FeatureConfig config, RegistryObject<PlacedFeature> feature) {
