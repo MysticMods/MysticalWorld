@@ -57,7 +57,7 @@ public class ModFeatures {
 
   private static final RegistryObject<ConfiguredFeature<?, ?>> CONFIGURED_CHARRED_TREE = FEATURES.register("charred_tree", () -> new ConfiguredFeature<>(Feature.TREE, (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.CHARRED_LOG.getDefaultState()), new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(Blocks.AIR.defaultBlockState()), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))).ignoreVines().build())));
 
-  public static final RegistryObject<PlacedFeature> CHARRED_TREE = PLACED_FEATURES.register("charred_tree", () -> new PlacedFeature(CONFIGURED_CHARRED_TREE.getHolder().get(), List.of(PlacementUtils.countExtra(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, SurfaceWaterDepthFilter.forMaxDepth(0), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)), BiomeFilter.biome())));
+  public static final RegistryObject<PlacedFeature> CHARRED_TREE = PLACED_FEATURES.register("charred_tree", () -> new PlacedFeature(CONFIGURED_CHARRED_TREE.getHolder().get(), List.of(PlacementUtils.countExtra(0, (float) ConfigManager.DEAD_TREE_CONFIG.getChance(), 1), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, SurfaceWaterDepthFilter.forMaxDepth(0), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)), DimensionPlacement.of(ConfigManager.DEAD_TREE_CONFIG.getDimensions()), BiomeFilter.biome())));
 
   private static final RegistryObject<ConfiguredFeature<?, ?>> CONFIGURED_STONEPETAL = FEATURES.register("stonepetal", () -> new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.STONEPETAL.getDefaultState()))));
 
@@ -65,7 +65,7 @@ public class ModFeatures {
 
   private static final RegistryObject<ConfiguredFeature<?, ?>> CONFIGURED_STONEPETAL_PATCH = FEATURES.register("stonepetal_patch", () -> new ConfiguredFeature<>(Feature.RANDOM_PATCH, new RandomPatchConfiguration(ConfigManager.STONEPETAL_CONFIG.getTries(), 7, 3, STONEPETAL.getHolder().get())));
 
-  public static final RegistryObject<PlacedFeature> STONEPETAL_PATCH = PLACED_FEATURES.register("stonepetal_patch", () -> new PlacedFeature(CONFIGURED_STONEPETAL_PATCH.getHolder().get(), List.of(CountPlacement.of(ConfigManager.STONEPETAL_CONFIG.getRepeats()), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(3), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+  public static final RegistryObject<PlacedFeature> STONEPETAL_PATCH = PLACED_FEATURES.register("stonepetal_patch", () -> new PlacedFeature(CONFIGURED_STONEPETAL_PATCH.getHolder().get(), List.of(CountPlacement.of(ConfigManager.STONEPETAL_CONFIG.getRepeats()), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(3), DimensionPlacement.of(ConfigManager.STONEPETAL_CONFIG.getDimensions()), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 
   private static final RegistryObject<ConfiguredFeature<?, ?>> CONFIGURED_TIN_ORE = FEATURES.register("tin_ore", () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.TIN_ORE.getDefaultState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_TIN_ORE.getDefaultState())), ConfigManager.TIN_ORE.getSize())));
 
