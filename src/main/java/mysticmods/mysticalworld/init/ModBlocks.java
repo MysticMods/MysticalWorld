@@ -161,9 +161,6 @@ public class ModBlocks {
     return (ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createOreDrop(p, drops.get()));
   }
 
-
-  // TODO: The rest of the XP for ores
-  // TODO: Deepslate ore
   public static BlockEntry<OreBlock> GRANITE_QUARTZ_ORE = MysticalWorld.REGISTRATE.block("granite_quartz_ore", (p) -> new OreBlock(p, UniformInt.of(2, 5)))
       .properties(ORE_PROPERTIES)
       .item()
