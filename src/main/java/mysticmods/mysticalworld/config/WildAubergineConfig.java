@@ -14,24 +14,31 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class WildAubergineConfig extends FeatureConfig {
-  private final int chance;
+  private final int repeats;
+  private final int tries;
   private final List<ResourceKey<Level>> dimensions;
-  private ForgeConfigSpec.IntValue configChance;
+  private ForgeConfigSpec.IntValue configRepeats;
+  private ForgeConfigSpec.IntValue configTries;
   private ForgeConfigSpec.ConfigValue<List<? extends String>> configDimensions;
 
-  public WildAubergineConfig(int chance, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions, List<ResourceKey<Level>> dimensions) {
+  public WildAubergineConfig(int repeats, int tries, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions, List<ResourceKey<Level>> dimensions) {
     super(biomeTypes, biomeRestrictions);
-    this.chance = chance;
+    this.tries = tries;
+    this.repeats = repeats;
     this.dimensions = dimensions;
   }
 
-  public int getChance() {
-    return configChance.get();
+  public int getRepeats() {
+    return configRepeats.get();
+  }
+
+  public int getTries() {
+    return configTries.get();
   }
 
   @Override
   public boolean shouldSpawn() {
-    return getChance()<0;
+    return getTries() != 0;
   }
 
   @Override
@@ -42,7 +49,8 @@ public class WildAubergineConfig extends FeatureConfig {
   @Override
   public void apply(ForgeConfigSpec.Builder builder) {
     builder.comment("Wild Aubergine Generation").push("wild_aubergine");
-    configChance = builder.comment("Spawns roughly once every X (0 to disable)").defineInRange("chance", chance, 0, Integer.MAX_VALUE);
+    configTries = builder.comment("Number of tries per chunk to try placing wild aubergine (set to 0 to disable).").defineInRange("tries", tries, 0, 256);
+    configRepeats = builder.comment("Number of times per chunk to repeat trying to placing wild aubergine").defineInRange("repeats", repeats, 1, 256);
     StringJoiner sb = new StringJoiner(",");
     biomes.forEach(o -> sb.add(o.getName()));
     configBiomes = builder.comment("List of biome types to spawn (default [" + sb + "], pass empty list for every biome").define("biomes", sb.toString());

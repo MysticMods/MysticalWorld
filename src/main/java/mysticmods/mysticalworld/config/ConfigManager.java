@@ -97,7 +97,7 @@ public class ConfigManager {
     DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
     STONEPETAL_CONFIG = new StonepetalConfig(1, 7, Arrays.asList(BiomeDictionary.Type.MOUNTAIN), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions);
     STONEPETAL_CONFIG.apply(COMMON_BUILDER);
-    WILD_AUBERGINE = new WildAubergineConfig(250, Arrays.asList(BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.HILLS), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions);
+    WILD_AUBERGINE = new WildAubergineConfig(1, 20, Arrays.asList(BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.JUNGLE), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions);
     WILD_AUBERGINE.apply(COMMON_BUILDER);
     SEED_INJECTION = COMMON_BUILDER.comment("Whether or not the aubergine loot table is injected into the grass seed table").define("seed_injection", true);
     COMMON_BUILDER.pop();
