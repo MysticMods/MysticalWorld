@@ -5,9 +5,11 @@
   "refmap": "mysticalworld.refmap.json",
   "mixins": [
     "MixinApplyBonusCount",
-    "MixinPlayer"
+    "MixinPlayer",
+    "MixinPrimaryLevelData"
   ],
   "client": [
+    "MixinWorldSelectionList$WorldListEntry"
   ],
   "injectors": {
     "defaultRequire": 1

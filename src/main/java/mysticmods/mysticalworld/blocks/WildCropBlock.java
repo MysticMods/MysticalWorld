@@ -29,6 +29,8 @@ public class WildCropBlock extends BushBlock {
     return SHAPE;
   }
 
+
+
   @Override
   protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
     return state.is(MWTags.Blocks.SUPPORTS_WILD_AUBERGINE);
@@ -46,10 +48,6 @@ public class WildCropBlock extends BushBlock {
 
   @Override
   public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-    BlockPos blockpos = pos.below();
-    if (state.getBlock() == this) {
-      return true;
-    }
-    return this.mayPlaceOn(worldIn.getBlockState(blockpos), worldIn, blockpos);
+    return this.mayPlaceOn(worldIn.getBlockState(pos.below()), worldIn, pos.below());
   }
 }

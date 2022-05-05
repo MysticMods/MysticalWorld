@@ -74,8 +74,8 @@ public class OreConfig extends AbstractConfig {
     builder.comment(name + " ore generation.").push(name + "_oregen");
     configChance = builder.comment("Number of veins per chunk (set to 0 to disable).").defineInRange("oreChances", chance, 0, 256);
     configSize = builder.comment("Max size of the vein.").defineInRange("veinSize", size, 1, 256);
-    configMinY = builder.comment("Number of veins per chunk (set to 0 to disable).").defineInRange("minY", minY, 0, 256);
-    configMaxY = builder.comment("Number of veins per chunk (set to 0 to disable).").defineInRange("maxY", maxY, 0, 256);
+    configMinY = builder.comment("Minimum Y spawn").defineInRange("minY", minY, -64, 256);
+    configMaxY = builder.comment("Maximum Y spawn").defineInRange("maxY", maxY, -64, 256);
     configDimensions = builder.comment("The dimensions that this ore should spawn in as a list (default [\"minecraft:overworld\"])").defineList("dimensions", dimensions.stream().map(ResourceKey::location).map(ResourceLocation::toString).collect(Collectors.toList()), (o) -> o instanceof String);
     builder.pop();
   }

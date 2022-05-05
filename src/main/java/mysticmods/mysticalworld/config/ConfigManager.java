@@ -43,6 +43,7 @@ public class ConfigManager {
   public static OreConfig LEAD_ORE;
   public static OreConfig SAPPHIRE_ORE;
   public static OreConfig GRANITE_QUARTZ_ORE;
+  public static WildAubergineConfig WILD_AUBERGINE;
 
   public static ForgeConfigSpec.BooleanValue SEED_INJECTION;
 
@@ -63,7 +64,7 @@ public class ConfigManager {
     SILVER_ORE = new OreConfig("Silver", 4, -64, 64, 8, defaultDimensions);
     LEAD_ORE = new OreConfig("Lead", 4, -32, 50, 8, defaultDimensions);
     SAPPHIRE_ORE = new OreConfig("Sapphire", 4, -64, 50, 3, defaultDimensions);
-    GRANITE_QUARTZ_ORE = new OreConfig("Quartz", 30, -64, 256, 2, defaultDimensions);
+    GRANITE_QUARTZ_ORE = new OreConfig("Quartz", 90, -64, 256, 5, defaultDimensions);
     ORE_CONFIGS = List.of(TIN_ORE, SILVER_ORE, LEAD_ORE, SAPPHIRE_ORE, GRANITE_QUARTZ_ORE);
 
     TIN_ORE.apply(COMMON_BUILDER);
@@ -96,6 +97,8 @@ public class ConfigManager {
     DEAD_TREE_CONFIG.apply(COMMON_BUILDER);
     STONEPETAL_CONFIG = new StonepetalConfig(1, 7, Arrays.asList(BiomeDictionary.Type.MOUNTAIN), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions);
     STONEPETAL_CONFIG.apply(COMMON_BUILDER);
+    WILD_AUBERGINE = new WildAubergineConfig(250, Arrays.asList(BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.HILLS), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions);
+    WILD_AUBERGINE.apply(COMMON_BUILDER);
     SEED_INJECTION = COMMON_BUILDER.comment("Whether or not the aubergine loot table is injected into the grass seed table").define("seed_injection", true);
     COMMON_BUILDER.pop();
 

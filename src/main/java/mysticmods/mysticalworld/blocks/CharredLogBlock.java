@@ -21,6 +21,7 @@ public class CharredLogBlock extends RotatedPillarBlock {
     this.wood = wood;
   }
 
+  @SuppressWarnings("removal")
   @Nullable
   @Override
   public BlockState getToolModifiedState(BlockState state, Level world, BlockPos pos, Player player, ItemStack stack, ToolAction toolAction) {
