@@ -1,6 +1,16 @@
 package mysticmods.mysticalworld.blocks;
 
+import mysticmods.mysticalworld.init.ModBlocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
+
+import javax.annotation.Nullable;
 
 // TODO: Stripping
 public class CharredLogBlock extends RotatedPillarBlock {
@@ -11,16 +21,16 @@ public class CharredLogBlock extends RotatedPillarBlock {
     this.wood = wood;
   }
 
-/*  @Nullable
+  @Nullable
   @Override
-  public BlockState getToolModifiedState(BlockState state, Level world, BlockPos pos, Player player, ItemStack stack, ToolType toolType) {
-    if (toolType == ToolType.AXE) {
+  public BlockState getToolModifiedState(BlockState state, Level world, BlockPos pos, Player player, ItemStack stack, ToolAction toolAction) {
+    if (toolAction == ToolActions.AXE_SCRAPE) {
       if (wood) {
         return ModBlocks.STRIPPED_CHARRED_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
       } else {
         return ModBlocks.STRIPPED_CHARRED_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
       }
     }
-    return super.getToolModifiedState(state, world, pos, player, stack, toolType);
-  }*/
+    return super.getToolModifiedState(state, world, pos, player, stack, toolAction);
+  }
 }

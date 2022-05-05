@@ -125,7 +125,7 @@ public class ModBlocks {
       .tag(BlockTags.MINEABLE_WITH_AXE)
       .register();
 
-  public static BlockEntry<AubergineCropBlock> AUBERGINE_CROP = MysticalWorld.REGISTRATE.block("aubergine_crop", AubergineCropBlock::new)
+  public static BlockEntry<BaseBlocks.SeededCropsBlock> AUBERGINE_CROP = MysticalWorld.REGISTRATE.block("aubergine_crop", (b) -> new BaseBlocks.SeededCropsBlock(b, () -> ModItems.AUBERGINE_SEEDS.get()::asItem))
       .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
       .loot((p, t) -> p.
           add(ModBlocks.AUBERGINE_CROP.get(), RegistrateBlockLootTables.
