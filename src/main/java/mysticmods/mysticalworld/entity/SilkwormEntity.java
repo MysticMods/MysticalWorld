@@ -68,7 +68,6 @@ public class SilkwormEntity extends Animal {
     goalSelector.addGoal(1, new FloatGoal(this));
     goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.5d, false));
     goalSelector.addGoal(3, new RandomStrollGoal(this, 0.5d));
-    // TODO: TAG
     goalSelector.addGoal(3, new TemptGoal(this, 0.9d, Ingredient.of(ItemTags.LEAVES), false));
     goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, SilkwormEntity.class, false));
@@ -154,7 +153,10 @@ public class SilkwormEntity extends Animal {
     return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0d).add(Attributes.MOVEMENT_SPEED, 0.15d);
   }
 
-  // TODO: prevent crop trampling
+  @Override
+  public boolean canTrample(BlockState state, BlockPos pos, float fallDistance) {
+    return false;
+  }
 
   @Override
   protected SoundEvent getAmbientSound() {

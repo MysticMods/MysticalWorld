@@ -779,27 +779,27 @@ public class ModItems {
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.SILVER_INGOT, ModItems.SILVER_SWORD, null, p)).register();
 
   // ORICHALCUM
-  public static RegistryEntry<OrichalcumAxeItem> ORICHALCUM_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_axe", ItemGenerator.axe(OrichalcumAxeItem::new, ModMaterials.ORICHALCUM))
+  public static RegistryEntry<AxeItem> ORICHALCUM_AXE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_axe", ItemGenerator.axe(AxeItem::new, ModMaterials.ORICHALCUM))
       .tag(MWTags.Items.ORICHALCUM_ITEMS)
       .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_AXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.axe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_AXE, null, p)).register();
-  public static RegistryEntry<OrichalcumHoeItem> ORICHALCUM_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_hoe", ItemGenerator.hoe(OrichalcumHoeItem::new, ModMaterials.ORICHALCUM))
+  public static RegistryEntry<HoeItem> ORICHALCUM_HOE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_hoe", ItemGenerator.hoe(HoeItem::new, ModMaterials.ORICHALCUM))
       .tag(MWTags.Items.ORICHALCUM_ITEMS)
       .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_HOE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.hoe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_HOE, null, p)).register();
-  public static RegistryEntry<OrichalcumKnifeItem> ORICHALCUM_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_knife", ItemGenerator.knife(OrichalcumKnifeItem::new, ModMaterials.ORICHALCUM))
+  public static RegistryEntry<BaseItems.KnifeItem> ORICHALCUM_KNIFE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_knife", ItemGenerator.knife(BaseItems.KnifeItem::new, ModMaterials.ORICHALCUM))
       .tag(MWTags.Items.ORICHALCUM_ITEMS, MWTags.Items.KNIVES)
       .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_KNIFE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.knife(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_KNIFE, null, p)).register();
-  public static RegistryEntry<OrichalcumPickaxeItem> ORICHALCUM_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(OrichalcumPickaxeItem::new, ModMaterials.ORICHALCUM))
+  public static RegistryEntry<PickaxeItem> ORICHALCUM_PICKAXE = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_pickaxe", ItemGenerator.pickaxe(PickaxeItem::new, ModMaterials.ORICHALCUM))
       .tag(MWTags.Items.ORICHALCUM_ITEMS)
       .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_PICKAXE))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.pickaxe(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_PICKAXE, null, p)).register();
-  public static RegistryEntry<OrichalcumShovelItem> ORICHALCUM_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_shovel", ItemGenerator.shovel(OrichalcumShovelItem::new, ModMaterials.ORICHALCUM))
+  public static RegistryEntry<ShovelItem> ORICHALCUM_SHOVEL = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_shovel", ItemGenerator.shovel(ShovelItem::new, ModMaterials.ORICHALCUM))
       .tag(MWTags.Items.ORICHALCUM_ITEMS)
       .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_SHOVEL))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.shovel(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_SHOVEL, null, p)).register();
-  public static RegistryEntry<OrichalcumSwordItem> ORICHALCUM_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_sword", ItemGenerator.sword(OrichalcumSwordItem::new, ModMaterials.ORICHALCUM))
+  public static RegistryEntry<SwordItem> ORICHALCUM_SWORD = MysticalWorld.REGISTRATE.item(ModMaterials.ORICHALCUM.getInternalName() + "_sword", ItemGenerator.sword(SwordItem::new, ModMaterials.ORICHALCUM))
       .tag(MWTags.Items.ORICHALCUM_ITEMS)
       .model((ctx, p) -> p.handheld(ModItems.ORICHALCUM_SWORD))
       .recipe((ctx, p) -> MysticalWorld.RECIPES.sword(MWTags.Items.ORICHALCUM_INGOT, ModItems.ORICHALCUM_SWORD, null, p)).register();
