@@ -12,7 +12,6 @@ import net.minecraftforge.common.ToolActions;
 
 import javax.annotation.Nullable;
 
-// TODO: Stripping
 public class CharredLogBlock extends RotatedPillarBlock {
   private final boolean wood;
 

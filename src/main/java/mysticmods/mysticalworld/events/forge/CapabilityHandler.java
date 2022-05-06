@@ -34,19 +34,9 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 @Mod.EventBusSubscriber(modid = MysticalWorld.MODID)
 public class CapabilityHandler {
 
-  // TODO: Check to see what busses these are fired on
   @SubscribeEvent
   public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
     ServerPlayer player = (ServerPlayer) event.getPlayer();
-    // Shim to fix mismatched data from left/right switch.
-    if (player.getShoulderEntityRight().contains("id", Tag.TAG_STRING) && player.getShoulderEntityRight().getString("id").equals("mysticalworld:beetle")) {
-      try {
-        PlayerShoulderCapability.setRightShoulder.invokeExact((Player) player, new CompoundTag());
-      } catch (Throwable e) {
-        MysticalWorld.LOG.error("Unable to clear " + player + "'s right shoulder! Oh dear.", e);
-      }
-    }
-
     player.getCapability(Capabilities.PLAYER_SHOULDER).ifPresent((cap) -> {
       if (cap.isShouldered()) {
         ShoulderRide message = new ShoulderRide(event.getPlayer(), cap);
@@ -74,7 +64,6 @@ public class CapabilityHandler {
     }
   }
 
-  // TODO: Glow squid ink?
   @SubscribeEvent
   public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
     if (event.getObject().getType() == EntityType.SQUID || event.getObject().getType() == EntityType.GLOW_SQUID) {

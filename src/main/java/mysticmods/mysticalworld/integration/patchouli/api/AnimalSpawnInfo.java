@@ -80,6 +80,7 @@ public class AnimalSpawnInfo implements IComponentProcessor {
         StringJoiner joiner = new StringJoiner(", ");
         for (BiomeDictionary.Type biomeName : animal.getBiomes()) {
           // TODO: Localise according to 1.12
+          // TODO: How do in 1.18?
           if (biomeName != null) {
             joiner.add(WordUtils.capitalize(biomeName.getName().toLowerCase()));
           }
