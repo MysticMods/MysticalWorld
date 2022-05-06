@@ -1,5 +1,6 @@
 package mysticmods.mysticalworld.blocks;
 
+import mysticmods.mysticalworld.MWTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -87,12 +88,8 @@ public class OakAppleBlock extends BaseBlocks.CropsBlock {
     }
   }
 
-  // TODO: Oak logs tag
   public boolean canBlockStay(Level worldIn, BlockPos pos, BlockState state) {
-    pos = pos.relative(state.getValue(FACING));
-    BlockState iblockstate = worldIn.getBlockState(pos);
-    Block block = iblockstate.getBlock();
-    return block == Blocks.OAK_LOG || block == Blocks.OAK_WOOD || block == Blocks.DARK_OAK_LOG || block == Blocks.DARK_OAK_WOOD;
+    return worldIn.getBlockState(pos.relative(state.getValue(FACING))).is(MWTags.Blocks.SUPPORTS_GALL_APPLE);
   }
 
   @Override

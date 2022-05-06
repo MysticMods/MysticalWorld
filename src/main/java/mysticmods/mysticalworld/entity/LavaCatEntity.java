@@ -1,5 +1,6 @@
 package mysticmods.mysticalworld.entity;
 
+import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.init.ModSounds;
@@ -37,8 +38,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -73,9 +72,7 @@ public class LavaCatEntity extends TamableAnimal {
   }
 
   public static boolean placement(EntityType<? extends Animal> pAnimal, LevelAccessor worldIn, MobSpawnType reason, BlockPos blockpos, Random pRandom) {
-    Block block = worldIn.getBlockState(blockpos.below()).getBlock();
-    // TODO: THIS NEEDS TO BE A TAG
-    return block == Blocks.NETHERRACK || block == Blocks.OBSIDIAN || block == Blocks.MAGMA_BLOCK || block == Blocks.SOUL_SAND || block == Blocks.SOUL_SOIL || block == Blocks.NETHER_BRICKS || block == Blocks.BONE_BLOCK || block == Blocks.NETHER_WART_BLOCK || block == Blocks.NETHER_GOLD_ORE || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_QUARTZ_ORE || block == Blocks.RED_NETHER_BRICKS || block == Blocks.CHISELED_NETHER_BRICKS || block == Blocks.BASALT || block == Blocks.POLISHED_BASALT || block == Blocks.CRACKED_NETHER_BRICKS || block == Blocks.BLACKSTONE || block == Blocks.CHISELED_POLISHED_BLACKSTONE || block == Blocks.GILDED_BLACKSTONE || block == Blocks.POLISHED_BLACKSTONE || block == Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS || block == Blocks.CRIMSON_NYLIUM || block == Blocks.CRIMSON_HYPHAE || block == Blocks.WARPED_WART_BLOCK || block == Blocks.GRAVEL || block == Blocks.GLOWSTONE || block == Blocks.POLISHED_BLACKSTONE_BRICKS || block == Blocks.WARPED_NYLIUM || block == Blocks.SHROOMLIGHT;
+    return worldIn.getBlockState(blockpos.below()).is(MWTags.Blocks.SUPPORTS_LAVA_CAT_SPAWN);
   }
 
   @Override
@@ -114,10 +111,10 @@ public class LavaCatEntity extends TamableAnimal {
     return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0d).add(Attributes.MOVEMENT_SPEED, 0.25d).add(Attributes.ATTACK_DAMAGE, 2.0d);
   }
 
-  // TODO: Fix fall damage
-/*  @Override
-  public void fall(float distance, float damageMultiplier) {
-  }*/
+  @Override
+  public boolean causeFallDamage(float pFallDistance, float pMultiplier, DamageSource pSource) {
+    return false;
+  }
 
   @Override
   @Nullable

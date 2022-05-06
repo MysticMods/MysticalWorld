@@ -45,6 +45,8 @@ public class MWTags {
 
     public static TagKey<Block> SUPPORTS_WILD_AUBERGINE = modTag("supports_wild_aubergine");
     public static TagKey<Block> SUPPORTS_STONEPETAL = modTag("supports_stonepetal");
+    public static TagKey<Block> SUPPORTS_GALL_APPLE = modTag("supports_gall_apple");
+    public static TagKey<Block> SUPPORTS_LAVA_CAT_SPAWN = modTag("supports_lava_cat_spawn");
 
     static TagKey<Block> modTag(String name) {
       return BlockTags.create(new ResourceLocation(MysticalWorld.MODID, name));

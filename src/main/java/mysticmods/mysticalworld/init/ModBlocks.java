@@ -134,7 +134,7 @@ public class ModBlocks {
       .tag(MWTags.Blocks.CROPS, MWTags.Blocks.AUBERGINE_CROP, BlockTags.CROPS, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
-  public static BlockEntry<WildCropBlock> WILD_AUBERGINE = MysticalWorld.REGISTRATE.block("wild_aubergine", WildCropBlock::new)
+  public static BlockEntry<BaseBlocks.WildCropBlock> WILD_AUBERGINE = MysticalWorld.REGISTRATE.block("wild_aubergine", (b) -> new BaseBlocks.WildCropBlock(b, MWTags.Blocks.SUPPORTS_WILD_AUBERGINE))
       .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
       .loot((p, t) -> p.add(t, LootTable.lootTable().withPool(RegistrateBlockLootTables.applyExplosionCondition(ModItems.AUBERGINE.get(), LootPool.lootPool().setRolls(UniformGenerator.between(1, 3)).add(LootItem.lootTableItem(ModItems.AUBERGINE.get())))).withPool(RegistrateBlockLootTables.applyExplosionCondition(ModItems.AUBERGINE_SEEDS.get(), LootPool.lootPool().setRolls(UniformGenerator.between(1, 2)).add(LootItem.lootTableItem(ModItems.AUBERGINE_SEEDS.get()))))))
       .blockstate((ctx, p) ->
@@ -145,7 +145,7 @@ public class ModBlocks {
       .tag(BlockTags.CROPS, BlockTags.MINEABLE_WITH_AXE)
       .register();
 
-  public static BlockEntry<WildCropBlock> WILD_WART = MysticalWorld.REGISTRATE.block("wild_wart", WildCropBlock::new)
+  public static BlockEntry<BaseBlocks.WildCropBlock> WILD_WART = MysticalWorld.REGISTRATE.block("wild_wart", (b) -> new BaseBlocks.WildCropBlock(b, MWTags.Blocks.SUPPORTS_WILD_AUBERGINE)) // TODO: Supports Wild Wart tag
       .properties(o -> Block.Properties.of(Material.PLANT).noCollission().strength(0f).sound(SoundType.CROP).randomTicks())
       .loot((p, t) -> p.add(t, LootTable.lootTable().withPool(RegistrateBlockLootTables.applyExplosionCondition(Items.NETHER_WART, LootPool.lootPool().setRolls(UniformGenerator.between(1, 3)).add(LootItem.lootTableItem(Items.NETHER_WART)))).withPool(RegistrateBlockLootTables.applyExplosionCondition(Items.NETHER_WART, LootPool.lootPool().setRolls(UniformGenerator.between(1, 2)).add(LootItem.lootTableItem(Items.NETHER_WART))))))
       .blockstate((ctx, p) ->
