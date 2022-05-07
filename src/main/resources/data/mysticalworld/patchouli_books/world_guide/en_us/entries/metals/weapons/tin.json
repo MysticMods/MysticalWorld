@@ -10,7 +10,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:tin_knife",
+      "recipe": "mysticalworld:tin_knife_from_ingots_tin",
       "recipe2": "mysticalworld:tin_sword"
     }
   ]

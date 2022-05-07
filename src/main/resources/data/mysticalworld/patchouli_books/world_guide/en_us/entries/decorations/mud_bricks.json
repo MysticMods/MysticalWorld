@@ -10,15 +10,6 @@
       "text": "Crafted from $(l:decoration/mud_blocks)wet mud blocks$(), these bricks will also slow anyone walking upon them when placed in the world. $(info) All dry variants listed here are available through the stonecutter."
     },
     {
-      "flag": "modid:mysticalmachinery",
-      "type": "smelting",
-      "recipe": "mysticalworld:mud_brick_from_wet_mud_brick_smelting",
-      "link_recipe": true,
-      "title": "Drying Into Blocks",
-      "text": "In addition to a regular furnace, wet mud bricks can be cooked at a much faster rate in a Kiln. Once dried, they can be used to craft stairs and other variants found in this entry."
-    },
-    {
-      "flag": "!modid:mysticalmachinery",
       "type": "smelting",
       "recipe": "mysticalworld:mud_brick_from_wet_mud_brick_smelting",
       "link_recipe": true,

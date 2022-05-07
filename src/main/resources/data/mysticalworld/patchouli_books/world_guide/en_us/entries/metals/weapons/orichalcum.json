@@ -10,7 +10,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:orichalcum_knife",
+      "recipe": "mysticalworld:orichalcum_knife_from_ingots_orichalcum",
       "recipe2": "mysticalworld:orichalcum_sword",
       "title": "Orichalcum Weapons"
     }

@@ -10,7 +10,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:silver_knife",
+      "recipe": "mysticalworld:silver_knife_from_ingots_silver",
       "recipe2": "mysticalworld:silver_sword",
       "title": "Silver Weapons"
     }

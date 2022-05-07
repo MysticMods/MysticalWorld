@@ -10,15 +10,6 @@
       "text": "The bucket of water is not consumed in making these bricks. When placed in the world, they will become difficult terrain, slowing anyone who walks upon them. $(info) All dry variants listed here are available through the stonecutter."
     },
     {
-      "flag": "modid:mysticalmachinery",
-      "type": "smelting",
-      "recipe": "mysticalworld:mud_block_from_wet_mud_block_smelting",
-      "link_recipe": true,
-      "title": "Drying Into Blocks",
-      "text": "In addition to a regular furnace, wet mud can be cooked at a much faster rate in a Kiln. Once dried, they can be used as-is or crafted into additional $(l:decorations/mud_bricks)brick variants$()."
-    },
-    {
-      "flag": "!modid:mysticalmachinery",
       "type": "smelting",
       "recipe": "mysticalworld:mud_block_from_wet_mud_block_smelting",
       "link_recipe": true,

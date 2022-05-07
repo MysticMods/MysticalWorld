@@ -10,7 +10,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:lead_knife",
+      "recipe": "mysticalworld:lead_knife_from_ingots_lead",
       "recipe2": "mysticalworld:lead_sword",
       "title": "Lead Weapons"
     }

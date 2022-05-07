@@ -10,7 +10,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:copper_knife",
+      "recipe": "mysticalworld:copper_knife_from_ingots_copper",
       "recipe2": "mysticalworld:copper_sword",
       "title": "Copper Weapons"
     }
