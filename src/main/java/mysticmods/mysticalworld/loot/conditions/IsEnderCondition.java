@@ -8,15 +8,14 @@ import mysticmods.mysticalworld.init.ModLoot;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.Serializer;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 
-public class IsEnder implements LootItemCondition {
+public class IsEnderCondition implements LootItemCondition {
   private final boolean inverse;
 
-  public IsEnder(boolean inverseIn) {
+  public IsEnderCondition(boolean inverseIn) {
     this.inverse = inverseIn;
   }
 
@@ -39,20 +38,20 @@ public class IsEnder implements LootItemCondition {
     return ModLoot.IS_ENDER.get();
   }
 
-  public static class EnderSerializer implements Serializer<IsEnder> {
+  public static class Serializer implements net.minecraft.world.level.storage.loot.Serializer<IsEnderCondition> {
     @Override
-    public void serialize(JsonObject json, IsEnder value, JsonSerializationContext context) {
+    public void serialize(JsonObject json, IsEnderCondition value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);
     }
 
     @Override
-    public IsEnder deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new IsEnder(GsonHelper.getAsBoolean(json, "inverse", false));
+    public IsEnderCondition deserialize(JsonObject json, JsonDeserializationContext context) {
+      return new IsEnderCondition(GsonHelper.getAsBoolean(json, "inverse", false));
     }
   }
 
   public static Builder builder() {
-    return () -> new IsEnder(false);
+    return () -> new IsEnderCondition(false);
   }
 }
 

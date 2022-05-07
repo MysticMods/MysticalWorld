@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class RandomPotion extends LootItemConditionalFunction {
-  private RandomPotion(LootItemCondition[] conditions) {
+public class RandomPotionFunction extends LootItemConditionalFunction {
+  private RandomPotionFunction(LootItemCondition[] conditions) {
     super(conditions);
   }
 
@@ -49,31 +49,31 @@ public class RandomPotion extends LootItemConditionalFunction {
   }
 
   public static LootItemConditionalFunction.Builder<?> builder() {
-    return simpleBuilder(RandomPotion::new);
+    return simpleBuilder(RandomPotionFunction::new);
   }
 
-  public static class Builder extends LootItemConditionalFunction.Builder<RandomPotion.Builder> {
+  public static class Builder extends LootItemConditionalFunction.Builder<RandomPotionFunction.Builder> {
 
-    protected RandomPotion.Builder getThis() {
+    protected RandomPotionFunction.Builder getThis() {
       return this;
     }
 
-    public RandomPotion.Builder withEnchantment(Enchantment pEnchantment) {
+    public RandomPotionFunction.Builder withEnchantment(Enchantment pEnchantment) {
       return this;
     }
 
     public LootItemFunction build() {
-      return new RandomPotion(this.getConditions());
+      return new RandomPotionFunction(this.getConditions());
     }
   }
 
-  public static class Serializer extends LootItemConditionalFunction.Serializer<RandomPotion> {
-    public void serialize(JsonObject json, RandomPotion base, JsonSerializationContext context) {
+  public static class Serializer extends LootItemConditionalFunction.Serializer<RandomPotionFunction> {
+    public void serialize(JsonObject json, RandomPotionFunction base, JsonSerializationContext context) {
       super.serialize(json, base, context);
     }
 
-    public RandomPotion deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootItemCondition[] conditionsIn) {
-      return new RandomPotion(conditionsIn);
+    public RandomPotionFunction deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootItemCondition[] conditionsIn) {
+      return new RandomPotionFunction(conditionsIn);
     }
   }
 }

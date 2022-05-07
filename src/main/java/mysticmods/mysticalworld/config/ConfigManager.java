@@ -46,6 +46,7 @@ public class ConfigManager {
   public static WildAubergineConfig WILD_AUBERGINE;
 
   public static ForgeConfigSpec.BooleanValue SEED_INJECTION;
+  public static ForgeConfigSpec.BooleanValue LOOT_INJECTION;
 
   public static List<AbstractConfig> CONFIGS = new ArrayList<>();
 
@@ -100,6 +101,7 @@ public class ConfigManager {
     WILD_AUBERGINE = new WildAubergineConfig(1, 20, Arrays.asList(BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.JUNGLE), Arrays.asList(BiomeDictionary.Type.NETHER, BiomeDictionary.Type.END), defaultDimensions);
     WILD_AUBERGINE.apply(COMMON_BUILDER);
     SEED_INJECTION = COMMON_BUILDER.comment("Whether or not the aubergine loot table is injected into the grass seed table (default: false in favor of wild aubergine)").define("seed_injection", false);
+    LOOT_INJECTION = COMMON_BUILDER.comment("Whether or not loot should be injected to Vanilla tables").define("loot_injection", true);
     COMMON_BUILDER.pop();
 
     COMMON_CONFIG = COMMON_BUILDER.build();

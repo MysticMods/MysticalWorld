@@ -1,0 +1,9 @@
+{
+  "type": "mysticalworld:silkworm_egg_drops",
+  "conditions": [
+    {
+      "condition": "mysticalworld:block_tag",
+      "tag": "minecraft:leaves"
+    }
+  ]
+}

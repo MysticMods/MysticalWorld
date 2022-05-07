@@ -13,10 +13,10 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 
-public class IsObsidian implements LootItemCondition {
+public class IsLavaCondition implements LootItemCondition {
   private final boolean inverse;
 
-  public IsObsidian(boolean inverseIn) {
+  public IsLavaCondition(boolean inverseIn) {
     this.inverse = inverseIn;
   }
 
@@ -26,7 +26,7 @@ public class IsObsidian implements LootItemCondition {
     Entity looted = context.getParamOrNull(LootContextParams.THIS_ENTITY);
     if (looted instanceof LavaCatEntity) {
       LavaCatEntity cat = (LavaCatEntity) looted;
-      flag = !cat.getIsLava();
+      flag = cat.getIsLava();
     } else {
       flag = false;
     }
@@ -35,22 +35,22 @@ public class IsObsidian implements LootItemCondition {
 
   @Override
   public LootItemConditionType getType() {
-    return ModLoot.IS_OBSIDIAN.get();
+    return ModLoot.IS_LAVA.get();
   }
 
-  public static class ObsidianSerializer implements Serializer<IsObsidian> {
+  public static class LavaSerializer implements Serializer<IsLavaCondition> {
     @Override
-    public void serialize(JsonObject json, IsObsidian value, JsonSerializationContext context) {
+    public void serialize(JsonObject json, IsLavaCondition value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);
     }
 
     @Override
-    public IsObsidian deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new IsObsidian(GsonHelper.getAsBoolean(json, "inverse", false));
+    public IsLavaCondition deserialize(JsonObject json, JsonDeserializationContext context) {
+      return new IsLavaCondition(GsonHelper.getAsBoolean(json, "inverse", false));
     }
   }
 
-  private static final IsObsidian INSTANCE = new IsObsidian(false);
+  private static final IsLavaCondition INSTANCE = new IsLavaCondition(false);
 
   public static LootItemCondition.Builder builder() {
     return () -> INSTANCE;

@@ -2,6 +2,14 @@
   "replace": false,
   "entries": [
     "mysticalworld:aubergine_from_grass",
-    "mysticalworld:aubergine_from_tall_grass"
+    "mysticalworld:aubergine_from_tall_grass",
+    "mysticalworld:silk_worms_from_leaves",
+    "mysticalworld:add_loot_abandoned_mineshaft",
+    "mysticalworld:add_loot_desert_pyramid",
+    "mysticalworld:add_loot_glow_squid",
+    "mysticalworld:add_loot_jungle_temple",
+    "mysticalworld:add_loot_simple_dungeon",
+    "mysticalworld:add_loot_squid",
+    "mysticalworld:add_loot_woodland_mansion"
   ]
 }

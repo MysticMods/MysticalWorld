@@ -3,7 +3,7 @@ package mysticmods.mysticalworld.loot.conditions;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import mysticmods.mysticalworld.entity.DeerEntity;
+import mysticmods.mysticalworld.entity.LavaCatEntity;
 import mysticmods.mysticalworld.init.ModLoot;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
@@ -13,20 +13,20 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 
-public class HasHorns implements LootItemCondition {
+public class IsObsidianCondition implements LootItemCondition {
   private final boolean inverse;
 
-  public HasHorns(boolean inverseIn) {
+  public IsObsidianCondition(boolean inverseIn) {
     this.inverse = inverseIn;
   }
 
   @Override
-  public boolean test(LootContext lootContext) {
+  public boolean test(LootContext context) {
     boolean flag;
-    Entity looted = lootContext.getParamOrNull(LootContextParams.THIS_ENTITY);
-    if (looted instanceof DeerEntity) {
-      DeerEntity deer = (DeerEntity) looted;
-      flag = deer.getEntityData().get(DeerEntity.hasHorns);
+    Entity looted = context.getParamOrNull(LootContextParams.THIS_ENTITY);
+    if (looted instanceof LavaCatEntity) {
+      LavaCatEntity cat = (LavaCatEntity) looted;
+      flag = !cat.getIsLava();
     } else {
       flag = false;
     }
@@ -35,23 +35,22 @@ public class HasHorns implements LootItemCondition {
 
   @Override
   public LootItemConditionType getType() {
-    return ModLoot.HAS_HORNS.get();
+    return ModLoot.IS_OBSIDIAN.get();
   }
 
-  public static class HornSerializer implements Serializer<HasHorns> {
+  public static class ObsidianSerializer implements Serializer<IsObsidianCondition> {
     @Override
-    public void serialize(JsonObject json, HasHorns value, JsonSerializationContext context) {
-
+    public void serialize(JsonObject json, IsObsidianCondition value, JsonSerializationContext context) {
       json.addProperty("inverse", value.inverse);
     }
 
     @Override
-    public HasHorns deserialize(JsonObject json, JsonDeserializationContext context) {
-      return new HasHorns(GsonHelper.getAsBoolean(json, "inverse", false));
+    public IsObsidianCondition deserialize(JsonObject json, JsonDeserializationContext context) {
+      return new IsObsidianCondition(GsonHelper.getAsBoolean(json, "inverse", false));
     }
   }
 
-  private static final HasHorns INSTANCE = new HasHorns(false);
+  private static final IsObsidianCondition INSTANCE = new IsObsidianCondition(false);
 
   public static LootItemCondition.Builder builder() {
     return () -> INSTANCE;

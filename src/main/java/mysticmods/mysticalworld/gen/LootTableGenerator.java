@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import mysticmods.mysticalworld.MysticalWorld;
 import mysticmods.mysticalworld.init.ModItems;
-import mysticmods.mysticalworld.loot.functions.RandomPotion;
+import mysticmods.mysticalworld.loot.functions.RandomPotionFunction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -323,7 +323,7 @@ public class LootTableGenerator extends LootTableProvider {
                   LootPool.lootPool()
                       .setRolls(UniformGenerator.between(0, 1))
                       .setBonusRolls(UniformGenerator.between(1f, 2f))
-                      .add(LootItem.lootTableItem(Items.POTION).setWeight(3).apply(RandomPotion.builder()))
+                      .add(LootItem.lootTableItem(Items.POTION).setWeight(3).apply(RandomPotionFunction.builder()))
               )
       );
     }
