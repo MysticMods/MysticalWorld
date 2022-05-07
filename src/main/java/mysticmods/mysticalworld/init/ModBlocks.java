@@ -43,6 +43,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.libs.noobutil.block.BaseBlocks;
+import noobanidus.libs.noobutil.block.WaterloggedBlock;
 import noobanidus.libs.noobutil.data.generator.BlockstateGenerator;
 import noobanidus.libs.noobutil.data.generator.ItemModelGenerator;
 import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
@@ -311,7 +312,7 @@ public class ModBlocks {
       )
       .register();
 
-  public static BlockEntry<ThatchBlock> THATCH = MysticalWorld.REGISTRATE.block("thatch", Material.WOOD, ThatchBlock::new)
+  public static BlockEntry<WaterloggedBlock> THATCH = MysticalWorld.REGISTRATE.block("thatch", Material.WOOD, WaterloggedBlock::new)
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.THATCH))
       .build()
