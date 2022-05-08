@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:stone_knife_from_cobblestone"
+      "mysticalworld:stone_knife_from_stone"
     ]
   },
   "criteria": {
-    "has_cobblestone": {
+    "has_stone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:cobblestone"
+            "tag": "forge:stone"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:stone_knife_from_cobblestone"
+        "recipe": "mysticalworld:stone_knife_from_stone"
       }
     }
   },
   "requirements": [
     [
-      "has_cobblestone",
+      "has_stone",
       "has_the_recipe"
     ]
   ]

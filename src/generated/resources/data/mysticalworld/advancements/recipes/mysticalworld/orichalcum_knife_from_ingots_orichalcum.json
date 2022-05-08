@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:stone_knife_from_stone"
+      "mysticalworld:orichalcum_knife_from_ingots_orichalcum"
     ]
   },
   "criteria": {
-    "has_stone": {
+    "has_ingots_orichalcum": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:stone"
+            "tag": "forge:ingots/orichalcum"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:stone_knife_from_stone"
+        "recipe": "mysticalworld:orichalcum_knife_from_ingots_orichalcum"
       }
     }
   },
   "requirements": [
     [
-      "has_stone",
+      "has_ingots_orichalcum",
       "has_the_recipe"
     ]
   ]

@@ -15,18 +15,18 @@ ${modDescription}
 [[dependencies.${modId}]]
     modId="forge"
     mandatory=true
-    versionRange="[36.2.21,)"
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.${modId}]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,)"
+    versionRange="[1.18.2,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.${modId}]]
     modId="patchouli"
     mandatory=true
-    versionRange="[1.16.2-47,)"
+    versionRange="[1.18,)"
     ordering="NONE"
     side="BOTH"

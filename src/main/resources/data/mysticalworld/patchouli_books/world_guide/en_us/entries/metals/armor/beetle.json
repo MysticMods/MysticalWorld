@@ -1,7 +1,7 @@
 {
   "name": "Beetle Armor",
   "icon": "mysticalworld:beetle_chestplate",
-  "category": "mysticalworld:items",
+  "category": "mysticalworld:metals_armor",
   "pages": [
     {
       "type": "crafting",

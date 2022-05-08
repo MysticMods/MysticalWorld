@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:wood_knife_from_planks"
+      "mysticalworld:silver_knife_from_ingots_silver"
     ]
   },
   "criteria": {
-    "has_planks": {
+    "has_ingots_silver": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:planks"
+            "tag": "forge:ingots/silver"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:wood_knife_from_planks"
+        "recipe": "mysticalworld:silver_knife_from_ingots_silver"
       }
     }
   },
   "requirements": [
     [
-      "has_planks",
+      "has_ingots_silver",
       "has_the_recipe"
     ]
   ]

@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:diamond_knife_from_gems_diamond"
+      "mysticalworld:sapphire_knife_from_gems_sapphire"
     ]
   },
   "criteria": {
-    "has_gems_diamond": {
+    "has_gems_sapphire": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:gems/diamond"
+            "tag": "forge:gems/sapphire"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:diamond_knife_from_gems_diamond"
+        "recipe": "mysticalworld:sapphire_knife_from_gems_sapphire"
       }
     }
   },
   "requirements": [
     [
-      "has_gems_diamond",
+      "has_gems_sapphire",
       "has_the_recipe"
     ]
   ]

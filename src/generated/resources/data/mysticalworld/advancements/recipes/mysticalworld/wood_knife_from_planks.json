@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:orichalcum_knife_from_ingots_orichalcum"
+      "mysticalworld:wood_knife_from_planks"
     ]
   },
   "criteria": {
-    "has_ingots_orichalcum": {
+    "has_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/orichalcum"
+            "tag": "minecraft:planks"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:orichalcum_knife_from_ingots_orichalcum"
+        "recipe": "mysticalworld:wood_knife_from_planks"
       }
     }
   },
   "requirements": [
     [
-      "has_ingots_orichalcum",
+      "has_planks",
       "has_the_recipe"
     ]
   ]

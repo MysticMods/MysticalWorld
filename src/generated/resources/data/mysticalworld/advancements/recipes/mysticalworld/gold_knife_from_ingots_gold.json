@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:netherite_knife_from_ingots_netherite"
+      "mysticalworld:gold_knife_from_ingots_gold"
     ]
   },
   "criteria": {
-    "has_ingots_netherite": {
+    "has_ingots_gold": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/netherite"
+            "tag": "forge:ingots/gold"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:netherite_knife_from_ingots_netherite"
+        "recipe": "mysticalworld:gold_knife_from_ingots_gold"
       }
     }
   },
   "requirements": [
     [
-      "has_ingots_netherite",
+      "has_ingots_gold",
       "has_the_recipe"
     ]
   ]

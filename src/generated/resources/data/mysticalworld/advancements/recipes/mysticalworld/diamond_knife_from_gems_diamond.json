@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:lead_knife_from_ingots_lead"
+      "mysticalworld:diamond_knife_from_gems_diamond"
     ]
   },
   "criteria": {
-    "has_ingots_lead": {
+    "has_gems_diamond": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/lead"
+            "tag": "forge:gems/diamond"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:lead_knife_from_ingots_lead"
+        "recipe": "mysticalworld:diamond_knife_from_gems_diamond"
       }
     }
   },
   "requirements": [
     [
-      "has_ingots_lead",
+      "has_gems_diamond",
       "has_the_recipe"
     ]
   ]

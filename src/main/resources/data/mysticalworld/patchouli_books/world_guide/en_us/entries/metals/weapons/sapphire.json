@@ -10,7 +10,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "mysticalworld:sapphire_knife_from_ingots_sapphire",
+      "recipe": "mysticalworld:sapphire_knife_from_gems_sapphire",
       "recipe2": "mysticalworld:sapphire_sword",
       "title": "Sapphire Weapons"
     }

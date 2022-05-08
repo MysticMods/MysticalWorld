@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:silver_knife_from_ingots_silver"
+      "mysticalworld:stone_knife_from_cobblestone"
     ]
   },
   "criteria": {
-    "has_ingots_silver": {
+    "has_cobblestone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/silver"
+            "tag": "forge:cobblestone"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:silver_knife_from_ingots_silver"
+        "recipe": "mysticalworld:stone_knife_from_cobblestone"
       }
     }
   },
   "requirements": [
     [
-      "has_ingots_silver",
+      "has_cobblestone",
       "has_the_recipe"
     ]
   ]

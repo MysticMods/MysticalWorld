@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:sapphire_knife_from_gems_sapphire"
+      "mysticalworld:copper_knife_from_ingots_copper"
     ]
   },
   "criteria": {
-    "has_gems_sapphire": {
+    "has_ingots_copper": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:gems/sapphire"
+            "tag": "forge:ingots/copper"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:sapphire_knife_from_gems_sapphire"
+        "recipe": "mysticalworld:copper_knife_from_ingots_copper"
       }
     }
   },
   "requirements": [
     [
-      "has_gems_sapphire",
+      "has_ingots_copper",
       "has_the_recipe"
     ]
   ]

@@ -12,7 +12,7 @@
     {
       "type": "smelting",
       "link_recipe": true,
-      "recipe": "mysticalworld:orichalcum_ingot_from_smelting",
+      "recipe": "mysticalworld:orichalcum_ingot_from_raw_orichalcum_smelting",
       "title": "Orichalcum Ingots",
       "text": "Like all other ores, this can be smelted in a furnace or a blast furnace."
     }

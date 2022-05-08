@@ -1,0 +1,17 @@
+{
+  "name": "Netherite Weapons",
+  "icon": "mysticalworld:netherite_knife",
+  "category": "mysticalworld:metals_weapons",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "minecraft:netherite_ingot",
+      "text": "Netherite knives can be crafted."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mysticalworld:netherite_knife_from_ingots_netherite",
+      "title": "Netherite Weapons"
+    }
+  ]
+}
