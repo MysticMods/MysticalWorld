@@ -3,24 +3,20 @@
 pipeline {
     agent any
     tools {
-        jdk "jdk8u292-b10"
+        jdk "jdk-16.0.1+9"
     }
     stages {
         stage('Clean') {
             steps {
-                echo 'Resolving submodules'
+                echo 'Cleaning Project'
                 sh 'git submodule init'
                 sh 'git submodule update'
-                echo 'Cleaning Project'
                 sh 'chmod +x gradlew'
                 sh './gradlew clean'
             }
         }
         stage('Build and Deploy') {
             steps {
-                echo 'Resolving submodules'
-                sh 'git submodule init'
-                sh 'git submodule update'
                 echo 'Building and Deploying to Maven'
                 sh './gradlew build publish'
             }
@@ -31,4 +27,4 @@ pipeline {
             archive 'build/libs/**.jar'
         }
     }
-} 
+}
