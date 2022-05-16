@@ -27,7 +27,7 @@ public class ConfigManager {
   public static MobConfig SPROUT_CONFIG;
   public static HellSproutConfig HELL_SPROUT_CONFIG;
   public static MobConfig BEETLE_CONFIG;
-  public static MobConfig SILVER_FOX_CONFIG;
+  public static MobConfig FENNEC_CONFIG;
   public static MobConfig FROG_CONFIG;
   public static MobConfig ENDERMINI_CONFIG;
   public static MobConfig LAVA_CAT_CONFIG;
@@ -111,7 +111,7 @@ public class ConfigManager {
     DEER_CONFIG = new MobConfig("Deer", 6, 2, 4, Arrays.asList("forest", "icy", "taiga", "plains"));
     SPROUT_CONFIG = new MobConfig("Sprout", 2, 2, 4, Arrays.asList("jungle", "river", "forest", "beach"));
     HELL_SPROUT_CONFIG = new HellSproutConfig("Hell Sprout", 2, 1, 1, Collections.singletonList("nether"), 100);
-    SILVER_FOX_CONFIG = new MobConfig("Silver Fox", 4, 1, 3, Arrays.asList("forest", "icy", "taiga"));
+    FENNEC_CONFIG = new MobConfig("Fennec", 4, 1, 3, Arrays.asList("desert"));
     BEETLE_CONFIG = new MobConfig("Beetle", 5, 2, 4, Arrays.asList("swamp", "jungle", "forest", "plains"));
     FROG_CONFIG = new MobConfig("Frog", 6, 2, 4, Arrays.asList("swamp", "jungle", "beach", "river"));
     ENDERMINI_CONFIG = new MobConfig("Endermini", 2, 1, 2, Collections.singletonList("end"), BiomeDictionary.Type.END);
@@ -125,7 +125,7 @@ public class ConfigManager {
     DEER_CONFIG.apply(COMMON_BUILDER);
     SPROUT_CONFIG.apply(COMMON_BUILDER);
     HELL_SPROUT_CONFIG.apply(COMMON_BUILDER);
-    SILVER_FOX_CONFIG.apply(COMMON_BUILDER);
+    FENNEC_CONFIG.apply(COMMON_BUILDER);
     BEETLE_CONFIG.apply(COMMON_BUILDER);
     FROG_CONFIG.apply(COMMON_BUILDER);
     ENDERMINI_CONFIG.apply(COMMON_BUILDER);

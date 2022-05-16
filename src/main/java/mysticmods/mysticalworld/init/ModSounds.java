@@ -16,16 +16,16 @@ public class ModSounds {
   // Sprout
   public static final RegistryEntry<SoundEvent> SPROUT_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.sprout.ambient").register();
 
-  // Fox
-  public static final RegistryEntry<SoundEvent> FOX_AGGRO = MysticalWorld.REGISTRATE.soundEvent("mob.fox.aggro").register();
-  public static final RegistryEntry<SoundEvent> FOX_BARK = MysticalWorld.REGISTRATE.soundEvent("mob.fox.bark").register();
-  public static final RegistryEntry<SoundEvent> FOX_BITE = MysticalWorld.REGISTRATE.soundEvent("mob.fox.bite").register();
-  public static final RegistryEntry<SoundEvent> FOX_DEATH = MysticalWorld.REGISTRATE.soundEvent("mob.fox.death").register();
-  public static final RegistryEntry<SoundEvent> FOX_EAT = MysticalWorld.REGISTRATE.soundEvent("mob.fox.eat").register();
-  public static final RegistryEntry<SoundEvent> FOX_IDLE = MysticalWorld.REGISTRATE.soundEvent("mob.fox.idle").register();
-  public static final RegistryEntry<SoundEvent> FOX_SLEEP = MysticalWorld.REGISTRATE.soundEvent("mob.fox.sleep").register();
-  public static final RegistryEntry<SoundEvent> FOX_SNIFF = MysticalWorld.REGISTRATE.soundEvent("mob.fox.sniff").register();
-  public static final RegistryEntry<SoundEvent> FOX_SPIT = MysticalWorld.REGISTRATE.soundEvent("mob.fox.spit").register();
+  // Fennec
+  public static final RegistryEntry<SoundEvent> FENNEC_AGGRO = MysticalWorld.REGISTRATE.soundEvent("mob.fennec.aggro").register();
+  public static final RegistryEntry<SoundEvent> FENNEC_BARK = MysticalWorld.REGISTRATE.soundEvent("mob.fennec.bark").register();
+  public static final RegistryEntry<SoundEvent> FENNEC_BITE = MysticalWorld.REGISTRATE.soundEvent("mob.fennec.bite").register();
+  public static final RegistryEntry<SoundEvent> FENNEC_DEATH = MysticalWorld.REGISTRATE.soundEvent("mob.fennec.death").register();
+  public static final RegistryEntry<SoundEvent> FENNEC_EAT = MysticalWorld.REGISTRATE.soundEvent("mob.fennec.eat").register();
+  public static final RegistryEntry<SoundEvent> FENNEC_IDLE = MysticalWorld.REGISTRATE.soundEvent("mob.fennec.idle").register();
+  public static final RegistryEntry<SoundEvent> FENNEC_SLEEP = MysticalWorld.REGISTRATE.soundEvent("mob.fennec.sleep").register();
+  public static final RegistryEntry<SoundEvent> FENNEC_SNIFF = MysticalWorld.REGISTRATE.soundEvent("mob.fennec.sniff").register();
+  public static final RegistryEntry<SoundEvent> FENNEC_SPIT = MysticalWorld.REGISTRATE.soundEvent("mob.fennec.spit").register();
 
   // Silkworm
   public static final RegistryEntry<SoundEvent> SILKWORM_EGG_USE = MysticalWorld.REGISTRATE.soundEvent("mob.silkworm.egg.use").register();

@@ -53,7 +53,7 @@ public class ClientSetup {
     event.registerEntityRenderer(ModEntities.LAVA_CAT.get(), LavaCatRenderer::new);
     event.registerEntityRenderer(ModEntities.OWL.get(), OwlRenderer::new);
     event.registerEntityRenderer(ModEntities.SILKWORM.get(), SilkwormRenderer::new);
-    event.registerEntityRenderer(ModEntities.SILVER_FOX.get(), SilverFoxRenderer::new);
+    event.registerEntityRenderer(ModEntities.FENNEC.get(), Fennec::new);
     event.registerEntityRenderer(ModEntities.SPROUT.get(), SproutRenderer::new);
   }
 
@@ -69,7 +69,7 @@ public class ClientSetup {
     event.registerLayerDefinition(ModelHolder.LAVA_CAT, LavaCatModel::createBodyLayer);
     event.registerLayerDefinition(ModelHolder.OWL, OwlModel::createBodyLayer);
     event.registerLayerDefinition(ModelHolder.SILKWORM, SilkwormModel::createBodyLayer);
-    event.registerLayerDefinition(ModelHolder.SILVER_FOX, SilverFoxModel::createBodyLayer);
+    event.registerLayerDefinition(ModelHolder.FENNEC, FennecModel::createBodyLayer);
     event.registerLayerDefinition(ModelHolder.SPROUT, SproutModel::createBodyLayer);
     event.registerLayerDefinition(ModelHolder.ANTLER_ARMOR, AntlerHatModel::createBodyLayer);
     event.registerLayerDefinition(ModelHolder.BEETLE_ARMOR, BeetleArmorModel::createBodyLayer);

@@ -1039,7 +1039,7 @@ public class ModItems {
       .model(ModItems::spawnEggModel)
       .register();
 
-  public static RegistryEntry<ForgeSpawnEggItem> SILVER_FOX_SPAWN_EGG = MysticalWorld.REGISTRATE.item("silver_fox_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.SILVER_FOX, 0x9e9088, 0xF5E0D3, p))
+  public static RegistryEntry<ForgeSpawnEggItem> FENNEC_SPAWN_EGG = MysticalWorld.REGISTRATE.item("fennec_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.FENNEC, 0xe9dcc2, 0xb1855c, p))
       .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
       .model(ModItems::spawnEggModel)
       .register();

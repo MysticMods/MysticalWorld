@@ -41,11 +41,10 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 
 @SuppressWarnings("NullableProblems")
-public class SilverFoxEntity extends TamableAnimal {
-  private static final EntityDataAccessor<Float> DATA_HEALTH_ID = SynchedEntityData.defineId(SilverFoxEntity.class, EntityDataSerializers.FLOAT);
-  /*  private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(SilverFoxEntity.class, DataSerializers.BOOLEAN);*/
+public class FennecEntity extends TamableAnimal {
+  private static final EntityDataAccessor<Float> DATA_HEALTH_ID = SynchedEntityData.defineId(FennecEntity.class, EntityDataSerializers.FLOAT);
 
-  public SilverFoxEntity(EntityType<? extends SilverFoxEntity> type, Level worldIn) {
+  public FennecEntity(EntityType<? extends FennecEntity> type, Level worldIn) {
     super(type, worldIn);
     setTame(false);
     this.xpReward = 5;
@@ -59,13 +58,13 @@ public class SilverFoxEntity extends TamableAnimal {
   @Nullable
   @Override
   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-    return ModSounds.FOX_BARK.get();
+    return ModSounds.FENNEC_BARK.get();
   }
 
   @Nullable
   @Override
   protected SoundEvent getDeathSound() {
-    return ModSounds.FOX_DEATH.get();
+    return ModSounds.FENNEC_DEATH.get();
   }
 
   @Override
@@ -134,11 +133,9 @@ public class SilverFoxEntity extends TamableAnimal {
   @Override
   protected SoundEvent getAmbientSound() {
     if (this.isAngry()) {
-      return ModSounds.FOX_AGGRO.get();
-/*    } else if (this.isSleeping()) {
-      return ModSounds.FOX_SLEEP.get();*/
+      return ModSounds.FENNEC_AGGRO.get();
     } else {
-      return ModSounds.FOX_IDLE.get();
+      return ModSounds.FENNEC_IDLE.get();
     }
   }
 
@@ -182,7 +179,7 @@ public class SilverFoxEntity extends TamableAnimal {
 
     if (flag) {
       doEnchantDamageEffects(this, entityIn);
-      playSound(ModSounds.FOX_BITE.get(), 1.0f, 1.0f);
+      playSound(ModSounds.FENNEC_BITE.get(), 1.0f, 1.0f);
     }
 
     return flag;
@@ -349,10 +346,9 @@ public class SilverFoxEntity extends TamableAnimal {
   @Override
   public boolean wantsToAttack(LivingEntity target, LivingEntity owner) {
     if (!(target instanceof Creeper) && !(target instanceof Ghast)) {
-      if (target instanceof SilverFoxEntity) {
-        SilverFoxEntity entityfox = (SilverFoxEntity) target;
+      if (target instanceof FennecEntity entityFennec) {
 
-        if (entityfox.isTame() && entityfox.getOwner() == owner) {
+        if (entityFennec.isTame() && entityFennec.getOwner() == owner) {
           return false;
         }
       }
@@ -375,23 +371,23 @@ public class SilverFoxEntity extends TamableAnimal {
 
   @Override
   public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob ageable) {
-    return ModEntities.SILVER_FOX.get().create(world);
+    return ModEntities.FENNEC.get().create(world);
   }
 
   @Override
   @Nonnull
   public ResourceLocation getDefaultLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "entities/silver_fox");
+    return new ResourceLocation(MysticalWorld.MODID, "entities/fennec");
   }
 
   public static class SleepGoal extends Goal {
-    private final SilverFoxEntity tameable;
+    private final FennecEntity tameable;
     /**
      * If the EntityTameable is sitting.
      */
     private boolean isSleeping;
 
-    public SleepGoal(SilverFoxEntity entityIn) {
+    public SleepGoal(FennecEntity entityIn) {
       this.tameable = entityIn;
       EnumSet<Flag> mutexes = getFlags();
       mutexes.add(Flag.JUMP);

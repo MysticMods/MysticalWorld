@@ -112,7 +112,7 @@ public class ModEntities {
       .properties(o -> o.sized(0.5f, 0.5f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
       .register();
 
-  public static RegistryEntry<EntityType<SilverFoxEntity>> SILVER_FOX = MysticalWorld.REGISTRATE.entity("silver_fox", SilverFoxEntity::new, MobCategory.CREATURE)
+  public static RegistryEntry<EntityType<FennecEntity>> FENNEC = MysticalWorld.REGISTRATE.entity("fennec", FennecEntity::new, MobCategory.CREATURE)
       .loot((p, e) -> p.add(e, LootTable.lootTable()
               .withPool(LootPool.lootPool()
                   .add(LootItem.lootTableItem(ModItems.PELT.get())
@@ -286,7 +286,7 @@ public class ModEntities {
     configMap.put(ModEntities.BEETLE, ConfigManager.BEETLE_CONFIG);
     configMap.put(ModEntities.DEER, ConfigManager.DEER_CONFIG);
     configMap.put(ModEntities.FROG, ConfigManager.FROG_CONFIG);
-    configMap.put(ModEntities.SILVER_FOX, ConfigManager.SILVER_FOX_CONFIG);
+    configMap.put(ModEntities.FENNEC, ConfigManager.FENNEC_CONFIG);
     configMap.put(ModEntities.SPROUT, ConfigManager.SPROUT_CONFIG);
     configMap.put(ModEntities.ENDERMINI, ConfigManager.ENDERMINI_CONFIG);
     configMap.put(ModEntities.LAVA_CAT, ConfigManager.LAVA_CAT_CONFIG);
@@ -322,7 +322,7 @@ public class ModEntities {
     SpawnPlacements.register(DEER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     SpawnPlacements.register(FROG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     SpawnPlacements.register(SPROUT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-    SpawnPlacements.register(SILVER_FOX.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+    SpawnPlacements.register(FENNEC.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     SpawnPlacements.register(BEETLE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     SpawnPlacements.register(OWL.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, OwlEntity::placement);
     SpawnPlacements.register(LAVA_CAT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LavaCatEntity::placement);
@@ -337,7 +337,7 @@ public class ModEntities {
     event.put(ModEntities.BEETLE.get(), BeetleEntity.attributes().build());
     event.put(ModEntities.DEER.get(), DeerEntity.attributes().build());
     event.put(ModEntities.FROG.get(), FrogEntity.attributes().build());
-    event.put(ModEntities.SILVER_FOX.get(), SilverFoxEntity.attributes().build());
+    event.put(ModEntities.FENNEC.get(), FennecEntity.attributes().build());
     event.put(ModEntities.SPROUT.get(), SproutEntity.attributes().build());
     event.put(ModEntities.ENDERMINI.get(), EnderminiEntity.attributes().build());
     event.put(ModEntities.LAVA_CAT.get(), LavaCatEntity.attributes().build());

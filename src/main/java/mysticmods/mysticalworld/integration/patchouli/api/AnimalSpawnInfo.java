@@ -22,42 +22,18 @@ public class AnimalSpawnInfo implements IComponentProcessor {
     String name = iVariableProvider.get("animal").asString();
     this.animalName = name;
     switch (name) {
-      case "deer":
-        this.animal = ConfigManager.DEER_CONFIG;
-        break;
-      case "frog":
-        this.animal = ConfigManager.FROG_CONFIG;
-        break;
-      case "sprout":
-        this.animal = ConfigManager.SPROUT_CONFIG;
-        break;
-      case "beetle":
-        this.animal = ConfigManager.BEETLE_CONFIG;
-        break;
-      case "fox":
-        this.animal = ConfigManager.SILVER_FOX_CONFIG;
-        break;
-      case "endermini":
-        this.animal = ConfigManager.ENDERMINI_CONFIG;
-        break;
-      case "lava_cat":
-        this.animal = ConfigManager.LAVA_CAT_CONFIG;
-        break;
-      case "owl":
-        this.animal = ConfigManager.OWL_CONFIG;
-        break;
-      case "hell_sprout":
-        this.animal = ConfigManager.HELL_SPROUT_CONFIG;
-        break;
-      case "duck":
-        this.animal = ConfigManager.DUCK_CONFIG;
-        break;
-      case "clam":
-        this.animal = ConfigManager.CLAM_CONFIG;
-        break;
-      default:
-        this.animal = null;
-        break;
+      case "deer" -> this.animal = ConfigManager.DEER_CONFIG;
+      case "frog" -> this.animal = ConfigManager.FROG_CONFIG;
+      case "sprout" -> this.animal = ConfigManager.SPROUT_CONFIG;
+      case "beetle" -> this.animal = ConfigManager.BEETLE_CONFIG;
+      case "fennec" -> this.animal = ConfigManager.FENNEC_CONFIG;
+      case "endermini" -> this.animal = ConfigManager.ENDERMINI_CONFIG;
+      case "lava_cat" -> this.animal = ConfigManager.LAVA_CAT_CONFIG;
+      case "owl" -> this.animal = ConfigManager.OWL_CONFIG;
+      case "hell_sprout" -> this.animal = ConfigManager.HELL_SPROUT_CONFIG;
+      case "duck" -> this.animal = ConfigManager.DUCK_CONFIG;
+      case "clam" -> this.animal = ConfigManager.CLAM_CONFIG;
+      default -> this.animal = null;
     }
   }
 

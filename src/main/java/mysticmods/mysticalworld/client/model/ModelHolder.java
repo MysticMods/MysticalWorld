@@ -15,7 +15,7 @@ public class ModelHolder {
   public static final ModelLayerLocation LAVA_CAT = new ModelLayerLocation(new ResourceLocation(MysticalWorld.MODID, "lava_cat"), "main");
   public static final ModelLayerLocation OWL = new ModelLayerLocation(new ResourceLocation(MysticalWorld.MODID, "owl"), "main");
   public static final ModelLayerLocation SILKWORM = new ModelLayerLocation(new ResourceLocation(MysticalWorld.MODID, "silkworm"), "main");
-  public static final ModelLayerLocation SILVER_FOX = new ModelLayerLocation(new ResourceLocation(MysticalWorld.MODID, "silver_fox"), "main");
+  public static final ModelLayerLocation FENNEC = new ModelLayerLocation(new ResourceLocation(MysticalWorld.MODID, "fennec"), "main");
   public static final ModelLayerLocation SPROUT = new ModelLayerLocation(new ResourceLocation(MysticalWorld.MODID, "sprout"), "main");
   public static final ModelLayerLocation BEETLE_ARMOR = new ModelLayerLocation(new ResourceLocation(MysticalWorld.MODID, "beetle_armor"), "main");
   public static final ModelLayerLocation ANTLER_ARMOR = new ModelLayerLocation(new ResourceLocation(MysticalWorld.MODID, "antler_armor"), "main");
