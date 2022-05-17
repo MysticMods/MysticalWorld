@@ -24,7 +24,10 @@ public class ConfigManager {
 
   public static ForgeConfigSpec COMMON_CONFIG;
   public static MobConfig DEER_CONFIG;
-  public static MobConfig SPROUT_CONFIG;
+  public static MobConfig GREEN_SPROUT_CONFIG;
+  public static MobConfig RED_SPROUT_CONFIG;
+  public static MobConfig PURPLE_SPROUT_CONFIG;
+  public static MobConfig TAN_SPROUT_CONFIG;
   public static HellSproutConfig HELL_SPROUT_CONFIG;
   public static MobConfig BEETLE_CONFIG;
   public static MobConfig FENNEC_CONFIG;
@@ -109,9 +112,12 @@ public class ConfigManager {
 
   private static void registerMobConfigs() {
     DEER_CONFIG = new MobConfig("Deer", 6, 2, 4, Arrays.asList("forest", "icy", "taiga", "plains"));
-    SPROUT_CONFIG = new MobConfig("Sprout", 2, 2, 4, Arrays.asList("jungle", "river", "forest", "beach"));
+    GREEN_SPROUT_CONFIG = new MobConfig("Green Sprout", 2, 1, 3, Arrays.asList("jungle", "river", "forest", "beach"));
+    RED_SPROUT_CONFIG = new MobConfig("Red Sprout", 2, 1, 3, Arrays.asList("jungle", "river", "forest", "beach"));
+    TAN_SPROUT_CONFIG = new MobConfig("Tan Sprout", 2, 1, 3, Arrays.asList("jungle", "river", "forest", "beach"));
+    PURPLE_SPROUT_CONFIG = new MobConfig("Purple Sprout", 2, 1, 3, Arrays.asList("jungle", "river", "forest", "beach"));
     HELL_SPROUT_CONFIG = new HellSproutConfig("Hell Sprout", 2, 1, 1, Collections.singletonList("nether"), 100);
-    FENNEC_CONFIG = new MobConfig("Fennec", 4, 1, 3, Arrays.asList("desert"));
+    FENNEC_CONFIG = new MobConfig("Fennec", 4, 1, 3, Arrays.asList("sandy"));
     BEETLE_CONFIG = new MobConfig("Beetle", 5, 2, 4, Arrays.asList("swamp", "jungle", "forest", "plains"));
     FROG_CONFIG = new MobConfig("Frog", 6, 2, 4, Arrays.asList("swamp", "jungle", "beach", "river"));
     ENDERMINI_CONFIG = new MobConfig("Endermini", 2, 1, 2, Collections.singletonList("end"), BiomeDictionary.Type.END);
@@ -123,7 +129,10 @@ public class ConfigManager {
     CLAM_CONFIG = new ClamConfig("Clam", 2, 1, 1, Arrays.asList("ocean", "river", "beach", "swamp", "wet"), 31, 2300, 5100);
 
     DEER_CONFIG.apply(COMMON_BUILDER);
-    SPROUT_CONFIG.apply(COMMON_BUILDER);
+    GREEN_SPROUT_CONFIG.apply(COMMON_BUILDER);
+    TAN_SPROUT_CONFIG.apply(COMMON_BUILDER);
+    PURPLE_SPROUT_CONFIG.apply(COMMON_BUILDER);
+    RED_SPROUT_CONFIG.apply(COMMON_BUILDER);
     HELL_SPROUT_CONFIG.apply(COMMON_BUILDER);
     FENNEC_CONFIG.apply(COMMON_BUILDER);
     BEETLE_CONFIG.apply(COMMON_BUILDER);

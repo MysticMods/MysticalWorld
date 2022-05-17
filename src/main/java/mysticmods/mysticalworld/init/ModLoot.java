@@ -25,7 +25,6 @@ public class ModLoot {
   public static final RegistryObject<LootItemFunctionType> RANDOM_POTION = FUNCTIONS.register("random_potion", () -> new LootItemFunctionType(new RandomPotionFunction.Serializer()));
 
   public static final RegistryObject<LootItemConditionType> HAS_HORNS = CONDITIONS.register("has_horns", () -> new LootItemConditionType(new HasHornsCondition.HornSerializer()));
-  public static final RegistryObject<LootItemConditionType> IS_COLOR = CONDITIONS.register("is_color", () -> new LootItemConditionType(new IsColorCondition.ColorSerializer()));
   public static final RegistryObject<LootItemConditionType> IS_OBSIDIAN = CONDITIONS.register("is_lava", () -> new LootItemConditionType(new IsObsidianCondition.ObsidianSerializer()));
   public static final RegistryObject<LootItemConditionType> IS_LAVA = CONDITIONS.register("is_obsidian", () -> new LootItemConditionType(new IsLavaCondition.LavaSerializer()));
   public static final RegistryObject<LootItemConditionType> IS_MATURE = CONDITIONS.register("is_mature", () -> new LootItemConditionType(new IsMatureCondition.MatureSerializer()));

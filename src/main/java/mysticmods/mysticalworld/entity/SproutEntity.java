@@ -33,16 +33,6 @@ public class SproutEntity extends Animal {
   }
 
   @Override
-  public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob ageable) {
-    SproutEntity entity = ModEntities.SPROUT.get().create(world);
-    if (entity != null) {
-      entity.setVariant(entity.getVariant());
-    }
-
-    return entity;
-  }
-
-  @Override
   protected float getSoundVolume() {
     return 0.2f;
   }
@@ -55,20 +45,6 @@ public class SproutEntity extends Animal {
     }
 
     return null;
-  }
-
-  @Override
-  protected void defineSynchedData() {
-    super.defineSynchedData();
-    this.getEntityData().define(variant, random.nextInt(4));
-  }
-
-  private void setVariant(int variant) {
-    this.getEntityData().set(SproutEntity.variant, variant);
-  }
-
-  private int getVariant() {
-    return this.getEntityData().get(variant);
   }
 
   @Override
@@ -87,14 +63,8 @@ public class SproutEntity extends Animal {
   }
 
   @Override
-  @Nonnull
-  public ResourceLocation getDefaultLootTable() {
-    return new ResourceLocation("mysticalworld:entities/sprout");
-  }
-
-  @Override
   public boolean isFood(ItemStack stack) {
-    return stack.getItem() == ModItems.AUBERGINE.get();
+    return stack.is(MWTags.Items.AUBERGINE);
   }
 
 
@@ -103,45 +73,9 @@ public class SproutEntity extends Animal {
     return isBaby() ? getBbHeight() : 1.3F;
   }
 
+  @org.jetbrains.annotations.Nullable
   @Override
-  public void readAdditionalSaveData(CompoundTag compound) {
-    super.readAdditionalSaveData(compound);
-    getEntityData().set(variant, compound.getInt("variant"));
-  }
-
-  @Override
-  public void addAdditionalSaveData(CompoundTag compound) {
-    super.addAdditionalSaveData(compound);
-    compound.putInt("variant", getEntityData().get(variant));
-  }
-
-  public static int StringToVariant(String color) {
-    switch (color) {
-      case "tan":
-        return 1;
-      case "red":
-        return 2;
-      case "purple":
-        return 3;
-      case "green":
-        return 0;
-      default:
-        return 0;
-    }
-  }
-
-  public static String VariantToString(int variant) {
-    switch (variant) {
-      case 0:
-        return "green";
-      case 1:
-        return "tan";
-      case 2:
-        return "red";
-      case 3:
-        return "purple";
-      default:
-        return "INVALID";
-    }
+  public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
+    return (AgeableMob) getType().create(p_146743_);
   }
 }

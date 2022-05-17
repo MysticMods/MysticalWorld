@@ -140,36 +140,8 @@ public class ModEntities {
       .properties(o -> o.sized(0.5f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3).fireImmune())
       .register();
 
-  public static RegistryEntry<EntityType<SproutEntity>> SPROUT = MysticalWorld.REGISTRATE.entity("sprout", SproutEntity::new, MobCategory.CREATURE)
+  public static RegistryEntry<EntityType<SproutEntity>> TAN_SPROUT = MysticalWorld.REGISTRATE.entity("tan_sprout", SproutEntity::new, MobCategory.CREATURE)
       .loot((p, e) -> p.add(e, LootTable.lootTable()
-              .withPool(LootPool.lootPool()
-                  .add(LootItem.lootTableItem(Items.MELON_SLICE)
-                      .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
-                      .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
-                  )
-                  .when(IsColorCondition.builder("green"))
-                  .setRolls(ConstantValue.exactly(1))
-              )
-              .withPool(LootPool.lootPool()
-                  .add(LootItem.lootTableItem(ModItems.AUBERGINE.get())
-                      .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
-                      .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
-                      .apply(SmeltItemFunction.smelted()
-                          .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
-                  )
-                  .when(IsColorCondition.builder("purple"))
-                  .setRolls(ConstantValue.exactly(1))
-              )
-              .withPool(LootPool.lootPool()
-                  .add(LootItem.lootTableItem(Items.BEETROOT)
-                      .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
-                      .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
-                      .apply(SmeltItemFunction.smelted()
-                          .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
-                  )
-                  .when(IsColorCondition.builder("red"))
-                  .setRolls(ConstantValue.exactly(1))
-              )
               .withPool(LootPool.lootPool()
                   .add(LootItem.lootTableItem(Items.POTATO)
                       .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
@@ -177,7 +149,52 @@ public class ModEntities {
                       .apply(SmeltItemFunction.smelted()
                           .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
                   )
-                  .when(IsColorCondition.builder("tan"))
+                  .setRolls(ConstantValue.exactly(1))
+              )
+          )
+      )
+      .properties(o -> o.sized(0.5f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
+  public static RegistryEntry<EntityType<SproutEntity>> GREEN_SPROUT = MysticalWorld.REGISTRATE.entity("green_sprout", SproutEntity::new, MobCategory.CREATURE)
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(LootItem.lootTableItem(Items.MELON_SLICE)
+                      .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                      .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
+                  )
+                  .setRolls(ConstantValue.exactly(1))
+              )
+          )
+      )
+      .properties(o -> o.sized(0.5f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
+  public static RegistryEntry<EntityType<SproutEntity>> RED_SPROUT = MysticalWorld.REGISTRATE.entity("red_sprout", SproutEntity::new, MobCategory.CREATURE)
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(LootItem.lootTableItem(Items.BEETROOT)
+                      .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                      .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
+                      .apply(SmeltItemFunction.smelted()
+                          .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
+                  )
+                  .setRolls(ConstantValue.exactly(1))
+              )
+          )
+      )
+      .properties(o -> o.sized(0.5f, 1.0f).setTrackingRange(16).setShouldReceiveVelocityUpdates(true).setUpdateInterval(3))
+      .register();
+
+  public static RegistryEntry<EntityType<SproutEntity>> PURPLE_SPROUT = MysticalWorld.REGISTRATE.entity("purple_sprout", SproutEntity::new, MobCategory.CREATURE)
+      .loot((p, e) -> p.add(e, LootTable.lootTable()
+              .withPool(LootPool.lootPool()
+                  .add(LootItem.lootTableItem(ModItems.AUBERGINE.get())
+                      .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
+                      .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 3)))
+                      .apply(SmeltItemFunction.smelted()
+                          .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build()))))
+                  )
                   .setRolls(ConstantValue.exactly(1))
               )
           )
@@ -287,7 +304,10 @@ public class ModEntities {
     configMap.put(ModEntities.DEER, ConfigManager.DEER_CONFIG);
     configMap.put(ModEntities.FROG, ConfigManager.FROG_CONFIG);
     configMap.put(ModEntities.FENNEC, ConfigManager.FENNEC_CONFIG);
-    configMap.put(ModEntities.SPROUT, ConfigManager.SPROUT_CONFIG);
+    configMap.put(ModEntities.GREEN_SPROUT, ConfigManager.GREEN_SPROUT_CONFIG);
+    configMap.put(ModEntities.PURPLE_SPROUT, ConfigManager.PURPLE_SPROUT_CONFIG);
+    configMap.put(ModEntities.TAN_SPROUT, ConfigManager.TAN_SPROUT_CONFIG);
+    configMap.put(ModEntities.RED_SPROUT, ConfigManager.RED_SPROUT_CONFIG);
     configMap.put(ModEntities.ENDERMINI, ConfigManager.ENDERMINI_CONFIG);
     configMap.put(ModEntities.LAVA_CAT, ConfigManager.LAVA_CAT_CONFIG);
     configMap.put(ModEntities.OWL, ConfigManager.OWL_CONFIG);
@@ -313,15 +333,15 @@ public class ModEntities {
         }
       }
     }
-    if (event.getName() != null && event.getName().getNamespace().equals("mysticalbiomes") && event.getName().getPath().contains("sprout")) {
-      event.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.SPROUT.get(), 18, 2, 8));
-    }
   }
 
   public static void registerEntities() {
     SpawnPlacements.register(DEER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     SpawnPlacements.register(FROG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-    SpawnPlacements.register(SPROUT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+    SpawnPlacements.register(GREEN_SPROUT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+    SpawnPlacements.register(TAN_SPROUT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+    SpawnPlacements.register(RED_SPROUT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+    SpawnPlacements.register(PURPLE_SPROUT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     SpawnPlacements.register(FENNEC.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     SpawnPlacements.register(BEETLE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     SpawnPlacements.register(OWL.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, OwlEntity::placement);
@@ -338,7 +358,10 @@ public class ModEntities {
     event.put(ModEntities.DEER.get(), DeerEntity.attributes().build());
     event.put(ModEntities.FROG.get(), FrogEntity.attributes().build());
     event.put(ModEntities.FENNEC.get(), FennecEntity.attributes().build());
-    event.put(ModEntities.SPROUT.get(), SproutEntity.attributes().build());
+    event.put(ModEntities.GREEN_SPROUT.get(), SproutEntity.attributes().build());
+    event.put(ModEntities.TAN_SPROUT.get(), SproutEntity.attributes().build());
+    event.put(ModEntities.RED_SPROUT.get(), SproutEntity.attributes().build());
+    event.put(ModEntities.PURPLE_SPROUT.get(), SproutEntity.attributes().build());
     event.put(ModEntities.ENDERMINI.get(), EnderminiEntity.attributes().build());
     event.put(ModEntities.LAVA_CAT.get(), LavaCatEntity.attributes().build());
     event.put(ModEntities.OWL.get(), OwlEntity.attributes().build());

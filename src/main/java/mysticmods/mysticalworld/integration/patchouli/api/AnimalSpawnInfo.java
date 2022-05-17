@@ -24,7 +24,7 @@ public class AnimalSpawnInfo implements IComponentProcessor {
     switch (name) {
       case "deer" -> this.animal = ConfigManager.DEER_CONFIG;
       case "frog" -> this.animal = ConfigManager.FROG_CONFIG;
-      case "sprout" -> this.animal = ConfigManager.SPROUT_CONFIG;
+      case "sprout" -> this.animal = ConfigManager.GREEN_SPROUT_CONFIG;
       case "beetle" -> this.animal = ConfigManager.BEETLE_CONFIG;
       case "fennec" -> this.animal = ConfigManager.FENNEC_CONFIG;
       case "endermini" -> this.animal = ConfigManager.ENDERMINI_CONFIG;

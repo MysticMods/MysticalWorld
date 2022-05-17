@@ -1,83 +1,83 @@
 {
-  "mob.fox.aggro": {
+  "mob.fennec.aggro": {
     "sounds": [
-      "minecraft:mob/fox/aggro1",
-      "minecraft:mob/fox/aggro2",
-      "minecraft:mob/fox/aggro3",
-      "minecraft:mob/fox/aggro4",
-      "minecraft:mob/fox/aggro5",
-      "minecraft:mob/fox/aggro6",
-      "minecraft:mob/fox/aggro7"
+      "minecraft:mob.fennec.aggro1",
+      "minecraft:mob.fennec.aggro2",
+      "minecraft:mob.fennec.aggro3",
+      "minecraft:mob.fennec.aggro4",
+      "minecraft:mob.fennec.aggro5",
+      "minecraft:mob.fennec.aggro6",
+      "minecraft:mob.fennec.aggro7"
     ],
     "subtitle": "mysticalworld.subtitles.entity.fox.aggro"
   },
-  "mob.fox.bark": {
+  "mob.fennec.bark": {
     "sounds": [
-      "minecraft:mob/fox/hurt1",
-      "minecraft:mob/fox/hurt2",
-      "minecraft:mob/fox/hurt3",
-      "minecraft:mob/fox/hurt4"
+      "minecraft:mob.fennec.hurt1",
+      "minecraft:mob.fennec.hurt2",
+      "minecraft:mob.fennec.hurt3",
+      "minecraft:mob.fennec.hurt4"
     ],
     "subtitle": "mysticalworld.subtitles.entity.fox.bark"
   },
-  "mob.fox.bite": {
+  "mob.fennec.bite": {
     "sounds": [
-      "minecraft:mob/fox/bite1",
-      "minecraft:mob/fox/bite2",
-      "minecraft:mob/fox/bite3"
+      "minecraft:mob.fennec.bite1",
+      "minecraft:mob.fennec.bite2",
+      "minecraft:mob.fennec.bite3"
     ],
     "subtitle": "mysticalworld.subtitles.entity.fox.bite"
   },
-  "mob.fox.death": {
+  "mob.fennec.death": {
     "sounds": [
-      "minecraft:mob/fox/death1",
-      "minecraft:mob/fox/death2"
+      "minecraft:mob.fennec.death1",
+      "minecraft:mob.fennec.death2"
     ],
     "subtitle": "mysticalworld.subtitles.entity.fox.death"
   },
-  "mob.fox.eat": {
+  "mob.fennec.eat": {
     "sounds": [
-      "minecraft:mob/fox/eat1",
-      "minecraft:mob/fox/eat2",
-      "minecraft:mob/fox/eat3"
+      "minecraft:mob.fennec.eat1",
+      "minecraft:mob.fennec.eat2",
+      "minecraft:mob.fennec.eat3"
     ],
     "subtitle": "mysticalworld.subtitles.entity.fox.eat"
   },
-  "mob.fox.idle": {
+  "mob.fennec.idle": {
     "sounds": [
-      "minecraft:mob/fox/idle1",
-      "minecraft:mob/fox/idle2",
-      "minecraft:mob/fox/idle3",
-      "minecraft:mob/fox/idle4",
-      "minecraft:mob/fox/idle5",
-      "minecraft:mob/fox/idle6"
+      "minecraft:mob.fennec.idle1",
+      "minecraft:mob.fennec.idle2",
+      "minecraft:mob.fennec.idle3",
+      "minecraft:mob.fennec.idle4",
+      "minecraft:mob.fennec.idle5",
+      "minecraft:mob.fennec.idle6"
     ],
     "subtitle": "mysticalworld.subtitles.entity.fox.idle"
   },
-  "mob.fox.sleep": {
+  "mob.fennec.sleep": {
     "sounds": [
-      "minecraft:mob/fox/sleep1",
-      "minecraft:mob/fox/sleep2",
-      "minecraft:mob/fox/sleep3",
-      "minecraft:mob/fox/sleep4",
-      "minecraft:mob/fox/sleep5"
+      "minecraft:mob.fennec.sleep1",
+      "minecraft:mob.fennec.sleep2",
+      "minecraft:mob.fennec.sleep3",
+      "minecraft:mob.fennec.sleep4",
+      "minecraft:mob.fennec.sleep5"
     ],
     "subtitle": "mysticalworld.subtitles.entity.fox.sleep"
   },
-  "mob.fox.sniff": {
+  "mob.fennec.sniff": {
     "sounds": [
-      "minecraft:mob/fox/sniff1",
-      "minecraft:mob/fox/sniff2",
-      "minecraft:mob/fox/sniff3",
-      "minecraft:mob/fox/sniff4"
+      "minecraft:mob.fennec.sniff1",
+      "minecraft:mob.fennec.sniff2",
+      "minecraft:mob.fennec.sniff3",
+      "minecraft:mob.fennec.sniff4"
     ],
     "subtitle": "mysticalworld.subtitles.entity.fox.sniff"
   },
-  "mob.fox.spit": {
+  "mob.fennec.spit": {
     "sounds": [
-      "minecraft:mob/fox/spit1",
-      "minecraft:mob/fox/spit2",
-      "minecraft:mob/fox/spit3"
+      "minecraft:mob.fennec.spit1",
+      "minecraft:mob.fennec.spit2",
+      "minecraft:mob.fennec.spit3"
     ],
     "subtitle": "mysticalworld.subtitles.entity.fox.spit"
   },

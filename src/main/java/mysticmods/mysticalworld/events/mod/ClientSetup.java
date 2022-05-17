@@ -54,7 +54,10 @@ public class ClientSetup {
     event.registerEntityRenderer(ModEntities.OWL.get(), OwlRenderer::new);
     event.registerEntityRenderer(ModEntities.SILKWORM.get(), SilkwormRenderer::new);
     event.registerEntityRenderer(ModEntities.FENNEC.get(), Fennec::new);
-    event.registerEntityRenderer(ModEntities.SPROUT.get(), SproutRenderer::new);
+    event.registerEntityRenderer(ModEntities.GREEN_SPROUT.get(), SproutRenderer::new);
+    event.registerEntityRenderer(ModEntities.TAN_SPROUT.get(), SproutRenderer::new);
+    event.registerEntityRenderer(ModEntities.RED_SPROUT.get(), SproutRenderer::new);
+    event.registerEntityRenderer(ModEntities.PURPLE_SPROUT.get(), SproutRenderer::new);
   }
 
   @SubscribeEvent

@@ -1044,7 +1044,22 @@ public class ModItems {
       .model(ModItems::spawnEggModel)
       .register();
 
-  public static RegistryEntry<ForgeSpawnEggItem> SPROUT_SPAWN_EGG = MysticalWorld.REGISTRATE.item("sprout_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.SPROUT, 0xe8f442, 0xd11f5a, p))
+  public static RegistryEntry<ForgeSpawnEggItem> GREEN_SPROUT_SPAWN_EGG = MysticalWorld.REGISTRATE.item("green_sprout_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.GREEN_SPROUT, 0x9adb58, 0x2c9425, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> TAN_SPROUT_SPAWN_EGG = MysticalWorld.REGISTRATE.item("tan_sprout_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.TAN_SPROUT, 0xeeca5f, 0xbb6c20, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> RED_SPROUT_SPAWN_EGG = MysticalWorld.REGISTRATE.item("red_sprout_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.RED_SPROUT, 0xe6754c, 0xbd2637, p))
+      .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
+      .model(ModItems::spawnEggModel)
+      .register();
+
+  public static RegistryEntry<ForgeSpawnEggItem> PURPLE_SPROUT_SPAWN_EGG = MysticalWorld.REGISTRATE.item("purple_sprout_spawn_egg", (p) -> new ForgeSpawnEggItem(ModEntities.PURPLE_SPROUT, 0xdd45e6, 0x6825ba, p))
       .properties(o -> o.tab(CreativeModeTab.TAB_MISC))
       .model(ModItems::spawnEggModel)
       .register();
