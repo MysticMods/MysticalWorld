@@ -1,5 +1,6 @@
 package mysticmods.mysticalworld.entity;
 
+import mysticmods.mysticalworld.MWTags;
 import mysticmods.mysticalworld.init.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -102,13 +103,9 @@ public class OwlEntity extends TamableAnimal implements FlyingAnimal {
     this.flap += this.flapping * 2.0F;
   }
 
-  /**
-   * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
-   * the animal type)
-   */
   @Override
   public boolean isFood(ItemStack stack) {
-    return stack.getItem() == Items.RABBIT;
+    return stack.is(MWTags.Items.OWL_FOOD);
   }
 
   public static boolean placement(EntityType<? extends Animal> pAnimal, LevelAccessor worldIn, MobSpawnType reason, BlockPos blockpos, Random pRandom) {
@@ -169,9 +166,6 @@ public class OwlEntity extends TamableAnimal implements FlyingAnimal {
     return this.flyDist > this.nextFlap;
   }
 
-  /**
-   * Gets the pitch of living sounds in living entities.
-   */
   @Override
   public float getVoicePitch() {
     return getPitch(this.random);
@@ -186,9 +180,6 @@ public class OwlEntity extends TamableAnimal implements FlyingAnimal {
     return SoundSource.NEUTRAL;
   }
 
-  /**
-   * Returns true if this entity should push and be pushed by other entities when colliding.
-   */
   @Override
   public boolean isPushable() {
     return true;
@@ -201,9 +192,6 @@ public class OwlEntity extends TamableAnimal implements FlyingAnimal {
     }
   }
 
-  /**
-   * Called when the entity is attacked.
-   */
   @Override
   public boolean hurt(DamageSource source, float amount) {
     if (this.isInvulnerableTo(source)) {

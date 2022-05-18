@@ -1,7 +1,6 @@
 package mysticmods.mysticalworld.events.forge.global;
 
 import mysticmods.mysticalworld.MysticalWorld;
-import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.loot.modifiers.AddLootTableModifier;
 import mysticmods.mysticalworld.loot.modifiers.GrassDropModifier;
 import mysticmods.mysticalworld.loot.modifiers.SilkwormEggModifier;
@@ -17,12 +16,8 @@ import net.minecraftforge.fml.common.Mod;
 public class LootModifiersHandler {
   @SubscribeEvent
   public static void registerModifiers(RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
-    if (ConfigManager.SEED_INJECTION.get()) {
-      event.getRegistry().register(new GrassDropModifier.Serializer().setRegistryName(MysticalWorld.MODID, "aubergine_seed_drops"));
-    }
-    if (ConfigManager.SILKWORM_CONFIG.getLeafDropsEnabled()) {
-      event.getRegistry().register(new SilkwormEggModifier.Serializer().setRegistryName(MysticalWorld.MODID, "silkworm_egg_drops"));
-    }
+    event.getRegistry().register(new GrassDropModifier.Serializer().setRegistryName(MysticalWorld.MODID, "aubergine_seed_drops"));
+    event.getRegistry().register(new SilkwormEggModifier.Serializer().setRegistryName(MysticalWorld.MODID, "silkworm_egg_drops"));
     event.getRegistry().register(new AddLootTableModifier.Serializer().setRegistryName(MysticalWorld.MODID, "add_loot_table"));
   }
 }

@@ -80,7 +80,6 @@ public class FennecEntity extends TamableAnimal {
     goalSelector.addGoal(7, new BreedGoal(this, 1.0D));
     goalSelector.addGoal(7, new RandomLookAroundGoal(this));
     goalSelector.addGoal(8, new RandomStrollGoal(this, 1.0D));
-    //goalSelector.addGoal(9, new EntityAIBeg(this, 8.0F));
     targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
     targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
     targetSelector.addGoal(3, new HurtByTargetGoal(this));
@@ -111,7 +110,6 @@ public class FennecEntity extends TamableAnimal {
   protected void defineSynchedData() {
     super.defineSynchedData();
     this.entityData.define(DATA_HEALTH_ID, this.getHealth());
-    /*    this.dataManager.register(SLEEPING, false);*/
   }
 
   @Override
@@ -220,7 +218,6 @@ public class FennecEntity extends TamableAnimal {
           }
         }
 
-        /*            if (!(item instanceof DyeItem)) {*/
         InteractionResult actionresulttype = super.mobInteract(player, hand);
         if ((!actionresulttype.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
           this.setOrderedToSit(!this.isOrderedToSit());
@@ -231,17 +228,6 @@ public class FennecEntity extends TamableAnimal {
         }
 
         return actionresulttype;
-        /*            }*/
-
-/*            DyeColor dyecolor = ((DyeItem)item).getDyeColor();
-            if (dyecolor != this.getCollarColor()) {
-               this.setCollarColor(dyecolor);
-               if (!player.abilities.isCreativeMode) {
-                  itemstack.shrink(1);
-               }
-
-               return ActionResultType.SUCCESS;
-            }*/
       } else if (item == Items.APPLE) {
         if (!player.isCreative()) {
           itemstack.shrink(1);
@@ -264,56 +250,6 @@ public class FennecEntity extends TamableAnimal {
     }
   }
 
-/*  @Override
-  public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-    ItemStack stack = player.getHeldItem(hand);
-
-    if (isTamed()) {
-      if (!stack.isEmpty()) {
-        if (stack.getItem().isFood() && (stack.getItem() == Items.APPLE || stack.getItem() == Items.GOLDEN_APPLE)) {
-          if (dataManager.get(DATA_HEALTH_ID) < 20.0F) {
-            Food food = stack.getItem().getFood();
-            if (food != null) {
-              heal((float) food.getHealing());
-
-              if (!player.isCreative()) {
-                stack.shrink(1);
-              }
-              return ActionResultType.SUCCESS;
-            }
-          }
-        }
-      }
-
-      if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(stack)) {
-        this.setOrderedToSit(!this.isSitting());
-        this.isJumping = false;
-        this.navigator.clearPath();
-        this.setAttackTarget(null);
-      }
-    } else if (stack.getItem() == Items.APPLE && !this.isAngry()) {
-      if (!player.isCreative()) {
-        stack.shrink(1);
-      }
-
-      if (!this.world.isRemote) {
-        if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-          this.setTamedBy(player);
-          this.navigator.clearPath();
-          this.setAttackTarget(null);
-          this.setOrderedToSit(true);
-          this.setHealth(20.0F);
-          this.world.setEntityState(this, (byte) 7);
-        } else {
-          this.world.setEntityState(this, (byte) 6);
-        }
-      }
-      return ActionResultType.SUCCESS;
-    }
-
-    return super.mobInteract(player, hand);
-  }*/
-
   public boolean isAngry() {
     return (this.entityData.get(DATA_FLAGS_ID) & 2) != 0;
   }
@@ -327,21 +263,6 @@ public class FennecEntity extends TamableAnimal {
       this.entityData.set(DATA_FLAGS_ID, (byte) (b0 & -3));
     }
   }
-
-/*  @Override
-  public boolean isSleeping() {
-    try {
-      return (this.dataManager.get(SLEEPING));
-    } catch (ClassCastException e) {
-      e.printStackTrace();
-      return false;
-    }
-  }
-
-  @Override
-  public void setSleeping(boolean sleeping) {
-    this.dataManager.set(SLEEPING, sleeping);
-  }*/
 
   @Override
   public boolean wantsToAttack(LivingEntity target, LivingEntity owner) {
@@ -372,72 +293,5 @@ public class FennecEntity extends TamableAnimal {
   @Override
   public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob ageable) {
     return ModEntities.FENNEC.get().create(world);
-  }
-
-  @Override
-  @Nonnull
-  public ResourceLocation getDefaultLootTable() {
-    return new ResourceLocation(MysticalWorld.MODID, "entities/fennec");
-  }
-
-  public static class SleepGoal extends Goal {
-    private final FennecEntity tameable;
-    /**
-     * If the EntityTameable is sitting.
-     */
-    private boolean isSleeping;
-
-    public SleepGoal(FennecEntity entityIn) {
-      this.tameable = entityIn;
-      EnumSet<Flag> mutexes = getFlags();
-      mutexes.add(Flag.JUMP);
-      setFlags(mutexes);
-    }
-
-    /**
-     * Returns whether the EntityAIBase should begin execution.
-     */
-    @Override
-    public boolean canUse() {
-      if (!this.tameable.isTame()) {
-        return false;
-      } else if (this.tameable.isInWater()) {
-        return false;
-      } else if (!this.tameable.onGround) {
-        return false;
-      } else {
-        LivingEntity entitylivingbase = this.tameable.getOwner();
-
-        if (entitylivingbase == null) {
-          return true;
-        } else {
-          return (!(this.tameable.distanceToSqr(entitylivingbase) < 144.0D) || entitylivingbase.getLastHurtByMob() == null) && this.isSleeping;
-        }
-      }
-    }
-
-    /**
-     * Execute a one shot task or start executing a continuous task
-     */
-    @Override
-    public void start() {
-      this.tameable.getNavigation().stop();
-      this.tameable.setInSittingPose(true);
-    }
-
-    /**
-     * Reset the task's internal state. Called when this task is interrupted by another one
-     */
-    @Override
-    public void stop() {
-      this.tameable.setInSittingPose(false);
-    }
-
-    /**
-     * Sets the sleeping flag.
-     */
-    public void setSleeping(boolean sleeping) {
-      this.isSleeping = sleeping;
-    }
   }
 }

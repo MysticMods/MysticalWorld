@@ -45,8 +45,6 @@ import java.util.UUID;
 
 @SuppressWarnings({"Duplicates", "NullableProblems", "unused"})
 public class LavaCatEntity extends TamableAnimal {
-  private static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/lava_cat");
-
   private static final EntityDataAccessor<Boolean> IS_LAVA = SynchedEntityData.defineId(LavaCatEntity.class, EntityDataSerializers.BOOLEAN);
   private static final UUID OBSIDIAN_SPEED_MODIFIER = UUID.fromString("f58f95e9-fb51-4604-a66d-89433c9dd8a5");
   private static final AttributeModifier OBSIDIAN_SPEED = new AttributeModifier(OBSIDIAN_SPEED_MODIFIER, "Speed debuff for being obsidian", -0.05D, AttributeModifier.Operation.MULTIPLY_TOTAL);

@@ -57,7 +57,6 @@ import java.util.Set;
 // TODO: Resynchronize this with EnderMan
 @SuppressWarnings({"deprecation", "Duplicates", "NullableProblems"})
 public class EnderminiEntity extends PathfinderMob {
-  public static final ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/endermini");
   private static final Set<Block> CARRIABLE_BLOCKS = Sets.newIdentityHashSet();
   private static final EntityDataAccessor<java.util.Optional<BlockState>> CARRIED_BLOCK = SynchedEntityData.defineId(EnderminiEntity.class, EntityDataSerializers.BLOCK_STATE);
   private static final EntityDataAccessor<Boolean> SCREAMING = SynchedEntityData.defineId(EnderminiEntity.class, EntityDataSerializers.BOOLEAN);

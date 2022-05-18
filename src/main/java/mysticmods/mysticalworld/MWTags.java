@@ -133,6 +133,8 @@ public class MWTags {
 
     public static TagKey<Item> BOTTLES = compatTag("bottles");
 
+    public static TagKey<Item> OWL_FOOD = modTag("owl_food");
+
     static TagKey<Item> modTag(String name) {
       return ItemTags.create(new ResourceLocation(MysticalWorld.MODID, name));
     }

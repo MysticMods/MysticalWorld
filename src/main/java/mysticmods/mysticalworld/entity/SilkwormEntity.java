@@ -36,8 +36,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 
 public class SilkwormEntity extends Animal {
-  public static ResourceLocation LOOT_TABLE = new ResourceLocation(MysticalWorld.MODID, "entity/silkworm");
-
   private static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(SilkwormEntity.class, EntityDataSerializers.INT);
   private static final EntityDataAccessor<Integer> LEAVES_CONSUMED = SynchedEntityData.defineId(SilkwormEntity.class, EntityDataSerializers.INT);
   private static final int MAX_SIZE = 120;
@@ -183,11 +181,6 @@ public class SilkwormEntity extends Animal {
   }
 
   @Override
-  public ResourceLocation getDefaultLootTable() {
-    return LOOT_TABLE;
-  }
-
-  @Override
   protected float getSoundVolume() {
     return 0.2f;
   }
@@ -269,8 +262,7 @@ public class SilkwormEntity extends Animal {
 
   @Override
   public boolean doHurtTarget(Entity entityIn) {
-    if (entityIn instanceof SilkwormEntity) {
-      SilkwormEntity other = (SilkwormEntity) entityIn;
+    if (entityIn instanceof SilkwormEntity other) {
       if (other.getSize() > this.getSize()) {
         return false; // Don't attack things that are bigger than us.
       }

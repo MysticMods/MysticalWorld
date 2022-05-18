@@ -101,11 +101,6 @@ public class DuckEntity extends Animal {
   }
 
   @Override
-  protected boolean shouldDespawnInPeaceful() {
-    return false;
-  }
-
-  @Override
   protected void jumpInLiquid(TagKey<Fluid> pFluidTag) {
     this.setDeltaMovement(this.getDeltaMovement().add(0, this.getNavigation().canFloat() ? 0.039 : 0.2, 0.0));
   }

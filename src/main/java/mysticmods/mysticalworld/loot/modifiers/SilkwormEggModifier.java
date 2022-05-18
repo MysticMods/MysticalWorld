@@ -23,10 +23,12 @@ public class SilkwormEggModifier extends LootModifier {
   @NotNull
   @Override
   protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
-    if (context.getLevel().random.nextInt(ConfigManager.SILKWORM_CONFIG.getLeafDropChance()) == 0) {
-      ItemStack tool = context.getParamOrNull(LootContextParams.TOOL);
-      if (tool != null && !tool.is(Tags.Items.SHEARS)) {
-        generatedLoot.add(new ItemStack(ModItems.SILKWORM_EGG.get()));
+    if (ConfigManager.SILKWORM_CONFIG.getLeafDropsEnabled()) {
+      if (context.getLevel().random.nextInt(ConfigManager.SILKWORM_CONFIG.getLeafDropChance()) == 0) {
+        ItemStack tool = context.getParamOrNull(LootContextParams.TOOL);
+        if (tool != null && !tool.is(Tags.Items.SHEARS)) {
+          generatedLoot.add(new ItemStack(ModItems.SILKWORM_EGG.get()));
+        }
       }
     }
     return generatedLoot;

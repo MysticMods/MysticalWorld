@@ -1,6 +1,7 @@
 package mysticmods.mysticalworld.loot.modifiers;
 
 import com.google.gson.JsonObject;
+import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.init.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +21,9 @@ public class GrassDropModifier extends LootModifier {
   @Nonnull
   @Override
   protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
-    generatedLoot.add(new ItemStack(ModItems.AUBERGINE_SEEDS.get()));
+    if (ConfigManager.SEED_INJECTION.get()) {
+      generatedLoot.add(new ItemStack(ModItems.AUBERGINE_SEEDS.get()));
+    }
     return generatedLoot;
   }
 
