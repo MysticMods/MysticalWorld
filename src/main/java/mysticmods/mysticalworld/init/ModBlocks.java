@@ -2986,7 +2986,7 @@ public class ModBlocks {
       .tag(BlockTags.MINEABLE_WITH_PICKAXE)
       .register();
 
-  protected static NonNullUnaryOperator<BlockBehaviour.Properties> BONE_PROPS = (o) -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).strength(0.2F).sound(SoundType.BONE_BLOCK);
+  protected static NonNullUnaryOperator<BlockBehaviour.Properties> BONE_PROPS = (o) -> BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).strength(0.2F).sound(SoundType.BONE_BLOCK).noOcclusion().lightLevel(p -> 1);
 
   public static BlockEntry<BonesBlock> BONE_PILE_1 = MysticalWorld.REGISTRATE.block("bone_pile_1", (p) -> new BonesBlock(p, BonesBlock.BoneType.PILE))
       .properties(BONE_PROPS)

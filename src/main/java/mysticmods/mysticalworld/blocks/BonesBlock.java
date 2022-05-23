@@ -37,7 +37,12 @@ public class BonesBlock extends HorizontalDirectionalBlock implements SimpleWate
   public BonesBlock(Properties p_i48377_1_, BoneType type) {
     super(p_i48377_1_);
     this.type = type;
-    this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+    this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+  }
+
+  @Override
+  public boolean useShapeForLightOcclusion(BlockState pState) {
+    return true;
   }
 
   @Override

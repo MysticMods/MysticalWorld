@@ -1,85 +1,85 @@
 {
   "mob.fennec.aggro": {
     "sounds": [
-      "minecraft:mob.fennec.aggro1",
-      "minecraft:mob.fennec.aggro2",
-      "minecraft:mob.fennec.aggro3",
-      "minecraft:mob.fennec.aggro4",
-      "minecraft:mob.fennec.aggro5",
-      "minecraft:mob.fennec.aggro6",
-      "minecraft:mob.fennec.aggro7"
+      "minecraft:mob.fox.aggro1",
+      "minecraft:mob.fox.aggro2",
+      "minecraft:mob.fox.aggro3",
+      "minecraft:mob.fox.aggro4",
+      "minecraft:mob.fox.aggro5",
+      "minecraft:mob.fox.aggro6",
+      "minecraft:mob.fox.aggro7"
     ],
-    "subtitle": "mysticalworld.subtitles.entity.fox.aggro"
+    "subtitle": "mysticalworld.subtitles.entity.fennec.aggro"
   },
   "mob.fennec.bark": {
     "sounds": [
-      "minecraft:mob.fennec.hurt1",
-      "minecraft:mob.fennec.hurt2",
-      "minecraft:mob.fennec.hurt3",
-      "minecraft:mob.fennec.hurt4"
+      "minecraft:mob.fox.hurt1",
+      "minecraft:mob.fox.hurt2",
+      "minecraft:mob.fox.hurt3",
+      "minecraft:mob.fox.hurt4"
     ],
-    "subtitle": "mysticalworld.subtitles.entity.fox.bark"
+    "subtitle": "mysticalworld.subtitles.entity.fennec.bark"
   },
   "mob.fennec.bite": {
     "sounds": [
-      "minecraft:mob.fennec.bite1",
-      "minecraft:mob.fennec.bite2",
-      "minecraft:mob.fennec.bite3"
+      "minecraft:mob.fox.bite1",
+      "minecraft:mob.fox.bite2",
+      "minecraft:mob.fox.bite3"
     ],
-    "subtitle": "mysticalworld.subtitles.entity.fox.bite"
+    "subtitle": "mysticalworld.subtitles.entity.fennec.bite"
   },
   "mob.fennec.death": {
     "sounds": [
-      "minecraft:mob.fennec.death1",
-      "minecraft:mob.fennec.death2"
+      "minecraft:mob.fox.death1",
+      "minecraft:mob.fox.death2"
     ],
-    "subtitle": "mysticalworld.subtitles.entity.fox.death"
+    "subtitle": "mysticalworld.subtitles.entity.fennec.death"
   },
   "mob.fennec.eat": {
     "sounds": [
-      "minecraft:mob.fennec.eat1",
-      "minecraft:mob.fennec.eat2",
-      "minecraft:mob.fennec.eat3"
+      "minecraft:mob.fox.eat1",
+      "minecraft:mob.fox.eat2",
+      "minecraft:mob.fox.eat3"
     ],
-    "subtitle": "mysticalworld.subtitles.entity.fox.eat"
+    "subtitle": "mysticalworld.subtitles.entity.fennec.eat"
   },
   "mob.fennec.idle": {
     "sounds": [
-      "minecraft:mob.fennec.idle1",
-      "minecraft:mob.fennec.idle2",
-      "minecraft:mob.fennec.idle3",
-      "minecraft:mob.fennec.idle4",
-      "minecraft:mob.fennec.idle5",
-      "minecraft:mob.fennec.idle6"
+      "minecraft:mob.fox.idle1",
+      "minecraft:mob.fox.idle2",
+      "minecraft:mob.fox.idle3",
+      "minecraft:mob.fox.idle4",
+      "minecraft:mob.fox.idle5",
+      "minecraft:mob.fox.idle6"
     ],
-    "subtitle": "mysticalworld.subtitles.entity.fox.idle"
+    "subtitle": "mysticalworld.subtitles.entity.fennec.idle"
   },
   "mob.fennec.sleep": {
     "sounds": [
-      "minecraft:mob.fennec.sleep1",
-      "minecraft:mob.fennec.sleep2",
-      "minecraft:mob.fennec.sleep3",
-      "minecraft:mob.fennec.sleep4",
-      "minecraft:mob.fennec.sleep5"
+      "minecraft:mob.fox.sleep1",
+      "minecraft:mob.fox.sleep2",
+      "minecraft:mob.fox.sleep3",
+      "minecraft:mob.fox.sleep4",
+      "minecraft:mob.fox.sleep5"
     ],
-    "subtitle": "mysticalworld.subtitles.entity.fox.sleep"
+    "subtitle": "mysticalworld.subtitles.entity.fennec.sleep"
   },
   "mob.fennec.sniff": {
     "sounds": [
-      "minecraft:mob.fennec.sniff1",
-      "minecraft:mob.fennec.sniff2",
-      "minecraft:mob.fennec.sniff3",
-      "minecraft:mob.fennec.sniff4"
+      "minecraft:mob.fox.sniff1",
+      "minecraft:mob.fox.sniff2",
+      "minecraft:mob.fox.sniff3",
+      "minecraft:mob.fox.sniff4"
     ],
-    "subtitle": "mysticalworld.subtitles.entity.fox.sniff"
+    "subtitle": "mysticalworld.subtitles.entity.fennec.sniff"
   },
   "mob.fennec.spit": {
     "sounds": [
-      "minecraft:mob.fennec.spit1",
-      "minecraft:mob.fennec.spit2",
-      "minecraft:mob.fennec.spit3"
+      "minecraft:mob.fox.spit1",
+      "minecraft:mob.fox.spit2",
+      "minecraft:mob.fox.spit3"
     ],
-    "subtitle": "mysticalworld.subtitles.entity.fox.spit"
+    "subtitle": "mysticalworld.subtitles.entity.fennec.spit"
   },
   "mob.sprout.ambient": {
     "sounds": [
