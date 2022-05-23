@@ -13,7 +13,7 @@
     {
       "type": "entity",
       "name": "Sprout",
-      "entity": "mysticalworld:sprout",
+      "entity": "mysticalworld:green_sprout",
       "scale": 1,
       "offset": 0,
       "text": "These adorable root vegetables like to wander the forests and sometimes dance!"

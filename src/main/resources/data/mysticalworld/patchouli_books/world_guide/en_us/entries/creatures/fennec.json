@@ -1,19 +1,19 @@
 {
-  "name": "Silver Fox",
+  "name": "Fennec",
   "icon": "mysticalworld:pelt",
   "category": "mysticalworld:creatures",
   "pages": [
     {
       "type": "animal_spawn_info",
-      "animal": "fox",
+      "animal": "fennec",
       "breed": "Breed: with uncooked chicken.",
       "tame": "Taming: with apples.",
       "blurb": ""
     },
     {
       "type": "entity",
-      "name": "Fox",
-      "entity": "mysticalworld:silver_fox",
+      "name": "Fennec",
+      "entity": "mysticalworld:fennec",
       "scale": 0.8,
       "offset": 0,
       "text": "While vicious chicken & rabbit killers, they become docile when tamed!"
