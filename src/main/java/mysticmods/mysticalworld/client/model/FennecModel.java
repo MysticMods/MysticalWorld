@@ -103,7 +103,6 @@ public class FennecModel extends AgeableListModel<FennecEntity> {
   public void setupAnim(@Nonnull FennecEntity fennec, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     float sin = (float) Math.sin(ageInTicks * 0.125f * (Math.PI * 2.0f));
     float cos = (float) Math.cos(ageInTicks * 0.0625f * (Math.PI * 2.0f));
-    // TODO: ALL OF THIS???
     if (!fennec.isInSittingPose()) {
       this.setRotateAngle(body1, 0F, 0F, 0F);
       this.setRotateAngle(body2, 0F, 0F, 0F);
