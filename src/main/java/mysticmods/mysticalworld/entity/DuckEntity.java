@@ -108,9 +108,9 @@ public class DuckEntity extends Animal {
   @Nullable
   @Override
   protected SoundEvent getAmbientSound() {
-    if (random.nextInt(9) == 0) {
+/*    if (random.nextInt(9) == 0) {
       return ModSounds.DUCK_AMBIENT.get();
-    }
+    }*/
     return null;
   }
 

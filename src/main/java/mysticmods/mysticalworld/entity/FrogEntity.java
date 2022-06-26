@@ -102,9 +102,9 @@ public class FrogEntity extends Animal {
   @Nullable
   @Override
   protected SoundEvent getAmbientSound() {
-    if (random.nextInt(6) == 0) {
+/*    if (random.nextInt(6) == 0) {
       return ModSounds.FROG_AMBIENT.get();
-    }
+    }*/
     return null;
   }
 

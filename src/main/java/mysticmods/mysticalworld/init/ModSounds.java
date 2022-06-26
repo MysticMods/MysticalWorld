@@ -45,8 +45,8 @@ public class ModSounds {
   public static final RegistryEntry<SoundEvent> LAVA_CAT_PURREOW = MysticalWorld.REGISTRATE.soundEvent("mob.lava_cat.purreow").register();
 
   // Frog
-  public static final RegistryEntry<SoundEvent> FROG_SLIME = MysticalWorld.REGISTRATE.soundEvent("mob.frog.slime").register();
-  public static final RegistryEntry<SoundEvent> FROG_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.frog.croak").register();
+/*  public static final RegistryEntry<SoundEvent> FROG_SLIME = MysticalWorld.REGISTRATE.soundEvent("mob.frog.slime").register();
+  public static final RegistryEntry<SoundEvent> FROG_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.frog.croak").register();*/
 
   // Squid
   public static final RegistryEntry<SoundEvent> SQUID_MILK = MysticalWorld.REGISTRATE.soundEvent("mob.squid.milk").register();
@@ -56,11 +56,11 @@ public class ModSounds {
   public static final RegistryEntry<SoundEvent> PEARLEPORTER_USE = MysticalWorld.REGISTRATE.soundEvent("item.pearleporter.use").register();
 
   // Duck
-  public static final RegistryEntry<SoundEvent> DUCK_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.duck.quack").register();
+/*  public static final RegistryEntry<SoundEvent> DUCK_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.duck.quack").register();*/
   public static final RegistryEntry<SoundEvent> DUCK_SWIM = MysticalWorld.REGISTRATE.soundEvent("mob.duck.swim").register();
 
   // Deer
-  public static final RegistryEntry<SoundEvent> DEER_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.deer.ambient").register();
+/*  public static final RegistryEntry<SoundEvent> DEER_AMBIENT = MysticalWorld.REGISTRATE.soundEvent("mob.deer.ambient").register();*/
 
   public static void load() {
   }

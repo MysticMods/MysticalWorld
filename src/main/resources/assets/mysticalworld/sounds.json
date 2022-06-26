@@ -152,15 +152,6 @@
     ],
     "subtitle": "mysticalworld.subtitles.entity.lava_cat.sizzle"
   },
-  "mob.frog.slime": {
-    "sounds": [
-      "mob/slime/big1",
-      "mob/slime/big2",
-      "mob/slime/big3",
-      "mob/slime/big4"
-    ],
-    "subtitle": "mysticalworld.subtitles.entity.frog.slime"
-  },
   "mob.lava_cat.ambient": {
     "sounds": [
       "mob/cat/meow1",
@@ -307,39 +298,10 @@
     ],
     "subtitle": "mysticalworld.subtitles.entity.silkworm.eat"
   },
-  "mob.frog.croak": {
-    "category": "neutral",
-    "sounds": [
-      "mysticalworld:frog/croak1",
-      "mysticalworld:frog/croak2",
-      "mysticalworld:frog/croak3",
-      "mysticalworld:frog/croak4"
-    ],
-    "subtitle": "mysticalworld.subtitles.entity.frog.croak"
-  },
-  "mob.duck.quack": {
-    "category": "neutral",
-    "sounds": [
-      "mysticalworld:duck/duck1",
-      "mysticalworld:duck/duck2",
-      "mysticalworld:duck/duck3",
-      "mysticalworld:duck/duck4"
-    ],
-    "subtitle": "mysticalworld.subtitles.entity.duck.quack"
-  },
   "mob.duck.swim": {
     "category": "neutral",
     "sounds": [
       "mysticalworld:duck/swim"
     ]
-  },
-  "mob.deer.ambient": {
-    "category": "neutral",
-    "sounds": [
-      "mysticalworld:deer/deer1",
-      "mysticalworld:deer/deer2",
-      "mysticalworld:deer/deer3"
-    ],
-    "subtitle": "mysticalworld.subtitles.entity.deer.ambient"
   }
 }
