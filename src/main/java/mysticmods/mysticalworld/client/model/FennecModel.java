@@ -56,19 +56,19 @@ public class FennecModel extends AgeableListModel<FennecEntity> {
 
     PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 7).addBox(-2.5F, -2.0F, -3.0F, 5.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, -4.0F));
 
-    PartDefinition earR = head.addOrReplaceChild("ear_right", CubeListBuilder.create().texOffs(0, 0).addBox(-1.4071F, -5.2021F, -0.3909F, 3.0F, 6.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5F, -1.0F, -1.0F, 0.0F, -0.2618F, 0.5988F));
+    PartDefinition earR = head.addOrReplaceChild("ear_right", CubeListBuilder.create().texOffs(0, 0).addBox(-1.4071F, -5.2021F, -0.3909F, 3.0F, 6.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.5F, -1.0F, -1.0F, 0.0F, -0.2618F, 0.5988F));
 
     PartDefinition snout = head.addOrReplaceChild("snout", CubeListBuilder.create().texOffs(10, 0).addBox(-1.5F, -0.0872F, -2.0038F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -3.0F, 0.1745F, 0.0F, 0.0F));
 
-    PartDefinition earL = head.addOrReplaceChild("ear_left", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-1.6004F, -5.2075F, -0.3929F, 3.0F, 6.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.5F, -1.0F, -1.0F, 0.0F, 0.2618F, -0.6086F));
+    PartDefinition earL = head.addOrReplaceChild("ear_left", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-1.6004F, -5.2075F, -0.3929F, 3.0F, 6.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(1.5F, -1.0F, -1.0F, 0.0F, 0.2618F, -0.6086F));
 
-    PartDefinition frontL = body1.addOrReplaceChild("front_left_leg", CubeListBuilder.create().texOffs(24, 26).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.0F, 4.0F, 1.0F));
+    PartDefinition frontL = body1.addOrReplaceChild("front_left_leg", CubeListBuilder.create().texOffs(24, 26).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.0F, 4.0F, 1.0F));
 
     PartDefinition body2 = body1.addOrReplaceChild("body2", CubeListBuilder.create().texOffs(18, 8).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 5.0F));
 
-    PartDefinition backL = body2.addOrReplaceChild("back_left_leg", CubeListBuilder.create().texOffs(24, 26).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.0F, 4.0F, 1.5F));
+    PartDefinition backL = body2.addOrReplaceChild("back_left_leg", CubeListBuilder.create().texOffs(24, 26).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.0F, 4.0F, 1.5F));
 
-    PartDefinition backR = body2.addOrReplaceChild("back_right_leg", CubeListBuilder.create().texOffs(24, 26).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(1.0F, 4.0F, 1.5F));
+    PartDefinition backR = body2.addOrReplaceChild("back_right_leg", CubeListBuilder.create().texOffs(24, 26).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, 4.0F, 1.5F));
 
     PartDefinition tail1 = body2.addOrReplaceChild("tail1", CubeListBuilder.create().texOffs(12, 15).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, 2.5F, 1.1781F, 0.0F, -0.0617F));
 
@@ -78,7 +78,7 @@ public class FennecModel extends AgeableListModel<FennecEntity> {
 
     PartDefinition tail4 = tail3.addOrReplaceChild("tail4", CubeListBuilder.create().texOffs(15, 24).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 3.5F, 0.0F, 0.3927F, 0.0F, 0.0F));
 
-    PartDefinition frontR = body1.addOrReplaceChild("front_right_leg", CubeListBuilder.create().texOffs(24, 26).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(1.0F, 4.0F, 1.0F));
+    PartDefinition frontR = body1.addOrReplaceChild("front_right_leg", CubeListBuilder.create().texOffs(24, 26).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, 4.0F, 1.0F));
 
     return LayerDefinition.create(meshdefinition, 32, 32);
   }
@@ -105,6 +105,11 @@ public class FennecModel extends AgeableListModel<FennecEntity> {
     float cos = (float) Math.cos(ageInTicks * 0.0625f * (Math.PI * 2.0f));
     // TODO: ALL OF THIS???
     if (!fennec.isInSittingPose()) {
+      this.setRotateAngle(body1, 0F, 0F, 0F);
+      this.setRotateAngle(body2, 0F, 0F, 0F);
+      this.setRotateAngle(backL, 0f, 0f, 0f);
+      this.setRotateAngle(backR, 0f, 0f, 0f);
+      this.setRotateAngle(neck, -0.2618F, 0.0F, 0.0F);
       this.earL.zRot = 0.5235987755982988F + getBobble(60, ageInTicks) * 0.0981747703F;
       this.earR.zRot = -0.5235987755982988F - getBobble(130, ageInTicks) * 0.0981747703F;
       this.backL.xRot = limbSwingAmount * sin;
@@ -113,50 +118,29 @@ public class FennecModel extends AgeableListModel<FennecEntity> {
       this.frontL.xRot = -limbSwingAmount * sin;
       this.head.xRot = headPitch * 0.017453292F;
       this.head.yRot = netHeadYaw * 0.017453292F;
-      this.tail1.xRot = 1.1780972450961724F + limbSwingAmount;
-      this.tail1.zRot = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(45, ageInTicks);
-      this.tail2.zRot = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(90, ageInTicks);
-      this.tail3.zRot = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(135, ageInTicks);
-      this.tail4.zRot = limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(180, ageInTicks);
-      this.setRotateAngle(body1, 0F, 0.0F, 0.0F);
-      this.setRotateAngle(body2, 0F, 0.0F, 0.0F);
+      this.setRotateAngle(tail1, 1.1780972450961724F + limbSwingAmount, 0f, limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(45, ageInTicks));
+      this.setRotateAngle(tail2, -0.3927f, 0f, limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(90, ageInTicks));
+      this.setRotateAngle(tail3, 0f, 0f, limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(135, ageInTicks));
+      this.setRotateAngle(tail4, 0.3927f, 0f, limbSwingAmount * 0.375f * cos + 0.0872664626F * getBobble(180, ageInTicks));
     } else {
-      this.setRotateAngle(backL, -0.8196066167365371F, -0.31869712141416456F, 0.0F);
-      this.setRotateAngle(backR, -0.8196066167365371F, 0.36425021489121656F, 0.0F);
-      this.setRotateAngle(body1, -0.6829473363053812F, 0.0F, 0.0F);
-      this.setRotateAngle(body2, -0.045553093477052F, 0.0F, 0.0F);
-      this.setRotateAngle(earL, 0.0F, -0.2617993877991494F, 0.6085963101704227F);
-      this.setRotateAngle(earR, 0.0F, 0.2617993877991494F, -0.5988224663592545F);
-      this.setRotateAngle(frontL, 0.31869712141416456F, 0.0F, 0.0F);
-      this.setRotateAngle(frontR, 0.31869712141416456F, 0.0F, 0.0F);
-      this.setRotateAngle(neck, 0.36425021489121656F, 0.0F, 0.0F);
-      this.setRotateAngle(snout, 0.17453292519943295F, 0.0F, 0.0F);
-      this.setRotateAngle(tail1, 2.5497515042385164F, 0.0F, 0.06178465552059926F);
-      this.setRotateAngle(tail2, -0.39269908169872414F, 0.0F, 0.08726646259971647F);
-      this.setRotateAngle(tail3, 0.0F, 0.0F, 0.06178465552059926F);
-      this.setRotateAngle(tail4, 0.39269908169872414F, 0.0F, 0.0F);
+      this.setRotateAngle(backL, -0.8197f, -0.3187f, 0.0F); // DONE
+      this.setRotateAngle(backR, -0.8197f, 0.3643f, 0.0F); // DONE
+      this.setRotateAngle(body1, -0.6830f, 0.0F, 0.0F); // DONE
+      this.setRotateAngle(body2, -0.0456f, 0.0F, 0.0F); // DONE
+      this.setRotateAngle(earL, 0.0F, 0.2618f, 0.6086f); // Z changed but reset by animation
+      this.setRotateAngle(earR, 0.0F, -0.2618f, -0.5988f); // Z changed but reset by animation
+      this.setRotateAngle(frontL, 0.3187f, 0.0F, 0.0F); // X changed by animation
+      this.setRotateAngle(frontR, 0.3187f, 0.0F, 0.0F); // X changed by animation
+      this.setRotateAngle(neck, 0.3643f, 0.0F, 0.0F); // DONE
+      this.setRotateAngle(tail1, 2.5498f, 0.0F, 0.0617f);
+      this.setRotateAngle(tail2, -0.3927f, 0.0F, 0.08723f);
+      this.setRotateAngle(tail3, 0.0F, 0.0F, 0.06179f);
+      this.setRotateAngle(tail4, 0.3927f, 0.0F, 0.0F);
     }
   }
 
   @Override
   public void prepareMobModel(@Nonnull FennecEntity fennec, float limbSwing, float limbSwingAmount, float partialTickTime) {
-
-    this.backL.setPos(1.0F, 4.0F, 1.5F);
-    this.backR.setPos(-1.0F, 4.0F, 1.5F);
-    this.body1.setPos(0.0F, 15.5F, -2.0F);
-    this.body2.setPos(0.0F, 0.0F, 5.0F);
-    this.earL.setPos(1.5F, -1.0F, -1.0F);
-    this.earR.setPos(-1.5F, -1.0F, -1.0F);
-    this.frontL.setPos(1.0F, 4.0F, 1.0F);
-    this.frontR.setPos(-1.0F, 4.0F, 1.0F);
-    this.head.setPos(0.0F, 0.0F, -4.0F);
-    this.neck.setPos(0.0F, 1.5F, 2.0F);
-    this.snout.setPos(0.0F, 0.0F, -3.0F);
-    this.tail1.setPos(0.0F, 1.0F, 2.5F);
-    this.tail2.setPos(0.0F, 1.5F, 0.0F);
-    this.tail3.setPos(0.0F, 3.0F, 0.0F);
-    this.tail4.setPos(0.0F, 3.5F, 0.0F);
-
     super.prepareMobModel(fennec, limbSwing, limbSwingAmount, partialTickTime);
   }
 
