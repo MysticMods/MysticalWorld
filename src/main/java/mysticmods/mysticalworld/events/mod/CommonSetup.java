@@ -16,6 +16,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.registries.RegisterEvent;
 import noobanidus.libs.noobutil.recipe.UniqueShapelessRecipe;
 import noobanidus.libs.noobutil.setup.ShadedCommonSetup;
 
@@ -62,7 +63,7 @@ public class CommonSetup {
   }
 
   @SubscribeEvent
-  public static void registerRecipes(RegistryEvent.Register<RecipeSerializer<?>> event) {
+  public static void registerRecipes(RegisterEvent event) {
     UniqueShapelessRecipe.setStoredSerializer(ModRecipes.UNIQUE_SHAPELESS_RECIPE.get());
   }
 }

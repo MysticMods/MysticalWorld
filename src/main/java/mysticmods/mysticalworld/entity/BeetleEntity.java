@@ -8,8 +8,8 @@ import mysticmods.mysticalworld.init.ModEntities;
 import mysticmods.mysticalworld.network.Networking;
 import mysticmods.mysticalworld.network.ShoulderRide;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -88,7 +88,7 @@ public class BeetleEntity extends TamableAnimal {
               this.discard();
               return InteractionResult.SUCCESS;
             } else {
-              player.displayClientMessage(new TranslatableComponent("message.shoulder.occupied").setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN).withBold(true)), true);
+              player.displayClientMessage(Component.translatable("message.shoulder.occupied").setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN).withBold(true)), true);
             }
           }
         } else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {

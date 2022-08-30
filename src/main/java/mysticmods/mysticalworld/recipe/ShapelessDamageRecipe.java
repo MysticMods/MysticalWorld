@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class ShapelessDamageRecipe extends ShapelessRecipe implements IDamageRecipe {
   private final Ingredient damageItem;
@@ -34,7 +33,7 @@ public class ShapelessDamageRecipe extends ShapelessRecipe implements IDamageRec
     return new ShapelessDamageRecipe(recipe.getId(), recipe.getGroup(), recipe.getResultItem(), recipe.getIngredients(), damageItem, damageAmount);
   }
 
-  public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ShapelessDamageRecipe> {
+  public static class Serializer implements RecipeSerializer<ShapelessDamageRecipe> {
 
     @Override
     public ShapelessDamageRecipe fromJson(ResourceLocation recipeId, JsonObject json) {

@@ -37,7 +37,7 @@ public class GuideItem extends Item {
   @Override
   public Component getName(ItemStack stack) {
     Book book = getBook();
-    return (book != null ? new TranslatableComponent(book.name) : super.getName(stack));
+    return (book != null ? Component.translatable(book.name) : super.getName(stack));
   }
 
   @Override

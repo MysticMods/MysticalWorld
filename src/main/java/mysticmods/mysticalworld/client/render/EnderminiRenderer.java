@@ -19,7 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.model.data.EmptyModelData;
+import net.minecraftforge.client.model.data.ModelData;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
@@ -78,7 +78,7 @@ public class EnderminiRenderer extends MobRenderer<EnderminiEntity, EnderminiMod
         pMatrixStack.translate(0.25D, 0.1875D, 0.25D);
         pMatrixStack.scale(-0.5F, -0.5F, 0.5F);
         pMatrixStack.mulPose(Vector3f.YP.rotationDegrees(90.0F));
-        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(blockstate, pMatrixStack, pBuffer, pPackedLight, OverlayTexture.NO_OVERLAY, EmptyModelData.INSTANCE);
+        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(blockstate, pMatrixStack, pBuffer, pPackedLight, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.translucent()); // TODO 1.19: Check this is the right render type
         pMatrixStack.popPose();
       }
     }

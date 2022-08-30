@@ -1,7 +1,7 @@
 package mysticmods.mysticalworld.config;
 
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class ClamConfig extends MobConfig {
   private final int defaultInitialAge;
 
   public ClamConfig(String name, int chance, int min, int max, List<String> biomes, int enderChance, int initialAge, int maxAge) {
-    super(name, chance, min, max, biomes, BiomeDictionary.Type.OVERWORLD);
+    super(name, chance, min, max, biomes, BiomeTags.IS_OVERWORLD);
     this.defaultEnderChance = enderChance;
     this.defaultInitialAge = initialAge;
     this.defaultMaxAge = maxAge;

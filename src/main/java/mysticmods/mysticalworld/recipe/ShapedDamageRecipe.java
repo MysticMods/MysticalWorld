@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 @SuppressWarnings("NullableProblems")
 public class ShapedDamageRecipe extends ShapedRecipe implements IDamageRecipe {
@@ -35,7 +34,7 @@ public class ShapedDamageRecipe extends ShapedRecipe implements IDamageRecipe {
     return new ShapedDamageRecipe(recipe.getId(), recipe.getGroup(), recipe.getRecipeWidth(), recipe.getRecipeHeight(), recipe.getIngredients(), recipe.getResultItem(), damageItem, damageAmount);
   }
 
-  public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ShapedDamageRecipe> {
+  public static class Serializer implements RecipeSerializer<ShapedDamageRecipe> {
 
     @Override
     public ShapedDamageRecipe fromJson(ResourceLocation recipeId, JsonObject json) {

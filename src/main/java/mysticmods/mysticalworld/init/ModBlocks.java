@@ -18,7 +18,6 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
-import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -42,8 +41,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.IForgeRegistryEntry;
-import net.minecraftforge.server.ServerLifecycleHooks;
+import net.minecraftforge.registries.ForgeRegistries;
 import noobanidus.libs.noobutil.block.BaseBlocks;
 import noobanidus.libs.noobutil.block.WaterloggedBlock;
 import noobanidus.libs.noobutil.data.generator.BlockstateGenerator;
@@ -69,8 +67,8 @@ public class ModBlocks {
   private static final NonNullUnaryOperator<Block.Properties> ORE_PROPERTIES = o -> BlockBehaviour.Properties.copy(Blocks.IRON_ORE);
   private static final NonNullUnaryOperator<Block.Properties> DEEPSLATE_ORE_PROPERTIES = o -> BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE);
 
-  private static <T extends IForgeRegistryEntry<?>> String boneName(T block) {
-    String[] init = Objects.requireNonNull(block.getRegistryName()).getPath().split("_");
+  private static <T extends Item> String boneName(T block) {
+    String[] init = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(block)).getPath().split("_");
     return init[0] + "_" + init[1] + init[2];
   }
 
@@ -78,8 +76,8 @@ public class ModBlocks {
     p.withExistingParent(name(ctx.getEntry()), new ResourceLocation(MysticalWorld.MODID, "block/" + boneName(ctx.get())));
   }
 
-  private static <T extends IForgeRegistryEntry<?>> String name(T block) {
-    return Objects.requireNonNull(block.getRegistryName()).getPath();
+  private static <T extends Item> String name(T item) {
+    return Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item)).getPath();
   }
 
   public static NonNullFunction<Block.Properties, StairBlock> stairsBlock(RegistryEntry<? extends Block> block) {
@@ -164,7 +162,7 @@ public class ModBlocks {
     return (ctx, p) -> ctx.add(p, RegistrateBlockLootTables.createOreDrop(p, drops.get()));
   }
 
-  public static BlockEntry<OreBlock> GRANITE_QUARTZ_ORE = MysticalWorld.REGISTRATE.block("granite_quartz_ore", (p) -> new OreBlock(p, UniformInt.of(2, 5)))
+  public static BlockEntry<DropExperienceBlock> GRANITE_QUARTZ_ORE = MysticalWorld.REGISTRATE.block("granite_quartz_ore", (p) -> new DropExperienceBlock(p, UniformInt.of(2, 5)))
       .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -175,7 +173,7 @@ public class ModBlocks {
       .loot(oreLoot(() -> Items.QUARTZ))
       .register();
 
-  public static BlockEntry<OreBlock> TIN_ORE = MysticalWorld.REGISTRATE.block("tin_ore", OreBlock::new)
+  public static BlockEntry<DropExperienceBlock> TIN_ORE = MysticalWorld.REGISTRATE.block("tin_ore", DropExperienceBlock::new)
       .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -186,7 +184,7 @@ public class ModBlocks {
       .loot(oreLoot(ModItems.RAW_TIN))
       .register();
 
-  public static BlockEntry<OreBlock> DEEPSLATE_TIN_ORE = MysticalWorld.REGISTRATE.block("deepslate_tin_ore", OreBlock::new)
+  public static BlockEntry<DropExperienceBlock> DEEPSLATE_TIN_ORE = MysticalWorld.REGISTRATE.block("deepslate_tin_ore", DropExperienceBlock::new)
       .properties(DEEPSLATE_ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -197,7 +195,7 @@ public class ModBlocks {
       .loot(oreLoot(ModItems.RAW_TIN))
       .register();
 
-  public static BlockEntry<OreBlock> LEAD_ORE = MysticalWorld.REGISTRATE.block("lead_ore", OreBlock::new)
+  public static BlockEntry<DropExperienceBlock> LEAD_ORE = MysticalWorld.REGISTRATE.block("lead_ore", DropExperienceBlock::new)
       .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -208,7 +206,7 @@ public class ModBlocks {
       .loot(oreLoot(ModItems.RAW_LEAD))
       .register();
 
-  public static BlockEntry<OreBlock> DEEPSLATE_LEAD_ORE = MysticalWorld.REGISTRATE.block("deepslate_lead_ore", OreBlock::new)
+  public static BlockEntry<DropExperienceBlock> DEEPSLATE_LEAD_ORE = MysticalWorld.REGISTRATE.block("deepslate_lead_ore", DropExperienceBlock::new)
       .properties(DEEPSLATE_ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -219,7 +217,7 @@ public class ModBlocks {
       .loot(oreLoot(ModItems.RAW_LEAD))
       .register();
 
-  public static BlockEntry<OreBlock> SILVER_ORE = MysticalWorld.REGISTRATE.block("silver_ore", OreBlock::new)
+  public static BlockEntry<DropExperienceBlock> SILVER_ORE = MysticalWorld.REGISTRATE.block("silver_ore", DropExperienceBlock::new)
       .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -230,7 +228,7 @@ public class ModBlocks {
       .loot(oreLoot(ModItems.RAW_SILVER))
       .register();
 
-  public static BlockEntry<OreBlock> DEEPSLATE_SILVER_ORE = MysticalWorld.REGISTRATE.block("deepslate_silver_ore", OreBlock::new)
+  public static BlockEntry<DropExperienceBlock> DEEPSLATE_SILVER_ORE = MysticalWorld.REGISTRATE.block("deepslate_silver_ore", DropExperienceBlock::new)
       .properties(DEEPSLATE_ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -241,7 +239,7 @@ public class ModBlocks {
       .loot(oreLoot(ModItems.RAW_SILVER))
       .register();
 
-  public static BlockEntry<OreBlock> SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("sapphire_ore", (p) -> new OreBlock(p, UniformInt.of(3, 7)))
+  public static BlockEntry<DropExperienceBlock> SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("sapphire_ore", (p) -> new DropExperienceBlock(p, UniformInt.of(3, 7)))
       .properties(ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -252,7 +250,7 @@ public class ModBlocks {
       .loot(oreLoot(ModItems.SAPPHIRE_GEM))
       .register();
 
-  public static BlockEntry<OreBlock> DEEPSLATE_SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("deepslate_sapphire_ore", (p) -> new OreBlock(p, UniformInt.of(3, 7)))
+  public static BlockEntry<DropExperienceBlock> DEEPSLATE_SAPPHIRE_ORE = MysticalWorld.REGISTRATE.block("deepslate_sapphire_ore", (p) -> new DropExperienceBlock(p, UniformInt.of(3, 7)))
       .properties(DEEPSLATE_ORE_PROPERTIES)
       .item()
       .model(ItemModelGenerator::itemModel)
@@ -557,7 +555,7 @@ public class ModBlocks {
   public static BlockEntry<CharredLogBlock> CHARRED_WOOD = MysticalWorld.REGISTRATE.block("charred_wood", (o) -> new CharredLogBlock(o, true))
       .properties(WOOD_PROPS)
       .tag(BlockTags.LOGS)
-      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ctx.getEntry().getRegistryName().getPath(), p.blockTexture(ModBlocks.CHARRED_LOG.get()))))
+      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(ForgeRegistries.BLOCKS.getKey(ctx.getEntry()).getPath(), p.blockTexture(ModBlocks.CHARRED_LOG.get()))))
       .item()
       .tag(ItemTags.LOGS)
       .model(ItemModelGenerator::itemModel)
@@ -583,7 +581,7 @@ public class ModBlocks {
   public static BlockEntry<RotatedPillarBlock> STRIPPED_CHARRED_WOOD = MysticalWorld.REGISTRATE.log("stripped_charred_wood")
       .properties(WOOD_PROPS)
       .tag(BlockTags.LOGS)
-      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(Objects.requireNonNull(ctx.getEntry().getRegistryName()).getPath(), p.blockTexture(ModBlocks.STRIPPED_CHARRED_LOG.get()))))
+      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().cubeAll(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(ctx.getEntry())).getPath(), p.blockTexture(ModBlocks.STRIPPED_CHARRED_LOG.get()))))
       .item()
       .tag(ItemTags.LOGS)
       .model(ItemModelGenerator::itemModel)

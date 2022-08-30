@@ -12,10 +12,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 @SuppressWarnings("ALL")
-public abstract class AbstractCookingRecipeSerializer<T extends AbstractCookingRecipe> extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<T> {
+public abstract class AbstractCookingRecipeSerializer<T extends AbstractCookingRecipe> implements RecipeSerializer<T> {
   protected final int defaultCookTime;
   protected final IFactory<T> serializer;
 

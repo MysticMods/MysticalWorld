@@ -3,9 +3,10 @@ package mysticmods.mysticalworld.config;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class TreeConfig extends FeatureConfig {
   private ForgeConfigSpec.DoubleValue configChance;
   private ForgeConfigSpec.ConfigValue<List<? extends String>> configDimensions;
 
-  public TreeConfig(double chance, List<BiomeDictionary.Type> biomeTypes, List<BiomeDictionary.Type> biomeRestrictions, List<ResourceKey<Level>> dimensions) {
+  public TreeConfig(double chance, List<TagKey<Biome>> biomeTypes, List<TagKey<Biome>> biomeRestrictions, List<ResourceKey<Level>> dimensions) {
     super(biomeTypes, biomeRestrictions);
     this.chance = chance;
     this.dimensions = dimensions;
@@ -54,10 +55,10 @@ public class TreeConfig extends FeatureConfig {
     builder.comment("Charred Tree Generation").push("charred_tree");
     configChance = builder.comment("Number of charred trees per chunk (set to 0 to disable).").defineInRange("chance", chance, 0, 256);
     StringJoiner sb = new StringJoiner(",");
-    biomes.forEach(o -> sb.add(o.getName()));
+    biomes.forEach(o -> sb.add(o.location().toString()));
     configBiomes = builder.comment("List of biome types to spawn (default [" + sb + "], pass empty list for every biome").define("biomes", sb.toString());
     StringJoiner sb2 = new StringJoiner(",");
-    biomeRestrictions.forEach(biome -> sb2.add(biome.getName()));
+    biomeRestrictions.forEach(biome -> sb2.add(biome.location().toString()));
     configBiomeRestrictions = builder.comment("Which biome types this tree shouldn't spawn in (default END, NETHER)").define("biomeRestrictions", sb2.toString());
     configDimensions = builder.comment("The dimensions that this feature should spawn in as a list (default [\"minecraft:overworld\"])").defineList("dimensions", dimensions.stream().map(ResourceKey::location).map(ResourceLocation::toString).collect(Collectors.toList()), (o) -> o instanceof String);
     builder.pop();

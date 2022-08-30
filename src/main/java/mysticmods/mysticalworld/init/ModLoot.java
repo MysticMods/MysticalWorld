@@ -14,6 +14,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import noobanidus.libs.noobutil.ingredient.ExcludingIngredient;
 
@@ -37,7 +38,7 @@ public class ModLoot {
   }
 
   @SubscribeEvent
-  public static void registerRecipes(RegistryEvent.Register<RecipeSerializer<?>> event) {
+  public static void registerRecipes(RegisterEvent event) {
     CraftingHelper.register(new ResourceLocation(MysticalWorld.MODID, "excluding_ingredient"), ExcludingIngredient.Serializer.INSTANCE);
   }
 }

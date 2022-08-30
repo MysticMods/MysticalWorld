@@ -1,6 +1,6 @@
 package mysticmods.mysticalworld.config;
 
-import net.minecraftforge.common.BiomeDictionary;
+import net.minecraft.tags.BiomeTags;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public class HellSproutConfig extends MobConfig {
   protected ForgeConfigSpec.IntValue configGrowChance;
 
   public HellSproutConfig(String name, int chance, int min, int max, List<String> biomes, int growChance) {
-    super(name, chance, min, max, biomes, BiomeDictionary.Type.NETHER);
+    super(name, chance, min, max, biomes, BiomeTags.IS_NETHER);
     this.growChance = growChance;
   }
 

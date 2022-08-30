@@ -1,12 +1,12 @@
 package mysticmods.mysticalworld.config;
 
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraftforge.common.BiomeDictionary;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MobConfig extends AbstractConfig {
 
@@ -15,7 +15,7 @@ public class MobConfig extends AbstractConfig {
   protected int min;
   protected int max;
   protected List<String> biomes;
-  protected BiomeDictionary.Type restriction;
+  protected TagKey<Biome> restriction;
 
   protected ForgeConfigSpec.IntValue configChance;
   protected ForgeConfigSpec.IntValue configMin;
@@ -23,14 +23,14 @@ public class MobConfig extends AbstractConfig {
   protected ForgeConfigSpec.ConfigValue<String> configBiomes;
 
   public MobConfig(String name, int chance, int min, int max, List<String> biomes) {
-    this(name, chance, min, max, biomes, BiomeDictionary.Type.OVERWORLD);
+    this(name, chance, min, max, biomes, BiomeTags.IS_OVERWORLD);
   }
 
   public MobCategory getClassification() {
     return MobCategory.CREATURE;
   }
 
-  public MobConfig(String name, int chance, int min, int max, List<String> biomes, BiomeDictionary.Type restriction) {
+  public MobConfig(String name, int chance, int min, int max, List<String> biomes, TagKey<Biome> restriction) {
     super();
     this.name = name;
     this.chance = chance;
@@ -40,7 +40,7 @@ public class MobConfig extends AbstractConfig {
     this.restriction = restriction;
   }
 
-  public BiomeDictionary.Type getRestriction() {
+  public TagKey<Biome> getRestriction() {
     return restriction;
   }
 
@@ -54,15 +54,6 @@ public class MobConfig extends AbstractConfig {
 
   public int getMax() {
     return configMax.get();
-  }
-
-  private List<BiomeDictionary.Type> cachedBiomes = null;
-
-  public List<BiomeDictionary.Type> getBiomes() {
-    if (cachedBiomes == null) {
-      cachedBiomes = Stream.of(configBiomes.get().split(",")).map(BiomeDictionary.Type::getType).collect(Collectors.toList());
-    }
-    return cachedBiomes;
   }
 
   public boolean shouldRegister() {
@@ -100,6 +91,5 @@ public class MobConfig extends AbstractConfig {
 
   @Override
   public void reset() {
-    cachedBiomes = null;
   }
 }

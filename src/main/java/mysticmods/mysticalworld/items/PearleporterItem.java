@@ -104,7 +104,7 @@ public class PearleporterItem extends Item {
       }
     } else {
       int diff = ConfigManager.CLAM_CONFIG.getMaxAge() - clam.getEntityData().get(ClamEntity.age) / 20;
-      playerIn.displayClientMessage(new TranslatableComponent("mysticalworld.item.pearleporter_immature", diff).setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE)), true);
+      playerIn.displayClientMessage(Component.translatable("mysticalworld.item.pearleporter_immature", diff).setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE)), true);
     }
 
     return InteractionResult.SUCCESS;
@@ -115,7 +115,7 @@ public class PearleporterItem extends Item {
   public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
     super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 
-    pTooltip.add(new TextComponent(""));
-    pTooltip.add(new TranslatableComponent("mysticalworld.item.pearleporter").setStyle(Style.EMPTY.withBold(true)));
+    pTooltip.add(Component.empty());
+    pTooltip.add(Component.translatable("mysticalworld.item.pearleporter").setStyle(Style.EMPTY.withBold(true)));
   }
 }

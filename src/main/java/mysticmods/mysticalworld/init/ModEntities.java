@@ -12,6 +12,7 @@ import mysticmods.mysticalworld.entity.*;
 import mysticmods.mysticalworld.loot.conditions.*;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -35,7 +36,8 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.level.BiomeLoadingEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -316,11 +318,11 @@ public class ModEntities {
     configMap.put(ModEntities.CLAM, ConfigManager.CLAM_CONFIG);
   }
 
-  public static void registerEntity(BiomeLoadingEvent event, Set<BiomeDictionary.Type> types) {
+  public static void registerEntity(LevelEvent event, Set<TagKey<Biome>> types) {
     for (Map.Entry<RegistryEntry<? extends EntityType<?>>, MobConfig> entry : configMap.entrySet()) {
       MobConfig conf = entry.getValue();
       if (conf.shouldRegister()) {
-        Set<BiomeDictionary.Type> types2 = new HashSet<>(types);
+        Set<TagKey<Biome>> types2 = new HashSet<>(types);
         types2.retainAll(conf.getBiomes());
         if (!types2.isEmpty()) {
           if (conf.getRestriction() == BiomeDictionary.Type.NETHER && event.getCategory() == Biome.BiomeCategory.NETHER) {
