@@ -1,6 +1,9 @@
 package mysticmods.mysticalworld.loot.modifiers;
 
+import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.init.ModItems;
@@ -14,6 +17,10 @@ import net.minecraftforge.common.loot.LootModifier;
 import org.jetbrains.annotations.NotNull;
 
 public class SilkwormEggModifier extends LootModifier {
+
+  public static final NonNullSupplier<Codec<SilkwormEggModifier>> CODEC = NonNullSupplier.of(Suppliers.memoize(() ->
+      RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, SilkwormEggModifier::new))));
+
   protected SilkwormEggModifier(LootItemCondition[] conditionsIn) {
     super(conditionsIn);
   }
@@ -34,6 +41,6 @@ public class SilkwormEggModifier extends LootModifier {
 
   @Override
   public Codec<? extends IGlobalLootModifier> codec() {
-    return null;
+    return CODEC.get();
   }
 }

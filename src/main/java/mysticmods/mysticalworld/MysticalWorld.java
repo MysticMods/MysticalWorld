@@ -60,5 +60,6 @@ public class MysticalWorld {
     ModLoot.register(modBus);
     ModFeatures.register(modBus);
     ModStructures.load();
+    ModLootModifiers.load();
   }
 }
