@@ -1,14 +1,14 @@
 package mysticmods.mysticalworld.config;
 
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
 import java.util.Set;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,8 +18,6 @@ public abstract class FeatureConfig extends AbstractConfig {
 
   protected ForgeConfigSpec.ConfigValue<String> configBiomes;
   protected ForgeConfigSpec.ConfigValue<String> configBiomeRestrictions;
-
-  protected Supplier<ConfiguredStructureFeature<?, ?>> structure = null;
 
   public FeatureConfig(List<TagKey<Biome>> biomeTypes, List<TagKey<Biome>> biomeRestrictions) {
     super();
@@ -40,7 +38,7 @@ public abstract class FeatureConfig extends AbstractConfig {
 
   public Set<TagKey<Biome>> getBiomes() {
     if (storedBiomes == null) {
-      storedBiomes = Stream.of(configBiomes.get().split(",")).map(TagKey<Biome>::getType).collect(Collectors.toSet());
+      storedBiomes = Stream.of(configBiomes.get().split(",")).map(s -> TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(s))).collect(Collectors.toSet());
     }
 
     return storedBiomes;
@@ -48,7 +46,7 @@ public abstract class FeatureConfig extends AbstractConfig {
 
   public Set<TagKey<Biome>> getBiomeRestrictions() {
     if (storedRestrictions == null) {
-      storedRestrictions = Stream.of(configBiomeRestrictions.get().split(",")).map(TagKey<Biome>::getType).collect(Collectors.toSet());
+      storedRestrictions = Stream.of(configBiomeRestrictions.get().split(",")).map(s -> TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(s))).collect(Collectors.toSet());
     }
 
     return storedRestrictions;
