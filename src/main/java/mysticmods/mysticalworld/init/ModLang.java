@@ -34,7 +34,7 @@ public class ModLang {
       p.add("mysticalworld.blessed", "Blessed");
       p.add("mysticalworld.smite", "Smite");
       p.add("mysticalworld.serendipity", "Serendipity");
-      p.add("item.minecraft.potion.effect.serendipity", "Serendipity");
+      p.add("item.minecraft.potion.effect.serendipity", "Potion of Serendipity");
       p.add("item.minecraft.splash_potion.effect.serendipity", "Splash Potion of Serendipity");
       p.add("item.minecraft.tipped_arrow.effect.serendipity", "Arrow of Serendipity");
       p.add("item.minecraft.lingering_potion.effect.serendipity", "Lingering Potion of Serendipity");
