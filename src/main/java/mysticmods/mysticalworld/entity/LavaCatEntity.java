@@ -12,6 +12,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -66,7 +67,7 @@ public class LavaCatEntity extends TamableAnimal {
     this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
   }
 
-  public static boolean placement(EntityType<? extends Animal> pAnimal, LevelAccessor worldIn, MobSpawnType reason, BlockPos blockpos, Random pRandom) {
+  public static boolean placement(EntityType<? extends Animal> pAnimal, LevelAccessor worldIn, MobSpawnType reason, BlockPos blockpos, RandomSource pRandom) {
     return worldIn.getBlockState(blockpos.below()).is(MWTags.Blocks.SUPPORTS_LAVA_CAT_SPAWN);
   }
 

@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -108,7 +109,7 @@ public class OwlEntity extends TamableAnimal implements FlyingAnimal {
     return stack.is(MWTags.Items.OWL_FOOD);
   }
 
-  public static boolean placement(EntityType<? extends Animal> pAnimal, LevelAccessor worldIn, MobSpawnType reason, BlockPos blockpos, Random pRandom) {
+  public static boolean placement(EntityType<? extends Animal> pAnimal, LevelAccessor worldIn, MobSpawnType reason, BlockPos blockpos, RandomSource pRandom) {
     BlockState down = worldIn.getBlockState(blockpos.below());
     Block block = down.getBlock();
     return block instanceof LeavesBlock || block == net.minecraft.world.level.block.Blocks.GRASS || (block instanceof RotatedPillarBlock && down.getMaterial() == Material.WOOD) || block == Blocks.AIR && worldIn.getMaxLocalRawBrightness(blockpos) > 8;
@@ -171,7 +172,7 @@ public class OwlEntity extends TamableAnimal implements FlyingAnimal {
     return getPitch(this.random);
   }
 
-  private static float getPitch(Random random) {
+  private static float getPitch(RandomSource random) {
     return (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F;
   }
 

@@ -36,7 +36,6 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.level.BiomeLoadingEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -349,7 +348,6 @@ public class ModEntities {
     SpawnPlacements.register(OWL.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, OwlEntity::placement);
     SpawnPlacements.register(LAVA_CAT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LavaCatEntity::placement);
     SpawnPlacements.register(HELL_SPROUT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LavaCatEntity::placement);
-    SpawnPlacements.register(ENDERMINI.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EnderminiEntity::checkMonsterSpawnRules);
     SpawnPlacements.register(DUCK.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     SpawnPlacements.register(CLAM.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ClamEntity::checkClamSpawnRules);
   }
@@ -364,7 +362,6 @@ public class ModEntities {
     event.put(ModEntities.TAN_SPROUT.get(), SproutEntity.attributes().build());
     event.put(ModEntities.RED_SPROUT.get(), SproutEntity.attributes().build());
     event.put(ModEntities.PURPLE_SPROUT.get(), SproutEntity.attributes().build());
-    event.put(ModEntities.ENDERMINI.get(), EnderminiEntity.attributes().build());
     event.put(ModEntities.LAVA_CAT.get(), LavaCatEntity.attributes().build());
     event.put(ModEntities.OWL.get(), OwlEntity.attributes().build());
     event.put(ModEntities.SILKWORM.get(), SilkwormEntity.attributes().build());
