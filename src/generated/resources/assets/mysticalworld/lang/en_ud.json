@@ -44,6 +44,7 @@
   "block.mysticalworld.carapace_stairs": "s\u0279\u0131\u0250\u0287S \u01DD\u0254\u0250d\u0250\u0279\u0250\u0186",
   "block.mysticalworld.carapace_wall": "\u05DF\u05DF\u0250M \u01DD\u0254\u0250d\u0250\u0279\u0250\u0186",
   "block.mysticalworld.carapace_wide_post": "\u0287so\u0500 \u01DDp\u0131M \u01DD\u0254\u0250d\u0250\u0279\u0250\u0186",
+  "block.mysticalworld.charred_branch": "\u01DD\u01DD\u0279\u27D8 p\u01DD\u0279\u0279\u0250\u0265\u0186",
   "block.mysticalworld.charred_button": "uo\u0287\u0287n\u15FA p\u01DD\u0279\u0279\u0250\u0265\u0186",
   "block.mysticalworld.charred_fence": "\u01DD\u0254u\u01DD\u2132 p\u01DD\u0279\u0279\u0250\u0265\u0186",
   "block.mysticalworld.charred_fence_gate": "\u01DD\u0287\u0250\u2141 \u01DD\u0254u\u01DD\u2132 p\u01DD\u0279\u0279\u0250\u0265\u0186",
@@ -462,5 +463,6 @@
   "mysticalworld.subtitles.entity.sprout.ambient": "s\u0279\u01DDpu\u0250\u028D \u0287no\u0279dS",
   "mysticalworld.subtitles.entity.squid.milk": "p\u01DD\u029E\u05DF\u0131\u026F p\u0131nbS",
   "mysticalworld.subtitles.item.pearleporter.use": "p\u01DD\u0287\u0250\u028C\u0131\u0287\u0254\u2C6F \u0279\u01DD\u0287\u0279od\u01DD\u05DF\u0279\u0250\u01DD\u0500",
-  "mysticalworld.subtitles.item.unripe_pearl.use": "uo\u0131\u0287\u0250\u0287\u0279od\u01DD\u05DF\u01DD\u27D8 \u05DF\u0279\u0250\u01DD\u0500 \u01DDd\u0131\u0279u\u2229"
+  "mysticalworld.subtitles.item.unripe_pearl.use": "uo\u0131\u0287\u0250\u0287\u0279od\u01DD\u05DF\u01DD\u27D8 \u05DF\u0279\u0250\u01DD\u0500 \u01DDd\u0131\u0279u\u2229",
+  "species.mysticalworld.charred": "p\u01DD\u0279\u0279\u0250\u0265\u0186"
 }

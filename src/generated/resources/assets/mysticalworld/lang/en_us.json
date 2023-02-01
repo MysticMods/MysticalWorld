@@ -44,6 +44,7 @@
   "block.mysticalworld.carapace_stairs": "Carapace Stairs",
   "block.mysticalworld.carapace_wall": "Carapace Wall",
   "block.mysticalworld.carapace_wide_post": "Carapace Wide Post",
+  "block.mysticalworld.charred_branch": "Charred Tree",
   "block.mysticalworld.charred_button": "Charred Button",
   "block.mysticalworld.charred_fence": "Charred Fence",
   "block.mysticalworld.charred_fence_gate": "Charred Fence Gate",
@@ -462,5 +463,6 @@
   "mysticalworld.subtitles.entity.sprout.ambient": "Sprout wanders",
   "mysticalworld.subtitles.entity.squid.milk": "Squid milked",
   "mysticalworld.subtitles.item.pearleporter.use": "Pearleporter Activated",
-  "mysticalworld.subtitles.item.unripe_pearl.use": "Unripe Pearl Teleportation"
+  "mysticalworld.subtitles.item.unripe_pearl.use": "Unripe Pearl Teleportation",
+  "species.mysticalworld.charred": "Charred"
 }

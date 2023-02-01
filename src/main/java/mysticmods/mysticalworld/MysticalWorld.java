@@ -4,6 +4,7 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import mysticmods.mysticalworld.api.Capabilities;
 import mysticmods.mysticalworld.config.ConfigManager;
 import mysticmods.mysticalworld.init.*;
+import mysticmods.mysticalworld.integration.DTIntegration;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.PlantType;
@@ -60,5 +61,7 @@ public class MysticalWorld {
     ModLoot.register(modBus);
     ModFeatures.register(modBus);
     ModStructures.load();
+
+    DTIntegration.INSTANCE.load();
   }
 }
