@@ -74,6 +74,10 @@ public class ModLang {
       p.add("mysticalworld.subtitles.entity.frog.croak", "Frog croaks");
       p.add("mysticalworld.subtitles.entity.duck.quack", "Duck quacks");
       p.add("mysticalworld.subtitles.entity.deer.ambient", "Deer squeals");
+
+      // Dynamic Trees entries
+      p.add("species.mysticalworld.charred", "Charred");
+      p.add("block.mysticalworld.charred_branch", "Charred Tree");
     });
   }
 

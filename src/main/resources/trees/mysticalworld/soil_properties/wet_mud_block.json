@@ -4,5 +4,5 @@
     "dirt_like",
     "mud_like"
   ],
-  "substitute_soil": "dtmysticalworld:mysticalworld_mud_block"
+  "substitute_soil": "mysticalworld:mud_block"
 }

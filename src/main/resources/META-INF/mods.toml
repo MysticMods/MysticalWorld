@@ -30,3 +30,9 @@ ${modDescription}
     versionRange="[1.18,)"
     ordering="NONE"
     side="BOTH"
+[[dependencies.${modId}]]
+    modId="dynamictrees"
+    mandatory=false
+    versionRange="[0.11.0-Beta6,)"
+    ordering="AFTER"
+    side="BOTH"
