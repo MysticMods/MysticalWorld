@@ -22,7 +22,10 @@ public class DamageHandler {
         if (trueAttacker instanceof EntityLivingBase) {
           if (((EntityLivingBase) trueAttacker).isEntityUndead()) {
             EntityPlayer player = (EntityPlayer) target;
-            float blessedAmount = (float) player.getAttributeMap().getAttributeInstance(ModModifiers.BLESSED).getAttributeValue();
+            float blessedAmount = 0;
+            try { //Handles fake players who do not have blesses attribute (Ex: LittleMaidMob)
+              blessedAmount = (float) player.getAttributeMap().getAttributeInstance(ModModifiers.BLESSED).getAttributeValue();
+            } catch (NullPointerException ignored) {}
             if (blessedAmount > 0) {
               trueAttacker.attackEntityFrom(DamageSource.ON_FIRE, blessedAmount);
             }
